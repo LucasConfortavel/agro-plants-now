@@ -17,17 +17,17 @@
     box-shadow: 2px 2px 2px 2px #d9d9d9;
 }
 
-.logo-horizontal{
+.cabeca-logo-horizontal{
     margin-left: 50px;
     margin-bottom: 10px;
 
 }
 
-.navegacao{
+.cabeca-navegacao{
     display: flex;
 }
 
-.lista-da-navegacao{
+.cabeca-lista-navegacao{
     gap: 70px;
     text-decoration: none;
     list-style: none;
@@ -35,7 +35,7 @@
     margin-right: 600px;
 }
 
-.BTN-LOGIN{
+.cabeca-btn-login{
     margin-right: 70px;
     width: 111px;
     height: 49px;
@@ -46,16 +46,12 @@
     cursor: pointer;
 }
 
-body{
-    background-color: #e7e5e5;
-}
-
-.link{
+.cabeca-link{
     font-size: 17px;
     color: rgb(116, 115, 115);
 }
 
-.link:hover{
+.cabeca-link:hover{
     color: #008F9F;
     cursor: pointer;
 }
