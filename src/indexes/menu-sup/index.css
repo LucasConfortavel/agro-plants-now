@@ -1,0 +1,49 @@
+.cabeca-do-site{
+    width: 100vw;
+    height: 85px;
+    background-color: #f3f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    box-shadow: 2px 2px 2px 2px #d9d9d9;
+}
+
+.cabeca-logo-horizontal{
+    margin-left: 50px;
+    margin-bottom: 10px;
+
+}
+
+.cabeca-navegacao{
+    display: flex;
+}
+
+.cabeca-lista-navegacao{
+    gap: 70px;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    margin-right: 600px;
+}
+
+.cabeca-btn-login{
+    margin-right: 70px;
+    width: 111px;
+    height: 49px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    background-color: #45734B;
+    cursor: pointer;
+}
+
+.cabeca-link{
+    font-size: 17px;
+    color: rgb(116, 115, 115);
+}
+
+.cabeca-link:hover{
+    color: #008F9F;
+    cursor: pointer;
+}
