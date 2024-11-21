@@ -13,7 +13,7 @@
     --color-primary-5: #E7E6E6; /*Stroke */
     --color-primary-6: #45734B; /* Background Buttons */
     --color-primary-7: #008F9F; /* cor hover palavras */
-    --color-icones-0:  #7F7F7F; /* Cor texto */
+    --color-primary-8:  rgba(0,0,0, 0.5); /* Cor texto e icones*/
 
     --color-status-1: #30AB46;
     --color-status-2: #FF0000;
@@ -34,17 +34,28 @@
     border: none;
     align-items: center;
     justify-content: center;
+    color: var(--color-primary-5);
     background-color: var(--color-primary-6);
     border-radius: 10px;
     height: 49px;
+    padding: 14px 30px;
     box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    font-size: 15px;
 }
 
 a{
    text-decoration: none; 
+   font-size: 15px;
 }
 
 a:hover{
-    color: var(--color-primary-7);
+    scale: 1.10;
+    color: #008F9F;
 }
+
+.btn-icon:hover{
+    filter: brightness(0) saturate(100%) invert(29%) sepia(69%) saturate(4747%) hue-rotate(171deg) brightness(104%) contrast(101%);
+}
+
+
