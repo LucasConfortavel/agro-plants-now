@@ -1,35 +1,57 @@
 .menu-container-lat{
+    
     width: 146px;
-    height: 1021.01px;
+    height: 1024px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(#F6F6F6);
-    border-right: var(--color-primary-5) solid 2px;
+    border-right: 2px solid var(--color-primary-8);
+
 }
 
 .nav-bar{
-    width: 146px;
+    width: 100%;
     height: 500px;
-    position: fixed;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    position: fixed;
     z-index: 1;
+
+}
+
+.nav-list-menu{
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    list-style: none;
+
 }
 
 .nav-link{
-    height: 50px;
-    width: 125px;
+
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
 
 }
 
 .nav-bar-inf{
-    height: 750px;
+
+    width: 146px;
+    height: 740px;
     display: flex;
     flex-direction: column-reverse;
     position: fixed;
+
+}
+
+.img-logo{
+
+    margin-top: 50px;
+    margin-bottom: 100px;
 
 }

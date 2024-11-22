@@ -49,12 +49,7 @@ a{
    font-size: 15px;
 }
 
-a:hover{
-    scale: 1.10;
-    color: #008F9F;
-}
-
-.btn-icon:hover{
+a:hover .btn-icon:hover{
     filter: brightness(0) saturate(100%) invert(29%) sepia(69%) saturate(4747%) hue-rotate(171deg) brightness(104%) contrast(101%);
 }
 
