@@ -53,4 +53,7 @@ a:hover .btn-icon:hover{
     filter: brightness(0) saturate(100%) invert(29%) sepia(69%) saturate(4747%) hue-rotate(171deg) brightness(104%) contrast(101%);
 }
 
-
+.btn-icon{
+    height: 25px;
+    width: 25px;
+}
