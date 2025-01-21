@@ -1,0 +1,221 @@
+
+.container {
+    display: flex; 
+    min-height: 100vh; 
+
+}
+
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 220px; 
+    
+}
+
+
+.header {
+    height: 60px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.header-content {
+    height: 100%;
+    width: 120px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 13px;
+    margin-top: 12px;
+    border-radius: 10px;
+    gap: 23px;
+}
+
+.foto-perfil {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.Perfil-content{
+
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--color-primary-1);
+
+}
+
+.content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.caixa-titulo{
+
+    width: 500px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+}
+
+#titulo{
+
+    font-size: 40px;
+    color: #333;
+
+}
+
+.box-titulo{
+
+    width: 6px;
+    height: 29px;
+    background-color: var(--color-primary-6);
+
+}
+
+.flex-box-buttons{
+
+    display: flex;
+    flex-direction: row;
+    gap: 300px;
+
+
+}
+
+.btn-button-padrao2{
+
+    background-color: var(--color-primary-1);
+    box-shadow: none;
+    border: 2px solid var(--color-primary-5);
+    color: var(--color-primary-8);
+
+}
+
+.btn-button-padrao3{
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+}
+
+.box-buttons{
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+.lista-de-vendas{
+
+    width: 1017px;
+    height: 533px;
+    display: flex; 
+    flex-direction: column;
+    background-color: var(--color-primary-3);
+    margin-left: 50px;
+    border-radius: 10px;
+    border: 2px solid var(--color-primary-5);
+    align-items: center;
+
+}
+
+.titulo-da-lista{
+
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+
+}
+
+.titulo-lista{
+
+    font-size: 20px;
+
+}
+
+.registro-de-vendas{
+
+    width: 980px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.info-vendas{
+
+    width: 980px;
+    margin-top: 10px;
+    border-top: 2px solid var(--color-primary-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lista-info{
+
+    width: 980px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.info-vendas-registro{
+
+    width: 980px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    border-top: 2px solid var(--color-primary-5);
+
+}
+
+#li{
+
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+span{
+
+    color: var(--color-primary-7);
+
+}
+
+.btn-icon2 {
+    filter: invert(0) sepia(1) saturate(5) hue-rotate(180deg) brightness(0.5) contrast(1);
+}
+
