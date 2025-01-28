@@ -54,3 +54,14 @@
     margin-top: 50px;
     margin-bottom: 100px;
 }
+
+.gambiarra {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.gambiarra:hover {
+    filter: brightness(0) saturate(100%) invert(29%) sepia(69%) saturate(4747%) hue-rotate(171deg) brightness(104%) contrast(101%);
+}
