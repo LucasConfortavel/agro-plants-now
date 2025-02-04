@@ -1,23 +1,17 @@
-
-.container {
-    display: flex; 
+.po-container {
+    display: flex;
     flex-direction: column;
-
-    min-height: 100vh; 
-
+    min-height: 100vh;
 }
 
-
-.main-content {
+.po-main-content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    margin-left: 220px; 
-    
+    margin-left: 220px;
 }
 
-
-.header {
+.po-header {
     height: 60px;
     display: flex;
     flex-direction: row-reverse;
@@ -26,8 +20,7 @@
     width: 100%;
 }
 
-
-.header-content {
+.po-header-content {
     height: 100%;
     width: 120px;
     background-color: #333;
@@ -40,14 +33,7 @@
     gap: 23px;
 }
 
-.foto-perfil {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.Perfil-content{
-
+.po-Perfil-content {
     width: 36px;
     height: 36px;
     display: flex;
@@ -55,115 +41,94 @@
     justify-content: center;
     border-radius: 50%;
     background-color: var(--color-primary-1);
-
 }
 
-.content {
+.po-content {
     padding: 20px;
     flex-grow: 1;
 }
 
-.caixa-titulo{
-
+.po-caixa-titulo {
     width: 500px;
     height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
-
 }
 
-#titulo{
-
+#titulo {
     font-size: 40px;
     color: #333;
-
 }
 
-.box-titulo{
-
+.po-box-titulo {
     width: 6px;
     height: 29px;
     background-color: var(--color-primary-6);
-
 }
 
-.flex-box-buttons{
-
+.po-flex-box-buttons {
     display: flex;
     flex-direction: row;
     gap: 300px;
-
-
 }
 
-.btn-button-padrao2{
-
+.btn-button-padrao2 {
     background-color: var(--color-primary-1);
     box-shadow: none;
     border: 2px solid var(--color-primary-5);
     color: var(--color-primary-8);
-
 }
 
-.btn-button-padrao2:hover{
-
+.btn-button-padrao2:hover {
     background-color: var(--color-primary-6);
     box-shadow: none;
-    transition: 0.3s;
-
+    transition: 0.po-3s;
 }
 
-.svg-icon{
+.btn-button-padrao4 {
+    background-color: var(--color-primary-3);
+    box-shadow: none;
+    border-bottom: 2px solid var(--color-primary-5);
+    border-radius: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    color: var(--color-primary-8);
+}
 
+.po-svg-icon {
     height: 48px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px; 
-
+    gap: 10px;
 }
 
-.svg-icon:hover{
-
+.po-svg-icon:hover {
     filter: invert(1) brightness(2) contrast(1);
     color: black;
-
 }
 
-.btn-button-padrao3{
-
+.po-box-buttons {
     display: flex;
     flex-direction: row;
-    gap: 10px;
-
 }
 
-.box-buttons{
-
-    display: flex;
-    flex-direction: row;
-
-}
-
-.lista-de-vendas{
-
+.po-lista-de-vendas {
     width: 1017px;
     height: 533px;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     background-color: var(--color-primary-3);
     margin-left: 50px;
     border-radius: 10px;
     border: 2px solid var(--color-primary-5);
     align-items: center;
-
-
 }
 
-.titulo-da-lista{
-
+.po-titulo-da-lista {
     width: 100%;
     height: 60px;
     display: flex;
@@ -171,28 +136,28 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
+}
+
+.po-link{
+
+    text-decoration: none;
+    color: inherit;
 
 }
 
-.titulo-lista{
-
+.po-titulo-lista {
     font-size: 20px;
-
 }
 
-.registro-de-vendas{
-
+.po-registro-de-vendas {
     width: 980px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
 }
 
-.info-vendas{
-
+.po-info-vendas {
     width: 980px;
     margin-top: 10px;
     border-top: 2px solid var(--color-primary-5);
@@ -200,11 +165,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
 }
 
-.lista-info{
-
+.po-lista-info {
     width: 980px;
     height: 40px;
     display: flex;
@@ -213,11 +176,9 @@
     list-style: none;
     align-items: center;
     justify-content: center;
-
 }
 
-.info-vendas-registro{
-
+.po-info-vendas-registro {
     width: 980px;
     height: 40px;
     display: flex;
@@ -227,11 +188,9 @@
     align-items: center;
     justify-content: center;
     border-top: 2px solid var(--color-primary-5);
-
 }
 
-.container-grafico{
-
+.po-container-grafico {
     width: 888px;
     height: 482px;
     background-color: var(--color-primary-3);
@@ -243,12 +202,9 @@
     border-radius: 10px;
     border: 2px solid var(--color-primary-5);
     margin-bottom: 50px;
-
-
 }
 
-.box-porcentagem{
-
+.po-box-porcentagem {
     width: 255px;
     height: 482px;
     background-color: var(--color-primary-3);
@@ -258,41 +214,121 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
-#li{
-
+.po-li {
     width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 12px;
 
 }
 
-.preco{
+.lista-info2{
 
+    gap: 10px;
+
+}
+
+.po-preco {
     color: var(--color-primary-7);
-
 }
-
 
 .btn-icon2 {
-    filter: invert(0) sepia(1) saturate(5) hue-rotate(180deg) brightness(0.5) contrast(1);
+    filter: invert(1) sepia(1) saturate(0) brightness(0.5) contrast(1);
 }
 
-.img-grafico{
-
+.po-img-grafico {
     width: 808px;
     height: 359px;
-
 }
 
-.img-grafico2{
-
+.po-img-grafico2 {
     width: 218px;
     height: 418px;
-
 }
 
+@media (max-width: 1200px) {
+    .po-main-content {
+        margin-left: 0;
+    }
+
+    .po-caixa-titulo {
+        width: 100%;
+    }
+
+    .po-flex-box-buttons {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .po-lista-de-vendas {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .po-info-vendas, .po-info-vendas-registro {
+        width: 100%;
+    }
+
+    .po-lista-info, .po-info-vendas-registro {
+        gap: 50px;
+    }
+
+    .po-container-grafico {
+        width: 100%;
+        margin-left: 0;
+        flex-direction: column;
+    }
+
+    .po-box-porcentagem {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .po-img-grafico, .po-img-grafico2 {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #titulo {
+        font-size: 30px;
+    }
+
+    .po-header-content {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .po-lista-info, .po-info-vendas-registro {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .po-li {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #titulo {
+        font-size: 24px;
+    }
+
+    .po-btn-button-padrao2, .po-btn-button-padrao4 {
+        width: 100%;
+    }
+
+    .po-lista-de-vendas {
+        height: auto;
+    }
+
+    .po-container-grafico {
+        margin-top: 20px;
+    }
+}
 
