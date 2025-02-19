@@ -1,0 +1,67 @@
+@import url(style_menu.css);
+
+.YM-page{
+    background-color: #F0EEEE;
+    display: flex;
+}
+
+.YM-section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.YM-area-table{
+    width: 95%;
+    height: 80%;
+    overflow: auto;
+    box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.YM-tabela{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    
+}   
+
+.YM-tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+.YM-tbody .YM-tr:hover{
+    background-color: #e2e1e1;
+}
+
+.YM-thead{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    color: white;
+    background-color: #2d2d2d;
+    font-weight: 550;
+}
+
+.YM-th, .YM-td {
+    padding: 12px 15px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.YM-td{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.363);
+}
+
+.YM-area-table::-webkit-scrollbar{
+    background-color:white;
+    border-radius: 0px 20px 20px 0px;
+    border-left: 2px solid rgba(255, 255, 255, 0.471);
+    width: 11px;}
+
+.YM-area-table::-webkit-scrollbar-thumb{
+    background-color: rgb(186, 186, 186);
+    border-radius: 0px 20px 20px 0px;
+}
