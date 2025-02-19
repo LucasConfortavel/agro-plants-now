@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informações do ADM</title>
-    <link rel="stylesheet" href="../PUBLIC/css/style_menu.css">
+    <title>Menu do ADM</title>
+    <link rel="stylesheet" href="/projeto_agro_plants_now1/PUBLIC/css/style_menu.css">
 </head>
 <body>
     <div class="jp_hamburger-menu">
@@ -17,14 +17,16 @@
         <!-- Sidebar -->
         <aside class="jp_sidebar">
             <div class="jp_logo">
-                <img src="../PUBLIC/img/logo_agro.png" alt="Logo">
+                <img src="/projeto_agro_plants_now1/PUBLIC/img/logo_agro.png" alt="Logo">
             </div>
             <nav>
                 <ul>
                     <li class="jp_active"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</li>
                     <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li>
                     <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</li>
                     <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</li>
                     <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li>
                 </ul>
             </nav>
@@ -37,17 +39,8 @@
         </aside>
 
 
-
-        <!-- Main Content -->
-        <main class="jp_main-content">
-
-            <!-- coloque seu codigo aqui -->
-
-            <!-- tudo o que colocar aqui aparecera ao lado do menu -->
-        </main>
     </div>
-
-    <script src="../PUBLIC/JS/script.js"></script>
-
+    
+    <script src="/projeto_agro_plants_now1/PUBLIC/JS/script.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informações do ADM</title>
+    <title>Menu do Vendedor</title>
     <link rel="stylesheet" href="/projeto_agro_plants_now1/PUBLIC/css/style_menu.css">
 </head>
 <body>
