@@ -1,12 +1,7 @@
 <?php
-
 include "../../INCLUDE/Menu_vend.php";
-
-
-
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,11 +11,11 @@ include "../../INCLUDE/Menu_vend.php";
     <title>Agro Plants NOW</title>
     <link rel="stylesheet" href="../global-index/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="index.css">
+
+
 </head>
 <body>
     <main class="jp_main-content">
-        </div>
         <div class="sab-engloba-tudo">
             <div class="sab-fundo">
                 <div class="sab-icones">

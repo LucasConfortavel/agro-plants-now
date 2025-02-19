@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: content-box;
     font-family: Inter, system-ui, -apple-system, sans-serif;
 }
 
@@ -68,9 +68,13 @@ body {
 /* Layout */
 
 
+/* colocar esse css*/
 .jp_container {
+    /* display: flex;
+    min-height: 100vh; */
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
 }
 
 
@@ -152,6 +156,7 @@ body {
     flex: 1;
     margin-left: 250px;
     padding: 30px;
+    /* padding: 30px; */
 }
 
 
