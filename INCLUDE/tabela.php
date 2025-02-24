@@ -19,7 +19,8 @@
         <!-- Sidebar -->
         <aside class="jp_sidebar">
             <div class="jp_logo">
-                <img src="../img/logo_agro.png" alt="Logo">
+                <!-- <img src="../img/logo_agro.png" alt="Logo"> -->
+                <img src="/projeto_agro_plants_now1/PUBLIC/img/logo_agro.png" alt="Logo">
             </div>
             <nav>
                 <ul>
@@ -49,21 +50,21 @@
 
                         <thead class="YM-thead">
                             <tr class="YM-tr">
-                                <th class="YM-th">Nome</th>
-                                <th class="YM-th">Data de Cadastro</th>
+                                <th class="YM-th" style="color:white;">Nome</th>
+                                <th class="YM-th" style="color:white;">Data de Cadastro</th>
                                 <th class="YM-th"></th>
                         </thead>
 
                         <tbody class="YM-tbody">
 
                             <?php
-                                echo'''
+                                echo'
                                 <tr class="YM-tr">
                                     <td class="YM-td">12/08</td>
                                     <td class="YM-td">12/08</td>
                                     <td class="YM-td"><a href=""><img src="../img/Frame.png" alt=""></a></td>
                                 </tr>
-                                ''';
+                                ';
                             ?>
 
                         </tbody>
@@ -72,7 +73,7 @@
             </section>
         </main>
     </div>
-
-    <script src="script.js"></script>
+    <script src="/projeto_agro_plants_now1/PUBLIC/JS/script.js"></script>
+    <!-- <script src="script.js"></script> -->
 </body>
 </html>
