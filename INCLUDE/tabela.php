@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro Plants NOW</title>
-    <link rel="stylesheet" href="../PUBLIC/css/tabela.css">
+    <link rel="stylesheet" href="/projeto_agro_plants_now1/PUBLIC/css/tabela.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -43,26 +43,26 @@
         <!-- Main Content -->
         <main class="jp_main-content">
 
-            <section class="ym_section">
-                <div class="ym_area-table">
+            <section class="YM-section">
+                <div class="YM-area-table">
 
-                    <table class="ym_tabela">
+                    <table class="YM-tabela">
 
-                        <thead class="ym_thead">
-                            <tr class="ym_tr">
-                                <th class="ym_th" style="color:white;">Nome</th>
-                                <th class="ym_th" style="color:white;">Data de Cadastro</th>
-                                <th class="ym_th"></th>
+                        <thead class="YM-thead">
+                            <tr class="YM-tr">
+                                <th class="YM-th" style="color:white;">Nome</th>
+                                <th class="YM-th" style="color:white;">Data de Cadastro</th>
+                                <th class="YM-th"></th>
                         </thead>
 
-                        <tbody class="ym_tbody">
+                        <tbody class="YM-tbody">
 
                             <?php
                                 echo'
-                                <tr class="ym_tr">
-                                    <td class="ym_td">12/08</td>
-                                    <td class="ym_td">12/08</td>
-                                    <td class="ym_td"><a href=""><img src="../PUBLIC/img/Frame.png" alt=""></a></td>
+                                <tr class="YM-tr">
+                                    <td class="YM-td">12/08</td>
+                                    <td class="YM-td">12/08</td>
+                                    <td class="YM-td"><a href=""><img src="../img/Frame.png" alt=""></a></td>
                                 </tr>
                                 ';
                             ?>
