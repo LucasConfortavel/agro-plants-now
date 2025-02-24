@@ -1,19 +1,19 @@
 @import url(style_menu.css);
 
-.ym_page{
+.page{
     background-color: #F0EEEE;
     display: flex;
 }
 
-.ym_section{
-    width: 100%;
-    height: 100%;
+.cliente{
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.ym_area-table{
+.area-table{
     width: 95%;
     height: 80%;
     overflow: auto;
@@ -21,22 +21,22 @@
     border-radius: 10px;
 }
 
-.ym_tabela{
+table{
     width: 100%;
     border-collapse: collapse;
     background-color: #ffffff;
     
 }   
 
-.ym_tr:nth-child(even) {
+tr:nth-child(even) {
     background-color: #f7f7f7;
 }
 
-.ym_tbody .ym_tr:hover{
+tbody tr:hover{
     background-color: #e2e1e1;
 }
 
-.ym_thead{
+thead{
     position: sticky;
     top: 0;
     z-index: 1;
@@ -45,23 +45,42 @@
     font-weight: 550;
 }
 
-.ym_th, .ym_td {
+th, td {
     padding: 12px 15px;
     text-align: center;
     word-wrap: break-word;
 }
 
-.ym_td{
+td{
     border-bottom: 1px solid rgba(0, 0, 0, 0.363);
 }
 
-.ym_area-table::-webkit-scrollbar{
+input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    padding: 3px;
+}
+
+.YM{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.YM i{
+    font-size: 22px;
+}
+
+.area-table::-webkit-scrollbar{
     background-color:white;
     border-radius: 0px 20px 20px 0px;
     border-left: 2px solid rgba(255, 255, 255, 0.471);
     width: 11px;}
 
-.ym_area-table::-webkit-scrollbar-thumb{
+.area-table::-webkit-scrollbar-thumb{
     background-color: rgb(186, 186, 186);
     border-radius: 0px 20px 20px 0px;
 }
