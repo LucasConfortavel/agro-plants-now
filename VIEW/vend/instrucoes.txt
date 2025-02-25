@@ -1,3 +1,4 @@
+
 Todas as telas/arquivos de vendedor nessa pasta
 
 
@@ -6,14 +7,19 @@ Todas as telas/arquivos de vendedor nessa pasta
 |
 V
 
-<?php
+            <?php
 
-include "../../INCLUDE/Menu_vend.php";
+            include "../../INCLUDE/Menu_vend.php";
 
 
-?>
+            ?>
 
-2-Antes de colocar o seu código coloque a div main 'JP_main'(depois do body) e dentro da main coloque o seu código 
+
+
+2-Antes de colocar o seu código coloque a main ---> 'jp_main-content'(depois do body) e dentro dessa main coloque o seu código 
+
+
+------main 'jp_main-content':
 
 
         <main class="jp_main-content">
@@ -24,3 +30,4 @@ include "../../INCLUDE/Menu_vend.php";
 
 
         </main>
+

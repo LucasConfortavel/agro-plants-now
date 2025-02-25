@@ -62,7 +62,7 @@
                                 <tr class="ym_tr">
                                     <td class="ym_td">12/08</td>
                                     <td class="ym_td">12/08</td>
-                                    <td class="ym_td"><a href=""><img src="projeto_agro_plants_now1/PUBLIC/img/Frame.png" alt=""></a></td>
+                                    <td class="ym_td"><a href=""><img src="/projeto_agro_plants_now1/PUBLIC/img/Frame.png" alt=""></a></td>
                                 </tr>
                                 ';
                             ?>

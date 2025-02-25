@@ -42,7 +42,8 @@
     z-index: 1;
     color: white;
     background-color: #2d2d2d;
-    font-weight: 550;
+    font-weight: 500;
+    /* font-weight: 550; */
 }
 
 .ym_th, .ym_td {
