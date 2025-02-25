@@ -43,26 +43,26 @@
         <!-- Main Content -->
         <main class="jp_main-content">
 
-            <section class="YM-section">
-                <div class="YM-area-table">
+            <section class="ym_section">
+                <div class="ym_area-table">
 
-                    <table class="YM-tabela">
+                    <table class="ym_tabela">
 
-                        <thead class="YM-thead">
-                            <tr class="YM-tr">
-                                <th class="YM-th" style="color:white;">Nome</th>
-                                <th class="YM-th" style="color:white;">Data de Cadastro</th>
-                                <th class="YM-th"></th>
+                        <thead class="ym_thead">
+                            <tr class="ym_tr">
+                                <th class="ym_th" style="color:white;">Nome</th>
+                                <th class="ym_th" style="color:white;">Data de Cadastro</th>
+                                <th class="ym_th"></th>
                         </thead>
 
-                        <tbody class="YM-tbody">
+                        <tbody class="ym_tbody">
 
                             <?php
                                 echo'
-                                <tr class="YM-tr">
-                                    <td class="YM-td">12/08</td>
-                                    <td class="YM-td">12/08</td>
-                                    <td class="YM-td"><a href=""><img src="../img/Frame.png" alt=""></a></td>
+                                <tr class="ym_tr">
+                                    <td class="ym_td">12/08</td>
+                                    <td class="ym_td">12/08</td>
+                                    <td class="ym_td"><a href=""><img src="projeto_agro_plants_now1/PUBLIC/img/Frame.png" alt=""></a></td>
                                 </tr>
                                 ';
                             ?>
