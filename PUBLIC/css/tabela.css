@@ -1,0 +1,68 @@
+@import url(style_menu.css);
+
+.ym_page{
+    background-color: #F0EEEE;
+    display: flex;
+}
+
+.ym_section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ym_area-table{
+    width: 95%;
+    height: 80%;
+    overflow: auto;
+    box-shadow: 3px 3px 10px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.ym_tabela{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    
+}   
+
+.ym_tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+.ym_tbody .ym_tr:hover{
+    background-color: #e2e1e1;
+}
+
+.ym_thead{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    color: white;
+    background-color: #2d2d2d;
+    font-weight: 500;
+    /* font-weight: 550; */
+}
+
+.ym_th, .ym_td {
+    padding: 12px 15px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.ym_td{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.363);
+}
+
+.ym_area-table::-webkit-scrollbar{
+    background-color:white;
+    border-radius: 0px 20px 20px 0px;
+    border-left: 2px solid rgba(255, 255, 255, 0.471);
+    width: 11px;}
+
+.ym_area-table::-webkit-scrollbar-thumb{
+    background-color: rgb(186, 186, 186);
+    border-radius: 0px 20px 20px 0px;
+}

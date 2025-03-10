@@ -1,0 +1,30 @@
+
+Todas as telas/arquivos relacionadas ao adm nessa pasta
+
+
+1-Adicione esse código PHP no começo
+
+
+
+            <?php
+
+            include "../../INCLUDE/Menu_adm.php";
+
+
+            ?>
+
+
+2-Antes de colocar o seu código coloque a main ---> 'jp_main-content' (depois do body) e dentro dessa main coloque o seu código 
+
+
+------main 'jp_main-content':
+
+
+        <main class="jp_main-content">
+        
+
+            <!-- coloque seu codigo aqui -->
+            <!-- tudo o que colocar aqui aparecera ao lado do menu -->
+
+
+        </main>
