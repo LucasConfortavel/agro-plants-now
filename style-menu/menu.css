@@ -166,14 +166,14 @@ body {
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.8);
-    margin-left: 1559px;
+    margin-left: 1180px;
     margin-top: 2px;
     border-radius: 10px;
     cursor: pointer;
 }
 .edu_img-notificacao{
-    width: 83px;
-    height: 36px;
-    margin-top: 10px;
-    margin-left: -5px;
+    width: 70px;
+    height: 30px;
+    margin-top: 12px;
+    margin-left: 0px;
 }
