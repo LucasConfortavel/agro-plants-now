@@ -1,1 +1,1 @@
-classes
+Essa pasta serve para armazenar o código responsável por gerenciar os dados da aplicação. Nela, colocamos as entidades (como Usuário, Produto), as funções que interagem com o banco de dados (para salvar, buscar, atualizar dados) e as regras de negócio (como validações). Essa pasta ajuda a organizar o código, separando a lógica de dados do resto da aplicação.

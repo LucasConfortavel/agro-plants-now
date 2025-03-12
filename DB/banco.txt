@@ -1,0 +1,1 @@
+Aqui é onde armazenamos tudo relacionado ao banco de dados. Nela,  colocamos arquivos que definem a estrutura do banco (como tabelas e relacionamentos), migrações (para alterar o banco ao longo do tempo) e, às vezes, seeders (para preencher o banco com dados iniciais). Ela ajuda a organizar e gerenciar tudo que envolve a persistência de dados na aplicação.
