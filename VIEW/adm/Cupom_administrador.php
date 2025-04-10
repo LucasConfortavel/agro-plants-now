@@ -44,7 +44,7 @@ include "../../INCLUDE/Menu_vend.php";
         
             </div>
             <div class="sab-botão">
-                <button>Cadastrar cupom</button>
+                <button type="button">Cadastrar cupom</button>
             </div>
             <section class="ym_section">
                 <div class="ym_area-table">
