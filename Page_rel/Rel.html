@@ -1,216 +1,179 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro Plants NOW</title>
-    <link rel="stylesheet" href="../src/pages/global-index/index.css">
     <link rel="stylesheet" href="Rel.css">
 </head>
 <body>
-
-    <div class="po-container">
-        <div class="menu-container-lat">
-            <div class="nav-bar">
-                <img src="../src/imagens/mobile-logo 2.svg" alt="" class="logo">
-                <ul class="nav-list-menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><img src="../src/imagens/Dashboard.svg" alt="" class="btn-icon">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><img src="../src/imagens/Catalogo.svg" alt="" class="btn-icon">Catálogo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><img src="../src/imagens/Vendedor-Cliente.svg" alt="" class="btn-icon">Cliente</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><img src="../src/imagens/Vendedor-Cliente.svg" alt="" class="btn-icon">Vendedores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><img src="../src/imagens/Vendas.svg" alt="" class="btn-icon">Vendas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><img src="../src/imagens/Relatório.svg" alt="" class="btn-icon">Relatórios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><img src="../src/imagens/Cupons.svg" alt="" class="btn-icon">Cupons</a>
-                    </li>
+    
+    <div class="jp_container">
+        <!-- Sidebar -->
+        <aside class="jp_sidebar">
+            <div class="jp_logo">
+                <img src="/projeto_agro_plants_now1/PUBLIC/img/logo_agro.png" alt="Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li class="jp_active"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</li>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</li>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</li>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li>
+                </ul>
+            </nav>
+            <div class="jp_bottom-menu">
+                <ul>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li>
+                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li>
                 </ul>
             </div>
+        </aside>
 
-            <div class="nav-bar-inf">
-                <ul class="nav-list-menu">
-                    <li class="nav-item">
-                        <a href="" class="nav-link"><img src="../src/imagens/Ajustes.svg" alt="" class="btn-icon">Ajustes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link"><img src="../src/imagens/Logout.svg" alt="" class="btn-icon">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="po-main-content">
-
-            <header class="po-header">
-                <div class="po-header-content">
-
-                        <img src="../src/imagens/sino.svg" alt="" class="po-btn-icon">
-
-                        <div class="po-Perfil-content">
-                            <img src="../src/imagens/Vendedor-Cliente.svg" alt="foto de Perfil" class="btn-icon btn-icon2">
-                        </div>
-                </div>
-            </header>
- 
-            <div class="po-content">
-                <div class="po-caixa-titulo">
-                    <div class="po-box-titulo"></div>
-                    <p id="titulo">Relatório de vendas</p>
-                </div>
-
-            </div>
-
-            <div class="po-flex-box-buttons">
-
-                <div class="po-box-buttons">
-                    <button class="btn-button-padrao">Vendas</button>
-                    <button class="btn-button-padrao btn-button-padrao2"><span class="po-svg-icon"><a href="Rel_C.html" class="po-link">Comissões</a></span></button>
-                </div>
-
-                <button class="btn-button-padrao btn-button-padrao2 btn-button-padrao3"><span class="po-svg-icon">Exportar como <img src="../src/imagens/Dowload.svg"></span></button>
-
-            </div>
-
-            <div class="po-lista-de-vendas">
-                <div class="po-titulo-da-lista">
-                    <p class="po-titulo-lista">Registro de Vendas</p>
-                    <button class="btn-button-padrao btn-button-padrao4">Ultimo Mês <img src="../src/imagens/seta.svg" alt=""></button>
-                </div>
-
-                <div class="po-registro-de-vendas">
-                    <div class="po-info-vendas">
-                        <ul class="po-lista-info">
-                            <li class="po-li">
-                                <p>Data</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Vendedor</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Produto/Serviço</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Valor da venda</p>
-                            </li>
-                        </ul>
-
-                        <ul class="po-info-vendas-registro">
-                            <li class="po-li">
-                                <p>02/10</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Paulo Otávio</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Biofertilizante</p>
-                            </li>
-                            <li class="po-li">
-                                <p><span class="po-preco">R$ 2000,00</span></p>
-                            </li>
-                        </ul>
-
-                        <ul class="po-info-vendas-registro">
-                            <li class="po-li">
-                                <p>02/10</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Paulo Otávio</p>
-                            </li>
-                            <li  class="po-li">
-                                <p>Biofertilizante</p>
-                            </li>
-                            <li class="po-li">
-                                <p><span class="po-preco">R$ 2000,00</span></p>
-                            </li>
-                        </ul>
-
-                        <ul class="po-info-vendas-registro">
-                            <li class="po-li">
-                                <p>02/10</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Paulo Otávio</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Biofertilizante</p>
-                            </li>
-                            <li class="po-li">
-                                <p><span class="po-preco">R$ 2000,00</span></p>
-                            </li>
-                        </ul>
-
-                        <ul class="po-info-vendas-registro">
-                            <li class="po-li">
-                                <p>02/10</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Paulo Otávio</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Biofertilizante</p>
-                            </li>
-                            <li class="po-li">
-                                <p><span class="po-preco">R$ 2000,00</span></p>
-                            </li>
-                        </ul>
-
-                        <ul class="po-info-vendas-registro">
-                            <li class="po-li">
-                                <p>02/10</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Paulo Otávio</p>
-                            </li>
-                            <li class="po-li">
-                                <p>Biofertilizante</p>
-                            </li>
-                            <li class="po-li">
-                                <p><span class="po-preco">R$ 2000,00</span></p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="po-container-grafico">
-            <div>
-                <div class="po-titulo-da-lista">
-                    <p class="po-titulo-lista">Gráfico de Vendas</p>
-                    <button class="btn-button-padrao btn-button-padrao4">Ultimo Mês <img src="../src/imagens/seta.svg" alt=""></button>
-                </div>
-
-                <div class="po-grafico-box">
-
-                    <img src="./img_temporaria/Capturar.PNG" class="po-img-grafico">
-
-                </div>
-            </div>
-
-            <div class="po-box-porcentagem">
-
-                <img src="./img_temporaria/Capturar2.PNG" class="po-img-grafico2">
-
-            </div>
-        </div>
 
     </div>
 
-    <script src="Rel.js"></script>
+    <div class="po-container">
+      <div class="header">
+        <h1>Relatório de Vendas e Comissões</h1>
+    </div>
+    
+    <div class="card">
+        <div class="tabs">
+            <div class="tab active">Vendas</div>
+            <div class="tab">Comissões</div>
+        </div>
+        
+        <div class="tab-content">
+            <button class="export-button">
+                Exportar como
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+            </button>
+            
+            <h3 style="margin-bottom: 15px;">Registro de Vendas</h3>
+            
+            <div class="filter-tempo">
+                <select>
+                    <option>Último mês</option>
+                    <option>Último trimestre</option>
+                    <option>Último ano</option>
+                </select>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Vendedor</th>
+                        <th>Produto/Serviço</th>
+                        <th>Valor da venda</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/08</td>
+                        <td>João Silva</td>
+                        <td>Refrigerantes</td>
+                        <td>R$ 320,00</td>
+                    </tr>
+                    <tr>
+                        <td>01/08</td>
+                        <td>José Ferraz</td>
+                        <td>Instalação de App</td>
+                        <td>R$ 700,00</td>
+                    </tr>
+                    <tr>
+                        <td>01/08</td>
+                        <td>Carlos Eduardo</td>
+                        <td>Serviços Variados</td>
+                        <td>R$ 980,00</td>
+                    </tr>
+                    <tr>
+                        <td>01/08</td>
+                        <td>Paulo Otávio</td>
+                        <td>Compras de praga</td>
+                        <td>R$ 450,00</td>
+                    </tr>
+                    <tr>
+                        <td>01/08</td>
+                        <td>Eduardo Camões</td>
+                        <td>Franquia - inicial</td>
+                        <td>R$ 350,00</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="paginacao">
+                <div class="arrow">◀</div>
+                <span class="active">1</span>
+                <span>2</span>
+                <span>3</span>
+                <div class="arrow">▶</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dashboard">
+        <div class="card grafico-container">
+            <div class="tab-content">
+                <div class="grafico-header">
+                    <div class="grafico-titulo">Gráfico de vendas</div>
+                    <div class="filter-tempo">
+                        <select>
+                            <option>Último mês</option>
+                            <option>Último trimestre</option>
+                            <option>Último ano</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grafico" id="vendas-grafico">
+                    <div class="y-eixo">
+                        <div class="y-eixo1">90</div>
+                        <div class="y-eixo1">80</div>
+                        <div class="y-eixo1">70</div>
+                        <div class="y-eixo1">60</div>
+                        <div class="y-eixo1">50</div>
+                        <div class="y-eixo1">40</div>
+                        <div class="y-eixo1">30</div>
+                        <div class="y-eixo1">20</div>
+                        <div class="y-eixo1">10</div>
+                        <div class="y-eixo1">00</div>
+                    </div>
+                    <div class="grafico-grid">
+                        <div class="linha-pontilhada"></div>
+                        <div class="linha-pontilhada"></div>
+                        <div class="linha-pontilhada"></div>
+                        <div class="linha-pontilhada"></div>
+                        <div class="linha-pontilhada"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card estatos-container">
+            <div class="tab-content">
+                <div class="circular-progress">
+                    <div class="progress-value">60%</div>
+                </div>
+                <div class="progress-label">Taxa de aumento</div>
+                
+                <div class="mini-grafico" id="mini-grafico"></div>
+                <div class="mes-label">Agosto</div>
+            </div>
+        </div>
+    </div>
+      </div>
+      
 
+    <script src="Rel.js"></script>
 
 
 </body>
