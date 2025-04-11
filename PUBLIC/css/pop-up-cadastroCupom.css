@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    *{
+        font-family: Poppins;
+        margin: 0;
+        padding: 0;
+    }
+
+    .ym_area-pop-up{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(219, 219, 219);
+    }
+
+    .ym_pop-up{
+        display: flex;
+        flex-direction: column;
+        padding: 2%;
+        width: 40%;
+        height: 40%;
+        background-color: white;
+        border-radius: 15px;
+        gap: 25px;
+    }
+
+    .ym_formulario{
+        display: grid;
+        grid-template-columns: auto auto;
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: 80%;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .ym_titulo{
+        width: 100%;
+    }
+    
+    .ym_form-input{
+        padding: 6px;
+        border-radius: 5px;
+        border: 1px solid #E7E6E6;
+        width: 220px;
+    }
+
+    .ym_form-btn-eviar{
+        color: white;
+        background-color: #45734B;
+        text-align: center;
+        padding: 5px;
+        margin-left: 15%;
+        width: 70%;
+        border-radius: 10px;
+        grid-column-start: 2;
+        grid-row-start: 3;
+        border: none;
+    }
+
+    .ym_texto{
+        font-size: 12px;
+    }
+
+    .ym_input-gerarcodigo{
+        display: flex;
+        align-items:center;
+        border:1px solid#E7E6E6;
+        padding: 6px;
+        gap: 5px;
+        border-radius: 10px;
+        width: 220px;
+    }
+
+    .ym_btn-gerarcodigo{
+        border: none;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ym_btn-gerarcodigo:hover{
+        cursor: pointer;
+    }
+
+    .ym_btn-img{
+        height: 17px;
+        width: 18px;
+    }
+
+    @media screen and (max-width: 1024px){
+        .ym_pop-up{
+            height: auto;
+            width: 80%;
+        }
+
+        .ym_titulo{
+            text-align: center;
+        }
+
+        .ym_formulario{
+            height: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .ym_form-btn-eviar{
+            margin: 0;
+            width: 180px;
+        }
+    }

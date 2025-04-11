@@ -43,7 +43,9 @@ include "../../INCLUDE/Menu_vend.php";
                 <img src="../../PUBLIC/img/lupa.png" alt="" class="sab-icone-pesquisa">
         
             </div>
-
+            <div class="sab-botão">
+                <button type="button">Cadastrar cupom</button>
+            </div>
             <section class="ym_section">
                 <div class="ym_area-table">
 
