@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+    font-family: Poppins;
+    padding: 0;
+    margin: 0;
+}
+
+.ym_area-pop-up{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(219, 219, 219);
+}
+
+.ym_pop-up{
+    display: flex;
+    height: 50vh;
+    width: 60vw;
+    flex-direction: column;
+    padding: 0px 0px 1% 0px;
+    background-color: white;
+    border-radius: 15px;
+    gap: 15px;
+    overflow: hidden;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.107);
+}
+
+.ym_superior-pop-up{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.ym_pop-up-select{
+    color: #000000B2;
+    width: 100%;
+    text-align: center;
+    padding: 1%;
+    text-decoration: none;
+}
+
+.ym_form-pop-up{
+    display: grid;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    justify-content: space-around;
+    grid-template-columns: auto auto;
+}
+
+.ym_area-input{
+    gap: 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ym_input-aviso{
+    font-size: 10px;
+    color: #00000099;
+    font-weight: 500;
+}
+
+.ym_input-aviso-obrigatorio{
+    display: none;
+    font-size: 12px;
+    color: red;
+}
+
+.ym_pop-up-input{
+    padding: 2px;
+    border-radius: 7px;
+    border: 2px solid #E7E6E6;
+    height: 2rem;
+    width: 18rem;
+}
+
+.ym_pop-up-btn-submit{
+    background-color: #45734B;
+    color: white;
+    height: 2.3rem;
+    width: 10rem;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+}
+
+.ym_area-btn-submit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: 2;
+}
+
+.ym_form-mobile{
+    display: none;
+}
+
+@media screen and (max-width: 1024px){
+    .ym_form-pop-up{
+        display: none;
+    }
+
+
+    .ym_pop-up{
+        width: 85vw;
+        height: auto;
+        max-height: 95vh;
+    }
+
+    .ym_form-mobile{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ym_area-input{
+        width: 100%;
+    }
+
+    .ym_pop-up-input{
+        height: auto;
+        width: 100%;
+    }
+
+}
