@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
  
-
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "poppins", system-ui, -apple-system, sans-serif;
 }
-
 
 body {
     background-color: #f5f5f5;
@@ -41,7 +38,6 @@ body {
     color: #333;
     border-left: 4px solid #4CAF50;
     padding-left: 10px;
-
 }
 
 .card {
@@ -203,10 +199,9 @@ tr:nth-child(even) {
     padding-bottom: 10px;
     padding-left: 40px;
     position: relative;
-
 }
 
-.bar {
+.barra {
     flex: 1;
     margin: 0 5px;
     background-color: #4CAF50;
@@ -214,15 +209,15 @@ tr:nth-child(even) {
     position: relative;
 }
 
-.bar:nth-child(odd) {
+.barra:nth-child(odd) {
     background-color: #66BB6A;
 }
 
-.bar:nth-child(3n) {
+.barra:nth-child(3n) {
     background-color: #81C784;
 }
 
-.bar-label {
+.barra-label {
     position: absolute;
     bottom: -25px;
     left: 0;
@@ -306,7 +301,7 @@ tr:nth-child(even) {
     align-items: flex-end;
 }
 
-.mini-bar {
+.mini-barra {
     flex: 1;
     margin: 0 1px;
     background-color: #4CAF50;
@@ -317,6 +312,54 @@ tr:nth-child(even) {
     font-size: 12px;
     color: #666;
     margin-top: 10px;
+}
+
+.linha-grafico {
+    height: 250px;
+    position: relative;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-bottom: 30px;
+}
+
+.linha-grafico-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    display: none;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    background-color: #e6f7e6;
+    color: #4CAF50;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+    }
 }
 
 .jp_logo img {
