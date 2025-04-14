@@ -70,6 +70,7 @@ body {
 }
 
 .export-button {
+    height: 35px;
     float: right;
     display: flex;
     align-items: center;
@@ -78,13 +79,22 @@ body {
     border-radius: 4px;
     padding: 6px 12px;
     font-size: 12px;
+    gap: 10px;
     cursor: pointer;
+}
+
+.export-button:hover{
+
+    background-color: #4CAF50;
+    color: azure;
+    transition: 90ms;
+
 }
 
 .export-button img {
     width: 16px;
     height: 16px;
-    margin-left: 5px;
+
 }
 
 .filter-tempo {
@@ -102,6 +112,12 @@ body {
     appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
+}
+
+.filter-tempo select:hover {
+
+    border: 1px solid #4CAF50;
+
 }
 
 .filter-tempo::after {
@@ -315,11 +331,11 @@ tr:nth-child(even) {
 }
 
 .linha-grafico {
-    height: 250px;
+    height: 200px;
     position: relative;
-    padding-top: 20px;
-    padding-left: 40px;
-    padding-bottom: 30px;
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-bottom: 15px
 }
 
 .linha-grafico-canvas {
@@ -497,53 +513,72 @@ tr:nth-child(even) {
 
 /* * Responsive Styles */ 
 
-@media screen and (max-width: 1024px) {
-    .jp_hamburger-menu {
-        display: block;
+@media (max-width: 1024px) {
+    .po-container {
+        margin-left: 200px;
+        padding: 20px;
     }
+}
 
+@media (max-width: 768px) {
     .jp_sidebar {
+        position: fixed;
+        width: 200px;
+        height: 100%;
+        overflow-y: auto;
+        z-index: 10;
         transform: translateX(-100%);
-        z-index: 999;
+        transition: transform 0.3s ease;
     }
 
     .jp_sidebar.active {
         transform: translateX(0);
     }
 
-    .jp_main-content {
+    .po-container {
         margin-left: 0;
-        padding: 20px;
-    }
-
-    .jp_overlay.active {
-        display: block;
-    }
-
-    .jp_profile-header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-
-    .jp_info-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .jp_main-content {
         padding: 15px;
     }
 
-    .jp_profile-info {
+    .tabs {
         flex-direction: column;
-        text-align: center;
     }
 
-    .jp_role {
+    table {
+        display: block;
+        overflow-x: auto;
         width: 100%;
-        text-align: center;
+        white-space: nowrap;
+    }
+
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .grafico-container, .estatos-container {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .tab {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .export-button {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .filter-tempo select {
+        font-size: 10px;
+        padding: 6px 10px;
     }
 }
 
