@@ -32,10 +32,6 @@
     background-color: #f7f7f7;
 }
 
-.ym_tbody .ym_tr:hover{
-    background-color: #e2e1e1;
-}
-
 .ym_thead{
     position: sticky;
     top: 0;
