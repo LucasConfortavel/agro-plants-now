@@ -1,48 +1,21 @@
+<?php
+include "Menu_vend.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro Plants NOW</title>
-    <link rel="stylesheet" href="/projeto_agro_plants_now1/PUBLIC/css/tabela.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../PUBLIC/css/tabela.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 </head>
 <body>
-
-    <div class="jp_hamburger-menu">
-        <div class="jp_hamburger-line"></div>
-        <div class="jp_hamburger-line"></div>
-        <div class="jp_hamburger-line"></div>
-    </div>
-
-    <div class="jp_container">
-        <!-- Sidebar -->
-        <aside class="jp_sidebar">
-            <div class="jp_logo">
-                <!-- <img src="../img/logo_agro.png" alt="Logo"> -->
-                <img src="/projeto_agro_plants_now1/PUBLIC/img/logo_agro.png" alt="Logo">
-            </div>
-            <nav>
-                <ul>
-                    <li class="jp_active"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</li>
-                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li>
-                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li>
-                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li>
-                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li>
-                </ul>
-            </nav>
-            <div class="jp_bottom-menu">
-                <ul>
-                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li>
-                    <li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li>
-                </ul>
-            </div>
-        </aside>
-
-
-        <!-- Main Content -->
-        <main class="jp_main-content">
-
+    <main class="jp_main-content">
+        <div class="sab-engloba-tudo">
             <section class="ym_section">
                 <div class="ym_area-table">
 
@@ -50,9 +23,14 @@
 
                         <thead class="ym_thead">
                             <tr class="ym_tr">
-                                <th class="ym_th" style="color:white;">Nome</th>
-                                <th class="ym_th" style="color:white;">Data de Cadastro</th>
+                                <th class="ym_th" style="color:white;">Código</th>
+                                <th class="ym_th" style="color:white;">Porcentagem</th>
+                                <th class="ym_th" style="color:white;">Data</th>
+                               
+                                <th class="ym_th" style="color:white;">Estado</th>
                                 <th class="ym_th"></th>
+                                
+                               
                         </thead>
 
                         <tbody class="ym_tbody">
@@ -60,20 +38,24 @@
                             <?php
                                 echo'
                                 <tr class="ym_tr">
-                                    <td class="ym_td">12/08</td>
-                                    <td class="ym_td">12/08</td>
-                                    <td class="ym_td"><a href=""><img src="/projeto_agro_plants_now1/PUBLIC/img/Frame.png" alt=""></a></td>
+                                    <td class="ym_td">#paulorojas100</td>
+                                    <td class="ym_td sb_td">100%</td>
+                                    <td class="ym_td">16/08</td>
+                                    <td class="ym_td">Ativo</td>
+                                    <td class="ym_td "><a href=""><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
                                 </tr>
                                 ';
                             ?>
 
                         </tbody>
                     </table>
+            
                 </div>
             </section>
-        </main>
-    </div>
-    <script src="/projeto_agro_plants_now1/PUBLIC/JS/script.js"></script>
-    <!-- <script src="script.js"></script> -->
+        </div> 
+    
+    
+
+    </main>
 </body>
 </html>
