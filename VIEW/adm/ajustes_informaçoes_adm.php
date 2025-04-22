@@ -29,8 +29,8 @@ include "../../INCLUDE/Menu_vend.php";
 
         <div class="jp_content">
             <nav class="jp_tabs">
-                <a href="informaçoes_adm.html" class="jp_tab jp_active">Informações</a>
-                <a href="segurity.html" class="jp_tab">Segurança</a>
+                <a href="ajustes_informaçoes_adm.php" class="jp_tab jp_active">Informações</a>
+                <a href="ajustes_segurity.php" class="jp_tab">Segurança</a>
             </nav>
 
             <div class="jp_info-section">
