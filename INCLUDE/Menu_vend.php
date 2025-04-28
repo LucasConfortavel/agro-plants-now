@@ -17,7 +17,7 @@
         <!-- Sidebar -->
         <aside class="jp_sidebar">
             <div class="jp_logo">
-                <img src="/projeto_agro_plants_now1/PUBLIC/img/logo_agro.png" alt="Logo">
+                <img src="../PUBLIC/img/logo_agro.png" alt="Logo">
             </div>
             <nav>
                 <ul>
@@ -37,7 +37,7 @@
         </aside>
 
 
-    <script src="/projeto_agro_plants_now1/PUBLIC/JS/script.js"></script>
+    <script src="../PUBLIC/JS/script.js"></script>
 
 </body>
 </html>
