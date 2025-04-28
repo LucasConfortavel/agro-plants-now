@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('landing_pg.css');
+
+
+:root{
+    --color-primary-1: #45734b;
+    --color-primary-2: #ffff;
+    --color-primary-3: #E7E6E6;
+    --color-primary-4: #008f9f;
+
+    --color-neutra-0: #F0EEEE;
+    --color-neutra-1: #000;
+
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins','sans-serif';
+}
+
+
+body{
+      /* background-image: url(../img/large-green-rice-field-with-green-rice-plants-rows\ 2.png);  */
+    background-color: var(--color-neutra-0);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    
+    /* height 500px; */
+    
+  
+}
+
+.er_menu{
+
+    background-color: var(--color-primary-2);
+    stroke: var(--color-primary-3);
+}
+ 
+.er_nav-bar{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+   
+}
+ 
+.er_nav-list{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 60px;
+    justify-content: center;
+    margin-top: 9px;
+}
+ 
+.er_nav-link{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+    stroke: var(--color-primary-5);
+    font-weight: 450;
+    font-family: "Poppins", sans-serif;
+}
+ 
+.er_nav-link:hover{
+    color: var(--color-primary-4);
+}
+ 
+.er_logo{
+    display: flex;
+    justify-content: center;
+    
+}
+ 
+.er_btn-padrao{
+    background-color: var(--color-primary-1);
+    stroke: var(--color-primary-2);
+    color: var(--color-primary-2);
+    border-color: var(--color-primary-1);
+    border-style: none;
+    margin-left: 48.5%;
+    border-radius: 12px;
+    padding: 14px 30px;
+    font-weight: 600;
+    cursor: pointer;
+}
