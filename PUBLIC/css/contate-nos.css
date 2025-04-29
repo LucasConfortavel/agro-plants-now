@@ -1,0 +1,166 @@
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #F0EEEE;
+    font-family: Arial, sans-serif;
+}
+
+/* SEÇÃO PRINCIPAL */
+.ls_container-contate-nos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #45734B;
+    padding: 3rem 2rem;
+    gap: 3rem;
+}
+
+/* BLOCO DO FORMULÁRIO */
+.ls_container-menu {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ls_texto-caixa {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.ls_caixas-de-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.ls_caixa-de-texto,
+.ls_caixa-de-descricao {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.ls_caixa-de-descricao {
+    height: 150px;
+    resize: none;
+}
+
+.ls_botao {
+    width: 100%;
+    max-width: 160px;
+    height: 45px;
+    background-color: #45734B;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+    transition: background-color 0.3s;
+}
+
+.ls_botao:hover {
+    background-color: #45a049;
+}
+
+/* BLOCO DE CONTATO */
+.ls_texto-contato {
+    color: #fff;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.ls_imagens {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.ls_tell div,
+.ls_loc div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ls_tell,
+.ls_loc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .ls_container-contate-nos {
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+    }
+
+    .ls_container-menu,
+    .ls_texto-contato {
+        max-width: 100%;
+    }
+
+    .ls_texto-caixa {
+        font-size: 24px;
+    }
+
+    .ls_caixa-de-descricao {
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ls_container-menu {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .ls_texto-caixa {
+        font-size: 20px;
+    }
+
+    .ls_caixa-de-texto,
+    .ls_caixa-de-descricao {
+        font-size: 14px;
+    }
+
+    .ls_botao {
+        width: 100%;
+    }
+
+    .ls_imagens {
+        gap: 1.5rem;
+    }
+
+    .ls_tell div,
+    .ls_loc div {
+        gap: 0.75rem;
+    }
+}
