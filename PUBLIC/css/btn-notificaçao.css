@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.er_notificacao_cabecario{
+    height: 110px;
+    width: 13%;
+    background-color: yellow;
+    display: flex;
+    margin-left: 1319px;
+}
+
+
+.er_area-notificacao{
+    width: 120px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-left: 66px;
+    margin-top: 12px;
+    border-radius: 10px;
+}
+.er_btn-notificacao{
+    border-radius: 200px;
+    width: 55px;
+    background-color: transparent;
+    border: none;
+    margin-left: -10px;
+    gap: 10px;
+}
+
+
+.er_img-notificacao{
+    
+    width: 24px;
+    height: 24px;
+    margin-top: 6px;
+    margin-right: 7px;
+}
+
+.er_img-usuario{
+    width: 36px;
+    height: 36px;
+    margin-top: 3px;
+}
