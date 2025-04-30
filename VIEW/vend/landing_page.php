@@ -12,11 +12,41 @@ include "../../INCLUDE/Menu_vend.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../PUBLIC/css/landing_pg.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/L_P_styles.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu_superior.css">
 </head>
 <body >
     <main class="jp-main-content">
-        <section class="er_cabecario">
+        <header class="jp_header">
+            <!-- Início do menu -->
+            <nav class="jp_nav">
+                <div class="jp_logo">
+                    <img src="../../PUBLIC/img/logo_agro.png" alt="Logo" class="jp_logo-img">
+                    <span class="jp_logo-text">AGRO PLANTS NOW</span>
+                </div>
+                
+                <div class="jp_hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="jp_sidebar">
+                    <ul class="jp_nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#sobre">Sobre nós</a></li>
+                        <li><a href="#contato">Contate-nos</a></li>
+                        <li><button class="jp_login-btn">Login</button></li>
+                    </ul>
+                </div>
+                
+                <div class="jp_overlay"></div>
+            </nav>
+        </header>
+
+
+        <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
+        <!-- <section class="er_cabecario">
             <header class="er_menu">
                     <nav class="er_nav-bar">
                         <img class="er_logo" src="../PUBLIC/img/horizontal-logo 1.png" alt="">
@@ -35,12 +65,12 @@ include "../../INCLUDE/Menu_vend.php";
                             Login
                         </button>
                     </nav>
-                </header>
+                </header> -->
         
             
             
                 <div class="er_imagem">
-                    <img src="../PUBLIC/img/large-green-rice-field-with-green-rice-plants-rows 2.png" alt="" class="img-lp">
+                    <img src="../../PUBLIC/img/large-green-rice-field-with-green-rice-plants-rows 2.png" alt="" class="img-lp">
                     <div class="img-container">
 
                         <h1 class="er_texto">

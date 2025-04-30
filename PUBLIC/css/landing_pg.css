@@ -14,7 +14,7 @@
     height: 230px;
     text-align: justify;
     word-wrap: break-word;
-    margin-top: -600px;
+    margin-top: -476px;
     color: var(--color-primary-2);
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@
     width: 157.18px;
     height: 50px;
     border-radius: 10px;
-    margin-top: 7%;
+    margin-top: 9%;
     margin-left: 8.3%;
     background-color: var(--color-primary-1);
     color: aliceblue;
@@ -121,7 +121,7 @@
         margin: -200px auto 0 auto;
         height: 50px;
         text-align: center;
-        margin-top: -146px;
+        margin-top: -106px;
     }
 
     .er_btn-sobre-nos {
