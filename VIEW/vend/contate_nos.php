@@ -1,23 +1,22 @@
 <?php
 
-include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/Menu_superior.php";
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro Plants NOW</title>
-    <link rel="stylesheet" href="./global-index/index.css">
-    <link rel="stylesheet" href="./css/style-contate-nos.css">
-    <link rel="stylesheet" href="../PUBLIC/css/style_menu_superior.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/contate_nos.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu_superior.css">
+
 </head>
 <body>
 
-<header class="jp_header">
+    <header class="jp_header">
         <!-- Início do menu -->
         <nav class="jp_nav">
             <div class="jp_logo">
@@ -50,7 +49,7 @@ include "../../INCLUDE/Menu_vend.php";
             <div class="ls_imagens">
                 <div class="ls_tell">
                     <div>
-                        <img src="../imagens/Telefone.svg" alt="Telefone">
+                        <img src="/PUBLIC/img/telefone.png" alt="Telefone">
                         <p>Ligue para nós</p>
                     </div>
                     <p>+55 (67) 99999-9999</p>
@@ -58,7 +57,7 @@ include "../../INCLUDE/Menu_vend.php";
 
                 <div class="ls_tell">
                     <div>
-                        <img src="../imagens/Localização.svg" alt="Ponteiro">
+                        <img src="/PUBLIC/img/localizacao.png" alt="Ponteiro">
                         <p>Localização</p>
                     </div>
                     <p>Rua santo dos santos, 999 Campo Grande - MS</p>
@@ -74,7 +73,6 @@ include "../../INCLUDE/Menu_vend.php";
                     $email = htmlspecialchars($_POST["email"]);
                     $mensagem = htmlspecialchars($_POST["mensagem"]);
 
-                    // Aqui você pode salvar em banco de dados ou enviar por e-mail
                     echo "<p style='color: green;'>Mensagem enviada com sucesso!</p>";
                 }
             ?>
@@ -90,5 +88,6 @@ include "../../INCLUDE/Menu_vend.php";
     </section>
 
     <script src="../PUBLIC/JS/script-menu-superior.js"></script>
+    <script src="../PUBLIC/JS/script.js"></script>
 </body>
 </html>
