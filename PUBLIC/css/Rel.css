@@ -30,6 +30,10 @@ body {
 
 .header {
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .header h1 {
@@ -160,7 +164,49 @@ tr:nth-child(even) {
     margin-top: 20px;
     align-items: center;
 }
-
+  
+.er_area-notificacao{
+    width: 120px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+    gap: 25px;
+}
+ 
+.er_link-notificacao{
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.er_link-usuario{
+    border-radius: 50%;
+    background-color: green ;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+ 
+.er_img-notificacao{
+    width: 24px;
+    height: 24px;
+}
+ 
+.er_img-usuario{
+    width: 36px;
+    height: 36px;
+   
+}
+ 
 .paginacao span {
     margin: 0 5px;
     cursor: pointer;
