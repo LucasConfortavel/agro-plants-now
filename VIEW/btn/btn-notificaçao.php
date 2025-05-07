@@ -13,10 +13,6 @@
                     <a class="er_link-notificacao"  href="#"><img class="er_img-notificacao" src="../../PUBLIC/img/Frame.svg" alt=""></a>
                     <a class="er_link-usuario" href="#"><img class="er_img-usuario" src="../../PUBLIC/img/user.svg" alt=""></a>                    
               </div>
-          
-     
-        
-       
     </header>
     
 </body>
