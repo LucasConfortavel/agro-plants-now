@@ -24,17 +24,13 @@ include "../../INCLUDE/Menu_adm.php";
 
   <!-- <main class="jp_main-content"> -->
   
-        <header class="er_notificacao_cabecario">
-            <nav class="er_area-notificacao">
-            <button class="er_btn-notificacao">
-                <img class="er_img-notificacao" src="../../PUBLIC/img/Frame.svg" alt="Notificações">
-            </button>
-            <button class="er_btn-notificacao">
-                <img class="er_img-usuario" src="../../PUBLIC/img/user.svg" alt="Usuário">
-            </button>
-            </nav> 
-        </header> 
-
+    <header class="er_notificacao_cabecario">   
+        <div class="er_area-notificacao">
+            <a class="er_link-notificacao"  href="#"><img class="er_img-notificacao" src="../../PUBLIC/img/Frame.svg" alt=""></a>
+            <a class="er_link-usuario" href="#"><img class="er_img-usuario" src="../../PUBLIC/img/user.svg" alt=""></a>                    
+        </div>
+    </header>
+    
         <div class="jp_container">
             <aside class="jp_sidebar">
             <div class="jp_logo">
