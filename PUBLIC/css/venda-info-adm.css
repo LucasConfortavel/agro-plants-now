@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.er_notificacao_cabecario{
+  height: 110px;
+  width: 13%;
+  display: flex;
+  margin-left: 1319px;
+}
+
+
+.er_area-notificacao{
+  width: 120px;
+  height: 54px;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin-left: 66px;
+  margin-top: 12px;
+  border-radius: 10px;
+}
+
+.er_link-notificacao{
+  border-radius: 200px;
+  width: 55px;
+  background-color: transparent;
+  border: none;
+  margin-left: -3px;
+  gap: 10px;
+}
+
+.er_link-usuario{
+  border-radius: 200px;
+  width: 55px;
+  background-color: transparent ;
+  border: none;
+  margin-left: 4px;
+  gap: 10px;
+}
+
+
+.er_img-notificacao{
+  width: 24px;
+  height: 24px;
+  margin-top: 16px;
+  margin-left: 17px;
+}
+
+.er_img-usuario{
+  width: 36px;
+  height: 36px;
+  margin-top: 10px;
+ 
+}
+
+
+.corpo-jv {
+  max-width: 1168px;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  margin: 20px auto; 
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.corpo1-jv {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px; 
+}
+
+.presidio-jv,
+.soliena-jv {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 2px solid rgba(186, 186, 186, 0.619);
+  gap: 70px;
+  width: 656px;
+  height: 46px;
+  margin-right: 35%;
+  margin-top:5%;
+}
+
+.Produto-jv, .preco-jv, .Quantidade-jv, .total-jv {
+  margin-top: 10px;
+}
+
+.barra-jv {
+  width: 115px;
+  height: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: 2px solid rgba(186, 186, 186, 0.619);
+  border-radius: 10px;
+  gap: 20px;
+  margin-top: 4px;
+}
+
+.barra-jv .adicionar-jv {
+  border: none;
+  background-color: #fff;
+}
+
+.valor-jv, .valor1-jv {
+  margin-top: 10px;
+  color: rgba(0, 143, 159, 1);
+}
+
+.Produtoo-jv{
+  margin-top: 10px;
+}
+
+.barra_direita-jv {
+  position: absolute;
+  right: 70px;
+  top: 150px;
+  width: 377px;
+  background-color: rgba(255, 255, 255, 0.663);
+  border: 2px solid rgba(186, 186, 186, 0.619);
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 75%;
+  margin-top: 8%;
+}
+
+.forma-jv {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.cupom-input {
+  border-radius: 10px;
+  border: 2px solid rgba(186, 186, 186, 0.619);
+  width: 196px;
+  height: 28px;
+}
+
+.sally-jv {
+  background-color: #3e704c;
+  color: #fff;
+  border: none;
+  padding: 5px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.barra_detalhes-jv {
+  background-color: #fff;
+  border: 2px solid rgba(186, 186, 186, 0.619); 
+  height: 33px;
+  width: 105%;
+  margin-top: 20px;
+  color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  margin-top: 20%;
+}
+
+.formato-jv{
+  margin-top: 20px;
+}
+
+.Subtotal-jv, .desconto-jv {
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 12px;
+}
+
+.valor3-jv, .valor4-jv {
+  float: right;
+  margin-right: 12px;
+  color: rgba(0, 143, 159, 1);
+}
+
+.linha-jv {
+  margin-top: 59%;
+}
+
+.espaço-jv {
+  margin-top: 20px;
+}
+
+.espaço2-jv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 13%;
+}
+
+.cor-jv{
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.cor1-jv {
+  color: rgba(0, 143, 159, 1);
+}
+
+.gerar_link-jv {
+  background-color: rgba(69, 115, 75, 1);
+  border: none;
+  color: #fff;
+  width: 179px;
+  height: 49px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.forma2-jv {
+  width: 740px;
+  height: auto;
+  margin-top: 19%;
+}
+
+.ceta-jv{
+ margin-left: 93%;
+ margin-bottom: 2%;
+}
+
+.forma3-jv {
+  margin-top: 20px;
+  height: auto;
+  margin-left: 0;
+}
+
+.Cliente-jv,
+.cliente-jv {
+  display: flex;
+  width: 100%;
+}
+
+.cliente-jv {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Cliente-jv {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pessoa-jv{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.venice-jv {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 12px;
+}
+
+.furia_da_noite {
+  margin-left: 2%;
+  margin-bottom: 32px;
+}
+
+.banguela {
+  margin-top: 4%;
+  margin-right: 1%;
+}
+
+.oi {
+  margin-top: 280px;
+}
+
+.dia-jv{
+  color: rgba(0, 0, 0, 0.5);
+}
+
+
+.funcionalidade{
+  border: none;
+  background-color: #ffffff;
+}
