@@ -19,7 +19,7 @@ include "../../INCLUDE/Menu_vend.php";
         <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/produto.png';?>
         
             <section class="ym_sectionProdutos">
-
+    
                 <h1 class="ym_titulo">Tudo</h1>
 
                 <div class="ym_categorias">

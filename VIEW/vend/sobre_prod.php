@@ -36,7 +36,7 @@ include "../../INCLUDE/Menu_vend.php";
                 </div>
             </div>  
 
-            <button class="gs_back-btn">⟲ Voltar</button>
+            <a href="../../VIEW/vend/produtos-tudo.php"><button class="gs_back-btn">⟲ Voltar</button></a>
         </section>
         </main>
 
