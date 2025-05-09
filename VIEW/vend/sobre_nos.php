@@ -19,14 +19,7 @@ include "../../INCLUDE/Menu_superior.php";
 </head>
 <body>
       <main class="jp_main-content">
-                <header class="jp_header">
-                    
-                       
-                        <div class="jp_overlay"></div>
-                    </nav>
-                </header>
-         
-         
+                 
                 <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
 
                <div class="jv-container">
