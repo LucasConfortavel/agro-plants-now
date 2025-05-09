@@ -28,7 +28,7 @@ include "../../INCLUDE/Menu_vend.php";
                 <input class="ym_pesquisa" type="text" placeholder="Pesquise por um vendedor">
 
                 <div class="ym_area-btn-superior">
-                    <a href="#" class="ym_btn-superior">Remover vendedor</a>
+                    <a href="../../VIEW/pop-up/conf_remover_vendedor.php" class="ym_btn-superior">Remover vendedor</a>
                     <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior">Cadastrar vendedor</a>
                 </div>
 
