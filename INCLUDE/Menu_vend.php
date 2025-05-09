@@ -17,7 +17,7 @@
         <!-- Sidebar -->
         <aside class="jp_sidebar">
             <div class="jp_logo">
-                <img src="../PUBLIC/img/logo_agro.png" alt="Logo">
+                <img src="../../PUBLIC/img/logo_agro.png" alt="Logo">
             </div>
             <nav>
                 <ul>
