@@ -62,7 +62,7 @@
                     <input type="text" name="cpf" class="gs_entrada" placeholder="CPF" required>
                 </div>
                 
-                <button type="submit" class="gs_botao">Cadastrar Vendedor</button>
+                <button type="submit" class="gs_botao" href=""class="gs_botao">Cadastrar Vendedor</button>
             </form>
         </div>
     </div>
