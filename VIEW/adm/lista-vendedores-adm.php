@@ -29,7 +29,7 @@ include "../../INCLUDE/Menu_vend.php";
 
                 <div class="ym_area-btn-superior">
                     <a href="#" class="ym_btn-superior">Remover vendedor</a>
-                    <a href="#" class="ym_btn-superior">Cadastrar vendedor</a>
+                    <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior">Cadastrar vendedor</a>
                 </div>
 
 
