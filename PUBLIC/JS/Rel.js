@@ -31,7 +31,7 @@ const comissaoValor = [
 const minigraficoValor = [25, 30, 20, 35, 40, 30, 45, 50, 35, 40, 45, 55]
 
 function criarBarradoGrafico() {
-  const chartContainer = document.getElementById("vendas-grafico")
+  const chartContainer = document.getElementById("po-vendas-grafico")
   while (chartContainer.children.length > 2) {
     chartContainer.removeChild(chartContainer.lastChild)
   }
@@ -42,14 +42,14 @@ function criarBarradoGrafico() {
     const barHeight = (item.value / valorMax) * 200
 
     const bar = document.createElement("div")
-    bar.className = "barra"
+    bar.className = "po-barra"
     bar.style.height = `${barHeight}px`
     bar.style.width = `${100 / vendasValor.length}%`
     bar.style.maxWidth = "60px"
     
 
     const label = document.createElement("div")
-    label.className = "barra-label"
+    label.className = "po-barra-label"
     label.textContent = item.month
 
     bar.appendChild(label)
@@ -58,9 +58,9 @@ function criarBarradoGrafico() {
 }
 
 function criarGraficodeLinha() {
-  const canvas = document.getElementById("comissao-grafico")
+  const canvas = document.getElementById("po-comissao-grafico")
   const ctx = canvas.getContext("2d")
-  const dica = document.getElementById("grafico-tooltip")
+  const dica = document.getElementById("po-grafico-tooltip")
 
   if (!canvas || !ctx) {
     console.error("Canvas ou contexto não encontrado")
@@ -294,7 +294,7 @@ function criarGraficodeLinha() {
 }
 
 function criarminigrafico() {
-  const miniChartContainer = document.getElementById("mini-grafico")
+  const miniChartContainer = document.getElementById("po-mini-grafico")
 
   miniChartContainer.innerHTML = ""
 
@@ -304,7 +304,7 @@ function criarminigrafico() {
     const barHeight = (value / valorMax) * 50
 
     const bar = document.createElement("div")
-    bar.className = "mini-barra"
+    bar.className = "po-mini-barra"
     bar.style.height = `${barHeight}px`
 
     miniChartContainer.appendChild(bar)
@@ -314,25 +314,25 @@ function criarminigrafico() {
 function switchTab(tabName) {
   console.log("Trocando para a aba:", tabName)
 
-  const pageTitle = document.getElementById("page-title")
-  pageTitle.textContent = tabName === "vendas" ? "Relatório de Vendas" : "Relatório de Comissões"
+  const pageTitle = document.getElementById("po-page-title")
+  pageTitle.textContent = tabName === "po-vendas" ? "Relatório de Vendas" : "Relatório de Comissões"
 
-  document.querySelectorAll(".tab").forEach((tab) => {
-    tab.classList.remove("active")
+  document.querySelectorAll(".po-tab").forEach((tab) => {
+    tab.classList.remove("po-active")
   })
-  document.querySelector(`.tab[data-tab="${tabName}"]`).classList.add("active")
+  document.querySelector(`.po-tab[data-tab="${tabName}"]`).classList.add("po-active")
 
-  document.querySelectorAll(".content-section").forEach((section) => {
-    section.classList.remove("active")
+  document.querySelectorAll(".po-content-section").forEach((section) => {
+    section.classList.remove("po-active")
   })
 
-  if (tabName === "vendas") {
-    document.getElementById("vendas-section").classList.add("active")
-    document.getElementById("vendas-graficos").classList.add("active")
+  if (tabName === "po-vendas") {
+    document.getElementById("po-vendas-section").classList.add("po-active")
+    document.getElementById("po-vendas-graficos").classList.add("po-active")
     criarBarradoGrafico()
   } else {
-    document.getElementById("comissoes-section").classList.add("active")
-    document.getElementById("comissoes-graficos").classList.add("active")
+    document.getElementById("po-comissoes-section").classList.add("po-active")
+    document.getElementById("po-comissoes-graficos").classList.add("po-active")
     criarGraficodeLinha()
   }
 }
@@ -341,11 +341,11 @@ window.onload = () => {
   criarBarradoGrafico()
   criarminigrafico()
 
-  const paginationItems = document.querySelectorAll(".paginacao span")
+  const paginationItems = document.querySelectorAll(".po-paginacao span")
   paginationItems.forEach((item) => {
     item.addEventListener("click", function () {
-      paginationItems.forEach((i) => i.classList.remove("active"))
-      this.classList.add("active")
+      paginationItems.forEach((i) => i.classList.remove("po-active"))
+      this.classList.add("po-active")
     })
   })
 
@@ -353,7 +353,7 @@ window.onload = () => {
 }
 
 window.addEventListener("resize", () => {
-  if (document.getElementById("comissoes-graficos").classList.contains("active")) {
+  if (document.getElementById("po-comissoes-graficos").classList.contains("po-active")) {
     criarGraficodeLinha()
   }
 })
