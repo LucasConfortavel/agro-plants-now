@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
- 
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,13 +14,6 @@ body {
 .po-container {
     flex: 1;
     margin-left: 250px;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.po-container {
-    flex: 1;
-    margin-left: 250px;
     padding: 30px;
     background-color: #f5f5f5;
     display: flex;
@@ -28,7 +21,7 @@ body {
     gap: 30px;
 }
 
-.header {
+.po-header {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -36,7 +29,7 @@ body {
     justify-content: space-between;
 }
 
-.header h1 {
+.po-header h1 {
     font-size: 25px;
     font-weight: 500;
     color: #333;
@@ -44,7 +37,7 @@ body {
     padding-left: 10px;
 }
 
-.card {
+.po-card {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -52,28 +45,28 @@ body {
     overflow: hidden;
 }
 
-.tabs {
+.po-tabs {
     display: flex;
     border-bottom: 1px solid #eee;
 }
 
-.tab {
+.po-tab {
     padding: 12px 20px;
     cursor: pointer;
     font-size: 14px;
 }
 
-.tab.active {
+.po-tab.po-active {
     background-color: #4CAF50;
     color: white;
     font-weight: 500;
 }
 
-.tab-content {
+.po-tab-content {
     padding: 20px;
 }
 
-.export-button {
+.po-export-button {
     height: 35px;
     float: right;
     display: flex;
@@ -87,27 +80,24 @@ body {
     cursor: pointer;
 }
 
-.export-button:hover{
-
+.po-export-button:hover {
     background-color: #4CAF50;
     color: azure;
     transition: 90ms;
-
 }
 
-.export-button img {
+.po-export-button img {
     width: 16px;
     height: 16px;
-
 }
 
-.filter-tempo {
+.po-filter-tempo {
     float: right;
     margin-bottom: 10px;
     position: relative;
 }
 
-.filter-tempo select {
+.po-filter-tempo select {
     padding: 8px 30px 8px 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -118,13 +108,11 @@ body {
     cursor: pointer;
 }
 
-.filter-tempo select:hover {
-
+.po-filter-tempo select:hover {
     border: 1px solid #4CAF50;
-
 }
 
-.filter-tempo::after {
+.po-filter-tempo::after {
     content: "▼";
     font-size: 10px;
     position: absolute;
@@ -158,14 +146,14 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.paginacao {
+.po-paginacao {
     display: flex;
     justify-content: center;
     margin-top: 20px;
     align-items: center;
 }
-  
-.er_area-notificacao{
+
+.po-er_area-notificacao {
     width: 120px;
     height: 54px;
     display: flex;
@@ -176,8 +164,8 @@ tr:nth-child(even) {
     border-radius: 10px;
     gap: 25px;
 }
- 
-.er_link-notificacao{
+
+.po-er_link-notificacao {
     border-radius: 50%;
     background-color: transparent;
     border: none;
@@ -185,39 +173,37 @@ tr:nth-child(even) {
     align-items: center;
     justify-content: center;
 }
- 
-.er_link-usuario{
+
+.po-er_link-usuario {
     border-radius: 50%;
-    background-color: green ;
+    background-color: green;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
 }
- 
- 
-.er_img-notificacao{
+
+.po-er_img-notificacao {
     width: 24px;
     height: 24px;
 }
- 
-.er_img-usuario{
+
+.po-er_img-usuario {
     width: 36px;
     height: 36px;
-   
 }
- 
-.paginacao span {
+
+.po-paginacao span {
     margin: 0 5px;
     cursor: pointer;
     font-size: 13px;
 }
 
-.paginacao span.active {
+.po-paginacao span.po-active {
     font-weight: bold;
 }
 
-.arrow {
+.po-arrow {
     width: 20px;
     height: 20px;
     display: flex;
@@ -226,33 +212,33 @@ tr:nth-child(even) {
     cursor: pointer;
 }
 
-.dashboard {
+.po-dashboard {
     display: flex;
     gap: 20px;
 }
 
-.grafico-container {
+.po-grafico-container {
     flex: 3;
 }
 
-.estatos-container {
+.po-estatos-container {
     flex: 1;
 }
 
-.grafico-header {
+.po-grafico-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
 }
 
-.grafico-titulo {
+.po-grafico-titulo {
     font-size: 14px;
     font-weight: 500;
     color: #333;
 }
 
-.grafico {
+.po-grafico {
     height: 250px;
     width: 800px;
     display: flex;
@@ -263,7 +249,7 @@ tr:nth-child(even) {
     position: relative;
 }
 
-.barra {
+.po-barra {
     flex: 1;
     margin: 0 5px;
     background-color: #4CAF50;
@@ -271,15 +257,15 @@ tr:nth-child(even) {
     position: relative;
 }
 
-.barra:nth-child(odd) {
+.po-barra:nth-child(odd) {
     background-color: #66BB6A;
 }
 
-.barra:nth-child(3n) {
+.po-barra:nth-child(3n) {
     background-color: #81C784;
 }
 
-.barra-label {
+.po-barra-label {
     position: absolute;
     bottom: -25px;
     left: 0;
@@ -289,7 +275,7 @@ tr:nth-child(even) {
     color: #666;
 }
 
-.y-eixo {
+.po-y-eixo {
     position: absolute;
     left: 0;
     top: 0;
@@ -301,12 +287,12 @@ tr:nth-child(even) {
     padding: 10px 0;
 }
 
-.y-eixo1 {
+.po-y-eixo1 {
     font-size: 10px;
     color: #999;
 }
 
-.grafico-grid {
+.po-grafico-grid {
     position: absolute;
     left: 30px;
     right: 0;
@@ -317,12 +303,12 @@ tr:nth-child(even) {
     justify-content: space-between;
 }
 
-.linha-pontilhada {
+.po-linha-pontilhada {
     border-top: 1px dashed #ddd;
     width: 100%;
 }
 
-.circular-progress {
+.po-circular-progress {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -334,7 +320,7 @@ tr:nth-child(even) {
     position: relative;
 }
 
-.circular-progress::before {
+.po-circular-progress::before {
     content: "";
     position: absolute;
     width: 110px;
@@ -343,53 +329,53 @@ tr:nth-child(even) {
     background-color: white;
 }
 
-.progress-value {
+.po-progress-value {
     position: relative;
     font-size: 24px;
     font-weight: bold;
     color: #333;
 }
 
-.progress-label {
+.po-progress-label {
     text-align: center;
     font-size: 14px;
     color: #666;
     margin-bottom: 20px;
 }
 
-.mini-grafico {
+.po-mini-grafico {
     height: 50px;
     display: flex;
     align-items: flex-end;
 }
 
-.mini-barra {
+.po-mini-barra {
     flex: 1;
     margin: 0 1px;
     background-color: #4CAF50;
 }
 
-.mes-label {
+.po-mes-label {
     text-align: center;
     font-size: 12px;
     color: #666;
     margin-top: 10px;
 }
 
-.linha-grafico {
+.po-linha-grafico {
     height: 200px;
     position: relative;
     padding-top: 15px;
     padding-left: 50px;
-    padding-bottom: 15px
+    padding-bottom: 15px;
 }
 
-.linha-grafico-canvas {
+.po-linha-grafico-canvas {
     width: 100%;
     height: 100%;
 }
 
-.tooltip {
+.po-tooltip {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
@@ -400,7 +386,7 @@ tr:nth-child(even) {
     display: none;
 }
 
-.status-badge {
+.po-status-badge {
     display: inline-block;
     padding: 3px 8px;
     border-radius: 12px;
@@ -410,222 +396,12 @@ tr:nth-child(even) {
     color: #4CAF50;
 }
 
-.content-section {
+.po-content-section {
     display: none;
 }
 
-.content-section.active {
+.po-content-section.po-active {
     display: block;
-}
-
-@media (max-width: 768px) {
-    .dashboard {
-        flex-direction: column;
-    }
-}
-
-.jp_logo img {
-    max-width: 100%;
-    height: auto;
-    width: 80px;
-}
-
-
-/* Hamburger Menu Styles */
-
-.jp_hamburger-menu {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 30px;
-    height: 32px;
-    cursor: pointer;
-    z-index: 1000;
-    padding: 10px;
-}
-
-
-
-.jp_hamburger-line {
-    width: 100%;
-    height: 1.7px;
-    background-color: #2d2d2d;
-    margin: 3px 0;
-    transition: 0.4s;
-}
-
-
-
-/* Hamburger Animation Classes */
-
-
-.jp_hamburger-menu.active .jp_hamburger-line:nth-child(1) {
-    transform: rotate(-50deg) translate(-1px, 2px);
-    background-color: #ffffff;
-}
-
-.jp_hamburger-menu.active .jp_hamburger-line:nth-child(2) {
-    opacity: 0;
-}
-
-.jp_hamburger-menu.active .jp_hamburger-line:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-    background-color: #ffffff;
-}
-
-
-/* sidebar */
-
-.jp_sidebar {
-    width: 250px;
-    background-color: #2d2d2d;
-    color: white;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    height: 100vh;
-    transition: transform 0.3s ease;
-}
-
-.jp_logo {
-    padding: 20px 0;
-    text-align: center;
-}
-
-.jp_sidebar nav ul {
-    list-style: none;
-    margin-top: 20px;
-}
-
-.jp_sidebar nav ul li {
-    padding: 12px 15px;
-    margin: 5px 0;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.jp_sidebar nav ul li:hover,
-.jp_sidebar nav ul li.jp_active {
-    background-color: #3a3a3a;
-}
-
-.jp_sidebar nav ul li img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    filter: invert(1);
-}
-
-.jp_bottom-menu {
-    margin-top: auto;
-    border-top: 1px solid #3a3a3a;
-    padding-top: 20px;
-}
-
-.jp_bottom-menu ul {
-    list-style: none;
-}
-
-.jp_bottom-menu ul li {
-    padding: 12px 15px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.jp_bottom-menu ul li img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    filter: invert(1);
-}
-
-/* fim do menu */
-
-
-
-.jp_main-content {
-    flex: 1;
-    margin-left: 250px;
-    padding: 30px;
-    /* padding: 30px; */
-}
-
-
-/* * Responsive Styles */ 
-
-@media (max-width: 1024px) {
-    .po-container {
-        margin-left: 200px;
-        padding: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .jp_sidebar {
-        position: fixed;
-        width: 200px;
-        height: 100%;
-        overflow-y: auto;
-        z-index: 10;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-    }
-
-    .jp_sidebar.active {
-        transform: translateX(0);
-    }
-
-    .po-container {
-        margin-left: 0;
-        padding: 15px;
-    }
-
-    .tabs {
-        flex-direction: column;
-    }
-
-    table {
-        display: block;
-        overflow-x: auto;
-        width: 100%;
-        white-space: nowrap;
-    }
-
-    .dashboard {
-        flex-direction: column;
-    }
-
-    .grafico-container, .estatos-container {
-        width: 100% !important;
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header h1 {
-        font-size: 20px;
-    }
-
-    .tab {
-        padding: 10px;
-        font-size: 12px;
-    }
-
-    .export-button {
-        font-size: 10px;
-        padding: 5px 10px;
-    }
-
-    .filter-tempo select {
-        font-size: 10px;
-        padding: 6px 10px;
-    }
 }
 
 
