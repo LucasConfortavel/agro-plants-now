@@ -1,5 +1,5 @@
 <?php
-include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/Menu_adm.php";
 ?>
 
 <!DOCTYPE html>

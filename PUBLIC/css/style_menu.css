@@ -73,7 +73,7 @@ body {
     /* display: flex;
     min-height: 100vh; */
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 
@@ -87,7 +87,7 @@ body {
     display: flex;
     flex-direction: column;
     position: fixed;
-    height: 100vh;
+    height: 100%;
     transition: transform 0.3s ease;
 }
 
