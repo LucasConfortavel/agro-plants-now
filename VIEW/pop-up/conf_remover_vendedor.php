@@ -1,4 +1,8 @@
-
+<?php
+    if(isset($_POST['remover'])){
+        header("location:../adm/lista-vendedores-adm.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,15 +15,15 @@
     <div class="lc_fundo">
         <div class="lc_card">
             <div class="lc_area-voltar">
-                <button class="lc_btn">
+                <button class="lc_btn" onclick="window.history.back();">
                     <img src="../../PUBLIC/img/voltar.png" alt="">                    
                 </button>
             </div>
 
             <div class="lc_area-infos">
-                
+
                 <div class="lc_img-infos">
-                    <img class="lc_img" src="../../PUBLIC/img/user.png" alt="">
+                    <img class="lc_img" src="../../PUBLIC/img/user.png" alt=""> 
                     <div class="lc_infos">
                         <p class="lc_info">Nome</p>
                         <p class="lc_dado">Rafael Germinari</p>
@@ -46,7 +50,9 @@
                     <p class="lc_dado">01/01/1992</p>
                 </div>
 
-                <button class="lc_remove-btn">Remover</button>
+                <form method="POST" action="">  
+                    <input class="lc_remove-btn" type="submit" name="remover" value="Remover">
+                </form>
 
             </div>
         </div>
