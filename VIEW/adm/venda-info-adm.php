@@ -157,7 +157,7 @@ include "../../INCLUDE/Menu_adm.php";
         <script src="script.js"></script>
         <div class="icone-canto-direito">
             <button class="funcionalidade">
-            <img src="../../PUBLIC/img/" alt="Ícone de destaque">
+            <img src="../../PUBLIC/img/" alt="">
             </button>
         </div>
  </main>

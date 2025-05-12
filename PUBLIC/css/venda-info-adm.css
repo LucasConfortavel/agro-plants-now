@@ -20,7 +20,8 @@ body {
   height: 110px;
   width: 13%;
   display: flex;
-  margin-left: 1319px;
+  margin-left: 1280px;
+  margin-top: -4%;
 }
 
 
@@ -73,11 +74,12 @@ body {
   max-width: 1168px;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   margin: 20px auto; 
   border-radius: 10px;
   padding: 20px;
   box-sizing: border-box;
+  margin-top: -3%;
 }
 
 .corpo1-jv {
@@ -85,6 +87,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 16px; 
+
 }
 
 .presidio-jv,
@@ -100,6 +103,10 @@ body {
   height: 46px;
   margin-right: 35%;
   margin-top:5%;
+}
+
+.soliena-jv{
+  margin-bottom: 5%;
 }
 
 .Produto-jv, .preco-jv, .Quantidade-jv, .total-jv {
@@ -144,7 +151,7 @@ body {
   padding: 20px;
   box-sizing: border-box;
   height: 75%;
-  margin-top: 8%;
+  margin-top: 2%;
 }
 
 .forma-jv {
@@ -198,11 +205,11 @@ body {
 }
 
 .linha-jv {
-  margin-top: 59%;
+  margin-top: 73%;
 }
 
 .espaço-jv {
-  margin-top: 20px;
+  margin-top: -13%;
 }
 
 .espaço2-jv {
@@ -283,7 +290,7 @@ body {
 }
 
 .banguela {
-  margin-top: 4%;
+  margin-top: 5%;
   margin-right: 1%;
 }
 
@@ -299,4 +306,104 @@ body {
 .funcionalidade{
   border: none;
   background-color: #ffffff;
+}
+
+
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+  .jp_container {
+    flex-direction: column;
+  }
+
+  .jp_sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .barra_direita-jv {
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .forma2-jv {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .corpo-jv {
+    width: 85%;
+    margin-top: 20px;
+  }
+
+  .barra_detalhes-jv{
+    width: 100%;
+  }
+
+}
+
+/* Responsividade para celulares */
+@media (max-width: 768px) {
+  .er_notificacao_cabecario {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-end;
+  }
+
+  .er_area-notificacao {
+    margin-left: 0;
+  }
+
+  .presidio-jv,
+  .soliena-jv {
+    /* flex-direction: column; */
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .barra-jv {
+    width: 30%;
+    justify-content: space-between;
+  }
+
+  .forma-jv {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .cupom-input {
+    width: 100%;
+  }
+
+  .sally-jv {
+    width: 100%;
+    text-align: center;
+  }
+
+  .barra_direita-jv {
+    width: 100%;
+  }
+
+  .forma2-jv,
+  .forma3-jv {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .Cliente-jv,
+  .cliente-jv {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .jp_main-content {
+    padding: 10px;
+  }
 }
