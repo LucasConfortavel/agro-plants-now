@@ -33,10 +33,8 @@ include "../../INCLUDE/Menu_superior.php";
                     <a href="#" class="jc_forgot-password">Esqueceu sua senha?</a>
                     <button type="submit" class="jc_login-btn">Iniciar Sessão</button>
                 </form>
-
-                
-
             </div>
+            
         </div>
     </section>
 </body>
