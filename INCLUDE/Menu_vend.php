@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu do Vendedor</title>
     <link rel="stylesheet" href="../PUBLIC/css/style_menu.css">
 </head>
 <body>
@@ -17,7 +16,7 @@
         <!-- Sidebar -->
         <aside class="jp_sidebar">
             <div class="jp_logo">
-                <img src="../PUBLIC/img/logo_agro.png" alt="Logo">
+                <img src="../../PUBLIC/img/logo_agro.png" alt="Logo">
             </div>
             <nav>
                 <ul>

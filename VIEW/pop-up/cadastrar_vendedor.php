@@ -1,21 +1,6 @@
 <?php
-
-    if(isset($_POST['adicionar'])){
-
-        $nome = $_POST['nome'];
-        $data_nasc = $_POST['data_nasc'];
-        $cpf = $_POST['cpf'];
-        $telefone = $_POST['telefone'];
-        $email = $_POST['email'];
-        
-        $sql = "INSERT INTO";
-
-        $result_create = mysqli_query($conn,$sql);
-
-        if(!$result_create){
-            echo'<script>alert("Não foi possível cadastrar")</script>';
-        }
-
+    if(isset($_POST['cadastrar'])){
+        header("location:../adm/lista-vendedores-adm.php");
     }
 
 ?>
@@ -33,7 +18,7 @@
     <div class="gs_popup">
         <div class="gs_popup-conteudo">
             <h2 class="gs_titulo">Cadastro de Vendedor</h2>
-            <form class="gs_formulario">
+            <form method="POST" class="gs_formulario">
                 
                 <div class="gs_linha-formulario">
                     <div class="gs_grupo-formulario">
@@ -61,8 +46,10 @@
                     <label class="gs_legenda">*CPF</label>
                     <input type="text" name="cpf" class="gs_entrada" placeholder="CPF" required>
                 </div>
+                <input class="gs_botao" type="submit" name="cadastrar" value="Cadastrar Vendedor">
                 
-                <button type="submit" class="gs_botao">Cadastrar Vendedor</button>
+                
+                
             </form>
         </div>
     </div>
