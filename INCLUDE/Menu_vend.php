@@ -34,7 +34,7 @@
                 </ul>
             </div>
         </aside>
-
+    </div>
 
     <script src="../PUBLIC/JS/script.js"></script>
 

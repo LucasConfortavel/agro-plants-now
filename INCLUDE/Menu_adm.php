@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../PUBLIC/css/style_menu.css">
 </head>
 <body>
     <div class="jp_hamburger-menu">
@@ -35,7 +35,7 @@
                 </ul>
             </div>
         </aside>
-
+    </div>
     
     <script src="/projeto_agro_plants_now1/PUBLIC/JS/script.js"></script>
 </body>
