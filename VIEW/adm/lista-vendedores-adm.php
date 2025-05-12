@@ -28,7 +28,7 @@ include "../../INCLUDE/Menu_vend.php";
                 <input class="ym_pesquisa" type="text" placeholder="Pesquise por um vendedor">
 
                 <div class="ym_area-btn-superior">
-                    <a href="../../VIEW/pop-up/conf_remover_vendedor.php" class="ym_btn-superior">Remover vendedor</a>
+                    <a href="" class="ym_btn-superior">Remover vendedor</a>
                     <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior">Cadastrar vendedor</a>
                 </div>
 
@@ -54,7 +54,7 @@ include "../../INCLUDE/Menu_vend.php";
                                 <tr class="ym_tr">
                                     <td class="ym_td">#paulorojas100</td>
                                     <td class="ym_td">16/08</td>
-                                    <td class="ym_td "><a href=""><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
+                                    <td class="ym_td "><a href="../../VIEW/pop-up/conf_remover_vendedor.php"><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
                                 </tr>
                                 ';
                             ?>

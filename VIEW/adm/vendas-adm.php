@@ -13,7 +13,7 @@ include "../../INCLUDE/Menu_vend.php";
 
 
 </head>
-<body>
+<body>  
     <main class="jp_main-content">
         <div class="sab-engloba-tudo">
             <section class="ym_section">
