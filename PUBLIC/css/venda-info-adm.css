@@ -300,3 +300,105 @@ body {
   border: none;
   background-color: #ffffff;
 }
+
+
+
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+  .jp_container {
+    flex-direction: column;
+  }
+
+  .jp_sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .barra_direita-jv {
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .forma2-jv {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .corpo-jv {
+    width: 85%;
+    margin-top: 20px;
+  }
+
+  .barra_detalhes-jv{
+    width: 100%;
+  }
+
+}
+
+/* Responsividade para celulares */
+@media (max-width: 768px) {
+  .er_notificacao_cabecario {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-end;
+  }
+
+  .er_area-notificacao {
+    margin-left: 0;
+  }
+
+  .presidio-jv,
+  .soliena-jv {
+    /* flex-direction: column; */
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .barra-jv {
+    width: 30%;
+    justify-content: space-between;
+  }
+
+  .forma-jv {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .cupom-input {
+    width: 100%;
+  }
+
+  .sally-jv {
+    width: 100%;
+    text-align: center;
+  }
+
+  .barra_direita-jv {
+    width: 100%;
+  }
+
+  .forma2-jv,
+  .forma3-jv {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .Cliente-jv,
+  .cliente-jv {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .jp_main-content {
+    padding: 10px;
+  }
+}
+
