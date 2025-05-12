@@ -92,34 +92,34 @@ include "../../INCLUDE/Menu_adm.php";
                     </article>
 
                     <section class="barra_direita-jv">
-                    <form class="forma-jv">
-                        <button class="funcionalidade">
-                        <img class="eneas" src="../../PUBLIC/img/Frame (4).svg" alt="">
-                        </button>
-                        <input type="text" name="cupom" id="cupom" class="cupom-input" placeholder="   Cupom">
-                        <button type="submit" class="sally-jv">Aplicar</button>
-                    </form>
+                        <form class="forma-jv">
+                            <button class="funcionalidade">
+                            <img class="eneas" src="../../PUBLIC/img/Frame (4).svg" alt="">
+                            </button>
+                            <input type="text" name="cupom" id="cupom" class="cupom-input" placeholder="   Cupom">
+                            <button type="submit" class="sally-jv">Aplicar</button>
+                        </form>
 
-                    <div class="barra_detalhes-jv">
-                        <strong class="wiliam_bonner">Detalhes</strong>
-                    </div>
-
-                    <div class="formato-jv">
-                        <div><span class="Subtotal-jv">Subtotal</span> <span class="valor3-jv">R$1000</span></div>
-                        <div><span class="desconto-jv">Desconto</span> <span class="valor4-jv">R$0</span></div>
-                    </div>
-
-                    <hr class="linha-jv">
-
-                    <div class="espaço-jv">
-                        <div class="espaço2-jv">
-                        <span class="cor-jv">Total</span>
-                        <strong class="cor1-jv">R$1000</strong>
-                        <div class="botao-jv">
-                            <button class="gerar_link-jv">Gerar link de venda</button>
+                        <div class="barra_detalhes-jv">
+                            <strong class="wiliam_bonner">Detalhes</strong>
                         </div>
+
+                        <div class="formato-jv">
+                            <div><span class="Subtotal-jv">Subtotal</span> <span class="valor3-jv">R$1000</span></div>
+                            <div><span class="desconto-jv">Desconto</span> <span class="valor4-jv">R$0</span></div>
                         </div>
-                    </div>
+
+                        <hr class="linha-jv">
+
+                        <div class="espaço-jv">
+                            <div class="espaço2-jv">
+                            <span class="cor-jv">Total</span>
+                            <strong class="cor1-jv">R$1000</strong>
+                            <div class="botao-jv">
+                                <button class="gerar_link-jv">Gerar link de venda</button>
+                            </div>
+                            </div>
+                        </div>
                     </section>
 
                     <section class="forma2-jv">
