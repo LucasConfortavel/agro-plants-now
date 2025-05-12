@@ -20,11 +20,11 @@
             </div>
             <nav>
                 <ul>
-                    <a href="../VIEW/vend/dashboard_vendedor.php"><li class="jp_active"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</li></a> 
-                    <a href="../VIEW/vend/produtos-tudo.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></a> 
+                    <a href="../../VIEW/vend/dashboard_vendedor.php"><li class="jp_active"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</li></a> 
+                    <a href="../../VIEW/vend/produtos-tudo.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></a> 
                     <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li></a> 
                     <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li></a> 
-                    <a href="../VIEW/vend/Cupom_vendedor.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li></a> 
+                    <a href="../../VIEW/vend/Cupom_vendedor.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li></a> 
                 </ul>
             </nav>
             <div class="jp_bottom-menu">
