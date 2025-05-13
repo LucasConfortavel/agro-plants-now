@@ -1,3 +1,9 @@
+<?php
+    if(isset($_POST['adicionar'])){
+        header("location:../../VIEW/adm/vendas-adm.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -23,7 +29,7 @@
                 </div>
 
                 <div class="ym_area-btn-submit">
-                    <input class="ym_pop-up-btn-submit" type="submit" value="Avançar">
+                    <input class="ym_pop-up-btn-submit"  name="adicionar" type="submit" value="Avançar">
                 </div>
 
 

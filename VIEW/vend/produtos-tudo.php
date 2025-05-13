@@ -45,43 +45,43 @@ include "../../INCLUDE/Menu_adm.php";
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a class="ym_linkProduto">Veja mais</a>
+                                            <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto">Veja mais</a>
                                         </div>
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a class="ym_linkProduto">Veja mais</a>
+                                            <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto">Veja mais</a>
                                         </div>
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a class="ym_linkProduto">Veja mais</a>
+                                            <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto">Veja mais</a>
                                         </div>
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a class="ym_linkProduto">Veja mais</a>
+                                            <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto">Veja mais</a>
                                         </div>
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a class="ym_linkProduto">Veja mais</a>
+                                            <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto">Veja mais</a>
                                         </div>
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a class="ym_linkProduto">Veja mais</a>
+                                            <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto">Veja mais</a>
                                         </div>
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a class="ym_linkProduto">Veja mais</a>
+                                            <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto">Veja mais</a>
                                         </div>
                                         
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a class="ym_linkProduto">Veja mais</a>
+                                            <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto">Veja mais</a>
                                         </div>
                                         ';
                                         ?>
