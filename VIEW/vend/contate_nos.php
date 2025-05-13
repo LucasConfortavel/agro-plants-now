@@ -9,7 +9,7 @@ include "../../INCLUDE/Menu_superior.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agro Plants NOW</title>
+    <title>Contate-nos</title>
     <link rel="stylesheet" href="../../PUBLIC/css/contate_nos.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu_superior.css">
 
