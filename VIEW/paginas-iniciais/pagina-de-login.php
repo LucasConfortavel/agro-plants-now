@@ -12,28 +12,9 @@ include "../../INCLUDE/Menu_superior.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina de login</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pagina-de-login.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu_superior.css">
 </head>
-<body>
-   
-    <header class="jc_menu-container-sup">
-        <nav class="jc_nav-bar-menu">
-            <img class="jc_logo" src="../../PUBLIC/img/logo_agro.png 1.png" alt="Logo Agro Plants NOW">
-            <ul class="jc_nav-list">
-                <li class="jc_nav-item">
-                    <a href="#" class="jc_nav-link">Home</a>
-                </li>
-                <li class="jc_nav-item">
-                    <a href="#" class="jc_nav-link">Sobre-nós</a>
-                </li>
-                <li class="jc_nav-item">
-                    <a href="#" class="jc_nav-link">Contate-nos</a>
-                </li>
-            </ul>
-        </nav>
-        <button class="jc_btn-button-padrao">Login</button>
-    </header>
-
-    
+<body>    
     <section class="jc_login-section">
         <div class="jc_total">
 
@@ -50,12 +31,10 @@ include "../../INCLUDE/Menu_superior.php";
                     <input type="email" class="jc_input-field" placeholder="E-mail" required>
                     <input type="password" class="jc_input-field" placeholder="Senha" required>
                     <a href="#" class="jc_forgot-password">Esqueceu sua senha?</a>
-                    <button type="submit" class="jc_login-btn">Iniciar Sessão</button>
+                    <button type="submit" class="jc_login-btn"><a href="../adm/vcl-dashboard-adm.php">Iniciar Sessão</a></button>
                 </form>
-
-                
-
             </div>
+            
         </div>
     </section>
 </body>

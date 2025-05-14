@@ -10,9 +10,9 @@
     <title>Dashboard de Vendas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../PUBLIC/css/vcl-dashboard-style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
 </head>
 <body>
-    
     <!-- <div class="jp_sidebar-placeholder"></div> -->
 
     <main class="jp_main-content">

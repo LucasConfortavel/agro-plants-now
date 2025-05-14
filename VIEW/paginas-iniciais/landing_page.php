@@ -79,7 +79,7 @@ include "../../INCLUDE/Menu_superior.php";
                 
                         <div class="er_btn-sonic">
                             <button class="er_btn-sobre-nos">
-                                Sobre-nós
+                               <a  href="../../VIEW/vend/sobre_nos.php">Sobre-Nós</a>
                             </button>  
                         </div>
                     </div>

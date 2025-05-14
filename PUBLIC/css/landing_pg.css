@@ -45,8 +45,13 @@
     box-shadow: 0 4px 8px rgba(63, 112, 77, 0.2);
 }
 
-.er_imagem{
+.er_btn-sobre-nos a{
+    text-decoration: none;
+    font-family: 'poppins';
+    color: rgba(255, 255, 255, 1);
+}
 
+.er_imagem{
     /* width: 1527px; */
     display: flex;
     flex-direction: column;
