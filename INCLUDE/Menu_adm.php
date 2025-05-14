@@ -13,7 +13,6 @@
         <div class="jp_hamburger-line"></div>
     </div>
 
-    <div class="jp_container">
         <!-- Sidebar -->
         <aside class="jp_sidebar">
             <div class="jp_logo">
@@ -38,8 +37,6 @@
             </div>
         </aside>
 
-
-    </div>
     
     <script src="/projeto_agro_plants_now1/PUBLIC/JS/script.js"></script>
 </body>

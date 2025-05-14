@@ -13,7 +13,6 @@
         <div class="jp_hamburger-line"></div>
     </div>
 
-    <div class="jp_container">
         <!-- Sidebar -->
         <aside class="jp_sidebar">
             <div class="jp_logo">
