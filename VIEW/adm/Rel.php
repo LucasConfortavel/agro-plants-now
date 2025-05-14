@@ -12,6 +12,7 @@ include "../../INCLUDE/Menu_adm.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro Plants NOW</title>
     <link rel="stylesheet" href="../../PUBLIC/css/Rel.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
 </head>
 <body>
   

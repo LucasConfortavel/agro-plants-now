@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agro Plants Now</title>
     <link rel="stylesheet" href="../PUBLIC/css/style_menu_superior.css">
 </head>
 <body>
@@ -11,7 +10,7 @@
         <!-- Início do menu -->
         <nav class="jp_nav">
             <div class="jp_logo">
-                <img src="../PUBLIC/img/logo_agro.png" alt="Logo" class="jp_logo-img">
+                <img src="../../PUBLIC/img/logo_agro.png" alt="Logo" class="jp_logo-img">
                 <span class="jp_logo-text">AGRO PLANTS NOW</span>
             </div>
             
@@ -23,10 +22,10 @@
 
             <div class="jp_sidebar">
                 <ul class="jp_nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#sobre">Sobre nós</a></li>
-                    <li><a href="#contato">Contate-nos</a></li>
-                    <li><button class="jp_login-btn">Login</button></li>
+                    <li><a href="../../VIEW/paginas-iniciais/landing_page.php">Home</a></li>
+                    <li><a href="../../VIEW/paginas-iniciais/sobre_nos.php">Sobre nós</a></li>
+                    <li><a href="../../VIEW/paginas-iniciais/contate_nos.php">Contate-nos</a></li>
+                    <li><a href="../../VIEW/paginas-iniciais/pagina-de-login.php"><button class="jp_login-btn" valu>Login</button></a></li>
                 </ul>
             </div>
             

@@ -1,3 +1,11 @@
+<?php
+    if(isset($_POST['adicionar'])){
+        header("location:../../VIEW/adm/vendas-adm.php");
+    }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,7 +18,7 @@
     <section class="ym_area-pop-up">
         <div class="ym_pop-up">
             
-            <div class="ym_superior-pop-up">
+            <div class="ym_superior-pop-up">                                
                 <a class="ym_pop-up-select ym_pessoa-fisica">Pessoa Física</a>
                 <a class="ym_pop-up-select ym_pessoa-juridica" href="cadastroVenda-Juridica.php" style="background-color: #c9c9c9; border-left: 2px solid rgb(190, 190, 190); border-bottom: 2px solid rgb(190, 190, 190); border-radius: 0px 0px 0px 10px; cursor: pointer; ">Pessoa Jurídica</a>
             </div>

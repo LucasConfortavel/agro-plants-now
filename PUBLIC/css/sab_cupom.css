@@ -202,11 +202,11 @@ table td, table th{
     color: aqua;
 }
 
-.ym_area-table{
+/* .ym_area-table{
     background-color: rgb(255, 255, 255);
     height: 400px;
     
-}
+} */
 
 @media screen and
 (max-width:1454px){
@@ -276,10 +276,10 @@ table td, table th{
         display: block;
     }
     
-    .ym_area-table{
+    /* .ym_area-table{
         height: 100%;
         
-    }
+    } */
     
     .ym_td{
         border: none;

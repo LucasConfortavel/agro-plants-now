@@ -73,8 +73,7 @@ body {
     /* display: flex;
     min-height: 100vh; */
     display: flex;
-    height: 100vh;
-    overflow: hidden;
+    /* height: 100vh; */
 }
 
 
@@ -88,7 +87,7 @@ body {
     display: flex;
     flex-direction: column;
     position: fixed;
-    height: 100vh;
+    height: 100%;
     transition: transform 0.3s ease;
 }
 
@@ -100,6 +99,11 @@ body {
 .jp_sidebar nav ul {
     list-style: none;
     margin-top: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
 }
 
 .jp_sidebar nav ul li {
@@ -128,6 +132,7 @@ body {
     margin-top: auto;
     border-top: 1px solid #3a3a3a;
     padding-top: 20px;
+    margin-bottom: 10%;
 }
 
 .jp_bottom-menu ul {
@@ -158,7 +163,6 @@ body {
     padding: 30px;
     /* padding: 30px; */
 }
-
 
 /* * Responsive Styles */ 
 
