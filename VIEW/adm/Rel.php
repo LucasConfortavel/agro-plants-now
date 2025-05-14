@@ -15,7 +15,7 @@ include "../../INCLUDE/Menu_adm.php";
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
 </head>
 <body>
-  
+    
 <main class="jp_main-content">
     <div class="po-header">
       <h1 id="po-page-title">Relatório de Vendas</h1>
