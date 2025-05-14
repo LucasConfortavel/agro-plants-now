@@ -31,7 +31,7 @@ include "../../INCLUDE/Menu_superior.php";
                     <input type="email" class="jc_input-field" placeholder="E-mail" required>
                     <input type="password" class="jc_input-field" placeholder="Senha" required>
                     <a href="#" class="jc_forgot-password">Esqueceu sua senha?</a>
-                    <button type="submit" class="jc_login-btn">Iniciar Sessão</button>
+                    <button type="submit" class="jc_login-btn"><a href="../adm/vcl-dashboard-adm.php">Iniciar Sessão</a></button>
                 </form>
             </div>
             

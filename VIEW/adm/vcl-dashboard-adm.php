@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
 </head>
 <body>
-    
     <!-- <div class="jp_sidebar-placeholder"></div> -->
 
     <main class="jp_main-content">
