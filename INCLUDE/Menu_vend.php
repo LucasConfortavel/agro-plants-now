@@ -29,7 +29,7 @@
             <div class="jp_bottom-menu">
                 <ul>
                     <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></a>
-                    <a href="../VIEW/paginas-iniciais/landing_page.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li></a>
+                    <a href="../../VIEW/paginas-iniciais/landing_page.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li></a>
                 </ul>
             </div>
         </aside>
