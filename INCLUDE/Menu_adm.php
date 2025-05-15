@@ -23,14 +23,14 @@
                     <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></a>
                     <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li></a>
                     <a href="../../VIEW/adm/lista-vendedores-adm.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</li></a>
-                    <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li></a>
+                    <a href="../../VIEW/adm/vendas-adm.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li></a>
                     <a href="../../VIEW/adm/rel.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</li></a>
                     <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li></a>
                 </ul>
             </nav>
             <div class="jp_bottom-menu">
                 <ul>
-                    <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></a>
+                    <a href="../../VIEW/adm/ajustes-informaçoes-adm.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></a>
                     <a href="../../VIEW/paginas-iniciais/landing_page.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li></a>
                 </ul>
             </div>

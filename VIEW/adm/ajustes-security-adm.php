@@ -29,7 +29,7 @@ include "../../INCLUDE/Menu_adm.php";
 
             <div class="jp_content">
                 <nav class="jp_tabs">
-                    <a href="informaçoes_adm.html" class="jp_tab">Informações</a>
+                    <a href="ajustes-informaçoes-adm.php" class="jp_tab">Informações</a>
                     <a href="segurity.html" class="jp_tab jp_active">Segurança</a>
                 </nav>
 
@@ -57,7 +57,7 @@ include "../../INCLUDE/Menu_adm.php";
                         </div>
 
                         <div class="jp_form-actions">
-                            <button type="submit" class="jp_btn-update">Atualizar</button>
+                            <input type="submit" class="jp_btn-update" value="Atualizar"></input>
                         </div>
                     </form>
                 </div>
@@ -67,7 +67,7 @@ include "../../INCLUDE/Menu_adm.php";
     <script>
     function redirectToHome(event) {
         event.preventDefault(); 
-        window.location.href = 'informaçoes_adm.html'
+        window.location.href = 'ajustes-informaçoes-adm.php'
     }
     </script>
 

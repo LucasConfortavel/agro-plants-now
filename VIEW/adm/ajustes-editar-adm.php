@@ -14,7 +14,7 @@ include "../../INCLUDE/Menu_adm.php";
 </head>
 <body>
         <main class="jp_main-content">
-            <header class="jp_profile-header">
+                <header class="jp_profile-header">
                 <div class="jp_profile-info">
                     <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt="Profile" class="jp_profile-pic">
                     <div class="profile-text">

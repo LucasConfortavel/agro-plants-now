@@ -55,8 +55,11 @@
     /* width: 1527px; */
     display: flex;
     flex-direction: column;
-    margin-top: 32px;
+    height: 89vh;
+}
 
+.er_imagem img{
+    height: 100%;
 }
 
 

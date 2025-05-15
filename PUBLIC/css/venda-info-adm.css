@@ -301,9 +301,6 @@ body {
   background-color: #ffffff;
 }
 
-
-
-
 /* Responsividade para tablets */
 @media (max-width: 1024px) {
   .jp_container {

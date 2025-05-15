@@ -17,7 +17,7 @@ include "../../INCLUDE/Menu_adm.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container"> 
         <header>
             <div class="po-er_area-notificacao">
                 <a class="po-er_link-notificacao" href="#"><img class="po-er_img-notificacao" src="../../PUBLIC/img/Frame.svg" alt=""></a>
