@@ -33,38 +33,39 @@ include "../../INCLUDE/Menu_adm.php";
                 
                 <div class="ym_area-table">
 
-                        <table class="ym_tabela">
+                    <table class="ym_tabela">
 
-                            <thead class="ym_thead">
+                        <thead class="ym_thead">
+                            <tr class="ym_tr">
+                                <th class="ym_th" style="color:white;">Código</th>
+                                <th class="ym_th" style="color:white;">Cliente</th>
+                                <th class="ym_th" style="color:white;">Data</th>
+                                
+                                <th class="ym_th" style="color:white;">Estado</th>
+                                <th class="ym_th"></th>
+                                
+                                
+                        </thead>
+
+                        <tbody class="ym_tbody">
+
+                            <?php
+                                echo'
                                 <tr class="ym_tr">
-                                    <th class="ym_th" style="color:white;">Código</th>
-                                    <th class="ym_th" style="color:white;">Porcentagem</th>
-                                    <th class="ym_th" style="color:white;">Data</th>
-                                
-                                    <th class="ym_th" style="color:white;">Estado</th>
-                                    <th class="ym_th"></th>
-                                <tr>
-                                
-                            </thead>
+                                    <td class="ym_td">#1234</td>
+                                    <td class="ym_td sb_td">Paulo Rojas</td>
+                                    <td class="ym_td">16/08</td>
+                                    <td class="ym_td">Pendente</td>
+                                    <td class="ym_td "><a href=""><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
+                                </tr>
+                                ';                            
+                            ?>
 
-                            <tbody class="ym_tbody">
+                        </tbody>
+                    </table>
+        
+                </div>
 
-                                <?php
-                                    echo'
-                                    <tr class="ym_tr">
-                                        <td class="ym_td">#paulorojas100</td>
-                                        <td class="ym_td sb_td">100%</td>
-                                        <td class="ym_td">16/08</td>
-                                        <td class="ym_td">Ativo</td>
-                                        <td class="ym_td "><a href=""><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
-                                    </tr>
-                                    ';
-                                ?>
-
-                            </tbody>
-                        </table>
-                
-                    </div>
             </section>
         </div> 
     
