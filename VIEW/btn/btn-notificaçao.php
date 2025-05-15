@@ -7,19 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/btn-notificaçao.css">
+    <!-- <link rel="stylesheet" href="../../PUBLIC/css/vcl-dashboard-style.css"> -->
+    <link rel="stylesheet" href="../../PUBLIC/css/btn-notificacao.css">
 </head>
 <body>
-    <div class="jp_top-bar">
-        <div class="jp_top-bar-icons">
-            <div class="jp_notification-bell">
+        <div class="jp_header-icons">
+            <div class="jp_notification-icon">
                 <i class="fas fa-bell"></i>
             </div>
-            <div class="jp_profile-icon">
+            <div class="jp_user-icon">
                 <i class="fas fa-user"></i>
             </div>
         </div>
-    </div>    
 </body>
 </html>
 <?php
