@@ -1,8 +1,6 @@
 <?php 
-
 include "../../INCLUDE/Menu_adm.php";
-
-
+include "../../INCLUDE/btn-notificaçao.php";
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +17,6 @@ include "../../INCLUDE/Menu_adm.php";
 <main class="jp_main-content">
     <div class="po-header">
       <h1 id="po-page-title">Relatório de Vendas</h1>
-      <div class="po-er_area-notificacao">
-        <a class="po-er_link-notificacao" href="#"><img class="po-er_img-notificacao" src="../../PUBLIC/img/Frame.svg" alt=""></a>
-        <a class="po-er_link-usuario" href="#"><img class="po-er_img-usuario" src="../../PUBLIC/img/user.svg" alt=""></a>
-      </div>
     </div>
 
     <div class="po-card">

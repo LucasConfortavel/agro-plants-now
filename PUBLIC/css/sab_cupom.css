@@ -60,7 +60,6 @@ body{
     width: 100%;
     justify-content: end;
     align-items: end;
-    height: 47px;
 
 }
 
@@ -75,9 +74,13 @@ body{
     width: 90px;
 }
 
-/* .sab-engloba-tudo{
+.sab-engloba-tudo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
     width: 100%;
-} */
+}
 
 .sab-icone, .sab-icone2{
     width: 30px;
@@ -132,8 +135,8 @@ body{
     align-items: center;
     justify-content: space-evenly;
     border-radius: 5px;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    /* margin-top: 50px; */
+    /* margin-bottom: 30px; */
 }
 
 #sab-site-search{
@@ -171,7 +174,6 @@ body{
     height: 36px;
     justify-content: end;
     padding-right: 70px;
-    margin-bottom: 20px;
 }
 .sab-botão button{
     width: 145px;

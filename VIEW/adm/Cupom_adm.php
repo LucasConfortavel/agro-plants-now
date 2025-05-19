@@ -1,5 +1,6 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/btn-notificaçao.php";
 ?>
 
 
@@ -18,35 +19,18 @@ include "../../INCLUDE/Menu_adm.php";
 <body>
     <main class="jp_main-content">
         <div class="sab-engloba-tudo">
-            <div class="sab-fundo">
-                <div class="sab-icones">
-                    <div class="sab-icone">
-                        <button class="er_btn-notificacao">
-                            <img class="er_img-notificacao1" src="../../PUBLIC/img/Frame.svg" alt="">
-                        </button>
-                        <!-- <i class="fa-regular fa-bell"></i> -->
-                    </div>
-                    <div class="sab-icone2">
-                        <!-- <i class="fa-regular fa-user"></i> -->
-
-                        <button class="er_btn-notificacao">
-                            <img class="er_img-notificacao2" src="../../PUBLIC/img/user.svg" alt="">
-                        </button>
-
-                    </div>
+            
+            <div class="ym_area-barra-pesquisa">
+                <div class="ls_pesquisa-barra">
+                    <input type="text" placeholder="Pesquise por um cupom">
+                    <img src="../PUBLIC/img/lupa.png" alt="lupa">
                 </div>
+            </div>
 
-            </div>
-            <div class="sab-input">
-                <input type="search" id="sab-site-search" placeholder="Pesquise por um cupom">
-                    
-                </input>
-                <img src="../../PUBLIC/img/lupa.png" alt="" class="sab-icone-pesquisa">
-        
-            </div>
             <div class="sab-botão">
                 <button>Cadastrar cupom</button>
             </div>
+            
             <section class="ym_section">
                 <div class="ym_area-table">
 

@@ -38,13 +38,6 @@ body {
   padding: 20px;
 }
 
-header {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 0;
-  margin-bottom: 20px;
-}
-
 
 .cart-container {
   background-color: var(--card-bg);

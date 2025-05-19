@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,9 +6,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- <link rel="stylesheet" href="../../PUBLIC/css/vcl-dashboard-style.css"> -->
-    <link rel="stylesheet" href="../../PUBLIC/css/btn-notificacao.css">
+    <link rel="stylesheet" href="../PUBLIC/css/btn-notificacao.css">
 </head>
 <body>
+    <div class="ym_area-notificacao">
         <div class="jp_header-icons">
             <div class="jp_notification-icon">
                 <i class="fas fa-bell"></i>
@@ -19,7 +18,9 @@
                 <i class="fas fa-user"></i>
             </div>
         </div>
+    </div>
+
+    <div class="area"></div>
+
 </body>
 </html>
-<?php
-?>

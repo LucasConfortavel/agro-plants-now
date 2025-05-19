@@ -1,5 +1,7 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/btn-notificaçao.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -19,14 +21,12 @@ include "../../INCLUDE/Menu_adm.php";
         <div class="sab-engloba-tudo">
             <section class="ym_section">
 
-                <div class="ym_area-notificacoes">
-                    <div class="ym_notificacoes">
-                        <btn class="ym_sino"><img src="../../PUBLIC/img/sino.svg" alt=""></btn>
-                        <a href="" class="ym_perfil"><img src="../../PUBLIC/img/user.svg" alt=""></a>
+                <div class="ym_area-barra-pesquisa">
+                    <div class="ls_pesquisa-barra">
+                        <input type="text" placeholder="Pesquise por um vendedor">
+                        <img src="../PUBLIC/img/lupa.png" alt="lupa">
                     </div>
                 </div>
-
-                <input class="ym_pesquisa" type="text" placeholder="Pesquise por um vendedor">
 
                 <div class="ym_area-btn-superior">
                     <a href="" class="ym_btn-superior">Remover vendedor</a>

@@ -1,22 +1,21 @@
-body {
-    background-color: antiquewhite;
+*{
     margin: 0;
+    padding: 0;
+}
+
+.ym_area-barra-pesquisa{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
-.ls_pesquisa {
-    width: 100%;
-    max-width: 704px;
-    padding: 0 20px;
-}
 
 .ls_pesquisa-barra {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    padding: 8px 12px;
+    border-radius: 10px;
+    padding: 8px;
+    width: 50%;
     display: flex;
     align-items: center;
     background: #fff;
@@ -25,7 +24,7 @@ body {
 
 .ls_pesquisa-barra input {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     outline: none;
     border: none;
     font-size: 1rem;

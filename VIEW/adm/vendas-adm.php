@@ -1,5 +1,7 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/btn-notificaçao.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -16,58 +18,55 @@ include "../../INCLUDE/Menu_adm.php";
 </head>
 <body>  
     <main class="jp_main-content">
-        <div class="sab-engloba-tudo">
-            <section class="ym_section">
-                <div class="ym_area-notificacoes">
-                    <div class="ym_notificacoes">
-                        <btn class="ym_sino"><img src="../../PUBLIC/img/sino.svg" alt=""></btn>
-                        <a href="" class="ym_perfil"><img src="../../PUBLIC/img/user.svg" alt=""></a>
-                    </div>
+        <section class="ym_section">
+            
+            <div class="ym_area-barra-pesquisa">
+                <div class="ls_pesquisa-barra">
+                    <input type="text" placeholder="Pesquise por um vendedor">
+                    <img src="../PUBLIC/img/lupa.png" alt="lupa">
                 </div>
-                
-                <input class="ym_pesquisa" type="text" placeholder="Pesquise por um vendedor">
-                
-                <div class="ym_area-btn-superior">
-                    <a href="../../VIEW/pop-up/cadastroVenda-Fisica.php" class="ym_btn-superior">Cadastrar venda</a>
-                </div>
-                
-                <div class="ym_area-table">
+            </div>
+            
+            <div class="ym_area-btn-superior">
+                <a href="../../VIEW/pop-up/cadastroVenda-Fisica.php" class="ym_btn-superior">Cadastrar venda</a>
+            </div>
+            
+            <div class="ym_area-table">
 
-                    <table class="ym_tabela">
+                <table class="ym_tabela">
 
-                        <thead class="ym_thead">
+                    <thead class="ym_thead">
+                        <tr class="ym_tr">
+                            <th class="ym_th" style="color:white;">Código</th>
+                            <th class="ym_th" style="color:white;">Cliente</th>
+                            <th class="ym_th" style="color:white;">Data</th>
+                            
+                            <th class="ym_th" style="color:white;">Estado</th>
+                            <th class="ym_th"></th>
+                            
+                            
+                    </thead>
+
+                    <tbody class="ym_tbody">
+
+                        <?php
+                            echo'
                             <tr class="ym_tr">
-                                <th class="ym_th" style="color:white;">Código</th>
-                                <th class="ym_th" style="color:white;">Cliente</th>
-                                <th class="ym_th" style="color:white;">Data</th>
-                                
-                                <th class="ym_th" style="color:white;">Estado</th>
-                                <th class="ym_th"></th>
-                                
-                                
-                        </thead>
+                                <td class="ym_td">#1234</td>
+                                <td class="ym_td sb_td">Paulo Rojas</td>
+                                <td class="ym_td">16/08</td>
+                                <td class="ym_td">Pendente</td>
+                                <td class="ym_td "><a href=""><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
+                            </tr>
+                            ';                            
+                        ?>
 
-                        <tbody class="ym_tbody">
+                    </tbody>
+                </table>
+    
+            </div>
 
-                            <?php
-                                echo'
-                                <tr class="ym_tr">
-                                    <td class="ym_td">#1234</td>
-                                    <td class="ym_td sb_td">Paulo Rojas</td>
-                                    <td class="ym_td">16/08</td>
-                                    <td class="ym_td">Pendente</td>
-                                    <td class="ym_td "><a href=""><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
-                                </tr>
-                                ';                            
-                            ?>
-
-                        </tbody>
-                    </table>
-        
-                </div>
-
-            </section>
-        </div> 
+        </section>
     
     
 
