@@ -13,7 +13,9 @@ body {
 }
 
 
+
 .ls_container-contate-nos {
+    height: 89vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -79,9 +81,14 @@ body {
 }
 
 
-.ls_texto-contato {
-    color: #fff;
+.ls_texto-contato{
+    height: 485px;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
     max-width: 500px;
     display: flex;
     flex-direction: column;
@@ -117,6 +124,9 @@ body {
 
     .ls_container-menu,
     .ls_texto-contato {
+        height: auto;
+        font-size: 15px;
+        font-weight: 500;
         max-width: 100%;
     }
 
