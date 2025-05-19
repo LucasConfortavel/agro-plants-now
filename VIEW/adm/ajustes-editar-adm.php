@@ -11,6 +11,7 @@ include "../../INCLUDE/Menu_adm.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
     <link rel="stylesheet" href="../../PUBLIC/css/ajustes-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
 </head>
 <body>
         <main class="jp_main-content">
@@ -27,8 +28,8 @@ include "../../INCLUDE/Menu_adm.php";
 
             <div class="jp_content">
                 <nav class="jp_tabs">
-                    <button class="jp_tab jp_active">Informações</button>
-                    <button class="jp_tab">Segurança</button>
+                    <a href="informaçoes_adm.html" class="jp_tab jp_active">Informações</a>
+                    <a href="ajustes-security-adm.php" class="jp_tab">Segurança</a>
                 </nav>
 
                 <div class="jp_info-section">
