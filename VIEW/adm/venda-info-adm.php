@@ -18,12 +18,6 @@ include "../../INCLUDE/Menu_adm.php";
 </head>
 <body>
     <div class="container"> 
-        <header>
-            <div class="po-er_area-notificacao">
-                <a class="po-er_link-notificacao" href="#"><img class="po-er_img-notificacao" src="../../PUBLIC/img/Frame.svg" alt=""></a>
-                <a class="po-er_link-usuario" href="#"><img class="po-er_img-usuario" src="../../PUBLIC/img/user.svg" alt=""></a>
-            </div>
-        </header>
 
         <main class="cart-container">
             <div class="back-button">

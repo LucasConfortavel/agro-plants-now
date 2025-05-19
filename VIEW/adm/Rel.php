@@ -13,6 +13,7 @@ include "../../INCLUDE/Menu_adm.php";
     <title>Agro Plants NOW</title>
     <link rel="stylesheet" href="../../PUBLIC/css/Rel.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     
@@ -171,12 +172,13 @@ include "../../INCLUDE/Menu_adm.php";
           </table>
         </div>
 
-        <div class="po-paginacao">
-          <div class="po-arrow">◀</div>
-          <span class="po-active">1</span>
-          <span>2</span>
-          <span>3</span>
-          <div class="po-arrow">▶</div>
+        <div class="jp_page-navigation">
+          <div class="jp_page-number active">1</div>
+          <div class="jp_page-number">2</div>
+          <div class="jp_page-number">3</div> <!-- DAR UMA ARRUMADA NA PAGINAÇÃO QUANDO DER. - PR -->
+          <div class="jp_page-arrow">
+              <i class="fas fa-arrow-right"></i>
+          </div>
         </div>
       </div>
     </div>
