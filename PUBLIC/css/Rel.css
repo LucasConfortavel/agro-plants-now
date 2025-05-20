@@ -67,7 +67,7 @@ body {
 }
 
 .po-export-button {
-    height: 35px;
+    height: 25px;
     float: right;
     display: flex;
     align-items: center;
@@ -145,6 +145,52 @@ td {
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+.jp_page-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .jp_page-number {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  
+  .jp_page-number:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .jp_page-number.active {
+    background-color: #fff;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .jp_page-arrow {
+    cursor: pointer;
+    margin-left: 10px;
+    transition: transform 0.2s ease;
+  }
+  
+  .jp_page-arrow:hover {
+    transform: translateX(3px);
+  }
+  
+  .jp_bottom-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+  }
 
 .po-paginacao {
     display: flex;

@@ -13,7 +13,7 @@
             <h2 class="form-title">Informe seu endereço de e-mail</h2>
             <div class="form-container">
                 <input type="email" class="input-field" placeholder="E-mail" required>
-                <button type="submit" class="login-btn">Avançar</button>
+                <a type="submit" href="pop-up-recuperacao-de-senha.php" class="login-btn">Avançar</a>
             </div>
         </div>
     </section>
