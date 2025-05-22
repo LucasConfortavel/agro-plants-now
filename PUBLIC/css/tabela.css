@@ -114,9 +114,12 @@ table td, table th{
 
 .ym_area-table{
     height: 400px;
+    background-color: rgb(255, 255, 255);
+    
     
     
 }
+
 
 .ym_td a{
     color: var(--color-icones-0);
@@ -131,6 +134,10 @@ table td, table th{
         background-color: rgba(255, 255, 255, 0);
     }
     
+    .ym_area-table{
+        overflow: visible;
+    }
+
     .ym_thead {
         display: none;
     }
@@ -146,6 +153,7 @@ table td, table th{
         height: 100%;
         box-shadow: none;
         background-color: none;
+        background-color: rgba(255, 255, 255, 0);
         
     }
     
