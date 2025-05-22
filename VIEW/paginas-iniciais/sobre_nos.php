@@ -18,32 +18,29 @@ include "../../INCLUDE/Menu_superior.php";
     <link rel="stylesheet" href="../../PUBLIC/css/sobre_nos.css">
 </head>
 <body>
-      <main class="jp_main-content">
-                 
-                <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
+    <main class="jp_main-content">
+        <div class="ym_area">
 
-               <div class="jv-container">
-                    <div class="jv-texto">
-                            <h1>Quem somos?</h1>
-                            <p class="jv-descricao">
-                                Bem-vindo à Agro Plants NOW. Somos líderes em agricultura de precisão e insumos biológicos, dedicados a revolucionar o setor agrícola com soluções inovadoras e sustentáveis. Nossa missão é aumentar a produtividade dos nossos clientes com produtos e serviços de alta qualidade e eficiência.
-                            </p> 
-                            <img class="jv-foto" src="../../PUBLIC/img/community-people-working-together-agriculture-grow-food 1.png" alt="lala">
-                    </div>
+            <img src="../../PUBLIC/img/sobre_nos_img2.png" alt="" class="ym_img-mobile">
 
-                </div>
-               <div class="jv-containerr">
-                    <div class="jv-texto2">
-                        <h1 class="jv-h1">O que fazemos?</h1>
-                         <p class="jv-descricao2">
-                            Na Agro Plants NOW, nós revolucionamos o setor agrícola com soluções inovadoras e sustentáveis. Atuamos na agricultura de precisão e fornecemos insumos biológicos, sempre com o objetivo de aumentar a produtividade dos nossos clientes. Comprometidos com a preservação ambiental, integramos práticas ecológicas em todas as nossas operações, equilibrando tecnologia e sustentabilidade. Nossos produtos e serviços são projetados para garantir a máxima eficiência e qualidade na sua produção agrícola.
-                        </p> 
-                    </div>
-                </div>
-                    <div class="jv-fotoo">
-                        <img src="../../PUBLIC/img/2 p 2.png" alt="">
-                    </div>
-         </main>
-   
+
+            <div class="ym_text">
+                <h1>Quem somos?</h1>
+                <p>Bem-vindo à Agro Plants NOW Somos líderes em agricultura de precisão e insumos biológicos, dedicados a revolucionar o setor agrícola com soluções inovadoras e sustentáveis. Nossa missão é aumentar a produtividade dos nossos clientes com produtos e serviços de alta qualidade e eficiência.</p>
+            </div>
+            
+            <img src="../../PUBLIC/img/sobre_nos_img2.png" alt="" class="ym_img2">
+            <img src="../../PUBLIC/img/sobre_nos_img1.png" alt="" class="ym_img1">
+            
+            <div class="ym_text">
+                <h1>O que fazemos?</h1>
+                <p>Na Agro Plants NOW, nós revolucionamos o setor agrícola com soluções inovadoras e sustentáveis. Atuamos na agricultura de precisão e fornecemos insumos biológicos, sempre com o objetivo de aumentar a produtividade dos nossos clientes. Comprometidos com a preservação ambiental, integramos práticas ecológicas em todas as nossas operações, equilibrando tecnologia e sustentabilidade. Nossos produtos e serviços são projetados para garantir a máxima eficiência e qualidade na sua produção agrícola.</p>
+            </div>
+            
+        
+        </div>
+    </main> 
 </body>
 </html>
+
+<script src="../../PUBLIC/JS/script-menu-superior.js"></script>

@@ -26,7 +26,7 @@ include "../../INCLUDE/Menu_vend.php";
             <div class="cart-table">
                 <div class="table-header">
                     <div class="header-produto">Produto</div>
-                    <div class="header-preco">Preço</div>
+                    <div class="header-preco">Preço</div>   
                     <div class="header-quantidade">Quantidade</div>
                     <div class="header-total">Total</div>
                 </div>
