@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.eze-container {
+    width: 738px;
+    height: 460px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.eze-tab-header {
+    display: flex;
+    width: 100%;
+}
+
+.eze-tab-button {
+    flex: 1;
+    padding: 15px 0;
+    text-align: center;
+    background-color: #e0e0e0;
+    border: none;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.eze-tab-button:first-child {
+    border-radius: 10px 0 10px 0;
+}
+
+.eze-tab-button:last-child {
+    border-radius: 0 10px 0 10px;
+}
+
+.eze-tab-button.eze-active {
+    background-color: #fff;
+}
+
+.eze-form-section {
+    padding: 30px;
+    height: 408px;
+    position: relative;
+}
+
+.eze-form-row {
+    display: flex;
+    gap: 90px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.eze-form-group {
+    flex: 1;
+    position: relative;
+}
+
+.eze-form-label-group {
+    display: flex;
+    align-items: center;
+    margin-left: 13px;
+
+}
+
+.eze-required {
+    color: #ff5252;
+    font-size: 13px;
+    margin-right: 3px;
+}
+
+.eze-label-text {
+    font-size: 9px;
+    color: #0000007A;
+}
+
+.eze-form-control {
+    width: 95%;
+    height: 40px;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 13px;
+    gap: 100px;
+    margin-left: 5px;
+}
+
+.eze-image-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #e0e0e0;
+    border-radius: 8px;
+    height: 270px;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: #00000033;
+}
+
+#imagem-content .eze-image-placeholder {
+    width: 433px;
+    height: 283px;
+    margin: 17px auto;
+}
+
+.eze-placeholder-icon {
+    width: 50px;
+    height: 50px;
+    opacity: 0.3;
+    margin-bottom: 10px;
+    color: #0000007A;
+}
+
+.eze-button-container {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#imagem-content .eze-button-container {
+    position: static;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.eze-button-container2 {
+    margin-right: 45px;
+}
+
+.eze-add-button {
+    background-color: #45734b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 170px;
+    margin-top: -3px;
+}
+
+
+.eze-help-text {
+    text-align: center;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 5px;
+}
+
+/* Tab content display control */
+#imagem-content {
+    display: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .eze-container {
+        width: 90%;
+        margin: 20px;
+        height: 510px;
+    }
+
+    .eze-form-row {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 0px;
+    }
+
+    .eze-button-container {
+        position: static;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #imagem-content .eze-image-placeholder {
+        height: 328px;
+        width: 410px;
+    }
+
+}
+
+@media (max-width: 551px) {
+    #imagem-content .eze-image-placeholder {
+        height: 340px;
+        width: 290px;
+    }
+    .eze-tab-button {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 394px) {
+    #imagem-content .eze-image-placeholder {
+        height: 340px;
+        width: 245px;
+    }
+    .eze-tab-button {
+        font-size: 13px;
+    }
+}
