@@ -56,7 +56,7 @@ include "../../INCLUDE/btn-notificacao.php";
                                 <td class="ym_td sb_td">Paulo Rojas</td>
                                 <td class="ym_td">16/08</td>
                                 <td class="ym_td">Pendente</td>
-                                <td class="ym_td "><a href=""><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
+                                <td class="ym_td "><a href="venda-info-adm.php"><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
                             </tr>
                             ';                            
                         ?>
