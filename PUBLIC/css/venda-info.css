@@ -31,23 +31,6 @@ body {
   line-height: 1.5;
 }
 
-.container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-
-.cart-container {
-  background-color: var(--card-bg);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  padding: 30px;
-  position: relative;
-  overflow: hidden;
-}
-
 .back-button {
   display: flex;
   align-items: center;
@@ -78,7 +61,7 @@ body {
 .table-header {
   display: grid;
   grid-template-columns: 2.3fr 1fr 1fr 1fr;
-  padding: 15px 0;
+  padding: 13px 0;
   border-bottom: 1px solid var(--border-color);
   font-weight: 600;
   color: var(--text-light);

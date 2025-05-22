@@ -1,5 +1,6 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
+    include "../../INCLUDE/btn-notificaçao.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
     <!-- <div class="jp_sidebar-placeholder"></div> -->
 
     <main class="jp_main-content">
-        <div class="jp_header">
+        <!-- <div class="jp_header">
             <div class="jp_header-icons">
                 <div class="jp_notification-icon">
                     <i class="fas fa-bell"></i>
@@ -25,7 +26,7 @@
                     <i class="fas fa-user"></i>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="jp_cards-container">
             <div class="jp_card">
