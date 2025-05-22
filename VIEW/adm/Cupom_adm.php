@@ -28,7 +28,7 @@ include "../../INCLUDE/btn-notificacao.php";
             </div>
 
             <div class="sab-botão">
-                <button>Cadastrar cupom</button>
+                <a href="../pop-up/pop-up-cadastroCupom.php" >Cadastrar cupom</a>
             </div>
             
             <section class="ym_section">

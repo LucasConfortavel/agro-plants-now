@@ -1,3 +1,12 @@
+<?php
+
+if(isset($_POST['cadastrar'])){
+    header("location:../adm/Cupom_adm.php");
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="ptbr">
 <head>
@@ -12,7 +21,7 @@
         <div class="ym_pop-up">
             <h1 class="ym_titulo">Cadastro de cupom</h1>
             
-            <form class="ym_formulario">
+            <form method="POST" class="ym_formulario">
                 <div class="ym_area-input"> 
                     <p class="ym_texto">*Obrigatório</p>
                     <input type="text" placeholder="Valor de desconto" class="ym_form-input">
@@ -36,7 +45,7 @@
                     </div>
                 </div>
                 
-                <input type="submit" class="ym_form-btn-eviar" value="Cadastrar cupom">
+                <input type="submit" class="ym_form-btn-eviar" name="cadastrar" value="Cadastrar cupom">
             </form>
 
     </section>

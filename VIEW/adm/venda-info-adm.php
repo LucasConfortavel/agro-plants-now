@@ -17,7 +17,7 @@ include "../../INCLUDE/btn-notificacao.php";
 <body>
     <main class="jp_main-content">
         <div class="back-button">
-            <i class="fa-solid fa-arrow-left"></i>
+            <a href="vendas-adm.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
         </div>
 
         <div class="cart-table">
@@ -100,7 +100,7 @@ include "../../INCLUDE/btn-notificacao.php";
                     <i class="fa-regular fa-trash-can"></i>
                 </button>
                 <button class="generate-link-button">
-                    Gerar link de venda
+                    <a href="../pop-up/pop-up-link.php">Gerar link de venda</a>
                 </button>
             </div>
         </div>

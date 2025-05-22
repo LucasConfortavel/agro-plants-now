@@ -175,7 +175,7 @@ body{
     justify-content: end;
     padding-right: 70px;
 }
-.sab-botão button{
+.sab-botão a{
     width: 145px;
     height: 38px;
     background-color: #45734B;
@@ -183,6 +183,10 @@ body{
     border-radius: 7px;
     color: white;
     font-size: 12px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 
