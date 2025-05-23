@@ -93,10 +93,6 @@ a{
    text-decoration: none; 
 }
 
-a:hover{
-    color: var(--color-primary-7);
-}
-
 body{
     background-color: var(--color-primary-2);
     
