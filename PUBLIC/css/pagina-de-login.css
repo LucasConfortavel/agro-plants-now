@@ -110,7 +110,7 @@ body{
 .jc_forgot-password {
     font-size: 12px; 
     color: #555;
-    margin-bottom: 20px; 
+    /* margin-bottom: 20px;  */
     align-self: baseline; 
     text-decoration: none; 
     font-family: 'Poppins', sans-serif;
