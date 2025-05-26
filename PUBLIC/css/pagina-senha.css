@@ -159,6 +159,7 @@ body {
   align-self: flex-end;
   margin-top: 10px;
   margin-right: 5px;
+  text-decoration: none;
 }
  
 .login-btn:hover {

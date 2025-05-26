@@ -127,6 +127,8 @@ body{
     transition: background-color 0.3s ease;
     margin-top: 50px; 
     align-self: center; 
+    text-decoration: none;
+    text-align: center;
 }
 
 
