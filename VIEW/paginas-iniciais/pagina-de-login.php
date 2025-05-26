@@ -28,12 +28,19 @@ include "../../INCLUDE/Menu_superior.php";
             <div class="jc_login-box">
                 <h3>Iniciar a sessão</h3> 
                 <form action="#" method="POST">
-                    <input type="email" class="jc_input-field" placeholder="E-mail" required>
-                    <input type="password" class="jc_input-field" placeholder="Senha" required>
-                    <a href="../pop-up/pop-up-email-recuperar-senha.php" class="jc_forgot-password">Esqueceu sua senha?</a>
-                    <a href="../pop-up/pop-up-criar-senha.php" class="jc_forgot-password">Redefinir senha</a>
-                    <button type="submit" class="jc_login-btn"><a href="../adm/vcl-dashboard-adm.php">Iniciar Sessão</a></button>
+                    <div class="lc_area-inputs">
+                        <input type="email" class="jc_input-field" placeholder="E-mail" required>
+                        <input type="password" class="jc_input-field" placeholder="Senha" required>
+                    </div>
+                    <div class="lc_area-links">
+                        <a href="../pop-up/pop-up-email-recuperar-senha.php" class="jc_forgot-password">Esqueceu sua senha?</a>
+                        <a href="../pop-up/pop-up-criar-senha.php" class="jc_forgot-password">Redefinir senha</a>
+                    </div>
+                    <button type="submit" class="jc_login-btn"><a href="../vend/dashboard_vendedor.php">Iniciar Sessão</a></button>
                 </form>
+                <div class="lc_area-engrenagem">
+                    <a href="../adm/vcl-dashboard-adm.php"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
+                </div>
             </div>
             
         </div>

@@ -47,7 +47,6 @@ body{
     flex-direction: column;
     justify-content: center;
     width: 60%;
-    margin-left: 131px;
 }
 
 .jc_left-side h2 {
@@ -59,12 +58,16 @@ body{
 .jc_total{
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 89vh;
     background-color: rgba(0, 0, 0, 0.3);
 }
 
 .jc_login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
@@ -73,20 +76,36 @@ body{
     max-height: 500px;
     width: 100%;
     max-width: 400px;  
-    margin: 0 auto;     
+}
+
+.lc_area-inputs{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
 .jc_login-box form{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    gap: 20px;
+}
+
+.lc_area-links{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
 }
 
 .jc_login-box h3 {
     font-size: 20px;
     font-family: 'Poppins', sans-serif; 
     color: #333; 
-    margin-top: 0; 
-    margin-bottom: 10px; 
     text-align: center;
     font-weight: normal;
 }
@@ -96,7 +115,6 @@ body{
 .jc_input-field {
     width: 90%;
     padding: 12px 14px;  
-    margin-bottom: 18px; 
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
     border: 2px solid #CCCCCC; 
@@ -105,6 +123,12 @@ body{
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 
    
+}
+
+.lc_area-engrenagem{
+    width: 100%;
+    display: flex;
+    justify-content: right;
 }
 
 .jc_forgot-password {
@@ -133,10 +157,10 @@ a{
     background-color: #45734B;
     color: white;
     border: none;
+    margin-top: 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 50px; 
     align-self: center; 
 }
 
@@ -145,7 +169,6 @@ a{
     font-size: 20px;
     font-family: 'Poppins', sans-serif; 
     color: #333; 
-    margin-bottom: 90px; 
     text-align: center; 
    
     
@@ -196,13 +219,7 @@ a{
     transition: 0.5s;
 }
 
-.jc_logo {
-    margin: 47px;
-    margin-bottom: 55px;
-}
-
 .jc_btn-button-padrao {
-    margin: 60px;
     color: white;
     background-color: #45734B;
     padding: 10px 30px; 
@@ -216,13 +233,11 @@ a{
         flex-direction: column;
         align-items: center;
         padding: 20px;
-        margin-top: 30px;
-    }
+   }
 
     .jc_left-side {
         width: 100%;
         text-align: center;
-        margin-left: 0;
     }
 
     .jc_left-side h2 {
@@ -289,7 +304,6 @@ a{
     .jc_left-side {
         width: 100%;
         text-align: center;
-        margin: 20px 0;
     }
 
     .jc_nav-list {
@@ -305,13 +319,11 @@ a{
     }
 
     .jc_logo {
-        margin: 0;
         padding: 10px;
         max-width: 150px; 
     }
 
     .jc_btn-button-padrao {
-        margin: 10px 0;
         width: 90%;
     }
 }
