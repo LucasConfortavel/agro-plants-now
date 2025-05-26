@@ -15,7 +15,7 @@
                 <p>Insira o código que enviamos para o e-mail XXXXXXXX. Se você não receber o e-mail, verifique a pasta de spam ou tente novamente.</p>
                 <form action="recuperacao-de-senha.php" method="POST"> 
                     <input type="text" class="jc_input-field" name="codigo" placeholder="Código" required> 
-                    <a type="submit"href="../vend/pagina-de-login.php" class="jc_login-btn">Avançar</a>
+                    <a type="submit"href="../paginas-iniciais/pagina-de-login.php" class="jc_login-btn">Avançar</a>
                 </form>
             </div>
         </section>

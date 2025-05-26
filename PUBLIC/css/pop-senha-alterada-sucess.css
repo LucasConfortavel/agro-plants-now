@@ -1,64 +1,40 @@
-body {
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+}
+
+body {    
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
     background-color: #f7f7f7;
 }
 
-
-.controle-popup {
-    display: none;
-}
-
-
-.jc_popup {
-    display: flex; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    justify-content: center;
+.jc_popup-conteudo{
+    padding: 12px 14px;
+    gap: 10px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-}
-
-
-.jc_popup-conteudo {
+    justify-content: center;
+    width: 30%;
+    height: 20%;
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 1px 5px 1px rgba(60, 60, 60, 0.197);
 }
 
 
-.jc_popup-conteudo p {
-    font-size: 18px;
-    color: rgba(0,0,0, 0.5);
-    margin-bottom: 15px;
-}
-
-
-.jc_fechar-btn {
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
+.jc_popup-conteudo a{
+    margin-top: 20px;    
+    padding: 10px 30px;
+    text-decoration: none;
     background-color: #45734B;
     color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-
-.jc_controle-popup:checked + .popup {
-    display: flex;
-}
-
-.jc_controle-popup:not(:checked) + .popup {
-    display: none;
+    text-align: center;
+    border-radius: 8px;
 }

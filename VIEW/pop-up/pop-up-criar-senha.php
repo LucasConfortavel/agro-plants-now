@@ -18,7 +18,7 @@
                     <input type="password" class="jc_input-field" placeholder="Senha" required>
                 </form>
 
-                <button type="submit" class="jc_login-btn">Confirmar</button>
+                <a type="submit" href="../pop-up/pop-up-senha-alterada-sucesso.php" class="jc_login-btn">Confirmar</a>
 
             </div>
         </section>

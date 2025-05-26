@@ -1,5 +1,6 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/btn-notificacao.php";
 ?>
 
 
@@ -19,10 +20,19 @@ include "../../INCLUDE/Menu_adm.php";
 </head>
 <body>
     <main class="jp_main-content">
-        <div class="sab-botão">
-            <button>Cadastrar cupom</button>
-        </div>
         <section class="ym_section">
+            
+            <div class="ym_area-barra-pesquisa">
+                <div class="ls_pesquisa-barra">
+                    <input type="text" placeholder="Pesquise por um cupom">
+                    <img src="../PUBLIC/img/lupa.png" alt="lupa">
+                </div>
+            </div>
+
+            <div class="ym_area-btn-superior">
+                <a href="../../VIEW/pop-up/cadastroVenda-Fisica.php" class="ym_btn-superior">Cadastrar cupom</a>
+            </div>
+
             <div class="ym_area-table">
 
                 <table class="ym_tabela">
