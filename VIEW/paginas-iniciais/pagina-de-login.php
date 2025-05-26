@@ -30,7 +30,8 @@ include "../../INCLUDE/Menu_superior.php";
                 <form action="#" method="POST">
                     <input type="email" class="jc_input-field" placeholder="E-mail" required>
                     <input type="password" class="jc_input-field" placeholder="Senha" required>
-                    <a href="#" class="jc_forgot-password">Esqueceu sua senha?</a>
+                    <a href="../pop-up/pop-up-email-recuperar-senha.php" class="jc_forgot-password">Esqueceu sua senha?</a>
+                    <a href="../pop-up/pop-up-criar-senha.php" class="jc_forgot-password">Redefinir senha</a>
                     <button type="submit" class="jc_login-btn"><a href="../adm/vcl-dashboard-adm.php">Iniciar Sessão</a></button>
                 </form>
             </div>

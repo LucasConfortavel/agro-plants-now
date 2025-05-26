@@ -25,7 +25,6 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'poppins', sans-serif;
 }
 
@@ -57,6 +56,16 @@ body{
     
 }
 
+.ym_section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;
+    gap: 15px;
+
+}
 
 .sab-fundo{
     display: flex;
@@ -169,24 +178,20 @@ body{
 
 }
 
-.sab-botão{
+.ym_area-btn-superior{
     display: flex;
-    height: 36px;
-    justify-content: end;
-    padding-right: 155px;
-    margin-bottom: 20px;
-}
-.sab-botão button{
-    width: 145px;
-    height: 38px;
-    background-color: #45734B;
-    border: 0;
-    border-radius: 7px;
-    color: white;
-    font-size: 12px;
-    cursor: pointer;
+    justify-content: right;
+    width: 90%;
 }
 
+.ym_btn-superior{
+    padding: 10px;
+    background-color: #45734B;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.171);
+}
 
 
 table td, table th{
@@ -379,7 +384,7 @@ table td, table th{
         border: 0;
         border-radius: 7px;
         color: white;
-        font-size: 12px;
+        /* font-size: 12px; */
     }
     
     

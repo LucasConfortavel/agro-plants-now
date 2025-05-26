@@ -7,16 +7,9 @@
     <link rel="stylesheet" href="../../PUBLIC/css/pop-senha-alterada-sucess.css">
 </head>
 <body>
-    <main class="jp_main-content">
-        <input type="checkbox" id="controlePopup" class="jc_controle-popup" checked>
-        
-        
-        
-            <div class="jc_popup-conteudo">
-                <p>Senha alterada com sucesso!</p>
-                <label for="controlePopup" class="jc_fechar-btn">Fechar</label>
-            </div>
-        </div>
-    </main>
+    <div class="jc_popup-conteudo">
+        <p>Senha alterada com sucesso!</p>
+        <a href="../paginas-iniciais/pagina-de-login.php" class="jc_fechar-btn">Fechar</a>
+    </div>
 </body>
 </html>

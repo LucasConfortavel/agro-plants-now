@@ -1,5 +1,6 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/btn-notificacao.php";
 ?>
 
 
@@ -10,6 +11,7 @@ include "../../INCLUDE/Menu_adm.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro Plants NOW</title>
     <link rel="stylesheet" href="../../PUBLIC/css/sab_cupom.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastroCupom.css">
     <script defer src="../../PUBLIC/JS/cupom-script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,10 +20,19 @@ include "../../INCLUDE/Menu_adm.php";
 </head>
 <body>
     <main class="jp_main-content">
-        <div class="sab-botão">
-            <button>Cadastrar cupom</button>
-        </div>
         <section class="ym_section">
+            
+            <div class="ym_area-barra-pesquisa">
+                <div class="ls_pesquisa-barra">
+                    <input type="text" placeholder="Pesquise por um cupom">
+                    <img src="../PUBLIC/img/lupa.png" alt="lupa">
+                </div>
+            </div>
+
+            <div class="ym_area-btn-superior">
+                <a href="../../VIEW/pop-up/cadastroVenda-Fisica.php" class="ym_btn-superior">Cadastrar cupom</a>
+            </div>
+
             <div class="ym_area-table">
 
                 <table class="ym_tabela">
