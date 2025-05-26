@@ -85,5 +85,7 @@ include "../../INCLUDE/Menu_adm.php";
 
     <div class="jp_overlay"></div>
     <script src="../../PUBLIC/js/script-ajustes.js"></script>
+    <script src="../../PUBLIC/JS/script.js"></script>
+
 </body>
 </html>

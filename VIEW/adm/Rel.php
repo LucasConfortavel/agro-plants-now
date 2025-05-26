@@ -267,6 +267,8 @@ include "../../INCLUDE/btn-notificacao.php";
 
 
 <script src="../../PUBLIC/JS/Rel.js"></script>
+<script src="../../PUBLIC/JS/script.js"></script>
+
 
 </body>
 </html>

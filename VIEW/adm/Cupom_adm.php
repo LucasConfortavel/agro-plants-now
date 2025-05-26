@@ -62,6 +62,8 @@ include "../../INCLUDE/Menu_adm.php";
     
 
     </main>
+    <script src="../../PUBLIC/JS/script.js"></script>
+
 </body>
 </html>
 

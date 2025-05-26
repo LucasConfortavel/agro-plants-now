@@ -70,5 +70,7 @@ include "../../INCLUDE/btn-notificacao.php";
     
 
     </main>
+    <script src="../../PUBLIC/JS/script.js"></script>
+
 </body>
 </html>
