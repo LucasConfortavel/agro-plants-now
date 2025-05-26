@@ -1,0 +1,25 @@
+.er-box{
+    align-items: center;
+    justify-content: center;
+    width: 1008px;
+    height: 564px;
+    background-color:rgba(255, 255, 255, 1);
+    border: 2px solid rgba(217, 217, 217, 1);
+    border-radius: 10px;
+    stroke: rgba(231, 230, 230, 1);
+    margin-left: 234px;
+    margin-top: 158px;
+}
+
+.er_seta{
+    margin-bottom: 90px;
+    margin-left: 10px;
+}
+
+.er_img{
+    margin-top: 130px;
+    margin-left: 39px;
+    width: 200px;
+    height: 197px;
+    color: rgba(217, 217, 217, 1);
+}
