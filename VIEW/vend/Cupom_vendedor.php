@@ -1,5 +1,6 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/btn-notificacao.php";
 ?>
 
 
@@ -17,9 +18,16 @@ include "../../INCLUDE/Menu_vend.php";
 </head>
 <body>
     <main class="jp_main-content">
-
-
+        
         <section class="ym_section">
+            
+            <div class="ym_area-barra-pesquisa">
+                <div class="ls_pesquisa-barra">
+                    <input type="text" placeholder="pesquisa">
+                    <img src="../PUBLIC/img/lupa.png" alt="lupa">
+                </div>
+            </div>
+            
             <div class="ym_area-table">
 
                 <table class="ym_tabela">

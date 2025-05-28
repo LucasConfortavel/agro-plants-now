@@ -1,9 +1,9 @@
 <?php
 
-include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/Menu_vend.php";
 
 
-?>
+?>  
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -12,6 +12,8 @@ include "../../INCLUDE/Menu_adm.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../../PUBLIC/css/ajustes-vend.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+
 </head>
 <body>
 
