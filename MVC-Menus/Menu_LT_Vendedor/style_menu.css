@@ -1,15 +1,16 @@
-@import url(btn-notificacao.css);
-@import url(barra-pesquisa.css);
-
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: Inter, system-ui, -apple-system, sans-serif;
 }
+
 
 body {
     background-color: #f5f5f5;
 }
+
+
 
 .jp_logo img {
     max-width: 100%;
@@ -17,6 +18,9 @@ body {
     width: 80px;
 }
 
+
+
+/* Hamburger Menu Styles */
 
 .jp_hamburger-menu {
     display: none;
@@ -30,6 +34,8 @@ body {
     padding: 10px;
 }
 
+
+
 .jp_hamburger-line {
     width: 100%;
     height: 1.7px;
@@ -37,6 +43,10 @@ body {
     margin: 3px 0;
     transition: 0.4s;
 }
+
+
+
+/* Hamburger Animation Classes */
 
 
 .jp_hamburger-menu.active .jp_hamburger-line:nth-child(1) {
@@ -54,20 +64,8 @@ body {
 }
 
 
-.jp_overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-}
 
-.jp_overlay.active {
-    display: block;
-}
+/* Layout */
 
 
 .jp_container {
@@ -76,15 +74,17 @@ body {
 }
 
 
+/* sidebar */
+
 .jp_sidebar {
-    width: 200px;
+    width: 250px;
     background-color: #2d2d2d;
     color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
     position: fixed;
-    height: 100%;
+    height: 100vh;
     transition: transform 0.3s ease;
 }
 
@@ -96,11 +96,6 @@ body {
 .jp_sidebar nav ul {
     list-style: none;
     margin-top: 20px;
-}
-
-a{
-    text-decoration: none;
-    color: white;
 }
 
 .jp_sidebar nav ul li {
@@ -129,7 +124,6 @@ a{
     margin-top: auto;
     border-top: 1px solid #3a3a3a;
     padding-top: 20px;
-    margin-bottom: 10%;
 }
 
 .jp_bottom-menu ul {
@@ -141,12 +135,6 @@ a{
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: background-color 0.3s; /* Adicionado para consistência */
-}
-
-.jp_bottom-menu ul li:hover,
-.jp_bottom-menu ul li.jp_active {
-    background-color: #3a3a3a;
 }
 
 .jp_bottom-menu ul li img {
@@ -158,13 +146,17 @@ a{
 
 /* fim do menu */
 
+
+
 .jp_main-content {
     flex: 1;
     margin-left: 250px;
     padding: 30px;
 }
 
-/* Responsive Styles */ 
+
+/* * Responsive Styles */ 
+
 @media screen and (max-width: 1024px) {
     .jp_hamburger-menu {
         display: block;
@@ -213,4 +205,10 @@ a{
         width: 100%;
         text-align: center;
     }
+}
+
+.jp_bottom-menu ul li:hover,
+.jp_bottom-menu ul li.jp_active {
+    background-color: #3a3a3a;
+    border-radius: 8px;
 }

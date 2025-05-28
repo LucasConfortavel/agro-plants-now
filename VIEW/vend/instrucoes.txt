@@ -1,0 +1,26 @@
+Todas as telas/arquivos de vendedor nessa pasta
+
+
+1-Adicione esse código PHP no começo
+
+|
+V
+
+<?php
+
+include "../../INCLUDE/Menu_vend.php";
+
+
+?>
+
+2-Antes de colocar o seu código coloque a div main 'JP_main'(depois do body) e dentro da main coloque o seu código 
+
+
+        <main class="jp_main-content">
+        
+
+            <!-- coloque seu codigo aqui -->
+            <!-- tudo o que colocar aqui aparecera ao lado do menu -->
+
+
+        </main>
