@@ -69,7 +69,7 @@ include "../../INCLUDE/Menu_vend.php";
     <script>
     function redirectToHome(event) {
         event.preventDefault(); 
-        window.location.href = 'informaçoes_adm.html'
+        window.location.href = 'ajustes-informaçoes-vend.php'
     }
     </script>
 
