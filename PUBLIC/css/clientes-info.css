@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .er-box{
     align-items: center;
     justify-content: center;
@@ -16,10 +18,121 @@
     margin-left: 10px;
 }
 
-.er_img{
-    margin-top: 130px;
+.er-box-img{
     margin-left: 39px;
     width: 200px;
     height: 197px;
-    color: rgba(217, 217, 217, 1);
+    border-radius: 200px;
+    background-color:rgba(217, 217, 217, 1);
+}
+
+.er-box-img  .er_user{
+    margin-left: 53px;
+    margin-top: 40px;
+    width: 94px;
+    height: 115px;
+}
+
+.er_user-name{
+    margin-left: 55px;
+    font-family: 'poppins';
+    font-size: 1.5rem;
+}
+
+.er_user-date{
+    margin-left: 63px;
+    font-family: 'poppins';
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+
+.er_nao-questione{
+    height: 563px;
+    width: 290px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px 0px 0px 10px;
+    
+}
+
+.er_form{
+    margin-left: 324px;
+    margin-top: -560px;
+    width: 194px;
+    height: 280px;
+}
+
+.er_wrap-input1{
+    height: 70px;
+    
+}
+
+.er_wrap-input2{
+    height: 70px;
+    
+}
+
+.er_wrap-input3{
+    height: 70px;
+    
+}
+
+.er_wrap-input4{
+    height: 70px;
+   
+}
+
+.er_email{
+    font-family: 'poppins';
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.er_fone{
+    font-family: 'poppins';
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.er_cpf{
+    font-family: 'poppins';
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.er_date{
+    font-family: 'poppins';
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.er_input-email{
+    margin-top: 15px;
+    background-color: transparent;
+    border: none;
+}
+
+.er_input-fone{
+    margin-top: 15px;
+    background-color: transparent;
+    border: none;
+}
+
+.er_input-cpf{
+    margin-top: 15px;
+    background-color: transparent;
+    border: none;
+}
+
+.er_input-date{
+    margin-top: 15px;
+    background-color: transparent;
+    border: none;
+    width: 163px;
+}
+
+hr{
+    border:1px solid rgba(0, 0, 0, 0.1) ;
+    width: 230px;
+}
+
+.hr4{
+    border:1px solid rgba(0, 0, 0, 0.1) ;
+    margin-top: 12px;
 }
