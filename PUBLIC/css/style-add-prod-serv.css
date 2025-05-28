@@ -1,0 +1,247 @@
+/* style_produtos.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+body {
+    background-color: #F0EEEE;
+}
+.eze-icones-superior {
+    justify-content: right;
+    display: flex;
+    margin-top: 30px;
+    padding-right: 40px;
+    gap: 20px;
+}
+.eze-section-categorias {
+    height: 100%;
+    width: 100%;
+    margin-left: -150px;
+}
+.eze-icon-superior {
+    height: 28px;
+    width: 28px;
+}
+.eze-h1-categoria {
+    margin-left: 87px;
+    border-left: 8px solid #45734B;
+    padding-left: 10px;
+    margin-top: 35px;
+    font-size: 35px;
+}
+
+.eze-tudo{
+    color: #424242;
+}
+
+.eze-area-botoes-input {
+    margin-top: 25px;
+    margin-left: 85px;
+    display: flex;
+    gap: 30px;
+    flex-direction: row;
+    align-items: center;
+}
+.eze-btn-link {
+    color: #00000080;
+    border: 1px solid #E7E6E6;
+    background-color: #F6F6F6;
+    width: 165px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.eze-link-tudo {
+    background-color: rgb(69, 115, 75);
+    color: white;
+    cursor: auto;
+}
+.eze-input-pesquisa {
+    width: 60%;
+    height: 42px;
+    padding-left: 10px;
+    border: 1px solid #E7E6E6;
+    border-radius: 10px;
+    background-image: url(img/icone-pesquisa.png);
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 22px 22px;
+}
+.eze-input-pesquisa::placeholder {
+    padding-left: 10px;
+}
+.eze-input-pesquisa:focus {
+    padding-left: 10px;
+}
+.eze-card-produto {
+    height: 240px;
+    width: 150px;
+    background-color: #F6F6F6;
+    border-radius: 10px;
+    gap: 21px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #E7E6E6;
+    box-shadow: 0.8px 0.8px 8px 1px #00000040;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 40px;
+    margin-top: 25px;
+}
+.eze-card-servico {
+    height: 240px;
+    width: 150px;
+    background-color: #F6F6F6;
+    border-radius: 10px;
+    gap: 21px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #E7E6E6;
+    box-shadow: 0.8px 0.8px 8px 1px #00000040;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 40px;
+    margin-top: -15px;
+}
+.eze-area-produtos {
+    width: 80%;
+    gap: 40px;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: -25px;
+}
+.eze-section-produtos {
+    display: flex;
+    width: 1233px;
+    height: 505px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
+    margin-top: 20px;
+    margin-left: -70px;
+}
+.eze-info-produto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.eze-info-produto img{
+    height: 100px;
+}
+.eze-ver-mais-btn {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 10px;
+    background-color: #a3d2a8;
+    padding: 4px 9px;
+}
+.eze-card-produto:hover {
+    border: 1px solid rgb(207, 207, 207);
+    box-shadow: 0.2px 0.2px 11px 1px #00000040;
+}
+.eze-card-servico:hover {
+    border: 1px solid rgb(207, 207, 207);
+    box-shadow: 0.2px 0.2px 11px 1px #00000040;
+}
+@media screen and (max-width: 1024px) {
+    .eze-section-categorias {
+        height: 1500px;
+        width: 1500px;
+        margin-left: -77px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .eze-h1-categoria {
+        border-left: 12px solid #45734B;
+        font-size: 45px;
+    }
+    .eze-btn-link {
+        width: 205px;
+        height: 50px;
+        font-size: 16px;
+    }
+    .eze-card-produto {
+        height: 280px;
+        width: 190px;
+        margin-top: 105px;
+    }
+    .eze-card-servico {
+        height: 280px;
+        width: 190px;
+    }
+    .eze-info-produto img {
+        height: 130px;
+    }
+}
+
+@media screen and (max-width: 551px) {
+    .eze-h1-categoria {
+        border-left: 13px solid #45734B;
+        font-size: 50px;
+    }
+    .eze-btn-link {
+        width: 245px;
+        height: 60px;
+        font-size: 20px;
+    }
+    .eze-card-produto {
+        height: 330px;
+        width: 230px;
+        margin-top: 205px;
+    }
+    .eze-card-servico {
+        height: 330px;
+        width: 230px;
+    }
+    .eze-info-produto img {
+        height: 160px;
+    }
+}
+
+@media screen and (max-width: 481px) {
+    .eze-section-categorias {
+        margin-left: -72px;
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 394px) {
+    .eze-h1-categoria {
+        border-left: 13px solid #45734B;
+        font-size: 55px;
+    }
+    .eze-btn-link {
+        width: 285px;
+        height: 60px;
+        font-size: 20px;
+    }
+    .eze-card-produto {
+        height: 370px;
+        width: 270px;
+        margin-top: 290px;
+    }
+    .eze-card-servico {
+        height: 370px;
+        width: 270px;
+    }
+    .eze-info-produto img {
+        height: 170px;
+    }
+}
