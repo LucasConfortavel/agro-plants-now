@@ -58,7 +58,7 @@ include "../../INCLUDE/btn-notificacao.php";
                                 <td class="ym_td sb_td">100%</td>
                                 <td class="ym_td">16/08</td>
                                 <td class="ym_td">Ativo</td>
-                                <td class="ym_td "><a href=""><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
+                                <td class="ym_td "><a href=""><i class="fa-solid fa-circle-info"></i></a></td>
                             </tr>
                             ';
                         ?>
