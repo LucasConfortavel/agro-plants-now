@@ -82,7 +82,7 @@
     padding: 0.5rem 0;
   }
   
-  .jp_nav-links a::after {
+  .jp_nav-links .jp_link-menu::after {
     content: "";
     position: absolute;
     width: 0;

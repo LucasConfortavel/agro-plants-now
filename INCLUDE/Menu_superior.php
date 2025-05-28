@@ -22,9 +22,9 @@
 
             <div class="jp_sidebar">
                 <ul class="jp_nav-links">
-                    <li><a href="../../VIEW/paginas-iniciais/landing_page.php">Home</a></li>
-                    <li><a href="../../VIEW/paginas-iniciais/sobre_nos.php">Sobre nós</a></li>
-                    <li><a href="../../VIEW/paginas-iniciais/contate_nos.php">Contate-nos</a></li>
+                    <li><a class="jp_link-menu" href="../../VIEW/paginas-iniciais/landing_page.php">Home</a></li>
+                    <li><a class="jp_link-menu" href="../../VIEW/paginas-iniciais/sobre_nos.php">Sobre nós</a></li>
+                    <li><a class="jp_link-menu" href="../../VIEW/paginas-iniciais/contate_nos.php">Contate-nos</a></li>
                     <li><a href="../../VIEW/paginas-iniciais/pagina-de-login.php"><button class="jp_login-btn" valu>Login</button></a></li>
                 </ul>
             </div>
