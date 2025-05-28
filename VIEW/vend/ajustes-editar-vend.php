@@ -1,6 +1,6 @@
 <?php
 
-include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/Menu_vend.php";
 
 
 ?>
@@ -79,7 +79,7 @@ include "../../INCLUDE/Menu_adm.php";
     <script>
     function redirectToHome(event) {
         event.preventDefault();
-        window.location.href = 'ajustes-informaçoes-adm.php'
+        window.location.href = 'ajustes-informaçoes-vend.php'
     }
     </script>
 
