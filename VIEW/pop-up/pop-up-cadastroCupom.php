@@ -12,7 +12,7 @@ if(isset($_POST['cadastrar'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>agro plants now</title>
+    <title>Cadastrar Cupom</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastroCupom.css">
 </head>
 <body>

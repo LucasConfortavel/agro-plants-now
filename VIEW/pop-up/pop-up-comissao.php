@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pop up</title>
+    <title>Calcular Comissão</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-comissao.css">
 </head>
 <body>
