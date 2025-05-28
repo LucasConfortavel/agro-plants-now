@@ -22,12 +22,12 @@
         <nav>
             <ul>
                 <li><a href="../VIEW/adm/vcl-dashboard-adm.php" data-page="dashboard"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</a></li>
-                <li><a href="../VIEW/adm/Rel.php" data-page="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</a></li>
-                <li><a href="#" data-page="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</a></li>
+                <li><a href="../VIEW/adm/catalogo_adm.php" data-page="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</a></li>
+                <li><a href="../VIEW/adm/clientes_adm.php" data-page="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</a></li>
                 <li><a href="../VIEW/adm/lista-vendedores-adm.php" data-page="vendedores"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</a></li>
                 <li><a href="../VIEW/adm/vendas-adm.php" data-page="vendas"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</a></li>
-                <li><a href="../VIEW/adm/rel.php" data-page="relatorios"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</a></li>
-                <li><a href="#" data-page="cupons"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</a></li>
+                <li><a href="../VIEW/adm/Rel.php" data-page="relatorios"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</a></li>
+                <li><a href="../VIEW/adm/Cupom_adm.php" data-page="cupons"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</a></li>
             </ul>
         </nav>
         <div class="jp_bottom-menu">
