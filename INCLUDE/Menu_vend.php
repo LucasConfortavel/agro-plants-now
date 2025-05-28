@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -20,15 +22,15 @@
             <nav>
                 <ul>
                     <a href="../../VIEW/vend/dashboard_vendedor.php"><li class="jp_active"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</li></a> 
-                    <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></a> 
-                    <a href=""><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li></a>
+                    <a href="../../VIEW/vend/produtos-tudo.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></a> 
+                    <a href="../../VIEW/vend/lista-clientes.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li></a>
                     <a href="../../VIEW/vend/lista-vendas.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li></a> 
                     <a href="../../VIEW/vend/Cupom_vendedor.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li></a> 
                 </ul>
             </nav>
             <div class="jp_bottom-menu">
                 <ul>
-                    <a href="../../VIEW/adm/ajustes-informaçoes-adm.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></a>
+                    <a href="../../VIEW/vend/ajustes-informaçoes-vend.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></a>
                     <a href="../../VIEW/paginas-iniciais/landing_page.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li></a>
                 </ul>
             </div>
