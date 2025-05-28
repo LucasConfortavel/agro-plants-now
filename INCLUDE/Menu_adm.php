@@ -17,23 +17,23 @@
     <!-- Sidebar -->
     <aside class="jp_sidebar">
         <div class="jp_logo">
-            <img src="../PUBLIC/img/logo_agro.png" alt="Logo">
+            <img src="../../PUBLIC/img/logo_agro.png" alt="Logo">
         </div>
         <nav>
             <ul>
-                <li><a href="../VIEW/adm/vcl-dashboard-adm.php" data-page="dashboard"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</a></li>
-                <li><a href="../VIEW/adm/catalogo_adm.php" data-page="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</a></li>
-                <li><a href="../VIEW/adm/clientes_adm.php" data-page="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</a></li>
-                <li><a href="../VIEW/adm/lista-vendedores-adm.php" data-page="vendedores"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</a></li>
-                <li><a href="../VIEW/adm/vendas-adm.php" data-page="vendas"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</a></li>
-                <li><a href="../VIEW/adm/Rel.php" data-page="relatorios"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</a></li>
-                <li><a href="../VIEW/adm/Cupom_adm.php" data-page="cupons"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</a></li>
+                <li><a href="../../VIEW/adm/vcl-dashboard-adm.php" data-page="dashboard"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</a></li>
+                <li><a href="" data-page="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</a></li>
+                <li><a href="../../VIEW/adm/clientes_adm.php" data-page="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</a></li>
+                <li><a href="../../VIEW/adm/lista-vendedores-adm.php" data-page="vendedores"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</a></li>
+                <li><a href="../../VIEW/adm/vendas-adm.php" data-page="vendas"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</a></li>
+                <li><a href="../../VIEW/adm/Rel.php" data-page="relatorios"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</a></li>
+                <li><a href="../../VIEW/adm/Cupom_adm.php" data-page="cupons"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</a></li>
             </ul>
         </nav>
         <div class="jp_bottom-menu">
             <ul>
-                <li><a href="../VIEW/adm/ajustes-informaçoes-adm.php" data-page="ajustes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</a></li>
-                <li><a href="../VIEW/paginas-iniciais/landing_page.php" data-page="sair"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</a></li>
+                <li><a href="../../VIEW/adm/ajustes-informaçoes-adm.php" data-page="ajustes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</a></li>
+                <li><a href="../../VIEW/paginas-iniciais/landing_page.php" data-page="sair"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</a></li>
             </ul>
         </div>
     </aside>
