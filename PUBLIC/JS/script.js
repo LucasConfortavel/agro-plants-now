@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener('DOMContentLoaded', function() {
     const hamburgerMenu = document.querySelector('.jp_hamburger-menu');
     const sidebar = document.querySelector('.jp_sidebar');
@@ -9,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebar.classList.toggle('active');
         overlay.classList.toggle('active');
     });
+
+   
 
     overlay.addEventListener('click', function() {
         hamburgerMenu.classList.remove('active');

@@ -1,20 +1,26 @@
-/* style_menu.css */
-* {
+*{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: content-box;
     font-family: Inter, system-ui, -apple-system, sans-serif;
 }
 
+
 body {
-    background-color: #F0EEEE;
+    background-color: #f5f5f5;
 }
+
+
 
 .jp_logo img {
     max-width: 100%;
     height: auto;
     width: 80px;
 }
+
+
+
+/* Hamburger Menu Styles */
 
 .jp_hamburger-menu {
     display: none;
@@ -28,6 +34,8 @@ body {
     padding: 10px;
 }
 
+
+
 .jp_hamburger-line {
     width: 100%;
     height: 1.7px;
@@ -35,6 +43,11 @@ body {
     margin: 3px 0;
     transition: 0.4s;
 }
+
+
+
+/* Hamburger Animation Classes */
+
 
 .jp_hamburger-menu.active .jp_hamburger-line:nth-child(1) {
     transform: rotate(-50deg) translate(-1px, 2px);
@@ -50,20 +63,31 @@ body {
     background-color: #ffffff;
 }
 
+
+
+/* Layout */
+
+
+/* colocar esse css*/
 .jp_container {
+    /* display: flex;
+    min-height: 100vh; */
     display: flex;
-    min-height: 100vh;
+    /* height: 100vh; */
 }
 
+
+/* sidebar */
+
 .jp_sidebar {
-    width: 250px;
+    width: 200px;
     background-color: #2d2d2d;
     color: white;
     padding: 20px;
     display: flex;
     flex-direction: column;
     position: fixed;
-    height: 100vh;
+    height: 100%;
     transition: transform 0.3s ease;
 }
 
@@ -75,6 +99,11 @@ body {
 .jp_sidebar nav ul {
     list-style: none;
     margin-top: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
 }
 
 .jp_sidebar nav ul li {
@@ -103,6 +132,7 @@ body {
     margin-top: auto;
     border-top: 1px solid #3a3a3a;
     padding-top: 20px;
+    margin-bottom: 10%;
 }
 
 .jp_bottom-menu ul {
@@ -123,11 +153,18 @@ body {
     filter: invert(1);
 }
 
+/* fim do menu */
+
+
+
 .jp_main-content {
     flex: 1;
-    margin-left: 150px;
-    padding: 35px;
+    margin-left: 250px;
+    padding: 30px;
+    /* padding: 30px; */
 }
+
+/* * Responsive Styles */ 
 
 @media screen and (max-width: 1024px) {
     .jp_hamburger-menu {
@@ -147,33 +184,34 @@ body {
         margin-left: 0;
         padding: 20px;
     }
+
+    .jp_overlay.active {
+        display: block;
+    }
+
+    .jp_profile-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .jp_info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media screen and (max-width: 480px) {
     .jp_main-content {
         padding: 15px;
     }
-}
-.edu_notificacao_cabecario{
-    height: 150px;
-    width: 100%;
-    
-    display: flex;
-}
-.edu_area-notificacao{
-    width: 120px;
-    height: 54px;
-    display: flex;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    margin-left: 1180px;
-    margin-top: 2px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.edu_img-notificacao{
-    width: 70px;
-    height: 30px;
-    margin-top: 12px;
-    margin-left: 0px;
+
+    .jp_profile-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .jp_role {
+        width: 100%;
+        text-align: center;
+    }
 }
