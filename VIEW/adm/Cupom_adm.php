@@ -9,7 +9,7 @@ include "../../INCLUDE/btn-notificacao.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agro Plants NOW</title>
+    <title>Cupons</title>
     <link rel="stylesheet" href="../../PUBLIC/css/sab_cupom.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <script defer src="../../PUBLIC/JS/cupom-script.js"></script>

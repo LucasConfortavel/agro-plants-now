@@ -10,7 +10,7 @@ $link = 'https://github.com';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>agro plants now</title>
+    <title>User</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-perfil-user_adm.css">
 </head>
 <body>
