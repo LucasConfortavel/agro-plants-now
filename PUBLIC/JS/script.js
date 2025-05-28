@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
         
         const pageMap = {
             'vcl-dashboard-adm.php': 'dashboard',
-            'Catalogo.php': 'catalogo',
+            'catalogo_adm.php': 'catalogo',
+            'clientes_adm.php': 'clientes',
             'lista-vendedores-adm.php': 'vendedores',
             'vendas-adm.php': 'vendas',
             'Rel.php': 'relatorios',
