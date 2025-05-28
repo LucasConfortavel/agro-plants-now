@@ -46,6 +46,7 @@
 }
 
 .er_btn-sobre-nos a{
+    padding: 15px 40px;
     text-decoration: none;
     font-family: 'poppins';
     color: rgba(255, 255, 255, 1);
