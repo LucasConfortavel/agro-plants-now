@@ -136,3 +136,22 @@ hr{
     border:1px solid rgba(0, 0, 0, 0.1) ;
     margin-top: 12px;
 }
+
+.er_btn-fixado{
+    width: 107px;
+    height: 49px;
+    background-color: rgba(69, 115, 75, 1);
+    margin-left: 869px;
+    margin-top: 195px;
+    border-radius: 10px;
+    display: flex;
+}
+
+.er_btn-fixado a{
+    margin-left: 27px;
+    margin-top: 12px;
+    font-family: 'poppins';
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    
+}

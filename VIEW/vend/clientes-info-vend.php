@@ -51,6 +51,10 @@ include "../btn/btn-notificaçao.php";
                 
 
             </form>
+
+            <div class="er_btn-fixado">
+                <a href="">Fixado</a>
+            </div>
             
         </div>
     </main>
