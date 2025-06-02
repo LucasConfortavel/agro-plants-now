@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop-up de Senha Alterada</title>
+    <title>Senha Alterada</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pop-senha-alterada.css">
 </head>
 <body>

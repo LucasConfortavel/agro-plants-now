@@ -25,7 +25,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Cadastro - Pessoa Física</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastroPessoas.css">
 </head>
 <body>

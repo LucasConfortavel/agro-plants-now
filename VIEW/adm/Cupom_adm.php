@@ -9,7 +9,7 @@ include "../../INCLUDE/btn-notificacao.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agro Plants NOW</title>
+    <title>Cupons</title>
     <link rel="stylesheet" href="../../PUBLIC/css/sab_cupom.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <script defer src="../../PUBLIC/JS/cupom-script.js"></script>
@@ -57,7 +57,7 @@ include "../../INCLUDE/btn-notificacao.php";
                                 <td class="ym_td sb_td">100%</td>
                                 <td class="ym_td">16/08</td>
                                 <td class="ym_td">Ativo</td>
-                                <td class="ym_td "><a href=""><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
+                                <td class="ym_td "><a href=""><i class="fa-solid fa-circle-info"></i></a></td>
                             </tr>
                             ';
                         ?>

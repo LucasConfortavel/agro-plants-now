@@ -9,7 +9,7 @@ include "../../INCLUDE/Menu_vend.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Perfil</title>
+    <title>Perfil</title>
     <link rel="stylesheet" href="../../PUBLIC/css/ajustes-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
 </head>

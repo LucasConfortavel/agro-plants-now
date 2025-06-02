@@ -9,7 +9,7 @@ include "../../INCLUDE/btn-notificacao.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agro Plants NOW</title>
+    <title>Vendas</title>
     <link rel="stylesheet" href="../../PUBLIC/css/vendas-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -56,7 +56,7 @@ include "../../INCLUDE/btn-notificacao.php";
                                 <td class="ym_td sb_td">Paulo Rojas</td>
                                 <td class="ym_td">16/08</td>
                                 <td class="ym_td">Pendente</td>
-                                <td class="ym_td "><a href="venda-info-adm.php"><i class="fa-solid fa-circle-minus sab_color"></i></a></td>
+                                <td class="ym_td "><a href="venda-info-adm.php"><i class="fa-solid fa-circle-info"></i></a></td>
                             </tr>
                             ';                            
                         ?>
