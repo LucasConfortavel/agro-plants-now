@@ -1,5 +1,6 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/btn-notificacao.php";
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +10,8 @@ include "../../INCLUDE/Menu_adm.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Produtos e Serviços</title>
     <link rel="stylesheet" href="../../PUBLIC/css/style-add-prod-serv.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+
 </head>
 <body>
         <!-- Main Content -->
@@ -41,7 +44,7 @@ include "../../INCLUDE/Menu_adm.php";
                         <!-- Repetir os cards de produtos conforme necessário -->
                     </div>
                 </section>
-            </section>
+            </section> 
         </main>
     <script src="../../PUBLIC/JS/script.js"></script>
 </body>
