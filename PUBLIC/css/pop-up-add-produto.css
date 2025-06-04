@@ -61,7 +61,7 @@ body {
 
 .eze-form-row {
     display: flex;
-    gap: 90px;
+    gap: 60px;
     margin-top: 20px;
     margin-bottom: 40px;
 }
@@ -90,9 +90,9 @@ body {
 }
 
 .eze-form-control {
-    width: 95%;
+    width: 80%;
     height: 40px;
-    padding: 12px 15px;
+    padding: 1px 15px;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     font-size: 13px;
@@ -117,7 +117,7 @@ body {
 
 #imagem-content .eze-image-placeholder {
     width: 433px;
-    height: 283px;
+    /* height: 283px; */
     margin: 17px auto;
 }
 
@@ -147,6 +147,7 @@ body {
 
 .eze-button-container2 {
     margin-right: 45px;
+    margin-bottom: 60px;
 }
 
 .eze-add-button {
@@ -159,6 +160,11 @@ body {
     font-size: 14px;
     min-width: 170px;
     margin-top: -3px;
+    margin-bottom: 10px;
+}
+
+.eze-add-button .eze-add-button2 .eze-add-imagem{
+    margin-bottom: 10px;
 }
 
 
