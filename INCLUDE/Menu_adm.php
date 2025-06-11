@@ -21,19 +21,25 @@
         </div>
         <nav>
             <ul>
-                <li><a href="../../VIEW/adm/vcl-dashboard-adm.php" data-page="dashboard"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</a></li>
-                <li><a href="" data-page="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</a></li>
-                <li><a href="" data-page="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</a></li>
-                <li><a href="../../VIEW/adm/lista-vendedores-adm.php" data-page="vendedores"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</a></li>
-                <li><a href="../../VIEW/adm/vendas-adm.php" data-page="vendas"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</a></li>
-                <li><a href="../../VIEW/adm/Rel.php" data-page="relatorios"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</a></li>
-                <li><a href="../../VIEW/adm/Cupom_adm.php" data-page="cupons"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</a></li>
+                <li><button onclick= "window.location.href='../../VIEW/adm/vcl-dashboard-adm.php'" data-page="dashboard"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</button></li>
+    
+                <li><button onclick= "window.location.href='../../VIEW/adm/produtos-tudo.php'"   data-page="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</button></li>
+
+                <li><button onclick= "window.location.href=''"   data-page="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</button></li>
+
+                <li><button onclick= "window.location.href='../../VIEW/adm/lista-vendedores-adm.php'"   data-page="vendedores"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</button></li>
+
+                <li><button onclick= "window.location.href='../../VIEW/adm/vendas-adm.php'" data-page="vendas"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</button></li>
+
+                <li><button onclick= "window.location.href='../../VIEW/adm/Rel.php'" data-page="relatorios"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</button></li>
+
+                <li><button onclick= "window.location.href='../../VIEW/adm/Cupom_adm.php'" data-page="cupons"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</button></li>
             </ul>
         </nav>
         <div class="jp_bottom-menu">
             <ul>
-                <li><a href="../../VIEW/adm/ajustes-informaçoes-adm.php" data-page="ajustes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</a></li>
-                <li><a href="../../VIEW/paginas-iniciais/landing_page.php" data-page="sair"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</a></li>
+                <li><button onclick= "window.location.href='../../VIEW/adm/ajustes-informaçoes-adm.php'"  data-page="ajustes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</button></li>
+                <li><button onclick= "window.location.href='../../VIEW/paginas-iniciais/landing_page.php'" data-page="sair"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</button></li>
             </ul>
         </div>
     </aside>
@@ -41,3 +47,4 @@
     <script src="/projeto_agro_plants_now1/PUBLIC/JS/script.js"></script>
 </body>
 </html>
+

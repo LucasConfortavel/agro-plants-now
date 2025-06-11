@@ -27,11 +27,11 @@
             </div>
 
             <div class="jp_action-buttons">
-                <button class="jp_action-button jp_catalog-button">
+                <button class="jp_action-button jp_catalog-button" onclick= "window.location.href='produtos-tudo.php'"> 
                     <i class="fas fa-book"></i>
                     Catálogo
                 </button>
-                <button class="jp_action-button jp_sales-button">
+                <button class="jp_action-button jp_sales-button" onclick= "window.location.href='lista-vendas.php'">
                     <i class="fas fa-chart-line"></i>
                     Vendas
                 </button>
