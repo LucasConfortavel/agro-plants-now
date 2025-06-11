@@ -17,7 +17,7 @@
 
     <main class="jp_main-content">
         
-        <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/produto.png';?>
+        <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
 
         <section class="vc_sectionProdutos">
 
@@ -41,12 +41,12 @@
                 <div class="vc-area-produtos">
                     <a href="../../VIEW/pop-up/pop-up-add-produto.php" class="vc-card-produto">
                         <div class="vc-info-produto">
-                            <img src="../../PUBLIC/img/+.png" alt="">
+                            <img src="../../PUBLIC/img/img_adicionar-produto.png" alt="">
                         </div>
                         </a>
                     <a href="../../VIEW/pop-up/pop-up-add-servico.php" class="vc-card-servico">
                         <div class="vc-info-produto">
-                            <img src="../../PUBLIC/img/+2.png" alt="">
+                            <img src="../../PUBLIC/img/img_adicionar-servico.png" alt="">
                         </div>
                     </a>
                 </div>

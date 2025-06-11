@@ -19,7 +19,7 @@ include "../../INCLUDE/Menu_adm.php";
         <main class="jp_main-content">
             <header class="jp_profile-header">
                 <div class="jp_profile-info">
-                    <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt="Profile" class="jp_profile-pic">
+                    <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/img_user.png" alt="Profile" class="jp_profile-pic">
 
                     <div class="profile-text">
                         <h2>José Farmer</h2>
@@ -40,7 +40,7 @@ include "../../INCLUDE/Menu_adm.php";
 
                         <h3>Informações pessoais</h3>
                         <a href="ajustes-editar-adm.php" class="jp_edit-btn">
-                            <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/edit.svg" alt="Edit">
+                            <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/img_editar.png" alt="Edit">
                             Editar
                         </a>
                     </div>
