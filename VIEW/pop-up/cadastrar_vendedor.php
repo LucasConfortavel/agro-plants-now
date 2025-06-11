@@ -19,7 +19,7 @@
         <div class="gs_popup-conteudo">
             <h2 class="gs_titulo">Cadastro de Vendedor</h2>
             <form method="POST" class="gs_formulario">
-                
+                               
                 <div class="gs_linha-formulario">
                     <div class="gs_grupo-formulario">
                         <label class="gs_legenda">*Nome</label>
