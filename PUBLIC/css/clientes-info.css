@@ -10,7 +10,7 @@
     border-radius: 10px;
     stroke: rgba(231, 230, 230, 1);
     margin-left: 104px;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .er_seta{
@@ -57,32 +57,47 @@
 
 .er_form{
     margin-left: 324px;
-    margin-top: -560px;
-    width: 194px;
-    height: 280px;
+    margin-top: -499px;
+    width: 234px;
+    height: 300px;
+    
+
 }
 
 .er_wrap-input1{
-    height: 70px;
+    height: 45px;
+    width: 236px;
+    margin-top: 60px;
 
+   
     
 }
 
 .er_wrap-input2{
-    height: 70px;
-    margin-top: 15px;
+    height: 45px;
+    width: 236px;
+    margin-top: 23px;
+    
+
+    
     
 }
 
 .er_wrap-input3{
-    height: 70px;
-    margin-top: 15px;
+    height: 45px;
+    width: 236px;
+    margin-bottom: 5px;
+   
     
 }
 
 .er_wrap-input4{
-    margin-top: 15px;
-    height: 70px;
+    margin-bottom: 25px;
+    height: 65px;
+    width: 236px;
+    
+    
+    
     
    
 }
@@ -90,23 +105,28 @@
 .er_email{
     font-family: 'poppins';
     color: rgba(0, 0, 0, 0.5);
+    margin-top: -20px;
     
 }
 
 .er_fone{
     font-family: 'poppins';
     color: rgba(0, 0, 0, 0.5);
+    margin-top: -120px;
     
 }
 
 .er_cpf{
     font-family: 'poppins';
     color: rgba(0, 0, 0, 0.5);
+    margin-top: 48px;
+    
 }
 
 .er_date{
     font-family: 'poppins';
     color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 45px;
 }
 
 .er_input-email{
@@ -134,14 +154,28 @@
     width: 163px;
 }
 
-hr{
+.hr{
     border:1px solid rgba(0, 0, 0, 0.1) ;
     width: 230px;
+    margin-bottom: 26px;
+}
+
+.hr2{
+    border:1px solid rgba(0, 0, 0, 0.1) ;
+    width: 230px;
+    margin-bottom: 15px;
+}
+
+.hr3{
+    border:1px solid rgba(0, 0, 0, 0.1) ;
+    width: 230px;
+    margin-bottom: 13px;
 }
 
 .hr4{
     border:1px solid rgba(0, 0, 0, 0.1) ;
-    margin-top: 12px;
+    width: 230px;
+    margin-top: 7px;
 }
 
 .er_btn-fixado{
@@ -167,23 +201,31 @@ hr{
     width: 540px;
     height: 44px;
     margin-left: 290px;
-    margin-top: -25px;
+    margin-top: -55px;
     border-radius: 10px;
     border:1px solid rgba(231, 230, 230, 1);
 }
 
-.er_p{
-    margin-left: 310px;
-    margin-top: -35px;
+.er_pesquisa::placeholder{
     font-family: 'poppins';
-    color: rgba(0, 0, 0, 0.4);
-
-
+    font-size: 1rem;
 }
 
 .er_search-img{
-    margin-left: 280px;
-    margin-top: -10px;
+    margin-left: -36px;
+    margin-top: 20px;
+}
+
+.er_user-namex1{
+    margin-left: 45px;
+    font-family: 'poppins';
+    font-size: 1.5rem;
+}
+
+.er_user-namex2{
+    margin-left: 69px;
+    font-family: 'poppins';
+    font-size: 1.5rem;
 }
 
 @media screen {
