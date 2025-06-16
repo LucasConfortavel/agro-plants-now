@@ -17,7 +17,7 @@ include "../../INCLUDE/Menu_vend.php";
         <main class="gs_content">
         <section class="gs_product-container">
             <div class="gs_product-details">
-                <img src="../../PUBLIC/img/produto.png" alt="" class="gs_product-image">
+                <img src="../../PUBLIC/img/img_produto.png" alt="" class="gs_product-image">
                 <div class="gs_product-info">
                     <p class="gs_label">Nome</p>
                     <p class="gs_value"></p>

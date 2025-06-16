@@ -17,7 +17,7 @@ include "../../INCLUDE/Menu_vend.php";
         <main class="jp_main-content">
             <header class="jp_profile-header">
                 <div class="jp_profile-info">
-                    <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt="Profile" class="jp_profile-pic">
+                    <img src="../../PUBLIC/img/img_user.png" alt="Profile" class="jp_profile-pic">
                     <div class="profile-text">
                         <h2>Nome vendedor</h2>
                         <p>Vendedor@gmail.com</p>
