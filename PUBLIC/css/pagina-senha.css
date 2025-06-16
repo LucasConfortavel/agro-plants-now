@@ -126,6 +126,7 @@ body {
 .form-container {
   padding: 0 40px 40px;
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
  
@@ -156,7 +157,6 @@ body {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-end;
   margin-top: 10px;
   margin-right: 5px;
   text-decoration: none;

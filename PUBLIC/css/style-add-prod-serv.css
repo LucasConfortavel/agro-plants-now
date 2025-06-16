@@ -89,23 +89,19 @@
     margin-top: -15px;
 }
 .vc-area-produtos {
-    width: 80%;
+    width: 100%;
     gap: 40px;
     display: flex;
     justify-content: left;
     flex-wrap: wrap;
     flex-direction: column;
-    margin-top: -25px;
 }
 .vc-section-produtos {
     display: flex;
-    width: 1233px;
-    height: 505px;
+    width: 300px;
+    height: 565px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2px;
-    margin-top: 15px;
-    margin-left: -123px;
 }
 .vc-info-produto {
     display: flex;

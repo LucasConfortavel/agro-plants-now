@@ -43,7 +43,7 @@
             </form>
             
             <div class="eze-button-container eze-button-container2">
-                <button type="button" class="eze-add-button">Adicionar produto</button>
+                <button onclick= "window.location.href='../../VIEW/adm/servico_adm.php'" type="button" class="eze-add-button">Adicionar produto</button>
                 <p class="eze-help-text">Adicione a imagem do produto antes de</p>
                 <p class="eze-help-text">adicioná-lo.</p>
             </div>

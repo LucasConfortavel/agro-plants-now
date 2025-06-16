@@ -17,8 +17,8 @@
 
     <main class="jp_main-content">
         
-        <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/produto.png';?>
-        <?php $nome_produto = 'Nome do produto'; $imagem_produto2 = '../../PUBLIC/img/sobre_nos_img1.png';?>
+        <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
+        <?php $nome_produto = 'Nome do produto'; $imagem_produto2 = '../../PUBLIC/img/img_o-que-fazemos.png';?>
 
         <section class="ym_sectionProdutos">
 
