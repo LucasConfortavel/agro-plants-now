@@ -29,6 +29,22 @@
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastrar_vendedor.css">
 </head>
 <body>
+<<<<<<< HEAD
+    <div class="gs_popup">
+        <div class="gs_popup-conteudo">
+            <h2 class="gs_titulo">Cadastro de Vendedor</h2>
+            <form method="POST" class="gs_formulario">
+                               
+                <div class="gs_linha-formulario">
+                    <div class="gs_grupo-formulario">
+                        <label class="gs_legenda">*Nome</label>
+                        <input type="text" name="nome" class="gs_entrada" placeholder="Nome" required>
+                    </div>
+                    <div class="gs_grupo-formulario">
+                        <label class="gs_legenda">Telefone</label>
+                        <input type="tel" name="telefone" class="gs_entrada" placeholder="Telefone">
+                    </div>
+=======
     <section class="gs_area-pop-up">
         <div class="gs_pop-up">
             
@@ -41,6 +57,7 @@
                 <div class="gs_area-input">
                     <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
                     <input class="gs_pop-up-input" name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
+>>>>>>> 892787b51c021dd06e7ccf2392efbd1e2dfb9da0
                 </div>
                 <div class="gs_area-input">
                     <p class="gs_input-aviso">Coloque pelo menos uma dessas informações(E-mail, Telefone)</p>

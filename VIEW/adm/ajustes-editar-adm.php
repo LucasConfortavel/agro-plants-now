@@ -17,7 +17,7 @@ include "../../INCLUDE/Menu_adm.php";
         <main class="jp_main-content">
                 <header class="jp_profile-header">
                 <div class="jp_profile-info">
-                    <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/img_user.png" alt="Profile" class="jp_profile-pic">
+                    <img src="../../PUBLIC/img/img_user.png" alt="Profile" class="jp_profile-pic">
                     <div class="profile-text">
                         <h2>José Farmer</h2>
                         <p>JoseFarmer_Reidoagro@gmail.com</p>
