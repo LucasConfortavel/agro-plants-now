@@ -25,8 +25,8 @@
                 </div>
             </form>
             
-            <div class="sab-button-container sab-button-container2">
-                <a class="sab-add-button" href="conf_remover_cliente.php">Avançar</a>
+            <div class="sab_button-container sab_button-container2">
+                <a class="sab_add-button" href="conf_remover_cliente.php">Avançar</a>
 
             </div>
         </div>
@@ -45,8 +45,8 @@
                 </div>
             </form>
             
-            <div class="sab-button-container sab-button-container2">
-                <a class="sab-add-button" href="conf_remover_cliente(cnpj).php">Avançar</a>
+            <div class="sab_button-container sab_button-container2">
+                <a class="sab_add-button" href="conf_remover_cliente(cnpj).php">Avançar</a>
 
             
         </div>
