@@ -51,6 +51,7 @@ body {
 
 .sab-tab-button.sab-active {
     background-color: #fff;
+    font-size: 276x;
 }
 
 .sab-form-section {
@@ -119,12 +120,15 @@ body {
     background-color: #45734b;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 8px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
     min-width: 170px;
-    margin-top: -3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;    
 }
 
 .sab-form-label-group{

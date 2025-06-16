@@ -1,3 +1,25 @@
+<?php
+
+    // if(isset($_POST['adicionar'])){
+
+    //     $nome = $_POST['nome'];
+    //     $data_nasc = $_POST['data_nasc'];
+    //     $cpf = $_POST['cpf'];
+    //     $telefone = $_POST['telefone'];
+    //     $email = $_POST['email'];
+        
+    //     $sql = "INSERT INTO";
+
+    //     $result_create = mysqli_query($conn,$sql);
+
+    //     if(!$result_create){
+    //         echo'<script>alert("Não foi possível cadastrar")</script>';
+    //     }
+
+    // }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -69,7 +91,7 @@
                 </div>
 
                 <div class="gs_area-btn-submit">
-                    <input class="gs_pop-up-btn-submit" name="adicionar" type="submit" value="Cadastrar cliente">
+                    <input class="gs_pop-up-btn-submit" name="adicionar" type="submit" value="Cadastrar Vendedor">
                 </div>
 
             </form>

@@ -26,7 +26,7 @@
             </form>
             
             <div class="sab-button-container">
-                <button type="button" class="sab-add-button">Avançar</button>
+                <a type="button" class="sab-add-button" href="conf_remover_vendedor.php ">Avançar</a>
             </div>
         </div>
         

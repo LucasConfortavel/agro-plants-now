@@ -6,6 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
 .lc_fundo {
     display: flex;
     justify-content: center;
@@ -61,6 +62,10 @@
     margin-top: 15px;
     width: 120px;
     height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .lc_remove-btn:hover {

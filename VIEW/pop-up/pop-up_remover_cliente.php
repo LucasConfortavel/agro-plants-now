@@ -26,7 +26,7 @@
             </form>
             
             <div class="sab-button-container sab-button-container2">
-                <button type="button" class="sab-add-button">Avançar</button>
+                <a class="sab-add-button" href="conf_remover_cliente.php">Avançar</a>
             </div>
         </div>
         
@@ -45,7 +45,7 @@
             </form>
             
             <div class="sab-button-container sab-button-container2">
-                <button type="button" class="sab-add-button">Avançar</button>
+                <a class="sab-add-button" href="conf_remover_cliente(cnpj).php">Avançar</a>
             </div>
             
         </div>
