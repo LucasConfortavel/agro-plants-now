@@ -50,7 +50,7 @@
 .er_nao-questione-x2{
     height: 563px;
     width: 290px;
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 10px 0px 0px 10px;
     
 }
@@ -183,7 +183,7 @@
     height: 49px;
     background-color: rgba(69, 115, 75, 1);
     margin-left: 869px;
-    margin-top: 195px;
+    margin-top: 59px;
     border-radius: 10px;
     display: flex;
 }
