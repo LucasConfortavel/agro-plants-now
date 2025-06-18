@@ -27,7 +27,7 @@ include "../../INCLUDE/Menu_superior.php";
             <div class="ls_imagens">
                 <div class="ls_tell">
                     <div>
-                        <img src="../../PUBLIC/img/telefone.png" alt="Telefone">
+                        <img src="../../PUBLIC/img/img_telefone.png" alt="Telefone">
                         <p>Ligue para nós</p>
                     </div>
                     <p>+55 (67) 99999-9999</p>
@@ -35,7 +35,7 @@ include "../../INCLUDE/Menu_superior.php";
 
                 <div class="ls_tell">
                     <div>
-                        <img src="../../PUBLIC/img/localizacao.png" alt="Ponteiro">
+                        <img src="../../PUBLIC/img/img_localizacao.png" alt="Ponteiro">
                         <p>Localização</p>
                     </div>
                     <p>Rua santo dos santos, 999 Campo Grande - MS</p>
