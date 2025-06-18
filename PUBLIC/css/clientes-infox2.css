@@ -221,3 +221,142 @@
     font-family: 'poppins';
     font-size: 1.5rem;
 }
+
+/* ============================= */
+/* ===== RESPONSIVO TABLET ===== */
+/* ============================= */
+@media screen and (max-width: 1024px) {
+
+    .er-box-x2 {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .er_nao-questione-x2 {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .er-box-img-x2 {
+        margin: 20px auto;
+    }
+
+    .er_form-x2 {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .er_wrap-input-y1,
+    .er_wrap-input-y2,
+    .er_wrap-input-y3,
+    .er_wrap-input-y4 {
+        width: 100%;
+    }
+
+    .hr-x2, .hr2-x2, .hr3-x2, .hr4-x2 {
+        width: 70%;
+    }
+
+    .er_pesquisa-x2 {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .er_btn-fixado-x2 {
+        margin: 20px auto;
+    }
+
+    .er_seta-x2 {
+        margin: 0 auto;
+    }
+
+    .er_user-name-x2{
+        left: 56px;
+    }
+}
+
+/* ============================= */
+/* ===== RESPONSIVO CELULAR ==== */
+/* ============================= */
+@media screen and (max-width: 480px) {
+
+    .er-box-x2 {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .er_nao-questione-x2 {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .er-box-img-x2 {
+        width: 150px;
+        height: 150px;
+        margin: 15px auto;
+    }
+
+    .er-box-img-x2 .er_user-x2 {
+        width: 70px;
+        height: 85px;
+        margin: 30px auto;
+    }
+
+    
+    .er_user-name-x2 {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .er_user-date-x2 {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .er_form-x2 {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .er_wrap-input-y1,
+    .er_wrap-input-y2,
+    .er_wrap-input-y3,
+    .er_wrap-input-y4 {
+        width: 100%;
+    }
+
+    .hr-x2, .hr2-x2, .hr3-x2, .hr4-x2 {
+        width: 100%;
+    }
+
+    .er_pesquisa-x2 {
+        width: 90%;
+        margin: 15px auto;
+    }
+
+    .er_btn-fixado-x2 {
+        width: 80%;
+        height: 45px;
+        margin: 15px auto;
+    }
+
+    .er_btn-fixado-x2 a {
+        margin: auto;
+    }
+
+    .er_seta-x2 {
+        margin: 0 auto;
+    }
+
+    .er-box-img-x2 .er_user-x2{
+        margin-left: 42px;
+    }
+}
