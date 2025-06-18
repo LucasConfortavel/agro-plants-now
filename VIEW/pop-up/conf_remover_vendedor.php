@@ -16,14 +16,14 @@
         <div class="lc_card">
             <div class="lc_area-voltar">
                 <button class="lc_btn" onclick="window.history.back();">
-                    <img src="../../PUBLIC/img/voltar.png" alt="">                    
+                    <img src="../../PUBLIC/img/img_voltar.png" alt="">                    
                 </button>
             </div>
 
             <div class="lc_area-infos">
 
                 <div class="lc_img-infos">
-                    <img class="lc_img" src="../../PUBLIC/img/user.png" alt=""> 
+                    <img class="lc_img" src="../../PUBLIC/img/img_user.png" alt=""> 
                     <div class="lc_infos">
                         <p class="lc_info">Nome</p>
                         <p class="lc_dado">Rafael Germinari</p>
