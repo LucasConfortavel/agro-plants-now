@@ -15,7 +15,7 @@ include "../../INCLUDE/Menu_vend.php";
 </head>
 <body>
     <main class="jp_main-content">
-        <div class="container">
+        <div class="L_container">
             <?php
             // Configuração da paginação
             $itens_por_pagina = 8;
@@ -40,32 +40,32 @@ include "../../INCLUDE/Menu_vend.php";
             $total_paginas = ceil($total_clientes / $itens_por_pagina);
             ?>
     
-            <div class="header-row">
-                <span class="header-code">Código</span>
-                <span class="header-nome">Nome</span>
-                <span class="header-data">Data de cadastro</span>
-                <span class="header-state">Estado</span>
+            <div class="L_header-row">
+                <span class="L_header-code">Código</span>
+                <span class="L_header-nome">Nome</span>
+                <span class="L_header-data">Data de cadastro</span>
+                <span class="L_header-state">Estado</span>
             </div>
     
-            <div class="lista-clientes">
+            <div class="L_lista-clientes">
                 <?php
                 // Loop atraves dos clientes
                 foreach(array_slice($clientes, $inicio, $itens_por_pagina) as $cliente): ?>
-                    <div class="cliente-row">
-                        <div class="cliente-info">
-                            <span class="code header-edit"><?php echo $cliente['code']?></span>
-                            <span class="nome header-edit"><?php echo $cliente['nome']; ?></span>
-                            <span class="data header-edit"><?php echo $cliente['data']; ?></span>
-                            <span class="state header-edit"><?php echo $cliente['state']?></span>
+                    <div class="L_cliente-row">
+                        <div class="L_cliente-info">
+                            <span class="L_code header-edit"><?php echo $cliente['code']?></span>
+                            <span class="L_nome header-edit"><?php echo $cliente['nome']; ?></span>
+                            <span class="L_data header-edit"><?php echo $cliente['data']; ?></span>
+                            <span class="L_state header-edit"><?php echo $cliente['state']?></span>
                         </div>
-                        <div class="info-icon">
+                        <div class="L_info-icon">
                             <span><img src="../../PUBLIC/img/Frame.svg" alt=""></span>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
     
-            <div class="paginacao">
+            <div class="L_paginacao">
                 <?php
                 $max_links = 3;
                 $start_link = max($pagina - floor($max_links/2), 1);
@@ -80,7 +80,7 @@ include "../../INCLUDE/Menu_vend.php";
                 if($start_link > 1): ?>
                     <a href="?pagina=1">1</a>
                     <?php if($start_link > 2): ?>
-                        <span class="ellipsis">...</span>
+                        <span class="L_ellipsis">...</span>
                     <?php endif;
                 endif;
     
@@ -94,14 +94,14 @@ include "../../INCLUDE/Menu_vend.php";
                 // Última página e reticências a direita
                 if($end_link < $total_paginas):
                     if($end_link < $total_paginas - 1): ?>
-                        <span class="ellipsis">...</span>
+                        <span class="L_ellipsis">...</span>
                     <?php endif; ?>
                     <a href="?pagina=<?php echo $total_paginas; ?>"><?php echo $total_paginas; ?></a>
                 <?php endif;
     
                 // Seta para a direita
                 if($pagina < $total_paginas): ?>
-                    <a href="?pagina=<?php echo $pagina + 1; ?>" class="next">→</a>
+                    <a href="?pagina=<?php echo $pagina + 1; ?>" class="L_next">→</a>
                 <?php endif; ?>
             </div>
         </div>

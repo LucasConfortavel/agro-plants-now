@@ -12,7 +12,7 @@ body {
     padding: 20px;
 }
  
-.container {
+.L_container {
     width: 100%;
     max-width: 800px;
     background: white;
@@ -21,7 +21,7 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
  
-.header-row {
+.L_header-row {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -37,11 +37,11 @@ body {
 
 }
  
-.lista-clientes {
+.L_lista-clientes {
     margin-bottom: 20px;
 }
  
-.cliente-row {
+.L_cliente-row {
     display: flex;
     align-items: center;
     padding: 15px;
@@ -51,46 +51,46 @@ body {
 
 }
  
-.cliente-row:nth-child(even) {
+.L_cliente-row:nth-child(even) {
     background-color: #f8f8f8;
 }
  
-.cliente-row:hover {
+.L_cliente-row:hover {
     background-color: #f0f0f0;
 }
  
-.user-icon {
+.L_user-icon {
     width: 40px;
     height: 40px;
     margin-right: 15px;
 }
  
-.user-icon img {
+.L_user-icon img {
     width: 100%;
     height: 100%;
     opacity: 0.5;
 }
  
-.cliente-info {
+.L_cliente-info {
     flex: 1;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
  
-.nome {
+.L_nome {
     font-size: 14px;
     color: #333;
 }
  
-.data {
+.L_data {
     color: #666;
     font-size: 14px;
     width: 120px;
 
 }
 
-.header-edit{
+.L_header-edit{
 
     padding: 0 40px 10px 15px;
     display: flex;
@@ -99,7 +99,7 @@ body {
 
 }
 
-.info-icon {
+.L_info-icon {
     width: 24px;
     height: 24px;
     margin-left: 15px;
@@ -111,7 +111,7 @@ body {
     justify-content: center;
 }
  
-.info-icon span {
+.L_info-icon span {
     font-family: serif;
     font-style: italic;
     font-size: 14px;
@@ -119,11 +119,11 @@ body {
 
 }
  
-.info-icon:hover {
+.L_info-icon:hover {
     background: #e0e0e0;
 }
  
-.paginacao {
+.L_paginacao {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,7 +131,7 @@ body {
     margin-top: 20px;
 }
  
-.paginacao a, .paginacao .ellipsis {
+.L_paginacao a, .L_paginacao .L_ellipsis {
     text-decoration: none;
     color: #666;
     padding: 5px 10px;
@@ -139,24 +139,24 @@ body {
     transition: all 0.2s;
 }
  
-.paginacao a:hover,
-.paginacao a.active {
+.L_paginacao a:hover,
+.L_paginacao a.active {
     background-color: #f0f0f0;
 }
  
-.paginacao .prev,
-.paginacao .next {
+.L_paginacao .prev,
+.L_paginacao .next {
     font-weight: bold;
 }
  
-.paginacao .prev {
+.L_paginacao .prev {
     margin-right: 5px;
 }
  
-.paginacao .next {
+.L_paginacao .next {
     margin-left: 5px;
 }
  
-.paginacao .ellipsis {
+.L_paginacao .L_ellipsis {
     cursor: default;
 }
