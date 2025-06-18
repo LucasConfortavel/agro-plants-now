@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/clientes-infox2.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/clientes-info.css">
   
 </head>
 <body>
@@ -50,9 +50,8 @@
 
             </form>
 
-            <div class="er_btn-fixado-x2">
-                <a href="">Fixado</a>
-            </div>
+            <button class="er_btn-fixado-x2"><a href="">Fixado</a></button> 
+            
             
         </div>
     </main>
