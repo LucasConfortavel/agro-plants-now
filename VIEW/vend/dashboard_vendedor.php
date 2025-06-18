@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="jp_action-buttons">
+            <!-- <div class="jp_action-buttons">
                 <button class="jp_action-button jp_catalog-button" onclick= "window.location.href='produtos-tudo.php'"> 
                     <i class="fas fa-book"></i>
                     Catálogo
@@ -35,7 +35,7 @@
                     <i class="fas fa-chart-line"></i>
                     Vendas
                 </button>
-            </div>
+            </div> -->
 
             <div class="jp_metrics-row">
                 <div class="jp_metric-box jp_metric-green">

@@ -25,13 +25,9 @@
                 </div>
             </form>
             
-<<<<<<< Updated upstream
-            <div class="sab-button-container">
-                <a type="button" class="sab-add-button" href="conf_remover_vendedor.php ">Avançar</a>
-=======
+
             <div class="sab_button-container">
                 <button type="button" class="sab_add-button">Avançar</button>
->>>>>>> Stashed changes
             </div>
         </div>
         

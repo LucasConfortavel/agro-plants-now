@@ -50,7 +50,7 @@
             </form>
             
             <div class="eze_button-container eze_button-container2">
-                <button onclick= "window.location.href='../../VIEW/adm/produtos_administrador.php'" type="button" class="eze_add-button">Adicionar produto</button>
+                <button onclick= "window.location.href='../../VIEW/adm/add-prod-serv.php'" type="button" class="eze_add-button">Adicionar produto</button>
                 <p class="eze_help-text">Adicione a imagem do produto antes de</p>
                 <p class="eze_help-text">adicioná-lo.</p>
             </div>
@@ -59,7 +59,7 @@
         <div id="imagem-content" class="eze_form-section">
             <div class="eze_image-placeholder">
                 <div class="eze_placeholder-icon">
-                    <img src="../../PUBLIC/img/SVGRepo.png" alt="">
+                    <img src="../../PUBLIC/img/img_add-img.png" alt="">
                 </div>
                 <span>Imagem</span>
             </div>

@@ -40,7 +40,7 @@ if(isset($_POST['cadastrar'])){
                 <div class="ym_area-input">
                     <p class="ym_texto">*Obrigatório</p>
                     <div class="ym_input-gerarcodigo">
-                        <button class="ym_btn-gerarcodigo"><img class="ym_btn-img" src="../../PUBLIC/img/icon add.png" alt=""></button>
+                        <button class="ym_btn-gerarcodigo"><img class="ym_btn-img" src="../../PUBLIC/img/img_add.png" alt=""></button>
                         <input type="text" placeholder="Gerar código único" style="border: none; padding: 0;">
                     </div>
                 </div>

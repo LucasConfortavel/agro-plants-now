@@ -10,7 +10,7 @@
     <div class="ym_area-barra-pesquisa">
         <div class="ls_pesquisa-barra">
             <input type="text" placeholder="pesquisa">
-            <img src="../PUBLIC/img/lupa.png" alt="lupa">
+            <img src="../PUBLIC/img/img_lupa.png" alt="lupa">
         </div>
     </div>
 

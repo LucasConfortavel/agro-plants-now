@@ -94,7 +94,7 @@
                                     <div class="ym_cardProduto">
                                         <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                         <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto">Veja mais</a>
+                                        <a href="sobre_prod_adm.php" class="ym_linkProduto">Veja mais</a>
                                     </div>
                                     <div class="ym_cardProduto">
                                         <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">

@@ -28,8 +28,8 @@ include "../../INCLUDE/Menu_vend.php";
 
             <div class="jp_content">
                 <nav class="jp_tabs">
-                    <button class="jp_tab jp_active">Informações</button>
-                    <button class="jp_tab">Segurança</button>
+                    <button href="ajustes-informaçoes-vend.php" class="jp_tab jp_active">Informações</button>
+                    <button href="ajustes-security-vend.php" class="jp_tab">Segurança</button>
                 </nav>
 
                 <div class="jp_info-section">
