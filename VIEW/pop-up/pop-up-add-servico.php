@@ -52,7 +52,7 @@
         <div id="imagem-content" class="eze_form-section">
             <div class="eze_image-placeholder">
                 <div class="eze_placeholder-icon">
-                    <img src="../../PUBLIC/img/SVGRepo.png" alt="">
+                    <img src="../../PUBLIC/img/img_add-img.png" alt="">
                 </div>
                 <span>Imagem</span>
             </div>
