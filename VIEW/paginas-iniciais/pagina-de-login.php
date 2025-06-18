@@ -1,6 +1,10 @@
 <?php
 
 include "../../INCLUDE/Menu_superior.php";
+if(isset($_POST['adicionar'])){
+    header('location:../vend/dashboard_vendedor.php');
+}
+
 
 
 ?>
@@ -36,7 +40,7 @@ include "../../INCLUDE/Menu_superior.php";
                         <a href="../pop-up/pop-up-email-recuperar-senha.php" class="jc_forgot-password">Esqueceu sua senha?</a>
                         <a href="../pop-up/pop-up-criar-senha.php" class="jc_forgot-password">Redefinir senha</a>
                     </div>
-                    <button type="submit" class="jc_login-btn"><a href="../vend/dashboard_vendedor.php">Iniciar Sessão</a></button>
+                    <input type="submit" class="jc_login-btn" name="adicionar" value="Iniciar Sessão"></input>
                 </form>
                 <div class="lc_area-engrenagem">
                     <a href="../adm/vcl-dashboard-adm.php"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
