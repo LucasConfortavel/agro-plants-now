@@ -39,6 +39,18 @@
     font-size: 1.5rem;
 }
 
+.er_user-name-x1{
+    margin-left: 45px;
+    font-family: 'poppins';
+    font-size: 1.5rem;
+}
+
+.er_user-name-x2{
+    margin-left: 69px;
+    font-family: 'poppins';
+    font-size: 1.5rem;
+}
+
 .er_user-date{
     margin-left: 63px;
     font-family: 'poppins';
@@ -268,6 +280,8 @@
         margin: 0 auto;
     }
 
+    .er-user-name-x1,
+    .er-user-name-x2,
     .er_user-name{
         left: 56px;
     }
@@ -304,6 +318,8 @@
         margin: 30px auto;
     }
 
+    .er-user-name-x1,
+    .er-user-name-x2,
     .er_user-name {
         margin-left: 0;
         text-align: center;
