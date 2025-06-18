@@ -216,6 +216,140 @@
     margin-top: 20px;
 }
 
-@media screen {
-    
+/* ============================= */
+/* ===== RESPONSIVO TABLET ===== */
+/* ============================= */
+@media screen and (max-width: 1024px) {
+
+    .er-box {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .er_nao-questione {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .er-box-img {
+        margin: 20px auto;
+    }
+
+    .er_form {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .er_wrap-input1,
+    .er_wrap-input2,
+    .er_wrap-input3,
+    .er_wrap-input4 {
+        width: 100%;
+    }
+
+    .hr, .hr2, .hr3, .hr4 {
+        width: 70%;
+    }
+
+    .er_pesquisa {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .er_btn-fixado {
+        margin: 20px auto;
+    }
+
+    .er_seta {
+        margin: 0 auto;
+    }
+
+    .er_user-name{
+        left: 56px;
+    }
+}
+
+/* ============================= */
+/* ===== RESPONSIVO CELULAR ==== */
+/* ============================= */
+@media screen and (max-width: 480px) {
+
+    .er-box {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .er_nao-questione {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .er-box-img {
+        width: 150px;
+        height: 150px;
+        margin: 15px auto;
+    }
+
+    .er-box-img .er_user {
+        width: 70px;
+        height: 85px;
+        margin: 30px auto;
+    }
+
+    .er_user-name {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .er_user-date {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .er_form {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .er_wrap-input1,
+    .er_wrap-input2,
+    .er_wrap-input3,
+    .er_wrap-input4 {
+        width: 100%;
+    }
+
+    .hr, .hr2, .hr3, .hr4 {
+        width: 100%;
+    }
+
+    .er_pesquisa {
+        width: 90%;
+        margin: 15px auto;
+    }
+
+    .er_btn-fixado {
+        width: 80%;
+        height: 45px;
+        margin: 15px auto;
+    }
+
+    .er_btn-fixado a {
+        margin: auto;
+    }
+
+    .er_seta {
+        margin: 0 auto;
+    }
+
+    .er-box-img .er_user{
+        margin-left: 42px;
+    }
 }
