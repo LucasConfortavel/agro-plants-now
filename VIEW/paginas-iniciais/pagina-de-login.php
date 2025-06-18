@@ -22,13 +22,12 @@ if(isset($_POST['adicionar'])){
     <section class="jc_login-section">
         <div class="jc_total">
 
-            
             <div class="jc_left-side">
                 <h2>Agricultura de </h2>
                 <h2>qualidade é aqui</h2>   
             </div>
 
-            
+
             <div class="jc_login-box">
                 <h3>Iniciar a sessão</h3> 
                 <form action="#" method="POST">
