@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-.er-box-x1{
+.er-box{
     align-items: center;
     justify-content: center;
     width: 1008px;
@@ -13,12 +13,12 @@
     margin-top: 40px;
 }
 
-.er_seta-x1{
+.er_seta{
     margin-bottom: 90px;
     margin-left: 10px;
 }
 
-.er-box-img-x1{
+.er-box-img{
     margin-left: 39px;
     width: 200px;
     height: 197px;
@@ -26,14 +26,14 @@
     background-color:rgba(217, 217, 217, 1);
 }
 
-.er-box-img-x1  .er_user-x1{
+.er-box-img  .er_user{
     margin-left: 53px;
     margin-top: 40px;
     width: 94px;
     height: 115px;
 }
 
-.er_user-name-x1{
+.er_user-name{
     margin-left: 55px;
     font-family: 'poppins';
     font-size: 1.5rem;
@@ -47,7 +47,7 @@
 }
 
 
-.er_nao-questione-x1{
+.er_nao-questione{
     height: 563px;
     width: 290px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -55,7 +55,7 @@
     
 }
 
-.er_form-x1{
+.er_form{
     margin-left: 324px;
     margin-top: -499px;
     width: 234px;
@@ -64,7 +64,7 @@
 
 }
 
-.er_wrap-input-x1{
+.er_wrap-input1{
     height: 45px;
     width: 236px;
     margin-top: 60px;
@@ -73,7 +73,7 @@
     
 }
 
-.er_wrap-input-x2{
+.er_wrap-input2{
     height: 45px;
     width: 236px;
     margin-top: 23px;
@@ -83,7 +83,7 @@
     
 }
 
-.er_wrap-input-x3{
+.er_wrap-input3{
     height: 45px;
     width: 236px;
     margin-bottom: 5px;
@@ -91,7 +91,7 @@
     
 }
 
-.er_wrap-input-x4{
+.er_wrap-input4{
     margin-bottom: 25px;
     height: 65px;
     width: 236px;
@@ -102,83 +102,83 @@
    
 }
 
-.er_email-x1{
+.er_email{
     font-family: 'poppins';
     color: rgba(0, 0, 0, 0.5);
     margin-top: -20px;
     
 }
 
-.er_fone-x1{
+.er_fone{
     font-family: 'poppins';
     color: rgba(0, 0, 0, 0.5);
     margin-top: -120px;
     
 }
 
-.er_cpf-x1{
+.er_cpf{
     font-family: 'poppins';
     color: rgba(0, 0, 0, 0.5);
     margin-top: 48px;
     
 }
 
-.er_date-x1{
+.er_date{
     font-family: 'poppins';
     color: rgba(0, 0, 0, 0.5);
     margin-bottom: 45px;
 }
 
-.er_input-email-x1{
+.er_input-email{
     margin-top: 15px;
     background-color: transparent;
     border: none;
 }
 
-.er_input-fone-x1{
+.er_input-fone{
     margin-top: 15px;
     background-color: transparent;
     border: none;
 }
 
-.er_input-cpf-x1{
+.er_input-cpf{
     margin-top: 15px;
     background-color: transparent;
     border: none;
 }
 
-.er_input-date-x1{
+.er_input-date{
     margin-top: 15px;
     background-color: transparent;
     border: none;
     width: 163px;
 }
 
-.hr-x1{
+.hr{
     border:1px solid rgba(0, 0, 0, 0.1) ;
     width: 230px;
     margin-bottom: 26px;
 }
 
-.hr2-x1{
+.hr2{
     border:1px solid rgba(0, 0, 0, 0.1) ;
     width: 230px;
     margin-bottom: 15px;
 }
 
-.hr3-x1{
+.hr3{
     border:1px solid rgba(0, 0, 0, 0.1) ;
     width: 230px;
     margin-bottom: 13px;
 }
 
-.hr4-x1{
+.hr4{
     border:1px solid rgba(0, 0, 0, 0.1) ;
     width: 230px;
     margin-top: 7px;
 }
 
-.er_btn-fixado-x1{
+.er_btn-fixado{
     width: 107px;
     height: 49px;
     background-color: rgba(69, 115, 75, 1);
@@ -188,7 +188,7 @@
     display: flex;
 }
 
-.er_btn-fixado-x1 a{
+.er_btn-fixado a{
     margin-left: 27px;
     margin-top: 12px;
     font-family: 'poppins';
@@ -197,7 +197,7 @@
     
 }
 
-.er_pesquisa-x1 {
+.er_pesquisa {
     width: 540px;
     height: 44px;
     margin-left: 290px;
@@ -206,20 +206,14 @@
     border:1px solid rgba(231, 230, 230, 1);
 }
 
-.er_pesquisa-x1::placeholder{
+.er_pesquisa::placeholder{
     font-family: 'poppins';
     font-size: 1rem;
 }
 
-.er_search-img-x1{
+.er_search-img{
     margin-left: -36px;
     margin-top: 20px;
-}
-
-.er_user-name-x1{
-    margin-left: 45px;
-    font-family: 'poppins';
-    font-size: 1.5rem;
 }
 
 /* ============================= */
@@ -227,7 +221,7 @@
 /* ============================= */
 @media screen and (max-width: 1024px) {
 
-    .er-box-x1 {
+    .er-box {
         flex-direction: column;
         width: 90%;
         height: auto;
@@ -235,46 +229,46 @@
         padding: 20px;
     }
 
-    .er_nao-questione-x1 {
+    .er_nao-questione {
         width: 100%;
         height: auto;
         border-radius: 10px;
     }
 
-    .er-box-img-x1 {
+    .er-box-img {
         margin: 20px auto;
     }
 
-    .er_form-x1 {
+    .er_form {
         margin: 0 auto;
         width: 100%;
     }
 
-    .er_wrap-input-x11,
-    .er_wrap-input-x2,
-    .er_wrap-input-x3,
-    .er_wrap-input-x4 {
+    .er_wrap-input1,
+    .er_wrap-input2,
+    .er_wrap-input3,
+    .er_wrap-input4 {
         width: 100%;
     }
 
-    .hr-x1, .hr2-x1, .hr3-x1, .hr4-x1 {
+    .hr, .hr2, .hr3, .hr4 {
         width: 70%;
     }
 
-    .er_pesquisa-x1 {
+    .er_pesquisa {
         width: 80%;
         margin: 20px auto;
     }
 
-    .er_btn-fixado-x1 {
+    .er_btn-fixado {
         margin: 20px auto;
     }
 
-    .er_seta-x1 {
+    .er_seta {
         margin: 0 auto;
     }
 
-    .er_user-name-x1{
+    .er_user-name{
         left: 56px;
     }
 }
@@ -284,7 +278,7 @@
 /* ============================= */
 @media screen and (max-width: 480px) {
 
-    .er-box-x1 {
+    .er-box {
         flex-direction: column;
         width: 90%;
         height: auto;
@@ -292,70 +286,72 @@
         padding: 15px;
     }
 
-    .er_nao-questione-x1 {
+    .er_nao-questione {
         width: 100%;
         height: auto;
         border-radius: 10px;
     }
 
-    .er-box-img-x1 {
+    .er-box-img {
         width: 150px;
         height: 150px;
         margin: 15px auto;
     }
 
-    .er-box-img-x1 .er_user-x1 {
+    .er-box-img .er_user {
         width: 70px;
         height: 85px;
         margin: 30px auto;
     }
 
-    .er_user-namex1{
+    .er_user-name {
         margin-left: 0;
         text-align: center;
     }
 
-    .er_user-date-x1 {
+    .er_user-date {
         margin-left: 0;
         text-align: center;
     }
 
-    .er_form-x1 {
+    .er_form {
         margin: 0 auto;
         width: 100%;
     }
 
-    .er_wrap-input-x1,
-    .er_wrap-input-x2,
-    .er_wrap-input-x3,
-    .er_wrap-input-x4 {
+    .er_wrap-input1,
+    .er_wrap-input2,
+    .er_wrap-input3,
+    .er_wrap-input4 {
         width: 100%;
     }
 
-    .hr-x1, .hr2-x1, .hr3-x1, .hr4-x1 {
+    .hr, .hr2, .hr3, .hr4 {
         width: 100%;
     }
 
-    .er_pesquisa-x1 {
+    .er_pesquisa {
         width: 90%;
         margin: 15px auto;
     }
 
-    .er_btn-fixado-x1 {
+    .er_btn-fixado {
         width: 80%;
         height: 45px;
         margin: 15px auto;
     }
 
-    .er_btn-fixado-x1 a {
+    .er_btn-fixado a {
         margin: auto;
     }
 
-    .er_seta-x1 {
+    .er_seta {
         margin: 0 auto;
     }
 
-    .er-box-img-x1 .er_user-x1{
+    .er-box-img .er_user{
         margin-left: 42px;
     }
 }
+
+
