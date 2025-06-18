@@ -59,7 +59,8 @@ include "../../INCLUDE/Menu_vend.php";
                             <span class="L_state header-edit"><?php echo $cliente['state']?></span>
                         </div>
                         <div class="L_info-icon">
-                            <span><img src="../../PUBLIC/img/Frame.svg" alt=""></span>
+                            <span><img src="../../PUBLIC/img/img_i.png" alt=""></span>
+
                         </div>
                     </div>
                 <?php endforeach; ?>

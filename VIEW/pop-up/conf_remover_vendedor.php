@@ -33,7 +33,7 @@
                 <div class="lc_infos">
                     <p class="lc_info">CPF</p>
                     <p class="lc_dado">12345678919</p>
-                </div>
+                </div>  
                 
                 <div class="lc_infos">
                     <p class="lc_info">Email</p>

@@ -1,5 +1,5 @@
 <?php
-include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/Menu_adm.php";
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ include "../../INCLUDE/Menu_vend.php";
                 </div>
             </div>  
 
-            <a href="../../VIEW/vend/produtos-tudo.php"><button class="gs_back-btn">⟲ Voltar</button></a>
+            <a href="../../VIEW/adm/produtos_administrador.php"><button class="gs_back-btn">⟲ Voltar</button></a>
         </section>
         </main>
 

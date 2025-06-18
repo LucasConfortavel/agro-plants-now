@@ -126,12 +126,13 @@ body {
 .form-container {
   padding: 0 40px 40px;
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
  
 .input-field {
-  width: 100%;
-  height: 56px;
+  width: 90%;
+  height: 36px;
   padding: 0 16px;
   margin-bottom: 30px;
   font-size: 16px;
@@ -156,7 +157,6 @@ body {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-end;
   margin-top: 10px;
   margin-right: 5px;
   text-decoration: none;

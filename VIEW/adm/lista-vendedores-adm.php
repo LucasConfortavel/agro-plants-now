@@ -24,12 +24,12 @@ include "../../INCLUDE/btn-notificacao.php";
                 <div class="ym_area-barra-pesquisa">
                     <div class="ls_pesquisa-barra">
                         <input type="text" placeholder="Pesquise por um vendedor">
-                        <img src="../PUBLIC/img/lupa.png" alt="lupa">
+                        <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
                     </div>
                 </div>
 
                 <div class="ym_area-btn-superior">
-                    <a href="../../VIEW/pop-up/conf_remover_vendedor.php" class="ym_btn-superior">Remover vendedor</a>
+                    <a href="../../VIEW/pop-up/pop-up_remover_vendedor.php" class="ym_btn-superior">Remover vendedor</a>
                     <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior">Cadastrar vendedor</a>
                 </div>
 

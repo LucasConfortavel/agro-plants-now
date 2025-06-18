@@ -78,6 +78,7 @@ body {
     font-size: 12px;
     gap: 10px;
     cursor: pointer;
+    color: #333;
 }
 
 .po-export-button:hover {
@@ -276,6 +277,20 @@ tr:nth-child(even) {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+}
+
+.po-btn-grafico{
+    display: flex;
+    gap: 15px;
+}
+
+.tab-content{
+    padding: 20px;
+}
+
+.po-button{
+    width: 120px;
+    text-align: center;
 }
 
 .po-grafico-titulo {

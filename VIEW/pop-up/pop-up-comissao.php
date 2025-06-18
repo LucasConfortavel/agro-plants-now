@@ -26,7 +26,7 @@
                 <input class="ym_input" type="text">
             </div>
 
-            <button class="ym_btn-pop-up">Calcular</button>
+            <a class="ym_btn-pop-up" href="../../VIEW/adm/Rel.php">Calcular</a>
         </div>
         <div class="ym_area-direita">
 

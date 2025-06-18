@@ -21,17 +21,22 @@
             </div>
             <nav>
                 <ul>
-                    <a href="../../VIEW/vend/dashboard_vendedor.php"><li class="jp_active"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</li></a> 
-                    <a href="../../VIEW/vend/produtos-tudo.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></a> 
-                    <a href="../../VIEW/vend/lista-clientes.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li></a>
-                    <a href="../../VIEW/vend/lista-vendas.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li></a> 
-                    <a href="../../VIEW/vend/Cupom_vendedor.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li></a> 
+                    <button onclick= "window.location.href='../../VIEW/vend/dashboard_vendedor.php'"><li class="jp_active"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</li></button> 
+
+                    <button onclick= "window.location.href='../../VIEW/vend/produtos-tudo.php'"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></button> 
+
+                    <button onclick= "window.location.href='../../VIEW/vend/lista-clientes.php'"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li></button>
+
+                    <button onclick= "window.location.href='../../VIEW/vend/lista-vendas.php'"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li></button> 
+
+                    <button onclick= "window.location.href='../../VIEW/vend/Cupom_vendedor.php'"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li></button> 
                 </ul>
             </nav>
             <div class="jp_bottom-menu">
                 <ul>
-                    <a href="../../VIEW/vend/ajustes-informaçoes-vend.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></a>
-                    <a href="../../VIEW/paginas-iniciais/landing_page.php"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li></a>
+                    <button onclick= "window.location.href='../../VIEW/vend/ajustes-informaçoes-vend.php'"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></button>
+
+                    <button onclick= "window.location.href='../../VIEW/paginas-iniciais/landing_page.php'"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li></button>
                 </ul>
             </div>
         </aside>

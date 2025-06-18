@@ -21,7 +21,7 @@ include "../../INCLUDE/Menu_superior.php";
     <main class="jp_main-content">
         <div class="ym_area">
 
-            <img src="../../PUBLIC/img/sobre_nos_img2.png" alt="" class="ym_img-mobile">
+            <img src="../../PUBLIC/img/img_quem-somos.png" alt="" class="ym_img-mobile">
 
 
             <div class="ym_text">
@@ -29,8 +29,8 @@ include "../../INCLUDE/Menu_superior.php";
                 <p>Bem-vindo à Agro Plants NOW Somos líderes em agricultura de precisão e insumos biológicos, dedicados a revolucionar o setor agrícola com soluções inovadoras e sustentáveis. Nossa missão é aumentar a produtividade dos nossos clientes com produtos e serviços de alta qualidade e eficiência.</p>
             </div>
             
-            <img src="../../PUBLIC/img/sobre_nos_img2.png" alt="" class="ym_img2">
-            <img src="../../PUBLIC/img/sobre_nos_img1.png" alt="" class="ym_img1">
+            <img src="../../PUBLIC/img/img_quem-somos.png" alt="" class="ym_img2">
+            <img src="../../PUBLIC/img/img_o-que-fazemos.png" alt="" class="ym_img1">
             
             <div class="ym_text">
                 <h1>O que fazemos?</h1>

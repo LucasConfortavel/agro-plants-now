@@ -46,7 +46,7 @@
                     <p class="dado">01/01/1992</p>
                 </div> -->
 
-                <button class="lc_remove-btn">Remover</button>
+                <a class="lc_remove-btn" href="||||lista de clientes||||">Remover</a>
 
             </div>
         </div>

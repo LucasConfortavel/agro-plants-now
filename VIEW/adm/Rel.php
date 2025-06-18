@@ -219,15 +219,20 @@ include "../../INCLUDE/btn-notificacao.php";
 
       <!-- Gráficos para a seção de Comissões -->
       <div id="po-comissoes-graficos" class="po-card po-grafico-container po-content-section">
-        <div class="po-tab-content">
+        <div class="tab-content">
           <div class="po-grafico-header">
             <div class="po-grafico-titulo">Gastos com Comissões</div>
-            <div class="po-filter-tempo">
-              <select>
-                <option>Último mês</option>
-                <option>Último trimestre</option>
-                <option>Último ano</option>
-              </select>
+            <div class="po-btn-grafico">
+              <a class="po-export-button po-button" href="../pop-up/pop-up-comissao.php">
+                Calcular Comissão
+              </a>
+              <div class="po-filter-tempo po-button"> 
+                <select>
+                  <option>Último mês</option>
+                  <option>Último trimestre</option>
+                  <option>Último ano</option>
+                </select>
+              </div>
             </div>
           </div>
 
