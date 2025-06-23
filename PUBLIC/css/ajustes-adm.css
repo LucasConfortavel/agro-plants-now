@@ -249,6 +249,8 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    padding-left: 20px;
+    width: 95%;
 }
 
 .jp_info-item label {
@@ -287,6 +289,8 @@ body {
 }
 
 .jp_btn-update {
+    justify-content: center;
+    width: 20%;
     background-color: #4CAF50;
     color: white;
     padding: 10px 24px;
