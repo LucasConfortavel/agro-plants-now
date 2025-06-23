@@ -67,7 +67,7 @@ body {
 }
 
 .po-export-button {
-    height: 25px;
+    height: 35px;
     float: right;
     display: flex;
     align-items: center;
@@ -455,6 +455,16 @@ tr:nth-child(even) {
     font-weight: 500;
     background-color: #e6f7e6;
     color: #4CAF50;
+}
+
+.po-status-badge-1 {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    background-color: #fbe0bc;
+    color: #de8117;
 }
 
 .po-content-section {

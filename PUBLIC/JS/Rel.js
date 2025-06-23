@@ -1,3 +1,123 @@
+// Dados de exemplo para diferentes páginas - ADICIONADO
+const vendasData = {
+  1: [
+    { data: "01/08", vendedor: "João Silva", produto: "Refrigerantes", valor: "R$ 320,00" },
+    { data: "01/08", vendedor: "José Ferraz", produto: "Instalação de App", valor: "R$ 700,00" },
+    { data: "01/08", vendedor: "Carlos Eduardo", produto: "Serviços Variados", valor: "R$ 980,00" },
+    { data: "01/08", vendedor: "Paulo Otávio", produto: "Compras de praga", valor: "R$ 450,00" },
+    { data: "01/08", vendedor: "Eduardo Camões", produto: "Franquia - inicial", valor: "R$ 350,00" },
+  ],
+  2: [
+    { data: "02/08", vendedor: "Maria Santos", produto: "Fertilizantes", valor: "R$ 890,00" },
+    { data: "02/08", vendedor: "Pedro Lima", produto: "Sementes Premium", valor: "R$ 1.200,00" },
+    { data: "02/08", vendedor: "Ana Costa", produto: "Equipamentos", valor: "R$ 2.100,00" },
+    { data: "02/08", vendedor: "Roberto Silva", produto: "Consultoria", valor: "R$ 750,00" },
+    { data: "02/08", vendedor: "Lucia Mendes", produto: "Treinamento", valor: "R$ 600,00" },
+  ],
+  3: [
+    { data: "03/08", vendedor: "Fernando Rocha", produto: "Defensivos", valor: "R$ 1.500,00" },
+    { data: "03/08", vendedor: "Carla Dias", produto: "Irrigação", valor: "R$ 3.200,00" },
+    { data: "03/08", vendedor: "Marcos Pereira", produto: "Análise de Solo", valor: "R$ 400,00" },
+    { data: "03/08", vendedor: "Sandra Oliveira", produto: "Mudas", valor: "R$ 850,00" },
+    { data: "03/08", vendedor: "Ricardo Alves", produto: "Adubos Orgânicos", valor: "R$ 1.100,00" },
+  ],
+}
+
+const comissoesData = {
+  1: [
+    { data: "02/08", vendedor: "João Silva", produto: "Refrigerantes", valorVenda: "R$ 200,00", percentual: "10%", valorComissao: "R$ 20,00", status: "Pago" },
+    { data: "02/08", vendedor: "José Ferraz", produto: "Instalação de App", valorVenda: "R$ 100,00", percentual: "10%", valorComissao: "R$ 10,00", status: "Pago" },
+    { data: "02/08", vendedor: "Carlos Eduardo", produto: "Sementes tratadas", valorVenda: "R$ 800,00", percentual: "10%", valorComissao: "R$ 80,00", status: "Pago" },
+    { data: "02/08", vendedor: "Paulo Otávio", produto: "Controle de praga", valorVenda: "R$ 500,00", percentual: "10%", valorComissao: "R$ 50,00", status: "Pago" },
+    { data: "02/08", vendedor: "Eduardo Camões", produto: "Fungicida natural", valorVenda: "R$ 250,00", percentual: "10%", valorComissao: "R$ 25,00", status: "Pago" },
+  ],
+  2: [
+    { data: "03/08", vendedor: "Maria Santos", produto: "Fertilizantes", valorVenda: "R$ 890,00", percentual: "12%", valorComissao: "R$ 106,80", status: "Pendente" },
+    { data: "03/08", vendedor: "Pedro Lima", produto: "Sementes Premium", valorVenda: "R$ 1.200,00", percentual: "15%", valorComissao: "R$ 180,00", status: "Pago" },
+    { data: "03/08", vendedor: "Ana Costa", produto: "Equipamentos", valorVenda: "R$ 2.100,00", percentual: "8%", valorComissao: "R$ 168,00", status: "Pago" },
+    { data: "03/08", vendedor: "Roberto Silva", produto: "Consultoria", valorVenda: "R$ 750,00", percentual: "20%", valorComissao: "R$ 150,00", status: "Pendente" },
+    { data: "03/08", vendedor: "Lucia Mendes", produto: "Treinamento", valorVenda: "R$ 600,00", percentual: "15%", valorComissao: "R$ 90,00", status: "Pago" },
+  ],
+  3: [
+    { data: "04/08", vendedor: "Fernando Rocha", produto: "Defensivos", valorVenda: "R$ 1.500,00", percentual: "10%", valorComissao: "R$ 150,00", status: "Pago" },
+    { data: "04/08", vendedor: "Carla Dias", produto: "Irrigação", valorVenda: "R$ 3.200,00", percentual: "5%", valorComissao: "R$ 160,00", status: "Pendente" },
+    { data: "04/08", vendedor: "Marcos Pereira", produto: "Análise de Solo", valorVenda: "R$ 400,00", percentual: "25%", valorComissao: "R$ 100,00", status: "Pago" },
+    { data: "04/08", vendedor: "Sandra Oliveira", produto: "Mudas", valorVenda: "R$ 850,00", percentual: "12%", valorComissao: "R$ 102,00", status: "Pago" },
+    { data: "04/08", vendedor: "Ricardo Alves", produto: "Adubos Orgânicos", valorVenda: "R$ 1.100,00", percentual: "10%", valorComissao: "R$ 110,00", status: "Pendente" },
+  ],
+}
+
+let currentTab = "po-vendas"
+let currentPage = 1
+const totalPages = 3
+
+function loadTableData() {
+  const isVendas = currentTab === "po-vendas"
+  const data = isVendas ? vendasData[currentPage] : comissoesData[currentPage]
+  
+  const tableSelector = isVendas ? "#po-vendas-section tbody" : "#po-comissoes-section tbody"
+  const tbody = document.querySelector(tableSelector)
+  
+  if (!tbody) return
+  
+  tbody.innerHTML = ""
+  
+  data.forEach((item) => {
+    const row = document.createElement("tr")
+    
+    if (isVendas) {
+      row.innerHTML = `
+        <td>${item.data}</td>
+        <td>${item.vendedor}</td>
+        <td>${item.produto}</td>
+        <td>${item.valor}</td>
+      `
+    } else {
+      const statusClass = item.status === "Pago" ? "po-status-badge" : "po-status-badge-1"
+      row.innerHTML = `
+        <td>${item.data}</td>
+        <td>${item.vendedor}</td>
+        <td>${item.produto}</td>
+        <td>${item.valorVenda}</td>
+        <td>${item.percentual}</td>
+        <td>${item.valorComissao}</td>
+        <td><span class="${statusClass}">${item.status}</span></td>
+      `
+    }
+    
+    tbody.appendChild(row)
+  })
+}
+
+function updatePagination() {
+  document.querySelectorAll(".jp_page-number").forEach((btn, index) => {
+    btn.classList.remove("active")
+    if (index + 1 === currentPage) {
+      btn.classList.add("active")
+    }
+  })
+}
+
+function goToPage(page) {
+  if (page >= 1 && page <= totalPages && page !== currentPage) {
+    currentPage = page
+    loadTableData()
+    updatePagination()
+  }
+}
+
+function nextPage() {
+  if (currentPage < totalPages) {
+    goToPage(currentPage + 1)
+  }
+}
+
+function previousPage() {
+  if (currentPage > 1) {
+    goToPage(currentPage - 1)
+  }
+}
+
 const vendasValor = [
   { month: "Jan", value: 35 },
   { month: "Fev", value: 42 },
@@ -326,6 +446,9 @@ function switchTab(tabName) {
     section.classList.remove("po-active")
   })
 
+  currentTab = tabName
+  currentPage = 1
+
   if (tabName === "po-vendas") {
     document.getElementById("po-vendas-section").classList.add("po-active")
     document.getElementById("po-vendas-graficos").classList.add("po-active")
@@ -335,19 +458,29 @@ function switchTab(tabName) {
     document.getElementById("po-comissoes-graficos").classList.add("po-active")
     criarGraficodeLinha()
   }
+
+  loadTableData()
+  updatePagination()
 }
 
 window.onload = () => {
   criarBarradoGrafico()
   criarminigrafico()
 
-  const paginationItems = document.querySelectorAll(".po-paginacao span")
-  paginationItems.forEach((item) => {
+  const pageNumbers = document.querySelectorAll(".jp_page-number")
+  pageNumbers.forEach((item, index) => {
     item.addEventListener("click", function () {
-      paginationItems.forEach((i) => i.classList.remove("po-active"))
-      this.classList.add("po-active")
+      goToPage(index + 1)
     })
   })
+
+  const pageArrow = document.querySelector(".jp_page-arrow")
+  if (pageArrow) {
+    pageArrow.addEventListener("click", nextPage)
+  }
+
+  loadTableData()
+  updatePagination()
 
   criarGraficodeLinha()
 }
