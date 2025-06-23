@@ -1,5 +1,6 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/btn-notificacao.php";
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ include "../../INCLUDE/Menu_vend.php";
                 <img src="../../PUBLIC/img/img_produto.png" alt="" class="gs_product-image">
                 <div class="gs_product-info">
                     <p class="gs_label">Nome</p>
-                    <p class="gs_value"></p>
+                    <p class="gs_value">Fortilizante</p>
 
                     <p class="gs_label">Categoria</p>
                     <p class="gs_value">Serviço</p>
@@ -32,7 +33,7 @@ include "../../INCLUDE/Menu_vend.php";
                     <p class="gs_value">50 unidades</p>
 
                     <p class="gs_label">Descrição</p>
-                    <p class="gs_value"></p>
+                    <p class="gs_value">É um complemento nutricional desenvolvido para otimizar a absorção de nutrientes do solo, potencializando a adubação principal.</p>
                 </div>
             </div>  
 
