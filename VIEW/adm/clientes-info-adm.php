@@ -14,12 +14,15 @@ include "../../INCLUDE/Menu_adm.php";
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-info.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/btn-notificacao.css">
+
   
 </head>
 <body>
     <main class="jp_main-content">
         
-        <input class="er_pesquisa" type="text" ><p class="er_p">Pesquise por um cliente <a href="" class="er_search-img"><img src="../../PUBLIC/img/lupa.png" alt=""></a></p>
+        <input  class="er_pesquisa" type="text" name="search" id="search" placeholder="pesquise por um cliente"> <a href="" class="er_search-img"><img src="../../PUBLIC/img/lupa.png" alt=""></a></p>
         
         <div class="er-box">
             <div class="er_nao-questione">

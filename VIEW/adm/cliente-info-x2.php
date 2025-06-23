@@ -1,6 +1,7 @@
 <?php
 
 include "../../INCLUDE/Menu_adm.php";
+// include "../btn/btn-notificaçao.php";
 
 ?>
 
@@ -11,6 +12,9 @@ include "../../INCLUDE/Menu_adm.php";
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-info.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/btn-notificacao.css">
+
   
 </head>
 <body>
