@@ -8,37 +8,34 @@
     <!-- <link rel="stylesheet" href="../../PUBLIC/css/vcl-dashboard-style.css"> -->
     <link rel="stylesheet" href="../PUBLIC/css/btn-notificacao.css">
 </head>
-<body>
 
-    <div class="ym_box-notificacao">
-        <div class="ym_area-notificacao">
-            <div class="jp_header-icons">
-                <div class="jp_notification-icon">
-                    <i class="fas fa-bell sino" onclick="teste()"></i>
-                </div>
-                <div class="jp_user-icon">
-                    <i class="fas fa-user"></i>
-                </div>    
+<body class="body">
+    <div class="ym_area-notificacao">
+        <div class="jp_header-icons">
+            <div class="jp_notification-icon">
+                <i class="fas fa-bell icon-notif" onclick="ym_btnNotif()"></i>
             </div>
-
-            <div class="ym_notificacao-item">
+            <div class="jp_user-icon">
+                <i class="fas fa-user icon-user" onclick="ym_btnUser()"></i>
             </div>
+        </div>
+        <div class="ym_notification-bar">
 
         </div>
     </div>
-    
-        
 </body>
+
 </html>
 
 <script>
-    
-    function teste(){
-        console.log("teste");
-        let item_not = document.getElementsByClassName('ym_notificacao-item')[0];
-        console.log(item_not)
-        item_not.style.display="flex";
-
+    function ym_btnNotif(){
+        let btn_notification = document.getElementsByTagName('icon-notif')[0];
+        btn_notification.style.width=""
     }
+    
+    function ym_btnUser(){
+        let btn_notification = document.getElementsByTagName('icon-user')[0];
+    }
+
 
 </script>
