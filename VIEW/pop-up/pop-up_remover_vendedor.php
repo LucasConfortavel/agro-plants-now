@@ -27,7 +27,7 @@
             
 
             <div class="sab_button-container">
-                <button type="button" class="sab_add-button">Avançar</button>
+                <button type="button" class="sab_add-button" onclick= "window.location.href='../adm/lista-vendedores-adm.php'">Avançar</button>
             </div>
         </div>
         
