@@ -125,8 +125,7 @@ button{
     transition: background-color 0.3s;
 }
 
-.jp_sidebar nav ul li:hover,
-.jp_sidebar nav ul li.jp_active {
+.jp_sidebar nav ul li:hover{
     background-color: #3a3a3a;
 }
 
@@ -155,11 +154,12 @@ button{
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s; /* Adicionado para consistência */
+    width: 100%;
 }
 
-.jp_bottom-menu ul li:hover,
-.jp_bottom-menu ul li.jp_active {
+.jp_bottom-menu ul li:hover{
     background-color: #3a3a3a;
+    width: 100%;
 }
 
 .jp_bottom-menu ul li img {
