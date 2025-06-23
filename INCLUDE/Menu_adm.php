@@ -21,19 +21,19 @@
         </div>
         <nav>
             <ul>
-                <li><button onclick= "window.location.href='../../VIEW/adm/vcl-dashboard-adm.php'" data-page="dashboard"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</button></li>
+                <button onclick= "window.location.href='../../VIEW/adm/vcl-dashboard-adm.php'" data-page="dashboard"><li> <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg"> Dashboard </li></button>
     
-                <li><button onclick= "window.location.href='../../VIEW/adm/produtos-tudo.php'"   data-page="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</button></li>
+                <button onclick= "window.location.href='../../VIEW/adm/produtos-tudo.php'"   data-page="catalogo"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></button>
 
-                <li><button onclick= "window.location.href=''"   data-page="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</button></li>
+                <button onclick= "window.location.href=''"   data-page="clientes"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</button></li>
 
-                <li><button onclick= "window.location.href='../../VIEW/adm/lista-vendedores-adm.php'"   data-page="vendedores"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</button></li>
+                <button onclick= "window.location.href='../../VIEW/adm/lista-vendedores-adm.php'"   data-page="vendedores"><li> <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</li></button>
 
-                <li><button onclick= "window.location.href='../../VIEW/adm/vendas-adm.php'" data-page="vendas"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</button></li>
+                <button onclick= "window.location.href='../../VIEW/adm/vendas-adm.php'" data-page="vendas"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/shopping-cart.svg" alt=""> Vendas</li></button>
 
-                <li><button onclick= "window.location.href='../../VIEW/adm/Rel.php'" data-page="relatorios"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</button></li>
+                <button onclick= "window.location.href='../../VIEW/adm/Rel.php'" data-page="relatorios"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/file-text.svg" alt=""> Relatórios</li></button>
 
-                <li><button onclick= "window.location.href='../../VIEW/adm/Cupom_adm.php'" data-page="cupons"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</button></li>
+                <button onclick= "window.location.href='../../VIEW/adm/Cupom_adm.php'" data-page="cupons"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/tag.svg" alt=""> Cupons</li></button>
             </ul>
         </nav>
         <div class="jp_bottom-menu">

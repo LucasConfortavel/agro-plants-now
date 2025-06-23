@@ -1,11 +1,3 @@
-<?php
-
-include "../../INCLUDE/Menu_adm.php";
-
-
-
-?>
-
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +5,6 @@ include "../../INCLUDE/Menu_adm.php";
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-info.css">
-    <link rel="stylesheet" href="../PUBLIC/css/style_menu.css">
   
 </head>
 <body>

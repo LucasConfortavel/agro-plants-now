@@ -20,6 +20,8 @@
 
 ?>
 
+<!-- ESSE POP UP AINDA NÃO LINKA PQ O YURI JÁ  FEZ ELE CONECTAR AUTOMATICAMENTE COM O BACKEND, OU SEJA, SÓ VAI FUNCIONAR QUANDO O BACKEND FUNCIONAR TAMBÉM -->
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -94,6 +96,8 @@
                 <div class="gs_area-btn-submit">
                     <input class="gs_pop-up-btn-submit" name="adicionar" type="submit" value="Cadastrar Vendedor">
                 </div>
+
+
 
             </form>
 

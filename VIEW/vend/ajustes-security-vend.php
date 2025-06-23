@@ -1,7 +1,6 @@
 <?php
 
 include "../../INCLUDE/Menu_vend.php";
-include "../../INCLUDE/btn-notificacao.php";
 
 
 ?>
