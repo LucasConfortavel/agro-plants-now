@@ -16,90 +16,90 @@ include "../../INCLUDE/btn-notificacao.php";
 </head>
 <body>
     <main class="jp_main-content">
-        <div class="back-button">
+        <div class="P_back-button">
             <a href="vendas-adm.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
         </div>
 
-        <div class="cart-table">
-            <div class="table-header">
-                <div class="header-produto">Produto</div>
-                <div class="header-preco">Preço</div>
-                <div class="header-quantidade">Quantidade</div>
-                <div class="header-total">Total</div>
+        <div class="P_cart-table">
+            <div class="P_table-header">
+                <div class="P_header-produto">Produto</div>
+                <div class="P_header-preco">Preço</div>
+                <div class="P_header-quantidade">Quantidade</div>
+                <div class="P_header-total">Total</div>
             </div>
 
-            <div class="cart-item">
-                <div class="item-remove">
-                    <button class="remove-button">
-                        <i class="fa-solid fa-xmark"></i>
+            <div class="P_cart-item">
+                <div class="P_item-remove">
+                    <button class="P_remove-button">
+                        <i class="P_fa-solid fa-xmark"></i>
                     </button>
                 </div>
-                <div class="item-produto">
-                    <div class="product-image"></div>
+                <div class="P_item-produto">
+                    <div class="P_product-image"></div>
                     <span>Produto</span>
                 </div>
-                <div class="item-preco">R$1000</div>
-                <div class="item-quantidade">
-                    <button class="quantity-button" id="menos">−</button>
-                    <span class="quantity-value" id="valor">1</span>
-                    <button class="quantity-button" id="mais">+</button>
+                <div class="P_item-preco">R$1000</div>
+                <div class="P_item-quantidade">
+                    <button class="P_quantity-button" id="menos">−</button>
+                    <span class="P_quantity-value" id="valor">1</span>
+                    <button class="P_quantity-button" id="mais">+</button>
                 </div>
-                <div class="item-total">R$1000</div>
+                <div class="P_item-total">R$1000</div>
             </div>
         </div>
 
-        <div class="cart-summary">
-            <div class="coupon-section">
-                <div class="coupon-icon">
-                    <i class="fa-solid fa-ticket"></i>
+        <div class="P_cart-summary">
+            <div class="P_coupon-section">
+                <div class="P_coupon-icon">
+                    <i class="P_fa-solid fa-ticket"></i>
                 </div>
-                <input type="text" placeholder="Cupom" class="coupon-input">
-                <button class="apply-button">Aplicar</button>
+                <input type="text" placeholder="Cupom" class="P_coupon-input">
+                <button class="P_apply-button">Aplicar</button>
             </div>
 
-            <div class="details-section">
+            <div class="P_details-section">
                 <h3>Detalhes</h3>
                 
-                <div class="detail-row">
+                <div class="P_detail-row">
                     <span>Subtotal</span>
-                    <span class="price">R$1000</span>
+                    <span class="P_price">R$1000</span>
                 </div>
                 
-                <div class="detail-row">
+                <div class="P_detail-row">
                     <span>Desconto</span>
-                    <span class="price discount">R$0</span>
+                    <span class="P_price discount">R$0</span>
                 </div>
                 
-                <div class="divider"></div>
+                <div class="P_divider"></div>
                 
-                <div class="detail-row total-row">
+                <div class="P_detail-row total-row">
                     <span>Total</span>
-                    <span class="price total">R$1000</span>
+                    <span class="P_price total">R$1000</span>
                 </div>
             </div>
 
         </div>
 
-        <div class="customer-info">
-            <div class="customer-details">
-                <div class="customer-label">Cliente</div>
-                <div class="customer-name">
+        <div class="P_customer-info">
+            <div class="P_customer-details">
+                <div class="P_customer-label">Cliente</div>
+                <div class="Vcustomer-name">
                     Rafael Germinari
-                    <button class="edit-button">
-                        <i class="fa-solid fa-pen"></i>
+                    <button class="P_edit-button">
+                        <i class="P_fa-solid fa-pen"></i>
                     </button>
                 </div>
-                <div class="customer-date">
+                <div class="P_customer-date">
                     <div>Data de criação</div>
                     <div>16/08</div>
                 </div>
             </div>
             
-            <div class="action-buttons">
-                <button class="trash-button">
-                    <i class="fa-regular fa-trash-can"></i>
+            <div class="P_action-buttons">
+                <button class="P_trash-button">
+                    <i class="P_fa-regular fa-trash-can"></i>
                 </button>
-                <button class="generate-link-button">
+                <button class="P_generate-link-button">
                     <a href="../pop-up/pop-up-link.php">Gerar link de venda</a>
                 </button>
             </div>
