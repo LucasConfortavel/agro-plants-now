@@ -57,6 +57,7 @@ body {
 }
 
 
+
 .jp_overlay {
     display: none;
     position: fixed;
@@ -103,13 +104,14 @@ body {
 
 button{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-size: 16px;
     border: none;
     color: white;    
     background-color: transparent;
     text-decoration: none;
+    width: 100%;
 }
 
 .jp_sidebar nav ul li {
@@ -119,6 +121,7 @@ button{
     display: flex;
     align-items: center;
     cursor: pointer;
+    width: 100%;
     transition: background-color 0.3s;
 }
 
