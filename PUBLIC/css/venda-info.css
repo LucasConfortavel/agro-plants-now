@@ -232,6 +232,7 @@ body {
 }
 
 .P_apply-button {
+  width: 100%;
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -241,6 +242,7 @@ body {
   font-weight: 500;
   transition: var(--transition);
   box-shadow: var(--shadow-sm);
+  text-align: center;
 }
 
 .P_apply-button:hover {

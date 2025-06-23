@@ -20,7 +20,7 @@ include "../../INCLUDE/btn-notificacao.php";
 
     <main class="jp_main-content">
         <div class="back-button">
-            <i class="fa-solid fa-arrow-left"></i>
+        <a href="vendas-adm.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
         </div>
 
         <div class="P_cart-table">
@@ -57,7 +57,7 @@ include "../../INCLUDE/btn-notificacao.php";
                     <i class="fa-solid fa-ticket"></i>
                 </div>
                 <input type="text" placeholder="Cupom" class="coupon-input">
-                <button class="P_apply-button">Aplicar</button>
+                <a class="P_apply-button" href="../../pop-up/pop-up-cupon_Adicionar.php">Aplicar</a>
             </div>
 
             <div class="P_details-section">
@@ -102,9 +102,9 @@ include "../../INCLUDE/btn-notificacao.php";
                 <button class="P_trash-button">
                     <i class="P_fa-regular fa-trash-can"></i>
                 </button>
-                <button class="P_generate-link-button">
+                <a class="P_generate-link-button" href="../../pop-up-link.php">
                     Gerar link de venda
-                </button>
+                </a>
             </div>
         </div>
     </main>
