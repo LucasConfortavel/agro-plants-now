@@ -68,6 +68,7 @@ body {
 
 .po-export-button {
     height: 35px;
+    width: 140px;
     float: right;
     display: flex;
     align-items: center;
