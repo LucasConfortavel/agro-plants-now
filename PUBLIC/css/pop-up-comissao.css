@@ -12,7 +12,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(34, 34, 34);
+    background-color: #E7E6E6;
 }
 
 .ym_area-pop-up{
@@ -70,10 +70,15 @@ body{
 }
 
 .ym_btn-pop-up{
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     height: 11%;
     width: 28%;
-    border-radius: 3px;
+    border-radius: 8px;
     width: 55%;
     background-color: #45734B;
     color: white;

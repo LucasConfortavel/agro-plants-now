@@ -57,6 +57,7 @@ body {
 }
 
 
+
 .jp_overlay {
     display: none;
     position: fixed;
@@ -103,13 +104,14 @@ body {
 
 button{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-size: 16px;
     border: none;
     color: white;    
     background-color: transparent;
     text-decoration: none;
+    width: 100%;
 }
 
 .jp_sidebar nav ul li {
@@ -119,11 +121,11 @@ button{
     display: flex;
     align-items: center;
     cursor: pointer;
+    width: 100%;
     transition: background-color 0.3s;
 }
 
-.jp_sidebar nav ul li:hover,
-.jp_sidebar nav ul li.jp_active {
+.jp_sidebar nav ul li:hover{
     background-color: #3a3a3a;
 }
 
@@ -146,16 +148,18 @@ button{
 }
 
 .jp_bottom-menu ul li {
+    border-radius: 8px;
     padding: 12px 15px;
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s; /* Adicionado para consistência */
+    width: 100%;
 }
 
-.jp_bottom-menu ul li:hover,
-.jp_bottom-menu ul li.jp_active {
+.jp_bottom-menu ul li:hover{
     background-color: #3a3a3a;
+    width: 100%;
 }
 
 .jp_bottom-menu ul li img {

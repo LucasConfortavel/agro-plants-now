@@ -31,7 +31,7 @@ include "../../INCLUDE/Menu_adm.php";
 
             <div class="jp_content">
                 <nav class="jp_tabs">
-                    <a href="informaçoes_adm.html" class="jp_tab jp_active">Informações</a>
+                    <a href="ajustes-informaçoes-adm.php" class="jp_tab jp_active">Informações</a>
                     <a href="ajustes-security-adm.php" class="jp_tab">Segurança</a>
                 </nav>
 

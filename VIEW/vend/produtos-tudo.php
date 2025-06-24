@@ -1,5 +1,6 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/btn-notificacao.php"
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ include "../../INCLUDE/Menu_vend.php";
 
     <main class="jp_main-content">
 
-        <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/produto.png';?>
+        <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
         
             <section class="ym_sectionProdutos">
     

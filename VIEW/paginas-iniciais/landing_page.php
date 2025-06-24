@@ -45,7 +45,7 @@ include "../../INCLUDE/Menu_superior.php";
             
             
                 <div class="er_imagem">
-                    <img src="../../PUBLIC/img/large-green-rice-field-with-green-rice-plants-rows 2.png" alt="" class="img-lp">
+                    <img src="../../PUBLIC/img/img_home.png" alt="" class="img-lp">
                     <div class="img-container">
 
                         <h1 class="er_texto">

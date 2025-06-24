@@ -67,7 +67,8 @@ body {
 }
 
 .po-export-button {
-    height: 25px;
+    height: 35px;
+    width: 140px;
     float: right;
     display: flex;
     align-items: center;
@@ -78,6 +79,7 @@ body {
     font-size: 12px;
     gap: 10px;
     cursor: pointer;
+    color: #333;
 }
 
 .po-export-button:hover {
@@ -278,6 +280,20 @@ tr:nth-child(even) {
     margin-bottom: 15px;
 }
 
+.po-btn-grafico{
+    display: flex;
+    gap: 15px;
+}
+
+.tab-content{
+    padding: 20px;
+}
+
+.po-button{
+    width: 120px;
+    text-align: center;
+}
+
 .po-grafico-titulo {
     font-size: 14px;
     font-weight: 500;
@@ -440,6 +456,16 @@ tr:nth-child(even) {
     font-weight: 500;
     background-color: #e6f7e6;
     color: #4CAF50;
+}
+
+.po-status-badge-1 {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    background-color: #fbe0bc;
+    color: #de8117;
 }
 
 .po-content-section {
