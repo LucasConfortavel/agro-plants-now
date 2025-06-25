@@ -1,46 +1,27 @@
 body {
-  font-family: 'Poppins';
-  padding-top: 0;  /* Caso o body esteja com espaçamento também */
-  margin-top: 0;
-  display: flex;
-  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
 }
 
+.jp_main-content {
+  padding: 2rem;
+}
 
 .jc_content {
-  padding: 0 2rem;
-  background-color: #f7f4f4;
-  min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
-  padding-top: 10px;
-  
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.jc_page-title {
-  color: #333;
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-}
-
-
+/* Header com botões alinhados à tabela */
 .jc_header {
   display: flex;
-  justify-content: center;  
-  gap: 20px;               
-  margin-bottom: 0.2rem;
-  flex-wrap: wrap;
-}
-
-
-.jc_search-input {
-  flex-grow: 1; 
-  margin: 0 20px;
-  height: 35px;
-  border: 1px solid #ccc;
-  border-radius: 30px;
-  padding: 0 1rem;
-  max-width: 600px;
-  min-width: 200px;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .jc_btn-cadastrar,
@@ -49,51 +30,55 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: normal;
   transition: background 0.3s ease;
   color: #fff;
-  white-space: nowrap;
-}
-
-.jc_btn-cadastrar {
   background-color: #2e7d32;
+  font-family: "Poppins", sans-serif;
 }
 
-.jc_btn-cadastrar:hover {
-  background-color: #2e7d32;
-}
-
-.jc_btn-remover {
-  background-color: #2e7d32;
-}
-
+.jc_btn-cadastrar:hover,
 .jc_btn-remover:hover {
-  background-color: #2e7d32;
+  background-color: #1b5e20;
 }
 
-.jc_tabela-clientes {
+/* Container da tabela */
+.jc_table-container {
   width: 80%;
   margin-left: auto;
   margin-right: 20px;
+}
+
+.jc_tabela-clientes {
+  width: 100%;
   border-collapse: collapse;
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-top:  0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* margin-bottom removido */
 }
-
-
 
 .jc_tabela-clientes th,
 .jc_tabela-clientes td {
   padding: 1rem;
   text-align: left;
   border-bottom: 1px solid #eee;
+  font-weight: normal;
+}
+
+.jc_tabela-clientes th {
+  background-color: #fafafa;
+  color: #333;
 }
 
 .jc_tabela-clientes tbody tr:hover {
   background-color: #f9f9f9;
+}
+
+.jc_tabela-clientes td i {
+  margin-right: 0.5rem;
+  color: #666;
 }
 
 .jc_btn-info {
@@ -112,49 +97,49 @@ body {
   background-color: #ccc;
 }
 
+/* Paginação fora do container */
 .jc_paginacao {
-  margin-top: 1rem;
   display: flex;
   justify-content: center;
-  gap: 0.7rem;
-  font-size: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  width: 80%;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
-.jc_paginacao span {
+.jc_btn-paginacao {
+  background: none;
+  border: none;
+  padding: 0.4rem 0.8rem;
   cursor: pointer;
-  padding: 0.2rem 0.5rem;
   border-radius: 4px;
+  transition: background-color 0.2s ease;
+  font-family: "Poppins", sans-serif;
 }
 
-.jc_paginacao span:hover {
-  background-color: #ccc;
+.jc_btn-paginacao:hover {
+  background-color: #e0e0e0;
 }
 
-
-
-
-body, table, th, td, button, input, span, div {
-  font-weight: normal;
+.jc_btn-paginacao.ativo {
+  background-color: #e0e0e0;
+  font-weight: 500;
 }
 
-.jc_btn-cadastrar,
-.jc_btn-remover,
-.jc_btn-info {
-  font-weight: normal; 
+#numeros-paginacao {
+  display: flex;
+  gap: 0.5rem;
 }
 
-
-/* RESPONSIVIDADE */
+/* Responsividade */
 @media screen and (max-width: 768px) {
   .jc_header {
     flex-direction: column;
-    align-items: stretch;
-    gap: 15px;
-  }
-
-  .jc_search-input {
+    gap: 1rem;
     width: 100%;
-    margin-bottom: 10px;
+    margin-right: 0;
   }
 
   .jc_btn-remover,
@@ -162,25 +147,38 @@ body, table, th, td, button, input, span, div {
     width: 100%;
   }
 
-  .jc_tabela-clientes {
+  .jc_table-container {
     width: 100%;
-    table-layout: auto;
+    margin-right: 0;
+  }
+
+  .jc_tabela-clientes {
+    font-size: 0.9rem;
   }
 
   .jc_tabela-clientes th:nth-child(3),
   .jc_tabela-clientes td:nth-child(3) {
     display: none;
   }
+
+  .jc_paginacao {
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
 @media screen and (max-width: 480px) {
+  .jp_main-content {
+    padding: 1rem;
+  }
+
   .jc_paginacao {
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .jc_paginacao span {
-    padding: 6px 10px;
+  .jc_btn-paginacao {
+    padding: 0.3rem 0.6rem;
     min-width: 32px;
   }
-} 
+}
