@@ -169,7 +169,7 @@ include "../../INCLUDE/btn-notificacao.php";
         <div class="jp_page-navigation">
           <div class="jp_page-number active">1</div>
           <div class="jp_page-number">2</div>
-          <div class="jp_page-number">3</div> <!-- DAR UMA ARRUMADA NA PAGINAÇÃO QUANDO DER. - PR -->
+          <div class="jp_page-number">3</div>
           <div class="jp_page-arrow">
               <i class="fas fa-arrow-right"></i>
           </div>
