@@ -22,7 +22,7 @@
 
         <section class="ym_sectionProdutos">
 
-            <h1 class="ym_titulo">Todos os Produtos</h1>
+            <h1 class="ym_titulo">Catálogo</h1>
 
             <div class="ym_categorias">
 

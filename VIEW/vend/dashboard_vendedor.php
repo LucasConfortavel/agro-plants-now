@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../PUBLIC/css/dashboard-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
     <main class="jp_main-content">
@@ -25,6 +26,8 @@
                     </div>
                 </div>
             </div>
+            <h1 class="ym_titulo">Dashboard</h1> 
+            <br>
 
             <!-- <div class="jp_action-buttons">
                 <button class="jp_action-button jp_catalog-button" onclick= "window.location.href='produtos-tudo.php'"> 

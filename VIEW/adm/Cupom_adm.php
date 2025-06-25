@@ -19,6 +19,7 @@ include "../../INCLUDE/btn-notificacao.php";
 </head>
 <body>
     <main class="jp_main-content">
+    <h1 class="ym_titulo">Cupons</h1> 
         <section class="ym_section">
             
             <div class="ym_area-barra-pesquisa">

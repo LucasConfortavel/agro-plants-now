@@ -62,7 +62,7 @@ $searchParam = isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) 
     <link rel="stylesheet" href="../../PUBLIC/css/lista-clientes.css">
 </head>
 <body>
-    <div class="jp_hamburger-menu">
+        <div class="jp_hamburger-menu">
         <div class="jp_hamburger-line"></div>
         <div class="jp_hamburger-line"></div>
         <div class="jp_hamburger-line"></div>
@@ -74,7 +74,8 @@ $searchParam = isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) 
         <div class="jp_main-content">
  
             <div class="jp_header">
-                <div></div>
+                <div>
+                </div>
                 
                 <form action="" method="GET" class="jp_search-container">
                     <input type="text" name="search" placeholder="Pesquise por um cliente" value="<?php echo htmlspecialchars($search); ?>">

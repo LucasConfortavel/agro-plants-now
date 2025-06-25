@@ -15,6 +15,9 @@ include "../../INCLUDE/Menu_vend.php";
 </head>
 <body>
     <main class="jp_main-content">
+
+    <h1 class="ym_titulo">Lista de Vendas</h1>    
+
         <div class="L_container">
             <?php
             // Configuração da paginação
