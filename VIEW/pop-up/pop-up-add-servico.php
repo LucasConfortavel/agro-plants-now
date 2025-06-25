@@ -7,58 +7,58 @@
     <title>Adicionar Serviço</title>
 </head>
 <body>
-    <div class="eze-container">
-        <div class="eze-tab-header">
-            <button class="eze-tab-button eze-active" id="produto-tab">Adicionar Serviço</button>
-            <button class="eze-tab-button" id="imagem-tab">Imagem do Serviço</button>
+    <div class="eze_container">
+        <div class="eze_tab-header">
+            <button class="eze_tab-button eze_active" id="produto-tab">Adicionar Serviço</button>
+            <button class="eze_tab-button" id="imagem-tab">Imagem do Serviço</button>
         </div>
         
-        <div id="produto-content" class="eze-form-section">
+        <div id="produto-content" class="eze_form-section">
             <form>
-                <div class="eze-form-row">
-                    <div class="eze-form-group">
-                        <div class="eze-form-label-group">
-                            <span class="eze-required">*</span>
-                            <label class="eze-label-text">Obrigatório</label>
+                <div class="eze_form-row">
+                    <div class="eze_form-group">
+                        <div class="eze_form-label-group">
+                            <span class="eze_required">*</span>
+                            <label class="eze_label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control" placeholder="Nome">
+                        <input type="text" class="eze_form-control" placeholder="Nome">
                     </div>
-                    <div class="eze-form-group">
-                        <div class="eze-form-label-group">
-                            <span class="eze-required">*</span>
-                            <label class="eze-label-text">Obrigatório</label>
+                    <div class="eze_form-group">
+                        <div class="eze_form-label-group">
+                            <span class="eze_required">*</span>
+                            <label class="eze_label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control" placeholder="R$ 00,00">
+                        <input type="text" class="eze_form-control" placeholder="R$ 00,00">
                     </div>
                 </div>
-                <div class="eze-form-row">
-                    <div class="eze-form-group">
-                        <div class="eze-form-label-group">
-                            <span class="eze-required">*</span>
-                            <label class="eze-label-text">Obrigatório</label>
+                <div class="eze_form-row">
+                    <div class="eze_form-group">
+                        <div class="eze_form-label-group">
+                            <span class="eze_required">*</span>
+                            <label class="eze_label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control eze-form-control2" placeholder="Categoria">
+                        <input type="text" class="eze_form-control eze_form-control2" placeholder="Categoria">
                     </div>
                 </div>
             </form>
             
-            <div class="eze-button-container eze-button-container2">
-                <button type="button" class="eze-add-button"onclick= "window.location.href='../adm/add-prod-serv.php'">Adicionar produto</button>
-                <p class="eze-help-text">Adicione a imagem do produto antes de</p>
-                <p class="eze-help-text">adicioná-lo.</p>
+            <div class="eze_button-container eze_button-container2">
+                <button type="button" class="eze_add-button"onclick= "window.location.href='../adm/add-prod-serv.php'">Adicionar produto</button>
+                <p class="eze_help-text">Adicione a imagem do produto antes de</p>
+                <p class="eze_help-text">adicioná-lo.</p>
             </div>
         </div>
         
-        <div id="imagem-content" class="eze-form-section">
-            <div class="eze-image-placeholder">
-                <div class="eze-placeholder-icon">
+        <div id="imagem-content" class="eze_form-section">
+            <div class="eze_image-placeholder">
+                <div class="eze_placeholder-icon">
                     <img src="../../PUBLIC/img/img_add-img.png" alt="">
                 </div>
                 <span>Imagem</span>
             </div>
             
-            <div class="eze-button-container">
-                <button type="button" class="eze-add-button">Adicionar imagem</button>
+            <div class="eze_button-container">
+                <button type="button" class="eze_add-button">Adicionar imagem</button>
             </div>
         </div>
     </div>
