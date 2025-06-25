@@ -72,6 +72,30 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
+/* .jp_tabs {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.jp_tab {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+}
+
+.jp_tab.jp_active {
+    color: #0066ff;
+    border-bottom: 2px solid #0066ff;
+} */
+
+
 .jp_tabs {
     display: flex;
     padding: 20px;
@@ -94,6 +118,27 @@ body {
     color: #0066ff;
     border-bottom: 2px solid #0066ff;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .jp_info-section {
     padding: 20px;
@@ -152,6 +197,21 @@ body {
     padding-right: 30px;
 }
 
+
+
+.jp_btn-update {
+    justify-content: center;
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 .jp_btn-update {
     background-color: #4CAF50;
     color: white;
@@ -166,6 +226,7 @@ body {
 .jp_btn-update:hover {
     background-color: #45a049;
 }
+
 
 .jp_form-input:focus {
     box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
