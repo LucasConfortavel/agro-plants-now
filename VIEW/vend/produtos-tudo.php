@@ -10,6 +10,7 @@ include "../../INCLUDE/btn-notificacao.php"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos - Geral</title>
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/produtos-vendedor.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -21,7 +22,7 @@ include "../../INCLUDE/btn-notificacao.php"
         
             <section class="ym_sectionProdutos">
     
-                <h1 class="ym_titulo">Tudo</h1>
+                <h1 class="ym_titulo">Catálogo - Geral</h1>
 
                 <div class="ym_categorias">
 
