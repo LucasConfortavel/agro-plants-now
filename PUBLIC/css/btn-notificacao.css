@@ -25,13 +25,10 @@
 .jp_header-icons {
     background-color: #222;
     border-radius: 25px;
-    padding: 8px 15px;
     display: flex;
     align-items: center;
-    gap: 15px;
     position: sticky;
     z-index: 1;
-    flex-direction: column;
 }
   
   .jp_notification-icon,
@@ -64,6 +61,10 @@
   .ym_area-icones{
     display: flex;
     width: 100%;
+    background-color: red;
+    padding: 8px 15px;
+    gap: 15px;
+    height: 100%;
   }
 
   .jp_header-icons.active{

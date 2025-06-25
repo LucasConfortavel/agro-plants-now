@@ -15,24 +15,18 @@
         <div class="ym_area-notificacao">
             <div class="jp_header-icons">
 
-                <div class="ym_area-icones">
-                    <div class="jp_notification-icon">
-                        <i class="fas fa-bell sino"></i>
-                    </div>
-                    <div class="jp_user-icon">
-                        <i class="fas fa-user"></i>
-                    </div>
+                <div class="jp_notification-icon">
+                    <i class="fas fa-bell sino"></i>
                 </div>
-                
-                <div class="ym_notificacoes">
-                    <p>teste</p>
+                <div class="jp_user-icon">
+                    <i class="fas fa-user"></i>
                 </div>
-                    
+
             </div>
         </div>
     </div>
-    <br>
-    <br>
+    <!-- <br> -->
+    <!-- <br> -->
         
 </body>
 </html>
@@ -54,4 +48,5 @@
 
 </script> -->
 
+<script src="../../PUBLIC/JS/script_btn-notificacao.js"></script>
 <script src="../PUBLIC/JS/script_btn-notificacao.js"></script>
