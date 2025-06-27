@@ -13,6 +13,7 @@ include "../../INCLUDE/Menu_vend.php";
     <title>Perfil</title>
     <link rel="stylesheet" href="../../PUBLIC/css/ajustes-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 
 </head>
 <body>
@@ -44,17 +45,17 @@ include "../../INCLUDE/Menu_vend.php";
                         <div class="jp_password-section">
                             <div class="jp_password-group">
                                 <label>Senha atual</label>
-                                <input type="password" value="************" class="jp_form-input" readonly>
+                                <input type="password" value="************" class="ym_input-padrao" readonly>
                             </div>
 
                             <div class="jp_password-group">
                                 <label>Criar nova senha</label>
-                                <input type="password" placeholder="Coloque a senha atual" class="jp_form-input">
+                                <input type="password" placeholder="Coloque a senha atual" class="ym_input-padrao">
                             </div>
 
                             <div class="jp_password-group">
                                 <label>Confirmar senha</label>
-                                <input type="password" placeholder="Nova senha" class="jp_form-input">
+                                <input type="password" placeholder="Nova senha" class="ym_input-padrao">
                             </div>
                         </div>
 
