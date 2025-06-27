@@ -45,17 +45,17 @@ include "../../INCLUDE/Menu_vend.php";
                         <div class="jp_password-section">
                             <div class="jp_password-group">
                                 <label>Senha atual</label>
-                                <input type="password" value="************" class="ym_input-padrao" readonly>
+                                <input type="password" value="************" class="jp_form-input" readonly>
                             </div>
 
                             <div class="jp_password-group">
                                 <label>Criar nova senha</label>
-                                <input type="password" placeholder="Coloque a senha atual" class="ym_input-padrao">
+                                <input type="password" placeholder="Coloque a senha atual" class="jp_form-input">
                             </div>
 
                             <div class="jp_password-group">
                                 <label>Confirmar senha</label>
-                                <input type="password" placeholder="Nova senha" class="ym_input-padrao">
+                                <input type="password" placeholder="Nova senha" class="jp_form-input">
                             </div>
                         </div>
 
