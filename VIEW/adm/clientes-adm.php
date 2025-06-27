@@ -24,7 +24,7 @@ $itens_por_pagina = 6;
 $total_clientes = count($clientes);
 $total_paginas = ceil($total_clientes / $itens_por_pagina);
 
-include '../../INCLUDE/Menu_vend.php';
+include '../../INCLUDE/Menu_adm.php';
 
 $BP = '../../INCLUDE/ME';
 
