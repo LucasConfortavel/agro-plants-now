@@ -14,6 +14,7 @@ include "../../INCLUDE/Menu_adm.php";
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-info.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/btn-notificacao.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 
   
 </head>
@@ -21,8 +22,6 @@ include "../../INCLUDE/Menu_adm.php";
     <main class="jp_main-content">
         
         <input  class="er_pesquisa" type="text" name="search" id="search" placeholder="pesquise por um cliente"> <a href="" class="er_search-img"><img src="../../PUBLIC/img/lupa.png" alt=""></a>
-        
-        
         
         
         <div class="er-box">
