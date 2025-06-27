@@ -25,7 +25,7 @@
     
                 <button onclick= "window.location.href='../../VIEW/adm/produtos-tudo.php'"><li id="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></button>
 
-                <button onclick= "window.location.href=''"><li id="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</button></li>
+                <button onclick= "window.location.href='../../VIEW/adm/clientes-adm.php'"><li id="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</button></li>
 
                 <button onclick= "window.location.href='../../VIEW/adm/lista-vendedores-adm.php'"><li id="vendedores"> <img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/user.svg" alt=""> Vendedores</li></button>
 
