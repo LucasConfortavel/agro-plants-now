@@ -109,6 +109,14 @@ body {
     flex-direction: column;
     gap: 0.5rem;
 }
+.ls_tell,
+.vcl_contato{
+    font-size: 2rem;
+}
+.ls_tell,
+.vcl_numero{
+    font-size: 1rem;
+}
 
 @media (max-width: 768px) {
     .ls_container-contate-nos {
