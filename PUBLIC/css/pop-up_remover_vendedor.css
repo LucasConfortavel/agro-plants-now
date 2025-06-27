@@ -29,16 +29,16 @@ body {
     width: 100%;
 }
 
-.sab_tab-button {
+.sab_titulo{
+    margin-top: 25px;
     margin-left: 75px;
-    padding: 20px 0;
-    text-align: center;
-    background-color: #e0e0e0;
-    border: none;
-    cursor: pointer;
     color: rgba(0, 0, 0, 0.7);
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: 400;
+}
+
+.ym_input-padrao{
+
 }
 
 /* .sab-tab-button:first-child {
@@ -70,7 +70,10 @@ body {
 .sab_form-group {
     /* flex: 1;
     position: relative; */
-
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 50px;
 
 
@@ -132,7 +135,9 @@ body {
 }
 
 .sab_form-label-group{
-    margin-left: 30px;
+    width: 70%;
+    flex-direction: column;
+    display: flex;
 }
 
 

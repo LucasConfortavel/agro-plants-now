@@ -33,6 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Vendedor</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastrar_vendedor.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
 
@@ -47,18 +48,18 @@
 
                 <div class="gs_area-input">
                     <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
-                    <input class="gs_pop-up-input" name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
+                    <input class="ym_input-padrao" name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
                 </div>
                 <div class="gs_area-input">
                     <p class="gs_input-aviso">Coloque pelo menos uma dessas informações(E-mail, Telefone)</p>
-                    <input class="gs_pop-up-input" name="telefone" type="text" placeholder="Telefone">
+                    <input class="ym_input-padrao" name="telefone" type="text" placeholder="Telefone">
                 </div>
                 <div class="gs_area-input">
                     <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
-                    <input class="gs_pop-up-input" name="data_nasc" type="text" placeholder="Data de nascimento" oninput="gs_Validacao(this)">
+                    <input class="ym_input-padrao" name="data_nasc" type="text" placeholder="Data de nascimento" oninput="gs_Validacao(this)">
                 </div>
                 <div class="gs_area-input">
-                    <input class="gs_pop-up-input" name="email" type="text" placeholder="E-mail">
+                    <input class="ym_input-padrao" name="email" type="text" placeholder="E-mail">
                 </div>
                 <div class="gs_area-input">
                     <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
