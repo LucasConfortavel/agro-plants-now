@@ -18,6 +18,10 @@
 
     // }
 
+    if(isset($_POST['adicionar'])){
+        header("location:../../VIEW/adm/lista-vendedores-adm.php");
+    }
+
 ?>
 
 <!-- ESSE POP UP AINDA NÃO LINKA PQ O YURI JÁ  FEZ ELE CONECTAR AUTOMATICAMENTE COM O BACKEND, OU SEJA, SÓ VAI FUNCIONAR QUANDO O BACKEND FUNCIONAR TAMBÉM -->
