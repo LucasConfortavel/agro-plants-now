@@ -8,29 +8,17 @@
     <title>Adicionar Serviço</title>
 </head>
 <body>
-    <div class="sab_container">
-        <div class="sab_tab-header">
-            <p class="sab_titulo">Remover vendedor </p>
-        </div>
-        
-        <div class="sab_form-section">
-            <form>
-                <div class="sab_form-row">
-                    <div class="sab_form-group">
-                        <div class="sab_form-label-group">
-                            <span class="sab_required">*</span>
-                            <label class="sab_label-text">Obrigatório</label>
-                            <input type="text" class="ym_input-padrao" placeholder="CPF">
-                        </div>
-                    </div>
-                </div>
-            </form>
-            
+    <div class="ym_area-pop-up">
+        <p class="sab_titulo">Remover vendedor</p>
 
-            <div class="sab_button-container">
-                <button type="button" class="ym_btn-padrao" onclick= "window.location.href='../adm/lista-vendedores-adm.php'">Avançar</button>
+        <form class="sab_form" action="../adm/lista-vendedores-adm.php" method="post">
+            <div class="ym_input-area">
+                <label class="sab_label-text"><span class="sab_required">*</span>Obrigatório</label>
+                <input type="text" class="ym_input-padrao" placeholder="CPF">
             </div>
-        </div>
-        
+
+            <input type="submit" class="ym_btn-padrao"  value="Avançar">    
+        </form>
+    </div>
 </body>
 </html>
