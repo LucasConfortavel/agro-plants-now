@@ -31,13 +31,9 @@ include '../../INCLUDE/Menu_adm.php';
                 </div>
 
                 <div class="ym_area-btn-superior">
-<<<<<<< Updated upstream
-                    <a href="../../VIEW/pop-up/pop-up_remover_cliente.php" class="ym_btn-superior">Remover Cliente</a>
-                    <a href="../../VIEW/pop-up/cadastroPessoas-Fisica.php" class="ym_btn-superior">Cadastrar Cliente</a>
-=======
-                    <a href="../../VIEW/pop-up/pop-up_remover_vendedor.php" class="ym_btn-superior ym_btn-padrao">Remover Cliente</a>
-                    <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior ym_btn-padrao">Cadastrar Cliente</a>
->>>>>>> Stashed changes
+                    <a href="../../VIEW/pop-up/pop-up_remover_cliente.php" class="ym_btn-superior ym_btn-padrao">Remover Cliente</a>
+                    <a href="../../VIEW/pop-up/cadastroPessoas-Fisica.php" class="ym_btn-superior ym_btn-padrao">Cadastrar Cliente</a>
+
                 </div>
                 
     
