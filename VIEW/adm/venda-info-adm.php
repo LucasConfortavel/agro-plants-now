@@ -56,6 +56,7 @@ include "../../INCLUDE/btn-notificacao.php";
                 </div>
                 <input type="text" placeholder="Cupom" class="ym_input-padrao">
                 <a class="ym_btn-padrao" href="../../pop-up/pop-up-cupon_Adicionar.php">Aplicar</a>
+
             </div>
 
             <div class="P_details-section">
@@ -94,10 +95,9 @@ include "../../INCLUDE/btn-notificacao.php";
             </div>
             
             <div class="P_action-buttons">
-                <!-- <button class="P_trash-button">
-                    <i class="P_fa-regular fa-trash-can"></i>
-                </button> -->
+
                 <a class="ym_btn-padrao" href="../../pop-up-link.php">
+
                     Gerar link de venda
                 </a>
             </div>

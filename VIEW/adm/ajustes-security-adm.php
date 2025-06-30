@@ -13,6 +13,7 @@ include "../../INCLUDE/Menu_adm.php";
     <title>Perfil</title>
     <link rel="stylesheet" href="../../PUBLIC/css/ajustes-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
 
@@ -58,7 +59,7 @@ include "../../INCLUDE/Menu_adm.php";
                         </div>
 
                         <div class="jp_form-actions">
-                            <input type="submit" class="jp_btn-update" value="Atualizar"></input>
+                            <input type="submit" class="jp_btn-update ym_btn-padrao" value="Atualizar"></input>
                         </div>
                     </form>
                 </div>
