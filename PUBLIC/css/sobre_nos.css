@@ -20,11 +20,14 @@
 .ym_text p{
     color: #00000080;
     width: 75%;
+    font-size: 1rem;
+    text-align: justify;
 }
 
 .ym_text h1{
     font-weight: 400;
     color: #000000B2;
+    font-size: 2rem;
 }
 
 .ym_img-mobile{

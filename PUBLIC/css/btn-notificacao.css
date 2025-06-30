@@ -18,16 +18,17 @@
   justify-content: top;
   transition: all ease 1s;
   width: 18%;
+  position: absolute;  
   height: 18vh;
 }
 
 .jp_header-icons {
     background-color: #222;
     border-radius: 25px;
-    padding: 8px 15px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    position: sticky;
+    z-index: 1;
 }
   
   .jp_notification-icon,
@@ -51,4 +52,30 @@
   
   .jp_user-icon { 
     background-color: #444;
+  }
+
+  .ym_notificacoes{
+    display: none;
+  }
+
+  .ym_area-icones{
+    display: flex;
+    width: 100%;
+    background-color: red;
+    padding: 8px 15px;
+    gap: 15px;
+    height: 100%;
+  }
+
+  .jp_header-icons.active{
+    height: 100%;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: "space-between";
+    .jp_user-icon{
+      display: none;
+    }
+    .ym_notificacoes{
+      display: flex;
+    }
   }

@@ -16,6 +16,10 @@
     //     }
     // }
 
+    if(isset($_POST['adicionar'])){
+        header("location:../../VIEW/adm/clientes-adm.php");
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +60,7 @@
                 </div>
 
                 <div class="ym_area-btn-submit">
-                    <input class="ym_pop-up-btn-submit" type="submit" value="Cadastrar cliente">
+                    <input class="ym_pop-up-btn-submit" name="adicionar" type="submit" value="Cadastrar cliente">
                 </div>
 
 
@@ -84,10 +88,10 @@
                 </div>
 
                 <div class="ym_area-btn-submit">
-                    <input class="ym_pop-up-btn-submit" type="submit" value="Cadastrar cliente">
+                    <input class="ym_pop-up-btn-submit" name="adicionar" type="submit" value="Cadastrar cliente">
                 </div>
 
-
+                
             </form>
 
         </div>

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/* CSS de padronização de elementos do projeto*/
+@import url(btn-notificacao.css);
+@import url(tabela.css);
+
+*{
+    font-family: Poppins;
+}
+
+.ym_btn-padrao{
+    background-color: #45734b;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    color: white;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.127);
+    cursor: pointer;
+}
+
+.ym_input-padrao{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    border: 2px solid rgb(209, 209  , 209);
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.127);
+}
+
+.ym_titulo{
+    color: rgba(0, 0, 0, 0.90);
+    font-size: 2rem;
+    border-left: 10px solid #45734B;
+    padding-left: 10px;
+}

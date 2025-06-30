@@ -21,29 +21,6 @@ include "../../INCLUDE/Menu_superior.php";
 
 
         <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
-        <!-- <section class="er_cabecario">
-            <header class="er_menu">
-                    <nav class="er_nav-bar">
-                        <img class="er_logo" src="../PUBLIC/img/horizontal-logo 1.png" alt="">
-                        <ul class="er_nav-list">
-                            <li class="er_nav-item">
-                                <a href="" class="er_nav-link">Home</a>
-                            </li>
-                            <li class="er_nav-item">
-                                <a href="" class="er_nav-link">Sobre-nós</a>
-                            </li>
-                            <li class="er_nav-item">
-                                <a href="" class="er_nav-link">Contate-nos</a>
-                            </li>
-                        </ul>
-                        <button class="er_btn-padrao">
-                            Login
-                        </button>
-                    </nav>
-                </header> -->
-        
-            
-            
                 <div class="er_imagem">
                     <img src="../../PUBLIC/img/img_home.png" alt="" class="img-lp">
                     <div class="img-container">

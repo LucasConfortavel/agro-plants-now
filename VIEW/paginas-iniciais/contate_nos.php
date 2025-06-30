@@ -28,17 +28,17 @@ include "../../INCLUDE/Menu_superior.php";
                 <div class="ls_tell">
                     <div>
                         <img src="../../PUBLIC/img/img_telefone.png" alt="Telefone">
-                        <p>Ligue para nós</p>
+                        <p class="vcl_contato">Ligue para nós</p>
                     </div>
-                    <p>+55 (67) 99999-9999</p>
+                    <p class="vcl_numero">+55 (67) 99999-9999</p>
                 </div>
 
                 <div class="ls_tell">
                     <div>
                         <img src="../../PUBLIC/img/img_localizacao.png" alt="Ponteiro">
-                        <p>Localização</p>
+                        <p class="vcl_contato">Localização</p>
                     </div>
-                    <p>Rua santo dos santos, 999 Campo Grande - MS</p>
+                    <p class="vcl_numero">Rua santo dos santos, 999 Campo Grande - MS</p>
                 </div>
             </div>
         </div>

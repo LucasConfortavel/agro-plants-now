@@ -18,6 +18,10 @@
 
     // }
 
+    if(isset($_POST['adicionar'])){
+        header("location:../../VIEW/adm/clientes-adm.php");
+    }
+
 ?>
 
 <!DOCTYPE html>

@@ -12,21 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../PUBLIC/css/vcl-dashboard-style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
-    <!-- <div class="jp_sidebar-placeholder"></div> -->
-
     <main class="jp_main-content">
-        <!-- <div class="jp_header">
-            <div class="jp_header-icons">
-                <div class="jp_notification-icon">
-                    <i class="fas fa-bell"></i>
-                </div>
-                <div class="jp_user-icon">
-                    <i class="fas fa-user"></i>
-                </div>
-            </div>
-        </div> -->
+      
+        <h1 class="ym_titulo">Dashboard</h1> 
 
         <div class="jp_cards-container">
             <div class="jp_card">

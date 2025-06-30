@@ -3,7 +3,6 @@
 * {
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
     font-family: 'Poppins', sans-serif;
 }
 
@@ -12,76 +11,57 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
 }
 
-.sab_container {
-    width: 738px;
-    height: 420px;
-    background-color: #fff;
+.ym_area-pop-up{
+    width: 40%;
+    height: 35%;
+    background-color:#fff;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     overflow: hidden;
 }
 
-.sab_tab-header {
+.sab_area-titulo {
     display: flex;
     width: 100%;
 }
 
-.sab_tab-button {
-    margin-left: 75px;
-    padding: 20px 0;
-    text-align: center;
-    background-color: #e0e0e0;
-    border: none;
-    cursor: pointer;
+.sab_titulo{
+    position: absolute;
+    padding: 25px 0px 0px 25px;
     color: rgba(0, 0, 0, 0.7);
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: 400;
 }
 
-/* .sab-tab-button:first-child {
-    border-radius: 10px 0 10px 0;
-}
-
-.sab-tab-button:last-child {
-    border-radius: 0 10px 0 10px;
-} */
-
-.sab_tab-button.sab_active {
-    background-color: #fff;
-    font-size: 276x;
-}
-
-.sab_form-section {
-    padding: 30px;
-    height: 408px;
-    position: relative;
-}
-
-.sab_form-row {
+.ym_input-area{
+    width: 50%;
     display: flex;
-    /* margin-top: 20px;
-    margin-bottom: 40px; */
+    flex-direction: column;
+}
+
+.sab_form-area{
+    height: 100%;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
-.sab_form-group {
-    /* flex: 1;
-    position: relative; */
-
-    margin-top: 50px;
-
-
-
-
+.sab_form{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-direction: column;
 }
 
 .sab_required {
     color: #ff5252;
     font-size: 13px;
-    margin-right: 3px;
 }
 
 .sab_label-text {
@@ -89,102 +69,20 @@ body {
     color: #0000007A;
 }
 
-.sab_form-control {
-    width: 300px;
-    height: 40px;
-    padding: 1px 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 13px;
-    gap: 100px;
-    margin-left: 5px;
-}
-
-.sab_button-container {
-    position: absolute;
-    right: 30px;
-    bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.sab_button-container {
-    margin-top: 80px;
-    position: static;
-    
-}
-
-
-.sab_add-button {
-    background-color: #45734b;
-    color: white;
-    border: none;
-    padding: 10px 8px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    min-width: 170px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;    
-}
-
-.sab_form-label-group{
-    margin-left: 30px;
-}
-
-
-
 
 @media (max-width: 768px) {
-    .sab-container {
+    .ym_area-pop-up{
         width: 90%;
-        margin: 20px;
-        /* height: 510px; */
+        height: 40%;
+        min-height: 250px;
     }
 
-    /* .sab-form-row {
-        flex-direction: column;
-        gap: 15px;
-        margin-bottom: 0px;
-    } */
-
-    .sab_button-container {
-      
-        margin-left: auto;
-        margin-right: auto;
+    .sab_titulo{
+        font-size: 1rem;
+        padding: 10px 0px 0px 10px;
     }
 
-}
-
-
-@media (max-width: 551px) {
-
-    
-    .sab_tab-button {
-        margin-left: 25px;
-    }
-}
-
-@media (max-width: 394px) {
-
-    .sab_container {
-        width: 738px;
-        height: 350px;
-
-    }
-
-    .sab_form-control {
-        width: 200px;
-        height: 40px;
-
-    }
-
-    .sab_button-container {
-        margin-top: 20px;
-        position: static;
-        
+    .ym_input-area{
+        width: 70%;
     }
 }
