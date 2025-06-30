@@ -15,6 +15,7 @@ include "../../INCLUDE/Menu_adm.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-info.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/btn-notificacao.css">
 
   
@@ -59,7 +60,7 @@ include "../../INCLUDE/Menu_adm.php";
 
             </form>
 
-            <button class="er_btn-fixado"><a href="">Fixado</a></button> 
+            <button class="er_btn-fixado ym_btn-padrao"><a href="">Fixado</a></button> 
                 
            
             

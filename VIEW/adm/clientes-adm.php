@@ -11,6 +11,7 @@ include '../../INCLUDE/Menu_adm.php';
     <title>Gerenciamento de Clientes</title>
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-adm.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,8 +31,13 @@ include '../../INCLUDE/Menu_adm.php';
                 </div>
 
                 <div class="ym_area-btn-superior">
+<<<<<<< Updated upstream
                     <a href="../../VIEW/pop-up/pop-up_remover_cliente.php" class="ym_btn-superior">Remover Cliente</a>
                     <a href="../../VIEW/pop-up/cadastroPessoas-Fisica.php" class="ym_btn-superior">Cadastrar Cliente</a>
+=======
+                    <a href="../../VIEW/pop-up/pop-up_remover_vendedor.php" class="ym_btn-superior ym_btn-padrao">Remover Cliente</a>
+                    <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior ym_btn-padrao">Cadastrar Cliente</a>
+>>>>>>> Stashed changes
                 </div>
                 
     

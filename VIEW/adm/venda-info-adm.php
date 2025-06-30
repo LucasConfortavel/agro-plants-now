@@ -11,6 +11,7 @@ include "../../INCLUDE/btn-notificacao.php";
     <title>Informações de Venda</title>
     <link rel="stylesheet" href="../../PUBLIC/css/venda-info.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -54,7 +55,7 @@ include "../../INCLUDE/btn-notificacao.php";
                     <i class="fa-solid fa-ticket"></i>
                 </div>
                 <input type="text" placeholder="Cupom" class="coupon-input">
-                <a class="P_apply-button" href="../../pop-up/pop-up-cupon_Adicionar.php">Aplicar</a>
+                <a class="P_apply-button ym_btn-padrao" href="../../pop-up/pop-up-cupon_Adicionar.php">Aplicar</a>
             </div>
 
             <div class="P_details-section">
@@ -99,7 +100,7 @@ include "../../INCLUDE/btn-notificacao.php";
                 <button class="P_trash-button">
                     <i class="P_fa-regular fa-trash-can"></i>
                 </button>
-                <a class="P_generate-link-button" href="../../pop-up-link.php">
+                <a class="P_generate-link-button ym_btn-padrao" href="../../pop-up-link.php">
                     Gerar link de venda
                 </a>
             </div>
