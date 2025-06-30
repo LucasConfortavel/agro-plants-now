@@ -13,6 +13,7 @@ include "../../INCLUDE/Menu_vend.php";
     <title>Perfil</title>
     <link rel="stylesheet" href="../../PUBLIC/css/ajustes-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 
 </head>
 <body>
