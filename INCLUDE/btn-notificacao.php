@@ -9,20 +9,39 @@
 
     <link rel="stylesheet" href="../PUBLIC/css/btn-notificacao.css">
 </head>
-<body>
+<body>  
 
     <div class="ym_box-notificacao">
         <div class="ym_area-notificacao">
             <div class="jp_header-icons">
-
                 <div class="jp_notification-icon">
                     <i class="fas fa-bell sino"></i>
                 </div>
-                <div class="jp_user-icon">
-                    <i class="fas fa-user"></i>
+
+                <div class="ym_indicador-notificacoes">
+                    <p>3</p>
+                </div>
+
+                <div class="ym_titulo-notficacoes">
+                    <p>Suas notificações</p>
                 </div>
 
             </div>
+            <div class="ym_notificacoes">
+                <div class="not1">
+                    <p>Teste Notificação</p>
+                    <p>16:30</p>
+                </div>
+                <div class="not1">
+                    <p>Teste Notificação</p>
+                    <p>16:30</p>
+                </div>
+                <div class="not1">
+                    <p>Teste Notificação</p>
+                    <p>16:30</p>
+                </div>
+            </div>
+
         </div>
     </div>
     <!-- <br> -->
@@ -30,23 +49,6 @@
         
 </body>
 </html>
-
-<!-- <script>
-    function teste(){
-        console.log("teste");
-        let not_active = document.getElementsByClassName('jp_header-icons')[0];
-        let user_icon = document.getElementsByClassName('jp_user-icon')[0];
-        console.log(not_active)
-        not_active.style.height="100%";
-        not_active.style.width="100%";
-        not_active.style.alignItems="flex-start";
-        not_active.style.justifyContent="space-between";
-
-        user_icon
-
-    }
-
-</script> -->
 
 <script src="../../PUBLIC/JS/script_btn-notificacao.js"></script>
 <script src="../PUBLIC/JS/script_btn-notificacao.js"></script>

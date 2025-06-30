@@ -1,8 +1,7 @@
 $(document).ready(function(){
-    $('.sino').on('click',function(){
-        $('.jp_header-icons').toggleClass('active');
-        $('.jp_notification-icon').find('i').toggleClass('fa-x');
+    $('.ym_area-notificacao').on('click',function(){
+        $('.ym_area-notificacao').toggleClass('active');
+        $('.jp_notification-icon').find('i').toggleClass('fa-xmark');
     })
 })  
 
-console.log("123")
