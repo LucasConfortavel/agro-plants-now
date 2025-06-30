@@ -10,6 +10,7 @@ include "../../INCLUDE/Menu_adm.php";
     <title>Informações do Produto</title>
     <link rel="stylesheet" href="../../PUBLIC/css/sobre_prod.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
 
@@ -36,7 +37,7 @@ include "../../INCLUDE/Menu_adm.php";
                 </div>
             </div>  
 
-            <a href="../../VIEW/adm/produtos_administrador.php"><button class="gs_back-btn">⟲ Voltar</button></a>
+            <a href="../../VIEW/adm/produtos_administrador.php"><button class="gs_back-btn ym_btn-padrao">⟲ Voltar</button></a>
         </section>
         </main>
 

@@ -30,7 +30,7 @@ include "../../INCLUDE/btn-notificacao.php";
             </div>
             
             <div class="ym_area-btn-superior">
-                <a href="../../VIEW/pop-up/cadastroVenda-Fisica.php" class="ym_btn-superior">Cadastrar venda</a>
+                <a href="../../VIEW/pop-up/cadastroVenda-Fisica.php" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
             </div>
             
             <div class="ym_area-table">
