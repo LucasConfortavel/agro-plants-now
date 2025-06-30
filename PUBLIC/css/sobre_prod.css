@@ -1,5 +1,5 @@
 .gs_product-container { 
-  display: flex; 
+  display: flex;
   align-items: center; 
   justify-content: space-around;
   height: 90vh;
@@ -26,13 +26,13 @@
   max-width: 100%; 
 }
 
-#gs_img-select1, #gs_img-select2, #gs_img-select3{
+#gs_img-select1{
   border: 2px solid green;
-  margin-top: 20px;
 }
 
 
 .gs_product-image-select{
+  margin-top: 20px;
   width: 25%; 
 }
 
@@ -53,23 +53,16 @@
   font-size: 18px; 
   color: #333; 
   margin-bottom: 20px; 
-  margin-left: 20px ;
+  ;
 }
 
-.gs_back-btn { 
-  justify-content: center;
-  background: #45734B; 
-  color: white; 
-  font-size: 18px; 
-  border: none; 
-  padding: 10px 20px; 
-  cursor: pointer;
-  margin-top: 20px;
-  border-radius: 5px; 
-  width: 150px; 
-  max-width: 100%; 
+.ym_area-btn{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
 
 .gs_desc{
   grid-column-start: 1;
