@@ -9,12 +9,13 @@ include "../../INCLUDE/btn-notificacao.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informações de Venda</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/venda-info.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/venda-info-administrador.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+</head>     
 <body>
     <main class="jp_main-content">
         <div class="back-button">
@@ -53,8 +54,9 @@ include "../../INCLUDE/btn-notificacao.php";
                 <div class="P_coupon-icon">
                     <i class="fa-solid fa-ticket"></i>
                 </div>
-                <input type="text" placeholder="Cupom" class="coupon-input">
-                <a class="P_apply-button" href="../../pop-up/pop-up-cupon_Adicionar.php">Aplicar</a>
+                <input type="text" placeholder="Cupom" class="ym_input-padrao">
+                <a class="ym_btn-padrao" href="../../pop-up/pop-up-cupon_Adicionar.php">Aplicar</a>
+
             </div>
 
             <div class="P_details-section">
@@ -85,9 +87,6 @@ include "../../INCLUDE/btn-notificacao.php";
                 <div class="P_customer-label">Cliente</div>
                 <div class="P_customer-name">
                     Rafael Germinari
-                    <button class="P_edit-button">
-                        <i class="P_fa-solid fa-pen"></i>
-                    </button>
                 </div>
                 <div class="P_customer-date">
                     <div>Data de criação</div>
@@ -96,10 +95,9 @@ include "../../INCLUDE/btn-notificacao.php";
             </div>
             
             <div class="P_action-buttons">
-                <button class="P_trash-button">
-                    <i class="P_fa-regular fa-trash-can"></i>
-                </button>
-                <a class="P_generate-link-button" href="../../pop-up-link.php">
+
+                <a class="ym_btn-padrao" href="../../pop-up-link.php">
+
                     Gerar link de venda
                 </a>
             </div>

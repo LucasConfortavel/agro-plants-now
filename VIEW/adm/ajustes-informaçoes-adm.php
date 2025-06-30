@@ -13,6 +13,7 @@ include "../../INCLUDE/Menu_adm.php";
     <title>Perfil</title>
     <link rel="stylesheet" href="../../PUBLIC/css/ajustes-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
 

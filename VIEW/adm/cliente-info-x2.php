@@ -59,7 +59,7 @@ include "../../INCLUDE/Menu_adm.php";
 
             </form>
 
-            <button class="er_btn-fixado"><a href="">Fixado</a></button> 
+            <button class="er_btn-fixado ym_btn-padrao"><a href="">Fixado</a></button> 
             
             
         </div>

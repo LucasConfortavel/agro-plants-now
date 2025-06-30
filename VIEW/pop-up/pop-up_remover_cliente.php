@@ -26,7 +26,7 @@
             </form>
             
             <div class="sab-button-container sab-button-container2">
-                <button type="button" class="sab-add-button">Avançar</button>
+                <button type="button" class="sab-add-button" onclick= "window.location.href='../adm/clientes-adm.php'">Avançar</button>
             </div>
         </div>
         
@@ -45,7 +45,7 @@
             </form>
             
             <div class="sab-button-container sab-button-container2">
-                <button type="button" class="sab-add-button">Avançar</button>
+                <button type="button" class="sab-add-button" onclick= "window.location.href='../adm/clientes-adm.php'">Avançar</button>
             </div>
             
         </div>

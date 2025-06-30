@@ -60,7 +60,7 @@ body {
 
 .P_table-header {
   display: grid;
-  grid-template-columns: 2.3fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   padding: 13px 0;
   border-bottom: 1px solid var(--border-color);
   font-weight: 600;
@@ -71,7 +71,7 @@ body {
 
 .P_cart-item {
   display: grid;
-  grid-template-columns: auto 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1.1fr 0.9fr 1fr;
   padding: 20px 0;
   align-items: center;
   border-bottom: 1px solid var(--border-color);
