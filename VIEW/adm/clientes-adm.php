@@ -30,8 +30,8 @@ include '../../INCLUDE/Menu_adm.php';
                 </div>
 
                 <div class="ym_area-btn-superior">
-                    <a href="../../VIEW/pop-up/pop-up_remover_vendedor.php" class="ym_btn-superior">Remover Cliente</a>
-                    <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior">Cadastrar Cliente</a>
+                    <a href="../../VIEW/pop-up/pop-up_remover_cliente.php" class="ym_btn-superior">Remover Cliente</a>
+                    <a href="../../VIEW/pop-up/cadastroPessoas-Fisica.php" class="ym_btn-superior">Cadastrar Cliente</a>
                 </div>
                 
     
