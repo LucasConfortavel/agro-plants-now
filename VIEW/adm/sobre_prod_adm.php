@@ -53,7 +53,7 @@ include "../../INCLUDE/Menu_vend.php";
                 </div>
 
                 <div class="ym_area-btn">
-                    <a href="venda-info-vendedor.php" class="ym_btn-padrao">Comprar</a>
+                    <a href="venda-info-adm.php" class="ym_btn-padrao">Editar</a>
                     <a href="produtos-tudo.php" class="ym_btn-padrao">Voltar</a>
                 </div>
             </div>
