@@ -22,7 +22,7 @@ include '../../INCLUDE/Menu_adm.php';
     <main class="jp_main-content">
         <div class="sab-engloba-tudo">
             <!-- <section class="ym_section"> -->
-            <h1 class="ym_titulo">Relatório de Vendas</h1>
+            <h1 class="ym_titulo">Lista de Clientes</h1>
 
 
                 <div class="ym_area-barra-pesquisa">
