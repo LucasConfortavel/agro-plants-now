@@ -19,7 +19,7 @@ include "../../INCLUDE/btn-notificacao.php";
 <body>
     <main class="jp_main-content">
         <div class="back-button">
-            <a href="vendas-adm.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
+            <a href="sobre_prod_adm.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
         </div>
         <div class="P_cart-table">
             <div class="P_table-header">
@@ -96,7 +96,7 @@ include "../../INCLUDE/btn-notificacao.php";
             
             <div class="P_action-buttons">
 
-                <a class="ym_btn-padrao" href="../../pop-up-link.php">
+                <a class="ym_btn-padrao" href="../pop-up/pop-up-link.php">
 
                     Gerar link de venda
                 </a>
