@@ -1,3 +1,9 @@
+
+  
+  .ym_area-btn-superior{
+    margin-top: 30px;
+
+  }
   .jp_header {
     display: flex;
     justify-content: space-between;
@@ -347,6 +353,14 @@
     font-size: 16px;
     color: #333;
   }
+
+  @media screen and
+(max-width:1024px){
+    .ym_titulo{
+        margin-top: 40px;
+    }
+    
+}
   
   @media screen and (max-width: 768px) {
     .jp_header {
@@ -386,6 +400,8 @@
       display: none;
     }
   }
+
+  
   
   @media screen and (max-width: 480px) {
     .jp_pagination {
