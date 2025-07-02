@@ -5,8 +5,6 @@ if(isset($_POST['adicionar'])){
     header('location:../vend/dashboard_vendedor.php');
 }
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +40,7 @@ if(isset($_POST['adicionar'])){
                     <input type="submit" class="jc_login-btn" name="adicionar" value="Iniciar Sessão"></input>
                 </form>
                 <div class="lc_area-engrenagem">
-                    <a href="../adm/vcl-dashboard-adm.php"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
+                    <a href="../adm/dashboard-adm.php"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
                 </div>
             </div>
             

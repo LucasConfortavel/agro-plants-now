@@ -13,39 +13,38 @@
 
     <div class="ym_box-notificacao">
         <div class="ym_area-notificacao">
-            <div class="jp_header-icons">
+            <div class="ym_area-icons">
                 <div class="jp_notification-icon">
-                    <i class="fas fa-bell sino"></i>
+                    <i class="fas fa-bell ym_icon-sino"></i>
                 </div>
 
                 <div class="ym_indicador-notificacoes">
-                    <p>3</p>
+                    <p class="ym_p">3</p>
                 </div>
 
                 <div class="ym_titulo-notficacoes">
-                    <p>Suas notificações</p>
+                    <p class="ym_p">Suas notificações</p>
                 </div>
 
             </div>
             <div class="ym_notificacoes">
-                <div class="not1">
-                    <p>Teste Notificação</p>
-                    <p>16:30</p>
+                <div class="ym_notificacao-item">
+                    <p class="ym_p">Teste Notificação</p>
+                    <p class="ym_p">16:30</p>
                 </div>
-                <div class="not1">
-                    <p>Teste Notificação</p>
-                    <p>16:30</p>
+                <div class="ym_notificacao-item">
+                    <p class="ym_p">Teste Notificação</p>
+                    <p class="ym_p">16:30</p>
                 </div>
-                <div class="not1">
-                    <p>Teste Notificação</p>
-                    <p>16:30</p>
+                <div class="ym_notificacao-item">
+                    <p class="ym_p">Teste Notificação</p>
+                    <p class="ym_p">16:30</p>
                 </div>
             </div>
 
         </div>
     </div>
-    <!-- <br> -->
-    <!-- <br> -->
+
         
 </body>
 </html>
