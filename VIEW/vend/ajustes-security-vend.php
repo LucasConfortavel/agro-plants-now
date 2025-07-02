@@ -33,7 +33,7 @@ include "../../INCLUDE/Menu_vend.php";
             <div class="jp_content">
                 <nav class="jp_tabs">
                     <a href="ajustes-informaçoes-vend.php" class="jp_tab">Informações</a>
-                    <a href="ajustes-segurity-vend.php" class="jp_tab jp_active">Segurança</a>
+                    <a href="ajustes-security-vend.php" class="jp_tab jp_active">Segurança</a>
                 </nav>
 
                 <div class="jp_info-section">
