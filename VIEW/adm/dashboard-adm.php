@@ -146,6 +146,6 @@
         </div>
     </main>
 
-    <script src="/projeto_agro_plants_now1/PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
+    <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
 </body>
 </html>
