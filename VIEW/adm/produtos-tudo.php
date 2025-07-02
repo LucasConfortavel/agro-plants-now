@@ -20,10 +20,10 @@
         
         <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
         <?php $nome_produto = 'Nome do produto'; $imagem_produto2 = '../../PUBLIC/img/img_o-que-fazemos.png';?>
-
+        <h1 class="ym_titulo">Catálogo</h1>
+        
         <section class="ym_sectionProdutos">
 
-            <h1 class="ym_titulo">Catálogo</h1>
 
             <div class="ym_categorias">
 

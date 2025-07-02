@@ -18,6 +18,7 @@ $link = 'https://whatsapp.linkbacana.com';
     <section class="ym_area-pop-up">
         <div class="ym_pop-up">
             <div class="ym_superior-pop-up">
+                <a href="../sobre_prod_adm.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
                 <h1 class='ym_titulo'>O link foi criado</h1>
                 <button class="ym_btn-pop-up" style="margin-bottom: 20px;"><img clas="ym_img-icons" src="../../PUBLIC/img/fecha.png" alt=""></button>
             </div>
@@ -34,6 +35,7 @@ $link = 'https://whatsapp.linkbacana.com';
         function copiarLink() {
             var texto = document.getElementById("ym_link").innerText;
             navigator.clipboard.writeText(texto)
+            
         }
     </script>
 </body>
