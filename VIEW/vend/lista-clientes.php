@@ -21,7 +21,6 @@ include "../../INCLUDE/btn-notificacao.php";
     <main class="jp_main-content">
         <div class="sab-engloba-tudo">
             <section class="ym_section">
-
                 <div class="ym_area-barra-pesquisa">
                     <div class="ls_pesquisa-barra">
                         <input type="text" placeholder="Pesquise por um Cliente">
