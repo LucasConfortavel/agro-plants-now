@@ -19,7 +19,7 @@ include "../../INCLUDE/btn-notificacao.php";
 </head>
 <body>
 
-    <main class="jp_main-content">
+    <main class="jp_main-content">   
         <div class="sab-engloba-tudo">
             <!-- <section class="ym_section"> -->
             <h1 class="ym_titulo">Lista de Clientes</h1>

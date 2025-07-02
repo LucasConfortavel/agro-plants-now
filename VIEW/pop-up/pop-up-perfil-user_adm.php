@@ -30,7 +30,7 @@ $link = 'https://github.com';
             </div>
 
             <div class="ym_area-img">
-                <img src="../../PUBLIC/img/user.svg" alt="" class="ym_img-pop-up">
+                <img src="../../PUBLIC/img/img_user.png" alt="user" class="ym_img-pop-up">
             </div>
         
         </div>
