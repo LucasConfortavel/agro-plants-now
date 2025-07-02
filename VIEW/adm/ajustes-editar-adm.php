@@ -16,7 +16,8 @@ include "../../INCLUDE/Menu_adm.php";
 </head>
 <body>
         <main class="jp_main-content">
-                <header class="jp_profile-header">
+            <h1 class="ym_titulo">Ajustes</h1> 
+            <header class="jp_profile-header">
                 <div class="jp_profile-info">
                     <img src="../../PUBLIC/img/img_user.png" alt="Profile" class="jp_profile-pic">
                     <div class="profile-text">
