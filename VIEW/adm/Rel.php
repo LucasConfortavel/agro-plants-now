@@ -17,9 +17,7 @@ include "../../INCLUDE/btn-notificacao.php";
 <body>
     
 <main class="jp_main-content">
-    <div class="po-header">
-      <h1 id="po-page-title">Relatório de Vendas</h1>
-    </div>
+    <h1 class="ym_titulo">Relatório de Vendas</h1>
 
     <div class="po-card">
       <div class="po-tabs">
