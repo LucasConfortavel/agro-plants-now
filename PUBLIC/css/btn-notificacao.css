@@ -12,9 +12,30 @@
   justify-content: end;
 }
 
+.jp_header-icons {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.jp_notification-icon{
+  color: white;
+  font-size: 18px;
+  transition: transform 0.3s ease;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .ym_area-notificacao{
   color: white;
   display: flex;
+  width: 1%;
   max-height: 55vh;
   flex-direction: column;
   align-items: flex-end;
@@ -26,46 +47,20 @@
   position: absolute;
   z-index: 1;
   cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.jp_header-icons {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    gap: 15px;
+.sino{
+  position: absolute;
 }
-  
+
+.ym_area-notificacao:hover{
   .jp_notification-icon{
-    color: white;
-    font-size: 18px;
-    transition: transform 0.3s ease;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .ym_area-notificacao:hover{
-    .jp_notification-icon{
       transform: scale(1.1);
     }
   }
-
-  .ym_notificacoes{
-    flex-direction: column;
-    display: none;
-  }
-
-  .ym_area-icones{
-    display: flex;
-    width: 100%;
-    padding: 8px 15px;
-    gap: 15px;
-    height: 100%;
-  }
-
+  
   .ym_area-notificacao.active{
     width: 18%;
     gap: 1vh;
@@ -76,9 +71,11 @@
     
     .ym_notificacoes{
       display: flex;
+      opacity: 1;
     }
     .ym_titulo-notficacoes{
       display: flex;
+      opacity: 1;
     }
     .jp_header-icons{
       border-bottom: 1px solid white;
@@ -88,6 +85,22 @@
       display: none;
     }
   }
+  
+  .ym_notificacoes{
+    flex-direction: column;
+    display: none;
+    opacity: 0;
+  }
+
+  .ym_area-icones{
+    display: flex;
+    width: 100%;
+    padding: 8px 15px;
+    gap: 15px;
+    height: 100%;
+    background-color: red;
+  }
+
 
   .ym_notificacoes{
     display: none;
@@ -114,10 +127,12 @@
   }
 
   .ym_titulo-notficacoes{
+    opacity: 0;
     display: none;
     width: 100%;
     align-items: center;
     justify-content: center;
+    transition: opacity 1s ease;
   }
 
   .ym_indicador-notificacoes{
@@ -139,3 +154,14 @@
     font-size: 10px;
     color: black;
   }
+
+@media screen and (max-width: 1024px){
+  .ym_area-notificacao{
+    width: 4%;
+  }
+
+  .ym_area-notificacao.active{
+    width: 80%;
+  }
+
+}
