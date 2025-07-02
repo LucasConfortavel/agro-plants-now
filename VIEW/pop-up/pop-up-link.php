@@ -20,7 +20,7 @@ $link = 'https://whatsapp.linkbacana.com';
             <div class="ym_superior-pop-up">
                 <a href="../sobre_prod_adm.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
                 <h1 class='ym_titulo'>O link foi criado</h1>
-                <button class="ym_btn-pop-up" style="margin-bottom: 20px;"><img clas="ym_img-icons" src="../../PUBLIC/img/fecha.png" alt=""></button>
+                <button class="ym_btn-pop-up" style="margin-bottom: 20px;"><img class="ym_img-icons" src="../../PUBLIC/img/img_x.png" alt="X"></button>
             </div>
             
             <div class="ym_inferior-pop-up">
