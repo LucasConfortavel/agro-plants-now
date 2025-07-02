@@ -15,12 +15,14 @@ include "../../INCLUDE/btn-notificacao.php";
     <link rel="stylesheet" href="../../PUBLIC/css/lista-clientes.css">
     <link rel="stylesheet" href="../../PUBLIC/css/tabela.css">
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
 
     <main class="jp_main-content">
         <div class="sab-engloba-tudo">
-            <section class="ym_section">
+            <!-- <section class="ym_section"> -->
+            <h1 class="ym_titulo">Lista de Clientes</h1>
                 <div class="ym_area-barra-pesquisa">
                     <div class="ls_pesquisa-barra">
                         <input type="text" placeholder="Pesquise por um Cliente">

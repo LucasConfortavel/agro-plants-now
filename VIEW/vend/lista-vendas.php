@@ -12,6 +12,7 @@ include "../../INCLUDE/Menu_vend.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Vendas</title>
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendas-vend.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
     <main class="jp_main-content">
