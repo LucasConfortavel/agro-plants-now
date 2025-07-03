@@ -62,7 +62,7 @@ include "../../INCLUDE/Menu_vend.php";
                         </div>
 
                         <div class="jp_form-actions">
-                            <button type="submit" class="jp_btn-update">Atualizar</button>
+                            <button type="submit" class="jp_btn-update ym_btn-padrao">Atualizar</button>
                         </div>
                     </form>
                 </div>

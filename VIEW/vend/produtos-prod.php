@@ -28,9 +28,9 @@ include "../../INCLUDE/Menu_vend.php";
                 <input type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa-mobile">   
 
                 <div class="ym_links">
-                    <a href="produtos-tudo.php" class="ym_linkCategoria">Tudo</a>
-                    <a href="produtos-prod.php" class="ym_linkCategoria" style="background-color: #45734B; color: white; cursor: auto;">Produtos</a>
-                    <a href="produtos-servicos.php" class="ym_linkCategoria">Serviços</a>
+                    <a href="produtos-tudo.php" class="ym_linkCategoria ym_btn-padrao">Tudo</a>
+                    <a href="produtos-prod.php" class="ym_linkCategoria ym_btn-padrao" style="background-color: #45734B; color: white; cursor: auto;">Produtos</a>
+                    <a href="produtos-servicos.php" class="ym_linkCategoria ym_btn-padrao">Serviços</a>
                 </div>
 
                 <input type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
@@ -63,7 +63,7 @@ include "../../INCLUDE/Menu_vend.php";
                                     <div class="ym_cardProduto">
                                         <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                         <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto">Veja mais</a>
+                                        <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                                     </div>
                                     ';
                                     ?>
