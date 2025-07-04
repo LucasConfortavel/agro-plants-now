@@ -19,6 +19,7 @@ include "../../INCLUDE/btn-notificacao.php"
     <main class="jp_main-content">
 
         <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
+        <?php $nome_produto = 'Nome do produto'; $imagem_produto2 = '../../PUBLIC/img/img_o-que-fazemos.png';?>
         
             <section class="ym_sectionProdutos">
     
