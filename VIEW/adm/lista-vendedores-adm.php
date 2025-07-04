@@ -1,7 +1,5 @@
 <?php
-include "../../INCLUDE/Menu_adm.php";
-include "../../INCLUDE/btn-notificacao.php";
-
+    include "../../INCLUDE/Menu_adm.php";
 ?>
 
 <!DOCTYPE html>

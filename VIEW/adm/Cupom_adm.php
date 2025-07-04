@@ -1,6 +1,5 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
-include "../../INCLUDE/btn-notificacao.php";
 ?>
 
 
@@ -36,36 +35,35 @@ include "../../INCLUDE/btn-notificacao.php";
 
             <div class="ym_area-table">
 
-                <table class="ym_tabela">
+            <table class="ym_tabela">
 
-                    <thead class="ym_thead">
+                <thead class="ym_thead">
+                    <tr class="ym_tr">
+                        <th class="ym_th" style="color:white;">Código</th>
+                        <th class="ym_th" style="color:white;">Desconto</th>
+                        <th class="ym_th" style="color:white;">Data de Cadastro</th>
+                        <th class="ym_th" style="color:white;">Validade</th>
+                        <th class="ym_th" style="color:white;"></th>
+                        
+                        
+                </thead>
+
+                <tbody class="ym_tbody">
+
+                    <?php
+                        echo'
                         <tr class="ym_tr">
-                            <th class="ym_th" style="color:white;">Código</th>
-                            <th class="ym_th" style="color:white;">Porcentagem</th>
-                            <th class="ym_th" style="color:white;">Data</th>
-                            
-                            <th class="ym_th" style="color:white;">Estado</th>
-                            <th class="ym_th"></th>
-                            
-                            
-                    </thead>
+                            <td class="ym_td">#paulorojas100</td>
+                            <td class="ym_td sb_td">100%</td>
+                            <td class="ym_td">16/08/2024</td>
+                            <td class="ym_td">01/09/2024</td>
+                            <td class="ym_td "><a href="../../VIEW/pop-up/conf_remover_vendedor.php"<i class="fa-solid fa-circle-info"></i></a></td>
+                        </tr>
+                        ';
+                    ?>
 
-                    <tbody class="ym_tbody">
-
-                        <?php
-                            echo'
-                            <tr class="ym_tr">
-                                <td class="ym_td">#paulorojas100</td>
-                                <td class="ym_td sb_td">100%</td>
-                                <td class="ym_td">16/08</td>
-                                <td class="ym_td">Ativo</td>
-                                <td class="ym_td "><a href=""><i class="fa-solid fa-circle-info"></i></a></td>
-                            </tr>
-                            ';
-                        ?>
-
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
         
             </div>
         </section> 

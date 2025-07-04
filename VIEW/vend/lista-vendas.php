@@ -1,8 +1,5 @@
 <?php
-
-include "../../INCLUDE/Menu_vend.php";
-
-
+    include "../../INCLUDE/Menu_vend.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,106 +7,73 @@ include "../../INCLUDE/Menu_vend.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Vendas</title>
+    <title>Gerenciamento de Clientes</title>
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendas-vend.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 </head>
 <body>
     <main class="jp_main-content">
+        <h1 class="ym_titulo">Lista de Vendas</h1> 
+        <div class="sab-engloba-tudo">
+            <section class="ym_section">
 
-    <h1 class="ym_titulo">Lista de Vendas</h1>    
-
-        <div class="L_container">
-            <?php
-            // Configuração da paginação
-            $itens_por_pagina = 8;
-            $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
-            $inicio = ($pagina - 1) * $itens_por_pagina;
-    
-            // Exemplo de array de clientes (substituir por dados do banco)
-            $clientes = array(
-                array("nome" => "Rafael Germinari", "data" => "12/08", "code" => 123, "state" => "null"),
-                array("nome" => "Calebe Lemos", "data" => "12/08", "code" => 123, "state" => "null"),
-                array("nome" => "Nome Cliente 3", "data" => "00/00", "code" => 123, "state" => "null"),
-                array("nome" => "Nome Cliente 4", "data" => "00/00", "code" => 123, "state" => "null"),
-                array("nome" => "Nome Cliente 5", "data" => "00/00", "code" => 123, "state" => "null"),
-                array("nome" => "Nome Cliente 6", "data" => "00/00", "code" => 123, "state" => "null"),
-                array("nome" => "Nome Cliente 7", "data" => "00/00", "code" => 123, "state" => "null"),
-                array("nome" => "Nome Cliente 8", "data" => "00/00", "code" => 123, "state" => "null"),
-                array("nome" => "Nome Cliente 9", "data" => "00/00", "code" => 123, "state" => "null")
-            );
-    
-            // Total de paginas
-            $total_clientes = count($clientes);
-            $total_paginas = ceil($total_clientes / $itens_por_pagina);
-            ?>
-    
-            <div class="L_header-row">
-                <span class="L_header-code">Código</span>
-                <span class="L_header-nome">Nome</span>
-                <span class="L_header-data">Data de cadastro</span>
-                <span class="L_header-state">Estado</span>
-            </div>
-    
-            <div class="L_lista-clientes">
-                <?php
-                // Loop atraves dos clientes
-                foreach(array_slice($clientes, $inicio, $itens_por_pagina) as $cliente): ?>
-                    <div class="L_cliente-row">
-                        <div class="L_cliente-info">
-                            <span class="L_code header-edit"><?php echo $cliente['code']?></span>
-                            <span class="L_nome header-edit"><?php echo $cliente['nome']; ?></span>
-                            <span class="L_data header-edit"><?php echo $cliente['data']; ?></span>
-                            <span class="L_state header-edit"><?php echo $cliente['state']?></span>
-                        </div>
-                        <div class="L_info-icon">
-                            <span><img src="../../PUBLIC/img/img_i.png" alt=""></span>
-
-                        </div>
+                <div class="ym_area-barra-pesquisa">
+                    <div class="ls_pesquisa-barra">
+                        <input type="text" placeholder="Pesquise por um vendedor">
+                        <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+
+                <div class="ym_area-btn-superior">
+                    <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
+                </div>
+
+
+                <div class="ym_area-table">
+
+                    <table class="ym_tabela">
+
+                        <thead class="ym_thead">
+                            <tr class="ym_tr">
+                                <th class="ym_th" style="color:white;">Vendedor</th>
+                                <th class="ym_th" style="color:white;">Comprador</th>
+                                <th class="ym_th" style="color:white;">Data de cadastro</th>
+                                <th class="ym_th" style="color:white;">Total</th>
+                                <th class="ym_th"></th>
+                            </tr>
+                                
+                               
+                        </thead>
+
+                        <tbody class="ym_tbody">
+
+                            <?php
+                                echo'
+                                <tr class="ym_tr">
+                                    <td class="ym_td">Luã Carlos</td>
+                                    <td class="ym_td">Paulo Rojas</td>
+                                    <td class="ym_td">16/08</td>
+                                    <td class="ym_td">R$ 100,00</td>
+                                    <td class="ym_td "><a href="../../VIEW/pop-up/conf_remover_vendedor.php"<i class="fa-solid fa-circle-info"></i></a></td>
+                                </tr>
+                                ';
+                            ?>
+
+                        </tbody>
+                    </table>
+            
+                </div>
+            </section>
+        </div> 
     
-            <div class="L_paginacao">
-                <?php
-                $max_links = 3;
-                $start_link = max($pagina - floor($max_links/2), 1);
-                $end_link = min($start_link + $max_links - 1, $total_paginas);
     
-                // Seta para a esquerda
-                if($pagina > 1): ?>
-                    <a href="?pagina=<?php echo $pagina - 1; ?>" class="prev">←</a>
-                <?php endif;
-    
-                // Primeira pagina e reticencias a esquerda
-                if($start_link > 1): ?>
-                    <a href="?pagina=1">1</a>
-                    <?php if($start_link > 2): ?>
-                        <span class="L_ellipsis">...</span>
-                    <?php endif;
-                endif;
-    
-                // Links das paginas
-                for($i = $start_link; $i <= $end_link; $i++): ?>
-                    <a href="?pagina=<?php echo $i; ?>" class="<?php echo $i == $pagina ? 'active' : ''; ?>">
-                        <?php echo $i; ?>
-                    </a>
-                <?php endfor;
-    
-                // Última página e reticências a direita
-                if($end_link < $total_paginas):
-                    if($end_link < $total_paginas - 1): ?>
-                        <span class="L_ellipsis">...</span>
-                    <?php endif; ?>
-                    <a href="?pagina=<?php echo $total_paginas; ?>"><?php echo $total_paginas; ?></a>
-                <?php endif;
-    
-                // Seta para a direita
-                if($pagina < $total_paginas): ?>
-                    <a href="?pagina=<?php echo $pagina + 1; ?>" class="L_next">→</a>
-                <?php endif; ?>
-            </div>
-        </div>
+
     </main>
+    <script src="../../PUBLIC/JS/script.js"></script>
+
 </body>
 </html>

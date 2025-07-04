@@ -22,15 +22,6 @@
     width: 95%;
 }
 
-.ym_btn-superior{
-    padding: 10px;
-    background-color: #45734B;
-    border-radius: 12px;
-    color: white;
-    text-decoration: none;
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.171);
-}
-
 .ym_btn-superior:hover{
     color: white;
 }

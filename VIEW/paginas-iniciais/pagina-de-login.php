@@ -4,7 +4,7 @@ include "../../INCLUDE/Menu_superior.php";
 if(isset($_POST['adicionar'])){
     header('location:../vend/dashboard_vendedor.php');
 }
-
+    
 ?>
 
 <!DOCTYPE html>

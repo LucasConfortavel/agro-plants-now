@@ -1,6 +1,5 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
-include "../../INCLUDE/btn-notificacao.php";
 ?>
 
 
@@ -29,7 +28,7 @@ include "../../INCLUDE/btn-notificacao.php";
                     <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
                 </div>
             </div>
-            
+
             <div class="ym_area-table">
 
                 <table class="ym_tabela">
@@ -37,10 +36,9 @@ include "../../INCLUDE/btn-notificacao.php";
                     <thead class="ym_thead">
                         <tr class="ym_tr">
                             <th class="ym_th" style="color:white;">Código</th>
-                            <th class="ym_th" style="color:white;">Porcentagem</th>
-                            <th class="ym_th" style="color:white;">Data</th>
-                            
-                            <th class="ym_th" style="color:white;">Estado</th>
+                            <th class="ym_th" style="color:white;">Desconto</th>
+                            <th class="ym_th" style="color:white;">Data de Cadastro</th>
+                            <th class="ym_th" style="color:white;">Validade</th>
                             
                             
                     </thead>
@@ -52,8 +50,8 @@ include "../../INCLUDE/btn-notificacao.php";
                             <tr class="ym_tr">
                                 <td class="ym_td">#paulorojas100</td>
                                 <td class="ym_td sb_td">100%</td>
-                                <td class="ym_td">16/08</td>
-                                <td class="ym_td">Ativo</td>
+                                <td class="ym_td">16/08/2024</td>
+                                <td class="ym_td">01/09/2024</td>
                             </tr>
                             ';
                         ?>
