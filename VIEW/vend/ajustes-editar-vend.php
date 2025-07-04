@@ -16,7 +16,7 @@ include "../../INCLUDE/Menu_vend.php";
 </head>
 <body>
         <main class="jp_main-content">
-        <h1 class="ym_titulo">Ajustes</h1> 
+            <h1 class="ym_titulo">Ajustes</h1> 
             <header class="jp_profile-header">
                 <div class="jp_profile-info">
                     <img src="../../PUBLIC/img/img_user.png" alt="Profile" class="jp_profile-pic">
@@ -86,6 +86,5 @@ include "../../INCLUDE/Menu_vend.php";
     </script>
 
     <div class="jp_overlay"></div>
-    <script src="../../PUBLIC/js/script-ajustes.js"></script>
 </body>
 </html>

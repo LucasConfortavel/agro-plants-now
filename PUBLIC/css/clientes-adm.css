@@ -12,23 +12,25 @@ body {
 .jc_content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
-/* Header com botões alinhados à tabela */
+/* Header com botões */
 .jc_header {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
-  width: 80%;
-  margin-left: auto;
-  margin-right: 20px;
+  width: 100%;
+  gap: 1rem;
 }
 
 .jc_btn-cadastrar,
 .jc_btn-remover {
-  padding: 0.6rem 1.5rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: normal;
   transition: background 0.3s ease;
@@ -44,9 +46,8 @@ body {
 
 /* Container da tabela */
 .jc_table-container {
-  width: 80%;
-  margin-left: auto;
-  margin-right: 20px;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .jc_tabela-clientes {
@@ -56,7 +57,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  /* margin-bottom removido */
+  min-width: 600px;
 }
 
 .jc_tabela-clientes th,
@@ -98,16 +99,15 @@ body {
   background-color: #ccc;
 }
 
-/* Paginação fora do container */
+/* Paginação */
 .jc_paginacao {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   padding: 1rem 0;
-  width: 80%;
-  margin-left: auto;
-  margin-right: 20px;
+  width: 100%;
 }
 
 .jc_btn-paginacao {
@@ -120,10 +120,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.jc_btn-paginacao:hover {
-  background-color: #e0e0e0;
-}
-
+.jc_btn-paginacao:hover,
 .jc_btn-paginacao.ativo {
   background-color: #e0e0e0;
   font-weight: 500;
@@ -131,26 +128,15 @@ body {
 
 #numeros-paginacao {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
-  .jc_header {
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    margin-right: 0;
-  }
-
-  .jc_btn-remover,
-  .jc_btn-cadastrar {
-    width: 100%;
-  }
-
-  .jc_table-container {
-    width: 100%;
-    margin-right: 0;
+  
+  .jp_main-content {
+    padding: 1.5rem 1rem;
   }
 
   .jc_tabela-clientes {
@@ -161,11 +147,6 @@ body {
   .jc_tabela-clientes td:nth-child(3) {
     display: none;
   }
-
-  .jc_paginacao {
-    width: 100%;
-    margin-right: 0;
-  }
 }
 
 @media screen and (max-width: 480px) {
@@ -173,13 +154,19 @@ body {
     padding: 1rem;
   }
 
-  .jc_paginacao {
-    flex-wrap: wrap;
-    justify-content: center;
+  .jc_btn-cadastrar,
+  .jc_btn-remover {
+    width: 100%;
   }
 
   .jc_btn-paginacao {
     padding: 0.3rem 0.6rem;
     min-width: 32px;
+    font-size: 0.85rem;
+  }
+
+  .jc_tabela-clientes {
+    font-size: 0.85rem;
+    min-width: 100%;
   }
 }
