@@ -1,7 +1,6 @@
 <?php
 
 include "../../INCLUDE/Menu_adm.php";
-include "../../INCLUDE/btn-notificacao.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

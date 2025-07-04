@@ -42,6 +42,6 @@
         </aside>
     </div>
 
-    <script src="../../PUBLIC/JS/script-menus-laterais.js"></script>
 </body>
+    <script src="../../PUBLIC/JS/script-menus-laterais.js"></script>
 </html>
