@@ -2,6 +2,7 @@
 
 
 include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/btn-notificacao.php";
 
 ?>
 
@@ -11,10 +12,12 @@ include "../../INCLUDE/Menu_vend.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Clientes</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/lista-clientes.css">
+    
     <link rel="stylesheet" href="../../PUBLIC/css/tabela.css">
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/lista-clientes.css">
+    
 </head>
 <body>
 
