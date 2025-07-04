@@ -48,7 +48,7 @@ include "../../INCLUDE/Menu_vend.php";
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/vend/sobre_prod.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                            <a href="sobre_prod.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                                         </div>
                                         <div class="ym_cardProduto">
                                             <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
@@ -100,7 +100,7 @@ include "../../INCLUDE/Menu_vend.php";
                                 <div class="ym_cardProduto">
                                     <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                     <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                    <a href="sobre_prod.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                                 </div>
                                 <div class="ym_cardProduto">
                                     <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
@@ -147,7 +147,7 @@ include "../../INCLUDE/Menu_vend.php";
                                     <div class="ym_cardProduto">
                                         <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
                                         <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                        <a href="sobre_prod.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                                     </div>
                                     <div class="ym_cardProduto">
                                         <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
@@ -184,7 +184,7 @@ include "../../INCLUDE/Menu_vend.php";
                                 <div class="ym_cardProduto">
                                     <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
                                     <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                    <a href="sobre_prod.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                                 </div>
                                 <div class="ym_cardProduto">
                                     <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
@@ -211,7 +211,7 @@ include "../../INCLUDE/Menu_vend.php";
                                     <div class="ym_cardProduto">
                                         <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
                                         <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                        <a href="sobre_prod.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                                     </div>
                                     <div class="ym_cardProduto">
                                         <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
