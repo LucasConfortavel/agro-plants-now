@@ -102,3 +102,79 @@
         max-width: 400px;
     }
 }
+
+/* Telas até 1400px */
+@media screen and (max-width: 1400px) {
+    .lc_card {
+      width: 60vw;
+    }
+  }
+  
+  /* Telas até 1024px */
+  @media screen and (max-width: 1024px) {
+    .lc_area-infos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .lc_img-infos {
+      justify-content: center;
+      flex-direction: column;
+    }
+  
+    .lc_img {
+      height: 65px;
+      width: 65px;
+    }
+  
+    .lc_card {
+      width: 70vw;
+      max-width: 400px;
+    }
+  }
+  
+  /* Telas até 768px */
+  @media screen and (max-width: 768px) {
+    .lc_card {
+      width: 85vw;
+    }
+  
+    .lc_remove-btn {
+      width: 100%;
+      font-size: 15px;
+    }
+  
+    .lc_info,
+    .lc_dado {
+      font-size: 15px;
+    }
+  }
+  
+  /* Telas até 480px */
+  @media screen and (max-width: 480px) {
+    .lc_card {
+      width: 90vw;
+      padding: 15px;
+    }
+  
+    .lc_img {
+      height: 55px;
+      width: 55px;
+    }
+  
+    .lc_remove-btn {
+      height: 38px;
+      font-size: 14px;
+    }
+  
+    .lc_info,
+    .lc_dado {
+      font-size: 14px;
+    }
+  
+    .lc_area-voltar img {
+      width: 25px;
+    }
+  }
