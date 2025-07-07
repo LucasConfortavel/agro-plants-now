@@ -15,7 +15,7 @@ body {
     min-height: 100vh;
 }
 
-.eze_container {
+.eze-container {
     width: 738px;
     height: 460px;
     background-color: #fff;
@@ -24,12 +24,12 @@ body {
     overflow: hidden;
 }
 
-.eze_tab-header {
+.eze-tab-header {
     display: flex;
     width: 100%;
 }
 
-.eze_tab-button {
+.eze-tab-button {
     flex: 1;
     padding: 15px 0;
     text-align: center;
@@ -41,54 +41,54 @@ body {
     font-weight: 400;
 }
 
-.eze_tab-button:first-child {
+.eze-tab-button:first-child {
     border-radius: 10px 0 10px 0;
 }
 
-.eze_tab-button:last-child {
+.eze-tab-button:last-child {
     border-radius: 0 10px 0 10px;
 }
 
-.eze_tab-button.eze_active {
+.eze-tab-button.eze-active {
     background-color: #fff;
 }
 
-.eze_form-section {
+.eze-form-section {
     padding: 30px;
     height: 408px;
     position: relative;
 }
 
-.eze_form-row {
+.eze-form-row {
     display: flex;
     gap: 90px;
     margin-top: 20px;
     margin-bottom: 40px;
 }
 
-.eze_form-group {
+.eze-form-group {
     flex: 1;
     position: relative;
 }
 
-.eze_form-label-group {
+.eze-form-label-group {
     display: flex;
     align-items: center;
     margin-left: 13px;
 }
 
-.eze_required {
+.eze-required {
     color: #ff5252;
     font-size: 13px;
     margin-right: 3px;
 }
 
-.eze_label-text {
+.eze-label-text {
     font-size: 9px;
     color: #0000007A;
 }
 
-.eze_form-control {
+.eze-form-control {
     width: 95%;
     height: 40px;
     padding: 12px 15px;
@@ -99,7 +99,7 @@ body {
     margin-left: 5px;
 }
 
-.eze_image-placeholder {
+.eze-image-placeholder {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,13 +114,13 @@ body {
     color: #00000033;
 }
 
-#imagem-content .eze_image-placeholder {
+#imagem-content .eze-image-placeholder {
     width: 433px;
     height: 283px;
     margin: 17px auto;
 }
 
-.eze_placeholder-icon {
+.eze-placeholder-icon {
     width: 50px;
     height: 50px;
     opacity: 0.3;
@@ -128,7 +128,7 @@ body {
     color: #0000007A;
 }
 
-.eze_button-container {
+.eze-button-container {
     position: absolute;
     right: 30px;
     bottom: 30px;
@@ -137,18 +137,18 @@ body {
     align-items: center;
 }
 
-#imagem-content .eze_button-container {
+#imagem-content .eze-button-container {
     position: static;
     margin: 0 auto;
     margin-bottom: 30px;
     align-items: center;
 }
 
-.eze_button-container2 {
+.eze-button-container2 {
     margin-right: 45px;
 }
 
-.eze_add-button {
+.eze-add-button {
     background-color: #45734b;
     color: white;
     border: none;
@@ -160,7 +160,7 @@ body {
     margin-top: -3px;
 }
 
-.eze_help-text {
+.eze-help-text {
     text-align: center;
     font-size: 10px;
     color: rgba(0, 0, 0, 0.5);
@@ -171,56 +171,56 @@ body {
     display: none;
 }
 
-.eze_form-control2 {
+.eze-form-control2 {
     width: 41.2%;
 }
 
 @media (max-width: 768px) {
-    .eze_container {
+    .eze-container {
         width: 90%;
         margin: 20px;
         height: 432px;
     }
 
-    .eze_form-row {
+    .eze-form-row {
         flex-direction: column;
         gap: 15px;
         margin-bottom: 0px;
     }
 
-    .eze_button-container {
+    .eze-button-container {
         position: static;
         margin-top: 20px;
         margin-left: auto;
         margin-right: auto;
     }
 
-    #imagem-content .eze_image-placeholder {
+    #imagem-content .eze-image-placeholder {
         height: 255px;
         width: 410px;
     }
 
-    .eze_form-control2 {
+    .eze-form-control2 {
         width: 100%;
     }
 }
 
 @media (max-width: 551px) {
-    #imagem-content .eze_image-placeholder {
+    #imagem-content .eze-image-placeholder {
         height: 260px;
         width: 295px;
     }
-    .eze_tab-button {
+    .eze-tab-button {
         font-size: 15px;
     }
 }
 
 @media (max-width: 394px) {
-    #imagem-content .eze_image-placeholder {
+    #imagem-content .eze-image-placeholder {
         height: 265px;
         width: 245px;
     }
-    .eze_tab-button {
+    .eze-tab-button {
         font-size: 13px;
     }
 }
