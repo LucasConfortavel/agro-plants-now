@@ -184,8 +184,9 @@ body {
 
     .eze-form-row {
         flex-direction: column;
-        gap: 15px;
-        margin-bottom: 0px;
+        gap: 5px; 
+        margin-top: 10px;
+        
     }
 
     .eze-button-container {
@@ -213,6 +214,8 @@ body {
     .eze-tab-button {
         font-size: 15px;
     }
+
+
 }
 
 @media (max-width: 394px) {
@@ -223,4 +226,44 @@ body {
     .eze-tab-button {
         font-size: 13px;
     }
+  
+    #imagem-content .eze_button-container {
+        margin-top: 20px;
+    }
+  
+    .eze_add-button {
+        width: 40%;
+        font-size: 14px;
+        padding: 10px;
+    }
+  
+
 }
+  
+  
+
+
+
+
+@media (max-width: 1400px) {
+    .eze_container {
+      width: 90%;
+    }
+  
+    .eze_form-row {
+      gap: 50px;
+    }
+  
+    .eze_form-control {
+      width: 100%;
+    }
+
+    .eze_form-control2 {
+        width: 48%;
+    }
+  
+    #imagem-content .eze_image-placeholder {
+      width: 50%;
+    }
+}
+  
