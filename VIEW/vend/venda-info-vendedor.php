@@ -81,12 +81,6 @@ include "../../INCLUDE/Menu_vend.php";
                     <div>16/08</div>
                 </div>
             </div>
-            
-            <div class="P_action-buttons">
-                <a class="ym_btn-padrao" href="../pop-up/pop-up-link.php">
-                    Gerar link de venda
-                </a>
-            </div>
         </div>
     </main>
 
