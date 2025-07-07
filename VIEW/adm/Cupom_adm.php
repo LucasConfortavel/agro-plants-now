@@ -43,7 +43,6 @@ include "../../INCLUDE/Menu_adm.php";
                         <th class="ym_th" style="color:white;">Desconto</th>
                         <th class="ym_th" style="color:white;">Data de Cadastro</th>
                         <th class="ym_th" style="color:white;">Validade</th>
-                        <th class="ym_th" style="color:white;"></th>
                         
                         
                 </thead>
@@ -57,7 +56,6 @@ include "../../INCLUDE/Menu_adm.php";
                             <td class="ym_td sb_td">100%</td>
                             <td class="ym_td">16/08/2024</td>
                             <td class="ym_td">01/09/2024</td>
-                            <td class="ym_td "><a href="../../VIEW/pop-up/conf_remover_vendedor.php"<i class="fa-solid fa-circle-info"></i></a></td>
                         </tr>
                         ';
                     ?>
