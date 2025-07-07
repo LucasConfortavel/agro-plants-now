@@ -55,7 +55,7 @@ include '../../INCLUDE/Menu_adm.php';
                                     <td class="ym_td">Paulo Rojas</td>
                                     <td class="ym_td">16/08</td>
                                     <td class="ym_td">2</td>
-                                    <td class="ym_td "><a href=""><i class="fa-solid fa-circle-info"></i></a></td>
+                                    <td class="ym_td "><a href="clientes-info-adm.php"><i class="fa-solid fa-circle-info"></i></a></td>
                                 </tr>
                                 ';
                             ?>
