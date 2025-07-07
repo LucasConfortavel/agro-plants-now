@@ -170,6 +170,10 @@ body {
     background-color: #45a049;
 }
 
+.ym_btn-padrao {
+    justify-content: center;
+}
+
 .jp_edit-btn {
     display: flex;
     align-items: center;
@@ -248,7 +252,4 @@ body {
         text-align: center;
     }
 
-    .jp_btn-update {
-        width: 100%;
-    }
 }
