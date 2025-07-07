@@ -119,19 +119,56 @@ body {
     font-size: 1rem;
 }
 
+@media (max-width: 1400px) {
+    .ls_container-contate-nos {
+        padding: 2.5rem 2rem;
+        gap: 2.5rem;
+    }
+
+    .ls_container-menu,
+    .ls_texto-contato {
+        max-width: 450px;
+    }
+
+    .ls_texto-caixa {
+        font-size: 26px;
+    }
+
+    .vcl_contato {
+        font-size: 1.6rem;
+    }
+
+    .vcl_numero {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .ls_texto-contato {
+        align-items: center;
+        text-align: center;
+    }
+
+    .ls_tell div {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 768px) {
     .ls_container-contate-nos {
         flex-direction: column;
         align-items: center;
         padding: 2rem 1rem;
+        gap: 2rem;
     }
 
     .ls_container-menu,
     .ls_texto-contato {
+        width: 100%;
+        max-width: 100%;
         height: auto;
         font-size: 15px;
         font-weight: 500;
-        max-width: 100%;
     }
 
     .ls_texto-caixa {
@@ -140,6 +177,14 @@ body {
 
     .ls_caixa-de-descricao {
         height: 120px;
+    }
+
+    .vcl_contato {
+        font-size: 1.2rem;
+    }
+
+    .vcl_numero {
+        font-size: 1rem;
     }
 }
 
@@ -169,5 +214,13 @@ body {
     .ls_tell div,
     .ls_loc div {
         gap: 0.75rem;
+    }
+
+    .vcl_contato {
+        font-size: 1rem;
+    }
+
+    .vcl_numero {
+        font-size: 0.9rem;
     }
 }
