@@ -26,11 +26,11 @@ $link = 'https://github.com';
                     ?>
                     
                 </div>
-                <a href="<?= $link ?>" class="ym_btn-acessar-perfil">Acessar perfil</a>
+                <a href="<?= $link ?>" class="ym_btn-acessar-perfil" style="margin-top: 25px;">Acessar perfil</a>
             </div>
 
             <div class="ym_area-img">
-                <img src="../../PUBLIC/img/img_user.png" alt="user" class="ym_img-pop-up">
+                <img src="../../PUBLIC/img/img_user.png" alt="user" class="ym_img-pop-up" style="margin-top: -5px; margin-left: 50px; width: 50px; height: 50px;">
             </div>
         
         </div>

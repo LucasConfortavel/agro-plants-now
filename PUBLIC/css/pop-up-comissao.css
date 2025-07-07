@@ -91,9 +91,9 @@ body{
 @media screen and (max-width: 1024px){
 
 .ym_area-pop-up{
-    height: 70%;
+    height: 60%;
     max-height: 300px;
-    width: 90%;
+    width: 55%;
 }
 
 .ym_area-direita{
@@ -113,4 +113,20 @@ body{
     width: 90%;
 }
 
+}
+
+@media screen and (max-width: 768px){
+
+    .ym_area-pop-up{
+        height: 60%;
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 480px){
+
+    .ym_area-pop-up{
+        height: 60%;
+        width: 95%;
+    }
 }
