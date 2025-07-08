@@ -153,21 +153,11 @@ body {
 }
 
 .jp_btn-update {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 24px;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
     width: 200px;
     max-width: 100%;
-    transition: background-color 0.3s;
 }
 
-.jp_btn-update:hover {
-    background-color: #45a049;
-}
+
 
 .ym_btn-padrao {
     justify-content: center;
@@ -198,6 +188,10 @@ body {
 
 .jp_password-group {
     width: 100%;
+}
+
+.ym_input-padrao {
+    width: 90%;
 }
 
 /* Responsividade */
