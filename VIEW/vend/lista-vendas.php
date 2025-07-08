@@ -66,15 +66,11 @@
 
                         </tbody>
                     </table>
-            
                 </div>
             </section>
         </div> 
-    
-    
-
     </main>
     <script src="../../PUBLIC/JS/script.js"></script>
-
 </body>
 </html>
+
