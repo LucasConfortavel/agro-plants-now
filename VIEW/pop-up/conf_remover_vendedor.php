@@ -12,50 +12,45 @@
     <link rel="stylesheet" href="../../PUBLIC/css/conf-remover.css">
 </head>
 <body>
-    <div class="lc_fundo">
-        <div class="lc_card">
-            <div class="lc_area-voltar">
-                <button class="lc_btn" onclick="window.history.back();">
-                    <img src="../../PUBLIC/img/img_voltar.png" alt="">                    
-                </button>
+    <div class="lc_card">
+        <div class="lc_area-infos">
+
+            <div class="lc_img-infos">
+                <img class="lc_img" src="../../PUBLIC/img/img_user.png" alt=""> 
+                <div class="lc_infos">
+                    <p class="lc_info">Nome</p>
+                    <p class="lc_dado">Rafael Germinari</p>
+                </div>
+            </div>
+            
+            <div class="lc_infos">
+                <p class="lc_info">CPF</p>
+                <p class="lc_dado">12345678919</p>
+            </div>  
+            
+            <div class="lc_infos">
+                <p class="lc_info">Email</p>
+                <p class="lc_dado">rafaelgerminari@gmail.com</p>
+            </div>
+            
+            <div class="lc_infos">
+                <p class="lc_info">Telefone</p>
+                <p class="lc_dado">+99 (99) 99999-9999</p>
+            </div>
+            
+            <div class="lc_infos">
+                <p class="lc_info">Data de Nascimento</p>
+                <p class="lc_dado">01/01/1992</p>
             </div>
 
-            <div class="lc_area-infos">
+            <form method="POST" action="">  
+                <input class="lc_remove-btn" type="submit" name="remover" value="Remover">
+            </form>
 
-                <div class="lc_img-infos">
-                    <img class="lc_img" src="../../PUBLIC/img/img_user.png" alt=""> 
-                    <div class="lc_infos">
-                        <p class="lc_info">Nome</p>
-                        <p class="lc_dado">Rafael Germinari</p>
-                    </div>
-                </div>
-                
-                <div class="lc_infos">
-                    <p class="lc_info">CPF</p>
-                    <p class="lc_dado">12345678919</p>
-                </div>  
-                
-                <div class="lc_infos">
-                    <p class="lc_info">Email</p>
-                    <p class="lc_dado">rafaelgerminari@gmail.com</p>
-                </div>
-                
-                <div class="lc_infos">
-                    <p class="lc_info">Telefone</p>
-                    <p class="lc_dado">+99 (99) 99999-9999</p>
-                </div>
-                
-                <div class="lc_infos">
-                    <p class="lc_info">Data de Nascimento</p>
-                    <p class="lc_dado">01/01/1992</p>
-                </div>
-
-                <form method="POST" action="">  
-                    <input class="lc_remove-btn" type="submit" name="remover" value="Remover">
-                </form>
-
-            </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
+
+<script src="../../PUBLIC/JS/script-pop-up.js"></script>
