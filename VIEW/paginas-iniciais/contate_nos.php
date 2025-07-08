@@ -70,7 +70,7 @@ include "../../INCLUDE/Menu_superior.php";
         ?>
     </footer>
 
-    <script src="../PUBLIC/JS/script-menu-superior.js"></script>
-    <script src="../PUBLIC/JS/script.js"></script>
+    <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
+    <!-- <script src="../PUBLIC/JS/script.js"></script> -->
 </body>
 </html>
