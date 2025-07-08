@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     
-    if (hamburgerMenu && sidebar && overlay) {
+    if (hamburgerMenu && sidebar) {
         hamburgerMenu.addEventListener('click', function() {
             hamburgerMenu.classList.toggle('active');
             sidebar.classList.toggle('active');
