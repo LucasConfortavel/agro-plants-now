@@ -28,6 +28,11 @@ include "../../INCLUDE/Menu_superior.php";
             </div>
         </section>
     </main>
+    <footer>
+        <?php
+            include "../../INCLUDE/footer.php";
+        ?>
+    </footer>
     
     <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
 </body>
