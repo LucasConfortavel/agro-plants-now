@@ -20,7 +20,7 @@ include "../../INCLUDE/Menu_vend.php";
 
     <main class="jp_main-content">
         <div class="back-button">
-        <a href="sobre_prod.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
+        <a href="lista-vendas.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
         </div>
 
         <div class="P_cart-table">

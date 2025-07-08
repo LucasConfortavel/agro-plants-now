@@ -36,26 +36,54 @@
     margin-bottom: 20px;
 }
 
-.ym_modal-pop-up-area{
+.ym_popup-overlay{
+    height: 100vh;
+    width: 100vw;
     display: none;
+    z-index: 3;
+    align-items: center;
+    justify-content: center;
     top: 0;
     position: absolute;
-    z-index: 3;
-    width: 100vw;
-    height: 100vh;
-    padding: 0;
-    border: none;
+    background-color: transparent;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.679);
 }
 
-.ym_fechar-popup{
-    margin-top: 31vh;
-    width: 75.5%;
-    z-index: 5;
+.ym_popup-content{
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+  }
+
+.ym_fechar{
     position: absolute;
-    display: flex;
-    justify-content: end;
-    display: none;
+    top: 10px; right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+/* .popup{
+    width: 70%;
+    height: 80%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    justify-self: center;
+
 }
+
+.ym_popup-overlay{
+    display: flex;
+    width: 100vb;
+    height: 60%;
+    padding: 0;
+    border: none;
+} */
 
 .close-pop-up{
     color: black;

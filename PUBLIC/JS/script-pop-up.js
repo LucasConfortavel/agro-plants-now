@@ -1,14 +1,15 @@
-function mostrarPopup(){
-   const popup = document.getElementsByClassName("ym_modal-pop-up-area")[0]
-   const close = document.getElementsByClassName("ym_fechar-popup")[0]
-   close.style.display = none;
+function abrirPopup(link) {
+   const cont_popup = document.getElementsByClassName('ym_conteudo-popup')[0];
+   const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
+   fetch(link)
+     .then(response => response.text())
+     .then(html => {
+       cont_popup.innerHTML = html;
+       popup_overlay.style.display = 'flex';
+     });
+ }
 
-   console.log("acho") 
-   popup.style.display = "block"
-}
-function ocultarPopup(){
-   const popup = document.getElementsByClassName("ym_modal-pop-up-area")[0]
-   popup.style.display = "none"
-   console.log("cade?") 
-
+function fecharPopup() {
+   const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
+   popup_overlay.style.display = 'none';
 }
