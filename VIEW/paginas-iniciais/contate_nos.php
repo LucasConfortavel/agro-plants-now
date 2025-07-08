@@ -19,7 +19,7 @@ include "../../INCLUDE/Menu_superior.php";
     <header class="jp_header">
             <div class="jp_overlay"></div>
         </nav>
-    </header>
+    </header> 
 
 
     <section class="ls_container-contate-nos">
@@ -64,6 +64,11 @@ include "../../INCLUDE/Menu_superior.php";
             </form>
         </div>
     </section>
+    <footer>
+        <?php
+            include "../../INCLUDE/footer.php";
+        ?>
+    </footer>
 
     <script src="../PUBLIC/JS/script-menu-superior.js"></script>
     <script src="../PUBLIC/JS/script.js"></script>
