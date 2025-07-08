@@ -19,7 +19,7 @@ include "../../INCLUDE/Menu_superior.php";
     <header class="jp_header">
             <div class="jp_overlay"></div>
         </nav>
-    </header>
+    </header> 
 
 
     <section class="ls_container-contate-nos">
