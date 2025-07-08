@@ -56,7 +56,7 @@ include "../../INCLUDE/Menu_adm.php";
                             <td class="ym_td">José Farmer</td>
                             <td class="ym_td">16/08</td>
                             <td class="ym_td">R$ 100,00</td>
-                            <td class="ym_td "><a href="../../VIEW/adm/venda-info-adm.php"<i class="fa-solid fa-circle-info"></i></a></td>
+                            <td class="ym_td "><a href="venda-info-adm.php"<i class="fa-solid fa-circle-info"></i></a></td>
                         </tr>
                         ';
                     ?>
