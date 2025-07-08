@@ -18,11 +18,11 @@ $link = 'https://whatsapp.linkbacana.com';
     <section class="ym_area-pop-up">
         <div class="ym_pop-up">
             <div class="ym_superior-pop-up">
-                <h1 class='ym_titulo' style="margin-left: 10px;">O link foi criado</h1>
-                <button onclick= "window.location.href='../adm/venda-info-adm.php'" class="ym_btn-pop-up" style="margin-bottom: 20px;"><img class="ym_img-icons" src="../../PUBLIC/img/img_x.png" alt="X" style="margin-left: 100px;"></button>
+                <h1 class='ym_titulo' style="margin-left: 5px;">O link foi criado</h1>
+                <button onclick= "window.location.href='../adm/venda-info-adm.php'" class="ym_btn-pop-up" style="margin-bottom: 20px;"><img class="ym_img-icons" src="../../PUBLIC/img/img_x.png" alt="X" style="margin-left: 100px; margin-top: 3.5px;"></button>
             </div>
             
-            <div class="ym_inferior-pop-up">
+            <div class="ym_inferior-pop-up" style="margin-left: 5px;">
                 <p id="ym_link"><?php echo $link; ?></p>
                 <button onclick="copiarLink()" class='ym_btn-pop-up' style="margin-left: -5px;"><i class="fa-solid fa-copy"></i></button>
             </div>
