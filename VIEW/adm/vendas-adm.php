@@ -8,9 +8,9 @@ include "../../INCLUDE/Menu_adm.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendas</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/vendas-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/vendas-adm.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
@@ -52,8 +52,8 @@ include "../../INCLUDE/Menu_adm.php";
                     <?php
                         echo'
                         <tr class="ym_tr">
-                            <td class="ym_td">Luã Carlos</td>
-                            <td class="ym_td">Paulo Rojas</td>
+                            <td class="ym_td">Ederson Costa</td>
+                            <td class="ym_td">José Farmer</td>
                             <td class="ym_td">16/08</td>
                             <td class="ym_td">R$ 100,00</td>
                             <td class="ym_td "><a href="venda-info-adm.php"<i class="fa-solid fa-circle-info"></i></a></td>

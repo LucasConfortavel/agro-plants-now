@@ -5,7 +5,6 @@
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    box-sizing: border-box;
 }
 
 body {
@@ -170,6 +169,10 @@ body {
     background-color: #45a049;
 }
 
+.ym_btn-padrao {
+    justify-content: center;
+}
+
 .jp_edit-btn {
     display: flex;
     align-items: center;
@@ -248,7 +251,4 @@ body {
         text-align: center;
     }
 
-    .jp_btn-update {
-        width: 100%;
-    }
 }

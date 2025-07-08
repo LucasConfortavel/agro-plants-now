@@ -2,7 +2,6 @@
 * {
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
   }
   
   body {
@@ -38,7 +37,7 @@
     align-items: center;
     gap: 0.75rem;
     position: relative;
-    z-index: 100;
+    z-index: 1000;
   }
   
   .jp_logo-img {
@@ -61,6 +60,7 @@
   
   /* Navigation links */
   .jp_sidebar {
+    z-index: 1000;
     display: flex;
     align-items: center;
   }
@@ -183,6 +183,7 @@
   
     .jp_sidebar.active {
       right: 0;
+      z-index: 1000;
     }
   
     .jp_nav-links {

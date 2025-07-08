@@ -203,6 +203,211 @@ body{
 }
 
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --color-primary-1: #FFFFFF; 
+    --color-primary-2: #F0EEEE; /*COR DO FUNDO DA TELA */
+    --color-primary-3: #EFEFEF; /*COR DOS OBJ DEPOIS DO FUNDO */
+    --color-primary-4: #F6F6F6; /*DOCK */
+    --color-primary-5: #E7E6E6; /*Stroke */
+    --color-primary-6: #45734B; /* Background Buttons */
+    --color-primary-7: #008F9F; /* cor hover palavras */
+    --color-primary-8:  rgba(0,0,0, 0.5); /* Cor texto e icones*/
+
+    --color-status-1: #30AB46;
+    --color-status-2: #FF0000;
+    /* Usar apenas nas paginas de Relatório as cores de "status"*/
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+
+}
+body{
+    background-color: var(--color-primary-2);
+}
+
+
+.jc_login-section {
+    display: flex;
+    height: 617px;
+    background-image: url(../imagens/ceu-claro_1\ \(2\).png);
+    background-color: #F0EEEE; 
+    background-size: cover;
+    background-position: center;
+    justify-content: space-between;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+.jc_left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    margin-left: 131px;
+}
+
+.jc_left-side h2 {
+    font-size: 64px;
+    color: #fff; 
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.jc_login-box {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-start; 
+    background-color: #FFFFFF;
+    padding: 20px 40px; 
+    border-radius: 10px;
+    width: 450px; 
+    box-shadow: 0 4px 10px rgba(29, 29, 29, 0.1); 
+    font-family: 'Poppins', sans-serif;
+    margin-right: 150px;
+    margin: auto;
+    height: 80%;
+    
+}
+
+
+.jc_login-box h3 {
+    font-size: 30px !important;
+    font-family: 'Poppins', sans-serif; 
+    color: #333; 
+    margin-top: 0; /* Remove o espaço acima do título */
+    margin-bottom: 150px; /* Ajuste o espaçamento abaixo do título */
+    text-align: center;
+    font-weight: normal;
+}
+
+
+
+
+
+.jc_input-field {
+    width: 90%;
+    padding: 12px 14px;  
+    margin-bottom: 18px; 
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #CCCCCC; 
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: inset 10 12px 14px rgba(0, 0, 0, 0.1); 
+   
+}
+
+.jc_forgot-password {
+    font-size: 12px; 
+    color: #555;
+    margin-bottom: 20px; 
+    align-self: baseline; 
+    text-decoration: none; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.jc_forgot-password:hover {
+    color: var(--color-primary-7); 
+    transition: color 0.3s ease;
+}
+
+
+.jc_login-btn {
+    width: 40%;
+    padding: 8px 10px ;
+    font-size: 15px;
+    background-color: #45734B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 50px; 
+    align-self: center; 
+    text-decoration: none;
+    text-align: center;
+}
+
+
+.jc_login-box h3 {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif; 
+    color: #333; 
+    margin-bottom: 90px; 
+    text-align: center; 
+   
+    
+}
+
+
+
+.jc_menu-container-sup {
+    width: 100%;
+    height: 90px;
+    background-color: #EFEFEF;
+    border-bottom: 4PX solid #E7E6E6 ;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    
+   
+}
+
+.jc_nav-bar-menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.jc_nav-list {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 60px;
+    justify-content: center;
+    
+}
+
+.jc_nav-link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+    stroke: var(--color-primary-5);
+    font-weight: 450;
+    font-family: "Poppins", sans-serif;
+}
+
+.jc_nav-link:hover {
+    color: var(--color-primary-7);
+    transition: 0.5s;
+}
+
+.jc_logo {
+    margin: 47px;
+    margin-bottom: 55px;
+}
+
+.jc_btn-button-padrao {
+    margin: 60px;
+    color: white;
+    background-color: #45734B;
+    padding: 10px 30px; 
+    font-size: 14px; 
+    border-radius: 8px; 
+    border: none; 
+}
+
+
 @media screen and (max-width: 1024px) { 
     .jc_login-section {
         flex-direction: column;

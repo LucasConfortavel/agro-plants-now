@@ -14,7 +14,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* box-sizing: border-box; */
   font-family: "Poppins", sans-serif;
 }
  
@@ -183,7 +182,75 @@ body {
   border-radius: 3px;
 }
  
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media (max-width: 480px) and (max-width: 375px) {
+  .header-content {
+    padding: 15px;
+  }
+
+  .logo {
+    max-width: 140px;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+  }
+
+  .btn-button-padrao {
+    font-size: 14px;
+    padding: 10px 20px;
+    width: 100%;
+  }
+
+  .login-section {
+    padding: 30px 15px;
+  }
+
+  .center-box {
+    max-width: 100%;
+    margin: 0 10px;
+  }
+
+  .form-title {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .form-container {
+    padding: 0 20px 20px;
+  }
+
+  .input-field {
+    height: 34px;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+    padding: 12px;
+    width: 20%;
+  }
+
+  .menu-toggle {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .nav-list {
+    display: none; /* pode ser controlado via JS para abrir menu hamburguer */
+  }
+}
+
+
+
+@media  (max-width: 768px)  {
   .header-content {
     height: 80px;
     padding: 0 30px;
@@ -235,7 +302,7 @@ body {
   }
 }
  
-@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+@media  (max-width: 1024px)  {
   .login-section {
     padding: 30px;
   }
@@ -243,80 +310,46 @@ body {
   .center-box {
     max-width: 550px;
   }
+
+  .form-title{
+    margin-left: 10px;
+  }
 }
  
-/* Mobile styles */
-@media screen and (max-width: 767px) {
-  /* Keep existing mobile styles */
+@media (max-width: 1400px) {
   .header-content {
-    flex-direction: column;
-    height: auto;
-    padding: 15px;
+    padding: 0 30px;
   }
- 
-  .nav-bar-menu {
-    width: 100%;
-    justify-content: space-between;
-  }
- 
-  .menu-toggle {
-    display: flex;
-  }
- 
+
   .nav-list {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    background-color: var(--color-primary-2);
-    margin-left: 0;
-    padding: 20px;
-    gap: 20px;
-    z-index: 100;
-    display: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 30px;
   }
- 
-  .nav-list.active {
-    display: flex;
-  }
- 
-  .btn-button-padrao {
-    margin: 15px 0;
-    width: 100%;
-  }
- 
-  .login-section {
-    padding: 20px;
-  }
- 
-  .center-box {
-    border-radius: 8px;
-  }
- 
+
   .form-title {
-    font-size: 16px;
-    padding: 20px 20px 0;
+    font-size: 18px;
   }
- 
-  .form-container {
-    padding: 0 20px 25px;
-  }
- 
+
   .input-field {
-    height: 48px;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
- 
-  .login-btn {
-    padding: 10px 24px;
-    font-size: 14px;
-    float: none;
-    width: auto;
-    align-self: flex-end;
-    margin-right: 5px;
+    font-size: 15px;
   }
 }
+
+@media (max-width: 1400px) {
+  .header-content {
+    padding: 0 30px;
+  }
+
+  .nav-list {
+    gap: 30px;
+  }
+
+  .form-title {
+    font-size: 18px;
+  }
+
+  .input-field {
+    font-size: 15px;
+  }
+}
+
  
