@@ -40,6 +40,11 @@ include "../../INCLUDE/Menu_superior.php";
         
         </div>
     </main> 
+    <footer>
+        <?php
+            include "../../INCLUDE/footer.php";
+        ?>
+    </footer>
 </body>
 </html>
 

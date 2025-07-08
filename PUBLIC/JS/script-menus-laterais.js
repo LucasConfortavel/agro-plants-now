@@ -21,7 +21,7 @@ if(page.toLowerCase().includes("clientes")){
 
 };
 
-if(page.toLowerCase().includes("vendas")){
+if(page.toLowerCase().includes("vendas") || page.toLowerCase().includes("venda")){
     let area = document.getElementById("vendas")
     area.style.backgroundColor = "#3a3a3a"
     area.style.borderRadius = "8px"

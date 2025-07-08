@@ -11,10 +11,10 @@ include "../../INCLUDE/Menu_vend.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/ajustes-vend.css">
+    
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-
+    <link rel="stylesheet" href="../../PUBLIC/css/ajustes-vend.css">
 </head>
 <body>
 

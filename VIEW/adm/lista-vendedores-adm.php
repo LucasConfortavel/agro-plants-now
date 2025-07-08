@@ -16,6 +16,14 @@
 
 </head>
 <body>
+
+    <div class="ym_popup-overlay" >
+        <div class="ym_popup-content">
+            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
+
     <main class="jp_main-content">
         <h1 class="ym_titulo">Lista de Vendedores</h1> 
         <div class="sab-engloba-tudo">
@@ -50,15 +58,12 @@
 
                         <tbody class="ym_tbody">
 
-                            <?php
-                                echo'
+
                                 <tr class="ym_tr">
                                     <td class="ym_td">#paulorojas100</td>
                                     <td class="ym_td">16/08</td>
-                                    <td class="ym_td "><a href="../../VIEW/pop-up/conf_remover_vendedor.php"<i class="fa-solid fa-circle-info"></i></a></td>
+                                    <td class="ym_td "><i onclick="abrirPopup('../pop-up/conf_remover_vendedor.php')" class="fa-solid fa-circle-info"></i></td>
                                 </tr>
-                                ';
-                            ?>
 
                         </tbody>
                     </table>
@@ -71,6 +76,7 @@
 
     </main>
     <script src="../../PUBLIC/JS/script.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 
 </body>
 </html>
