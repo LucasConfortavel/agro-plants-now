@@ -7,10 +7,9 @@
 }
 
 .eze-container {
-    width: 738px;
-    height: 460px;
+    width: 50vw;
+    height: 50vh;
     border-radius: 10px;
-    overflow: hidden;
 }
 
 .eze-tab-header {

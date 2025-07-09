@@ -29,7 +29,7 @@
 
         <section class="vc_sectionProdutos">
 
-            <h1 class="vc_titulo">Adicionar Produtos e Serviços</h1>
+            <h1 class="ym_titulo">Adicionar Produtos e Serviços</h1>
 
             <div class="vc_categorias">
 

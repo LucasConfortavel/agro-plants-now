@@ -57,6 +57,7 @@
     align-items: center;
     justify-content: center;
     top: 0;
+    overflow: hidden;
     position: absolute;
     background-color: transparent;
     backdrop-filter: blur(4px);
@@ -64,6 +65,7 @@
 }
 
 .ym_popup-content{
+    overflow: hidden;
     background: white;
     padding: 30px;
     border-radius: 5px;
@@ -74,33 +76,12 @@
   }
 
 .ym_fechar{
+    overflow: hidden;
     position: absolute;
     top: 10px; right: 10px;
     cursor: pointer;
     font-size: 18px;
-  }
-/* .popup{
-    width: 70%;
-    height: 80%;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    align-items: center;
-    justify-self: center;
-
-}
-
-.ym_popup-overlay{
-    display: flex;
-    width: 100vb;
-    height: 60%;
-    padding: 0;
-    border: none;
-} */
-
-.close-pop-up{
-    color: black;
-}
+    }
 
 /* Responsividade */
 @media (max-width: 768px) {
