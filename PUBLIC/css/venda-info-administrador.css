@@ -57,6 +57,14 @@ body {
   margin-bottom: 30px;
 }
 
+.po-main_section{
+
+  background-color: var(--card-bg);
+  border-radius: 10px;
+
+
+}
+
 .P_table-header {
     display: grid;
     grid-template-columns: 2.3fr 1fr 1fr 1fr;
