@@ -70,7 +70,7 @@
 
         .company-description {
             color: #b8e6c1;
-            line-height: 1.8;
+            /* line-height: 1.8; */
             font-size: 1.05rem;
             margin-bottom: 15px;
             font-weight: 400;
@@ -79,6 +79,7 @@
         .social-links {
             display: flex;
             gap: 1.2rem;
+            margin-bottom:0.4rem;
         }
 
         .social-links a {
@@ -165,7 +166,7 @@
             display: flex;
             align-items: center;
             gap: 1.2rem;
-            margin-bottom: 15px;
+            margin-bottom: 9px;
             color: #b8e6c1;
             font-size: 1.05rem;
         }
@@ -180,7 +181,7 @@
 
         .footer-bottom {
             border-top: 1px solid rgba(76, 175, 80, 0.3);
-            padding-top: 2rem;
+            padding-top: 5px;
             text-align: center;
         }
 
@@ -221,8 +222,8 @@
         }
 
         .logo-img{
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
 
         }
 
@@ -360,10 +361,6 @@
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <span>contato@agroplantsnow.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Seg - Sex: 8h às 18h</span>
                     </div>
                 </div>
             </div>
