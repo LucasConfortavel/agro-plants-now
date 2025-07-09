@@ -17,6 +17,15 @@
 
 </head>
 <body>
+
+    <!-- pop-up -->
+    <div class="ym_popup-overlay" >
+        <div class="ym_popup-content">
+            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
+
     <main class="jp_main-content">
         <h1 class="ym_titulo">Lista de Vendas</h1> 
         <div class="sab-engloba-tudo">
@@ -30,7 +39,7 @@
                 </div>
 
                 <div class="ym_area-btn-superior">
-                    <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
+                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
                 </div>
 
 
@@ -44,7 +53,6 @@
                                 <th class="ym_th" style="color:white;">Comprador</th>
                                 <th class="ym_th" style="color:white;">Data de cadastro</th>
                                 <th class="ym_th" style="color:white;">Total</th>
-                                <th class="ym_th"></th>
                             </tr>
                                 
                                
@@ -59,7 +67,6 @@
                                     <td class="ym_td">Paulo Rojas</td>
                                     <td class="ym_td">16/08</td>
                                     <td class="ym_td">R$ 100,00</td>
-                                    <td class="ym_td "><a href="../../VIEW/vend/venda-info-vendedor.php"<i class="fa-solid fa-circle-info"></i></a></td>
                                 </tr>
                                 ';
                             ?>
@@ -70,7 +77,7 @@
             </section>
         </div> 
     </main>
-    <script src="../../PUBLIC/JS/script.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 </body>
 </html>
 

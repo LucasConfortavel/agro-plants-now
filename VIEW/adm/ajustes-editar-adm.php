@@ -10,8 +10,8 @@ include "../../INCLUDE/Menu_adm.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/ajustes-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/ajustes-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
@@ -43,31 +43,31 @@ include "../../INCLUDE/Menu_adm.php";
                         <div class="jp_info-grid">
                             <div class="jp_info-item">
                                 <label>Nome</label>
-                                <input type="text" value="José Farmer" disabled class="jp_form-input disabled">
+                                <input type="text" value="José Farmer" disabled class="ym_input-padrao disabled">
                             </div>
                             <div class="jp_info-item">
                                 <label>Idade</label>
-                                <input type="text" value="39" disabled class="jp_form-input disabled">
+                                <input type="text" value="39" disabled class="ym_input-padrao disabled">
                             </div>
                             <div class="jp_info-item">
                                 <label>Data de nascimento</label>
-                                <input type="text" value="10/09/2007" disabled class="jp_form-input disabled">
+                                <input type="text" value="10/09/2007" disabled class="ym_input-padrao disabled">
                             </div>
                             <div class="jp_info-item">
                                 <label>E-mail</label>
-                                <input type="email" placeholder="Digite seu e-mail" class="jp_form-input">
+                                <input type="email" placeholder="Digite seu e-mail" class="ym_input-padrao">
                             </div>
                             <div class="jp_info-item">
                                 <label>Número de telefone</label>
-                                <input type="tel" placeholder="Digite seu telefone" class="jp_form-input">
+                                <input type="tel" placeholder="Digite seu telefone" class="ym_input-padrao">
                             </div>
                             <div class="jp_info-item">
                                 <label>Posição</label>
-                                <input type="text" value="Administrador" disabled class="jp_form-input disabled">
+                                <input type="text" value="Administrador" disabled class="ym_input-padrao disabled">
                             </div>
                             <div class="jp_info-item">
                                 <label>CPF</label>
-                                <input type="text" value="345.367.234-14" disabled class="jp_form-input disabled">
+                                <input type="text" value="345.367.234-14" disabled class="ym_input-padrao disabled">
                             </div>
                         </div>
                         <div class="jp_form-actions">
@@ -86,8 +86,6 @@ include "../../INCLUDE/Menu_adm.php";
     </script>
 
     <div class="jp_overlay"></div>
-    <script src="../../PUBLIC/js/script-ajustes.js"></script>
-    <script src="../../PUBLIC/JS/script.js"></script>
 
 </body>
 </html>

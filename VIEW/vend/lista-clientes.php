@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="../../PUBLIC/css/lista-clientes.css">
     </head>
 <body>
+    <!-- pop-up -->
+    <div class="ym_popup-overlay" >
+        <div class="ym_popup-content">
+            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
+
     <main class="jp_main-content">   
         <h1 class="ym_titulo">Lista de Clientes</h1>
         <section class="ym_section">
@@ -27,7 +35,7 @@
             </div>
 
             <div class="ym_area-btn-superior">
-                <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior ym_btn-padrao">Cadastrar Cliente</a>
+                <a onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar Cliente</a>
             </div>
             
             <div class="ym_area-table">
@@ -39,7 +47,6 @@
                             <th class="ym_th" style="color:white;">Nome</th>
                             <th class="ym_th" style="color:white;">Data de cadastro</th>
                             <th class="ym_th" style="color:white;">Total de compras</th>
-                            <th class="ym_th"></th>
                             
                             
                     </thead>
@@ -52,7 +59,6 @@
                                 <td class="ym_td">Paulo Rojas</td>
                                 <td class="ym_td">16/08</td>
                                 <td class="ym_td">2</td>
-                                <td class="ym_td "><a href="../../VIEW/vend/venda-info-vendedor.php"><i class="fa-solid fa-circle-info"></i></a></td>
                             </tr>
                             ';
                         ?>
@@ -66,6 +72,7 @@
     
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="clientes-script.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 
 </body>
 </html>

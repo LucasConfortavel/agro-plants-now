@@ -84,6 +84,12 @@
     }
 
 /* Responsividade */
+@media (max-width: 1024px) {
+    .ym_titulo {
+        margin-top: 10%;
+    }
+}
+
 @media (max-width: 768px) {
     .ym_titulo {
         margin-top: 10%;

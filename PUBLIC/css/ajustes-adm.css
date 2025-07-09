@@ -153,21 +153,12 @@ body {
 }
 
 .jp_btn-update {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 24px;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-    width: 200px;
-    max-width: 100%;
-    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
-.jp_btn-update:hover {
-    background-color: #45a049;
-}
 
 .jp_edit-btn {
     display: flex;
@@ -194,6 +185,10 @@ body {
 
 .jp_password-group {
     width: 100%;
+}
+
+.ym_input-padrao {
+    max-width: 90%;
 }
 
 /* Responsividade */
@@ -245,12 +240,5 @@ body {
     .jp_role {
         max-width: 90%;
         text-align: center;
-    }
-
-    .jp_btn-update {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
     }
 }
