@@ -1,331 +1,331 @@
 * {
-    padding: 0;
-    margin: 0;
-  }
-  
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.ym_sectionProdutos {
+  width: 100%;
+  padding-left: 20px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.ym_titulo {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 2rem;
+  border-left: 10px solid #45734b;
+  padding-left: 10px;
+}
+
+.ym_categorias {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.ym_links {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  flex: 1;
+  max-width: 600px;
+}
+
+.ym_linkCategoria {
+  background-color: rgb(255, 255, 255);
+  font-size: 14px;
+  padding: 10px 15px;
+  font-weight: 600;
+  color: rgb(98, 98, 98);
+  border-radius: 7px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 80px;
+}
+
+.ym_produtoPesquisa,
+.ym_produtoPesquisa-mobile {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.ym_produtoPesquisa {
+  width: 300px;
+  max-width: 40%;
+}
+
+.ym_produtoPesquisa-mobile {
+  width: 100%;
+  display: none;
+  margin-bottom: 10px;
+}
+
+.ym_areaProdutos {
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.ym_textoArea {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.ym_produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.ym_cardProduto {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 280px;
+}
+
+.ym_cardProduto:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ym_img {
+  width: 80%;
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+.ym_nomeProduto {
+  color: black;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.ym_linkProduto {
+  background-color: #45734b;
+  color: white;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.ym_linkProduto:hover {
+  background-color: #3a5f40;
+}
+
+/* Large screens - 1400px and up */
+@media screen and (min-width: 1400px) {
   .ym_sectionProdutos {
-    width: 99%;
-    padding-left: 20px;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 45px;
+    padding-left: 40px;
+    gap: 60px;
   }
-  
+
   .ym_titulo {
-    color: rgba(0, 0, 0, 0.9);
-    font-size: 2rem;
-    border-left: 10px solid #45734b;
-    padding-left: 10px;
+    font-size: 2.5rem;
   }
-  
-  .ym_categorias {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  
-  .ym_links {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 10px;
-    flex: 1;
-    max-width: 600px;
-  }
-  
-  .ym_linkCategoria {
-    background-color: rgb(255, 255, 255);
-    font-size: 14px;
-    padding: 10px 15px;
-    font-weight: 600;
-    color: rgb(98, 98, 98);
-    border-radius: 7px;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    flex: 1;
-    min-width: 80px;
-  }
-  
-  .ym_produtoPesquisa,
-  .ym_produtoPesquisa-mobile {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  .ym_produtoPesquisa {
-    width: 300px;
-    max-width: 40%;
-  }
-  
-  .ym_produtoPesquisa-mobile {
-    width: 100%;
-    display: none;
-    margin-bottom: 10px;
-  }
-  
-  .ym_areaProdutos {
-    gap: 15px;
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px;
-  }
-  
-  .ym_textoArea {
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  
+
   .ym_produtos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px 0;
-    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
   }
-  
+
   .ym_cardProduto {
-    display: flex;
-    align-items: center;
+    padding: 25px;
+    min-height: 320px;
+  }
+
+  .ym_areaProdutos {
+    margin-right: 40px;
+  }
+}
+
+/* Medium-large screens - 1024px to 1399px */
+@media screen and (max-width: 1399px) {
+  .ym_produtos {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* Tablet screens - 768px to 1023px */
+@media screen and (max-width: 1024px) {
+  .ym_sectionProdutos {
+    width: 100%;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .ym_titulo {
+    text-align: center;
+    border: none;
+    font-size: 1.8rem;
+    padding-left: 0;
+  }
+
+  .ym_categorias {
     flex-direction: column;
     gap: 15px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    min-height: 280px;
   }
-  
-  .ym_cardProduto:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+
+  .ym_links {
+    width: 100%;
+    max-width: none;
+    justify-content: space-between;
   }
-  
+
+  .ym_linkCategoria {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .ym_produtoPesquisa {
+    display: none;
+  }
+
+  .ym_produtoPesquisa-mobile {
+    display: block;
+  }
+
+  .ym_produtos {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 15px 0;
+  }
+
+  .ym_cardProduto {
+    padding: 15px;
+    min-height: 250px;
+  }
+
+  .ym_areaProdutos {
+    margin-right: 0;
+  }
+}
+
+/* Small tablet screens - 768px to 1023px */
+@media screen and (max-width: 768px) {
+  .ym_sectionProdutos {
+    padding: 15px;
+    gap: 25px;
+  }
+
+  .ym_titulo {
+    font-size: 1.6rem;
+  }
+
+  .ym_links {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ym_linkCategoria {
+    font-size: 12px;
+    padding: 8px 10px;
+    min-width: 70px;
+  }
+
+  .ym_produtos {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .ym_cardProduto {
+    padding: 12px;
+    min-height: 220px;
+    gap: 10px;
+  }
+
   .ym_img {
-    width: 80%;
-    max-width: 120px;
-    height: auto;
-    object-fit: contain;
+    width: 70%;
+    max-width: 100px;
   }
-  
+
   .ym_nomeProduto {
-    color: black;
-    font-size: 16px;
-    text-align: center;
-    font-weight: 500;
+    font-size: 14px;
   }
-  
+
   .ym_linkProduto {
-    background-color: #45734b;
-    color: white;
-    text-align: center;
-    padding: 8px 16px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-    /* width: 100%; */
+    padding: 6px 12px;
+    font-size: 13px;
   }
-  
-  .ym_linkProduto:hover {
-    background-color: #3a5f40;
+
+  .ym_textoArea {
+    font-size: 18px;
   }
-  
-  /* Large screens - 1400px and up */
-  @media screen and (min-width: 1400px) {
-    .ym_sectionProdutos {
-      padding-left: 40px;
-      gap: 60px;
-    }
-  
-    .ym_titulo {
-      font-size: 2.5rem;
-    }
-  
-    .ym_produtos {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 30px;
-    }
-  
-    .ym_cardProduto {
-      padding: 25px;
-      min-height: 320px;
-    }
-  
-    .ym_areaProdutos {
-      margin-right: 40px;
-    }
+}
+
+/* Mobile screens - 480px and below */
+@media screen and (max-width: 480px) {
+  .ym_sectionProdutos {
+    padding: 10px;
+    gap: 20px;
   }
-  
-  /* Medium-large screens - 1024px to 1399px */
-  @media screen and (max-width: 1399px) {
-    .ym_produtos {
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    }
+
+  .ym_titulo {
+    font-size: 1.4rem;
   }
-  
-  /* Tablet screens - 768px to 1023px */
-  @media screen and (max-width: 1024px) {
-    .ym_sectionProdutos {
-      width: 100%;
-      gap: 30px;
-      padding: 20px;
-    }
-  
-    .ym_titulo {
-      text-align: center;
-      border: none;
-      font-size: 1.8rem;
-      padding-left: 0;
-    }
-  
-    .ym_categorias {
-      flex-direction: column;
-      gap: 15px;
-    }
-  
-    .ym_links {
-      width: 100%;
-      max-width: none;
-      justify-content: space-between;
-    }
-  
-    .ym_linkCategoria {
-      font-size: 13px;
-      padding: 8px 12px;
-    }
-  
-    .ym_produtoPesquisa {
-      display: none;
-    }
-  
-    .ym_produtoPesquisa-mobile {
-      display: block;
-    }
-  
-    .ym_produtos {
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 15px;
-      padding: 15px 0;
-    }
-  
-    .ym_cardProduto {
-      padding: 15px;
-      min-height: 250px;
-    }
-  
-    .ym_areaProdutos {
-      margin-right: 0;
-    }
+
+  .ym_links {
+    flex-direction: column;
+    gap: 8px;
   }
-  
-  /* Small tablet screens - 768px to 1023px */
-  @media screen and (max-width: 768px) {
-    .ym_sectionProdutos {
-      padding: 15px;
-      gap: 25px;
-    }
-  
-    .ym_titulo {
-      font-size: 1.6rem;
-    }
-  
-    .ym_links {
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-  
-    .ym_linkCategoria {
-      font-size: 12px;
-      padding: 8px 10px;
-      min-width: 70px;
-    }
-  
-    .ym_produtos {
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 12px;
-    }
-  
-    .ym_cardProduto {
-      padding: 12px;
-      min-height: 220px;
-      gap: 10px;
-    }
-  
-    .ym_img {
-      width: 70%;
-      max-width: 100px;
-    }
-  
-    .ym_nomeProduto {
-      font-size: 14px;
-    }
-  
-    .ym_linkProduto {
-      padding: 6px 12px;
-      font-size: 13px;
-    }
-  
-    .ym_textoArea {
-      font-size: 18px;
-    }
+
+  .ym_linkCategoria {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
   }
-  
-  /* Mobile screens - 480px and below */
-  @media screen and (max-width: 480px) {
-    .ym_sectionProdutos {
-      padding: 10px;
-      gap: 20px;
-    }
-  
-    .ym_titulo {
-      font-size: 1.4rem;
-    }
-  
-    .ym_links {
-      flex-direction: column;
-      gap: 8px;
-    }
-  
-    .ym_linkCategoria {
-      width: 100%;
-      font-size: 14px;
-      padding: 10px;
-    }
-  
-    .ym_produtos {
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 10px;
-    }
-  
-    .ym_cardProduto {
-      padding: 10px;
-      min-height: 200px;
-      gap: 8px;
-    }
-  
-    .ym_img {
-      width: 60%;
-      max-width: 80px;
-    }
-  
-    .ym_nomeProduto {
-      font-size: 13px;
-    }
-  
-    .ym_linkProduto {
-      padding: 6px 10px;
-      font-size: 12px;
-    }
-  
-    .ym_textoArea {
-      font-size: 16px;
-    }
+
+  .ym_produtos {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
   }
-  
+
+  .ym_cardProduto {
+    padding: 10px;
+    min-height: 200px;
+    gap: 8px;
+  }
+
+  .ym_img {
+    width: 60%;
+    max-width: 80px;
+  }
+
+  .ym_nomeProduto {
+    font-size: 13px;
+  }
+
+  .ym_linkProduto {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .ym_textoArea {
+    font-size: 16px;
+  }
+}
