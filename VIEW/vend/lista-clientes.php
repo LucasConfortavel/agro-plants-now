@@ -52,7 +52,7 @@
                                 <td class="ym_td">Paulo Rojas</td>
                                 <td class="ym_td">16/08</td>
                                 <td class="ym_td">2</td>
-                                <td class="ym_td "><a href=""><i class="fa-solid fa-circle-info"></i></a></td>
+                                <td class="ym_td "><a href="../../VIEW/vend/venda-info-vendedor.php"><i class="fa-solid fa-circle-info"></i></a></td>
                             </tr>
                             ';
                         ?>
