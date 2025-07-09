@@ -21,7 +21,7 @@
         .footer {
             background: linear-gradient(135deg, #1e4d2b 0%, #2d6b3d 50%, #1a3d24 100%);
             color: white;
-            padding: 3.5rem 0 2rem;
+            padding: 1.5rem 0 0.4rem;
             position: relative;
             overflow: hidden;
         }
@@ -51,20 +51,14 @@
             display: grid;
             grid-template-columns: 2fr 1fr 1.5fr;
             gap: 3.5rem;
-            margin-bottom: 2.5rem;
+            /* margin-bottom: 2.5rem; */
         }
 
         .footer-logo {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.8rem;
-        }
-
-        .footer-logo i {
-            font-size: 2.8rem;
-            color: #4caf50;
-            filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.3));
+            margin-bottom: 15px;
         }
 
         .footer-logo h3 {
@@ -78,7 +72,7 @@
             color: #b8e6c1;
             line-height: 1.8;
             font-size: 1.05rem;
-            margin-bottom: 2.2rem;
+            margin-bottom: 15px;
             font-weight: 400;
         }
 
@@ -91,8 +85,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
             background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
             border-radius: 15px;
             color: white;
@@ -171,7 +165,7 @@
             display: flex;
             align-items: center;
             gap: 1.2rem;
-            margin-bottom: 1.4rem;
+            margin-bottom: 15px;
             color: #b8e6c1;
             font-size: 1.05rem;
         }
@@ -224,6 +218,12 @@
             background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
             transform: translateY(-5px) scale(1.1);
             box-shadow: 0 10px 30px rgba(46, 125, 50, 0.5);
+        }
+
+        .logo-img{
+            width: 50px;
+            height: 50px;
+
         }
 
         @media (max-width: 768px) {
@@ -323,7 +323,7 @@
             <div class="footer-content">
                 <div class="footer-section company-info">
                     <div class="footer-logo">
-                        <i class="fas fa-seedling"></i>
+                        <img src="../../PUBLIC/img/img_logo.png" alt="Logo" class="logo-img">
                         <h3>AGRO PLANTS NOW</h3>
                     </div>
                     <p class="company-description">
@@ -341,10 +341,9 @@
                 <div class="footer-section">
                     <h4>Navegação</h4>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#servicos">Serviços</a></li>
-                        <li><a href="#sobre">Sobre Nós</a></li>
-                        <li><a href="#contato">Contate-nos</a></li>
+                        <li><a href="../../VIEW/paginas-iniciais/landing_page.php">Home</a></li>
+                        <li><a href="../../VIEW/paginas-iniciais/sobre_nos.php">Sobre Nós</a></li>
+                        <li><a href="../../VIEW/paginas-iniciais/contate_nos.php">Contate-nos</a></li>
                     </ul>
                 </div>
 
@@ -352,7 +351,7 @@
                     <h4>Contato</h4>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>São Paulo - SP</span>
+                        <span>Campo Grande - MS</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
