@@ -48,3 +48,5 @@ if(isset($_POST['adicionar'])){
     </section>
 </body>
 </html>
+
+<script src="../../PUBLIC/JS/script-menu-superior.js"></script>
