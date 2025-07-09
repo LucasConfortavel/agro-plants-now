@@ -21,14 +21,14 @@
                             <span class="eze-required">*</span>
                             <label class="eze-label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control" placeholder="Nome">
+                        <input type="text" class="ym_input-padrao" placeholder="Nome">
                     </div>
                     <div class="eze-form-group">
                         <div class="eze-form-label-group">
                             <span class="eze-required">*</span>
                             <label class="eze-label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control" placeholder="R$ 00,00">
+                        <input type="text" class="ym_input-padrao" placeholder="R$ 00,00">
                     </div>
                 </div>
                 <div class="eze-form-row">
@@ -37,7 +37,7 @@
                             <span class="eze-required">*</span>
                             <label class="eze-label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control eze-form-control2" placeholder="Categoria">
+                        <input type="text" class="ym_input-padrao" placeholder="Categoria">
                     </div>
                 </div>
             </form>

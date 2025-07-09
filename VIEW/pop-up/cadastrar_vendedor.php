@@ -37,77 +37,75 @@
 </head>
 <body>
 
-    <section class="gs_area-pop-up">
-        <div class="gs_pop-up">
-            
-            <div class="gs_superior-pop-up">
-                <a class="gs_cadastrar-vend">Cadastrar vendedor</a>
+    <div class="gs_pop-up">
+        
+        <div class="gs_superior-pop-up">
+            <h1 class="ym_titulo">Cadastrar vendedor</h1>
+        </div>
+
+        <form action="" method="post" class="gs_form-pop-up">
+
+            <div class="gs_area-input">
+                <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
+                <input class="ym_input-padrao" name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
+            </div>
+            <div class="gs_area-input">
+                <p class="gs_input-aviso">Coloque pelo menos uma dessas informações(E-mail, Telefone)</p>
+                <input class="ym_input-padrao" name="telefone" type="text" placeholder="Telefone">
+            </div>
+            <div class="gs_area-input">
+                <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
+                <input class="ym_input-padrao" name="data_nasc" type="text" placeholder="Data de nascimento" oninput="gs_Validacao(this)">
+            </div>
+            <div class="gs_area-input">
+                <input class="ym_input-padrao" name="email" type="text" placeholder="E-mail">
+            </div>
+            <div class="gs_area-input">
+                <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
+                <input class="gs_pop-up-input" name="cpf" type="text" placeholder="CPF" oninput="gs_Validacao(this)">
             </div>
 
-            <form action="" method="post" class="gs_form-pop-up">
+            <div class="gs_area-btn-submit">
+                <input class="gs_pop-up-btn-submit" name="adicionar" type="submit" value="Cadastrar Vendedor">
+            </div>
 
-                <div class="gs_area-input">
-                    <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
-                    <input class="ym_input-padrao" name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
-                </div>
-                <div class="gs_area-input">
-                    <p class="gs_input-aviso">Coloque pelo menos uma dessas informações(E-mail, Telefone)</p>
-                    <input class="ym_input-padrao" name="telefone" type="text" placeholder="Telefone">
-                </div>
-                <div class="gs_area-input">
-                    <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
-                    <input class="ym_input-padrao" name="data_nasc" type="text" placeholder="Data de nascimento" oninput="gs_Validacao(this)">
-                </div>
-                <div class="gs_area-input">
-                    <input class="ym_input-padrao" name="email" type="text" placeholder="E-mail">
-                </div>
-                <div class="gs_area-input">
-                    <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
-                    <input class="gs_pop-up-input" name="cpf" type="text" placeholder="CPF" oninput="gs_Validacao(this)">
-                </div>
+        </form>
 
-                <div class="gs_area-btn-submit">
-                    <input class="gs_pop-up-btn-submit" name="adicionar" type="submit" value="Cadastrar Vendedor">
-                </div>
+        <form action="" method="post" class="gs_form-pop-up gs_form-mobile">
 
-            </form>
+            <div class="gs_area-input">
+                <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
+                <input class="gs_pop-up-input" name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
+            </div>
 
-            <form action="" method="post" class="gs_form-pop-up gs_form-mobile">
+            <div class="gs_area-input">
+                <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
+                <input class="gs_pop-up-input" name="data_nasc" type="text" placeholder="Data de nascimento" oninput="gs_Validacao(this)">
+            </div>
 
-                <div class="gs_area-input">
-                    <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
-                    <input class="gs_pop-up-input" name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
-                </div>
+            <div class="gs_area-input">
+                <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
+                <input class="gs_pop-up-input" name="cpf" type="text" placeholder="CPF" oninput="gs_Validacao(this)">
+            </div>
 
-                <div class="gs_area-input">
-                    <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
-                    <input class="gs_pop-up-input" name="data_nasc" type="text" placeholder="Data de nascimento" oninput="gs_Validacao(this)">
-                </div>
+            <div class="gs_area-input">
+                <p class="gs_input-aviso">Coloque pelo menos uma dessas informações(Telefone, E-mail)</p>
+                <input class="gs_pop-up-input" name="telefone" type="text" placeholder="Telefone">
+            </div>
+            
+            <div class="gs_area-input">
+                <input class="gs_pop-up-input" name="email" type="text" placeholder="E-mail">
+            </div>
 
-                <div class="gs_area-input">
-                    <p class="gs_input-aviso-obrigatorio">*obrigatório</p>
-                    <input class="gs_pop-up-input" name="cpf" type="text" placeholder="CPF" oninput="gs_Validacao(this)">
-                </div>
-
-                <div class="gs_area-input">
-                    <p class="gs_input-aviso">Coloque pelo menos uma dessas informações(Telefone, E-mail)</p>
-                    <input class="gs_pop-up-input" name="telefone" type="text" placeholder="Telefone">
-                </div>
-                
-                <div class="gs_area-input">
-                    <input class="gs_pop-up-input" name="email" type="text" placeholder="E-mail">
-                </div>
-
-                <div class="gs_area-btn-submit">
-                    <input class="gs_pop-up-btn-submit" name="adicionar" type="submit" value="Cadastrar Vendedor">
-                </div>
+            <div class="gs_area-btn-submit">
+                <input class="gs_pop-up-btn-submit" name="adicionar" type="submit" value="Cadastrar Vendedor">
+            </div>
 
 
 
-            </form>
+        </form>
 
-        </div>
-    </section>
+    </div>
 
 <script>
     function gs_Validacao(inputElement) {

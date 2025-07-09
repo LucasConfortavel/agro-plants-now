@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonvcous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    
+    <!-- pop-up -->
+    <div class="ym_popup-overlay" >
+        <div class="ym_popup-content">
+            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
 
     <main class="jp_main-content">
         
@@ -39,12 +47,12 @@
 
             <section class="vc-section-produtos">
                 <div class="vc-area-produtos">
-                    <a href="../../VIEW/pop-up/pop-up-add-produto.php" class="vc-card-produto">
+                    <a onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php')" class="vc-card-produto">
                         <div class="vc-info-produto">
                             <img src="../../PUBLIC/img/img_adicionar-produto.png" alt="">
                         </div>
                         </a>
-                    <a href="../../VIEW/pop-up/pop-up-add-servico.php" class="vc-card-servico">
+                    <a onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-servico.php')" class="vc-card-servico">
                         <div class="vc-info-produto">
                             <img src="../../PUBLIC/img/img_adicionar-servico.png" alt="">
                         </div>
@@ -59,4 +67,4 @@
 </html>
 
 <script src="../../PUBLIC/JS/script.js"></script>
-
+<script src="../../PUBLIC/JS/script-pop-up.js"></script>

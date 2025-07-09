@@ -17,6 +17,15 @@ include '../../INCLUDE/Menu_adm.php';
 
 </head>
 <body>
+
+    <!-- pop-up -->
+    <div class="ym_popup-overlay" >
+        <div class="ym_popup-content">
+            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
+
     <main class="jp_main-content">
         <h1 class="ym_titulo">Lista de Clientes</h1>
         <section class="ym_section">
@@ -28,8 +37,8 @@ include '../../INCLUDE/Menu_adm.php';
                 </div>
 
                 <div class="ym_area-btn-superior">
-                    <a href="../../VIEW/pop-up/pop-up_remover_cliente.php" class="ym_btn-padrao">Remover Cliente</a>
-                    <a href="../../VIEW/pop-up/cadastroPessoas-Fisica.php" class="ym_btn-padrao">Cadastrar Cliente</a>
+                    <a onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover_clienteFisico.php')" class="ym_btn-padrao">Remover Cliente</a>
+                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas-Fisica.php')" class="ym_btn-padrao">Cadastrar Cliente</a>
 
                 </div>
 
@@ -67,8 +76,7 @@ include '../../INCLUDE/Menu_adm.php';
                 
     </main>
 
-    <script src="../../PUBLIC/JS/script.js"></script>
-    <script src="clientes-script.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 
 </body>
 </html>

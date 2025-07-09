@@ -16,6 +16,14 @@ include "../../INCLUDE/Menu_adm.php";
 
 </head>
 <body>  
+    <!-- pop-up -->
+    <div class="ym_popup-overlay" >
+        <div class="ym_popup-content">
+            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
+
     <main class="jp_main-content">
         <h1 class="ym_titulo">Lista de Vendas</h1> 
         <section class="ym_section">
@@ -28,7 +36,7 @@ include "../../INCLUDE/Menu_adm.php";
             </div>
             
             <div class="ym_area-btn-superior">
-                <a href="../../VIEW/pop-up/cadastroVenda-Fisica.php" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
+                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-Fisica.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
             </div>
             
             <div class="ym_area-table">
@@ -74,4 +82,5 @@ include "../../INCLUDE/Menu_adm.php";
 </body>
 </html>
 
+<script src="../../PUBLIC/JS/script-pop-up.js"></script>
 <script src="../../PUBLIC/JS/script.js"></script>

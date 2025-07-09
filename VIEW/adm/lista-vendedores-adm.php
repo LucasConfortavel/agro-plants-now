@@ -17,6 +17,7 @@
 </head>
 <body>
 
+    <!-- pop-up -->
     <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
             <p class="ym_fechar" onclick="fecharPopup()">✖</p>
@@ -37,8 +38,8 @@
                 </div>
 
                 <div class="ym_area-btn-superior">
-                    <a href="../../VIEW/pop-up/pop-up_remover_vendedor.php" class="ym_btn-superior ym_btn-padrao">Remover vendedor</a>
-                    <a href="../../VIEW/pop-up/cadastrar_vendedor.php" class="ym_btn-superior ym_btn-padrao">Cadastrar vendedor</a>
+                    <a  onclick= "abrirPopup('../../VIEW/pop-up/pop-up_remover_vendedor.php')" class="ym_btn-superior ym_btn-padrao">Remover vendedor</a>
+                    <a onclick= "abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar vendedor</a>
                 </div>
 
 
@@ -57,13 +58,19 @@
                         </thead>
 
                         <tbody class="ym_tbody">
+                            <?php
+                                echo "
+                                    <tr class='ym_tr'>
+                                        <td class='ym_td'>#paulorojas100</td>
+                                        <td class='ym_td'>16/08</td>
+                                        <td class='ym_td'>
+                                            <i onclick=\"abrirPopup('../pop-up/conf_remover_vendedor.php')\" class='fa-solid fa-circle-info'></i>
+                                        </td>
+                                    </tr>
+                                ";
+                            ?>
 
 
-                                <tr class="ym_tr">
-                                    <td class="ym_td">#paulorojas100</td>
-                                    <td class="ym_td">16/08</td>
-                                    <td class="ym_td "><i onclick="abrirPopup('../pop-up/conf_remover_vendedor.php')" class="fa-solid fa-circle-info"></i></td>
-                                </tr>
 
                         </tbody>
                     </table>
