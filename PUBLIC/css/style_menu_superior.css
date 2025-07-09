@@ -43,7 +43,7 @@ body {
 }
 
 .jp_logo-img {
-  height: 52px;
+  height: 80px;
   width: auto;
   color: #3f704d;
   transition: transform 0.3s ease;
@@ -159,9 +159,14 @@ body {
   visibility: visible;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 992px){
   .jp_hamburger-menu {
     display: flex;
+  }
+
+  .jp_logo-img{
+    width: auto;
+    height: 70px;
   }
 
   .jp_sidebar {
@@ -179,6 +184,7 @@ body {
   }
 
   .jp_sidebar.active {
+    overflow: hidden;
     right: 0;
   }
 
