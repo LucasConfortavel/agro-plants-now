@@ -6,35 +6,15 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-}
-
 .ym_area-pop-up{
-    width: 40%;
-    height: 35%;
-    background-color:#fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
+    width: 30vw;
 }
 
-.sab_area-titulo {
-    display: flex;
+.ym_area-titulo{
     width: 100%;
-}
-
-.sab_titulo{
-    position: absolute;
-    padding: 10px 0px 0px 25px;
-    color: rgba(0, 0, 0, 0.7);
-    font-size: 1.5rem;
-    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ym_input-area{

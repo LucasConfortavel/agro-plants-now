@@ -122,7 +122,7 @@ body {
 }
 
 .jp_form-input {
-    width: 100%;
+    width: 90%;
     padding: 8px 12px;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -241,7 +241,7 @@ body {
     }
 
     .jp_role {
-        width: 100%;
+        width: 90%;
         text-align: center;
     }
 

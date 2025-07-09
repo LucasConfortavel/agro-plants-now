@@ -9,7 +9,9 @@
 </head>
 <body>
     <div class="ym_area-pop-up">
-        <p class="sab_titulo">Remover vendedor</p>
+        <div class="ym_area-titulo">
+            <h1 class="ym_titulo">Remover vendedor</h1>
+        </div>
 
         <form class="sab_form" action="../adm/lista-vendedores-adm.php" method="post">
             <div class="ym_input-area">
@@ -17,7 +19,7 @@
                 <input type="text" class="ym_input-padrao" placeholder="CPF">
             </div>
 
-            <input type="submit" class="ym_btn-padrao"  value="Avançar">    
+            <input type="submit" class="ym_btn-remover"  value="Remover">    
         </form>
     </div>
 </body>

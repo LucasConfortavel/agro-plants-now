@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-add-produto.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <title>Adicionar Produto</title>
 </head>
 <body>
@@ -20,14 +21,14 @@
                             <span class="eze-required">*</span>
                             <label class="eze-label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control" placeholder="Nome">
+                        <input type="text" class="ym_input-padrao" placeholder="Nome">
                     </div>
                     <div class="eze-form-group">
                         <div class="eze-form-label-group">
                             <span class="eze-required">*</span>
                             <label class="eze-label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control" placeholder="Quantidade">
+                        <input type="text" class="ym_input-padrao" placeholder="Quantidade">
                     </div>
                 </div>
                 
@@ -37,14 +38,14 @@
                             <span class="eze-required">*</span>
                             <label class="eze-label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control" placeholder="Categoria">
+                        <input type="text" class="ym_input-padrao" placeholder="Categoria">
                     </div>
                     <div class="eze-form-group">
                         <div class="eze-form-label-group">
                             <span class="eze-required">*</span>
                             <label class="eze-label-text">Obrigatório</label>
                         </div>
-                        <input type="text" class="eze-form-control" placeholder="R$ 00,00">
+                        <input type="text" class="ym_input-padrao" placeholder="R$ 00,00">
                     </div>
                 </div>
             </form>

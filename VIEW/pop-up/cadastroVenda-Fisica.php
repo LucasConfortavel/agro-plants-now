@@ -15,30 +15,37 @@
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastroVenda.css">
 </head>
 <body>
-    <section class="ym_area-pop-up">
-        <div class="ym_pop-up">
+    <div class="ym_pop-up">
+        
+        <div class="ym_area-titulo">
+            <h1 class="ym_titulo">Cadastrar venda</h1>
+        </div>
+
+        <div class="ym_superior-pop-up">                                
+            <a class="ym_pop-up-select ym_pessoa-fisica">Pessoa Física</a>
+            <a class="ym_pop-up-select ym_pessoa-juridica" onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-Juridica.php')" style="background-color: #c9c9c9; border-left: 2px solid rgb(190, 190, 190); border-bottom: 2px solid rgb(190, 190, 190); border-radius: 0px 0px 0px 10px; cursor: pointer; ">Pessoa Jurídica</a>
+        </div>
+
+        <form action="" method="post" class="ym_form-pop-up">
+
+            <div class="ym_area-input">
+                <p class="ym_input-aviso-obrigatorio">*obrigatório</p>
+                <input class="ym_pop-up-input" name="cpf" type="text" placeholder="CPF" oninput="ym_Validacao()" >
+            </div>                
             
-            <div class="ym_superior-pop-up">                                
-                <a class="ym_pop-up-select ym_pessoa-fisica">Pessoa Física</a>
-                <a class="ym_pop-up-select ym_pessoa-juridica" href="cadastroVenda-Juridica.php" style="background-color: #c9c9c9; border-left: 2px solid rgb(190, 190, 190); border-bottom: 2px solid rgb(190, 190, 190); border-radius: 0px 0px 0px 10px; cursor: pointer; ">Pessoa Jurídica</a>
+            <div class="ym_area-input">
+                <p class="ym_input-aviso-obrigatorio">*obrigatório</p>
+                <input class="ym_pop-up-input" name="valor" type="text" placeholder="Valor" value="0,00$" oninput="ym_Validacao()">
+            </div>                
+
+            <div class="ym_area-btn-submit">
+                <input class="ym_pop-up-btn-submit" name="adicionar" type="submit" value="Avançar">
             </div>
 
-            <form action="" method="post" class="ym_form-pop-up">
 
-                <div class="ym_area-input">
-                    <p class="ym_input-aviso-obrigatorio">*obrigatório</p>
-                    <input class="ym_pop-up-input" name="cpf" type="text" placeholder="CPF" oninput="ym_Validacao()" >
-                </div>                
+        </form>
 
-                <div class="ym_area-btn-submit">
-                    <input class="ym_pop-up-btn-submit" name="adicionar" type="submit" value="Avançar">
-                </div>
-
-
-            </form>
-
-        </div>
-    </section>
+    </div>
 
 
 <script>

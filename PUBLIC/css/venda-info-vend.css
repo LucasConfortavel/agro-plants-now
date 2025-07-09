@@ -403,6 +403,11 @@ body {
 }
 
 /* Responsividade para telas menores */
+@media (max-width: 1024px) {
+  .responsividade{
+    margin-top: 40px;
+  }
+}
 @media (max-width: 768px) {
   .P_cart-summary {
     grid-template-columns: 1fr;

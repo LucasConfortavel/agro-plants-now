@@ -16,8 +16,6 @@ if(isset($_POST['cadastrar'])){
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastroCupom.css">
 </head>
 <body>
-    <section class="ym_area-pop-up">
-
         <div class="ym_pop-up">
             <h1 class="ym_titulo">Cadastro de cupom</h1>
             
@@ -47,7 +45,6 @@ if(isset($_POST['cadastrar'])){
                 
                 <input type="submit" class="ym_form-btn-eviar" name="cadastrar" value="Cadastrar cupom">
             </form>
-
-    </section>
+        </div>
 </body>
 </html>

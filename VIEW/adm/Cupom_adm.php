@@ -18,6 +18,14 @@ include "../../INCLUDE/Menu_adm.php";
 
 </head>
 <body>
+    <!-- pop-up -->
+    <div class="ym_popup-overlay" >
+        <div class="ym_popup-content">
+            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
+
     <main class="jp_main-content">
     <h1 class="ym_titulo">Cupons</h1> 
         <section class="ym_section">
@@ -30,7 +38,7 @@ include "../../INCLUDE/Menu_adm.php";
             </div>
 
             <div class="ym_area-btn-superior">
-                <a href="../../VIEW/pop-up/pop-up-cadastroCupom.php" class="ym_btn-superior ym_btn-padrao">Cadastrar cupom</a>
+                <a onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar cupom</a>
             </div>
 
             <div class="ym_area-table">
@@ -51,15 +59,17 @@ include "../../INCLUDE/Menu_adm.php";
                 <tbody class="ym_tbody">
 
                     <?php
-                        echo'
-                        <tr class="ym_tr">
-                            <td class="ym_td">#paulorojas100</td>
-                            <td class="ym_td sb_td">100%</td>
-                            <td class="ym_td">16/08/2024</td>
-                            <td class="ym_td">01/09/2024</td>
-                            <td class="ym_td"><i class="fa-solid fa-trash"></i></td>
+                        echo"
+                        <tr class='ym_tr'>
+                            <td class='ym_td'>#paulorojas100</td>
+                            <td class='ym_td sb_td'>100%</td>
+                            <td class='ym_td'>16/08/2024</td>
+                            <td class='ym_td'>01/09/2024</td>
+                            <td class='ym_td'>
+                                <i onclick=\"abrirPopup('../pop-up/conf_remover_cupom.php')\" class='fa-solid fa-trash ym_icon-delete'></i>
+                            </td>
                         </tr>
-                        ';
+                        ";
                     ?>
 
                 </tbody>
@@ -72,6 +82,7 @@ include "../../INCLUDE/Menu_adm.php";
 
     </main>
     <script src="../../PUBLIC/JS/script.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 
 </body>
 </html>

@@ -65,6 +65,29 @@
     background-color: white;
 }
 
+.ym_card{
+  padding: 20px;
+  border-radius: 13px;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ym_area-btn{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ym_btn-padrao, .ym_btn-remover{
+  max-width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
 @media screen and (max-width: 1024px){
     .lc_area-infos{
         display: flex;
