@@ -21,6 +21,7 @@
     padding: 0;
 }
 body{
+    font-family: "Poppins";
     background-color: var(--color-primary-2);
 }
 
