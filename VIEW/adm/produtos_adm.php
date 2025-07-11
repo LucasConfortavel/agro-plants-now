@@ -29,8 +29,8 @@
 
                 <div class="ym_links">
                     <a href="produtos-tudo.php" class="ym_linkCategoria ym_btn-padrao">Tudo</a>
-                    <a href="produtos_administrador.php" class="ym_linkCategoria ym_btn-padrao" style="background-color: #45734B; color: white; cursor: auto;">Produtos</a>
-                    <a href="servico_adm.php" class="ym_linkCategoria ym_btn-padrao">Serviços</a>
+                    <a href="produtos_adm.php" class="ym_linkCategoria ym_btn-padrao" style="background-color: #45734B; color: white; cursor: auto;">Produtos</a>
+                    <a href="servicos_adm.php" class="ym_linkCategoria ym_btn-padrao">Serviços</a>
                     <a href="add-prod-serv.php" class="ym_linkCategoria ym_btn-padrao">Adicionar</a>  
                 </div>
 

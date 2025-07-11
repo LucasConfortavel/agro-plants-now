@@ -10,6 +10,7 @@
     <title>Produtos Administrador</title>
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../PUBLIC/css/produtos-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style-add-prod-serv.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonvcous" referrerpolicy="no-referrer" />
 </head>
@@ -27,7 +28,7 @@
         
         <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
 
-        <section class="vc_sectionProdutos">
+        <section class="ym_sectionProdutos">
 
             <h1 class="ym_titulo">Adicionar Produtos e Serviços</h1>
 
@@ -35,11 +36,11 @@
 
                 <input type="text" placeholder="Pesquise por algo no catálogo" class="vc_produtoPesquisa-mobile">   
 
-                <div class="vc_links">
-                    <a href="produtos-tudo.php" class="vc_linkCategoria ym_btn-padrao">Tudo</a>
-                    <a href="produtos_administrador.php" class="vc_linkCategoria ym_btn-padrao">Produtos</a>
-                    <a href="servico_adm.php" class="vc_linkCategoria ym_btn-padrao">Serviços</a>
-                    <a href="add-prod-serv.php" class="vc_linkCategoria ym_btn-padrao" style="background-color: #45734B; color: white; cursor: auto;">Adicionar</a>  
+                <div class="ym_links">
+                    <a href="produtos-tudo.php" class="ym_linkCategoria ym_btn-padrao">Tudo</a>
+                    <a href="produtos_adm.php" class="ym_linkCategoria ym_btn-padrao">Produtos</a>
+                    <a href="servicos_adm.php" class="ym_linkCategoria ym_btn-padrao">Serviços</a>
+                    <a href="add-prod-serv.php" class="ym_linkCategoria ym_btn-padrao" style="background-color: #45734B; color: white; cursor: auto;">Adicionar</a>  
                 </div>
 
                 <input type="text" placeholder="Pesquise por algo no catálogo" class="vc_produtoPesquisa">
@@ -61,6 +62,7 @@
             </section>
 
         </section>
+
     </main>
 
 </body>

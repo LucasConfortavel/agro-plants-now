@@ -1,23 +1,11 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 
 .vc_sectionProdutos {
-  width: 100%;
-  padding-left: 20px;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  gap: 45px;
-}
-
-.vc_titulo {
-  color: rgba(0, 0, 0, 0.9);
-  font-size: 2rem;
-  border-left: 10px solid #45734b;
-  padding-left: 10px;
 }
 
 .vc_categorias {
@@ -52,15 +40,10 @@
 
 .vc_produtoPesquisa,
 .vc_produtoPesquisa-mobile {
-  padding: 10px 15px;
-  border: 1px solid #ddd;
+  width: 50%;
+  padding: 10px;
+  border: none;
   border-radius: 5px;
-  font-size: 14px;
-}
-
-.vc_produtoPesquisa {
-  width: 300px;
-  max-width: 40%;
 }
 
 .vc_produtoPesquisa-mobile {
