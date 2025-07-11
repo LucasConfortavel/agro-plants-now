@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Clientes</title>
+    <title>Gerenciamento de Vendas</title>
 
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
@@ -21,7 +21,10 @@
     <!-- pop-up -->
     <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
-            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_area-superior-popup">
+                <h1 class="ym_titulo-popup">Cadastro de venda</h1>
+                <p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>
+            </div>
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
@@ -39,7 +42,7 @@
                 </div>
 
                 <div class="ym_area-btn-superior">
-                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
+                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-Fisica.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
                 </div>
 
 
