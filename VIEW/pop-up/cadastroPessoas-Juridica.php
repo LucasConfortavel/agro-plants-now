@@ -32,10 +32,6 @@
 </head>
 <body>
     <div class="ym_pop-up">
-        
-        <div class="ym_area-titulo">
-            <h1 class="ym_titulo">Cadastrar Cliente</h1>
-        </div>
 
         <div class="ym_superior-pop-up">
             <a class="ym_pop-up-select ym_pessoa-fisica" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas-Fisica.php')" style="background-color: #c9c9c9; border-left: 2px solid rgb(190, 190, 190); border-bottom: 2px solid rgb(190, 190, 190); border-radius: 0px 0px 10px 0px; cursor: pointer;">Pessoa Física</a>

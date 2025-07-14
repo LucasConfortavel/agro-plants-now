@@ -20,10 +20,14 @@
     <!-- pop-up -->
     <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
-            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_area-superior-popup">
+                <h1 class="ym_titulo-popup">Cadastro de vendedores</h1>
+                <p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>
+            </div>
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
+
 
     <main class="jp_main-content">
         <h1 class="ym_titulo">Lista de Vendedores</h1> 

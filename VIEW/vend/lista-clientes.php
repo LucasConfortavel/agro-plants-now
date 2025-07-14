@@ -18,7 +18,10 @@
     <!-- pop-up -->
     <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
-            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_area-superior-popup">
+                <h1 class="ym_titulo-popup">Cadastro de cliente</h1>
+                <p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>
+            </div>
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
@@ -35,7 +38,7 @@
             </div>
 
             <div class="ym_area-btn-superior">
-                <a onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar Cliente</a>
+                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas-Fisica.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar Cliente</a>
             </div>
             
             <div class="ym_area-table">

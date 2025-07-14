@@ -34,10 +34,6 @@
 </head>
 <body>
     <div class="ym_pop-up">
-        
-        <div class="ym_area-titulo">
-            <h1 class="ym_titulo">Cadastrar Cliente</h1>
-        </div>
 
         <div class="ym_superior-pop-up">
             <a class="ym_pop-up-select ym_pessoa-fisica">Pessoa Física</a>
