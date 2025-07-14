@@ -9,17 +9,9 @@
 
 .gs_pop-up{
     display: flex;
-    width: 50vw;
     flex-direction: column;
-    border-radius: 15px;
-    gap: 15px;
-    overflow: hidden;
-}
-
-.gs_superior-pop-up{
-    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
 }
 
 .gs_cadastrar-vend{
@@ -32,18 +24,24 @@
 }
 
 .gs_form-pop-up{
-    display: grid;
+    display: flex;
+    gap: 20px;
     align-items: center;
-    gap: 30px;
-    padding: 20px;
-    justify-content: space-around;
-    grid-template-columns: auto auto;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .gs_area-input{
+    width: 90%;
     gap: 2px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+.ym_input-padrao{
+    max-width: 90%;
+    margin-left: 5px;
 }
 
 .gs_input-aviso{
@@ -52,18 +50,11 @@
     font-weight: 500;
 }
 
-.gs_input-aviso-obrigatorio{
-    display: none;
-    font-size: 12px;
-    color: red;
-}
-
 .gs_pop-up-input{
     padding: 2px;
     border-radius: 7px;
     border: 2px solid #E7E6E6;
     height: 2rem;
-    width: 18rem;
 }
 
 .gs_pop-up-btn-submit{
@@ -83,25 +74,29 @@
     grid-column-start: 2;
 }   
 
-.gs_form-mobile{
-    display: none;
+.ym_titulo-input{
+    font-size: 14px;
+    font-weight: 500;
 }
 
+.ym_area-opcional-popup{
+    width: 68%;
+    border: 1.5px solid #2d2d2d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 4%;
+    gap: 20px;
+}
+
+
 @media screen and (max-width: 1024px){
-    .gs_form-pop-up{
-        display: none;
-    }
-
-
     .gs_pop-up{
         width: 85vw;
         height: auto;
         max-height: 95vh;
-    }
-
-    .gs_form-mobile{
-        display: flex;
-        flex-direction: column;
     }
 
     .gs_area-input{
