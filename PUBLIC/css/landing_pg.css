@@ -104,6 +104,12 @@ body {
   justify-content: center;
 }
 
+.er_carrosel-box{
+   width: 100%;
+   height: 630px;
+   background-color: aqua;
+}
+
 /* Breakpoint: 1400px */
 @media screen and (max-width: 1400px) {
   .img-container {
