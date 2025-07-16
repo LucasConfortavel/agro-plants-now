@@ -21,7 +21,7 @@ include '../../INCLUDE/Menu_adm.php';
     <!-- pop-up -->
     <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
-            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_area-superior-popup"></div>
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
@@ -37,8 +37,8 @@ include '../../INCLUDE/Menu_adm.php';
                 </div>
 
                 <div class="ym_area-btn-superior">
-                    <a onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover_clienteFisico.php')" class="ym_btn-padrao">Remover Cliente</a>
-                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas-Fisica.php')" class="ym_btn-padrao">Cadastrar Cliente</a>
+                    <a onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover_cliente.php','Remover clientes')" class="ym_btn-padrao">Remover Cliente</a>
+                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de clientes')" class="ym_btn-padrao">Cadastrar Cliente</a>
 
                 </div>
 

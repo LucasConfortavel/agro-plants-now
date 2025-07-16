@@ -110,18 +110,27 @@ table td, table th{
 .ym_area-table{
     height: 400px;
     background-color: rgb(255, 255, 255);
-    
-    
-    
 }
-
 
 .ym_td a{
     color: var(--color-icones-0);
 }
 
+.ym_mobile-td{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 13px;
+    border-radius: 0px 0px 12px 12px;
+}
 
 @media screen and (max-width: 768px) {
+
+    .ym_td-icon, .ym_th-icons{
+        display: none;
+    }
+
     .ym_tabela {
         display: block;
         width: 100%;
@@ -191,11 +200,14 @@ table td, table th{
     }
     .ym_tr{
         background-color: white;
-        margin-bottom: 50px;
         margin-top: 15px;
         overflow: hidden;
-        border-radius: 12px;
+        border-radius: 12px 12px 0px 0px;
         box-shadow: 2px 2px 10px 0px rgba(9, 9, 9, 0.096);
+    }
+
+    .ym_mobile-td{
+        display: flex;
     }
 
 }

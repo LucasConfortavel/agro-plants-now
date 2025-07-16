@@ -51,8 +51,10 @@
 }
 
 .ym_input-form{
+    display: flex;
+    flex-direction: row;
     border: 2px solid rgba(0, 0, 0, 0.137);
-    padding: 1.5%;
+    padding: 1.5% 1px;
     width: 100%;
     border-radius: 2.5px;
 }

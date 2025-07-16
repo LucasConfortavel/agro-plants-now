@@ -21,7 +21,7 @@ include "../../INCLUDE/Menu_adm.php";
     <!-- pop-up -->
     <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
-            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_area-superior-popup"></div>
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
@@ -38,7 +38,7 @@ include "../../INCLUDE/Menu_adm.php";
             </div>
 
             <div class="ym_area-btn-superior">
-                <a onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar cupom</a>
+                <a onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php','Cadastro de cupons')" class="ym_btn-superior ym_btn-padrao">Cadastrar cupom</a>
             </div>
 
             <div class="ym_area-table">
@@ -57,21 +57,19 @@ include "../../INCLUDE/Menu_adm.php";
                 </thead>
 
                 <tbody class="ym_tbody">
-
                     <?php
                         echo"
-                        <tr class='ym_tr'>
-                            <td class='ym_td'>#paulorojas100</td>
-                            <td class='ym_td sb_td'>100%</td>
-                            <td class='ym_td'>16/08/2024</td>
-                            <td class='ym_td'>01/09/2024</td>
-                            <td class='ym_td'>
-                                <i onclick=\"abrirPopup('../pop-up/conf_remover_cupom.php')\" class='fa-solid fa-trash ym_icon-delete'></i>
-                            </td>
-                        </tr>
-                        ";
-                    ?>
-
+                            <tr class='ym_tr'>
+                                <td class='ym_td'>#paulorojas100</td>
+                                <td class='ym_td sb_td'>100%</td>
+                                <td class='ym_td'>16/08/2024</td>
+                                <td class='ym_td'>01/09/2024</td>
+                                <td class='ym_td'>
+                                    <i onclick=\"abrirPopup('../pop-up/conf_remover_cupom.php','Deseja remover este cupom?')\" class='fa-solid fa-trash ym_icon-delete'></i>
+                                </td>
+                            </tr>
+                            "
+                    ?>       
                 </tbody>
             </table>
         

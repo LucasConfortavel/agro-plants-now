@@ -53,25 +53,20 @@
 
             <div class="gs_area-input">
                 <p class="ym_titulo-input">Data de nascimento*</p>
-                <input class="ym_input-form" name="data_nasc" type="text" placeholder="Data de nascimento" oninput="gs_Validacao(this)">
+                <input class="ym_input-form" name="data_nasc" type="date" placeholder="Data de nascimento" oninput="gs_Validacao(this)">
             </div>
 
-            <div class="ym_area-opcional-popup">
-                <div class="gs_area-input">
-                    <p class="gs_input-aviso">Coloque pelo menos uma dessas informações(Telefone, E-mail)</p>
-                    <p class="ym_titulo-input">Telefone*</p>
-                    <input class="ym_input-form" name="telefone" type="text" placeholder="Telefone">
-                </div>
-                
-                <div class="gs_area-input">
-                    <p class="ym_titulo-input">Email*</p>
-                    <input class="ym_input-form" name="email" type="text" placeholder="E-mail">
-                </div>
+            <div class="gs_area-input">
+                <p class="ym_titulo-input">Email*</p>
+                <input class="ym_input-form" name="email" type="email" placeholder="Email">
+            </div>
+            
+            <div class="gs_area-input" id="ym_input-senha">
+                <p class="ym_titulo-input">Senha*</p>
+                <input class="ym_input-form" name="senha" type="password" placeholder="Senha">
             </div>
 
             <input class="ym_btn-padrao" name="adicionar" type="submit" value="Cadastrar Vendedor">
-
-
 
         </form>
 
