@@ -19,7 +19,7 @@
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
-
+    
     <main class="jp_main-content">
         <h1 class="ym_titulo">Relatório de Vendas</h1>
         <div class="po-card">

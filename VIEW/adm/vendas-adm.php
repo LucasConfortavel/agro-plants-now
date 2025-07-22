@@ -37,7 +37,7 @@ include "../../INCLUDE/Menu_adm.php";
             </div>
             
             <div class="ym_area-btn-superior">
-                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda.php','Cadastro de vendas')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
+                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de vendas')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
             </div>
             
             <div class="ym_area-table">

@@ -65,7 +65,7 @@
                 <p class="ym_titulo-input">Senha*</p>
                 <input class="ym_input-form" name="senha" type="password" placeholder="Senha">
             </div>
-
+            
             <input class="ym_btn-padrao" name="adicionar" type="submit" value="Cadastrar Vendedor">
 
         </form>

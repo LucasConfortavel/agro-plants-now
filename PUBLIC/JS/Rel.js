@@ -1,5 +1,3 @@
-console.log("Gustavo gay")
-
 // Dados de exemplo para diferentes páginas - ADICIONADO
 const vendasData = {
   1: [

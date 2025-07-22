@@ -5,18 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmação para remover Cliente CPF</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/pop-up_remover.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastroVenda.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
-
     <form action="" method="post" class="ym_form-pop-up">
-        <div class="ym_input-area">
-            <p class="ym_titulo-input" id="ym_titulo-cpf-cnpj">CPF/CNPJ*</p>
-            <input class="ym_input-form" maxlength="15" id="ym_input-cpf-cnpj" name="cpf/cnpj" type="text" placeholder="CPF/CNPJ" oninput="teste()" >
+
+        <div class="ym_area-input">
+            <p class="ym_titulo-input" id="ym_titulo-cpf-cnpj">Valor da venda*</p>
+            <input class="ym_input-form" name="valor-venda" type="number" placeholder="Valor">
         </div>
 
-        <input class="ym_btn-remover" name="adicionar" type="submit" value="Remover cliente">
+        <div class="ym_area-input">
+            <p class="ym_titulo-input" id="ym_titulo-cpf-cnpj">CPF/CNPJ do cliente*</p>
+            <input class="ym_input-form" maxlength="15" id="ym_input-cpf-cnpj" name="cpf/cnpj-cliente" type="text" placeholder="CPF/CNPJ" oninput="cpf_cnpj()" >
+        </div>
+
+        <input class="ym_btn-padrao" name="adicionar" type="submit" value="Cadastrar venda">
     </form>  
 
 
@@ -25,7 +30,7 @@
 
 <script>
 
-    function teste(){
+    function cpf_cnpj(){
         var ym_area_input = document.getElementById('ym_titulo-cpf-cnpj');
         var input = document.getElementById('ym_input-cpf-cnpj');
         var valor = input.value.length;
