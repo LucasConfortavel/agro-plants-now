@@ -65,13 +65,17 @@ include "../../INCLUDE/Menu_adm.php";
                             <td class="ym_td">José Farmer</td>
                             <td class="ym_td">16/08</td>
                             <td class="ym_td">R$ 100,00</td>
-                            <td class="ym_td "><a href="venda-info-adm.php"<i class="fa-solid fa-circle-info"></i></a></td>
-                        </tr>
+                            <td class="ym_td" id="ym_td-icon"><a href="venda-info-adm.php"><i class="fa-solid fa-circle-info"></i></a></td>
+                            </tr>
                         ';
                     ?>
 
                 </tbody>
                 </table>
+
+                <a class="ym_mobile-td" href="venda-info-adm.php">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
     
             </div>
 

@@ -64,16 +64,20 @@ include "../../INCLUDE/Menu_adm.php";
                                 <td class='ym_td sb_td'>100%</td>
                                 <td class='ym_td'>16/08/2024</td>
                                 <td class='ym_td'>01/09/2024</td>
-                                <td class='ym_td'>
-                                    <i onclick=\"abrirPopup('../pop-up/conf_remover_cupom.php','Deseja remover este cupom?')\" class='fa-solid fa-trash ym_icon-delete'></i>
-                                </td>
+                                <td class='ym_td' id='ym_td-icon'><a onclick=\"abrirPopup('../pop-up/conf_remover_cupom.php','Deseja remover este cupom?')\"><i class='fa-solid fa-trash ym_icon-delete'></i>
+                                </a></td>
+
                             </tr>
                             "
                     ?>       
                 </tbody>
             </table>
-        
-            </div>
+
+            <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/conf_remover_cupom.php','Deseja remover este cupom?')">
+                <i class="fa-solid fa-circle-info"></i>
+            </a>
+            
+        </div>
         </section> 
         
     

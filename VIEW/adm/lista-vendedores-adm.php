@@ -64,9 +64,7 @@
                                     <tr class='ym_tr'>
                                         <td class='ym_td'>#paulorojas100</td>
                                         <td class='ym_td'>16/08</td>
-                                        <td class='ym_td'>
-                                            <i onclick=\"abrirPopup('../pop-up/conf_remover_vendedor.php')\" class='fa-solid fa-circle-info'></i>
-                                        </td>
+                                        <td class='ym_td' id='ym_td-icon'><a onclick=\"abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')\"><i class='fa-solid fa-circle-info'></i></a></td>                                     
                                     </tr>
                                 ";
                             ?>
@@ -75,6 +73,10 @@
 
                         </tbody>
                     </table>
+
+                    <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </a>
             
                 </div>
             </section>
