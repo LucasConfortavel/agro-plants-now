@@ -311,3 +311,176 @@ body {
     font-size: 24px;
   }
 }
+
+@media (max-width: 1400px) {
+  .jp_main-content {
+    padding: 18px;
+  }
+
+  .jp_cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+
+  .jp_card {
+    padding: 18px;
+  }
+
+  .jp_card-title {
+    font-size: 15px;
+  }
+
+  .jp_card-value {
+    font-size: 26px;
+  }
+
+  .jp_sales-section,
+  .jp_chart-section {
+    padding: 18px;
+  }
+
+  .jp_chart-container {
+    height: 220px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .jp_main-content {
+    padding: 16px;
+  }
+
+  .jp_header {
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .jp_cards-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .jp_card {
+    padding: 16px;
+  }
+
+  .jp_card-title {
+    font-size: 14px;
+  }
+
+  .jp_card-value {
+    font-size: 24px;
+  }
+
+  .jp_sales-section,
+  .jp_chart-section {
+    padding: 16px;
+  }
+
+  .jp_sales-title,
+  .jp_chart-title {
+    font-size: 16px;
+  }
+
+  .jp_sales-table th,
+  .jp_sales-table td {
+    padding: 10px 8px;
+  }
+
+  .jp_chart-filters {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .jp_filter-select {
+    min-width: 140px;
+    padding: 8px 12px;
+  }
+
+  .jp_chart-container {
+    height: 200px;
+    padding-right: 6px;
+  }
+
+  .jp_chart-x-label,
+  .jp_chart-y-label {
+    font-size: 11px;
+  }
+
+  .jp_pagination {
+    gap: 8px;
+  }
+
+  .jp_pagination-item {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jp_main-content { padding: 12px; }
+  .jp_header { margin-bottom: 12px; }
+
+
+  .jp_cards-container { grid-template-columns: 1fr; gap: 10px; }
+  .jp_card { padding: 14px; border-radius: 8px; }
+  .jp_card-title { font-size: 13px; }
+  .jp_card-indicator { font-size: 11px; padding: 2px 6px; }
+  .jp_card-value { font-size: 22px; }
+
+  
+  .jp_sales-section,
+  .jp_chart-section {
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+
+  .jp_sales-title,
+  .jp_chart-title { font-size: 15px; }
+
+ 
+  .jp_sales-section { overflow-x: auto; }                
+  .jp_sales-table { table-layout: fixed; width: 100%; min-width: 560px; }
+
+
+  .jp_sales-table th:nth-child(2),
+  .jp_sales-table td:nth-child(2),   
+  .jp_sales-table th:nth-child(3),
+  .jp_sales-table td:nth-child(3) {  
+    display: none;
+  }
+
+  .jp_sales-table th,
+  .jp_sales-table td { padding: 8px 6px; font-size: 13px; }
+
+  
+  .jp_sales-table td:nth-child(5),
+  .jp_sales-table td:nth-child(6) { white-space: nowrap; }
+
+  
+  .jp_chart-filters { flex-direction: column; gap: 8px; }
+
+ 
+  .jp_filter-select {
+    width: 100%;
+    min-width: 0;
+    padding: 6px 4px;      
+    font-size: 13px;       
+    border-radius: 6px;    
+  }
+  .jp_filter-select i {
+    margin-left: 6px;      
+    font-size: 14px;       
+  }
+
+
+  .jp_chart-container { height: 160px; margin-top: 14px; padding-right: 4px; }
+  .jp_chart-x-axis { margin-left: 24px; margin-top: 8px; }
+  .jp_chart-x-label,
+  .jp_chart-y-label { font-size: 10px; }
+
+  
+  .jp_pagination { gap: 6px; margin-top: 16px; }
+  .jp_pagination-item { width: 26px; height: 26px; border-radius: 6px; }
+  .jp_pagination-arrow { margin-left: 6px; }
+}
