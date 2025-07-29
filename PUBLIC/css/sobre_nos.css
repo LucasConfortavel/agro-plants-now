@@ -8,6 +8,7 @@
 
 body{
     font-family: 'Poppins';
+    animation: opacity 2s ease;
 }
 
 .ym_area{
@@ -39,6 +40,50 @@ body{
 
 .ym_img-mobile{
     display: none;
+}
+
+.ym_text1, .ym_img1, .ym_img-mobile{
+    animation: esquerda 1.5s ease;
+}
+
+.ym_text2, .ym_img2{
+    animation: direita 1.5s ease;
+}
+
+.ym_img1, .ym_img2, .ym_img-mobile{
+    transition: all 0.5s ease;
+}
+.ym_img1:hover, .ym_img2:hover, .ym_img-mobile:hover{
+    transform: scale(1.03);
+}
+
+@keyframes esquerda {
+    0%{
+        opacity: 0;
+        transform: translateX(-1000px);
+    }
+
+    100%{
+        transform: translateX(0);
+    }
+}
+@keyframes direita {
+    0%{
+        transform: translateX(1000px);
+    }
+
+    100%{
+        transform: translateX(0);
+    }
+}
+@keyframes opacity {
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
 }
 
 @media screen and (max-width: 600px){

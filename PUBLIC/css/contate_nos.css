@@ -7,16 +7,17 @@ body {
     min-height: 100vh;
     background-color: #F0EEEE;
     /* font-family: "Poppins", sans-serif; */
+    animation: opacity 1.5s ease;
 }
 
 
 
 .ls_container-contate-nos {
-    height: 76vh;
+    height: 90vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     background-color: #45734B;
     padding: 3rem 2rem;
     gap: 3rem;
@@ -121,6 +122,15 @@ body {
     font-size: 1rem;
 }
 
+@keyframes opacity {
+  0%{
+      opacity: 0;
+  }
+
+  100%{
+      opacity: 1;
+  }
+}
 
 @media screen and (max-width: 1400px) {
     .ls_container-contate-nos {

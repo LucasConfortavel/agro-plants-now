@@ -2,7 +2,7 @@
     height: 100vh;
     width: 100vw;
     display: none;
-    z-index: 3;
+    z-index: 999;
     align-items: center;
     justify-content: center;
     top: 0;
@@ -14,6 +14,7 @@
 }
 
 .ym_popup-content{
+    display: none;
     overflow: hidden;
     background: white;
     padding: 10px;
@@ -32,6 +33,7 @@
 }
 
 .ym_titulo-popup{
+    width: 95%;
     font-size: 1.4rem;
 }
 

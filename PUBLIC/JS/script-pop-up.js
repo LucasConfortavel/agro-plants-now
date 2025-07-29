@@ -1,4 +1,5 @@
 function abrirPopup(link,titulo) {
+   const popup = document.getElementsByClassName('ym_popup-content')[0];
    const cont_popup = document.getElementsByClassName('ym_conteudo-popup')[0];
    const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
    const area_superior = document.getElementsByClassName('ym_area-superior-popup')[0];
@@ -26,6 +27,7 @@ function abrirPopup(link,titulo) {
        });
 
        popup_overlay.style.display = 'flex';
+       popup.style.display = 'block'
      });
 }
 

@@ -19,6 +19,7 @@
 body {
   background-color: var(--color-neutra-0);
   overflow-x: hidden;
+  animation: opacity 1.5s ease;
 }
 
 /* Base styles for desktop (above 1400px) */
@@ -102,6 +103,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@keyframes opacity {
+  0%{
+      opacity: 0;
+  }
+
+  100%{
+      opacity: 1;
+  }
 }
 
 /* Breakpoint: 1400px */

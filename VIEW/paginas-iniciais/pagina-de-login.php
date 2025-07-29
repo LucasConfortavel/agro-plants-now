@@ -1,9 +1,9 @@
 <?php
 
 include "../../INCLUDE/Menu_superior.php";
-if(isset($_POST['adicionar'])){
-    header('location:../vend/dashboard_vendedor.php');
-}
+// if(isset($_POST['adicionar'])){
+//     header('location:../vend/dashboard_vendedor.php');
+// }
     
 ?>
 
@@ -14,9 +14,21 @@ if(isset($_POST['adicionar'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina de login</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pagina-de-login.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu_superior.css">
 </head>
+
 <body>    
+
+    <!-- pop-up -->
+    <div class="ym_popup-overlay" >
+        <div class="ym_carregamento-content"></div>
+        <div class="ym_popup-content">
+            <div class="ym_area-superior-popup"></div>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
+
     <section class="jc_login-section">
         <div class="jc_total">
 
@@ -34,13 +46,13 @@ if(isset($_POST['adicionar'])){
                         <input type="password" class="jc_input-field" placeholder="Senha" required>
                     </div>
                     <div class="lc_area-links">
-                        <a href="../pop-up/pop-up-email-recuperar-senha.php" class="jc_forgot-password">Esqueceu sua senha?</a>
-                        <a href="../pop-up/pop-up-criar-senha.php" class="jc_forgot-password">Redefinir senha</a>
+                        <a onclick="abrirPopup('../pop-up/pop-up-email-recuperar-senha.php','Informe seu e-mail para a recuperação de senha')" class="jc_forgot-password">Esqueceu sua senha?</a>
+                        <a onclick="abrirPopup('../pop-up/pop-up-criar-senha.php','Redefinição de senha')" class="jc_forgot-password">Redefinir senha</a>
                     </div>
-                    <input type="submit" class="jc_login-btn" name="adicionar" value="Iniciar Sessão"></input>
+                    <input onclick="carregar('../vend/dashboard_vendedor.php')" type="submit" class="jc_login-btn" name="adicionar" value="Iniciar Sessão" ></input>
                 </form>
                 <div class="lc_area-engrenagem">
-                    <a href="../adm/dashboard-adm.php"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
+                    <a onclick="carregar('../adm/dashboard-adm.php')"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
                 </div>
             </div>
             
@@ -50,3 +62,5 @@ if(isset($_POST['adicionar'])){
 </html>
 
 <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
+<script src="../../PUBLIC/JS/script-pop-up.js"></script>
+<script src="../../PUBLIC/JS/script-carregamento.js"></script>
