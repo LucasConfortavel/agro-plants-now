@@ -54,7 +54,7 @@ include "../../INCLUDE/Menu_adm.php";
                     <i class="fa-solid fa-ticket"></i>
                 </div>
                 <input type="text" placeholder="Cupom" class="ym_input-padrao">
-                <a class="ym_btn-padrao" href="../../pop-up/pop-up-cupon_Adicionar.php">Aplicar</a>
+                <a class="ym_btn-padrao" href="../../VIEW/pop-up/pop-up_cupom_Adicionado.php">Aplicar</a>
 
             </div>
 
