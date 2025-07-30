@@ -91,6 +91,11 @@ body {
   transform: translateY(-1px);
 }
 
+.po-export-button1 {
+  margin-top: 7.6px;
+  height: 22.2px;
+}
+
 /* Filter */
 .po-filter-tempo {
   float: right;

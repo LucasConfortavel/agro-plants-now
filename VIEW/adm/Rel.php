@@ -227,7 +227,7 @@
                     <div class="po-grafico-header">
                         <div class="po-grafico-titulo">Gastos com Comissões</div>
                         <div class="po-btn-grafico">
-                            <a class="po-export-button po-button" onclick="abrirPopup('../pop-up/pop-up-comissao.php','Calcular comissão')">
+                            <a class="po-export-button po-button po-export-button1" onclick="abrirPopup('../pop-up/pop-up-comissao.php','Calcular comissão')">
                                 Calcular Comissão
                             </a>
                             <div class="po-filter-tempo po-button">
