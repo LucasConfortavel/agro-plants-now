@@ -1,90 +1,287 @@
+// Mock data
+const customers = [
+  {
+      id: "1",
+      name: "Paulo Rojas",
+      email: "paulo.rojas@email.com",
+      registrationDate: "2024-08-16",
+      totalPurchases: 2,
+      totalSpent: 1250.0,
+      status: "active",
+  },
+  {
+      id: "2",
+      name: "Maria Silva",
+      email: "maria.silva@email.com",
+      registrationDate: "2024-07-22",
+      totalPurchases: 5,
+      totalSpent: 3200.0,
+      status: "active",
+  },
+  {
+      id: "3",
+      name: "João Santos",
+      email: "joao.santos@email.com",
+      registrationDate: "2024-06-10",
+      totalPurchases: 1,
+      totalSpent: 450.0,
+      status: "pending",
+  },
+  {
+      id: "4",
+      name: "Ana Costa",
+      email: "ana.costa@email.com",
+      registrationDate: "2024-05-15",
+      totalPurchases: 8,
+      totalSpent: 5600.0,
+      status: "active",
+  },
+  {
+      id: "5",
+      name: "Carlos Oliveira",
+      email: "carlos.oliveira@email.com",
+      registrationDate: "2024-04-03",
+      totalPurchases: 0,
+      totalSpent: 0,
+      status: "inactive",
+  },
+];
 
-const clientes = [
-    { id: 1, nome: "Rafael Germinari", data_cadastro: "12/08" },
-    { id: 2, nome: "Calebe Lemos", data_cadastro: "12/08" },
-    { id: 3, nome: "Ederson Costa", data_cadastro: "12/08" },
-    { id: 4, nome: "Enilda Rosa", data_cadastro: "12/08" },
-    { id: 5, nome: "Thiago Almeida", data_cadastro: "12/08" },
-    { id: 6, nome: "Pamela Ferreira", data_cadastro: "12/08" },
-    { id: 7, nome: "João Silva", data_cadastro: "13/08" },
-    { id: 8, nome: "Maria Santos", data_cadastro: "13/08" },
-    { id: 9, nome: "Pedro Oliveira", data_cadastro: "14/08" },
-    { id: 10, nome: "Ana Costa", data_cadastro: "14/08" },
-    { id: 11, nome: "Carlos Pereira", data_cadastro: "15/08" },
-    { id: 12, nome: "Lucia Fernandes", data_cadastro: "15/08" },
-    { id: 13, nome: "Roberto Lima", data_cadastro: "16/08" },
-    { id: 14, nome: "Sandra Martins", data_cadastro: "16/08" },
-    { id: 15, nome: "Fernando Rocha", data_cadastro: "17/08" },
-    { id: 16, nome: "Carla Souza", data_cadastro: "17/08" },
-    { id: 17, nome: "Marcos Ribeiro", data_cadastro: "18/08" },
-    { id: 18, nome: "Patricia Gomes", data_cadastro: "18/08" },
-  ]
+let filteredCustomers = [...customers];
+let selectedCustomers = [];
+
+// DOM Elements
+const searchInput = document.getElementById('searchInput');
+const selectAllCheckbox = document.getElementById('selectAll');
+const customerTableBody = document.getElementById('customerTableBody');
+const customerCount = document.getElementById('customerCount');
+const removeSelectedBtn = document.getElementById('removeSelected');
+const selectedCountSpan = document.getElementById('selectedCount');
+const emptyState = document.getElementById('emptyState');
+const dropdownMenu = document.getElementById('dropdownMenu');
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  renderTable();
+  setupEventListeners();
+});
+
+// Event Listeners
+function setupEventListeners() {
+  searchInput.addEventListener('input', handleSearch);
+  selectAllCheckbox.addEventListener('change', handleSelectAll);
+  removeSelectedBtn.addEventListener('click', handleRemoveSelected);
   
-  const itensPorPagina = 6
-  const totalPaginas = Math.ceil(clientes.length / itensPorPagina)
-  let paginaAtual = 1
-  
-  function exibirClientes(pagina) {
-    const inicio = (pagina - 1) * itensPorPagina
-    const fim = inicio + itensPorPagina
-    const clientesPagina = clientes.slice(inicio, fim)
-  
-    const tbody = document.getElementById("clientes-tbody")
-    tbody.innerHTML = ""
-  
-    clientesPagina.forEach((cliente) => {
-      const tr = document.createElement("tr")
-      tr.innerHTML = `
-              <td><i class="fa-solid fa-user"></i> ${cliente.nome}</td>
-              <td>${cliente.data_cadastro}</td>
-              <td><button class="jc_btn-info">i</button></td>
-          `
-      tbody.appendChild(tr)
-    })
-  
-    atualizarPaginacao()
-  }
-  
-  function atualizarPaginacao() {
-    const numerosPaginacao = document.getElementById("numeros-paginacao")
-    numerosPaginacao.innerHTML = ""
-  
-    const maxPaginas = Math.min(totalPaginas, Infinity)
-    for (let i = 1; i <= maxPaginas; i++) {
-      const btn = document.createElement("button")
-      btn.textContent = i
-      btn.className = "jc_btn-paginacao"
-      if (i === paginaAtual) {
-        btn.classList.add("ativo")
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown-menu') && !e.target.closest('.menu-btn')) {
+          hideDropdown();
       }
-      btn.onclick = () => irParaPagina(i)
-      numerosPaginacao.appendChild(btn)
-    }
+  });
+}
+
+// Search functionality
+function handleSearch() {
+  const searchTerm = searchInput.value.toLowerCase();
+  filteredCustomers = customers.filter(customer => 
+      customer.name.toLowerCase().includes(searchTerm) ||
+      customer.email.toLowerCase().includes(searchTerm)
+  );
   
-    document.getElementById("btn-prev").style.display = paginaAtual > 1 ? "inline-block" : "none"
-    document.getElementById("btn-next").style.display = paginaAtual < totalPaginas ? "inline-block" : "none"
+  selectedCustomers = [];
+  updateSelectedUI();
+  renderTable();
+}
+
+// Select all functionality
+function handleSelectAll() {
+  if (selectAllCheckbox.checked) {
+      selectedCustomers = filteredCustomers.map(customer => customer.id);
+  } else {
+      selectedCustomers = [];
+  }
+  updateSelectedUI();
+  updateCheckboxes();
+}
+
+// Individual customer selection
+function handleCustomerSelect(customerId, checked) {
+  if (checked) {
+      selectedCustomers.push(customerId);
+  } else {
+      selectedCustomers = selectedCustomers.filter(id => id !== customerId);
   }
   
-  function irParaPagina(pagina) {
-    if (pagina >= 1 && pagina <= totalPaginas) {
-      paginaAtual = pagina
-      exibirClientes(paginaAtual)
-    }
+  updateSelectedUI();
+  updateSelectAllCheckbox();
+}
+
+// Remove selected customers
+function handleRemoveSelected() {
+  if (confirm(`Tem certeza que deseja remover ${selectedCustomers.length} cliente(s)?`)) {
+      // Here you would typically make an API call
+      console.log('Removing customers:', selectedCustomers);
+      selectedCustomers = [];
+      updateSelectedUI();
+  }
+}
+
+// Update selected customers UI
+function updateSelectedUI() {
+  const hasSelected = selectedCustomers.length > 0;
+  removeSelectedBtn.style.display = hasSelected ? 'flex' : 'none';
+  selectedCountSpan.textContent = selectedCustomers.length;
+}
+
+// Update select all checkbox state
+function updateSelectAllCheckbox() {
+  const allSelected = filteredCustomers.length > 0 && selectedCustomers.length === filteredCustomers.length;
+  const someSelected = selectedCustomers.length > 0;
+  
+  selectAllCheckbox.checked = allSelected;
+  selectAllCheckbox.indeterminate = someSelected && !allSelected;
+}
+
+// Update individual checkboxes
+function updateCheckboxes() {
+  const checkboxes = document.querySelectorAll('.customer-checkbox');
+  checkboxes.forEach(checkbox => {
+      checkbox.checked = selectedCustomers.includes(checkbox.dataset.customerId);
+  });
+}
+
+// Render table
+function renderTable() {
+  // Update customer count
+  const count = filteredCustomers.length;
+  customerCount.textContent = `${count} cliente${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+  
+  // Show/hide empty state
+  if (filteredCustomers.length === 0) {
+      customerTableBody.style.display = 'none';
+      emptyState.style.display = 'block';
+      return;
+  } else {
+      customerTableBody.style.display = '';
+      emptyState.style.display = 'none';
   }
   
-  function proximaPagina() {
-    if (paginaAtual < totalPaginas) {
-      irParaPagina(paginaAtual + 1)
-    }
+  // Render customers
+  customerTableBody.innerHTML = filteredCustomers.map((customer, index) => `
+      <tr>
+          <td>
+              <input type="checkbox" class="checkbox customer-checkbox" 
+                     data-customer-id="${customer.id}"
+                     ${selectedCustomers.includes(customer.id) ? 'checked' : ''}>
+          </td>
+          <td>
+              <div class="customer-info">
+                  <div class="avatar">
+                      ${getInitials(customer.name)}
+                  </div>
+                  <div class="customer-details">
+                      <h4>${customer.name}</h4>
+                      <p>${customer.email}</p>
+                  </div>
+              </div>
+          </td>
+          <td>
+              ${getStatusBadge(customer.status)}
+          </td>
+          <td>${formatDate(customer.registrationDate)}</td>
+          <td>
+              <div class="purchase-info">
+                  <span class="purchase-count">${customer.totalPurchases}</span>
+                  <span class="purchase-label">${customer.totalPurchases === 1 ? 'compra' : 'compras'}</span>
+              </div>
+          </td>
+          <td>
+              <span class="amount">${formatCurrency(customer.totalSpent)}</span>
+          </td>
+          <td>
+              <button class="menu-btn" onclick="showDropdown(event, '${customer.id}')">
+                  <i class="fas fa-ellipsis-h"></i>
+              </button>
+          </td>
+      </tr>
+  `).join('');
+  
+  // Add event listeners to checkboxes
+  document.querySelectorAll('.customer-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+          handleCustomerSelect(this.dataset.customerId, this.checked);
+      });
+  });
+  
+  updateSelectAllCheckbox();
+}
+
+// Utility functions
+function getInitials(name) {
+  return name.split(' ').map(n => n[0]).join('').toUpperCase();
+}
+
+function getStatusBadge(status) {
+  const statusConfig = {
+      active: { label: "Ativo", class: "badge-active" },
+      inactive: { label: "Inativo", class: "badge-inactive" },
+      pending: { label: "Pendente", class: "badge-pending" },
+  };
+  
+  const config = statusConfig[status];
+  return `<span class="badge ${config.class}">${config.label}</span>`;
+}
+
+function formatCurrency(value) {
+  return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+  }).format(value);
+}
+
+function formatDate(dateString) {
+  return new Date(dateString).toLocaleDateString("pt-BR");
+}
+
+// Dropdown functionality
+function showDropdown(event, customerId) {
+  event.stopPropagation();
+  
+  const rect = event.target.getBoundingClientRect();
+  dropdownMenu.style.display = 'block';
+  dropdownMenu.style.left = (rect.left - 150) + 'px';
+  dropdownMenu.style.top = (rect.bottom + 5) + 'px';
+  
+  // Add click handlers to dropdown items
+  dropdownMenu.querySelectorAll('.dropdown-item').forEach(item => {
+      item.onclick = function() {
+          handleDropdownAction(item.dataset.action, customerId);
+          hideDropdown();
+      };
+  });
+}
+
+function hideDropdown() {
+  dropdownMenu.style.display = 'none';
+}
+
+function handleDropdownAction(action, customerId) {
+  const customer = customers.find(c => c.id === customerId);
+  
+  switch(action) {
+      case 'view':
+          console.log('Visualizar cliente:', customer);
+          alert(`Visualizando detalhes de ${customer.name}`);
+          break;
+      case 'edit':
+          console.log('Editar cliente:', customer);
+          alert(`Editando ${customer.name}`);
+          break;
+      case 'delete':
+          if (confirm(`Tem certeza que deseja remover ${customer.name}?`)) {
+              console.log('Remover cliente:', customer);
+              alert(`${customer.name} foi removido`);
+          }
+          break;
   }
-  
-  function paginaAnterior() {
-    if (paginaAtual > 1) {
-      irParaPagina(paginaAtual - 1)
-    }
-  }
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    exibirClientes(1)
-  })
-  
+}
