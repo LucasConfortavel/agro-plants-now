@@ -38,90 +38,117 @@
             </div>
 
             <div class="ym_areaProdutos">
-                
                 <p class="ym_textoArea">Inoculantes microbianos</p>
-
                 <div class="ym_produtos">
-                    <?php
-                        echo'
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                        ';
-                    ?>
-                </div>
 
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="../../PUBLIC/img/img_produto.png?height=100&width=100" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Fertilizante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Fertilizante Orgânico</p>
+                        <p class="ym_preco">R$ 75,50</p>
+                        <p class="ym_descricao">Fertilizante orgânico de alta qualidade para todas as culturas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Bioestimulante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                        <p class="ym_preco">R$ 120,00</p>
+                        <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Bioestimulante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                        <p class="ym_preco">R$ 120,00</p>
+                        <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Bioestimulante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                        <p class="ym_preco">R$ 120,00</p>
+                        <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Bioestimulante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                        <p class="ym_preco">R$ 120,00</p>
+                        <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+
+
+                </div>
             </div>
 
             <div class="ym_areaProdutos">
                 <p class="ym_textoArea">Bioestimulantes</p>
-                
                 <div class="ym_produtos">
-                    <?php
-                            echo'
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    ';
-                                    ?>
+
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="CADE AS IMAGENS YURI?" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Enraizador</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Enraizador Potente</p>
+                        <p class="ym_preco">R$ 85,00</p>
+                        <p class="ym_descricao">Promove o desenvolvimento robusto do sistema radicular.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+                    
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="CADE AS IMAGENS YURI?" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Enraizador</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Enraizador Potente</p>
+                        <p class="ym_preco">R$ 85,00</p>
+                        <p class="ym_descricao">Promove o desenvolvimento robusto do sistema radicular.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+
                 </div>
-
             </div>
-
         </section>
     </main>
 

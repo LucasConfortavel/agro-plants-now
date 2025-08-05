@@ -45,82 +45,222 @@ include "../../INCLUDE/Menu_adm.php";
                     </div>
                 </div>
 
+                    <div class="ym_areaProdutos">
+                    
+                            <p class="ym_textoArea">Todos os produtos</p>
+
+                            <div class="ym_cardProduto">
+                                <div class="ym_img-placeholder">
+                                    <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                                    <div class="ym_img-label">
+                                        <span>Bioestimulante</span>
+                                    </div>
+                                    <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                </div>
+                                <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                                <p class="ym_preco">R$ 120,00</p>
+                                <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                                <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                            </div>
+
+                            <div class="ym_cardProduto">
+                                <div class="ym_img-placeholder">
+                                    <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                                    <div class="ym_img-label">
+                                        <span>Bioestimulante</span>
+                                    </div>
+                                    <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                </div>
+                                <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                                <p class="ym_preco">R$ 120,00</p>
+                                <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                                <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                            </div>
+
+                            <div class="ym_cardProduto">
+                                <div class="ym_img-placeholder">
+                                    <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                                    <div class="ym_img-label">
+                                        <span>Bioestimulante</span>
+                                    </div>
+                                    <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                </div>
+                                <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                                <p class="ym_preco">R$ 120,00</p>
+                                <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                                <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="ym_areaProdutos">
+                
+                        <p class="ym_textoArea">Inoculantes microbianos</p>
+
+                        <div class="ym_cardProduto">
+                                <div class="ym_img-placeholder">
+                                    <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                                    <div class="ym_img-label">
+                                        <span>Bioestimulante</span>
+                                    </div>
+                                    <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                </div>
+                                <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                                <p class="ym_preco">R$ 120,00</p>
+                                <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                                <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                            </div>
+
+                            <div class="ym_cardProduto">
+                                <div class="ym_img-placeholder">
+                                    <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                                    <div class="ym_img-label">
+                                        <span>Bioestimulante</span>
+                                    </div>
+                                    <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                </div>
+                                <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                                <p class="ym_preco">R$ 120,00</p>
+                                <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                                <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                            </div>
+
+                            <div class="ym_cardProduto">
+                                <div class="ym_img-placeholder">
+                                    <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                                    <div class="ym_img-label">
+                                        <span>Bioestimulante</span>
+                                    </div>
+                                    <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                </div>
+                                <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                                <p class="ym_preco">R$ 120,00</p>
+                                <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                                <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
                 <div class="ym_areaProdutos">
                     
-                    <div class="ym_categoria">
-                        <p class="ym_textoArea">Produtos</p>
-                        <a href="produtos_adm.php" class="ym_link-vermais">Ver mais produtos</a>
+                    <p class="ym_textoArea">Todos os serviços</p>
+
+            <div class="ym_areaProdutos">
+                <p class="ym_textoArea">Bioestimulantes</p>
+                
+                <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Bioestimulante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                        <p class="ym_preco">R$ 120,00</p>
+                        <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                     </div>
 
-                    <div class="ym_produtos">
-                        <?php
-                                echo'
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>'
-                                        ?>
-                    
-                    <div class="ym_categoria">
-                        <p class="ym_textoArea">Serviços</p>
-                        <a href="servicos_adm.php" class="ym_link-vermais">Ver mais serviços</a>
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Bioestimulante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                        <p class="ym_preco">R$ 120,00</p>
+                        <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                     </div>
 
-                    <div class="ym_produtos">
-                        <?php
-                                echo'
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        ';
-                                        ?>
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Bioestimulante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                        <p class="ym_preco">R$ 120,00</p>
+                        <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+            </div>
+            <div class="ym_areaProdutos">
+                
+                <p class="ym_textoArea">Extensionista Rural</p>
+
+                    <div class="ym_cardProduto">
+                            <div class="ym_img-placeholder">
+                                <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                                <div class="ym_img-label">
+                                    <span>Bioestimulante</span>
+                                </div>
+                                <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                            </div>
+                            <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                            <p class="ym_preco">R$ 120,00</p>
+                            <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                            <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Bioestimulante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                        <p class="ym_preco">R$ 120,00</p>
+                        <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+
+                    <div class="ym_cardProduto">
+                        <div class="ym_img-placeholder">
+                            <img src="/placeholder.svg?height=100&width=100" alt="YURI Falta imagem" class="ym_img">
+                            <div class="ym_img-label">
+                                <span>Bioestimulante</span>
+                            </div>
+                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                        </div>
+                        <p class="ym_nomeProduto">Bioestimulante Líquido</p>
+                        <p class="ym_preco">R$ 120,00</p>
+                        <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
+                        <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                    </div>
+
+                </div>
+            </div>
+
+            </div>
+
                 </div>
 
             </section>
     </main>
+
 
 </body>
 </html>
