@@ -15,6 +15,10 @@ include "../../INCLUDE/Menu_adm.php";
 </head>
 <body>
 
+    <a class="ym_btn-add">
+        <p>+</p>
+    </a>
+
     <main class="jp_main-content">
 
         <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
@@ -25,22 +29,63 @@ include "../../INCLUDE/Menu_adm.php";
                 <h1 class="ym_titulo">Catálogo - Geral</h1>
 
                 <div class="ym_categorias">
-
-                    <input type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa-mobile">   
-
-                    <div class="ym_links">
-                        <a href="produtos-tudo.php" class="ym_linkCategoria ym_btn-padrao" style="background-color: #45734B; color: white; cursor: auto;">Tudo</a>
-                        <a href="produtos_adm.php" class="ym_linkCategoria ym_btn-padrao">Produtos</a>
-                        <a href="servicos_adm.php" class="ym_linkCategoria ym_btn-padrao">Serviços</a>
-                        <a href="add-prod-serv.php" class="ym_linkCategoria ym_btn-padrao">Adicionar</a>
+                    
+                    <input  type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
+                    
+                    <div class="ym_area-select">
+                        <div class="ym_select" onclick="mostrar_categorias()">
+                            <p class="ym_categoria-select">Todos</p>
+                            <p class="ym_seta-categoria">></p>
+                        </div>
+                        
+                        <div class="ym_options">
+                            <a href="produtos_adm.php" class="ym_link-option"><i class="fa-solid fa-building-wheat"></i> produto</a>
+                            <a href="servicos_adm.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> serviço</a>
+                        </div>
                     </div>
-
-                    <input type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
                 </div>
 
                 <div class="ym_areaProdutos">
                     
-                    <p class="ym_textoArea">Todos os produtos</p>
+                    <div class="ym_categoria">
+                        <p class="ym_textoArea">Produtos</p>
+                        <a href="produtos_adm.php" class="ym_link-vermais">Ver mais produtos</a>
+                    </div>
+
+                    <div class="ym_produtos">
+                        <?php
+                                echo'
+                                        <div class="ym_cardProduto">
+                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
+                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
+                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                        </div>
+                                        <div class="ym_cardProduto">
+                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
+                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
+                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                        </div>
+                                        <div class="ym_cardProduto">
+                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
+                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
+                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                        </div>
+                                        <div class="ym_cardProduto">
+                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
+                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
+                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                        </div>
+                                        <div class="ym_cardProduto">
+                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
+                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
+                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                        </div>'
+                                        ?>
+                    
+                    <div class="ym_categoria">
+                        <p class="ym_textoArea">Serviços</p>
+                        <a href="servicos_adm.php" class="ym_link-vermais">Ver mais serviços</a>
+                    </div>
 
                     <div class="ym_produtos">
                         <?php
@@ -70,167 +115,8 @@ include "../../INCLUDE/Menu_adm.php";
                                             <p class="ym_nomeProduto">' .  $nome_produto .'</p>
                                             <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                                         </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
-                                        
-                                        <div class="ym_cardProduto">
-                                            <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                            <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                            <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>
                                         ';
                                         ?>
-                    </div>
-
-                    <div class="ym_areaProdutos">
-                
-                <p class="ym_textoArea">Inoculantes microbianos</p>
-
-                <div class="ym_produtos">
-                    <?php
-                        echo'
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                        ';
-                    ?>
-                </div>
-
-                <div class="ym_areaProdutos">
-                    
-                    <p class="ym_textoArea">Todos os serviços</p>
-
-            <div class="ym_areaProdutos">
-                <p class="ym_textoArea">Bioestimulantes</p>
-                
-                <div class="ym_produtos">
-                    <?php
-                            echo'
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    ';
-                                    ?>
-                </div>
-
-            </div>
-            <div class="ym_areaProdutos">
-                
-                <p class="ym_textoArea">Extensionista Rural</p>
-
-                <div class="ym_produtos">
-                    <?php
-                        echo'
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                                <div class="ym_cardProduto">
-                                    <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
-                                    <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                    <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>
-                        ';
-                    ?>
-                </div>
-
-            </div>
-
-            <div class="ym_areaProdutos">
-                <p class="ym_textoArea">Pesquisador em Biotecnologia</p>
-                
-                <div class="ym_produtos">
-                    <?php
-                            echo'
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    <div class="ym_cardProduto">
-                                        <img src=" ' . $imagem_produto2 . '" alt="produto" class="ym_img">
-                                        <p class="ym_nomeProduto">' .  $nome_produto .'</p>
-                                        <a href="../../VIEW/adm/sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>
-                                    ';
-                                    ?>
-                </div>
-
-            </div>
-
                 </div>
 
             </section>
@@ -240,3 +126,27 @@ include "../../INCLUDE/Menu_adm.php";
 </html>
 
 <script src="../../PUBLIC/JS/script.js"></script>
+
+<script>
+    function mostrar_categorias(){
+        let option = document.getElementsByClassName("ym_options")[0];
+        let seta = document.getElementsByClassName("ym_seta-categoria")[0];
+        let option_area = document.getElementsByClassName("ym_options")[0];
+
+        if (window.getComputedStyle(option).display == 'none'){
+            option.style.display = 'flex';
+            seta.style.animation = 'ym_mostrar-options ease 0.4s';
+            seta.style.transform = 'rotate(-90deg)';
+            option_area.style.animation = 'ym_mostrar-options-area ease 0.4s';
+        }
+        else{
+            seta.style.animation = 'ym-sumir-options ease 0.4s';
+            seta.style.transform = 'rotate(90deg)';
+            option_area.style.animation = 'ym-sumir-options-area ease 0.4s';
+            setTimeout(() => {
+                option.style.display = 'none';
+            }, 390);
+        }
+    }
+
+</script>

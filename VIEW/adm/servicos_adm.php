@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    
+    <a class="ym_btn-add">
+        <p>+</p>
+    </a>
 
     <main class="jp_main-content">
         
@@ -25,13 +29,10 @@
 
             <div class="ym_categorias">
 
-                <input type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa-mobile">   
-
                 <div class="ym_links">
                     <a href="produtos-tudo.php" class="ym_linkCategoria ym_btn-padrao">Tudo</a>
                     <a href="produtos_adm.php" class="ym_linkCategoria ym_btn-padrao">Produtos</a>
                     <a href="servicos_adm.php" class="ym_linkCategoria ym_btn-padrao" style="background-color: #45734B; color: white; cursor: auto;">Serviços</a>
-                    <a href="add-prod-serv.php" class="ym_linkCategoria ym_btn-padrao">Adicionar</a>  
                 </div>
 
                 <input type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">
