@@ -1,12 +1,25 @@
 <?php
-
+include "../../DB/connect.php";
 include "../../INCLUDE/Menu_superior.php";
-// if(isset($_POST['adicionar'])){
-//     header('location:../vend/dashboard_vendedor.php');
-// }
-    
-?>
 
+// if (isset($_POST['adicionar'])) {
+//     $email = $_POST['email'];
+//     $password = $_POST['password'];
+
+//     $email = mysqli_real_escape_string($con, $email);
+//     $password = mysqli_real_escape_string($con, $password);
+
+//     $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$password'";
+//     $result = mysqli_query($con, $sql);
+
+//     if (mysqli_num_rows($result) > 0) {
+//         echo "<script>alert('Login realizado com sucesso!');</script>";
+
+//     } else {
+//         echo "<script>alert('Email ou senha inválidos.');</script>";
+//     }
+// }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -40,10 +53,12 @@ include "../../INCLUDE/Menu_superior.php";
 
             <div class="jc_login-box">
                 <h3>Iniciar a sessão</h3> 
+
+            
                 <form action="#" method="POST">
                     <div class="lc_area-inputs">
-                        <input type="email" class="jc_input-field" placeholder="E-mail" required>
-                        <input type="password" class="jc_input-field" placeholder="Senha" required>
+                        <input type="email" class="jc_input-field" name="email" placeholder="E-mail" required>
+                        <input type="password" class="jc_input-field" name="password" placeholder="Senha" required>
                     </div>
                     <div class="lc_area-links">
                         <a onclick="abrirPopup('../pop-up/pop-up-email-recuperar-senha.php','Informe seu e-mail para a recuperação de senha')" class="jc_forgot-password">Esqueceu sua senha?</a>
