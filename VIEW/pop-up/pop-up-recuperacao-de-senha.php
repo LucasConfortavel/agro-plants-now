@@ -13,7 +13,7 @@
             <p>Insira o código que enviamos para o e-mail XXXXXXXX. Se você não receber o e-mail, verifique a pasta de spam ou tente novamente.</p>
             <form action="recuperacao-de-senha.php" method="POST"> 
                 <input type="text" class="ym_input-form" name="codigo" placeholder="Código" required> 
-                <a type="submit"href="../paginas-iniciais/pagina-de-login.php" class="ym_btn-padrao">Avançar</a>
+                <a type="submit"onclick="abrirPopup('../pop-up/pop-up-criar-senha.php','Redefinição de senha')" class="ym_btn-padrao">Avançar</a>
             </form>
         </div>
     </main>
