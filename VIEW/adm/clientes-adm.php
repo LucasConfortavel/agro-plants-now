@@ -36,7 +36,7 @@
                             <div class="title-section">
                                 <h1 class="title">
                                     <div class="title-bar"></div>
-                                    Lista de Clientes
+                                    Clientes
                                 </h1>
                                 <p class="subtitle" id="customerCount">5 clientes encontrados</p>
                             </div>
@@ -56,7 +56,7 @@
                         <div class="search-section">
                             <div class="search-container">
                                 <i class="fas fa-search search-icon"></i>
-                                <input type="text" id="searchInput" placeholder="Pesquisar por nome ou email..." class="search-input">
+                                <input type="text" placeholder="Pesquisar por nome ou email.." class="search-input">
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                                 <tbody id="customerTableBody"> 
                                     <!-- Customers will be inserted here by JavaScript  -->
                                  </tbody> 
-                            </table>\
+                            </table>
                         </div>
 
                         <!-- Empty State -->

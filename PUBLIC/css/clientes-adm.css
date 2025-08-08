@@ -3,6 +3,8 @@
     margin: 0 auto;
 }
 
+
+
 .card {
     background: white;
     border-radius: 8px;
@@ -71,7 +73,7 @@
 
 .btn-primary {
     padding: 16px 8px;
-    background: #059669;
+    background: linear-gradient(135deg, #45734b);
     color: white;
 }
 
@@ -107,7 +109,7 @@
 }
 
 .search-input {
-    width: 100%;
+    width: 84%;
     padding: 10px 12px 10px 40px;
     border: 1px solid #d1d5db;
     border-radius: 6px;
@@ -216,7 +218,10 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #059669, #10b981);
+    background: linear-gradient(135deg, #45734b);
+ 
+   
+     
     display: flex;
     align-items: center;
     justify-content: center;
@@ -365,40 +370,96 @@
     color: black;
 }
 
+
+
+/* ===================================== */
+/* Responsividade para telas >= 1400px  */
+/* ===================================== */
+@media (max-width: 1400px) {
+    .container {
+        max-width: 1700px;
+    }
+}
+
+/* ===================================== */
+/* Responsividade para telas 1024px–1399px */
+/* ===================================== */
+@media (max-width: 1399px) {
+    .header-content {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .btn {
+        font-size: 13px;
+        padding: 12px 8px;
+    }
+
+    .search-container {
+        max-width: 100%;
+    }
+
+    .table-header .name,
+    .table-header .status,
+    .table-header .date,
+    .table-header .total_comp,
+    .table-header .valor_gast {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+}
+
+/* ===================================== */
+/* Responsividade para tablets (768px–1023px) */
+/* ===================================== */
 @media (max-width: 768px) {
-    body {
-        padding: 16px;
-    }
-    
-    .card-header {
-        padding: 16px;
-    }
-    
     .header-content {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .actions {
-        justify-content: flex-end;
+        flex-wrap: wrap;
+        justify-content: flex-start;
     }
-    
-    .table-container {
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 8px;
         font-size: 14px;
     }
-    
-    .table td,
-    .table th {
-        padding: 12px 8px;
+
+    .search-container {
+        width: 100%;
+        max-width: 100%;
     }
-    
-    .customer-info {
-        gap: 8px;
+
+    .table-container {
+        overflow-x: auto;
     }
-    
-    .avatar {
-        width: 32px;
-        height: 32px;
+
+    .table {
+        min-width: 768px;
+    }
+
+    .table td, .table-header td {
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+    .customer-details h4 {
+        font-size: 14px;
+    }
+
+    .customer-details p {
         font-size: 12px;
     }
 }
+
+

@@ -36,7 +36,7 @@
                             <div class="title-section">
                                 <h1 class="title">
                                     <div class="title-bar"></div>
-                                    Lista de Vendedores
+                                    Vendedores
                                 </h1>
                                 <p class="subtitle" id="customerCount">5 clientes encontrados</p>
                             </div>
