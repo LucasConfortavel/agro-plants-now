@@ -1,5 +1,5 @@
 <?php
-include "../../DB/connect.php";
+require_once "../../DB/connect.php";
 include "../../INCLUDE/Menu_superior.php";
 
 // if (isset($_POST['adicionar'])) {

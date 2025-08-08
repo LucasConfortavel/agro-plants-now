@@ -30,7 +30,7 @@ include "../../INCLUDE/Menu_adm.php";
 
                 <div class="ym_categorias">
                     
-                    <input  type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
+                    <input type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
                     
                     <div class="ym_area-select">
                         <div class="ym_select" onclick="mostrar_categorias()">
