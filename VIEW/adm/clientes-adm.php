@@ -31,7 +31,7 @@ include '../../INCLUDE/Menu_adm.php';
         <section class="ym_section">
                 <div class="ym_area-barra-pesquisa">
                     <div class="ls_pesquisa-barra">
-                        <input type="text" placeholder="Pesquise por um cliente">
+                        <input type="text" placeholder="Pesquise por um vendedor">
                         <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
                     </div>
                 </div>
@@ -39,6 +39,7 @@ include '../../INCLUDE/Menu_adm.php';
                 <div class="ym_area-btn-superior">
                     <a onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover_cliente.php','Remover clientes')" class="ym_btn-padrao">Remover Cliente</a>
                     <a onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de clientes')" class="ym_btn-padrao">Cadastrar Cliente</a>
+                    
 
                 </div>
 
