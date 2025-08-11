@@ -48,7 +48,8 @@
                                 </button>
                                 <button class="btn btn-primary">
                                     <i class="fas fa-plus"></i>
-                                    Cadastrar Venda
+                                    Cadastrar Venda?
+                                    
                                 </button>
                             </div>
                         </div>
