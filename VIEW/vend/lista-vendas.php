@@ -33,7 +33,7 @@
 
                 <div class="ym_area-barra-pesquisa">
                     <div class="ls_pesquisa-barra">
-                        <input type="text" placeholder="Pesquise por um vendedor">
+                        <input type="text" placeholder="Pesquise por uma venda">
                         <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
                     </div>
                 </div>

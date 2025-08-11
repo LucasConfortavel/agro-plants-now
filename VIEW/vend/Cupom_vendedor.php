@@ -24,7 +24,7 @@ include "../../INCLUDE/Menu_vend.php";
             
             <div class="ym_area-barra-pesquisa">
                 <div class="ls_pesquisa-barra">
-                    <input type="text" placeholder="pesquisa">
+                    <input type="text" placeholder="Pesquise por um cupom">
                     <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
                 </div>
             </div>
