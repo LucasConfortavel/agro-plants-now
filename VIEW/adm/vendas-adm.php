@@ -48,7 +48,7 @@
                                 </button>
                                 <button class="btn btn-primary">
                                     <i class="fas fa-plus"></i>
-                                    Cadastrar Cliente
+                                    Cadastrar Venda
                                 </button>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                         <!-- Empty State -->
                         <div id="emptyState" class="empty-state" style="display: none;">
                             <i class="fas fa-search empty-icon"></i>
-                            <h3>Nenhum cliente encontrado</h3>
+                            <h3>Nenhuma venda encontrada</h3>
                             <p>Tente ajustar os termos de pesquisa</p>
                         </div>
                     </div>
@@ -100,12 +100,12 @@
                 </div>
                 <div class="dropdown-item" data-action="edit">
                     <i class="fas fa-edit"></i>
-                    Editar Cliente
+                    Editar Venda
                 </div>
                 <div class="dropdown-separator"></div>
                 <div class="dropdown-item danger" data-action="delete">
                     <i class="fas fa-trash"></i>
-                    Remover Cliente
+                    Remover Venda
                 </div>
             </div>
 

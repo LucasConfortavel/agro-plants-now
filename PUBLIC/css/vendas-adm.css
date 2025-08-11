@@ -140,7 +140,7 @@
     background: #f9fafb;
 }
 
-.table-header .name {
+.table-header #banguela {
     padding: 12px 16px;
     text-align: left;
     font-weight: 600;
