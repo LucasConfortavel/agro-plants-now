@@ -115,12 +115,12 @@
                     <div class="jp_chart-indicator">-2% por mês</div>
                 </div>
                 <div class="jp_chart-filters">
-                    <div class="jp_filter-select">
-                        Produto <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="jp_filter-select">
-                        Último mês <i class="fas fa-chevron-down"></i>
-                    </div>
+                    <select class="jp_filter-select">
+                        <option> Produto</option>
+                    </select>
+                    <select class="jp_filter-select">
+                        <option> Ultimo mes </option>
+                    </select>
                 </div>
             </div>
             <div class="jp_chart-container">

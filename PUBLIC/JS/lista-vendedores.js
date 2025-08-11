@@ -189,15 +189,7 @@ const customers = [
                 ${getStatusBadge(customer.status)}
             </td>
             <td>${formatDate(customer.registrationDate)}</td>
-            <td>
-                <div class="purchase-info">
-                    <span class="purchase-count">${customer.totalPurchases}</span>
-                    <span class="purchase-label">${customer.totalPurchases === 1 ? 'compra' : 'compras'}</span>
-                </div>
-            </td>
-            <td>
-                <span class="amount">${formatCurrency(customer.totalSpent)}</span>
-            </td>
+           
             <td>
                 <button class="menu-btn" onclick="showDropdown(event, '${customer.id}')">
                     <i class="fas fa-ellipsis-h"></i>
