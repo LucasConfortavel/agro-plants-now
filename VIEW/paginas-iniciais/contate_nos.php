@@ -1,6 +1,18 @@
 <?php
 
+require_once "../../DB/connect.php";
 include "../../INCLUDE/Menu_superior.php";
+
+// if (isset($_POST['Enviar_mensagem'])) {
+//     $nome = mysqli_real_escape_string($con, $_POST['nome']);
+//     $email = mysqli_real_escape_string($con, $_POST['email']);
+//     $mensagem = mysqli_real_escape_string($con, $_POST['mensagem']);
+
+//     $sql = "INSERT INTO notificacoes (nome, email, mensagem, data_envio) 
+//             VALUES ('$nome', '$email', '$mensagem', NOW())";
+
+//     $result = mysqli_query($con, $sql);
+// }
 
 
 ?>

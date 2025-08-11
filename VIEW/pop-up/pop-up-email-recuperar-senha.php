@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar senha</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pagina-senha.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
  
-    <section class="login-section">
-        <div class="center-box">
-            <h2 class="form-title">Informe seu endereço de e-mail</h2>
-            <div class="form-container">
-                <input type="email" class="input-field" placeholder="E-mail" required>
-                <a type="submit" href="pop-up-recuperacao-de-senha.php" class="login-btn">Avançar</a>
-            </div>
-        </div>
-    </section>
+    <div class="jc_form-container">
+        <input type="email" class="ym_input-form" placeholder="E-mail" required>
+        <a type="submit" onclick="abrirPopup('../pop-up/pop-up-recuperacao-de-senha.php','Recuperar senha')" class="ym_btn-padrao">Avançar</a>
+    </div>
  
     <script>
        

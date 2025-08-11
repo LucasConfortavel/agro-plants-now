@@ -1,6 +1,6 @@
 <?php
 
-include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/Menu_vend.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -16,6 +16,13 @@ include "../../INCLUDE/Menu_adm.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>     
 <body>
+    <!-- pop-up -->
+    <div class="ym_popup-overlay" >
+        <div class="ym_popup-content">
+            <div class="ym_area-superior-popup"></div>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
     <main class="jp_main-content">
         <div class="back-button">
             <a href="sobre_prod.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
@@ -54,7 +61,7 @@ include "../../INCLUDE/Menu_adm.php";
                     <i class="fa-solid fa-ticket"></i>
                 </div>
                 <input type="text" placeholder="Cupom" class="ym_input-padrao">
-                <a class="ym_btn-padrao" href="../../pop-up/pop-up-cupon_Adicionar.php">Aplicar</a>
+                <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up_cupom_Adicionado.php','Cupom aplicado <i class=\'fa-solid fa-ticket\'></i>')">Aplicar</a>
 
             </div>
 
@@ -95,7 +102,7 @@ include "../../INCLUDE/Menu_adm.php";
             
             <div class="P_action-buttons">
 
-                <a class="ym_btn-padrao" href="../pop-up/pop-up-link.php">
+                <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
 
                     Gerar link de venda
                 </a>
@@ -104,5 +111,6 @@ include "../../INCLUDE/Menu_adm.php";
     </main>
 
     <script src="../../PUBLIC/JS/script-info_vendas.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 </body>
 </html>

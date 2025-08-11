@@ -6,14 +6,6 @@
     font-family: Poppins;
 }
 
-body {    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f7f7f7;
-}
-
 .jc_popup-conteudo{
     padding: 12px 14px;
     gap: 10px;
@@ -22,10 +14,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 40%;
-    height: auto;
-    background-color: white;
-    box-shadow: 2px 1px 5px 1px rgba(60, 60, 60, 0.197);
+    width: 25vw;
+    height: 50px;
     text-align: center;
 }
 

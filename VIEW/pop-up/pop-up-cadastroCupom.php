@@ -14,37 +14,34 @@ if(isset($_POST['cadastrar'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Cupom</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastroCupom.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
-        <div class="ym_pop-up">
-            <h1 class="ym_titulo">Cadastro de cupom</h1>
-            
-            <form method="POST" class="ym_formulario">
-                <div class="ym_area-input"> 
-                    <p class="ym_texto">*Obrigatório</p>
-                    <input type="text" placeholder="Valor de desconto" class="ym_form-input">
-                </div>  
+    <form method="POST" class="ym_formulario">
+        <div class="ym_area-input"> 
+            <p class="ym_titulo-input">Desconto*</p>
+            <input type="text" placeholder="Valor de desconto" class="ym_input-form">
+        </div>  
 
-                <div class="ym_area-input">
-                    <p class="ym_texto">*Obrigatório</p>
-                    <input type="text" placeholder="Descrição" class="ym_form-input">
-                </div>
-
-                <div class="ym_area-input">
-                    <p class="ym_texto">*Obrigatório</p>
-                    <input type="text" placeholder="Data de validade" class="ym_form-input">
-                </div>
-
-                <div class="ym_area-input">
-                    <p class="ym_texto">*Obrigatório</p>
-                    <div class="ym_input-gerarcodigo">
-                        <button class="ym_btn-gerarcodigo"><img class="ym_btn-img" src="../../PUBLIC/img/img_add.png" alt=""></button>
-                        <input type="text" placeholder="Gerar código único" style="border: none; padding: 0;">
-                    </div>
-                </div>
-                
-                <input type="submit" class="ym_form-btn-eviar" name="cadastrar" value="Cadastrar cupom">
-            </form>
+        <div class="ym_area-input">
+            <p class="ym_titulo-input">Descrição*</p>
+            <input type="text" placeholder="Descrição" class="ym_input-form">
         </div>
+
+        <div class="ym_area-input">
+            <p class="ym_titulo-input">Data de validade</p>
+            <input type="date" placeholder="Data de validade" class="ym_input-form">
+        </div>
+
+        <div class="ym_area-input">
+            <p class="ym_titulo-input">Código*</p>
+            <div class="ym_input-form">
+                <button class="ym_btn-gerarcodigo"><img class="ym_btn-img" src="../../PUBLIC/img/img_add.png" alt=""></button>
+                <input type="text" placeholder="Gerar código único">
+            </div>
+        </div>
+        
+        <input type="submit" class="ym_btn-padrao" name="cadastrar" value="Cadastrar cupom">
+    </form>
 </body>
 </html>

@@ -24,7 +24,8 @@
 }
 
 .gs_form-pop-up{
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
     gap: 20px;
     align-items: center;
     justify-content: center;
@@ -55,6 +56,7 @@
     border-radius: 7px;
     border: 2px solid #E7E6E6;
     height: 2rem;
+    width: 50%;
 }
 
 .gs_pop-up-btn-submit{
@@ -71,7 +73,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-column-start: 2;
 }   
 
 .ym_titulo-input{
@@ -79,41 +80,15 @@
     font-weight: 500;
 }
 
-.ym_area-opcional-popup{
-    width: 68%;
-    border: 1.5px solid #2d2d2d;
+#ym_input-senha{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    border-radius: 10px;
-    padding: 4%;
-    gap: 20px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 96%;
 }
 
-
-@media screen and (max-width: 1024px){
-    .gs_pop-up{
-        width: 85vw;
-        height: auto;
-        max-height: 95vh;
-    }
-
-    .gs_area-input{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .gs_pop-up-input{
-        height: auto;
-        width: 100%;
-    }
-
-    .gs_pop-up-input{
-        max-width: 350px;
-    }
-
+.ym_btn-padrao{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    max-width: 98%;
 }

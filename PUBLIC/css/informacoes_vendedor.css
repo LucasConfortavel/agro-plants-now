@@ -65,22 +65,14 @@
     background-color: white;
 }
 
-.ym_card{
-  padding: 20px;
-  border-radius: 13px;
-  gap: 30px;
-  display: flex;
-  flex-direction: column;
-}
-
 .ym_area-btn{
-  width: 100%;
+  width: 30vw;
   display: flex;
   justify-content: space-around;
 }
 
-.ym_btn-padrao, .ym_btn-remover{
-  max-width: 40%;
+.ym_area-btn .ym_btn-padrao, .ym_btn-remover{
+  width: 40%;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -20,10 +20,7 @@
     <!-- pop-up -->
     <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
-            <div class="ym_area-superior-popup">
-                <h1 class="ym_titulo-popup">Cadastro de vendedores</h1>
-                <p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>
-            </div>
+            <div class="ym_area-superior-popup"></div>
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
@@ -42,8 +39,8 @@
                 </div>
 
                 <div class="ym_area-btn-superior">
-                    <a  onclick= "abrirPopup('../../VIEW/pop-up/pop-up_remover_vendedor.php')" class="ym_btn-superior ym_btn-padrao">Remover vendedor</a>
-                    <a onclick= "abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar vendedor</a>
+                    <a  onclick= "abrirPopup('../../VIEW/pop-up/pop-up_remover_vendedor.php','Remover vendedores')" class="ym_btn-superior ym_btn-padrao">Remover vendedor</a>
+                    <a onclick= "abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de vendedores')" class="ym_btn-superior ym_btn-padrao">Cadastrar vendedor</a>
                 </div>
 
 
@@ -67,9 +64,7 @@
                                     <tr class='ym_tr'>
                                         <td class='ym_td'>#paulorojas100</td>
                                         <td class='ym_td'>16/08</td>
-                                        <td class='ym_td'>
-                                            <i onclick=\"abrirPopup('../pop-up/conf_remover_vendedor.php')\" class='fa-solid fa-circle-info'></i>
-                                        </td>
+                                        <td class='ym_td' id='ym_td-icon'><a onclick=\"abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')\"><i class='fa-solid fa-circle-info'></i></a></td>                                     
                                     </tr>
                                 ";
                             ?>
@@ -78,6 +73,10 @@
 
                         </tbody>
                     </table>
+
+                    <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </a>
             
                 </div>
             </section>

@@ -15,11 +15,12 @@ include "../../INCLUDE/Menu_adm.php";
 
 
 </head>
-<body>  
+<body>
+
     <!-- pop-up -->
     <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
-            <p class="ym_fechar" onclick="fecharPopup()">✖</p>
+            <div class="ym_area-superior-popup"></div>
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
@@ -30,13 +31,13 @@ include "../../INCLUDE/Menu_adm.php";
             
             <div class="ym_area-barra-pesquisa">
                 <div class="ls_pesquisa-barra">
-                    <input type="text" placeholder="Pesquise por um vendedor">
+                    <input type="text" placeholder="Pesquise por uma venda">
                     <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
                 </div>
             </div>
             
             <div class="ym_area-btn-superior">
-                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-Fisica.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
+                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de vendas')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
             </div>
             
             <div class="ym_area-table">
@@ -64,13 +65,17 @@ include "../../INCLUDE/Menu_adm.php";
                             <td class="ym_td">José Farmer</td>
                             <td class="ym_td">16/08</td>
                             <td class="ym_td">R$ 100,00</td>
-                            <td class="ym_td "><a href="venda-info-adm.php"<i class="fa-solid fa-circle-info"></i></a></td>
-                        </tr>
+                            <td class="ym_td" id="ym_td-icon"><a href="venda-info-adm.php"><i class="fa-solid fa-circle-info"></i></a></td>
+                            </tr>
                         ';
                     ?>
 
                 </tbody>
                 </table>
+
+                <a class="ym_mobile-td" href="venda-info-adm.php">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
     
             </div>
 

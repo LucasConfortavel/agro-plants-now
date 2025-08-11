@@ -25,7 +25,7 @@
                             <th class="ym_th" style="color:white;">Data</th>
                             
                             <th class="ym_th" style="color:white;">Estado</th>
-                            <th class="ym_th"></th>
+                            <th class="ym_th" id="ym_th-icon"></th>
                             
                             
                     </thead>
@@ -39,13 +39,17 @@
                                 <td class="ym_td sb_td">100%</td>
                                 <td class="ym_td">16/08</td>
                                 <td class="ym_td">Ativo</td>
-                                <td class="ym_td "><a href=""><i class="fa-solid fa-circle-info"></i></a></td>
+                                <td class="ym_td" id="ym_td-icon"><a href=""><i class="fa-solid fa-circle-info"></i></a></td>
                             </tr>
                             ';
                         ?>
 
                     </tbody>
                 </table>
+
+                <a class="ym_mobile-td">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
         
             </div>
         </section> 
