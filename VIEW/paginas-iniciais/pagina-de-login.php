@@ -1,5 +1,5 @@
 <?php
-include "../../DB/connect.php";
+require_once     "../../DB/connect.php";
 include "../../INCLUDE/Menu_superior.php";
 
 // if (isset($_POST['adicionar'])) {
@@ -13,7 +13,7 @@ include "../../INCLUDE/Menu_superior.php";
 //     $result = mysqli_query($con, $sql);
 
 //     if (mysqli_num_rows($result) > 0) {
-//         echo "<script>alert('Login realizado com sucesso!');</script>";
+//         echo "<script>alert('Login realizado com sucesso!');</script>";  
 
 //     } else {
 //         echo "<script>alert('Email ou senha inválidos.');</script>";
@@ -62,7 +62,7 @@ include "../../INCLUDE/Menu_superior.php";
                     </div>
                     <div class="lc_area-links">
                         <a onclick="abrirPopup('../pop-up/pop-up-email-recuperar-senha.php','Informe seu e-mail para a recuperação de senha')" class="jc_forgot-password">Esqueceu sua senha?</a>
-                        <a onclick="abrirPopup('../pop-up/pop-up-criar-senha.php','Redefinição de senha')" class="jc_forgot-password">Redefinir senha</a>
+                        <!-- <a onclick="abrirPopup('../pop-up/pop-up-criar-senha.php','Redefinição de senha')" class="jc_forgot-password">Redefinir senha</a> -->
                     </div>
                     <input onclick="carregar('../vend/dashboard_vendedor.php')" type="submit" class="jc_login-btn" name="adicionar" value="Iniciar Sessão" ></input>
                 </form>
