@@ -36,34 +36,34 @@ include "../../INCLUDE/Menu_adm.php";
             </div>
 
             <div class="P_cart-item">
-                <div class="P_item-remove">
+                <!-- <div class="P_item-remove">
                     <button class="P_remove-button">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
-                </div>
+                </div> -->
                 <div class="P_item-produto">
                     <div class="P_product-image"></div>
                     <span>Produto</span>
                 </div>
                 <div class="P_item-preco">R$1000</div>
                 <div class="P_item-quantidade">
-                    <button class="P_quantity-button" id="menos">−</button>
+                    <!-- <button class="P_quantity-button" id="menos">−</button> -->
                     <span class="P_quantity-value" id="valor">1</span>
-                    <button class="P_quantity-button" id="mais">+</button>
+                    <!-- <button class="P_quantity-button" id="mais">+</button> -->
                 </div>
                 <div class="P_item-total">R$1000</div>
             </div>
         </div>
 
         <div class="P_cart-summary">
-            <div class="P_coupon-section">
+            <!-- <div class="P_coupon-section">
                 <div class="P_coupon-icon">
                     <i class="fa-solid fa-ticket"></i>
                 </div>
                 <input type="text" placeholder="Cupom" class="ym_input-padrao">
                 <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up_cupom_Adicionado.php','Cupom aplicado <i class=\'fa-solid fa-ticket\'></i>')">Aplicar</a>
 
-            </div>
+            </div> -->
 
             <div class="P_details-section">
                 <h3>Detalhes</h3>
@@ -84,6 +84,10 @@ include "../../INCLUDE/Menu_adm.php";
                     <span>Total</span>
                     <span class="P_price total">R$1000</span>
                 </div>
+                <div class="P_detail-row status-row">
+                    <span>Status da Compra</span>
+                    <span class="P_price total">Pago</span>
+                </div>
             </div>
 
         </div>
@@ -102,10 +106,10 @@ include "../../INCLUDE/Menu_adm.php";
             
             <div class="P_action-buttons">
 
-                <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
+                <!-- <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
 
                     Gerar link de venda
-                </a>
+                </a> -->
             </div>
         </div>
     </main>
