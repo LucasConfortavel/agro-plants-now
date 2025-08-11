@@ -396,75 +396,38 @@
   width: 60%;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1000px) {
   .ym_sectionProdutos{
-      width: 100vw;
-      gap: 40px;
-      padding: 10px;
-
-  }
-  
-  .jp_main-content{
-      margin-bottom: 70px;
+    gap: 7vh;
   }
 
-  .ym_titulo{
-      margin-top: 60px;
-      width: 80%;
-      padding-left: 0px;
+  .ym_btn-slide-area{
+    width: 90%;
   }
 
   .ym_categorias{
-      flex-direction: column;
-      width: 100%;
-      gap: 12px;
+    height: 4.6vh;
+    padding: 1px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
   }
 
-  .ym_linkCategoria{
-      width: 25%;
-      margin-right: 20px;
-
+  .ym_area-input-pesquisa{
+    width: 100%;
   }
 
-  .ym_produtoPesquisa{
-      display: none;
-  }
-
-  .ym_produtoPesquisa-mobile{
-      display: inline;
-  }
-
-  .ym_areaProdutos{
-      overflow: auto  ;
-      gap: 40px;
-  }
-
-  .ym_produtos{
-      gap: 8%;
-      padding: 0px;
-      width: 95%;
-  } 
-
-  .ym_links{
-      gap: 10px;
-      width: 100%;
+  .ym_area-select{
+    width: 23%;
+    height: 100%;
   }
   
-  .ym_cardProduto{
-      min-width: 155px;
-      padding: 7px;
+  .ym_options{
+    width: 26%;
   }
 
-  .ym_img{
-      height: 45%;
-      width: 45%;
-  }
-
-  .ym_nomeProduto{
-      font-size: 17px;
-  }
-
-  .ym_linkProduto{
-      width: 70%;
+  .ym_btn-add{
+    width: 8%;
+    height: 100%;
   }
 }

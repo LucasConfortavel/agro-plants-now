@@ -44,7 +44,7 @@ include "../../INCLUDE/Menu_adm.php";
                             <a href="catalogo-servicos.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> serviço</a>
                         </div>
                     </div>
-                    <a class="ym_btn-add">+</a>
+                    <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')" >+</a>
                 </div>
                 
                 <div class="ym_titulo-produtos">
@@ -125,5 +125,5 @@ include "../../INCLUDE/Menu_adm.php";
 </html>
 
 <script src="../../PUBLIC/JS/script.js"></script>
-
+<script src="../../PUBLIC/JS/script-pop-up.js"></script>
 <script src="../../PUBLIC/JS/script-catalogo.js"></script>
