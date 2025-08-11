@@ -40,6 +40,9 @@
                     <p class="ym_p">Teste Notificação</p>
                     <p class="ym_p">16:30</p>
                 </div>
+                <div class="vc_ver-mais">
+                    <a class="vc_not-more" href="../../VIEW/adm/notificacao-adm.php">Ver Mais...</a>
+                </div>
             </div>
 
         </div>
