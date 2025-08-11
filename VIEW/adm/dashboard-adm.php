@@ -25,21 +25,21 @@
                     <div class="jp_card-title">Total Vendido</div>
                     <div class="jp_card-indicator">22.0%</div>
                 </div>
-                <div class="jp_card-value">R$17500</div>
+                <div class="jp_card-value">R$3.917.500</div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Produtos Vendidos</div>
                     <div class="jp_card-indicator">22.0%</div>
                 </div>
-                <div class="jp_card-value">3,342</div>
+                <div class="jp_card-value">23,342</div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
-                    <div class="jp_card-title">Vendedores Ativos</div>
+                    <div class="jp_card-title">Total Cupons</div>
                     <div class="jp_card-indicator">22.0%</div>
                 </div>
-                <div class="jp_card-value">3,342</div>
+                <div class="jp_card-value">R$30.726</div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
@@ -54,10 +54,10 @@
             <div class="jp_sales-title">Últimas vendas</div>
             <table class="jp_sales-table">
                 <thead>
-                    <tr>
+                    <tr class="vc_header-planilha">
                         <th>Código</th>
                         <th>Vendedor</th>
-                        <th>Cliente</th>
+                        <th>Produtos</th>
                         <th>Data</th>
                         <th>Valor</th>
                         <th>Comissão</th>
@@ -67,7 +67,7 @@
                     <tr>
                         <td>#XXXX</td>
                         <td>Rafael</td>
-                        <td>Calebe</td>
+                        <td>Bioest/ Líq/</td>
                         <td>02/08</td>
                         <td class="jp_value-column">R$7500</td>
                         <td class="jp_commission-column">R$750 (10%)</td>
@@ -75,7 +75,7 @@
                     <tr>
                         <td>#XXXX</td>
                         <td>Rafael</td>
-                        <td>Celebe</td>
+                        <td>Bioest/ Líq/</td>
                         <td>02/08</td>
                         <td class="jp_value-column">R$7500</td>
                         <td class="jp_commission-column">R$750 (10%)</td>
@@ -83,7 +83,7 @@
                     <tr>
                         <td>#XXXX</td>
                         <td>Rafael</td>
-                        <td>Calebe</td>
+                        <td>Bioest/ Líq/</td>
                         <td>02/08</td>
                         <td class="jp_value-column">R$7500</td>
                         <td class="jp_commission-column">R$750 (10%)</td>
@@ -91,7 +91,7 @@
                     <tr>
                         <td>#XXXX</td>
                         <td>Rafael</td>
-                        <td>Calebe</td>
+                        <td>Bioest/ Líq/</td>
                         <td>02/08</td>
                         <td class="jp_value-column">R$7500</td>
                         <td class="jp_commission-column">R$750 (10%)</td>
@@ -115,12 +115,12 @@
                     <div class="jp_chart-indicator">-2% por mês</div>
                 </div>
                 <div class="jp_chart-filters">
-                    <div class="jp_filter-select">
-                        Produto <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="jp_filter-select">
-                        Último mês <i class="fas fa-chevron-down"></i>
-                    </div>
+                    <select class="jp_filter-select">
+                        <option> Produto</option>
+                    </select>
+                    <select class="jp_filter-select">
+                        <option> Ultimo mes </option>
+                    </select>
                 </div>
             </div>
             <div class="jp_chart-container">

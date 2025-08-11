@@ -1,4 +1,3 @@
-// Mock data
 const customers = [
     {
         id: "1",
@@ -189,14 +188,9 @@ const customers = [
                 ${getStatusBadge(customer.status)}
             </td>
             <td>${formatDate(customer.registrationDate)}</td>
+        
             <td>
-                <div class="purchase-info">
-                    <span class="purchase-count">${customer.totalPurchases}</span>
-                    <span class="purchase-label">${customer.totalPurchases === 1 ? 'compra' : 'compras'}</span>
-                </div>
-            </td>
-            <td>
-                <span class="amount">${formatCurrency(customer.totalSpent)}</span>
+                ${formatDate(customer.registrationDate)}</td>
             </td>
             <td>
                 <button class="menu-btn" onclick="showDropdown(event, '${customer.id}')">
@@ -223,9 +217,9 @@ const customers = [
   
   function getStatusBadge(status) {
     const statusConfig = {
-        active: { label: "Ativo", class: "badge-active" },
-        inactive: { label: "Inativo", class: "badge-inactive" },
-        pending: { label: "Pendente", class: "badge-pending" },
+        active: { label: " 100% " },
+        inactive: { label: "50%" },
+        pending: { label: "10%" },
     };
     
     const config = statusConfig[status];
