@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="jc_popup-conteudo">
-        <p>Senha alterada com sucesso!</p>
         <a href="../paginas-iniciais/pagina-de-login.php" class="jc_fechar-btn">Fechar</a>
     </div>
 </body>

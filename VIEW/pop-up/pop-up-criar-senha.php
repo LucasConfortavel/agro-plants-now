@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>            
-    <form action="#" method="POST" class="jc_form">
-        <input type="email" class="ym_input-form" placeholder="E-mail" required>
-        <input type="password" class="ym_input-form" placeholder="Senha" required>
-        <input type="submit" href="../pop-up/pop-up-senhinput-alterada-sucesso.php" class="ym_btn-padrao" value="Confirmar"></input>
+    <form method="POST" class="jc_form">
+        <input type="password" class="ym_input-form" placeholder="Nova Senha" required>
+        <input type="password" class="ym_input-form" placeholder="Confirme sua Senha" required>
+        <a onclick="abrirPopup('../pop-up/pop-up-senha-alterada-sucesso.php','Senha alterada com sucesso!')" class="ym_btn-padrao">Confirmar</a>
     </form>
 </body>
 </html>
+
+<script src="../../PUBLIC/JS/script-pop-up.js"></script>

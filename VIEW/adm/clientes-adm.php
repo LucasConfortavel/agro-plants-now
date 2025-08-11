@@ -31,7 +31,7 @@ include '../../INCLUDE/Menu_adm.php';
         <section class="ym_section">
                 <div class="ym_area-barra-pesquisa">
                     <div class="ls_pesquisa-barra">
-                        <input type="text" placeholder="Pesquise por um vendedor">
+                        <input type="text" placeholder="Pesquise por um cliente">
                         <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
                     </div>
                 </div>
