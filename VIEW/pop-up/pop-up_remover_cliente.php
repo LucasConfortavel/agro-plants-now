@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmação para remover Cliente CPF</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastroPessoas.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/pop-up_remover.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
+
     <form action="" method="post" class="ym_form-pop-up">
-        <div class="ym_area-input">
+        <div class="ym_input-area">
             <p class="ym_titulo-input" id="ym_titulo-cpf-cnpj">CPF/CNPJ*</p>
             <input class="ym_input-form" maxlength="15" id="ym_input-cpf-cnpj" name="cpf/cnpj" type="text" placeholder="CPF/CNPJ" oninput="teste()" >
         </div>

@@ -52,10 +52,10 @@ body {
 }
 
 .po-tab.po-active {
-  background-color: #4caf50;
+  background-color: #45734b;
   color: white;
   font-weight: 600;
-  border-bottom: 3px solid #45734b;
+  border-bottom: 3px solid #4caf50;
 }
 
 /* Tab Content */
@@ -85,10 +85,15 @@ body {
 }
 
 .po-export-button:hover {
-  background-color: #4caf50;
+  background-color: #45734b;
   color: white;
-  border-color: #4caf50;
+  border-color: #45734b;
   transform: translateY(-1px);
+}
+
+.po-export-button1 {
+  margin-top: 7.6px;
+  height: 22.2px;
 }
 
 /* Filter */
@@ -114,7 +119,7 @@ body {
 
 .po-filter-tempo select:hover,
 .po-filter-tempo select:focus {
-  border-color: #4caf50;
+  border-color: #45734b;
   outline: none;
 }
 
@@ -219,7 +224,7 @@ tr:hover {
 }
 
 .jp_page-number.active {
-  background-color: #4caf50;
+  background-color: #45734b;
   color: white;
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);

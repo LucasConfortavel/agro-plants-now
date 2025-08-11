@@ -10,30 +10,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  height: 100vh;
+body{
+  background-color: transparent;
+}
 
-}
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(15px);
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 1;
-  transition: opacity 0.4s ease;
-}
-.loading-overlay.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
 .spinner {
   width: 50px;
   height: 50px;
@@ -76,23 +56,9 @@ body {
 </style>
 </head>
 <body>
-<div class="loading-overlay" id="loadingOverlay">
+<div>
   <div class="spinner"></div>
-  
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function() {
-    document.getElementById('loadingOverlay').classList.add('hidden');
-  },300);
-});
-function showLoading() {
-  const overlay = document.getElementById('loadingOverlay');
-  overlay.classList.remove('hidden');
-  setTimeout(function() {
-    overlay.classList.add('hidden');
-  }, 300);
-}
-</script>
+
 </body>
 </html>

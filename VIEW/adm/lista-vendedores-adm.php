@@ -109,13 +109,18 @@
                 </div>
             </div>
 
+
             <script src="../../PUBLIC/JS/lista-vendedores.js"></script>
                            
 
-
+                
 
                         </tbody>
                     </table>
+
+                    <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </a>
             
                 </div>
             </section>

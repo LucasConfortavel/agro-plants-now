@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmação para remover Vendedor</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/conf-remover.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/pop-up_remover.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>

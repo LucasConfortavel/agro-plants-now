@@ -19,12 +19,9 @@
 <body>
 
     <!-- pop-up -->
-    <div class="ym_popup-overlay" >
+    <div class="ym_popup-overlay">
         <div class="ym_popup-content">
-            <div class="ym_area-superior-popup">
-                <h1 class="ym_titulo-popup">Cadastro de venda</h1>
-                <p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>
-            </div>
+            <div class="ym_area-superior-popup"></div>
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
@@ -36,13 +33,13 @@
 
                 <div class="ym_area-barra-pesquisa">
                     <div class="ls_pesquisa-barra">
-                        <input type="text" placeholder="Pesquise por um vendedor">
+                        <input type="text" placeholder="Pesquise por uma venda">
                         <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
                     </div>
                 </div>
 
                 <div class="ym_area-btn-superior">
-                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-Fisica.php')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
+                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-vend.php','Cadastrar venda')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
                 </div>
 
 

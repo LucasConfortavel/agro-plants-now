@@ -28,6 +28,8 @@
 
 
     <main class="jp_main-content">
+
+      
         <div class="container">
                 <div class="card">
                     <!-- Header -->
@@ -107,7 +109,8 @@
                 <div class="dropdown-item danger" data-action="delete">
                     <i class="fas fa-trash"></i>
                     Remover Venda
-                </div>
+                </div
+                  
             </div>
 
             <script src="../../PUBLIC/JS/vendas-adm.js"></script>

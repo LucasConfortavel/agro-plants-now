@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.ym_area-titulo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ym_titulo-input{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ym_input-area{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.ym_form-pop-up{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    min-width: 25vw;
+    justify-content: space-around;
+    grid-template-columns: auto auto;
+}
+
+.ym_area-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    gap: 30px;
+    width: 35vw;
+}
