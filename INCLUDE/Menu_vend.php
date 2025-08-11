@@ -23,7 +23,7 @@
                 <ul>
                     <button onclick= "window.location.href='../../VIEW/vend/dashboard_vendedor.php'"><li id="dashboard"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/grid.svg" alt=""> Dashboard</li></button> 
 
-                    <button onclick= "window.location.href='../../VIEW/vend/produtos-tudo.php'"><li id="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></button> 
+                    <button onclick= "window.location.href='../../VIEW/vend/catalogo-tudo.php'"><li id="catalogo"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/box.svg" alt=""> Catálogo</li></button> 
 
                     <button onclick= "window.location.href='../../VIEW/vend/lista-clientes.php'"><li id="clientes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/users.svg" alt=""> Clientes</li></button>
 
