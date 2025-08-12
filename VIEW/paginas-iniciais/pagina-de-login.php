@@ -1,25 +1,40 @@
 <?php
-require_once     "../../DB/connect.php";
+// require_once "../../DB/connect.php";
 include "../../INCLUDE/Menu_superior.php";
 
 // if (isset($_POST['adicionar'])) {
-//     $email = $_POST['email'];
-//     $password = $_POST['password'];
+//     $email = mysqli_real_escape_string($con, $_POST['email']);
+//     $password = mysqli_real_escape_string($con, $_POST['password']);
 
-//     $email = mysqli_real_escape_string($con, $email);
-//     $password = mysqli_real_escape_string($con, $password);
-
-//     $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$password'";
+//     $sql = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$password'";
 //     $result = mysqli_query($con, $sql);
 
 //     if (mysqli_num_rows($result) > 0) {
-//         echo "<script>alert('Login realizado com sucesso!');</script>";  
+//         $usuario = mysqli_fetch_assoc($result);
 
+//         session_start();
+//         $_SESSION['id'] = $usuario['id'];
+//         $_SESSION['email'] = $usuario['email'];
+//         $_SESSION['tipo'] = $usuario['tipo'];
+
+//         if ($usuario['tipo'] == 'admin') {
+//             header("Location: /caminho/painel_admin.php");
+//             exit;
+//         } elseif ($usuario['tipo'] == 'vendedor') {
+//             header("Location: /caminho/painel_vendedor.php");
+//             exit;
+//         } else {
+//             header("Location: /caminho/painel_cliente.php");
+//             exit;
+//         }
 //     } else {
 //         echo "<script>alert('Email ou senha inválidos.');</script>";
 //     }
 // }
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
