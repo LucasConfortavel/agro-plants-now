@@ -50,8 +50,7 @@
                                 </button>
                                 <button class="btn btn-primary">
                                     <i class="fas fa-plus"></i>
-                                    Cadastrar Venda?
-                                    
+                                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de clientes')">Cadastrar Venda</a>
                                 </button>
                             </div>
                         </div>

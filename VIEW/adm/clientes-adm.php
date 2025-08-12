@@ -45,10 +45,10 @@
                             <div class="actions">
                                 <button class="btn btn-danger" id="removeSelected" style="display: none;">
                                     <i class="fa-solid fa-trash-can"></i>Remover (<span id="selectedCount">0</span>)
-                                </button>
+                                </button>                                
                                 <button class="btn btn-primary">
                                     <i class="fas fa-plus"></i>
-                                    Cadastrar Cliente
+                                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de clientes')">Cadastrar Cliente</a>
                                 </button>
                             </div>
                         </div>

@@ -48,7 +48,7 @@
                                 </button>
                                 <button class="btn btn-primary">
                                     <i class="fas fa-plus"></i>
-                                    Cadastrar Vendedor
+                                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">Cadastrar Vendedor</a>
                                 </button>
                             </div>
                         </div>
