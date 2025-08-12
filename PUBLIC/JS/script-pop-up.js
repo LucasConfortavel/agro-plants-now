@@ -4,7 +4,7 @@ function abrirPopup(link,titulo) {
    const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
    const area_superior = document.getElementsByClassName('ym_area-superior-popup')[0];
   
-  if(titulo == "Calcular comissão"){
+  if(titulo == "Calcular comissão" || titulo == "Cadastro de produto"){
     fixarTela()
   }
 
@@ -36,6 +36,7 @@ function fecharPopup() {
    const main = document.getElementsByClassName('jp_main-content')[0];
    popup_overlay.style.display = 'none';
    main.style.position = 'relative';
+   window.location.reload();
 }
 
 function fixarTela(){

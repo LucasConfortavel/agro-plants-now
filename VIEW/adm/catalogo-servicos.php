@@ -15,6 +15,14 @@ include "../../INCLUDE/Menu_adm.php";
 </head>
 <body>
 
+    <!-- pop-up -->
+    <div class="ym_popup-overlay" >
+        <div class="ym_popup-content">
+            <div class="ym_area-superior-popup"></div>
+            <div class="ym_conteudo-popup"></div>
+        </div>
+    </div>
+
     <main class="jp_main-content">
 
         <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
