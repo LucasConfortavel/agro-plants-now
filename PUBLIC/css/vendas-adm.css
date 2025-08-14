@@ -246,6 +246,7 @@
     border-radius: 16px;
     font-size: 12px;
     font-weight: 500;
+    margin-right: 45%;
 }
 
 .badge-active {
@@ -459,6 +460,10 @@
 
     .customer-details p {
         font-size: 12px;
+    }
+
+    .badge{
+        margin-right: 10%;
     }
 }
 
