@@ -1,36 +1,38 @@
 <?php
-// require_once "../../DB/connect.php";
 include "../../INCLUDE/Menu_superior.php";
+require_once "../../DB/connect.php";
 
-// if (isset($_POST['adicionar'])) {
-//     $email = mysqli_real_escape_string($con, $_POST['email']);
-//     $password = mysqli_real_escape_string($con, $_POST['password']);
+if (isset($_POST['adicionar'])) {
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
 
-//     $sql = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$password'";
-//     $result = mysqli_query($con, $sql);
+    $sql = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$password'";
+    $result = mysqli_query($con, $sql);
 
-//     if (mysqli_num_rows($result) > 0) {
-//         $usuario = mysqli_fetch_assoc($result);
+    if (mysqli_num_rows($result) > 0) {
+        $usuario = mysqli_fetch_assoc($result);
 
-//         session_start();
-//         $_SESSION['id'] = $usuario['id'];
-//         $_SESSION['email'] = $usuario['email'];
-//         $_SESSION['tipo'] = $usuario['tipo'];
+        session_start();
+        $_SESSION['id'] = $usuario['id'];
+        $_SESSION['email'] = $usuario['email'];
+        $_SESSION['tipo'] = $usuario['tipo'];
 
-//         if ($usuario['tipo'] == 'admin') {
-//             header("Location: /caminho/painel_admin.php");
-//             exit;
-//         } elseif ($usuario['tipo'] == 'vendedor') {
-//             header("Location: /caminho/painel_vendedor.php");
-//             exit;
-//         } else {
-//             header("Location: /caminho/painel_cliente.php");
-//             exit;
-//         }
-//     } else {
-//         echo "<script>alert('Email ou senha inválidos.');</script>";
-//     }
-// }
+        if ($usuario['tipo'] == 'admin') {  
+            header("Location: ../adm/dashboard-adm.php");
+            exit;
+        } elseif ($usuario['tipo'] == 'vendedor') {
+            header("Location: ../vend/dashboard_vendedor.php");
+            exit;
+        } 
+
+    } else {
+        echo "<script>
+            setTimeout(() => {
+                alert('Email ou senha inválidos.');
+            }, 200);
+        </script>";
+    }
+}
 ?>
 
 
@@ -70,7 +72,7 @@ include "../../INCLUDE/Menu_superior.php";
                 <h3>Iniciar a sessão</h3> 
 
             
-                <form action="#" method="POST">
+                <form method="POST">
                     <div class="lc_area-inputs">
                         <input type="email" class="jc_input-field" name="email" placeholder="E-mail" required>
                         <input type="password" class="jc_input-field" name="password" placeholder="Senha" required>
@@ -79,10 +81,10 @@ include "../../INCLUDE/Menu_superior.php";
                         <a onclick="abrirPopup('../pop-up/pop-up-email-recuperar-senha.php','Informe seu e-mail para a recuperação de senha')" class="jc_forgot-password">Esqueceu sua senha?</a>
                         <!-- <a onclick="abrirPopup('../pop-up/pop-up-criar-senha.php','Redefinição de senha')" class="jc_forgot-password">Redefinir senha</a> -->
                     </div>
-                    <input onclick="carregar('../vend/dashboard_vendedor.php')" type="submit" class="jc_login-btn" name="adicionar" value="Iniciar Sessão" ></input>
+                    <input  type="submit" class="jc_login-btn" name="adicionar" value="Iniciar Sessão" ></input>
                 </form>
                 <div class="lc_area-engrenagem">
-                    <a onclick="carregar('../adm/dashboard-adm.php')"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
+                    <a ><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
                 </div>
             </div>
             

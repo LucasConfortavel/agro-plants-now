@@ -14,7 +14,7 @@ echo "Falha na Conexão: (".$con->connect_errno.")".$con-> connect_error;
 
 
 else{
-echo "Conectado:" . $con->host_info . "\n";
+echo '<script>console.log("Conectado: '.$con->host_info.'")</script>';
 }
 
 ?>
