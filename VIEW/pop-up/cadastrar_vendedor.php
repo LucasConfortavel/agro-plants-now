@@ -3,18 +3,22 @@
     // if(isset($_POST['adicionar'])){
 
     //     $nome = $_POST['nome'];
-    //     $data_nasc = $_POST['data_nasc'];
+    //     $email = $_POST['email']; 
+    //     $senha = $_POST['senha'];
+    //     $tipo = "vendedor";
     //     $cpf = $_POST['cpf'];
-    //     $telefone = $_POST['telefone'];
-    //     $email = $_POST['email'];
+    //     $data_nasc = $_POST['data_nasc'];
+    //     
         
-    //     $sql = "INSERT INTO";
+    //     $sql = "INSERT INTO usuario(nome, email, senha, tipo, CPF, data_nasc) VALUES ($nome, $email, $senha, $tipo, $cpf, $data_nasc)";
 
     //     $result_create = mysqli_query($conn,$sql);
 
     //     if(!$result_create){
     //         echo'<script>alert("Não foi possível cadastrar")</script>';
     //     }
+
+
 
     // }
 

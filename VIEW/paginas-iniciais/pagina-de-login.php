@@ -27,7 +27,7 @@ include "../../INCLUDE/Menu_superior.php";
 //             header("Location: /caminho/painel_cliente.php");
 //             exit;
 //         }
-//     } else {
+//     } else {   
 //         echo "<script>alert('Email ou senha inválidos.');</script>";
 //     }
 // }
