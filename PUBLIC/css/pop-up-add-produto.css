@@ -4,6 +4,14 @@
     margin-bottom: 20px;
 }
 
+.ym_textarea{
+    min-height: 8vh;
+    max-height: 8vh;
+    max-width: 30vw;
+    min-width: 30vw;
+}
+
+
 .eze-tab-button {
     flex: 1;
     padding: 12px 20px;
@@ -156,5 +164,12 @@
         display: flex;
         flex-direction: column;
 
+    }
+
+    .ym_textarea{
+        min-height: 8vh;
+        max-height: 8vh;
+        max-width: 73vw;
+        min-width: 73vw;
     }
 }
