@@ -1,5 +1,9 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
+    require_once "../../DB/connect.php";
+    $sql = 'SELECT * FROM usuario where tipo = "vendedor"';
+    $result = mysqli_query($con, $sql);
+    $total_vendedores= '2';
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +42,7 @@
                                     <div class="title-bar"></div>
                                     Vendedores
                                 </h1>
-                                <p class="subtitle" id="customerCount">5 clientes encontrados</p>
+                                <p class="subtitle" id="customerCount"><?php echo $total_vendedores;?> vendedores encontrados</p>
                             </div>
                             
                             
@@ -71,13 +75,49 @@
                                             <input type="checkbox" id="selectAll" class="checkbox">
                                         </th>
                                         <th class="name">Nome</th>
-                                        <th class="banguela">Status</th>
+                                        <th class="banguela">Telefone</th>
                                         <th class="data">Data de Cadastro</th>
                                         <th class="actions-col"></th> 
                                     </tr>
                                 </thead>
                                 <tbody id="customerTableBody"> 
-                                    <!-- Customers will be inserted here by JavaScript  -->
+                                    
+                                    <?php
+                                    if ($result){
+                                        while($row = mysqli_fetch_assoc($result)){
+                                            $nome= $row['CPF'];
+                                            $email= $row['email'];
+                                            $telefone= $row['telefone'];
+                                            $dataCadastro= $row['data_nasc'];
+
+                                        echo'<tr>
+                                            <td>
+                                                <input type="checkbox" class="checkbox customer-checkbox" data-customer-id="1">
+                                            </td>
+                                            <td>
+                                                <div class="customer-info">
+                                                    <div class="avatar">
+                                                        
+                                                    </div>
+                                                    <div class="customer-details">
+                                                        <h4>'.$nome.'</h4>
+                                                        <p>'.$email.'</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                '.$telefone.'
+                                            </td>
+                                            <td>'.$dataCadastro.'</td>
+                                        
+                                            <td>
+                                                <button class="menu-btn" onclick="showDropdown(event, 1)">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </button>
+                                            </td>
+                                        </tr>';
+                                    }}
+                                        ?>
                                  </tbody> 
                             </table>
                         </div>
@@ -111,12 +151,6 @@
 
 
             <script src="../../PUBLIC/JS/lista-vendedores.js"></script>
-                           
-
-                
-
-                        </tbody>
-                    </table>
 
                     <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
                         <i class="fa-solid fa-circle-info"></i>

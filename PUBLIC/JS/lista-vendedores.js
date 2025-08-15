@@ -1,54 +1,3 @@
-// Mock data
-const customers = [
-    {
-        id: "1",
-        name: "Paulo Rojas",
-        email: "paulo.rojas@email.com",
-        registrationDate: "2024-08-16",
-        totalPurchases: 2,
-        totalSpent: 1250.0,
-        status: "active",
-    },
-    {
-        id: "2",
-        name: "Maria Silva",
-        email: "maria.silva@email.com",
-        registrationDate: "2024-07-22",
-        totalPurchases: 5,
-        totalSpent: 3200.0,
-        status: "active",
-    },
-    {
-        id: "3",
-        name: "João Santos",
-        email: "joao.santos@email.com",
-        registrationDate: "2024-06-10",
-        totalPurchases: 1,
-        totalSpent: 450.0,
-        status: "pending",
-    },
-    {
-        id: "4",
-        name: "Ana Costa",
-        email: "ana.costa@email.com",
-        registrationDate: "2024-05-15",
-        totalPurchases: 8,
-        totalSpent: 5600.0,
-        status: "active",
-    },
-    {
-        id: "5",
-        name: "Carlos Oliveira",
-        email: "carlos.oliveira@email.com",
-        registrationDate: "2024-04-03",
-        totalPurchases: 0,
-        totalSpent: 0,
-        status: "inactive",
-    },
-  ];
-  
-  let filteredCustomers = [...customers];
-  let selectedCustomers = [];
   
   // DOM Elements
   const searchInput = document.getElementById('searchInput');
@@ -62,7 +11,6 @@ const customers = [
   
   // Initialize
   document.addEventListener('DOMContentLoaded', function() {
-    renderTable();
     setupEventListeners();
   });
   
@@ -90,7 +38,6 @@ const customers = [
     
     selectedCustomers = [];
     updateSelectedUI();
-    renderTable();
   }
   
   // Select all functionality
@@ -150,63 +97,63 @@ const customers = [
     });
   }
   
-  // Render table
-  function renderTable() {
-    // Update customer count
-    const count = filteredCustomers.length;
-    customerCount.textContent = `${count} cliente${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+//   // Render table
+//   function renderTable() {
+//     // Update customer count
+//     const count = filteredCustomers.length;
+//     customerCount.textContent = `${count} cliente${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
     
-    // Show/hide empty state
-    if (filteredCustomers.length === 0) {
-        customerTableBody.style.display = 'none';
-        emptyState.style.display = 'block';
-        return;
-    } else {
-        customerTableBody.style.display = '';
-        emptyState.style.display = 'none';
-    }
+//     // Show/hide empty state
+//     if (filteredCustomers.length === 0) {
+//         customerTableBody.style.display = 'none';
+//         emptyState.style.display = 'block';
+//         return;
+//     } else {
+//         customerTableBody.style.display = '';
+//         emptyState.style.display = 'none';
+//     }
     
-    // Render customers
-    customerTableBody.innerHTML = filteredCustomers.map((customer, index) => `
-        <tr>
-            <td>
-                <input type="checkbox" class="checkbox customer-checkbox" 
-                       data-customer-id="${customer.id}"
-                       ${selectedCustomers.includes(customer.id) ? 'checked' : ''}>
-            </td>
-            <td>
-                <div class="customer-info">
-                    <div class="avatar">
-                        ${getInitials(customer.name)}
-                    </div>
-                    <div class="customer-details">
-                        <h4>${customer.name}</h4>
-                        <p>${customer.email}</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                ${getStatusBadge(customer.status)}
-            </td>
-            <td>${formatDate(customer.registrationDate)}</td>
+//     // Render customers
+//     // customerTableBody.innerHTML = filteredCustomers.map((customer, index) => `
+//     //     <tr>
+//     //         <td>
+//     //             <input type="checkbox" class="checkbox customer-checkbox" 
+//     //                    data-customer-id="${customer.id}"
+//     //                    ${selectedCustomers.includes(customer.id) ? 'checked' : ''}>
+//     //         </td>
+//     //         <td>
+//     //             <div class="customer-info">
+//     //                 <div class="avatar">
+//     //                     ${getInitials(customer.name)}
+//     //                 </div>
+//     //                 <div class="customer-details">
+//     //                     <h4>${customer.name}</h4>
+//     //                     <p>${customer.email}</p>
+//     //                 </div>
+//     //             </div>
+//     //         </td>
+//     //         <td>
+//     //             ${getStatusBadge(customer.status)}
+//     //         </td>
+//     //         <td>${formatDate(customer.registrationDate)}</td>
            
-            <td>
-                <button class="menu-btn" onclick="showDropdown(event, '${customer.id}')">
-                    <i class="fas fa-ellipsis-h"></i>
-                </button>
-            </td>
-        </tr>
-    `).join('');
+//     //         <td>
+//     //             <button class="menu-btn" onclick="showDropdown(event, '${customer.id}')">
+//     //                 <i class="fas fa-ellipsis-h"></i>
+//     //             </button>
+//     //         </td>
+//     //     </tr>
+//     // `).join('');
     
-    // Add event listeners to checkboxes
-    document.querySelectorAll('.customer-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            handleCustomerSelect(this.dataset.customerId, this.checked);
-        });
-    });
+//     // Add event listeners to checkboxes
+//     document.querySelectorAll('.customer-checkbox').forEach(checkbox => {
+//         checkbox.addEventListener('change', function() {
+//             handleCustomerSelect(this.dataset.customerId, this.checked);
+//         });
+//     });
     
-    updateSelectAllCheckbox();
-  }
+//     updateSelectAllCheckbox();
+//   }
   
   // Utility functions
   function getInitials(name) {
