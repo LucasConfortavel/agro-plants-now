@@ -58,7 +58,8 @@
                         <table class="table">
                             <thead>
                                 <tr class="table-header">
-    
+                                    <th class="checkbox-col" id="selectAll">
+                                        </th>
                                     <th>Nome</th>
                                     <th>Status</th>
                                     <th>Data de Cadastro</th>
