@@ -1,5 +1,6 @@
 <?php
 
+    // require_once "../../DB/connect.php";
     // if(isset($_POST['adicionar'])){
 
     //     $nome = $_POST['nome'];
@@ -12,7 +13,7 @@
         
     //     $sql = "INSERT INTO usuario(nome, email, senha, tipo, CPF, data_nasc) VALUES ($nome, $email, $senha, $tipo, $cpf, $data_nasc)";
 
-    //     $result_create = mysqli_query($conn,$sql);
+    //     $result_create = mysqli_query($con,$sql);
 
     //     if(!$result_create){
     //         echo'<script>alert("Não foi possível cadastrar")</script>';

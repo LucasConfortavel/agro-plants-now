@@ -1,8 +1,25 @@
 <?php
 
-if(isset($_POST['cadastrar'])){
-    header("location:../adm/Cupom_adm.php");
-}
+require_once "../../DB/connect.php";
+
+// if(isset($_POST['cadastrar'])){
+//     $desconto = $_POST['desconto'];
+//     $descricao = $_POST['descricao'];
+//     $validade = $_POST['validade'];
+//     $codigo = $_POST['codigo'];  
+    
+//     $sql = "INSERT INTO cupom (desconto,descricao,validade,codigo) VALUES ('$nome','$data_nasc','$email','$cpf_cnpj')";
+
+//     $result_create = mysqli_query($con,$sql);
+
+//     if(!$result_create){
+//         echo'<script>alert("Não foi possível cadastrar")</script>';
+//     }else{
+//         echo'<script>alert("Cliente Cadastrado")</script>';
+//     }
+
+//     header("location:../adm/Cupom_adm.php");
+// }
 
 
 ?>
@@ -20,24 +37,24 @@ if(isset($_POST['cadastrar'])){
     <form method="POST" class="ym_formulario">
         <div class="ym_area-input"> 
             <p class="ym_titulo-input">Desconto*</p>
-            <input type="text" placeholder="Valor de desconto" class="ym_input-form">
+            <input name="desconto" type="text" placeholder="Valor de desconto" class="ym_input-form">
         </div>  
 
         <div class="ym_area-input">
             <p class="ym_titulo-input">Descrição*</p>
-            <input type="text" placeholder="Descrição" class="ym_input-form">
+            <input name="descricao" type="text" placeholder="Descrição" class="ym_input-form">
         </div>
 
         <div class="ym_area-input">
             <p class="ym_titulo-input">Data de validade</p>
-            <input type="date" placeholder="Data de validade" class="ym_input-form">
+            <input name="validade" type="date" placeholder="Data de validade" class="ym_input-form">
         </div>
 
         <div class="ym_area-input">
             <p class="ym_titulo-input">Código*</p>
             <div class="ym_input-form">
                 <button class="ym_btn-gerarcodigo"><img class="ym_btn-img" src="../../PUBLIC/img/img_add.png" alt=""></button>
-                <input type="text" placeholder="Gerar código único">
+                <input name="codigo" type="text" placeholder="Gerar código único">
             </div>
         </div>
         
