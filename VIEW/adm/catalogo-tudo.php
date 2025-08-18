@@ -1,5 +1,8 @@
 <?php
-include "../../INCLUDE/Menu_adm.php";
+    include "../../INCLUDE/Menu_adm.php";
+    require_once "../../DB/connect.php";
+    $sql = 'SELECT * FROM produtos';
+    $result = mysqli_query($con, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +27,6 @@ include "../../INCLUDE/Menu_adm.php";
     </div>
 
     <main class="jp_main-content">
-
-        <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
-        <?php $nome_produto = 'Nome do produto'; $imagem_produto2 = '../../PUBLIC/img/img_o-que-fazemos.png';?>
         
             <section class="ym_sectionProdutos">
     
@@ -60,62 +60,79 @@ include "../../INCLUDE/Menu_adm.php";
                     
                     <div class="ym_areaProdutos">
                         <div class="ym_todos-produtos">
-                            <?php for($i=0; $i < 20; $i++){echo'
-                                <div class="ym_cardProduto">
-                                    <div class="ym_img-placeholder">
-                                        <img src="'. $imagem_produto .'" alt="umg-produto" class="ym_img">
+                            <?php
+                                if ($result){
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        $id = $row['id'];
+                                        $nome= $row['nome'];
+                                        $preco= $row['preco'];
+                                        $imagem= '../../PUBLIC/img/img_produto.png';
+                                        $descricao= $row['descricao'];
+                                        echo'
+                                        <div class="ym_cardProduto">
+                                        <div class="ym_img-placeholder">
+                                        <img src="'. $imagem.'" alt="umg-produto" class="ym_img">
                                         <div class="ym_img-label">
-                                            <span>Bioestimulante</span>
+                                        <span>Bioestimulante</span>
                                         </div>
                                         <i class="fa-solid fa-trash-can ym_delete-icon"></i>
-                                    </div>
-                                    <p class="ym_nomeProduto">'. $nome_produto .'</p>
-                                    <p class="ym_preco">R$ 120,00</p>
-                                    <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
-                                    <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>';}
-                                ?>
+                                        </div>
+                                        <p class="ym_nomeProduto">'. $nome .'</p>
+                                        <p class="ym_preco">R$ '.$preco.'</p>
+                                        <p class="ym_descricao">'.$descricao.'</p>
+                                        <a href="sobre_prod_adm.php?id='.$id.'" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                        </div>';
+                                    }}
+                                    ?>
                         </div>
                         
                         <?php echo'
                         <div class="ym_btn-slide-area">
-                            <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.$i.',0)"> < </button>
-                            <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.$i.',0)"> > </button>
+                            <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.mysqli_num_rows($result).',0)"> < </button>
+                            <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.mysqli_num_rows($result).',0)"> > </button>
                         </div>'
                         ?>
                         
                     </div>
-                
-
-
-
-
-                <p class="ym_textoArea">Principais serviços</p>
                     
-
-                <div class="ym_areaProdutos">
+                    
+                    
+                    
+                    
+                    <p class="ym_textoArea">Principais serviços</p>
+                    
+                    
+                    <div class="ym_areaProdutos">
                         <div class="ym_todos-produtos">
-                            <?php for($i=0; $i < 20; $i++){echo'
-                                <div class="ym_cardProduto">
-                                    <div class="ym_img-placeholder">
-                                        <img src="'. $imagem_produto .'" alt="umg-produto" class="ym_img">
-                                        <div class="ym_img-label">
-                                            <span>Bioestimulante</span>
+                            <?php
+                                if ($result){
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        $nome= $row['nome'];
+                                        $preco= $row['preco'];
+                                        $imagem= '../../PUBLIC/img/img_produto.png';
+                                        $descricao= $row['descricao'];
+                                    echo'
+                                    <div class="ym_cardProduto">
+                                        <div class="ym_img-placeholder">
+                                            <img src="'. $imagem.'" alt="umg-produto" class="ym_img">
+                                            <div class="ym_img-label">
+                                                <span>Bioestimulante</span>
+                                            </div>
+                                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
                                         </div>
-                                        <i class="fa-solid fa-trash-can ym_delete-icon"></i>
-                                    </div>
-                                    <p class="ym_nomeProduto">'. $nome_produto .'</p>
-                                    <p class="ym_preco">R$ 120,00</p>
-                                    <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
-                                    <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>';}
-                                ?>
+                                        <p class="ym_nomeProduto">'. $nome .'</p>
+                                        <p class="ym_preco">R$ '.$preco.'</p>
+                                        <p class="ym_descricao">'.$descricao.'</p>
+                                        <a href="sobre_prod_adm.php " class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                    </div>';
+                                }}
+                            ?>
                         </div>
                         
                         <?php echo'
                         <div class="ym_btn-slide-area">
-                            <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.$i.',1)"> < </button>
-                            <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.$i.',1)"> > </button>
+                            <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.mysqli_num_rows($result).',1)"> < </button>
+                            <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.mysqli_num_rows($result).',1)"> > </button>
                         </div>'
                         ?>
                         
@@ -127,6 +144,20 @@ include "../../INCLUDE/Menu_adm.php";
 
 </body>
 </html>
+
+<?php
+
+if(mysqli_num_rows($result) < 5){
+
+    echo"<script>
+        var area1 = document.getElementsByClassName('ym_btn-slide-area')[0];
+        area1.style.display = 'none'; 
+        var area2 = document.getElementsByClassName('ym_btn-slide-area')[1];
+        area2.style.display = 'none';
+    </script>";
+}
+
+?>
 
 <script src="../../PUBLIC/JS/script.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>

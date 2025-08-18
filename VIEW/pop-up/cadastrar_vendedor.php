@@ -1,5 +1,6 @@
 <?php
 
+    // require_once "../../DB/connect.php";
     // if(isset($_POST['adicionar'])){
 
     //     $nome = $_POST['nome'];
@@ -12,7 +13,7 @@
         
     //     $sql = "INSERT INTO usuario(nome, email, senha, tipo, CPF, data_nasc) VALUES ($nome, $email, $senha, $tipo, $cpf, $data_nasc)";
 
-    //     $result_create = mysqli_query($conn,$sql);
+    //     $result_create = mysqli_query($con,$sql);
 
     //     if(!$result_create){
     //         echo'<script>alert("Não foi possível cadastrar")</script>';
@@ -30,8 +31,7 @@
 
 <!-- ESSE POP UP AINDA NÃO LINKA PQ O YURI JÁ  FEZ ELE CONECTAR AUTOMATICAMENTE COM O BACKEND, OU SEJA, SÓ VAI FUNCIONAR QUANDO O BACKEND FUNCIONAR TAMBÉM -->
 
-<!DOCTYPE html>
-<html lang="pt-br">
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

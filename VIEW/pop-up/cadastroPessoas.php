@@ -1,27 +1,5 @@
 <?php
-
-    // if(isset($_POST['adicionar'])){
-
-    //     $nome = $_POST['nome'];
-    //     $data_nasc = $_POST['data_nasc'];
-    //     $cpf = $_POST['cpf'];
-    //     $telefone = $_POST['telefone'];
-    //     $email = $_POST['email'];
-        
-    //     $sql = "INSERT INTO";
-
-    //     $result_create = mysqli_query($conn,$sql);
-
-    //     if(!$result_create){
-    //         echo'<script>alert("Não foi possível cadastrar")</script>';
-    //     }
-
-    // }
-
-    if(isset($_POST['adicionar'])){
-        header("location:../../VIEW/adm/clientes-adm.php");
-    }
-
+    require_once "../../DB/connect.php";
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +29,7 @@
             </div>
             <div class="ym_area-input">
                 <p class="ym_titulo-input" id="ym_titulo-cpf-cnpj">CPF/CNPJ*</p>
-                <input class="ym_input-form" maxlength="15" id="ym_input-cpf-cnpj" name="cpf/cnpj" type="text" placeholder="CPF/CNPJ" oninput="teste()" >
+                <input class="ym_input-form" maxlength="15" id="ym_input-cpf-cnpj" name="cpf_cnpj" type="text" placeholder="CPF/CNPJ" oninput="teste()" >
             </div>
 
             <input class="ym_btn-padrao" name="adicionar" type="submit" value="Cadastrar cliente">
@@ -68,7 +46,7 @@
         var valor = input.value.length;
 
         if(valor<11 || valor<15){
-            cpf_cnpj = 'CPF/CNPJ*';
+            cpf_cnpj = 'cpf_cnpj*';
             ym_area_input.innerHTML = `<p class="ym_titulo-input">${cpf_cnpj}</p>`;
         }
         if(valor==11){

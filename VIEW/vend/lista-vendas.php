@@ -1,83 +1,131 @@
 <?php
     include "../../INCLUDE/Menu_vend.php";
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Vendas</title>
-
+    <title>Gerenciamento de Vendedores</title>
+    <link rel="stylesheet" href="../../PUBLIC/css/lista-vendas-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/lista-vendas-vend.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
+ 
+ 
 </head>
 <body>
-
+ 
+ 
     <!-- pop-up -->
-    <div class="ym_popup-overlay">
+    <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
             <div class="ym_area-superior-popup"></div>
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
-
+ 
+ 
     <main class="jp_main-content">
-        <h1 class="ym_titulo">Lista de Vendas</h1> 
-        <div class="sab-engloba-tudo">
-            <section class="ym_section">
-
-                <div class="ym_area-barra-pesquisa">
-                    <div class="ls_pesquisa-barra">
-                        <input type="text" placeholder="Pesquise por uma venda">
-                        <img src="../../PUBLIC/img/img_lupa.png" alt="lupa">
+ 
+     
+        <div class="container">
+                <div class="card">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <div class="header-content">
+                            <div class="title-section">
+                                <h1 class="title">
+                                    <div class="title-bar"></div>
+                                    Vendas
+                                </h1>
+                                <p class="subtitle" id="customerCount">5 clientes encontrados</p>
+                            </div>
+                           
+                           
+                            <div class="actions">
+                                <button class="btn btn-danger" id="removeSelected" style="display: none;">
+                                    <i class="fa-solid fa-trash-can"></i>Remover (<span id="selectedCount">0</span>)
+                                </button>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-plus"></i>
+                                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de clientes')">Cadastrar Venda</a>
+                                </button>
+                            </div>
+                        </div>
+                       
+                        <div class="search-section">
+                            <div class="search-container">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" id="searchInput" placeholder="Pesquisar por nome ou email..." class="search-input">
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <!-- Table -->
+                    <div class="card-content">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr class="table-header">
+                                        <th style="color:black;">Vendedor</th>
+                                        <th style="color:black;">Comprador</th>
+                                        <th style="color:black;">Data de cadastro</th>
+                                        <th style="color:black;">Total</th>                                        
+                                        <th class="actions-col"></th>
+                                </thead>
+                                <tbody id="customerTableBody">
+                                    <!-- Customers will be inserted here by JavaScript  -->
+                                 </tbody>
+                            </table>
+                        </div>
+ 
+                        <!-- Empty State -->
+                        <div id="emptyState" class="empty-state" style="display: none;">
+                            <i class="fas fa-search empty-icon" ></i>
+                            <h3>Nenhuma venda encontrada</h3>
+                            <p>Tente ajustar os termos de pesquisa</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="ym_area-btn-superior">
-                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-vend.php','Cadastrar venda')" class="ym_btn-superior ym_btn-padrao">Cadastrar venda</a>
+            </div>
+ 
+            <!-- Dropdown Menu Template -->
+            <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
+                <div class="dropdown-item" data-action="view">
+                    <i class="fas fa-eye"></i>
+                    Visualizar Detalhes
                 </div>
-
-
-                <div class="ym_area-table">
-
-                    <table class="ym_tabela">
-
-                        <thead class="ym_thead">
-                            <tr class="ym_tr">
-                                <th class="ym_th" style="color:white;">Vendedor</th>
-                                <th class="ym_th" style="color:white;">Comprador</th>
-                                <th class="ym_th" style="color:white;">Data de cadastro</th>
-                                <th class="ym_th" style="color:white;">Total</th>
-                            </tr>
-                                
-                               
-                        </thead>
-
-                        <tbody class="ym_tbody">
-
-                            <?php
-                                echo'
-                                <tr class="ym_tr">
-                                    <td class="ym_td">Luã Carlos</td>
-                                    <td class="ym_td">Paulo Rojas</td>
-                                    <td class="ym_td">16/08</td>
-                                    <td class="ym_td">R$ 100,00</td>
-                                </tr>
-                                ';
-                            ?>
-
+                <div class="dropdown-item" data-action="edit">
+                    <i class="fas fa-edit"></i>
+                    Editar Venda
+                </div>
+                <div class="dropdown-separator"></div>
+                <div class="dropdown-item danger" data-action="delete">
+                    <i class="fas fa-trash"></i>
+                    Remover Venda
+                </div>
+                 
+            </div>
+ 
+            <script src="../../PUBLIC/JS/lista-vendas.js"></script>
+                           
+ 
+ 
+ 
                         </tbody>
                     </table>
+           
                 </div>
             </section>
-        </div> 
+        </div>
+     
+   
+ 
     </main>
+    <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+ 
 </body>
 </html>
-

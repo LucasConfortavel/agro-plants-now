@@ -1,4 +1,4 @@
-function mostrar_categorias(){
+ function mostrar_categorias(){
     let option = document.getElementsByClassName("ym_options")[0];
     let seta = document.getElementsByClassName("ym_seta-categoria")[0];
     let option_area = document.getElementsByClassName("ym_options")[0];
@@ -85,3 +85,4 @@ function slideBack(qntProduto,indexArea){
     produtos.style.transform = `translatex(-${slides}%)`;
     btn_go.style.opacity = "1"
 }
+

@@ -5,6 +5,9 @@
     $sql = 'SELECT * FROM usuario where tipo = "vendedor"';
     $result = mysqli_query($con, $sql);
     $total_vendedores= '2';
+
+
+  
 ?>
 
 <!DOCTYPE html>

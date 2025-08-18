@@ -1,6 +1,7 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
     require_once "../../DB/connect.php";
+
     
     // Configuração da paginação
     $registros_por_pagina = 5; // Número de itens por página
@@ -17,6 +18,7 @@
     $row_count = mysqli_fetch_assoc($result_count);
     $total_vendedores = $row_count['total'];
     $total_paginas = ceil($total_vendedores / $registros_por_pagina);
+
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +74,7 @@
                     </div>
                 </div>
 
+
                 <!-- Table -->
                 <div class="card-content">
                     <div class="table-container">
@@ -97,6 +100,7 @@
                                         $dataCadastro = $row['data_nasc'];
 
                                         echo '<tr>
+
                                             <td>
                                                 <input type="checkbox" class="checkbox customer-checkbox" data-customer-id="1">
                                             </td>
