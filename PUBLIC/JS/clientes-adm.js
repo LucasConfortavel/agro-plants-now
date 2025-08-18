@@ -1,3 +1,5 @@
+
+
 // Mock data
 const customers = [
     {
@@ -45,6 +47,7 @@ const customers = [
         totalSpent: 0,
         status: "inactive",
     },
+    
   ];
   
   let filteredCustomers = [...customers];
@@ -74,7 +77,7 @@ const customers = [
     
     // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.dropdown-menu') && !e.target.closest('.menu-btn')) {
+        if (!e.target.closest('.jv_dropdown-menu') && !e.target.closest('.jv_menu-btn')) {
             hideDropdown();
         }
     });
@@ -144,7 +147,7 @@ const customers = [
   
   // Update individual checkboxes
   function updateCheckboxes() {
-    const checkboxes = document.querySelectorAll('.customer-checkbox');
+    const checkboxes = document.querySelectorAll('.jv_customer-checkbox');
     checkboxes.forEach(checkbox => {
         checkbox.checked = selectedCustomers.includes(checkbox.dataset.customerId);
     });
@@ -170,16 +173,16 @@ const customers = [
     customerTableBody.innerHTML = filteredCustomers.map((customer, index) => `
         <tr>
             <td>
-                <input type="checkbox" class="checkbox customer-checkbox" 
+                <input type="checkbox" class="jv_checkbox customer-checkbox" 
                        data-customer-id="${customer.id}"
                        ${selectedCustomers.includes(customer.id) ? 'checked' : ''}>
             </td>
             <td>
-                <div class="customer-info">
-                    <div class="avatar">
+                <div class="jv_customer-info">
+                    <div class="jv_avatar">
                         ${getInitials(customer.name)}
                     </div>
-                    <div class="customer-details">
+                    <div class="jv_customer-details">
                         <h4>${customer.name}</h4>
                         <p>${customer.email}</p>
                     </div>
@@ -190,16 +193,16 @@ const customers = [
             </td>
             <td>${formatDate(customer.registrationDate)}</td>
             <td>
-                <div class="purchase-info">
-                    <span class="purchase-count">${customer.totalPurchases}</span>
-                    <span class="purchase-label">${customer.totalPurchases === 1 ? 'compra' : 'compras'}</span>
+                <div class="jv_purchase-info">
+                    <span class="jv_purchase-count">${customer.totalPurchases}</span>
+                    <span class="jv_purchase-label">${customer.totalPurchases === 1 ? 'compra' : 'compras'}</span>
                 </div>
             </td>
             <td>
-                <span class="amount">${formatCurrency(customer.totalSpent)}</span>
+                <span class="jv_amount">${formatCurrency(customer.totalSpent)}</span>
             </td>
             <td>
-                <button class="menu-btn" onclick="showDropdown(event, '${customer.id}')">
+                <button class="jv_menu-btn" onclick="showDropdown(event, '${customer.id}')">
                     <i class="fas fa-ellipsis-h"></i>
                 </button>
             </td>
@@ -207,7 +210,7 @@ const customers = [
     `).join('');
     
     // Add event listeners to checkboxes
-    document.querySelectorAll('.customer-checkbox').forEach(checkbox => {
+    document.querySelectorAll('.jv_customer-checkbox').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
             handleCustomerSelect(this.dataset.customerId, this.checked);
         });
@@ -223,13 +226,13 @@ const customers = [
   
   function getStatusBadge(status) {
     const statusConfig = {
-        active: { label: "Ativo", class: "badge-active" },
-        inactive: { label: "Inativo", class: "badge-inactive" },
-        pending: { label: "Pendente", class: "badge-pending" },
+        active: { label: "Ativo", class: "jv_badge-active" },
+        inactive: { label: "Inativo", class: "jv_badge-inactive" },
+        pending: { label: "Pendente", class: "jv_badge-pending" },
     };
     
     const config = statusConfig[status];
-    return `<span class="badge ${config.class}">${config.label}</span>`;
+    return `<span class="jv_badge ${config.class}">${config.label}</span>`;
   }
   
   function formatCurrency(value) {
@@ -253,7 +256,7 @@ const customers = [
     dropdownMenu.style.top = (rect.bottom + 5) + 'px';
     
     // Add click handlers to dropdown items
-    dropdownMenu.querySelectorAll('.dropdown-item').forEach(item => {
+    dropdownMenu.querySelectorAll('.jv_dropdown-item').forEach(item => {
         item.onclick = function() {
             handleDropdownAction(item.dataset.action, customerId);
             hideDropdown();

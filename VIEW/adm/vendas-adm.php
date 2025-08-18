@@ -108,9 +108,17 @@
                 <div class="dropdown-item danger" data-action="delete">
                     <i class="fas fa-trash"></i>
                     Remover Venda
-                </div
-                  
+                </div>             
             </div>
+
+               <div class="jp_page-navigation">
+                    <div class="jp_page-number active">1</div>
+                    <div class="jp_page-number">2</div>
+                    <div class="jp_page-number">3</div>
+                    <div class="jp_page-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
 
             <script src="../../PUBLIC/JS/vendas-adm.js"></script>
                            

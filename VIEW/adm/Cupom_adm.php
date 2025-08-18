@@ -109,6 +109,15 @@
                 </div>
             </div>
 
+            <div class="jp_page-navigation">
+                    <div class="jp_page-number active">1</div>
+                    <div class="jp_page-number">2</div>
+                    <div class="jp_page-number">3</div>
+                    <div class="jp_page-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
             <script src="../../PUBLIC/JS/cupom-adm.js"></script>
                            
 
