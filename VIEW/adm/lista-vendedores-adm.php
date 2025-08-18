@@ -3,7 +3,7 @@
     require_once "../../DB/connect.php";
     $sql = 'SELECT * FROM usuario where tipo = "vendedor"';
     $result = mysqli_query($con, $sql);
-    $total_vendedores= '2';
+    $total_vendedores = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -83,12 +83,14 @@
                                 <tbody id="customerTableBody"> 
                                     
                                     <?php
+                                    
                                     if ($result){
                                         while($row = mysqli_fetch_assoc($result)){
                                             $nome= $row['CPF'];
                                             $email= $row['email'];
                                             $telefone= $row['telefone'];
                                             $dataCadastro= $row['data_nasc'];
+
 
                                         echo'<tr>
                                             <td>

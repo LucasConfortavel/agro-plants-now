@@ -1,5 +1,19 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+require_once "../../DB/connect.php";
+
+if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $sql = " SELECT * FROM produtos WHERE id = ".$_GET['id']." ";
+    $result = mysqli_query($con, $sql);
+    $produto = mysqli_fetch_assoc($result);
+    $nome= $produto['nome'];
+    $preco= $produto['preco'];
+    $estoque= $produto['quantidade'];
+    $descricao= $produto['descricao'];
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +43,7 @@ include "../../INCLUDE/Menu_adm.php";
             <div class="gs_product-info">
                 <div class="gs_names">
                     <p class="gs_label">Nome</p>
-                    <p class="gs_value">Forth Equilíbrio</p>
+                    <p class="gs_value"><?php echo $nome;?></p>
                 </div>
 
                 <div class="gs_names">
@@ -39,21 +53,21 @@ include "../../INCLUDE/Menu_adm.php";
 
                 <div class="gs_names">
                     <p class="gs_label">Preço</p>
-                    <p class="gs_value">R$ 99,99</p>
+                    <p class="gs_value">R$ <?php echo $preco;?></p>
                 </div>
 
                 <div class="gs_names">
                     <p class="gs_label">Estoque</p>
-                    <p class="gs_value">50 unidades</p>
+                    <p class="gs_value"><?php echo $estoque;?> unidades</p>
                 </div>
                 
                 <div class="gs_names gs_desc">
                     <p class="gs_label">Descrição</p>
-                    <p class="gs_value gs_desc">Você já está fazendo adubação e mesmo assim a planta não está respondendo legal? Esse adubo pode te ajudar. Ele vai complementar sua adubação principal, levando equilíbrio para o solo e proporcionando melhor absorção dos nutrientes para as suas plantas.</p>
+                    <p class="gs_value gs_desc"><?php echo $descricao;?></p>
                 </div>
 
                 <div class="ym_area-btn">
-                    <a href="produtos-tudo.php" class="ym_btn-padrao">Voltar</a>
+                    <a href="catalogo-tudo.php" class="ym_btn-padrao">Voltar</a>
                 </div>
             </div>
         </section>
