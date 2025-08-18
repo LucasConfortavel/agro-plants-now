@@ -61,8 +61,8 @@
                         <table class="table">
                             <thead>
                                 <tr class="table-header">
-                                    <th style="color:black;"id="banguela">Código</th>
-                                    <th style="color:black;"id="banguela">Desconto</th>
+                                    <th style="color:black;">Código</th>
+                                    <th style="color:black;">Desconto</th>
                                     <th style="color:black;">Data de cadastro</th>
                                     <th style="color:black;">Validade</th>                                        
                                     <th class="actions-col"></th>
