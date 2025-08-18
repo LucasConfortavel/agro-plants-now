@@ -106,6 +106,10 @@
                                     
                                     <?php
                                     
+                                    $sql = 'SELECT * FROM usuario WHERE tipo = "vendedor"';
+
+                                    $result = mysqli_query($con,$sql);
+
                                     if ($result){
                                         while($row = mysqli_fetch_assoc($result)){
                                             $nome= $row['CPF'];
