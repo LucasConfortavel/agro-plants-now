@@ -105,12 +105,14 @@
                                 <tbody id="customerTableBody"> 
                                     
                                     <?php
+                                    
                                     if ($result){
                                         while($row = mysqli_fetch_assoc($result)){
                                             $nome= $row['CPF'];
                                             $email= $row['email'];
                                             $telefone= $row['telefone'];
                                             $dataCadastro= $row['data_nasc'];
+
 
                                         echo'<tr>
                                             <td>
