@@ -109,9 +109,6 @@
     transform: translateX(3px);
   }
 
-
-
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -125,7 +122,7 @@
 }
 
 .card-header {
-    padding: 24px;
+    padding: 20px;
     border-bottom: 1px solid #e5e7eb;
     background: white;
 }
@@ -240,6 +237,7 @@
 }
 
 .table-container {
+    max-height: 60vh;
     overflow-x: auto;
 }
 
@@ -397,6 +395,7 @@
 
 .menu-btn {
     background: none;
+    width: auto;
     border: none;
     padding: 8px;
     border-radius: 4px;

@@ -4,7 +4,7 @@
 
     
     // Configuração da paginação
-    $registros_por_pagina = 5; // Número de itens por página
+    $registros_por_pagina = 4; // Número de itens por página
     $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $offset = ($pagina_atual - 1) * $registros_por_pagina;
     
@@ -94,6 +94,7 @@
                                 <?php
                                 if ($result && mysqli_num_rows($result) > 0) {
                                     while($row = mysqli_fetch_assoc($result)){
+                                        $id = $row['id'];
                                         $nome = $row['CPF'];
                                         $email = $row['email'];
                                         $telefone = $row['telefone'];
@@ -102,7 +103,7 @@
                                         echo '<tr>
 
                                             <td>
-                                                <input type="checkbox" class="checkbox customer-checkbox" data-customer-id="1">
+                                                <input type="checkbox" class="checkbox customer-checkbox" data-customer-id='.$id.'>
                                             </td>
                                             <td>
                                                 <div class="customer-info">
@@ -116,7 +117,7 @@
                                             <td class = "bangas">'.$telefone.'</td>
                                             <td>'.$dataCadastro.'</td>
                                             <td>
-                                                <button class="menu-btn" onclick="showDropdown(event, 1)">
+                                                <button class="menu-btn" onclick="showDropdown(event, '.$id.')">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </button>
                                             </td>
@@ -182,24 +183,16 @@
             </div>
         </div>
 
-        <script src="../../PUBLIC/JS/lista-vendedores.js"></script>
         <script>
-        // Adicione esta parte ao seu arquivo JS ou aqui no HTML
-        document.addEventListener('DOMContentLoaded', function() {
-            // Configuração da paginação (caso precise de funcionalidade JS)
-            const pageNumbers = document.querySelectorAll('.jp_page-number');
-            const pageArrows = document.querySelectorAll('.jp_page-arrow');
             
-            // Se precisar de interações via JavaScript com a paginação
-            // pode adicionar os event listeners aqui
-        });
         </script>
 
-        <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
-            <i class="fa-solid fa-circle-info"></i>
-        </a>
+<a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+    <i class="fa-solid fa-circle-info"></i>
+</a>
 
-    </main>
+</main>
+    <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 </body>

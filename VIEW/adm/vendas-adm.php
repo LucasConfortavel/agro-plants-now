@@ -1,5 +1,10 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
+    require_once "../../DB/connect.php";
+
+    $sql = 'SELECT * FROM venda';
+    $result = mysqli_query($con, $sql);
+    $total_vendas = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Vendedores</title>
+    <title>Gerenciamento de Vendas</title>
     <link rel="stylesheet" href="../../PUBLIC/css/vendas-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
@@ -40,7 +45,7 @@
                                     <div class="title-bar"></div>
                                     Vendas
                                 </h1>
-                                <p class="subtitle" id="customerCount">5 clientes encontrados</p>
+                                <p class="subtitle" id="customerCount"><?php echo $total_vendas;?> vendas encontrados</p>
                             </div>
                             
                             
@@ -50,7 +55,7 @@
                                 </button>
                                 <button class="btn btn-primary">
                                     <i class="fas fa-plus"></i>
-                                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de clientes')">Cadastrar Venda</a>
+                                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de vendas')">Cadastrar Venda</a>
                                 </button>
                             </div>
                         </div>
@@ -79,7 +84,59 @@
                                         <th class="actions-col"></th> 
                                 </thead>
                                 <tbody id="customerTableBody"> 
-                                    <!-- Customers will be inserted here by JavaScript  -->
+                                    <?php 
+                                    
+                                    if($result){
+                                        while($row = mysqli_fetch_assoc($result)){
+                                            $id = $row['id'];
+                                            $vendedor_id = $row['id_vendedor'];
+                                            
+                                            $sql_vendedor = mysqli_query($con,'SELECT * FROM usuario WHERE tipo = "vendedor" and id = '.$vendedor_id.'');
+                                            
+                                            $dado_vendedor = mysqli_fetch_assoc($sql_vendedor);
+
+                                            $vendedor_nome = $dado_vendedor['nome'];
+
+                                            $vendedor_email = $dado_vendedor['email'];
+
+                                            $total = $row['total'];
+                                            $data = $row['data_venda'];   
+
+                                            echo'
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" class="checkbox customer-checkbox" 
+                                                            data-customer-id='.$id.'>
+                                                    </td>
+                                                    <td>
+                                                        <div class="customer-info">
+                                                            <div class="avatar">
+                                                                YM
+                                                            </div>
+                                                            <div class="customer-details">
+                                                                <h4>'.$vendedor_nome.'</h4>
+                                                                <p>'.$vendedor_email.'</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        Comprador
+                                                    </td>
+
+                                                    <td>'.$data.'</td>
+                                                
+                                                    <td>
+                                                        <span class="amount">'.$total.'</span>
+                                                    </td>
+                                                    <td>
+                                                        <button class="menu-btn" onclick="showDropdown(event, '.$id.')">
+                                                            <i class="fas fa-ellipsis-h"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ';}}
+                                    ?>
                                  </tbody> 
                             </table>
                         </div>

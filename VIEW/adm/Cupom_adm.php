@@ -1,5 +1,10 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
+    require_once "../../DB/connect.php";
+    
+    $sql = 'SELECT * FROM cupom';
+    $result = mysqli_query($con, $sql);
+    $total_cupom = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +42,7 @@
                                     <div class="title-bar"></div>
                                     Cupons
                                 </h1>
-                                <p class="subtitle" id="customerCount">5 clientes encontrados</p>
+                                <p class="subtitle" id="customerCount"><?php echo $total_cupom;?> cupons encontrados</p>
                             </div>
                             
                             
@@ -76,8 +81,48 @@
                                         <th class="actions-col"></th> 
                                 </thead>
                                 <tbody id="customerTableBody"> 
-                                    <!-- Customers will be inserted here by JavaScript  -->
-                                 </tbody> 
+                                <?php 
+                                    if($result){
+                                        while($row = mysqli_fetch_assoc($result)){
+                                            $id= $row['id'];
+                                            $codigo= $row['codigo'];
+                                            $desconto= $row['valor'];
+                                            $data= $row['data'];
+                                            $validade = $row['validade'];   
+                                    
+                                            echo'
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" class="checkbox customer-checkbox" 
+                                                            data-customer-id='.$id.'
+                                                    </td>
+                                                    <td>
+                                                        <div class="customer-info">
+                                                            <div class="avatar">
+                                                                YM
+                                                            </div>
+                                                            <div class="customer-details">
+                                                                <h4>'.$codigo.'</h4>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        '.$desconto.'
+                                                    </td>
+                                                    <td>'.$data.'</td>
+                                                
+                                                    <td>
+                                                        '.$validade.'
+                                                    </td>
+                                                    <td>
+                                                        <button class="menu-btn" onclick="showDropdown(event, '.$id.')">
+                                                            <i class="fas fa-ellipsis-h"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>';}}
+                                ?>
+
+                                </tbody> 
                             </table>
                         </div>
 
@@ -109,31 +154,19 @@
             </div>
 
             <div class="jp_page-navigation">
-                    <div class="jp_page-number active">1</div>
-                    <div class="jp_page-number">2</div>
-                    <div class="jp_page-number">3</div>
-                    <div class="jp_page-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
+                <div class="jp_page-number active">1</div>
+                <div class="jp_page-number">2</div>
+                <div class="jp_page-number">3</div>
+                <div class="jp_page-arrow">
+                    <i class="fas fa-arrow-right"></i>
                 </div>
-
-            <script src="../../PUBLIC/JS/cupom-adm.js"></script>
-                           
-
-
-
-                        </tbody>
-                    </table>
+            </div>
             
-                </div>
-            </section>
         </div> 
-     
-
-                
-    
-
+        
     </main>
+    
+    <script src="../../PUBLIC/JS/cupom-adm.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 

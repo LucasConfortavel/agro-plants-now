@@ -16,56 +16,10 @@
     
     // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.dropdown-menu') && !e.target.closest('.menu-btn')) {
+        if (!e.target.closest('.jv_dropdown-menu') && !e.target.closest('.jv_menu-btn')) {
             hideDropdown();
         }
     });
-  }
-  
-  // Search functionality
-  function handleSearch() {
-    const searchTerm = searchInput.value.toLowerCase();
-    filteredCustomers = customers.filter(customer => 
-        customer.name.toLowerCase().includes(searchTerm) ||
-        customer.email.toLowerCase().includes(searchTerm)
-    );
-    
-    selectedCustomers = [];
-    updateSelectedUI();
-    renderTable();
-  }
-  
-  // Select all functionality
-  function handleSelectAll() {
-    if (selectAllCheckbox.checked) {
-        selectedCustomers = filteredCustomers.map(customer => customer.id);
-    } else {
-        selectedCustomers = [];
-    }
-    updateSelectedUI();
-    updateCheckboxes();
-  }
-  
-  // Individual customer selection
-  function handleCustomerSelect(customerId, checked) {
-    if (checked) {
-        selectedCustomers.push(customerId);
-    } else {
-        selectedCustomers = selectedCustomers.filter(id => id !== customerId);
-    }
-    
-    updateSelectedUI();
-    updateSelectAllCheckbox();
-  }
-  
-  // Remove selected customers
-  function handleRemoveSelected() {
-    if (confirm(`Tem certeza que deseja remover ${selectedCustomers.length} cliente(s)?`)) {
-        // Here you would typically make an API call
-        console.log('Removing customers:', selectedCustomers);
-        selectedCustomers = [];
-        updateSelectedUI();
-    }
   }
   
   // Update selected customers UI
@@ -86,7 +40,7 @@
   
   // Update individual checkboxes
   function updateCheckboxes() {
-    const checkboxes = document.querySelectorAll('.customer-checkbox');
+    const checkboxes = document.querySelectorAll('.jv_customer-checkbox');
     checkboxes.forEach(checkbox => {
         checkbox.checked = selectedCustomers.includes(checkbox.dataset.customerId);
     });
@@ -99,13 +53,13 @@
   
   function getStatusBadge(status) {
     const statusConfig = {
-        active: { label: "roger" },
-        inactive: { label: "lucas" },
-        pending: { label: "paulo" },
+        active: { label: "Ativo", class: "jv_badge-active" },
+        inactive: { label: "Inativo", class: "jv_badge-inactive" },
+        pending: { label: "Pendente", class: "jv_badge-pending" },
     };
     
     const config = statusConfig[status];
-    return `<span class="badge ${config.class}">${config.label}</span>`;
+    return `<span class="jv_badge ${config.class}">${config.label}</span>`;
   }
   
   function formatCurrency(value) {
@@ -121,7 +75,7 @@
   
   // Dropdown functionality
   function showDropdown(event, customerId) {
-    event.stopPropagation();
+    // event.stopPropagation();
     
     const rect = event.target.getBoundingClientRect();
     dropdownMenu.style.display = 'block';
@@ -129,7 +83,7 @@
     dropdownMenu.style.top = (rect.bottom + 5) + 'px';
     
     // Add click handlers to dropdown items
-    dropdownMenu.querySelectorAll('.dropdown-item').forEach(item => {
+    dropdownMenu.querySelectorAll('.jv_dropdown-item').forEach(item => {
         item.onclick = function() {
             handleDropdownAction(item.dataset.action, customerId);
             hideDropdown();

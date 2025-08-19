@@ -2,12 +2,9 @@
     include "../../INCLUDE/Menu_adm.php";
     require_once "../../DB/connect.php";
     
-    $sql = 'SELECT * FROM usuario where tipo = "vendedor"';
+    $sql = 'SELECT * FROM cliente';
     $result = mysqli_query($con, $sql);
-    $total_vendedores= '2';
-
-
-  
+    $total_clientes = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Vendedores</title>
+    <title>Gerenciamento de Clientes</title>
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
@@ -46,7 +43,7 @@
                                     <div class="jv_title-bar"></div>
                                     Clientes
                                 </h1>
-                                <p class="jv_subtitle" id="customerCount">5 clientes encontrados</p>
+                                <p class="jv_subtitle" id="customerCount"><?php echo $total_clientes?> clientes encontrados</p>
                             </div>
                             
                             
@@ -63,7 +60,7 @@
                         
                         <div class="jv_search-section">
                             <div class="jv_search-container">
-                                <i class="fas fa-search search-icon"></i>
+                                <i class="fas fa-search jv_search-icon"></i>
                                 <input type="text" placeholder="Pesquisar por nome ou email.." class="jv_search-input">
                             </div>
                         </div>
@@ -79,7 +76,6 @@
                                             <input type="checkbox" id="selectAll" class="jv_checkbox">
                                         </th>
                                         <th class="jv_name">Nome</th> 
-                                        <th class="jv_status">Status</th>
                                         <th class="jv_date">Data de Cadastro</th>
                                         <th class="jv_total_comp">Total de Compras</t>
                                         <th class="jv_valor_gast">Valor Gasto</th>
@@ -87,12 +83,57 @@
                                     </tr>
                                 </thead>
                                 <tbody id="customerTableBody"> 
-                                    <!-- Customers will be inserted here by JavaScript -->
-                            
+                                <?php 
+                                if($result){
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        $id= $row['id'];
+                                        $nome= $row['nome'];
+                                        $email= $row['email'];
+                                        $telefone= $row['telefone'];
+                                        $data = $row['data_nasc'];                                 
+                                        
+
+                                        echo'
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id='.$id.'>
+                                                </td>
+                                                <td>
+                                                    <div class="jv_customer-info">
+                                                        <div class="jv_avatar">
+                                                            YM
+                                                        </div>
+                                                        <div class="jv_customer-details">
+                                                            <h4> '.$nome.' </h4>
+                                                            <p> '.$email.' </p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td> '.$data.' </td>
+                                                <td>
+                                                    <div class="jv_purchase-info">
+                                                        <span class="jv_purchase-count">10</span>
+                                                        <span class="jv_purchase-label">compras</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="jv_amount">1.200,00</span>
+                                                </td>
+                                                <td>
+                                                    <button class="jv_menu-btn" onclick="showDropdown(event, '.$id.')">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ';}
+                                    } else {
+                                        echo '<tr><td colspan="5" style="text-align: center;">Nenhum vendedor encontrado</td></tr>';
+                                    }
+                                ?>
                                 </tbody>
                             </table>
                         </div>
-
+                        
                         <!-- Empty State -->
                         <div id="emptyState" class="jv_empty-state" style="display: none;">
                             <i class="fas fa-search empty-icon"></i>
@@ -102,8 +143,8 @@
                     </div>
                 </div>
             </div>
-
-
+            
+            
             <!-- Dropdown Menu Template -->
             <div id="dropdownMenu" class="jv_dropdown-menu" style="display: none;">
                 <div class="jv_dropdown-item" data-action="view">
@@ -122,29 +163,18 @@
             </div>
               
             <div class="jv_page-navigation">
-                    <div class="jv_page-number active">1</div>
-                    <div class="jv_page-number">2</div>
-                    <div class="jv_page-number">3</div>
-                    <div class="jv_page-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
+                <div class="jv_page-number active">1</div>
+                <div class="jv_page-number">2</div>
+                <div class="jv_page-number">3</div>
+                <div class="jv_page-arrow">
+                    <i class="fas fa-arrow-right"></i>
                 </div>
-
-            <script src="../../PUBLIC/JS/clientes-adm.js"></script>
-                           
-
-
-
-
-                        </tbody>
-                    </table>
-            
-                </div>
-            </section>
+            </div>
         </div> 
-       
-
+        
+        
     </main>
+    <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 
