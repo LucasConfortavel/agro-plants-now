@@ -18,7 +18,6 @@
 <body>
 
 
-    <!-- pop-up -->
     <div class="ym_popup-overlay" >
         <div class="ym_popup-content">
             <div class="ym_area-superior-popup"></div>
