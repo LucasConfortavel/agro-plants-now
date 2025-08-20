@@ -35,9 +35,10 @@
                             <p class="subtitle" id="customerCount">0 clientes encontrados</p>
                         </div>
                         <div class="actions">
-                            <button class="btn btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de clientes')">
+                    
+                            <button class="btn btn-primary">
                                 <i class="fas fa-plus"></i>
-                                Cadastrar Cliente
+                                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de Cliente')" >Cadastrar Clientes</a>
                             </button>
                         </div>
                     </div>
@@ -110,7 +111,7 @@
         </div>
         
     </main>
-    
+
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 
