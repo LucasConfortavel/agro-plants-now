@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Vendedores</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/lista-vendas-vend.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/lista-clientes.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -26,12 +26,12 @@
                                 <div class="title-bar"></div>
                                 Lista de Clientes
                             </h1>
-                            <p class="subtitle" id="customerCount">5 clientes encontrados</p>
+                            <p class="subtitle" id="customerCount">0 clientes encontrados</p>
                         </div>
                         <div class="actions">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de clientes')">
                                 <i class="fas fa-plus"></i>
-                                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de clientes')">Cadastrar Venda</a>
+                                Cadastrar Cliente
                             </button>
                         </div>
                     </div>
@@ -53,19 +53,17 @@
                                     <th style="text-align:left; color:black;">Status</th>
                                     <th style="text-align:center; color:black;">Data de cadastro</th>
                                     <th style="text-align:center; color:black;">Total de Compras</th>                                        
-                                    <th style="text-align:right; color:black;">Valor Gasto</th>                                        
-                                    <th class="actions-col"></th>
+                                    <th style="text-align:right; color:black;">Valor Gasto</th>    
+                                    <th class="actions-col"></th>                                    
                                 </tr>
                             </thead>
-                            <tbody id="customerTableBody">
-                                <!-- Conteúdo gerado em JS -->
-                            </tbody>
+                            <tbody id="customerTableBody"></tbody>
                         </table>
                     </div>
 
                     <!-- Empty State -->
                     <div id="emptyState" class="empty-state" style="display: none;">
-                        <i class="fas fa-search empty-icon" ></i>
+                        <i class="fas fa-search empty-icon"></i>
                         <h3>Nenhuma venda encontrada</h3>
                         <p>Tente ajustar os termos de pesquisa</p>
                     </div>
@@ -89,4 +87,12 @@
                 Remover Venda
             </div>
         </div>
+        
     </main>
+    
+    <script src="../../PUBLIC/JS/script.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+    <script src="../../PUBLIC/JS/lista_clientes.js"></script>
+
+</body>
+</html>

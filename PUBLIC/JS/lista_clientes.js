@@ -1,51 +1,12 @@
 // Mock data
 const customers = [
-    {
-        id: "1",
-        name: "Paulo Rojas",
-        email: "paulo.rojas@email.com",
-        registrationDate: "2024-08-16",
-        totalPurchases: 2,
-        totalSpent: 1250.0,
-        status: "active",
-    },
-    {
-        id: "2",
-        name: "Maria Silva",
-        email: "maria.silva@email.com",
-        registrationDate: "2024-07-22",
-        totalPurchases: 5,
-        totalSpent: 3200.0,
-        status: "active",
-    },
-    {
-        id: "3",
-        name: "João Santos",
-        email: "joao.santos@email.com",
-        registrationDate: "2024-06-10",
-        totalPurchases: 1,
-        totalSpent: 450.0,
-        status: "pending",
-    },
-    {
-        id: "4",
-        name: "Ana Costa",
-        email: "ana.costa@email.com",
-        registrationDate: "2024-05-15",
-        totalPurchases: 8,
-        totalSpent: 5600.0,
-        status: "active",
-    },
-    {
-        id: "5",
-        name: "Carlos Oliveira",
-        email: "carlos.oliveira@email.com",
-        registrationDate: "2024-04-03",
-        totalPurchases: 0,
-        totalSpent: 0,
-        status: "inactive",
-    },
-  ];
+  { id: "1", name: "Paulo Rojas", email: "paulo.rojas@email.com", registrationDate: "2024-08-16", totalPurchases: 2, totalSpent: 1250.0, status: "active" },
+  { id: "2", name: "Maria Silva", email: "maria.silva@email.com", registrationDate: "2024-07-22", totalPurchases: 5, totalSpent: 3200.0, status: "active" },
+  { id: "3", name: "João Santos", email: "joao.santos@email.com", registrationDate: "2024-06-10", totalPurchases: 1, totalSpent: 450.0, status: "pending" },
+  { id: "4", name: "Ana Costa", email: "ana.costa@email.com", registrationDate: "2024-05-15", totalPurchases: 8, totalSpent: 5600.0, status: "active" },
+  { id: "5", name: "Carlos Oliveira", email: "carlos.oliveira@email.com", registrationDate: "2024-04-03", totalPurchases: 0, totalSpent: 0, status: "inactive" },
+];
+
 let filteredCustomers = [...customers];
 let currentOpenDropdown = null;
 
@@ -112,10 +73,11 @@ function renderTable() {
                   </div>
               </div>
           </td>
-          <td>${getStatusBadge(customer.status)}</td>
-          <td>${formatDate(customer.registrationDate)}</td>
-          <td><span class="amount">${formatCurrency(customer.totalSpent)}</span></td> 
-          <td>
+          <td style="text-align:left;">${getStatusBadge(customer.status)}</td>
+          <td style="text-align:center;">${formatDate(customer.registrationDate)}</td>
+          <td style="text-align:center;">${customer.totalPurchases}</td>
+          <td style="text-align:right;"><span class="amount">${formatCurrency(customer.totalSpent)}</span></td>
+          <td style="text-align:center;">
               <button class="menu-btn" onclick="showDropdown(event, '${customer.id}')">
                   <i class="fas fa-ellipsis-h"></i>
               </button>
