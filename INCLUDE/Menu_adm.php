@@ -39,7 +39,7 @@
         <div class="jp_bottom-menu">
             <ul>
                 <button onclick= "window.location.href='../../VIEW/adm/ajustes-informaçoes-adm.php'"><li id="ajustes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></button>
-                <button onclick= "window.location.href='../../VIEW/paginas-iniciais/landing_page.php'"><li id="sair"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li></button>
+                <button onclick= "window.location.href='../../CONTROLLER/logout.php'"><li id="sair"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li></button>
             </ul>
         </div>
     </aside>
