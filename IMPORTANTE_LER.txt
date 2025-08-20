@@ -1,3 +1,0 @@
-AVISOS GERAIS:
-
-Nas pastas presentes nesta main, existem arquivos de texto que explicam brevemente o que deve ser feito e a função de cada pasta. É importante entender essas funções antes de adicionar um arquivo e fazer um commit.
