@@ -1,40 +1,53 @@
 <?php
 include "../../INCLUDE/Menu_superior.php";
-require_once "../../DB/connect.php";
+require_once "../../DB/Database.php";
 
 if (isset($_POST['adicionar'])) {
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
+    try {
+        $db = new Database();
+        $conn = $db->getConnection();
+        
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-    $sql = "SELECT * FROM usuario WHERE email = '$email' AND senha = '$password'";
-    $result = mysqli_query($con, $sql);
+        $sql = "SELECT * FROM usuario WHERE email = :email AND senha = :senha";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':senha', $password);
+        $stmt->execute();
 
-    if (mysqli_num_rows($result) > 0) {
-        $usuario = mysqli_fetch_assoc($result);
+        if ($stmt->rowCount() > 0) {
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        session_start();
-        $_SESSION['id'] = $usuario['id'];
-        $_SESSION['email'] = $usuario['email'];
-        $_SESSION['tipo'] = $usuario['tipo'];
+            session_start();
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['email'] = $usuario['email'];
+            $_SESSION['tipo'] = $usuario['tipo'];
 
-        if ($usuario['tipo'] == 'admin') {  
-            header("Location: ../adm/dashboard-adm.php");
-            exit;
-        } elseif ($usuario['tipo'] == 'vendedor') {
-            header("Location: ../vend/dashboard_vendedor.php");
-            exit;
-        } 
+            if ($usuario['tipo'] == 'admin') {  
+                header("Location: ../adm/dashboard-adm.php");
+                exit;
+            } elseif ($usuario['tipo'] == 'vendedor') {
+                header("Location: ../vend/dashboard_vendedor.php");
+                exit;
+            } 
 
-    } else {
-        echo "<script>
-            setTimeout(() => {
-                alert('Email ou senha inválidos.');
-            }, 200);
-        </script>";
+        } else {
+            echo "<script>
+                setTimeout(() => {
+                    alert('Email ou senha inválidos.');
+                }, 200);
+            </script>";
+        }
+    } catch (DatabaseConnectionException $e) {
+        error_log("Erro de conexão: " . $e->getMessage());
+        echo "<script>alert('Erro interno do sistema');</script>";
+    } catch (PDOException $e) {
+        error_log("Erro PDO: " . $e->getMessage());
+        echo "<script>alert('Erro na consulta');</script>";
     }
 }
 ?>
-
 
 
 <!DOCTYPE html>

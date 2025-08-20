@@ -28,10 +28,10 @@ class Database {
         } catch (PDOException $e) {
             error_log(sprintf(
                 "[%s] Erro de conexão PDO: %s",
-                date('Y-m-d H:i:s'),
+                date('d-m-Y H:i:s'),
                 $e->getMessage()
             ));
-
+ 
             throw new DatabaseConnectionException(
                 "Erro ao conectar ao banco de dados.",
                 0,

@@ -10,6 +10,7 @@
     // Consulta com paginação
     $sql = "SELECT * FROM cliente LIMIT $offset, $registros_por_pagina";
     $result = mysqli_query($con, $sql);
+
     
     // Consulta para contar o total de registros
     $sql_count = "SELECT COUNT(*) as total FROM cliente";
@@ -17,6 +18,7 @@
     $row_count = mysqli_fetch_assoc($result_count);
     $total_clientes = $row_count['total'];
     $total_paginas = ceil($total_clientes / $registros_por_pagina);
+
 ?>
 
 <!DOCTYPE html>
@@ -139,7 +141,10 @@
                                             </tr>
                                         ';}
                                     } else {
+
                                         echo '<tr><td colspan="6" style="text-align: center;">Nenhum cliente encontrado</td></tr>';
+
+
                                     }
                                 ?>
                                 </tbody>
