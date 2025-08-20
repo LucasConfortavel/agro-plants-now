@@ -47,12 +47,12 @@
 
             <div class="gs_area-input">
                 <p class="ym_titulo-input">Nome*</p>
-                <input class="ym_input-form" name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
+                <input class="ym_input-form" required name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
             </div>
 
             <div class="gs_area-input">
                 <p class="ym_titulo-input">CPF*</p>
-                <input class="ym_input-form" name="cpf" type="text" placeholder="CPF" oninput="gs_Validacao(this)">
+                <input class="ym_input-form" required name="cpf_cnpj" type="text" placeholder="CPF" oninput="gs_Validacao(this)">
             </div>
 
             <div class="gs_area-input">
@@ -62,12 +62,12 @@
 
             <div class="gs_area-input">
                 <p class="ym_titulo-input">Email*</p>
-                <input class="ym_input-form" name="email" type="email" placeholder="Email">
+                <input class="ym_input-form" required name="email" type="email" placeholder="Email">
             </div>
             
             <div class="gs_area-input" id="ym_input-senha">
                 <p class="ym_titulo-input">Senha*</p>
-                <input class="ym_input-form" name="senha" type="password" placeholder="Senha">
+                <input class="ym_input-form" required name="senha" type="password" placeholder="Senha">
             </div>
             
             <input class="ym_btn-padrao" name="adicionar" type="submit" value="Cadastrar Vendedor">
