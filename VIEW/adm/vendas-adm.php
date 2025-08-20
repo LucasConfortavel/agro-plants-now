@@ -135,7 +135,9 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            ';}}
+                                            ';}} else {
+                                                echo '<tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr>';
+                                            }
                                     ?>
                                  </tbody> 
                             </table>

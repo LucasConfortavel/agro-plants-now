@@ -3,16 +3,19 @@
     require_once "../../DB/connect.php";
 
     
-    // Configuração da paginação
-    $registros_por_pagina = 4; // Número de itens por página
+    $registros_por_pagina = 4;
     $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $offset = ($pagina_atual - 1) * $registros_por_pagina;
     
-    // Consulta com paginação
-    $sql = "SELECT * FROM usuario WHERE tipo = 'vendedor' LIMIT $offset, $registros_por_pagina";
+    if(isset($_POST['pesquisar'])){
+        $pesquisa = $_POST['pesquisa'];
+        $sql = "SELECT * FROM usuario WHERE tipo = 'vendedor' and (email LIKE CONCAT('%', '".$pesquisa."', '%') OR nome LIKE CONCAT('%', '".$pesquisa."', '%') ) LIMIT $offset, $registros_por_pagina";
+    }else{
+        $sql = "SELECT * FROM usuario WHERE tipo = 'vendedor' LIMIT $offset, $registros_por_pagina";
+    }
+
     $result = mysqli_query($con, $sql);
     
-    // Consulta para contar o total de registros
     $sql_count = "SELECT COUNT(*) as total FROM usuario WHERE tipo = 'vendedor'";
     $result_count = mysqli_query($con, $sql_count);
     $row_count = mysqli_fetch_assoc($result_count);
@@ -66,12 +69,15 @@
                         </div>
                     </div>
                     
-                    <div class="search-section">
+                    <form method="POST" action="#" class="search-section">
                         <div class="search-container">
-                            <i class="fas fa-search search-icon"></i>
-                            <input type="text" id="searchInput" placeholder="Pesquisar por nome ou email..." class="search-input">
+                            <button  type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
+                                <i class="fas fa-search search-icon"></i>
+                            </button>
+                            
+                            <input type="text" name="pesquisa" id="searchInput" placeholder="Pesquisar por nome ou email" class="search-input">
                         </div>
-                    </div>
+                    </form>
                 </div>
 
 
@@ -124,7 +130,7 @@
                                         </tr>';
                                     }
                                 } else {
-                                    echo '<tr><td colspan="5" style="text-align: center;">Nenhum vendedor encontrado</td></tr>';
+                                    echo '<tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr>';
                                 }
                                 ?>
                             </tbody> 

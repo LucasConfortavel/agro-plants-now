@@ -1,5 +1,11 @@
 <?php
     include "../../INCLUDE/Menu_vend.php";
+    require_once "../../DB/connect.php";
+    
+    $sql = 'SELECT * FROM cliente';
+    $result = mysqli_query($con, $sql);
+    $total_clientes = mysqli_num_rows($result);
+?>
 ?>
  
 <!DOCTYPE html>
@@ -50,41 +56,56 @@
                             <thead>
                                 <tr class="table-header">
                                     <th style="text-align:left; color:black;">Nome</th>
-                                    <th style="text-align:left; color:black;">Status</th>
                                     <th style="text-align:center; color:black;">Data de cadastro</th>
                                     <th style="text-align:center; color:black;">Total de Compras</th>                                        
                                     <th style="text-align:right; color:black;">Valor Gasto</th>    
-                                    <th class="actions-col"></th>                                    
                                 </tr>
                             </thead>
-                            <tbody id="customerTableBody"></tbody>
+                            <tbody id="customerTableBody">
+                                <?php 
+                                if($result){
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        $id= $row['id'];
+                                        $nome= $row['nome'];
+                                        $email= $row['email'];
+                                        $telefone= $row['telefone'];
+                                        $data = $row['data_nasc'];                                 
+                                        
+
+                                        echo'
+                                            <tr>
+                                                <td>
+                                                    <div class="jv_customer-info">
+                                                        <div class="jv_avatar">
+                                                            YM
+                                                        </div>
+                                                        <div class="jv_customer-details">
+                                                            <h4> '.$nome.' </h4>
+                                                            <p> '.$email.' </p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td> '.$data.' </td>
+                                                <td>
+                                                    <div class="jv_purchase-info">
+                                                        <span class="jv_purchase-count">10</span>
+                                                        <span class="jv_purchase-label">compras</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="jv_amount">1.200,00</span>
+                                                </td>
+
+                                            </tr>
+                                        ';}
+                                    } else {
+                                        echo '<tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr>';
+                                    }
+                                    ?>
+                            </tbody>
                         </table>
                     </div>
-
-                    <!-- Empty State -->
-                    <div id="emptyState" class="empty-state" style="display: none;">
-                        <i class="fas fa-search empty-icon"></i>
-                        <h3>Nenhuma venda encontrada</h3>
-                        <p>Tente ajustar os termos de pesquisa</p>
-                    </div>
                 </div>
-            </div>
-        </div>
- 
-        <!-- Dropdown Menu Template -->
-        <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
-            <div class="dropdown-item" data-action="view">
-                <i class="fas fa-eye"></i>
-                Visualizar Detalhes
-            </div>
-            <div class="dropdown-item" data-action="edit">
-                <i class="fas fa-edit"></i>
-                Editar Venda
-            </div>
-            <div class="dropdown-separator"></div>
-            <div class="dropdown-item danger" data-action="delete">
-                <i class="fas fa-trash"></i>
-                Remover Venda
             </div>
         </div>
         
@@ -92,7 +113,6 @@
     
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
-    <script src="../../PUBLIC/JS/lista_clientes.js"></script>
 
 </body>
 </html>
