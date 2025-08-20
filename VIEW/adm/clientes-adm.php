@@ -2,12 +2,32 @@
     include "../../INCLUDE/Menu_adm.php";
     require_once "../../DB/connect.php";
     
-    $sql = 'SELECT * FROM usuario where tipo = "vendedor"';
-    $result = mysqli_query($con, $sql);
-    $total_vendedores= '2';
-
-
-  
+    // $sql = 'SELECT * FROM usuario where tipo = "vendedor"';
+    // $result = mysqli_query($con, $sql);
+    // $total_vendedores= '2';
+ 
+ 
+    if(isset($_POST['adicionar'])){
+        $nome = $_POST['nome'];
+        $data_nasc = $_POST['data_nasc'];
+        $email = $_POST['email'];
+        $cpf_cnpj = $_POST['cpf_cnpj'];  
+       
+        $sql = "INSERT INTO cliente (nome,data_nasc,email,CPF) VALUES ('$nome','$data_nasc','$email','$cpf_cnpj')";
+ 
+        $result_create = mysqli_query($con,$sql);
+ 
+        if(!$result_create){
+            echo'<script>alert("Não foi possível cadastrar")</script>';
+        }else{
+            echo'<script>alert("Cliente Cadastrado")</script>';
+        }
+ 
+    }
+ 
+    // if(isset($_POST['adicionar'])){
+    //     header("location:../../VIEW/adm/clientes-adm.php");
+    // }
 ?>
 
 <!DOCTYPE html>

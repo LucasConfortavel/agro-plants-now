@@ -16,20 +16,20 @@
 
             <div class="ym_area-input">
                 <p class="ym_titulo-input">Nome*</p>
-                <input class="ym_input-form" name="nome" type="text" placeholder="Nome">
+                <input class="ym_input-form" required name="nome" type="text" placeholder="Nome">
             </div>
 
             <div class="ym_area-input">
                 <p class="ym_titulo-input">Data de nascimento*</p>
-                <input class="ym_input-form" name="data_nasc" type="date">
+                <input class="ym_input-form" required name="data_nasc" type="date">
             </div>
             <div class="ym_area-input">
                 <p class="ym_titulo-input">Email*</p>
-                <input class="ym_input-form" name="email" type="text" placeholder="E-mail">
+                <input class="ym_input-form" required name="email" type="text" placeholder="E-mail">
             </div>
             <div class="ym_area-input">
                 <p class="ym_titulo-input" id="ym_titulo-cpf-cnpj">CPF/CNPJ*</p>
-                <input class="ym_input-form" maxlength="15" id="ym_input-cpf-cnpj" name="cpf_cnpj" type="text" placeholder="CPF/CNPJ" oninput="teste()" >
+                <input class="ym_input-form" required maxlength="15" id="ym_input-cpf-cnpj" name="cpf_cnpj" type="text" placeholder="CPF/CNPJ" oninput="teste()">
             </div>
 
             <input class="ym_btn-padrao" name="adicionar" type="submit" value="Cadastrar cliente">

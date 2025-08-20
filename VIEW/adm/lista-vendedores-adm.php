@@ -1,7 +1,29 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
     require_once "../../DB/connect.php";
-
+ 
+    $sql_show = "SELECT * FROM usuario WHERE tipo = 'vendedor'";
+    $result_show = mysqli_query($con,$sql_show);
+    $total_vendedores = mysqli_num_rows($result_show);
+ 
+    if(isset($_POST['adicionar'])){
+        $nome = $_POST['nome'];
+        $data_nasc = $_POST['data_nasc'];
+        $email = $_POST['email'];
+        $cpf_cnpj = $_POST['cpf_cnpj'];  
+        $senha = $_POST['senha'];
+        $tipo = "vendedor";
+ 
+        $sql_create = "INSERT INTO usuario (nome,data_nasc,email,CPF,senha,tipo) VALUES ('$nome','$data_nasc','$email','$cpf_cnpj','$senha','$tipo')";
+       
+        $result_create = mysqli_query($con,$sql_create);
+ 
+ 
+        if(!$result_create){
+            echo'<script>alert("Não foi possível cadastrar")</script>';
+        }else{
+            echo'<script>alert("Cliente Cadastrado")</script>';
+        }}
     
     // Configuração da paginação
     $registros_por_pagina = 5; // Número de itens por página
