@@ -64,7 +64,7 @@ include "../../INCLUDE/Menu_vend.php";
                                     <p class="ym_nomeProduto">'. $nome_produto .'</p>
                                     <p class="ym_preco">R$ 120,00</p>
                                     <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
-                                    <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                    <a href="sobre_prod.php?id='.$i.'" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                                 </div>';}
                                 ?>
                         </div>
@@ -100,7 +100,7 @@ include "../../INCLUDE/Menu_vend.php";
                                     <p class="ym_nomeProduto">'. $nome_produto .'</p>
                                     <p class="ym_preco">R$ 120,00</p>
                                     <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
-                                    <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                    <a href="sobre_prod.php?id='.$i.'" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                                 </div>';}
                                 ?>
                         </div>

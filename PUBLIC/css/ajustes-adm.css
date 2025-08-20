@@ -241,4 +241,16 @@ body {
         max-width: 90%;
         text-align: center;
     }
+
+    /*  Melhorias */
+    .jp_form-input {
+        font-size: 16px; 
+        padding: 12px;   
+        width: 100%;  
+        max-width: 100%;
+    }
+
+    .jp_profile-text h2 {
+        font-size: 16px; 
+    }
 }
