@@ -1,5 +1,10 @@
 <?php
     include "../../INCLUDE/Menu_vend.php";
+    require_once "../../DB/connect.php";
+    
+    $sql = 'SELECT * FROM cupom';
+    $result = mysqli_query($con, $sql);
+    $total_cupom = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -69,39 +74,52 @@
                                 </tr>
                             </thead>
                             <tbody id="customerTableBody">
-                                <!-- Cupons serão inseridos aqui pelo JS -->
+                                <?php 
+                                    if($result && mysqli_num_rows($result) > 0){
+                                        while($row = mysqli_fetch_assoc($result)){
+                                            $id= $row['id'];
+                                            $codigo= $row['codigo'];
+                                            $desconto= $row['valor'];
+                                            $data= $row['data'];
+                                            $validade = $row['validade'];   
+                                    
+                                            echo'
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" class="checkbox customer-checkbox" 
+                                                            data-customer-id='.$id.'
+                                                    </td>
+                                                    <td>
+                                                        <div class="customer-info">
+                                                            <div class="avatar">
+                                                                YM
+                                                            </div>
+                                                            <div class="customer-details">
+                                                                <h4>'.$codigo.'</h4>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        '.$desconto.'
+                                                    </td>
+                                                    <td>'.$data.'</td>
+                                                
+                                                    <td>
+                                                        '.$validade.'
+                                                    </td>
+                                                </tr>';}
+                                                
+                                            } else {
+                                                echo '<tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr>';
+                                            }
+                                ?>
                             </tbody>
                         </table>
-                    </div>
-
-                    <!-- Empty State -->
-                    <div id="emptyState" class="empty-state" style="display: none;">
-                        <i class="fas fa-search empty-icon"></i>
-                        <h3>Nenhum cupom encontrado</h3>
-                        <p>Tente ajustar os termos de pesquisa</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Dropdown Menu Template -->
-        <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
-            <div class="dropdown-item" data-action="view">
-                <i class="fas fa-eye"></i>
-                Visualizar Detalhes
-            </div>
-            <div class="dropdown-item" data-action="edit">
-                <i class="fas fa-edit"></i>
-                Editar Cupom
-            </div>
-            <div class="dropdown-separator"></div>
-            <div class="dropdown-item danger" data-action="delete">
-                <i class="fas fa-trash"></i>
-                Remover Cupom
-            </div>
-        </div>
-
-        <script src="../../PUBLIC/JS/cupom-vend.js"></script>
     </main>
 
     <script src="../../PUBLIC/JS/script.js"></script>

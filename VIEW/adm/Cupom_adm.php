@@ -82,7 +82,7 @@
                                 </thead>
                                 <tbody id="customerTableBody"> 
                                 <?php 
-                                    if($result){
+                                    if($result && mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
                                             $id= $row['id'];
                                             $codigo= $row['codigo'];
@@ -119,18 +119,15 @@
                                                             <i class="fas fa-ellipsis-h"></i>
                                                         </button>
                                                     </td>
-                                                </tr>';}}
+                                                </tr>';}
+                                                
+                                            } else {
+                                                echo '<tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr>';
+                                            }
                                 ?>
 
                                 </tbody> 
                             </table>
-                        </div>
-
-                        <!-- Empty State -->
-                        <div id="emptyState" class="empty-state" style="display: none;">
-                            <i class="fas fa-search empty-icon"></i>
-                            <h3>Nenhum cupom encontrado</h3>
-                            <p>Tente ajustar os termos de pesquisa</p>
                         </div>
                     </div>
                 </div>

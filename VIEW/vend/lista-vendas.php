@@ -1,5 +1,10 @@
 <?php
     include "../../INCLUDE/Menu_vend.php";
+    require_once "../../DB/connect.php";
+
+    $sql = 'SELECT * FROM venda';
+    $result = mysqli_query($con, $sql);
+    $total_vendas = mysqli_num_rows($result);
 ?>
  
 <!DOCTYPE html>
@@ -7,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Vendedores</title>
+    <title>Gerenciamento de Venda</title>
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendas-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
@@ -31,94 +36,101 @@
  
      
         <div class="container">
-                <div class="card">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <div class="header-content">
-                            <div class="title-section">
-                                <h1 class="title">
-                                    <div class="title-bar"></div>
-                                    Vendas
-                                </h1>
-                                <p class="subtitle" id="customerCount">5 clientes encontrados</p>
-                            </div>
-                           
-                           
-                            <div class="actions">
-                                <button class="btn btn-danger" id="removeSelected" style="display: none;">
-                                    <i class="fa-solid fa-trash-can"></i>Remover (<span id="selectedCount">0</span>)
-                                </button>
-                                <button class="btn btn-primary">
-                                    <i class="fas fa-plus"></i>
-                                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de clientes')">Cadastrar Venda</a>
-                                </button>
-                            </div>
+            <div class="card">
+                <!-- Header -->
+                <div class="card-header">
+                    <div class="header-content">
+                        <div class="title-section">
+                            <h1 class="title">
+                                <div class="title-bar"></div>
+                                Vendas
+                            </h1>
+                            <p class="subtitle" id="customerCount">5 clientes encontrados</p>
                         </div>
-                       
-                        <div class="search-section">
-                            <div class="search-container">
-                                <i class="fas fa-search search-icon"></i>
-                                <input type="text" id="searchInput" placeholder="Pesquisar por nome ou email..." class="search-input">
-                            </div>
+                        
+                        
+                        <div class="actions">
+                            <button class="btn btn-danger" id="removeSelected" style="display: none;">
+                                <i class="fa-solid fa-trash-can"></i>Remover (<span id="selectedCount">0</span>)
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de clientes')">Cadastrar Venda</a>
+                            </button>
                         </div>
                     </div>
- 
-                    <!-- Table -->
-                    <div class="card-content">
-                        <div class="table-container">
-                            <table class="table">
-                                <thead>
-                                    <tr class="table-header">
-                                        <th style="color:black;">Vendedor</th>
-                                        <th style="color:black;">Comprador</th>
-                                        <th style="color:black;">Data de cadastro</th>
-                                        <th style="color:black;">Total</th>                                        
-                                        <th class="actions-col"></th>
-                                </thead>
-                                <tbody id="customerTableBody">
-                                    <!-- Customers will be inserted here by JavaScript  -->
-                                 </tbody>
-                            </table>
-                        </div>
- 
-                        <!-- Empty State -->
-                        <div id="emptyState" class="empty-state" style="display: none;">
-                            <i class="fas fa-search empty-icon" ></i>
-                            <h3>Nenhuma venda encontrada</h3>
-                            <p>Tente ajustar os termos de pesquisa</p>
+                    
+                    <div class="search-section">
+                        <div class="search-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="Pesquisar por nome ou email..." class="search-input">
                         </div>
                     </div>
                 </div>
+
+                <!-- Table -->
+                <div class="card-content">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr class="table-header">
+                                    <th style="color:black;">Vendedor</th>
+                                    <th style="color:black;">Comprador</th>
+                                    <th style="color:black;">Data de cadastro</th>
+                                    <th style="color:black;">Total</th>                                        
+                            </thead>
+                            <tbody id="customerTableBody">
+                            <?php 
+                                
+                                if($result){
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        $id = $row['id'];
+                                        $vendedor_id = $row['id_vendedor'];
+                                        
+                                        $sql_vendedor = mysqli_query($con,'SELECT * FROM usuario WHERE tipo = "vendedor" and id = '.$vendedor_id.'');
+                                        
+                                        $dado_vendedor = mysqli_fetch_assoc($sql_vendedor);
+
+                                        $vendedor_nome = $dado_vendedor['nome'];
+
+                                        $vendedor_email = $dado_vendedor['email'];
+
+                                        $total = $row['total'];
+                                        $data = $row['data_venda'];   
+
+                                        echo'
+                                            <tr>
+                                                <td>
+                                                    <div class="customer-info">
+                                                        <div class="avatar">
+                                                            YM
+                                                        </div>
+                                                        <div class="customer-details">
+                                                            <h4>'.$vendedor_nome.'</h4>
+                                                            <p>'.$vendedor_email.'</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    Comprador
+                                                </td>
+
+                                                <td>'.$data.'</td>
+                                            
+                                                <td>
+                                                    <span class="amount">'.$total.'</span>
+                                                </td>
+                                            </tr>
+                                        ';}} else {
+                                            echo '<tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr>';
+                                        }
+                                ?>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
- 
-            <!-- Dropdown Menu Template -->
-            <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
-                <div class="dropdown-item" data-action="view">
-                    <i class="fas fa-eye"></i>
-                    Visualizar Detalhes
-                </div>
-                <div class="dropdown-item" data-action="edit">
-                    <i class="fas fa-edit"></i>
-                    Editar Venda
-                </div>
-                <div class="dropdown-separator"></div>
-                <div class="dropdown-item danger" data-action="delete">
-                    <i class="fas fa-trash"></i>
-                    Remover Venda
-                </div>
-                 
-            </div>
- 
-            <script src="../../PUBLIC/JS/lista-vendas.js"></script>
-                           
- 
- 
- 
-                        </tbody>
-                    </table>
-           
-                </div>
-            </section>
         </div>
      
    
