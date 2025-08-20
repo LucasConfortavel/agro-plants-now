@@ -2,9 +2,21 @@
     include "../../INCLUDE/Menu_adm.php";
     require_once "../../DB/connect.php";
 
-    $sql = 'SELECT * FROM venda';
+    // Configuração da paginação
+    $registros_por_pagina = 4; // Número de itens por página
+    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $offset = ($pagina_atual - 1) * $registros_por_pagina;
+    
+    // Consulta com paginação
+    $sql = "SELECT * FROM venda LIMIT $offset, $registros_por_pagina";
     $result = mysqli_query($con, $sql);
-    $total_vendas = mysqli_num_rows($result);
+    
+    // Consulta para contar o total de registros
+    $sql_count = "SELECT COUNT(*) as total FROM venda";
+    $result_count = mysqli_query($con, $sql_count);
+    $row_count = mysqli_fetch_assoc($result_count);
+    $total_vendas = $row_count['total'];
+    $total_paginas = ceil($total_vendas / $registros_por_pagina);
 ?>
 
 <!DOCTYPE html>
@@ -141,6 +153,31 @@
                             </table>
                         </div>
 
+                        <!-- Paginação -->
+                        <div class="jp_page-navigation">
+                            <?php if($pagina_atual > 1): ?>
+                                <a href="?pagina=<?php echo $pagina_atual - 1; ?>" class="jp_page-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php 
+                            $inicio = max(1, $pagina_atual - 2);
+                            $fim = min($total_paginas, $pagina_atual + 2);
+                            
+                            for ($i = $inicio; $i <= $fim; $i++): ?>
+                                <a href="?pagina=<?php echo $i; ?>" class="jp_page-number <?php echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    <?php echo $i; ?>
+                                </a>
+                            <?php endfor; ?>
+
+                            <?php if($pagina_atual < $total_paginas): ?>
+                                <a href="?pagina=<?php echo $pagina_atual + 1; ?>" class="jp_page-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+
                         <!-- Empty State -->
                         <div id="emptyState" class="empty-state" style="display: none;">
                             <i class="fas fa-search empty-icon"></i>
@@ -168,33 +205,10 @@
                 </div>             
             </div>
 
-               <div class="jp_page-navigation">
-                    <div class="jp_page-number active">1</div>
-                    <div class="jp_page-number">2</div>
-                    <div class="jp_page-number">3</div>
-                    <div class="jp_page-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-
-            <script src="../../PUBLIC/JS/vendas-adm.js"></script>
-                           
-
-
-
-                        </tbody>
-                    </table>
-            
-                </div>
-            </section>
-        </div> 
-     
-    
-
     </main>
+    <script src="../../PUBLIC/JS/vendas-adm.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 
 </body>
 </html>
-                                        

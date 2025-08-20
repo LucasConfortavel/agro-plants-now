@@ -2,9 +2,21 @@
     include "../../INCLUDE/Menu_adm.php";
     require_once "../../DB/connect.php";
     
-    $sql = 'SELECT * FROM cliente';
+    // Configuração da paginação
+    $registros_por_pagina = 4; // Número de itens por página
+    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $offset = ($pagina_atual - 1) * $registros_por_pagina;
+    
+    // Consulta com paginação
+    $sql = "SELECT * FROM cliente LIMIT $offset, $registros_por_pagina";
     $result = mysqli_query($con, $sql);
-    $total_clientes = mysqli_num_rows($result);
+    
+    // Consulta para contar o total de registros
+    $sql_count = "SELECT COUNT(*) as total FROM cliente";
+    $result_count = mysqli_query($con, $sql_count);
+    $row_count = mysqli_fetch_assoc($result_count);
+    $total_clientes = $row_count['total'];
+    $total_paginas = ceil($total_clientes / $registros_por_pagina);
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +96,7 @@
                                 </thead>
                                 <tbody id="customerTableBody"> 
                                 <?php 
-                                if($result){
+                                if($result && mysqli_num_rows($result) > 0){
                                     while($row = mysqli_fetch_assoc($result)){
                                         $id= $row['id'];
                                         $nome= $row['nome'];
@@ -127,11 +139,36 @@
                                             </tr>
                                         ';}
                                     } else {
-                                        echo '<tr><td colspan="5" style="text-align: center;">Nenhum vendedor encontrado</td></tr>';
+                                        echo '<tr><td colspan="6" style="text-align: center;">Nenhum cliente encontrado</td></tr>';
                                     }
                                 ?>
                                 </tbody>
                             </table>
+                        </div>
+                        
+                        <!-- Paginação -->
+                        <div class="jv_page-navigation">
+                            <?php if($pagina_atual > 1): ?>
+                                <a href="?pagina=<?php echo $pagina_atual - 1; ?>" class="jv_page-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php 
+                            $inicio = max(1, $pagina_atual - 2);
+                            $fim = min($total_paginas, $pagina_atual + 2);
+                            
+                            for ($i = $inicio; $i <= $fim; $i++): ?>
+                                <a href="?pagina=<?php echo $i; ?>" class="jv_page-number <?php echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    <?php echo $i; ?>
+                                </a>
+                            <?php endfor; ?>
+
+                            <?php if($pagina_atual < $total_paginas): ?>
+                                <a href="?pagina=<?php echo $pagina_atual + 1; ?>" class="jv_page-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            <?php endif; ?>
                         </div>
                         
                         <!-- Empty State -->
@@ -161,15 +198,6 @@
                     Remover Cliente
                 </div>
             </div>
-              
-            <div class="jv_page-navigation">
-                <div class="jv_page-number active">1</div>
-                <div class="jv_page-number">2</div>
-                <div class="jv_page-number">3</div>
-                <div class="jv_page-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
         </div> 
         
         
@@ -180,4 +208,3 @@
 
 </body>
 </html>
-
