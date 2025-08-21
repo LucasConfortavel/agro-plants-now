@@ -27,6 +27,28 @@ include "../../INCLUDE/Menu_adm.php";
         <div class="back-button">
             <a href="vendas-adm.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
         </div>
+
+        <div class="P_customer-info">
+            <div class="P_customer-details">
+                <div class="P_customer-label">Cliente</div>
+                <div class="P_customer-name">
+                    Rafael Germinari
+                </div>
+                <div class="P_customer-date">
+                    <div>Data de criação</div>
+                    <div>16/08</div>
+                </div>
+            </div>
+            
+            <div class="P_action-buttons">
+
+                <!-- <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
+
+                    Gerar link de venda
+                </a> -->
+            </div>
+        </div>
+
         <div class="P_cart-table">
             <div class="P_table-header">
                 <div class="P_header-produto">Produto</div>
@@ -54,7 +76,7 @@ include "../../INCLUDE/Menu_adm.php";
                 <div class="P_item-total">R$1000</div>
             </div>
         </div>
-
+        
         <div class="P_cart-summary">
             <!-- <div class="P_coupon-section">
                 <div class="P_coupon-icon">
@@ -92,26 +114,10 @@ include "../../INCLUDE/Menu_adm.php";
 
         </div>
 
-        <div class="P_customer-info">
-            <div class="P_customer-details">
-                <div class="P_customer-label">Cliente</div>
-                <div class="P_customer-name">
-                    Rafael Germinari
-                </div>
-                <div class="P_customer-date">
-                    <div>Data de criação</div>
-                    <div>16/08</div>
-                </div>
-            </div>
-            
-            <div class="P_action-buttons">
-
-                <!-- <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
-
-                    Gerar link de venda
-                </a> -->
-            </div>
+        <div class="back-button-mobile">
+            <a href="vendas-adm.php" class="ym_link-volta2"> <i class="fa-solid fa-arrow-left"></i> </a>
         </div>
+
     </main>
 
     <script src="../../PUBLIC/JS/script-info_vendas.js"></script>
