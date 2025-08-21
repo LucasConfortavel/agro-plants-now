@@ -1,37 +1,3 @@
-<?php
-
-    // require_once "../../DB/connect.php";
-    // if(isset($_POST['adicionar'])){
-
-    //     $nome = $_POST['nome'];
-    //     $email = $_POST['email']; 
-    //     $senha = $_POST['senha'];
-    //     $tipo = "vendedor";
-    //     $cpf = $_POST['cpf'];
-    //     $data_nasc = $_POST['data_nasc'];
-    //     
-        
-    //     $sql = "INSERT INTO usuario(nome, email, senha, tipo, CPF, data_nasc) VALUES ($nome, $email, $senha, $tipo, $cpf, $data_nasc)";
-
-    //     $result_create = mysqli_query($con,$sql);
-
-    //     if(!$result_create){
-    //         echo'<script>alert("Não foi possível cadastrar")</script>';
-    //     }
-
-
-
-    // }
-
-    if(isset($_POST['adicionar'])){
-        header("location:../../VIEW/adm/lista-vendedores-adm.php");
-    }
-
-?>
-
-<!-- ESSE POP UP AINDA NÃO LINKA PQ O YURI JÁ  FEZ ELE CONECTAR AUTOMATICAMENTE COM O BACKEND, OU SEJA, SÓ VAI FUNCIONAR QUANDO O BACKEND FUNCIONAR TAMBÉM -->
-
- 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,40 +7,91 @@
 </head>
 <body>
 
-    <div class="gs_pop-up">
+    <div class="eze-container">
+        <div class="eze-tab-header">
+            <button class="eze-tab-button eze-active" id="cliente-tab">Cadastrar Vendedor</button>
+        </div>
 
-        <form action="" method="post" class="gs_form-pop-up">
+        <form action="" method="post" class="ym_form-pop-up">
+            <div id="cliente-content" class="eze-form-section active">
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Nome</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="text" class="ym_input-padrao" name="nome" placeholder="Nome completo" required>
+                    </div>
+                </div>
 
-            <div class="gs_area-input">
-                <p class="ym_titulo-input">Nome*</p>
-                <input class="ym_input-form" required name="nome" type="text" placeholder="Nome" oninput="gs_Validacao(this)">
-            </div>
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Email</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="email" class="ym_input-padrao" name="email" placeholder="Email" required>
+                    </div>
+                </div>
 
-            <div class="gs_area-input">
-                <p class="ym_titulo-input">CPF*</p>
-                <input class="ym_input-form" required name="cpf_cnpj" type="text" placeholder="CPF" oninput="gs_Validacao(this)">
-            </div>
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Data de nascimento</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="date" class="ym_input-padrao" name="data" required>
+                    </div>
 
-            <div class="gs_area-input">
-                <p class="ym_titulo-input">Data de nascimento*</p>
-                <input class="ym_input-form" name="data_nasc" type="date" placeholder="Data de nascimento" oninput="gs_Validacao(this)">
-            </div>
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">CPF</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="text" class="ym_input-padrao" name="CPF/CNPJ" placeholder="CPF ou CNPJ" required>
+                    </div>
 
-            <div class="gs_area-input">
-                <p class="ym_titulo-input">Email*</p>
-                <input class="ym_input-form" required name="email" type="email" placeholder="Email">
+                </div>
+
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Telefone</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="tel" class="ym_input-padrao" name="telefone" placeholder="Número de Telefone" required>
+                    </div>
+                </div>
+
+
+
+                <div class="eze-button-container">
+                    <button type="submit" class="eze-add-button" name="adicionar">Cadastrar Vendedor</button>
+                    <p class="eze-help-text"><span class="eze-required">*</span>Campos obrigatórios</p>
+                </div>
             </div>
-            
-            <div class="gs_area-input" id="ym_input-senha">
-                <p class="ym_titulo-input">Senha*</p>
-                <input class="ym_input-form" required name="senha" type="password" placeholder="Senha">
-            </div>
-            
-            <input class="ym_btn-padrao" name="adicionar" type="submit" value="Cadastrar Vendedor">
 
         </form>
-
     </div>
 
+    <script>
+        function switchTab(activeTabId, activeContentId) {
+            document.querySelectorAll('.eze-tab-button').forEach(btn => {
+                btn.classList.remove('eze-active');
+            });
+            
+            document.querySelectorAll('.eze-form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.getElementById(activeTabId).classList.add('eze-active');
+            document.getElementById(activeContentId).classList.add('active');
+        }
+
+        document.getElementById('cliente-tab').addEventListener('click', () => {
+            switchTab('cliente-tab', 'cliente-content');
+        });
+
+    </script>
 </body>
 </html>

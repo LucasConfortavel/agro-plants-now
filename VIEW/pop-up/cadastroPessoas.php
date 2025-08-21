@@ -12,53 +12,90 @@
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
 <body>
+
+    <div class="eze-container">
+        <div class="eze-tab-header">
+            <button class="eze-tab-button eze-active" id="cliente-tab">Cadastrar Clientes</button>
+        </div>
+
         <form action="" method="post" class="ym_form-pop-up">
+            <div id="cliente-content" class="eze-form-section active">
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Nome</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="text" class="ym_input-padrao" name="nome" placeholder="Nome completo" required>
+                    </div>
+                </div>
 
-            <div class="ym_area-input">
-                <p class="ym_titulo-input">Nome*</p>
-                <input class="ym_input-form" required name="nome" type="text" placeholder="Nome">
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Email</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="email" class="ym_input-padrao" name="email" placeholder="Email" required>
+                    </div>
+                </div>
+
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Data de nascimento</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="date" class="ym_input-padrao" name="data" required>
+                    </div>
+
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">CPF/CNPJ</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="text" class="ym_input-padrao" name="CPF/CNPJ" placeholder="CPF ou CNPJ" required>
+                    </div>
+
+                </div>
+
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Telefone</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="tel" class="ym_input-padrao" name="telefone" placeholder="Número de Telefone" required>
+                    </div>
+                </div>
+
+                <div class="eze-button-container">
+                    <button type="submit" class="eze-add-button" name="adicionar">Cadastrar Clientes</button>
+                    <p class="eze-help-text"><span class="eze-required">*</span>Campos obrigatórios</p>
+                </div>
             </div>
 
-            <div class="ym_area-input">
-                <p class="ym_titulo-input">Data de nascimento*</p>
-                <input class="ym_input-form" required name="data_nasc" type="date">
-            </div>
-            <div class="ym_area-input">
-                <p class="ym_titulo-input">Email*</p>
-                <input class="ym_input-form" required name="email" type="text" placeholder="E-mail">
-            </div>
-            <div class="ym_area-input">
-                <p class="ym_titulo-input" id="ym_titulo-cpf-cnpj">CPF/CNPJ*</p>
-                <input class="ym_input-form" required maxlength="15" id="ym_input-cpf-cnpj" name="cpf_cnpj" type="text" placeholder="CPF/CNPJ" oninput="teste()">
-            </div>
+        </form>
+    </div>
 
-            <input class="ym_btn-padrao" name="adicionar" type="submit" value="Cadastrar cliente">
+    <script>
+        function switchTab(activeTabId, activeContentId) {
+            document.querySelectorAll('.eze-tab-button').forEach(btn => {
+                btn.classList.remove('eze-active');
+            });
+            
+            document.querySelectorAll('.eze-form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.getElementById(activeTabId).classList.add('eze-active');
+            document.getElementById(activeContentId).classList.add('active');
+        }
 
-        </form>        
+        document.getElementById('cliente-tab').addEventListener('click', () => {
+            switchTab('cliente-tab', 'cliente-content');
+        });
+
+    </script>
 </body>
 </html>
-
-<script>
-
-    function teste(){
-        var ym_area_input = document.getElementById('ym_titulo-cpf-cnpj');
-        var input = document.getElementById('ym_input-cpf-cnpj');
-        var valor = input.value.length;
-
-        if(valor<11 || valor<15){
-            cpf_cnpj = 'cpf_cnpj*';
-            ym_area_input.innerHTML = `<p class="ym_titulo-input">${cpf_cnpj}</p>`;
-        }
-        if(valor==11){
-            cpf_cnpj = 'CPF*';
-            ym_area_input.innerHTML = `<p class="ym_titulo-input">${cpf_cnpj}</p>`;
-        }
-
-        if(valor==15){
-            cpf_cnpj = 'CNPJ*';
-            ym_area_input.innerHTML = `<p class="ym_titulo-input">${cpf_cnpj}</p>`;
-        }
-
-        console.log(valor);
-    }
-</script>

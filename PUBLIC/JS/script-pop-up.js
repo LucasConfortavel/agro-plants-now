@@ -12,7 +12,7 @@ function abrirPopup(link,titulo) {
      .then(response => response.text())
      .then(html => {
        cont_popup.innerHTML = html;
-       area_superior.innerHTML = `<h1 class="ym_titulo-popup">${titulo}</h1> <p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>`;
+       area_superior.innerHTML = ` <p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>`;
 
        const scripts = cont_popup.querySelectorAll('script');
        scripts.forEach(script => {
