@@ -7,7 +7,7 @@ if(page.toLowerCase().includes("dashboard")){
 
 };
 
-if(page.toLowerCase().includes("catalogo")){
+if(page.toLowerCase().includes("catalogo") || page.toLowerCase().includes("prod")){
     let area = document.getElementById("catalogo")
     area.style.backgroundColor = "#3a3a3a"
     area.style.borderRadius = "8px"

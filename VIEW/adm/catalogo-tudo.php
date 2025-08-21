@@ -2,7 +2,7 @@
     include "../../INCLUDE/Menu_adm.php";
     require_once "../../DB/connect.php";
     $sql = 'SELECT * FROM produtos';
-    $result = mysqli_query($con, $sql);
+    $result = mysqli_query($con, $sql);    
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +75,12 @@
                                         <div class="ym_img-label">
                                         <span>Bioestimulante</span>
                                         </div>
-                                        <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                        <form action="#" method="get" class="ym_form-remover">
+                                            <button type="submit" name="remover" value='.$id.'>
+                                                <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                            </button>
+                                        </form>
+
                                         </div>
                                         <p class="ym_nomeProduto">'. $nome .'</p>
                                         <p class="ym_preco">R$ '.$preco.'</p>
@@ -162,3 +167,21 @@ if(mysqli_num_rows($result) < 5){
 <script src="../../PUBLIC/JS/script.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 <script src="../../PUBLIC/JS/script-catalogo.js"></script>
+<?php
+
+    if(isset($_GET['remover'])){
+        echo "<script> abrirPopup('../../VIEW/pop-up/conf_remover_produto.php','Deseja remover este produto?') </script>";    
+    }
+
+    if (isset($_POST['cancelar'])){
+        echo "<script> location.href = 'catalogo-tudo.php'; </script>";
+    }
+    
+    if (isset($_POST['confirmar'])){
+        $id = $_GET['remover'];
+        $sql = 'DELETE FROM produtos WHERE id = '.$id.'';
+        mysqli_query($con, $sql);
+        echo "<script> location.href = 'catalogo-tudo.php'; </script>";
+    }
+
+?>

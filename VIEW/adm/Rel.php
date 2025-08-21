@@ -20,18 +20,16 @@ include "../../INCLUDE/Menu_adm.php";
 
     <main class="jp_main-content">
         <div class="po-container">
-            <div class="po-header">
-                <h1>Relatório de Vendas</h1>
-            </div>
+            <h1 class="ym_titulo" >Relatório de Vendas</h1>
 
             <div class="po-card">
-                            <div class="po-tabs">
+                <div class="po-tabs">
                     <button class="po-tab-button po-active" data-tab="sales">Vendas</button>
                     <button class="po-tab-button" data-tab="commissions">Comissões</button>
                 </div>
 
                 <div class="po-card-content">
-                                        <div class="po-controls">
+                    <div class="po-controls">
                         <h3 id="po-table-title">Registro de Vendas</h3>
                         <div class="po-controls-right">
                             <button class="po-btn">

@@ -4,7 +4,7 @@ function abrirPopup(link,titulo) {
    const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
    const area_superior = document.getElementsByClassName('ym_area-superior-popup')[0];
   
-  if(titulo == "Calcular comissão" || titulo == "Cadastro de produto"){
+  if(titulo == "Calcular comissão" || titulo == "Cadastro de produto" || titulo == "Deseja remover este produto?"){
     fixarTela()
   }
 

@@ -65,9 +65,9 @@
                                 <button class="jv_btn btn-danger" id="removeSelected" style="display: none;">
                                     <i class="fa-solid fa-trash-can"></i>Remover (<span id="selectedCount">0</span>)
                                 </button>                                
-                                <button class="jv_btn btn-primary">
+                                <button class="jv_btn btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de clientes')">
                                     <i class="fas fa-plus"></i>
-                                    <a onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de clientes')">Cadastrar Cliente</a>
+                                    <p>Cadastrar Cliente</p>
                                 </button>
                             </div>
                         </div>

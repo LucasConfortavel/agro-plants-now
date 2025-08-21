@@ -38,8 +38,23 @@
 .ym_area-btn{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: row;
-    gap: 30px;
-    width: 35vw;
+    gap: 15%;
+    height: 8vh;
+    width: 30vw;
+}
+
+.ym_btn-remover{
+    max-width: 25%;
+    gap: 10px;
+}
+
+.ym_icon-delete{
+    margin-top: 2px;
+    font-size: 13px;
+}
+
+.ym_btn-padrao{
+    max-width: 25%;
 }
