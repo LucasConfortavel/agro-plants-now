@@ -143,7 +143,7 @@ function showDropdown(event, customerId) {
 
 function hideDropdown() {
   dropdownMenu.style.display = "none";
-  currentOpenDropdown = null;
+  currentOpenDropdown = null; 
 }
 
 function handleDropdownAction(action, customerId) {
