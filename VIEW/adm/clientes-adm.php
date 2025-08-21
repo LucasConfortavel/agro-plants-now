@@ -66,7 +66,11 @@
                                     <i class="fa-solid fa-trash-can"></i>Remover (<span id="jv_selectedCount">0</span>)
                                 </button>                                
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                 <button class="jv_btn btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de clientes')">
+=======
+                                <button class="jv_btn jv_btn-primary">
+>>>>>>> Stashed changes
 =======
                                 <button class="jv_btn jv_btn-primary">
 >>>>>>> Stashed changes
