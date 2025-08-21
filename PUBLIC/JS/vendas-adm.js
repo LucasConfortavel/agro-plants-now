@@ -2,10 +2,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Elementos DOM
   const searchInput = document.querySelector('.jv_search-input');
-  const selectAllCheckbox = document.getElementById('selectAll');
+  const selectAllCheckbox = document.getElementById('jv_selectAll');
   const customerCheckboxes = document.querySelectorAll('.customer-checkbox');
-  const removeSelectedBtn = document.getElementById('removeSelected');
-  const selectedCountSpan = document.getElementById('selectedCount');
+  const removeSelectedBtn = document.getElementById('jv_removeSelected');
+  const selectedCountSpan = document.getElementById('jv_selectedCount');
   
   // Inicializar array de clientes selecionados
   let selectedCustomers = [];
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Selecionar todos os clientes
   function handleSelectAll() {
       const isChecked = this.checked;
-      const visibleRows = document.querySelectorAll('#customerTableBody tr:not([style*="display: none"])');
+      const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])');
       
       visibleRows.forEach(row => {
           const checkbox = row.querySelector('.customer-checkbox');
@@ -132,9 +132,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Atualizar contador total de clientes
   function updateCustomerCount() {
-      const customerCountElement = document.getElementById('customerCount');
+      const customerCountElement = document.getElementById('jv_customerCount');
       if (customerCountElement) {
-          const visibleRows = document.querySelectorAll('#customerTableBody tr:not([style*="display: none"])').length;
+          const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])').length;
           customerCountElement.textContent = `${visibleRows} clientes encontrados`;
       }
   }
@@ -169,7 +169,7 @@ function showDropdown(event, customerId) {
 }
 
 function hideDropdown() {
-  const dropdownMenu = document.getElementById('dropdownMenu');
+  const dropdownMenu = document.getElementById('jv_dropdownMenu');
   if (dropdownMenu) {
       dropdownMenu.style.display = 'none';
   }
@@ -201,9 +201,9 @@ function handleDropdownAction(action, customerId) {
 
 // Função para atualizar contador de clientes (também usada pelo dropdown)
 function updateCustomerCount() {
-  const customerCountElement = document.getElementById('customerCount');
+  const customerCountElement = document.getElementById('jv_customerCount');
   if (customerCountElement) {
-      const visibleRows = document.querySelectorAll('#customerTableBody tr:not([style*="display: none"])').length;
+      const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])').length;
       customerCountElement.textContent = `${visibleRows} clientes encontrados`;
   }
 }

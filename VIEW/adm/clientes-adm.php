@@ -57,15 +57,19 @@
                                     <div class="jv_title-bar"></div>
                                     Clientes
                                 </h1>
-                                <p class="jv_subtitle" id="customerCount"><?php echo $total_clientes?> clientes encontrados</p>
+                                <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_clientes?> clientes encontrados</p>
                             </div>
                             
                             
                             <div class="jv_actions">
-                                <button class="jv_btn btn-danger" id="removeSelected" style="display: none;">
-                                    <i class="fa-solid fa-trash-can"></i>Remover (<span id="selectedCount">0</span>)
+                                <button class="jv_btn jv_btn-danger" id="jv_removeSelected" style="display: none;">
+                                    <i class="fa-solid fa-trash-can"></i>Remover (<span id="jv_selectedCount">0</span>)
                                 </button>                                
+<<<<<<< Updated upstream
                                 <button class="jv_btn btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de clientes')">
+=======
+                                <button class="jv_btn jv_btn-primary">
+>>>>>>> Stashed changes
                                     <i class="fas fa-plus"></i>
                                     <p>Cadastrar Cliente</p>
                                 </button>
@@ -87,7 +91,7 @@
                                 <thead>
                                     <tr class="jv_table-header">
                                         <th class="jv_checkbox-col">
-                                            <input type="checkbox" id="selectAll" class="jv_checkbox">
+                                            <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                         </th>
                                         <th class="jv_name">Nome</th> 
                                         <th class="jv_date">Data de Cadastro</th>
@@ -96,7 +100,7 @@
                                         <th class="jv_actions-col"></th> 
                                     </tr>
                                 </thead>
-                                <tbody id="customerTableBody"> 
+                                <tbody id="jv_customerTableBody"> 
                                 <?php 
                                 if($result && mysqli_num_rows($result) > 0){
                                     while($row = mysqli_fetch_assoc($result)){
@@ -188,7 +192,7 @@
             
             
             <!-- Dropdown Menu Template -->
-            <div id="dropdownMenu" class="jv_dropdown-menu" style="display: none;">
+            <div id="jv_dropdownMenu" class="jv_dropdown-menu" style="display: none;">
                 <div class="jv_dropdown-item" data-action="view">
                     <i class="fas fa-eye"></i>
                     Visualizar Detalhes

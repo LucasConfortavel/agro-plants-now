@@ -47,55 +47,59 @@
     <main class="jp_main-content">
 
       
-        <div class="container">
-                <div class="card">
+        <div class="jv_container">
+                <div class="jv_card">
                     <!-- Header -->
-                    <div class="card-header">
-                        <div class="header-content">
-                            <div class="title-section">
-                                <h1 class="title">
-                                    <div class="title-bar"></div>
+                    <div class="jv_card-header">
+                        <div class="jv_header-content">
+                            <div class="jv_title-section">
+                                <h1 class="jv_title">
+                                    <div class="jv_title-bar"></div>
                                     Vendas
                                 </h1>
-                                <p class="subtitle" id="customerCount"><?php echo $total_vendas;?> vendas encontrados</p>
+                                <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_vendas;?> vendas encontrados</p>
                             </div>
                             
                             
-                            <div class="actions">
-                                <button class="btn btn-danger" id="removeSelected" style="display: none;">
-                                    <i class="fa-solid fa-trash-can"></i>Remover (<span id="selectedCount">0</span>)
+                            <div class="jv_actions">
+                                <button class="jv_btn jv_btn-danger" id="jv_removeSelected" style="display: none;">
+                                    <i class="fa-solid fa-trash-can"></i>Remover (<span id="jv_selectedCount">0</span>)
                                 </button>
+<<<<<<< Updated upstream
                                 <button class="btn btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de vendas')" >
+=======
+                                <button class="jv_btn jv_btn-primary">
+>>>>>>> Stashed changes
                                     <i class="fas fa-plus"></i>
                                     <p>Cadastrar Venda</p>
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="search-section">
-                            <div class="search-container">
+                        <div class="jv_search-section">
+                            <div class="jv_search-container">
                                 <i class="fas fa-search search-icon"></i>
-                                <input type="text" id="searchInput" placeholder="Pesquisar por nome ou email..." class="search-input">
+                                <input type="text" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
                             </div>
                         </div>
                     </div>
 
                     <!-- Table -->
-                    <div class="card-content">
-                        <div class="table-container">
-                            <table class="table">
+                    <div class="jv_card-content">
+                        <div class="jv_table-container">
+                            <table class="jv_table">
                                 <thead>
-                                    <tr class="table-header">
-                                        <th class="checkbox-col">
-                                            <input type="checkbox" id="selectAll" class="checkbox">
+                                    <tr class="jv_table-header">
+                                        <th class="jv_checkbox-col">
+                                            <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                         </th>
-                                        <th style="color:black;"id="banguela">Vendedor</th>
-                                        <th style="color:black;"id="banguela">Comprador</th>
+                                        <th style="color:black;"id="jv_banguela">Vendedor</th>
+                                        <th style="color:black;"id="jv_banguela">Comprador</th>
                                         <th style="color:black;">Data de cadastro</th>
                                         <th style="color:black;">Total</th>                                        
-                                        <th class="actions-col"></th> 
+                                        <th class="jv_actions-col"></th> 
                                 </thead>
-                                <tbody id="customerTableBody"> 
+                                <tbody id="jv_customerTableBody"> 
                                     <?php 
                                     
                                     if($result){
@@ -117,15 +121,15 @@
                                             echo'
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" class="checkbox customer-checkbox" 
+                                                        <input type="checkbox" class="jv_checkbox customer-checkbox" 
                                                             data-customer-id='.$id.'>
                                                     </td>
                                                     <td>
-                                                        <div class="customer-info">
-                                                            <div class="avatar">
+                                                        <div class="jv_customer-info">
+                                                            <div class="jv_avatar">
                                                                 YM
                                                             </div>
-                                                            <div class="customer-details">
+                                                            <div class="jv_customer-details">
                                                                 <h4>'.$vendedor_nome.'</h4>
                                                                 <p>'.$vendedor_email.'</p>
                                                             </div>
@@ -139,10 +143,10 @@
                                                     <td>'.$data.'</td>
                                                 
                                                     <td>
-                                                        <span class="amount">'.$total.'</span>
+                                                        <span class="jv_amount">'.$total.'</span>
                                                     </td>
                                                     <td>
-                                                        <button class="menu-btn" onclick="showDropdown(event, '.$id.')">
+                                                        <button class="jv_menu-btn" onclick="showDropdown(event, '.$id.')">
                                                             <i class="fas fa-ellipsis-h"></i>
                                                         </button>
                                                     </td>
@@ -156,9 +160,9 @@
                         </div>
 
                         <!-- Paginação -->
-                        <div class="jp_page-navigation">
+                        <div class="jv_page-navigation">
                             <?php if($pagina_atual > 1): ?>
-                                <a href="?pagina=<?php echo $pagina_atual - 1; ?>" class="jp_page-arrow">
+                                <a href="?pagina=<?php echo $pagina_atual - 1; ?>" class="jv_page-arrow">
                                     <i class="fas fa-arrow-left"></i>
                                 </a>
                             <?php endif; ?>
@@ -168,20 +172,20 @@
                             $fim = min($total_paginas, $pagina_atual + 2);
                             
                             for ($i = $inicio; $i <= $fim; $i++): ?>
-                                <a href="?pagina=<?php echo $i; ?>" class="jp_page-number <?php echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                <a href="?pagina=<?php echo $i; ?>" class="jv_page-number <?php echo $i == $pagina_atual ? 'active' : ''; ?>">
                                     <?php echo $i; ?>
                                 </a>
                             <?php endfor; ?>
 
                             <?php if($pagina_atual < $total_paginas): ?>
-                                <a href="?pagina=<?php echo $pagina_atual + 1; ?>" class="jp_page-arrow">
+                                <a href="?pagina=<?php echo $pagina_atual + 1; ?>" class="jv_page-arrow">
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
                             <?php endif; ?>
                         </div>
 
                         <!-- Empty State -->
-                        <div id="emptyState" class="empty-state" style="display: none;">
+                        <div id="emptyState" class="jv_empty-state" style="display: none;">
                             <i class="fas fa-search empty-icon"></i>
                             <h3>Nenhuma venda encontrada</h3>
                             <p>Tente ajustar os termos de pesquisa</p>
@@ -191,17 +195,17 @@
             </div>
 
             <!-- Dropdown Menu Template -->
-            <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
-                <div class="dropdown-item" data-action="view">
+            <div id="jv_dropdownMenu" class="jv_dropdown-menu" style="display: none;">
+                <div class="jv_dropdown-item" data-action="view">
                     <i class="fas fa-eye"></i>
                     Visualizar Detalhes
                 </div>
-                <div class="dropdown-item" data-action="edit">
+                <div class="jv_dropdown-item" data-action="edit">
                     <i class="fas fa-edit"></i>
                     Editar Venda
                 </div>
-                <div class="dropdown-separator"></div>
-                <div class="dropdown-item danger" data-action="delete">
+                <div class="jv_dropdown-separator"></div>
+                <div class="jv_dropdown-item danger" data-action="delete">
                     <i class="fas fa-trash"></i>
                     Remover Venda
                 </div>             
