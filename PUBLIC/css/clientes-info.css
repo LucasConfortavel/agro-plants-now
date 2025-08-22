@@ -1,371 +1,265 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-.er-box{
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.jp_main-content {
+    flex: 1;
+    padding: 30px;
+}
+
+.ym_area-info{
+    height: 63vh;
+    flex-direction: column; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.jp_profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+}
+
+.jp_profile-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.jp_profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.jp_profile-text h2 {
+    font-size: 18px;
+    color: #333;
+}
+
+.jp_profile-text p {
+    font-size: 14px;
+    color: #666;
+}
+
+.jp_role {
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Conteúdo */
+.jp_content {
+    width: 100%;
+    margin-top: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.jp_tabs {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jp_tab {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+}
+
+.jp_tab.jp_active {
+    color: #0066ff;
+    border-bottom: 2px solid #0066ff;
+}
+
+.jp_info-section {
+    padding: 20px;
+}
+
+.jp_section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.jp_section-header h3 {
+    font-size: 16px;
+    color: #333;
+}
+
+.jp_info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+}
+
+.jp_info-item label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.jp_form-input {
+    width: 90%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.jp_form-input:focus {
+    outline: none;
+    border-color: #0066ff;
+    box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+}
+
+.jp_form-input.disabled,
+.jp_form-input[readonly] {
+    background-color: #f5f5f5;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.jp_form-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.jp_btn-update {
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 1008px;
-    height: 564px;
-    background-color:rgba(255, 255, 255, 1);
-    border: 2px solid rgba(217, 217, 217, 1);
-    border-radius: 10px;
-    stroke: rgba(231, 230, 230, 1);
-    margin-left: 104px;
-    margin-top: 40px;
-}
-
-.er_seta{
-    margin-bottom: 90px;
-    margin-left: 10px;
-}
-
-.er-box-img{
-    margin-left: 39px;
-    width: 200px;
-    height: 197px;
-    border-radius: 200px;
-    background-color:rgba(217, 217, 217, 1);
-}
-
-.er-box-img  .er_user{
-    margin-left: 53px;
-    margin-top: 40px;
-    width: 94px;
-    height: 115px;
-}
-
-.er_user-name{
-    margin-left: 55px;
-    font-family: 'poppins';
-    font-size: 1.5rem;
-}
-
-.er_user-name-x1{
-    margin-left: 45px;
-    font-family: 'poppins';
-    font-size: 1.5rem;
-}
-
-.er_user-name-x2{
-    margin-left: 69px;
-    font-family: 'poppins';
-    font-size: 1.5rem;
-}
-
-.er_user-date{
-    margin-left: 63px;
-    font-family: 'poppins';
-    font-size: 0.7rem;
-    color: rgba(0, 0, 0, 0.5);
+    width: 100%;
 }
 
 
-.er_nao-questione{
-    height: 563px;
-    width: 290px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 10px 0px 0px 10px;
-    
-}
-
-.er_form{
-    margin-left: 324px;
-    margin-top: -499px;
-    width: 234px;
-    height: 300px;
-    
-
-}
-
-.er_wrap-input1{
-    height: 45px;
-    width: 236px;
-    margin-top: 60px;
-
-   
-    
-}
-
-.er_wrap-input2{
-    height: 45px;
-    width: 236px;
-    margin-top: 23px;
-    
-
-    
-    
-}
-
-.er_wrap-input3{
-    height: 45px;
-    width: 236px;
-    margin-bottom: 5px;
-   
-    
-}
-
-.er_wrap-input4{
-    margin-bottom: 25px;
-    height: 65px;
-    width: 236px;
-    
-    
-    
-    
-   
-}
-
-.er_email{
-    font-family: 'poppins';
-    color: rgba(0, 0, 0, 0.5);
-    margin-top: -20px;
-    
-}
-
-.er_fone{
-    font-family: 'poppins';
-    color: rgba(0, 0, 0, 0.5);
-    margin-top: -120px;
-    
-}
-
-.er_cpf{
-    font-family: 'poppins';
-    color: rgba(0, 0, 0, 0.5);
-    margin-top: 48px;
-    
-}
-
-.er_date{
-    font-family: 'poppins';
-    color: rgba(0, 0, 0, 0.5);
-    margin-bottom: 45px;
-}
-
-.er_input-email{
-    margin-top: 15px;
-    background-color: transparent;
-    border: none;
-}
-
-.er_input-fone{
-    margin-top: 15px;
-    background-color: transparent;
-    border: none;
-}
-
-.er_input-cpf{
-    margin-top: 15px;
-    background-color: transparent;
-    border: none;
-}
-
-.er_input-date{
-    margin-top: 15px;
-    background-color: transparent;
-    border: none;
-    width: 163px;
-}
-
-.hr{
-    border:1px solid rgba(0, 0, 0, 0.1) ;
-    width: 230px;
-    margin-bottom: 26px;
-}
-
-.hr2{
-    border:1px solid rgba(0, 0, 0, 0.1) ;
-    width: 230px;
-    margin-bottom: 15px;
-}
-
-.hr3{
-    border:1px solid rgba(0, 0, 0, 0.1) ;
-    width: 230px;
-    margin-bottom: 13px;
-}
-
-.hr4{
-    border:1px solid rgba(0, 0, 0, 0.1) ;
-    width: 230px;
-    margin-top: 7px;
-}
-
-.er_btn-fixado{
-    width: 95px;
-    height: 40px;
-    background-color: rgba(69, 115, 75, 1);
-    margin-left: 869px;
-    margin-top: 59px;
-    border-radius: 10px;
+.jp_edit-btn {
     display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    color: #0066ff;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-.er_btn-fixado a{
-    margin-left: 27px;
-    margin-top: 12px;
-    font-family: 'poppins';
-    text-decoration: none;
-    color: rgba(255, 255, 255, 1);
+.jp_security-form {
+    max-width: 600px;
     margin: 0 auto;
 }
 
-.er_pesquisa {
-    width: 540px;
-    height: 44px;
-    margin-left: 290px;
-    margin-top: -55px;
-    border-radius: 10px;
-    border:1px solid rgba(231, 230, 230, 1);
+.jp_password-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.er_pesquisa::placeholder{
-    font-family: 'poppins';
-    font-size: 1rem;
+.jp_password-group {
+    width: 100%;
 }
 
-.er_search-img{
-    margin-left: -36px;
-    margin-top: 20px;
+.ym_input-padrao {
+    max-width: 90%;
 }
 
-/* ============================= */
-/* ===== RESPONSIVO TABLET ===== */
-/* ============================= */
+/* Responsividade */
 @media screen and (max-width: 1024px) {
 
-    .er-box {
-        flex-direction: column;
-        width: 90%;
-        height: auto;
-        margin: 30px auto;
+
+    .jp_main-content {
         padding: 20px;
     }
 
-    .er_nao-questione {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
+    .jp_info-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .er-box-img {
-        margin: 20px auto;
-    }
-
-    .er_form {
-        margin: 0 auto;
-        width: 100%;
-    }
-
-    .er_wrap-input1,
-    .er_wrap-input2,
-    .er_wrap-input3,
-    .er_wrap-input4 {
-        width: 100%;
-    }
-
-    .hr, .hr2, .hr3, .hr4 {
-        width: 70%;
-    }
-
-    .er_pesquisa {
-        width: 80%;
-        margin: 20px auto;
-    }
-
-    .er_btn-fixado {
-        margin: 20px auto;
-    }
-
-    .er_seta {
-        margin: 0 auto;
-    }
-
-    .er-user-name-x1,
-    .er-user-name-x2,
-    .er_user-name{
-        left: 56px;
+    .jp_profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
     }
 }
 
-/* ============================= */
-/* ===== RESPONSIVO CELULAR ==== */
-/* ============================= */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
+    .jp_info-grid {
+        grid-template-columns: 1fr;
+    }
 
-    .er-box {
+    .jp_section-header {
         flex-direction: column;
-        width: 90%;
-        height: auto;
-        margin: 20px auto;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .jp_form-actions {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .jp_main-content {
         padding: 15px;
     }
 
-    .er_nao-questione {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-    }
-
-    .er-box-img {
-        width: 150px;
-        height: 150px;
-        margin: 15px auto;
-    }
-
-    .er-box-img .er_user {
-        width: 70px;
-        height: 85px;
-        margin: 30px auto;
-    }
-
-    .er-user-name-x1,
-    .er-user-name-x2,
-    .er_user-name {
-        margin-left: 0;
+    .jp_profile-info {
+        flex-direction: column;
+        align-items: center;
         text-align: center;
     }
 
-    .er_user-date {
-        margin-left: 0;
+    .jp_role {
+        max-width: 90%;
         text-align: center;
     }
 
-    .er_form {
-        margin: 0 auto;
-        width: 100%;
+    /*  Melhorias */
+    .jp_form-input {
+        font-size: 16px; 
+        padding: 12px;   
+        width: 100%;  
+        max-width: 100%;
     }
 
-    .er_wrap-input1,
-    .er_wrap-input2,
-    .er_wrap-input3,
-    .er_wrap-input4 {
-        width: 100%;
-    }
-
-    .hr, .hr2, .hr3, .hr4 {
-        width: 100%;
-    }
-
-    .er_pesquisa {
-        width: 90%;
-        margin: 15px auto;
-    }
-
-    .er_btn-fixado {
-        width: 80%;
-        height: 45px;
-        margin: 15px auto;
-    }
-
-    .er_btn-fixado a {
-        margin: auto;
-    }
-
-    .er_seta {
-        margin: 0 auto;
-    }
-
-    .er-box-img .er_user{
-        margin-left: 42px;
+    .jp_profile-text h2 {
+        font-size: 16px; 
     }
 }

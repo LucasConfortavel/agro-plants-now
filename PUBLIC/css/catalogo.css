@@ -11,7 +11,7 @@
 }
 
 .ym_lupa{
-  color: black;
+  color: rgba(0, 0, 0, 0.401);
   border-top: 1px solid rgb(224, 224, 224);
   border-left: 1px solid rgb(224, 224, 224);
   border-bottom: 1px solid rgb(224, 224, 224);
@@ -22,10 +22,6 @@
   display: flex;
   padding: 0px 6px;
   border-radius: 5px 0px 0px 5px;
-}
-
-.ym_lupa:hover{
-  background-color: rgb(245, 245, 245);
 }
 
 .ym_sectionProdutos{
@@ -332,7 +328,9 @@
   width: 100%;
   padding: 0px 10px;
   border: none;
-  border: 1px solid rgb(224, 224, 224);
+  border-top: 1px solid rgb(224, 224, 224);
+  border-bottom: 1px solid rgb(224, 224, 224);
+  border-right: 1px solid rgb(224, 224, 224);
   border-radius: 0px 5px 5px 0px;
 }
 

@@ -62,13 +62,17 @@
                             
                             
                             <div class="jv_actions">
-                                <button class="jv_btn jv_btn-danger" id="jv_removeSelected" style="display: none;">
-                                    <i class="fa-solid fa-trash-can"></i>Remover (<span id="jv_selectedCount">0</span>)
-                                </button>
-                                <button class="jv_btn jv_btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de vendas')" >
-                                    <i class="fas fa-plus"></i>
-                                    <p>Cadastrar Venda</p>
-                                </button>
+                                <div>
+                                    <button class="jv_btn jv_btn-danger" id="jv_removeSelected" style="display: none;">
+                                        <i class="fa-solid fa-trash-can"></i>Remover (<span id="jv_selectedCount">0</span>)
+                                    </button>
+                                </div>
+                                <div>
+                                    <button class="jv_btn jv_btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-adm.php','Cadastro de vendas')" >
+                                        <i class="fas fa-plus"></i>
+                                        <p>Cadastrar Venda</p>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         
