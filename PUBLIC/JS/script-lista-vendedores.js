@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Função de pesquisa
     function handleSearch() {
         const searchTerm = this.value.toLowerCase();
-        const rows = document.querySelectorAll('#jv_customerTableBody tr');
+        const rows = document.querySelectorAll('#customerTableBody tr');
         
         rows.forEach(row => {
             const name = row.querySelector('h4').textContent.toLowerCase();
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])');
         
         visibleRows.forEach(row => {
-            const checkbox = row.querySelector('.jv_customer-checkbox');
+            const checkbox = row.querySelector('.customer-checkbox');
             if (checkbox) {
                 checkbox.checked = isChecked;
                 handleCustomerSelect(checkbox.dataset.customerId, isChecked);
@@ -141,17 +141,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inicializar
     setupEventListeners();
-});
-
-// Funções do dropdown (mantidas do código original)
-function showDropdown(event, customerId) {
+  });
+  
+  // Funções do dropdown (mantidas do código original)
+  function showDropdown(event, customerId) {
     event.stopPropagation();
     
     // Esconder qualquer dropdown aberto
     hideDropdown();
     
     const rect = event.target.closest('.jv_menu-btn').getBoundingClientRect();
-    const dropdownMenu = document.getElementById('jv_dropdownMenu');
+    const dropdownMenu = document.getElementById('dropdownMenu');
     
     if (dropdownMenu) {
         dropdownMenu.style.display = 'block';
@@ -166,16 +166,16 @@ function showDropdown(event, customerId) {
             };
         });
     }
-}
-
-function hideDropdown() {
+  }
+  
+  function hideDropdown() {
     const dropdownMenu = document.getElementById('jv_dropdownMenu');
     if (dropdownMenu) {
         dropdownMenu.style.display = 'none';
     }
-}
-
-function handleDropdownAction(action, customerId) {
+  }
+  
+  function handleDropdownAction(action, customerId) {
     const checkbox = document.querySelector(`.customer-checkbox[data-customer-id="${customerId}"]`);
     if (!checkbox) return;
     
@@ -197,13 +197,14 @@ function handleDropdownAction(action, customerId) {
             }
             break;
     }
-}
-
-// Função para atualizar contador de clientes (também usada pelo dropdown)
-function updateCustomerCount() {
+  }
+  
+  // Função para atualizar contador de clientes (também usada pelo dropdown)
+  function updateCustomerCount() {
     const customerCountElement = document.getElementById('jv_customerCount');
     if (customerCountElement) {
         const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])').length;
         customerCountElement.textContent = `${visibleRows} clientes encontrados`;
     }
-}
+  }
+  
