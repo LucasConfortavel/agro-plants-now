@@ -1,70 +1,84 @@
 <?php
-
 include "../../INCLUDE/Menu_adm.php";
-
-
-
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Perfil</title>
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-info.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/btn-notificacao.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  
 </head>
 <body>
-    <main class="jp_main-content">
-        
-        <input  class="er_pesquisa" type="text" name="search" id="search" placeholder="pesquise por um cliente"> <a href="" class="er_search-img"><img src="../../PUBLIC/img/lupa.png" alt=""></a></p>
-        
-        <div class="er-box">
-            <div class="er_nao-questione">
-                <a href="#"><img class="er_seta"  src="../../PUBLIC/img/Frame (3).svg" alt=""></a>
 
-                <div class="er-box-img"> <img class="er_user" src="../../PUBLIC/img/SVGRepo_iconCarrier (2).svg" alt=""></div>
-                
-                <p class="er_user-name">Calebe Lemos</p>
-                <p class="er_user-date">Cadastrado em 12/08/2024</p>
-            </div> 
+        <main class="jp_main-content">
+
+            <header class="jp_profile-header" style=" width: 97%;">
+                <div class="jp_profile-info">
+                    <img src="../../PUBLIC/img/img_user.png" alt="Profile" class="jp_profile-pic">
+                    
+                    <div class="profile-text">
+                        <h2>José Farmer</h2>
+                        <p>JoseFarmer_Reidoagro@gmail.com</p>
+                    </div>
+                </div>
+                <div class="jp_role">Cliente</div>
+            </header>
+
+            <div class="ym_area-info">
             
-            <form class="er_form" action="">
-                <div class="er_wrap-input1">
-                    <span class="er_email">E-mail</span>
-                    <input class="er_input-email" type="email" name="email" id="">
-                    <hr>
-                </div>
-                <div class="er_wrap-input2 ">
-                    <span class="er_fone">Telefone</span>
-                    <input class="er_input-fone" type="text" name="fone" id="">
-                    <hr>
-                </div>
-                <div class="er_wrap-input3">
-                    <span class="er_cpf">Cpf</span>
-                    <input class="er_input-cpf" type="text" name="cpf" id="">
-                    <hr  >
-                </div>
-                <div class="er_wrap-input4">
-                    <span class="er_date">Data de Nascimento</span>
-                    <input class="er_input-date" type="date" name="data" id="">
-                    <hr class="hr4">
-                </div>
-                
+                <div class="jp_content">
+                    <nav class="jp_tabs">
+                        <h3>Informações pessoais</h3>
+                    </nav>
 
-            </form>
+                    <div class="jp_info-section">
+                        <div class="jp_info-grid">
+                            <div class="jp_info-item">
 
-            <button class="er_btn-fixado ym_btn-padrao"><a href="">Fixado</a></button> 
-                
-           
-            
-        </div>
-    </main>
+                                <label>Nome</label>
+                                <p>José Farmer</p>
+                            </div>
+                            <div class="jp_info-item">
+                                <label>Idade</label>
+                                <p>39</p>
+                            </div>
+                            <div class="jp_info-item">
+                                <label>Data de nascimento</label>
+                                <p>10/09/2007</p>
+                            </div>
+                            <div class="jp_info-item">
+                                <label>E-mail</label>
+                                <p>JoseFarmer_Reidoagro@gmail.com</p>
+                            </div>
+                            <div class="jp_info-item">
+                                <label>Número de telefone</label>
+                                <p>+55 67 99456 - 4321</p>
+                            </div>
+                            <div class="jp_info-item">
+                                <label>Posição</label>
+                                <p>Cliente</p>
+                            </div>
+                            <div class="jp_info-item">
+                                <label>CPF</label>
+                                <p>345.357.234-14</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+
+    <div class="jp_overlay"></div>
+
+    <script src="../../PUBLIC/js/script-ajustes.js"></script>
+    <script src="../../PUBLIC/JS/script.js"></script>
+
 </body>
 </html>
