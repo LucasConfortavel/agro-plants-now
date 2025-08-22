@@ -137,7 +137,9 @@
                                             </td>
                                             <td>
                                                 <div class="jv_customer-info">
-                                                    <div class="jv_avatar"></div>
+                                                    <div class="jv_avatar">
+                                                    PR
+                                                    </div>
                                                     <div class="jv_customer-details">
                                                         <h4>'.$nome.'</h4>
                                                         <p>'.$email.'</p>
