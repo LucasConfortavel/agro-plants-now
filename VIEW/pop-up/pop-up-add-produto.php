@@ -51,7 +51,7 @@
                         <label class="eze-label-text">Descrição</label>
                         <span class="eze-required">*</span>
                     </div>
-                    <textarea class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto"></textarea>
+                    <textarea class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" style="resize: none;"></textarea>
                 </div>
 
                 <div class="eze-button-container eze-button-container2">
