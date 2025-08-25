@@ -431,4 +431,8 @@
     .customer-details p {
         font-size: 12px;
     }
+
+    .card{
+        margin-top: 45px;
+    }
 }
