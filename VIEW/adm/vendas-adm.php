@@ -142,9 +142,25 @@
                                                         <span class="jv_amount">'.$total.'</span>
                                                     </td>
                                                     <td>
-                                                        <button class="jv_menu-btn" onclick="showDropdown(event, '.$id.')">
+                                                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                             <i class="fas fa-ellipsis-h"></i>
                                                         </button>
+                                                        <div id="jv_dropdownMenu" class="jv_dropdown" style="display:none;">
+                                                            <button class="jv_dropdown-item">
+                                                                <i class="fas fa-eye"></i>
+                                                                Visualizar Detalhes
+                                                            </button>
+                                                            <div class="jv_dropdown-separator"></div>
+                                                            <button class="jv_dropdown-item">
+                                                                <i class="fas fa-edit"></i>
+                                                                Editar
+                                                            </button>
+                                                            <div class="jv_dropdown-separator"></div>
+                                                            <button class="jv_dropdown-item danger">
+                                                                <i class="fas fa-trash"></i>
+                                                                Remover
+                                                            </button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             ';}} else {
@@ -190,22 +206,6 @@
                 </div>
             </div>
 
-            <!-- Dropdown Menu Template -->
-            <div id="jv_dropdownMenu" class="jv_dropdown-menu" style="display: none;">
-                <div class="jv_dropdown-item" data-action="view">
-                    <i class="fas fa-eye"></i>
-                    Visualizar Detalhes
-                </div>
-                <div class="jv_dropdown-item" data-action="edit">
-                    <i class="fas fa-edit"></i>
-                    Editar Venda
-                </div>
-                <div class="jv_dropdown-separator"></div>
-                <div class="jv_dropdown-item danger" data-action="delete">
-                    <i class="fas fa-trash"></i>
-                    Remover Venda
-                </div>             
-            </div>
 
 
 

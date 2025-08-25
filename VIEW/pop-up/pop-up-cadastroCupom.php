@@ -1,29 +1,3 @@
-<?php
-
-require_once "../../DB/connect.php";
-
-// if(isset($_POST['cadastrar'])){
-//     $desconto = $_POST['desconto'];
-//     $descricao = $_POST['descricao'];
-//     $validade = $_POST['validade'];
-//     $codigo = $_POST['codigo'];  
-    
-//     $sql = "INSERT INTO cupom (desconto,descricao,validade,codigo) VALUES ('$nome','$data_nasc','$email','$cpf_cnpj')";
-
-//     $result_create = mysqli_query($con,$sql);
-
-//     if(!$result_create){
-//         echo'<script>alert("Não foi possível cadastrar")</script>';
-//     }else{
-//         echo'<script>alert("Cliente Cadastrado")</script>';
-//     }
-
-//     header("location:../adm/Cupom_adm.php");
-// }
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="ptbr">
 <head>
@@ -32,33 +6,146 @@ require_once "../../DB/connect.php";
     <title>Cadastrar Cupom</title>
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastroCupom.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <form method="POST" class="ym_formulario">
-        <div class="ym_area-input"> 
-            <p class="ym_titulo-input">Desconto*</p>
-            <input name="desconto" type="text" placeholder="Valor de desconto" class="ym_input-form">
-        </div>  
 
-        <div class="ym_area-input">
-            <p class="ym_titulo-input">Descrição*</p>
-            <input name="descricao" type="text" placeholder="Descrição" class="ym_input-form">
+    <div class="eze-container">
+        <div class="eze-tab-header">
+            <button class="eze-tab-button eze-active" id="cliente-tab">Cadastrar Cupom</button>
         </div>
 
-        <div class="ym_area-input">
-            <p class="ym_titulo-input">Data de validade</p>
-            <input name="validade" type="date" placeholder="Data de validade" class="ym_input-form">
-        </div>
+        <form action="" method="post" class="ym_form-pop-up">
+            <div id="cliente-content" class="eze-form-section active">
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Desconto</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="number" class="ym_input-padrao" name="desconto" placeholder="Valor do Desconto" required>
+                    </div>
+                </div>
 
-        <div class="ym_area-input">
-            <p class="ym_titulo-input">Código*</p>
-            <div class="ym_input-form">
-                <button class="ym_btn-gerarcodigo"><img class="ym_btn-img" src="../../PUBLIC/img/img_add.png" alt=""></button>
-                <input name="codigo" type="text" placeholder="Gerar código único">
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Email</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="email" class="ym_input-padrao" name="email" placeholder="Email" required>
+                    </div>
+                </div>
+
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Data de nascimento</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="date" class="ym_input-padrao" name="data" required>
+                    </div>
+
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text" id="labelCodigo">Código</label>
+                            <span class="eze-required" id="spanCodigo">*</span>
+                        </div>
+
+                        <button type="button" id="btnGerarCodigo" class="eze-add-button" style="cursor:pointer;">
+                            Gerar código
+                        </button>
+                        <input type="text" id="codigoExibido" class="ym_input-padrao" readonly style="display:none;">
+                        <input type="hidden" name="codigo" id="inputCodigo" value="">
+                    </div>
+
+
+                </div>
+
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Descrição</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <textarea style="resize: none;" class="ym_input-padrao" name="telefone" placeholder="Descrição" required></textarea>
+                    </div>
+                </div>
+
+
+
+                <div class="eze-button-container">
+                    <button type="submit" class="eze-add-button" name="adicionar">Cadastrar Vendedor</button>
+                    <p class="eze-help-text"><span class="eze-required">*</span>Campos obrigatórios</p>
+                </div>
             </div>
-        </div>
-        
-        <input type="submit" class="ym_btn-padrao" name="cadastrar" value="Cadastrar cupom">
-    </form>
+
+        </form>
+    </div>
+
+    <script>
+        function gerarCodigo(tamanho = 8) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let codigo = '';
+            for (let i = 0; i < tamanho; i++) {
+                codigo += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return codigo;
+        }
+
+        document.getElementById('btnGerarCodigo').addEventListener('click', () => {
+            const codigoGerado = gerarCodigo(8);
+
+            document.getElementById('btnGerarCodigo').style.display = 'none';
+
+            const inputExibido = document.getElementById('codigoExibido');
+            inputExibido.value = codigoGerado;
+            inputExibido.style.display = 'block';
+
+            document.getElementById('inputCodigo').value = codigoGerado;
+
+            const label = document.getElementById('labelCodigo');
+            const span = document.getElementById('spanCodigo');
+
+            const textoOriginalLabel = label.textContent;
+            const textoOriginalSpan = span.textContent;
+
+            label.textContent = "Código gerado!";
+            label.style.color = "green";
+
+            span.innerHTML = '<i class="fa-regular fa-circle-check"></i>';
+            span.style.color = "green";
+
+            setTimeout(() => {
+                label.textContent = textoOriginalLabel;
+                label.style.color = "";
+
+                span.textContent = textoOriginalSpan;
+                span.style.color = "";
+            }, 2000);
+        });
+
+    </script>
+
+
+    <script>
+        function switchTab(activeTabId, activeContentId) {
+            document.querySelectorAll('.eze-tab-button').forEach(btn => {
+                btn.classList.remove('eze-active');
+            });
+            
+            document.querySelectorAll('.eze-form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.getElementById(activeTabId).classList.add('eze-active');
+            document.getElementById(activeContentId).classList.add('active');
+        }
+
+        document.getElementById('cliente-tab').addEventListener('click', () => {
+            switchTab('cliente-tab', 'cliente-content');
+        });
+
+    </script>
 </body>
 </html>
