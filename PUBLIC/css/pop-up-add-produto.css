@@ -11,6 +11,22 @@
     min-width: 30vw;
 }
 
+.ym_area-select{
+    min-width: 100%;
+}
+
+.ym_select{
+    min-width: 97%;
+    border: 2px solid #45734B;
+    border-radius: 6px;
+    font-size: 16px;
+    max-height: 7vh;
+    transition: none;
+}
+
+.ym_options{
+    width: 20%;
+}
 
 .eze-tab-button {
     flex: 1;
@@ -172,4 +188,16 @@
         max-width: 73vw;
         min-width: 73vw;
     }
+
+    .ym_select{
+        border: 2px solid #45734B;
+        border-radius: 6px;
+        font-size: 16px;
+        min-height: 6vh;
+    }
+    
+    .ym_options{
+        width: 50%;
+    }
+
 }

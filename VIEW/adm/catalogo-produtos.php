@@ -132,6 +132,6 @@ include "../../INCLUDE/Menu_adm.php";
 </body>
 </html>
 
-<script src="../../PUBLIC/JS/script.js"></script>
+<script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 <script src="../../PUBLIC/JS/script-catalogo.js"></script>

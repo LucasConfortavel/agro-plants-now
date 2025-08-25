@@ -46,19 +46,15 @@
 
     <main class="jp_main-content">
 
+        <h1 class="ym_titulo">Vendas</h1>
       
         <div class="jv_container">
                 <div class="jv_card">
                     <!-- Header -->
                     <div class="jv_card-header">
                         <div class="jv_header-content">
-                            <div class="jv_title-section">
-                                <h1 class="jv_title">
-                                    <div class="jv_title-bar"></div>
-                                    Vendas
-                                </h1>
-                                <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_vendas;?> vendas encontrados</p>
-                            </div>
+
+                            <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_vendas;?> vendas encontrados</p>
                             
                             
                             <div class="jv_actions">

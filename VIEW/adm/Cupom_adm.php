@@ -32,18 +32,17 @@
 
 
     <main class="jp_main-content">
+
+        <h1 class="ym_titulo">Cupons</h1>
+
+
         <div class="jv_container">
                 <div class="jv_card">
                     <!-- Header -->
                     <div class="jv_card-header">
                         <div class="jv_header-content">
-                            <div class="jv_title-section">
-                                <h1 class="jv_title">
-                                    <div class="jv_title-bar"></div>
-                                    Cupons
-                                </h1>
-                                <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_cupom;?> cupons encontrados</p>
-                            </div>
+
+                            <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_cupom;?> cupons encontrados</p>
                             
                             
                             <div class="jv_actions">
