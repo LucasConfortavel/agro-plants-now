@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-add-produto.css">
 </head>
 <body>
@@ -30,11 +31,20 @@
                             <label class="eze-label-text">Categoria</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <select name="categoria" class="ym_input-padrao" required>
-                            <option value="">Categoria</option>
-                            <option value="produtos">Produtos</option>
-                            <option value="servicos">Serviços</option>
-                        </select>
+
+                        <div class="ym_area-select">
+                            <div class="ym_select" onclick="mostrar_categorias()">
+                                <p class="ym_categoria-select">Produto</p>
+                                <p class="ym_seta-categoria">></p>
+                            </div>
+                            
+                            
+                            <div class="ym_options">
+                                <a class="ym_link-option" onclick="trocar_categoria()"></i> Serviço</a>
+                            </div>
+                            
+                        </div>
+
                     </div>
 
                     <div class="eze-form-group">
@@ -82,7 +92,8 @@
             </div>
         </form>
     </div>
-
+    
+    <script src="../../PUBLIC/JS/script-select.js"></script>
     <script>
         function switchTab(activeTabId, activeContentId) {
             document.querySelectorAll('.eze-tab-button').forEach(btn => {

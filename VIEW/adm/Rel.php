@@ -36,15 +36,26 @@ include "../../INCLUDE/Menu_adm.php";
                                 <span><i class="fa-regular fa-file"></i></span>
                                 Exportar CSV
                             </button>
-                            <select class="po-select" id="po-time-filter">
-                                <option value="last-month">Último mês</option>
-                                <option value="last-quarter">Último trimestre</option>
-                                <option value="last-year">Último ano</option>
-                            </select>
+
+                            <div class="ym_area-select">
+                                <div class="ym_select" onclick="mostrar_categorias()">
+                                    <p class="ym_categoria-select">Último mês</p>
+                                    <p class="ym_seta-categoria">></p>
+                                </div>
+                                
+                                
+                                <div class="ym_options">
+                                    <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                                    <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                </div>
+                                
+                            </div>
+
+
                         </div>
                     </div>
 
-                                     <div class="po-table-container">
+                    <div class="po-table-container">
                         <table class="po-table" id="po-data-table">
                             <thead id="po-table-head">
 
@@ -69,11 +80,19 @@ include "../../INCLUDE/Menu_adm.php";
                         <div class="po-chart-header">
                             <h3 id="po-chart-title">Gráfico de vendas</h3>
                             <div class="po-controls-right">
-                                <select class="po-select" id="po-chart-filter">
-                                    <option value="last-month">Último mês</option>
-                                    <option value="last-quarter">Último trimestre</option>
-                                    <option value="last-year">Último ano</option>
-                                </select>
+                                <div class="ym_area-select">
+                                    <div class="ym_select" onclick="mostrar_categorias(1)">
+                                        <p class="ym_categoria-select">Último mês</p>
+                                        <p class="ym_seta-categoria">></p>
+                                    </div>
+                                    
+                                    
+                                    <div class="ym_options">
+                                        <a class="ym_link-option" onclick="trocar_categoria(1,2)"> Último trimestre</a>
+                                        <a class="ym_link-option" onclick="trocar_categoria(1,3)"> Último ano</a>
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
                         <div class="po-chart-container">
@@ -100,5 +119,6 @@ include "../../INCLUDE/Menu_adm.php";
         </div>
     </main>
     <script src="../../PUBLIC/JS/Rel.js"></script>
+    <script src="../../PUBLIC/JS/script-select.js"></script>
 </body>
 </html>

@@ -1,24 +1,3 @@
- function mostrar_categorias(){
-    let option = document.getElementsByClassName("ym_options")[0];
-    let seta = document.getElementsByClassName("ym_seta-categoria")[0];
-    let option_area = document.getElementsByClassName("ym_options")[0];
-
-    if (window.getComputedStyle(option).display == 'none'){
-        option.style.display = 'flex';
-        seta.style.animation = 'ym_mostrar-options ease 0.4s';
-        seta.style.transform = 'rotate(-90deg)';
-        option_area.style.animation = 'ym_mostrar-options-area ease 0.4s';
-    }
-    else{
-        seta.style.animation = 'ym-sumir-options ease 0.4s';
-        seta.style.transform = 'rotate(90deg)';
-        option_area.style.animation = 'ym-sumir-options-area ease 0.4s';
-        setTimeout(() => {
-            option.style.display = 'none';
-        }, 390);
-    }
-}
-
 let clicks_1 = 1
 let clicks_2 = 1
 

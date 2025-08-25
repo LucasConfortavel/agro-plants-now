@@ -110,17 +110,41 @@
 
         <div class="jp_chart-section">
             <div class="jp_chart-header">
+
                 <div class="jp_chart-title-container">
                     <div class="jp_chart-title">Vendas por Mês</div>
                     <div class="jp_chart-indicator">-2% por mês</div>
                 </div>
+
                 <div class="jp_chart-filters">
-                    <select class="jp_filter-select">
-                        <option> Produto</option>
-                    </select>
-                    <select class="jp_filter-select">
-                        <option> Ultimo mes </option>
-                    </select>
+
+                    <div class="ym_area-select">
+                        <div class="ym_select" onclick="mostrar_categorias()">
+                            <p class="ym_categoria-select">Produtos </p>
+                            <p class="ym_seta-categoria">></p>
+                        </div>
+                        
+                        
+                        <div class="ym_options">
+                            <a class="ym_link-option" onclick="trocar_categoria()"></i> Serviços</a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="ym_area-select">
+                        <div class="ym_select" onclick="mostrar_categorias(1)">
+                            <p class="ym_categoria-select" >Último mês</p>
+                            <p class="ym_seta-categoria">></p>
+                        </div>
+                        
+                        
+                        <div class="ym_options">
+                            <a class="ym_link-option" onclick="trocar_categoria(1,1)" > Últimos anos</a>
+                        </div>
+                        
+                    </div>
+                    
+
                 </div>
             </div>
             <div class="jp_chart-container">
@@ -146,6 +170,8 @@
         </div>
     </main>
 
+    <script src="../../PUBLIC/JS/script-select.js"></script>    
     <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
+
 </body>
 </html>
