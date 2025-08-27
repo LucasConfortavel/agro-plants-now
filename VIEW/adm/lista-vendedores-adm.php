@@ -1,49 +1,5 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
-    require_once "../../DB/connect.php";
- 
-    $sql_show = "SELECT * FROM usuario WHERE tipo = 'vendedor'";
-    $result_show = mysqli_query($con,$sql_show);
-    $total_vendedores = mysqli_num_rows($result_show);
- 
-    if(isset($_POST['adicionar'])){
-        $nome = $_POST['nome'];
-        $data_nasc = $_POST['data_nasc'];
-        $email = $_POST['email'];
-        $cpf_cnpj = $_POST['cpf_cnpj'];  
-        $senha = $_POST['senha'];
-        $tipo = "vendedor";
- 
-        $sql_create = "INSERT INTO usuario (nome,data_nasc,email,CPF,senha,tipo) VALUES ('$nome','$data_nasc','$email','$cpf_cnpj','$senha','$tipo')";
-       
-        $result_create = mysqli_query($con,$sql_create);
- 
- 
-        if(!$result_create){
-            echo'<script>alert("Não foi possível cadastrar")</script>';
-        }else{
-            echo'<script>alert("Cliente Cadastrado")</script>';
-        }}
-    
-    $registros_por_pagina = 4;
-    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-    $offset = ($pagina_atual - 1) * $registros_por_pagina;
-    
-    if(isset($_POST['pesquisar'])){
-        $pesquisa = $_POST['pesquisa'];
-        $sql = "SELECT * FROM usuario WHERE tipo = 'vendedor' and (email LIKE CONCAT('%', '".$pesquisa."', '%') OR nome LIKE CONCAT('%', '".$pesquisa."', '%') ) LIMIT $offset, $registros_por_pagina";
-    }else{
-        $sql = "SELECT * FROM usuario WHERE tipo = 'vendedor' LIMIT $offset, $registros_por_pagina";
-    }
-
-    $result = mysqli_query($con, $sql);
-    
-    $sql_count = "SELECT COUNT(*) as total FROM usuario WHERE tipo = 'vendedor'";
-    $result_count = mysqli_query($con, $sql_count);
-    $row_count = mysqli_fetch_assoc($result_count);
-    $total_vendedores = $row_count['total'];
-    $total_paginas = ceil($total_vendedores / $registros_por_pagina);
-
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +32,7 @@
                 <!-- Header -->
                 <div class="jv_card-header">
                     <div class="jv_header-content">
-                        <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_vendedores; ?> vendedores encontrados</p>
+                        <p class="jv_subtitle" id="jv_customerCount"><?php// echo $total_vendedores; ?>10 vendedores encontrados</p>
                         
                         <div class="jv_actions">
                             <div>
@@ -109,7 +65,7 @@
                 <!-- Table -->
                 <div class="jv_card-content">
                     <div class="jv_table-container">
-                        <table class="jv_table">
+                        <!-- <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
                                     <th class="jv_checkbox-col">
@@ -122,90 +78,138 @@
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody"> 
-                                <?php
-                                if ($result && mysqli_num_rows($result) > 0) {
-                                    while($row = mysqli_fetch_assoc($result)){
-                                        $id = $row['id'];
-                                        $nome = $row['CPF'];
-                                        $email = $row['email'];
-                                        $telefone = $row['telefone'];
-                                        $dataCadastro = $row['data_nasc'];
-
-                                        echo '<tr>
-
-                                            <td>
-                                                <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id='.$id.'>
-                                            </td>
-                                            <td >
-                                                <div class="jv_customer-info">
-                                                    <div class="jv_avatar">
-                                                    PR
-                                                    </div>
-                                                    <div class="jv_customer-details">
-                                                        <h4>'.$nome.'</h4>
-                                                        <p>'.$email.'</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="jv_bangas">'.$telefone.'</td>
-                                            <td class=>'.$dataCadastro.'</td>
-                                            <td class="jv_table-action">
-                                                <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                  <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <div class="jv_dropdown">
-                                                    <button class="jv_dropdown-item">
-                                                        <i class="fas fa-eye"></i>
-                                                        <p class="jv_p">Visualizar Detalhes</p>
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <button class="jv_dropdown-item">
-                                                        <i class="fas fa-edit"></i>
-                                                        <p class="jv_p">Editar</p>
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <button class="jv_dropdown-item jv_danger">
-                                                        <i class="fas fa-trash"></i>
-                                                        <p class="jv_p-remove">Remover</p>
-                                                    </button>
-                                                </div>
-                                              </td>
-                                              
-                                                </div>
-                                            </td>
-                                        </tr>';
-                                    }
-                                } else {
-                                    echo '<tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr>';
-                                }
-                                ?>
+                                
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id='.$id.'>
+                                    </td>
+                                    <td >
+                                        <div class="jv_customer-info">
+                                            <div class="jv_avatar">
+                                            PR
+                                            </div>
+                                            <div class="jv_customer-details">
+                                                <h4>'.$nome.'</h4>
+                                                <p>'.$email.'</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="jv_bangas">'.$telefone.'</td>
+                                    <td class=>'.$dataCadastro.'</td>
+                                    <td>
+                                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <div class="jv_dropdown">
+                                            <button class="jv_dropdown-item">
+                                                <i class="fas fa-eye"></i>
+                                                <p class="jv_p">Visualizar</p>
+                                            </button>
+                                            <div class="jv_dropdown-separator"></div>
+                                            <button class="jv_dropdown-item">
+                                                <i class="fas fa-edit"></i>
+                                                <p class="jv_p">Editar</p>
+                                            </button>
+                                            <div class="jv_dropdown-separator"></div>
+                                            <button class="jv_dropdown-item jv_danger">
+                                                <i class="fas fa-trash"></i>
+                                                <p class="jv_p-remove">Remover</p>
+                                            </button>
+                                        </div>                                        
+                                    </td>
+                                </tr> -->
+                                
+                                <!-- <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr> -->
+<!-- 
                             </tbody> 
+                        </table> -->
+
+                        <table class="jv_table">
+                            <thead>
+                                <tr class="jv_table-header">
+                                    <th class="jv_checkbox-col">
+                                        <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
+                                    </th>
+                                    <th class="jv_name">Nome</th> 
+                                    <th class="jv_banguela">Telefone</th>
+                                    <th class="jv_data">Data de Cadastro</t>
+                                    <th class="jv_actions-col"></th> 
+                                </tr>
+                            </thead>
+                            <tbody id="jv_customerTableBody"> 
+
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id='.$id.'>
+                                    </td>
+                                    <td>
+                                        <div class="jv_customer-info">
+                                            <div class="jv_avatar">
+                                                YM
+                                            </div>
+                                            <div class="jv_customer-details">
+                                                <h4> Vendedor </h4>
+                                                <p> vendedor@gmail.com </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>(67)99876-4444</td>
+                                    <td>
+                                        10/12/25
+                                    </td>
+                                    <td>
+                                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <div id="jv_dropdownMenu" class="jv_dropdown" style="display:none;">
+                                            <button class="jv_dropdown-item">
+                                                <i class="fas fa-eye"></i>
+                                                Visualizar
+                                            </button>
+                                            <div class="jv_dropdown-separator"></div>
+                                            <button class="jv_dropdown-item">
+                                                <i class="fas fa-edit"></i>
+                                                Editar
+                                            </button>
+                                            <div class="jv_dropdown-separator"></div>
+                                            <button class="jv_dropdown-item danger">
+                                                <i class="fas fa-trash"></i>
+                                                Remover
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                        <!-- <tr><td colspan="6" style="text-align: center;">Nenhum cliente encontrado</td></tr> -->
+                            </tbody>
                         </table>
+
+
                     </div>
 
                     <!-- Paginação -->
                     <div class="jv_page-navigation">
-                        <?php if($pagina_atual > 1): ?>
-                            <a href="?pagina=<?php echo $pagina_atual - 1; ?>" class="jv_page-arrow">
+                        <!-- <?php// if($pagina_atual > 1): ?> -->
+                            <a href="?pagina=<?php// echo $pagina_atual - 1; ?>" class="jv_page-arrow">
                                 <i class="fas fa-arrow-left"></i>
                             </a>
-                        <?php endif; ?>
+                        <?php// endif; ?>
 
                         <?php 
-                        $inicio = max(1, $pagina_atual - 2);
-                        $fim = min($total_paginas, $pagina_atual + 2);
+                        // $inicio = max(1, $pagina_atual - 2);
+                        // $fim = min($total_paginas, $pagina_atual + 2);
                         
-                        for ($i = $inicio; $i <= $fim; $i++): ?>
-                            <a href="?pagina=<?php echo $i; ?>" class="jv_page-number <?php echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                <?php echo $i; ?>
+                        // for ($i = $inicio; $i <= $fim; $i++): ?>
+                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php// echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                <?php// echo $i; ?>
                             </a>
-                        <?php endfor; ?>
+                        <?php// endfor; ?>
 
-                        <?php if($pagina_atual < $total_paginas): ?>
-                            <a href="?pagina=<?php echo $pagina_atual + 1; ?>" class="jv_page-arrow">
+                        <?php// if($pagina_atual < $total_paginas): ?>
+                            <a href="?pagina=<?php// echo $pagina_atual + 1; ?>" class="jv_page-arrow">
                                 <i class="fas fa-arrow-right"></i>
                             </a>
-                        <?php endif; ?>
+                        <?php// endif; ?>
                     </div>
 
                     <!-- Empty State -->

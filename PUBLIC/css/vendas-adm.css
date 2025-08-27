@@ -400,11 +400,24 @@
     border: 1px solid #ddd;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    margin-top: 5px;
+    margin-top: 7px;
+    transform: translateX(-50px);
+    width: auto;
+    white-space: nowrap;
+    display: flex;
     z-index: 999;
-   
+    display: none;
+    animation: aparecer ease 0.4s;
   }
   
+@keyframes aparecer {
+    0%{
+        opacity: 0;
+        transform: scale(0.1);
+    }
+}
+
+
 .jv_dropdown-item {
     display: block;
     width: 100%;
@@ -413,6 +426,7 @@
     background: transparent;
     text-align: left;
     cursor: pointer;
+    color: black;
 }
 
 .jv_dropdown-item:hover {

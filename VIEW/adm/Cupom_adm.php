@@ -83,73 +83,57 @@
                                         <th style="color:black;">Validade</th>                                        
                                         <th class="actions-col"></th> 
                                 </thead>
-                                <tbody id="jv_customerTableBody"> 
-                                <?php 
-                                    if($result && mysqli_num_rows($result) > 0){
-                                        while($row = mysqli_fetch_assoc($result)){
-                                            $id= $row['id'];
-                                            $codigo= $row['codigo'];
-                                            $desconto= $row['valor'];
-                                            $data= $row['data'];
-                                            $validade = $row['validade'];   
+                                <tbody id="jv_customerTableBody">  
                                     
-                                            echo'
-                                                <tr>
-                                                    <td>
-                                                        <input type="checkbox" class="jv_checkbox customer-checkbox" 
-                                                            data-customer-id='.$id.'
-                                                    </td>
-                                                    <td>
-                                                        <div class="jv_customer-info">
-                                                            <div class="jv_avatar">
-                                                                YM
-                                                            </div>
-                                                            <div class="jv_customer-details">
-                                                                <h4>'.$codigo.'</h4>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        '.$desconto.'
-                                                    </td>
-                                                    <td>'.$data.'</td>
-                                                
-                                                    <td>
-                                                        '.$validade.'
-                                                    </td>
-                                                    <td>
-                                                        <button class="jv_menu-btn" onclick="showDropdown(event, '.$id.')">
-                                                            <i class="fas fa-ellipsis-h"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>';}
-                                                
-                                            } else {
-                                                echo '<tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum Cupom encontrado</td></tr>';
-                                            }
-                                ?>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="jv_checkbox customer-checkbox">
+                                        </td>
+                                        <td>
+                                            <div class="jv_customer-info">
+                                                <div class="jv_customer-details">
+                                                    <h4>Código</h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            R$ 10,00
+                                        </td>
+                                        <td>10/12/25</td>
+                                    
+                                        <td>
+                                            01/01/26    
+                                        </td>
+                                        <td>
+                                            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </button>
+                                            <div id="jv_dropdownMenu" class="jv_dropdown">
+                                                <button class="jv_dropdown-item">
+                                                    <i class="fas fa-eye"></i>
+                                                    Visualizar
+                                                </button>
+                                                <div class="jv_dropdown-separator"></div>
+                                                <button class="jv_dropdown-item">
+                                                    <i class="fas fa-edit"></i>
+                                                    Editar
+                                                </button>
+                                                <div class="jv_dropdown-separator"></div>
+                                                <button class="jv_dropdown-item danger">
+                                                    <i class="fas fa-trash"></i>
+                                                    Remover
+                                                </button>
+                                            </div>
 
+                                        </td>
+                                    </tr>
+
+                                    <!-- <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum Cupom encontrado</td></tr> -->
+                                            
                                 </tbody> 
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Dropdown Menu Template -->
-            <div id="jv_dropdownMenu" class="jv_dropdown-menu" style="display: none;">
-                <div class="jv_dropdown-item" data-action="view">
-                    <i class="fas fa-eye"></i>
-                    Visualizar Detalhes
-                </div>
-                <div class="jv_dropdown-item" data-action="edit">
-                    <i class="fas fa-edit"></i>
-                    Editar Cupom
-                </div>
-                <div class="jv_dropdown-separator"></div>
-                <div class="jv_dropdown-item danger" data-action="delete">
-                    <i class="fas fa-trash"></i>
-                    Remover Cupom
                 </div>
             </div>
 

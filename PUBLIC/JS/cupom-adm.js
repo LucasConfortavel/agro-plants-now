@@ -143,67 +143,23 @@ document.addEventListener('DOMContentLoaded', function() {
   setupEventListeners();
 });
 
-// Funções do dropdown (mantidas do código original)
-function showDropdown(event, customerId) {
-  event.stopPropagation();
-  
-  // Esconder qualquer dropdown aberto
-  hideDropdown();
-  
-  const rect = event.target.closest('.jv_menu-btn').getBoundingClientRect();
-  const dropdownMenu = document.getElementById('jv_dropdownMenu');
-  
-  if (dropdownMenu) {
-      dropdownMenu.style.display = 'block';
-      dropdownMenu.style.left = (rect.left - 150) + 'px';
-      dropdownMenu.style.top = (rect.bottom + 5) + 'px';
-      
-      // Add click handlers to dropdown items
-      dropdownMenu.querySelectorAll('.jv_dropdown-item').forEach(item => {
-          item.onclick = function() {
-              handleDropdownAction(item.dataset.action, customerId);
-              hideDropdown();
-          };
-      });
-  }
+// Variável global para saber se o menu está aberto
+function toggleDropdown(btn) {
+const dropdown = btn.nextElementSibling;
+const isVisible = dropdown.style.display === "block";
+
+// Fecha todos os outros
+document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
+
+// Abre apenas o clicado
+if (!isVisible) {
+    dropdown.style.display = "block";
+}
 }
 
-function hideDropdown() {
-  const dropdownMenu = document.getElementById('jv_dropdownMenu');
-  if (dropdownMenu) {
-      dropdownMenu.style.display = 'none';
-  }
+// Fecha ao clicar fora
+document.addEventListener("click", e => {
+if (!e.target.closest(".jv_menu-btn") && !e.target.closest(".jv_dropdown")) {
+    document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
 }
-
-function handleDropdownAction(action, customerId) {
-  const checkbox = document.querySelector(`.customer-checkbox[data-customer-id="${customerId}"]`);
-  if (!checkbox) return;
-  
-  const row = checkbox.closest('tr');
-  const customerName = row.querySelector('h4').textContent;
-  
-  switch(action) {
-      case 'view':
-          alert(`Visualizando detalhes de ${customerName}`);
-          break;
-      case 'edit':
-          alert(`Editando ${customerName}`);
-          break;
-      case 'delete':
-          if (confirm(`Tem certeza que deseja remover ${customerName}?`)) {
-              row.remove();
-              updateCustomerCount();
-              alert(`${customerName} foi removido`);
-          }
-          break;
-  }
-}
-
-// Função para atualizar contador de clientes (também usada pelo dropdown)
-function updateCustomerCount() {
-  const customerCountElement = document.getElementById('jv_customerCount');
-  if (customerCountElement) {
-      const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])').length;
-      customerCountElement.textContent = `${visibleRows} clientes encontrados`;
-  }
-}
+});
