@@ -1,4 +1,18 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_SESSION['id'], $_SESSION['email'], $_SESSION['tipo'])) {
+    if ($_SESSION['tipo'] == 'admin') {  
+        header("Location: ../adm/dashboard-adm.php");
+        exit;
+    } elseif ($_SESSION['tipo'] == 'vendedor') {
+        header("Location: ../vend/dashboard_vendedor.php");
+        exit;
+    }
+}
+
 include "../../INCLUDE/Menu_superior.php";
 require_once "../../DB/Database.php";
 
@@ -19,7 +33,6 @@ if (isset($_POST['adicionar'])) {
         if ($stmt->rowCount() > 0) {
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            session_start();
             $_SESSION['id'] = $usuario['id'];
             $_SESSION['email'] = $usuario['email'];
             $_SESSION['tipo'] = $usuario['tipo'];
@@ -96,9 +109,6 @@ if (isset($_POST['adicionar'])) {
                     </div>
                     <input  type="submit" class="jc_login-btn" name="adicionar" value="Iniciar Sessão" ></input>
                 </form>
-                <div class="lc_area-engrenagem">
-                    <a ><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
-                </div>
             </div>
             
         </div>

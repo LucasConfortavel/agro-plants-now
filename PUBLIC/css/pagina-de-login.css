@@ -125,11 +125,7 @@ body{
    
 }
 
-.lc_area-engrenagem{
-    width: 100%;
-    display: flex;
-    justify-content: right;
-}
+
 
 .jc_forgot-password {
     font-size: 12px; 
