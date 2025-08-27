@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+.ym_area-select{
+  max-width: 13%;
+}
+
 .ym_area-input-pesquisa{
   display: flex;
   align-items: center;
@@ -32,18 +36,13 @@
   gap: 45px;
 }
 
-.ym_area-select{
-  height: 100%;
-  width: 13%;
-}
-
 .ym_seta-categoria{
   transform: rotate(90deg);
 }
 
 .ym_todos-produtos{
   width: 100%;
-  height: 380px;
+  height: auto;
   display: flex;
   gap: 20px;
   transition: all ease 0.5s;
@@ -94,96 +93,9 @@
   cursor: pointer;
 }
 
-.ym_select{
-  height: 100%;
-  width: 90%;
-  display: flex;  
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid rgb(224, 224, 224);
-  background-color: white;
-  border-radius: 5px;
-  padding: 0px 3px;
-  cursor: pointer;
-  transition: all ease 1s;
-}
-
-@keyframes ym-sumir-options {
-  0%{
-    transform: rotate(0);  
-  }
-
-  100%{
-    transform: rotate(90deg);
-  }
-
-}
-
-@keyframes ym_mostrar-options{
-  0%{
-    transform: rotate(0);  
-  }
-
-  100%{
-    transform: rotate(-90deg);
-  }
-}
-
-@keyframes ym-sumir-options-area{
-  0%{
-    opacity: 1;
-  }
-
-  100%{
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-
-}
-
-@keyframes ym_mostrar-options-area{
-  0%{
-    transform: translateY(-30px);
-  }
-
-  100%{
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-}
-
-.ym_options{
-  display: none;
-  background-color: white;
-  flex-direction: column;
-  z-index: 1;
-  position: absolute;
-  border-radius: 5px;
-  padding: 5px;
-  margin-top: 10px;
-  border: 1px solid rgb(224, 224, 224);
-  width: 10.1%;
-}
-
 .ym_link-vermais{
   color: rgb(0, 136, 255);
   cursor: pointer;
-}
-
-.ym_link-option{
-  padding: 3px;
-  border-radius: 3px;
-  cursor: pointer;
-  align-items: center;
-  display: flex;
-  gap: 5px;
-  color: black;
-}
-
-.ym_link-option:hover{
-  background-color: #45734B;
-  color: white;
 }
 
 .ym_categorias{
@@ -207,7 +119,7 @@
   align-items: center;
   gap: 12px; 
   width: 200px; 
-  height: 360px;
+  height: auto;
   flex-shrink: 0;
   background-color: white;
   border-radius: 12px; 
@@ -415,15 +327,6 @@
 
   .ym_area-input-pesquisa{
     width: 100%;
-  }
-
-  .ym_area-select{
-    width: 23%;
-    height: 100%;
-  }
-  
-  .ym_options{
-    width: 26%;
   }
 
   .ym_btn-add{

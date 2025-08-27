@@ -18,6 +18,16 @@ body {
   padding: 1.5rem;
 }
 
+.ym_area-select{
+  min-width: 11.5vw;
+  max-width: 11.5vw;
+  height: 5vh;
+}
+
+.ym_options{
+  min-width: 12vw;
+}
+
 .po-header {
   border-left: 4px solid #16a34a;
   padding-left: 1rem;
@@ -86,7 +96,6 @@ body {
 .po-controls-right {
   display: flex;
   gap: 0.75rem;
-  flex-wrap: wrap;
 }
 
 .po-btn {

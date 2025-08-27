@@ -4,6 +4,7 @@
 /* CSS de padronização de elementos do projeto*/
 @import url(btn-notificacao.css);
 @import url(tabela.css);
+@import url(select.css);
 @import url(janela-pop-up.css);
 
 *{
@@ -63,6 +64,10 @@
     width: 100%;
     border-radius: 2.5px;
 }
+
+
+
+
 
 /* Responsividade */
 @media (max-width: 1024px) {

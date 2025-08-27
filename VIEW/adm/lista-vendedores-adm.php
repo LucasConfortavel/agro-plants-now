@@ -67,18 +67,16 @@
     </div>
 
     <main class="jp_main-content">
+
+        <h1 class="ym_titulo">Vendedores</h1>
+
+
         <div class="jv_container">
             <div class="jv_card">
                 <!-- Header -->
                 <div class="jv_card-header">
                     <div class="jv_header-content">
-                        <div class="jv_title-section">
-                            <h1 class="jv_title">
-                                <div class="jv_title-bar"></div>
-                                Vendedores
-                            </h1>
-                            <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_vendedores; ?> vendedores encontrados</p>
-                        </div>
+                        <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_vendedores; ?> vendedores encontrados</p>
                         
                         <div class="jv_actions">
                             <div>
@@ -138,7 +136,7 @@
                                             <td>
                                                 <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id='.$id.'>
                                             </td>
-                                            <td>
+                                            <td >
                                                 <div class="jv_customer-info">
                                                     <div class="jv_avatar">
                                                     PR
@@ -149,26 +147,30 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class = "jv_bangas">'.$telefone.'</td>
-                                            <td>'.$dataCadastro.'</td>
-                                            <td>
+                                            <td class="jv_bangas">'.$telefone.'</td>
+                                            <td class=>'.$dataCadastro.'</td>
+                                            <td class="jv_table-action">
                                                 <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                    <i class="fas fa-ellipsis-h"></i>
+                                                  <i class="fas fa-ellipsis-h"></i>
                                                 </button>
-                                                <div id="jv_dropdownMenu" class="jv_dropdown" style="display:none;">
+                                                <div class="jv_dropdown">
                                                     <button class="jv_dropdown-item">
                                                         <i class="fas fa-eye"></i>
-                                                        Visualizar Detalhes
-                                                    </button>
-                                                    <button class="jv_dropdown-item">
-                                                        <i class="fas fa-edit"></i>
-                                                        Editar
+                                                        <p class="jv_p">Visualizar Detalhes</p>
                                                     </button>
                                                     <div class="jv_dropdown-separator"></div>
-                                                    <button class="jv_dropdown-item danger">
-                                                        <i class="fas fa-trash"></i>
-                                                        Remover
+                                                    <button class="jv_dropdown-item">
+                                                        <i class="fas fa-edit"></i>
+                                                        <p class="jv_p">Editar</p>
                                                     </button>
+                                                    <div class="jv_dropdown-separator"></div>
+                                                    <button class="jv_dropdown-item jv_danger">
+                                                        <i class="fas fa-trash"></i>
+                                                        <p class="jv_p-remove">Remover</p>
+                                                    </button>
+                                                </div>
+                                              </td>
+                                              
                                                 </div>
                                             </td>
                                         </tr>';
@@ -216,22 +218,6 @@
             </div>
         </div>
 
-        <!-- Dropdown Menu Template -->
-        <!-- <div id="jv_dropdownMenu" class="jv_dropdown-menu" style="display: none;">
-            <div class="jv_dropdown-item" data-action="view">
-                <i class="fas fa-eye"></i>
-                Visualizar Detalhes
-            </div>
-            <div class="jv_dropdown-item" data-action="edit">
-                <i class="fas fa-edit"></i>
-                Editar Vendedor
-            </div>
-            <div class="jv_dropdown-separator"></div>
-            <div class="jv_dropdown-item danger" data-action="delete">
-                <i class="fas fa-trash"></i>
-                Remover Vendedor
-            </div>
-        </div> -->
 
         <script>
             
