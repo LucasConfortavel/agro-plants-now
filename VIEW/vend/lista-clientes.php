@@ -1,22 +1,26 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
-require_once "../../DB/connect.php";
+require_once "../../DB/Database.php";
 
-// Página atual
+// 1. Conexão com PDO
+$db = new Database();
+$conn = $db->getConnection();
+
+// 2. Paginação
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 $limite = 4;
 $inicio = ($pagina - 1) * $limite;
 
-// Buscar registros limitados
-$sql = "SELECT * FROM cliente LIMIT $inicio, $limite";
-$result = mysqli_query($con, $sql);
+// 3. Buscar registros limitados
+$stmt = $conn->prepare("SELECT * FROM cliente LIMIT :inicio, :limite");
+$stmt->bindValue(':inicio', $inicio, PDO::PARAM_INT);
+$stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Total de registros
-$sqlTotal = "SELECT COUNT(*) as total FROM cliente";
-$totalResult = mysqli_query($con, $sqlTotal);
-$totalRow = mysqli_fetch_assoc($totalResult);
-$total_clientes = $totalRow['total'];
-
+// 4. Contar total de clientes
+$totalStmt = $conn->query("SELECT COUNT(*) FROM cliente");
+$total_clientes = $totalStmt->fetchColumn();
 $totalPaginas = ceil($total_clientes / $limite);
 ?>
 
@@ -49,9 +53,6 @@ $totalPaginas = ceil($total_clientes / $limite);
 .jv_avatar { width:40px; height:40px; border-radius:50%; background:#45734b; display:flex; justify-content:center; align-items:center; color:white; font-weight:600; font-size:14px; }
 .jv_customer-details h4 { margin:0; font-weight:500; color:#111827; }
 .jv_customer-details p { margin:0; font-size:14px; color:#6b7280; }
-
-/* Valor gasto verde */
-.jv_amount { color:#16a34a; font-weight:600; }
 
 /* Menu três pontinhos */
 .menu-btn { background:none; border:none; cursor:pointer; font-size:16px; color:#6b7280; }
@@ -106,15 +107,17 @@ $totalPaginas = ceil($total_clientes / $limite);
 </thead>
 <tbody id="customerTableBody">
 <?php 
-if($result && mysqli_num_rows($result) > 0){
-    while($row = mysqli_fetch_assoc($result)){
+if ($result && count($result) > 0) {
+    foreach ($result as $row) {
         $nome = $row['nome'];
         $email = $row['email'];
         $data = $row['data_nasc'];
-        $totalCompras = 10; // Exemplo
-        $valorGasto = 1200.00; // Exemplo
+        $totalCompras = 10; // Exemplo fixo, pode ser calculado via banco
+        $valorGasto = 1200.00; // Exemplo fixo, pode ser calculado via banco
+
         $partes = explode(" ", $nome);
         $iniciais = strtoupper(substr($partes[0],0,1) . (isset($partes[1]) ? substr($partes[1],0,1) : ""));
+
         echo '
         <tr>
             <td>
@@ -136,7 +139,7 @@ if($result && mysqli_num_rows($result) > 0){
             </td>
         </tr>';
     }
-}else{
+} else {
     echo '<tr><td colspan="5" style="text-align:center;">Nenhum cliente encontrado</td></tr>';
 }
 ?>
@@ -166,7 +169,6 @@ if($pagina<$totalPaginas) echo "<a href='?pagina=".($pagina+1)."'>Próxima &raqu
 <div class="dropdown-item" data-action="edit"><i class="fas fa-edit"></i> Editar</div>
 <div class="dropdown-item danger" data-action="delete"><i class="fas fa-trash-alt"></i> Excluir</div>
 </div>
-
 
 <script src="../../PUBLIC/JS/script.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>

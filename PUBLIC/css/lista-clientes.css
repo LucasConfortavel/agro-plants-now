@@ -260,10 +260,7 @@
     font-size: 14px;
 }
 
-.amount {
-    font-weight: 600;
-    color: #45734b;
-}
+.jv_amount { color:#16a34a; font-weight:600; }
 
 .menu-btn {
     background: none;

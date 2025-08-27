@@ -1,8 +1,5 @@
 <?php
-    include "../../INCLUDE/Menu_adm.php";
-    require_once "../../DB/connect.php";
-    $sql = 'SELECT * FROM produtos';
-    $result = mysqli_query($con, $sql);    
+    include "../../INCLUDE/Menu_adm.php";   
 ?>
 
 <!DOCTYPE html>
@@ -61,43 +58,31 @@
                     
                     <div class="ym_areaProdutos">
                         <div class="ym_todos-produtos">
-                            <?php
-                                if ($result){
-                                    while($row = mysqli_fetch_assoc($result)){
-                                        $id = $row['id'];
-                                        $nome= $row['nome'];
-                                        $preco= $row['preco'];
-                                        $imagem= '../../PUBLIC/img/img_produto.png';
-                                        $descricao= $row['descricao'];
-                                        echo'
-                                        <div class="ym_cardProduto">
-                                        <div class="ym_img-placeholder">
-                                        <img src="'. $imagem.'" alt="umg-produto" class="ym_img">
-                                        <div class="ym_img-label">
+                           
+                            <div class="ym_cardProduto">
+                                <div class="ym_img-placeholder">
+                                    <img src="'. $imagem.'" alt="img-produto" class="ym_img">
+                                    <div class="ym_img-label">
                                         <span>Bioestimulante</span>
-                                        </div>
-                                        <form action="#" method="get" class="ym_form-remover">
-                                            <button type="submit" name="remover" value='.$id.'>
-                                                <i class="fa-solid fa-trash-can ym_delete-icon"></i>
-                                            </button>
-                                        </form>
+                                    </div>
+                                    <form action="#" method="get" class="ym_form-remover">
+                                        <button type="submit" name="remover" value='.$id.'>
+                                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                        </button>
+                                    </form>
+                                </div>
 
-                                        </div>
-                                        <p class="ym_nomeProduto">'. $nome .'</p>
-                                        <p class="ym_preco">R$ '.$preco.'</p>
-                                        <p class="ym_descricao">'.$descricao.'</p>
-                                        <a href="sobre_prod_adm.php?id='.$id.'" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                        </div>';
-                                    }}
-                                    ?>
+                                <p class="ym_nomeProduto">'. $nome .'</p>
+                                <p class="ym_preco">R$ '.$preco.'</p>
+                                <p class="ym_descricao">'.$descricao.'</p>
+                                <a href="sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                            </div>
                         </div>
                         
-                        <?php echo'
                         <div class="ym_btn-slide-area">
                             <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.mysqli_num_rows($result).',0)"> < </button>
                             <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.mysqli_num_rows($result).',0)"> > </button>
-                        </div>'
-                        ?>
+                        </div>
                         
                     </div>
                     
@@ -110,37 +95,27 @@
                     
                     <div class="ym_areaProdutos">
                         <div class="ym_todos-produtos">
-                            <?php
-                                if ($result){
-                                    while($row = mysqli_fetch_assoc($result)){
-                                        $nome= $row['nome'];
-                                        $preco= $row['preco'];
-                                        $imagem= '../../PUBLIC/img/img_produto.png';
-                                        $descricao= $row['descricao'];
-                                    echo'
-                                    <div class="ym_cardProduto">
-                                        <div class="ym_img-placeholder">
-                                            <img src="'. $imagem.'" alt="umg-produto" class="ym_img">
-                                            <div class="ym_img-label">
-                                                <span>Bioestimulante</span>
-                                            </div>
-                                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
-                                        </div>
-                                        <p class="ym_nomeProduto">'. $nome .'</p>
-                                        <p class="ym_preco">R$ '.$preco.'</p>
-                                        <p class="ym_descricao">'.$descricao.'</p>
-                                        <a href="sobre_prod_adm.php " class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                    </div>';
-                                }}
-                            ?>
+
+                            <div class="ym_cardProduto">
+                                <div class="ym_img-placeholder">
+                                    <img src="'. $imagem.'" alt="img-produto" class="ym_img">
+                                    <div class="ym_img-label">
+                                        <span>Bioestimulante</span>
+                                    </div>
+                                    <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                </div>
+                                <p class="ym_nomeProduto">'. $nome .'</p>
+                                <p class="ym_preco">R$ '.$preco.'</p>
+                                <p class="ym_descricao">'.$descricao.'</p>
+                                <a href="sobre_prod_adm.php " class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                            </div>
+
                         </div>
                         
-                        <?php echo'
                         <div class="ym_btn-slide-area">
                             <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.mysqli_num_rows($result).',1)"> < </button>
                             <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.mysqli_num_rows($result).',1)"> > </button>
-                        </div>'
-                        ?>
+                        </div>
                         
                     </div>
 
@@ -153,15 +128,15 @@
 
 <?php
 
-if(mysqli_num_rows($result) < 5){
+// if(mysqli_num_rows($result) < 5){
 
-    echo"<script>
-        var area1 = document.getElementsByClassName('ym_btn-slide-area')[0];
-        area1.style.display = 'none'; 
-        var area2 = document.getElementsByClassName('ym_btn-slide-area')[1];
-        area2.style.display = 'none';
-    </script>";
-}
+//     echo"<script>
+//         var area1 = document.getElementsByClassName('ym_btn-slide-area')[0];
+//         area1.style.display = 'none'; 
+//         var area2 = document.getElementsByClassName('ym_btn-slide-area')[1];
+//         area2.style.display = 'none';
+//     </script>";
+// }
 
 ?>
 
@@ -170,19 +145,19 @@ if(mysqli_num_rows($result) < 5){
 <script src="../../PUBLIC/JS/script-catalogo.js"></script>
 <?php
 
-    if(isset($_GET['remover'])){
-        echo "<script> abrirPopup('../../VIEW/pop-up/conf_remover_produto.php','Deseja remover este produto?') </script>";    
-    }
+    // if(isset($_GET['remover'])){
+    //     echo "<script> abrirPopup('../../VIEW/pop-up/conf_remover_produto.php','Deseja remover este produto?') </script>";    
+    // }
 
-    if (isset($_POST['cancelar'])){
-        echo "<script> location.href = 'catalogo-tudo.php'; </script>";
-    }
+    // if (isset($_POST['cancelar'])){
+    //     echo "<script> location.href = 'catalogo-tudo.php'; </script>";
+    // }
     
-    if (isset($_POST['confirmar'])){
-        $id = $_GET['remover'];
-        $sql = 'DELETE FROM produtos WHERE id = '.$id.'';
-        mysqli_query($con, $sql);
-        echo "<script> location.href = 'catalogo-tudo.php'; </script>";
-    }
+    // if (isset($_POST['confirmar'])){
+    //     $id = $_GET['remover'];
+    //     $sql = 'DELETE FROM produtos WHERE id = '.$id.'';
+    //     mysqli_query($con, $sql);
+    //     echo "<script> location.href = 'catalogo-tudo.php'; </script>";
+    // }
 
 ?>

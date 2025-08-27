@@ -1,10 +1,10 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
-    require_once "../../DB/connect.php";
+    // require_once "../../DB/connect.php";
     
-    $sql = 'SELECT * FROM cupom';
-    $result = mysqli_query($con, $sql);
-    $total_cupom = mysqli_num_rows($result);
+    // $sql = 'SELECT * FROM cupom';
+    // $result = mysqli_query($con, $sql);
+    // $total_cupom = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
                     <div class="jv_card-header">
                         <div class="jv_header-content">
 
-                            <p class="jv_subtitle" id="jv_customerCount"><?php echo $total_cupom;?> cupons encontrados</p>
+                            <p class="jv_subtitle" id="jv_customerCount"><?php// echo $total_cupom;?>10 cupons encontrados</p>
                             
                             
                             <div class="jv_actions">

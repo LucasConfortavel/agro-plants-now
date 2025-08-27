@@ -41,13 +41,12 @@
                                 <div class="title-bar"></div>
                                 Cupons
                             </h1>
-                            <p class="subtitle" id="customerCount">5 cupons encontrados</p>
+                            <p class="subtitle" id="customerCount"><?php echo $total_cupom; ?> cupons encontrados</p>
                         </div>
 
                         <div class="actions">
-                            <button class="btn btn-primary">
-                                <i class="fas fa-plus"></i>
-                                <a onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php','Cadastro de cupom')">Cadastrar Cupom</a>
+                            <button class="btn btn-primary" onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php','Cadastro de cupom')">
+                                <i class="fas fa-plus"></i> Cadastrar Cupom
                             </button>
                         </div>
                     </div>
@@ -55,7 +54,7 @@
                     <div class="search-section">
                         <div class="search-container">
                             <i class="fas fa-search search-icon"></i>
-                            <input type="text" id="searchInput" placeholder="Pesquisar por nome ou email..." class="search-input">
+                            <input type="text" id="searchInput" placeholder="Pesquisar por código..." class="search-input">
                         </div>
                     </div>
                 </div>
@@ -66,6 +65,7 @@
                         <table class="table">
                             <thead>
                                 <tr class="table-header">
+                                    <th style="color:black;">Selecionar</th>
                                     <th style="color:black;">Código</th>
                                     <th style="color:black;">Desconto</th>
                                     <th style="color:black;">Data de cadastro</th>
@@ -77,41 +77,33 @@
                                 <?php 
                                     if($result && mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
-                                            $id= $row['id'];
-                                            $codigo= $row['codigo'];
-                                            $desconto= $row['valor'];
-                                            $data= $row['data'];
+                                            $id = $row['id'];
+                                            $codigo = $row['codigo'];
+                                            $desconto = $row['valor'];
+                                            $data = $row['data'];
                                             $validade = $row['validade'];   
                                     
-                                            echo'
+                                            echo '
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" class="checkbox customer-checkbox" 
-                                                            data-customer-id='.$id.'
+                                                        <input type="checkbox" class="checkbox customer-checkbox" data-customer-id="'.$id.'">
                                                     </td>
                                                     <td>
                                                         <div class="customer-info">
-                                                            <div class="avatar">
-                                                                YM
-                                                            </div>
+                                                            <div class="avatar">YM</div>
                                                             <div class="customer-details">
                                                                 <h4>'.$codigo.'</h4>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        '.$desconto.'
-                                                    </td>
+                                                    <td>'.$desconto.'</td>
                                                     <td>'.$data.'</td>
-                                                
-                                                    <td>
-                                                        '.$validade.'
-                                                    </td>
-                                                </tr>';}
-                                                
-                                            } else {
-                                                echo '<tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr>';
-                                            }
+                                                    <td>'.$validade.'</td>
+                                                </tr>';
+                                        }
+                                    } else {
+                                        echo '<tr><td colspan="6" style="text-align: center; height: 49.7vh;">Nenhum cupom encontrado</td></tr>';
+                                    }
                                 ?>
                             </tbody>
                         </table>
@@ -119,7 +111,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 
     <script src="../../PUBLIC/JS/script.js"></script>
