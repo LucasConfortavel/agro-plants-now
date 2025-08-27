@@ -324,8 +324,9 @@
   }
   
   .jp_chart-filters {
+    width: 35%;
     display: flex;
-    gap: 10px;
+    gap: 20px;
   }
   
   .jp_chart-filter {

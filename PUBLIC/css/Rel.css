@@ -24,10 +24,6 @@ body {
   height: 5vh;
 }
 
-.ym_options{
-  min-width: 12vw;
-}
-
 .po-header {
   border-left: 4px solid #16a34a;
   padding-left: 1rem;

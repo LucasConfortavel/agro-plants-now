@@ -121,14 +121,33 @@
                         <div class="jp_chart-subtitle">-2% por mês</div>
                     </div>
                     <div class="jp_chart-filters">
-                        <div class="jp_chart-filter">
-                            <span>Produto</span>
-                            <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="ym_area-select">
+                            <div class="ym_select" onclick="mostrar_categorias()">
+                                <p class="ym_categoria-select">Produtos </p>
+                                <p class="ym_seta-categoria">></p>
+                            </div>
+                            
+                            
+                            <div class="ym_options">
+                                <a class="ym_link-option" onclick="trocar_categoria()"></i> Serviços</a>
+                            </div>
+                            
                         </div>
-                        <div class="jp_chart-filter">
-                            <span>Último mês</span>
-                            <i class="fas fa-chevron-down"></i>
+                        
+                        <div class="ym_area-select">
+                            <div class="ym_select" onclick="mostrar_categorias(1)">
+                                <p class="ym_categoria-select" >Último mês</p>
+                                <p class="ym_seta-categoria">></p>
+                            </div>
+                            
+                            
+                            <div class="ym_options">
+                                <a class="ym_link-option" onclick="trocar_categoria(1,1)" > Últimos anos</a>
+                            </div>
+                            
                         </div>
+
                     </div>
                 </div>
                 <div class="jp_chart-area">
@@ -138,5 +157,6 @@
         </div>
     </main>
     <script src="../../PUBLIC/JS/script-dashboard-vend.js"></script>
+    <script src="../../PUBLIC/JS/script-select.js"></script>
 </body>
 </html>
