@@ -59,7 +59,7 @@
 
                     <div class="ym_area-btn">
                         <a href="venda-info-vend.php" class="ym_btn-padrao">Comprar</a>
-                        <a href="produtos-tudo.php" class="ym_btn-padrao">Voltar</a>
+                        <a href="catalogo-tudo.php" class="ym_btn-padrao">Voltar</a>
                     </div>
                 </div>
             </section>
