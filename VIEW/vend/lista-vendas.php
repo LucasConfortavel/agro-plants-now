@@ -1,22 +1,26 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
-require_once "../../DB/connect.php";
+require_once "../../DB/Database.php";
 
-// 1. Página atual
+// 1. Conexão
+$db = new Database();
+$conn = $db->getConnection();
+
+// 2. Página atual
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 $limite = 4;
 $inicio = ($pagina - 1) * $limite;
 
-// 2. Buscar registros limitados
-$sql = "SELECT * FROM venda LIMIT $inicio, $limite";
-$result = mysqli_query($con, $sql);
+// 3. Buscar registros de vendas
+$stmt = $conn->prepare("SELECT * FROM venda LIMIT :inicio, :limite");
+$stmt->bindValue(':inicio', $inicio, PDO::PARAM_INT);
+$stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
+$stmt->execute();
+$vendas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// 3. Total de registros
-$sqlTotal = "SELECT COUNT(*) as total FROM venda";
-$totalResult = mysqli_query($con, $sqlTotal);
-$totalRow = mysqli_fetch_assoc($totalResult);
-$total_vendas = $totalRow['total'];
-
+// 4. Total de registros
+$totalStmt = $conn->query("SELECT COUNT(*) FROM venda");
+$total_vendas = $totalStmt->fetchColumn();
 $totalPaginas = ceil($total_vendas / $limite);
 ?>
 
@@ -38,7 +42,6 @@ $totalPaginas = ceil($total_vendas / $limite);
             justify-content: center;
             gap: 8px;
         }
-
         .paginacao a, .paginacao strong {
             padding: 8px 12px;
             border-radius: 6px;
@@ -48,13 +51,11 @@ $totalPaginas = ceil($total_vendas / $limite);
             color: #374151;
             transition: all 0.2s;
         }
-
         .paginacao a:hover {
             background: #45734b;
             color: white;
             border-color: #45734b;
         }
-
         .paginacao strong {
             background: #45734b;
             color: white;
@@ -69,13 +70,12 @@ $totalPaginas = ceil($total_vendas / $limite);
             border-radius: 6px;
             box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            min-width: 140px;   /* 🔥 diminuído de 192px */
-            padding: 2px 0;     /* 🔥 diminuído */
+            min-width: 140px;
+            padding: 2px 0;
         }
-
         .dropdown-item {
-            padding: 6px 12px;  /* 🔥 diminuído */
-            font-size: 13px;    /* 🔥 diminuído */
+            padding: 6px 12px;
+            font-size: 13px;
         }
     </style>
 </head>
@@ -136,19 +136,19 @@ $totalPaginas = ceil($total_vendas / $limite);
                             </thead>
                             <tbody id="customerTableBody">
                                 <?php
-                                if ($result && mysqli_num_rows($result) > 0) {
-                                    while ($row = mysqli_fetch_assoc($result)) {
+                                if ($vendas && count($vendas) > 0) {
+                                    foreach ($vendas as $row) {
                                         $id = $row['id'];
                                         $vendedor_id = $row['id_vendedor'];
 
-                                        $sql_vendedor = mysqli_query(
-                                            $con,
-                                            'SELECT * FROM usuario WHERE tipo = "vendedor" and id = ' . $vendedor_id
-                                        );
-                                        $dado_vendedor = mysqli_fetch_assoc($sql_vendedor);
+                                        // Buscar dados do vendedor
+                                        $stmtVend = $conn->prepare('SELECT nome, email FROM usuario WHERE tipo = "vendedor" AND id = :id');
+                                        $stmtVend->bindValue(':id', $vendedor_id, PDO::PARAM_INT);
+                                        $stmtVend->execute();
+                                        $dado_vendedor = $stmtVend->fetch(PDO::FETCH_ASSOC);
 
-                                        $vendedor_nome = $dado_vendedor['nome'];
-                                        $vendedor_email = $dado_vendedor['email'];
+                                        $vendedor_nome = $dado_vendedor['nome'] ?? 'Desconhecido';
+                                        $vendedor_email = $dado_vendedor['email'] ?? '-';
 
                                         $total = $row['total'];
                                         $data = $row['data_venda'];
@@ -157,7 +157,7 @@ $totalPaginas = ceil($total_vendas / $limite);
                                         <tr>
                                             <td>
                                                 <div class="customer-info">
-                                                    <div class="avatar">' . substr($vendedor_nome, 0, 2) . '</div>
+                                                    <div class="avatar">' . strtoupper(substr($vendedor_nome, 0, 2)) . '</div>
                                                     <div class="customer-details">
                                                         <h4>' . $vendedor_nome . '</h4>
                                                         <p>' . $vendedor_email . '</p>
@@ -166,7 +166,7 @@ $totalPaginas = ceil($total_vendas / $limite);
                                             </td>
                                             <td>Comprador</td>
                                             <td>' . $data . '</td>
-                                            <td><span class="amount">R$ ' . $total . '</span></td>
+                                            <td><span class="amount">R$ ' . number_format($total,2,",",".") . '</span></td>
                                             <td>
                                                 <button class="menu-btn" onclick="showDropdown(event, ' . $id . ')">
                                                     <i class="fas fa-ellipsis-h"></i>
