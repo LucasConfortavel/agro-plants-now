@@ -96,9 +96,6 @@ if (isset($_POST['adicionar'])) {
                     </div>
                     <input  type="submit" class="jc_login-btn" name="adicionar" value="Iniciar Sessão" ></input>
                 </form>
-                <div class="lc_area-engrenagem">
-                    <a ><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt="" class="jc_engrenagem"></a>
-                </div>
             </div>
             
         </div>
