@@ -247,4 +247,24 @@ body {
         text-align: center;
     }
 
+@media screen and (max-width: 414px) {
+    .jp_info-grid{
+        gap: 16px;
+        font-size: 12px;
+    }
+
+    .jp_info-item label{
+        font-size: 12px;
+    }
+
+    h2{
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .jp_info-grid{
+        font-size: 10px;
+    }
+}
 }
