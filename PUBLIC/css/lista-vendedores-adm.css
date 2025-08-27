@@ -1,4 +1,3 @@
-
 .jv_page-navigation {
     display: flex;
     justify-content: center;
@@ -159,6 +158,9 @@
 .jv_subtitle {
     color: #6b7280;
     font-size: 14px;
+    font-family: 'poppins';
+    margin-left: 39%;
+
 }
 
 .jv_actions {
@@ -230,12 +232,21 @@
     border-radius: 6px;
     font-size: 14px;
     transition: border-color 0.2s;
+    
 }
 
 .jv_search-input:focus {
     outline: none;
     border-color: #059669;
     box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.ym_btn-padrao{
+    gap: 12px;
+}
+
+.ym_btn-remover{
+    gap: 12px;
 }
 
 .jv_card-content {
