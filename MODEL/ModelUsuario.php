@@ -1,0 +1,246 @@
+<?php
+require_once __DIR__ . '/../DB/Database.php';
+
+class User {
+    private $conn;
+    private $table_name = "usuarios";
+
+    public $id;
+    public $nome;
+    public $email;
+    public $senha;
+    public $tipo;
+    public $telefone;
+    public $CPF;
+    public $endereco;
+    public $cidade;
+    public $estado;
+    public $data_nasc;
+    public $foto;
+
+    public function __construct() {
+        $database = new Database();
+        $this->conn = $database->getConnection();
+    }
+
+    public function create() {
+        $query = "INSERT INTO " . $this->table_name . " 
+                 SET nome=:nome, email=:email, senha=:senha, tipo=:tipo, 
+                     telefone=:telefone, CPF=:CPF, endereco=:endereco, 
+                     cidade=:cidade, estado=:estado, data_nasc=:data_nasc, foto=:foto";
+
+        $stmt = $this->conn->prepare($query);
+
+        // sanitização dos dados
+        $this->nome = htmlspecialchars(strip_tags($this->nome));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->tipo = htmlspecialchars(strip_tags($this->tipo));
+        $this->telefone = htmlspecialchars(strip_tags($this->telefone));
+        $this->CPF = htmlspecialchars(strip_tags($this->CPF));
+        $this->endereco = htmlspecialchars(strip_tags($this->endereco));
+        $this->cidade = htmlspecialchars(strip_tags($this->cidade));
+        $this->estado = htmlspecialchars(strip_tags($this->estado));
+        $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
+        $this->foto = htmlspecialchars(strip_tags($this->foto));
+
+        $stmt->bindParam(":nome", $this->nome);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":senha", $this->senha);
+        $stmt->bindParam(":tipo", $this->tipo);
+        $stmt->bindParam(":telefone", $this->telefone);
+        $stmt->bindParam(":CPF", $this->CPF);
+        $stmt->bindParam(":endereco", $this->endereco);
+        $stmt->bindParam(":cidade", $this->cidade);
+        $stmt->bindParam(":estado", $this->estado);
+        $stmt->bindParam(":data_nasc", $this->data_nasc);
+        $stmt->bindParam(":foto", $this->foto);
+
+        try {
+            if ($stmt->execute()) {
+                $this->id = $this->conn->lastInsertId();
+                return true;
+            }
+        } catch (PDOException $e) {
+            error_log("Erro ao criar usuário: " . $e->getMessage());
+            
+            // verificar se é violação de email ou CPF unico
+            if ($e->getCode() == 23000) {
+                if (strpos($e->getMessage(), 'email') !== false) {
+                    throw new Exception("Já existe um usuário cadastrado com este email.");
+                } elseif (strpos($e->getMessage(), 'CPF') !== false) {
+                    throw new Exception("Já existe um usuário cadastrado com este CPF.");
+                }
+            }
+            
+            throw new Exception("Erro ao criar usuário: " . $e->getMessage());
+        }
+
+        return false;
+    }
+
+    public function readOne() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id = ? LIMIT 0,1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->id);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $this->nome = $row['nome'];
+            $this->email = $row['email'];
+            $this->tipo = $row['tipo'];
+            $this->telefone = $row['telefone'];
+            $this->CPF = $row['CPF'];
+            $this->endereco = $row['endereco'];
+            $this->cidade = $row['cidade'];
+            $this->estado = $row['estado'];
+            $this->data_nasc = $row['data_nasc'];
+            $this->foto = $row['foto'];
+            
+            return true;
+        }
+
+        return false;
+    }
+
+    public function readAll() {
+        $query = "SELECT id, nome, email, tipo, telefone, CPF, endereco, cidade, estado, data_nasc, foto 
+                  FROM " . $this->table_name . " ORDER BY nome";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    public function update() {
+        // query base, sem a senha
+        $query = "UPDATE " . $this->table_name . " 
+                 SET nome=:nome, email=:email, tipo=:tipo, 
+                     telefone=:telefone, CPF=:CPF, endereco=:endereco, 
+                     cidade=:cidade, estado=:estado, data_nasc=:data_nasc, foto=:foto 
+                 WHERE id=:id";
+
+        // se uma nova senha foi fornecida, adicionar a query
+        if (!empty($this->senha)) {
+            $query = "UPDATE " . $this->table_name . " 
+                     SET nome=:nome, email=:email, senha=:senha, tipo=:tipo, 
+                         telefone=:telefone, CPF=:CPF, endereco=:endereco, 
+                         cidade=:cidade, estado=:estado, data_nasc=:data_nasc, foto=:foto 
+                     WHERE id=:id";
+        }
+
+        $stmt = $this->conn->prepare($query);
+
+        // sanitização
+        $this->nome = htmlspecialchars(strip_tags($this->nome));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->tipo = htmlspecialchars(strip_tags($this->tipo));
+        $this->telefone = htmlspecialchars(strip_tags($this->telefone));
+        $this->CPF = htmlspecialchars(strip_tags($this->CPF));
+        $this->endereco = htmlspecialchars(strip_tags($this->endereco));
+        $this->cidade = htmlspecialchars(strip_tags($this->cidade));
+        $this->estado = htmlspecialchars(strip_tags($this->estado));
+        $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
+        $this->foto = htmlspecialchars(strip_tags($this->foto));
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        $stmt->bindParam(":nome", $this->nome);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":tipo", $this->tipo);
+        $stmt->bindParam(":telefone", $this->telefone);
+        $stmt->bindParam(":CPF", $this->CPF);
+        $stmt->bindParam(":endereco", $this->endereco);
+        $stmt->bindParam(":cidade", $this->cidade);
+        $stmt->bindParam(":estado", $this->estado);
+        $stmt->bindParam(":data_nasc", $this->data_nasc);
+        $stmt->bindParam(":foto", $this->foto);
+        $stmt->bindParam(":id", $this->id);
+
+        // se uma nova senha foi fornecida, fazer bind
+        if (!empty($this->senha)) {
+            $stmt->bindParam(":senha", $this->senha);
+        }
+
+        try {
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Erro ao atualizar usuário: " . $e->getMessage());
+            
+            // verificar se é violação de email ou CPF unico
+            if ($e->getCode() == 23000) {
+                if (strpos($e->getMessage(), 'email') !== false) {
+                    throw new Exception("Já existe um usuário cadastrado com este email.");
+                } elseif (strpos($e->getMessage(), 'CPF') !== false) {
+                    throw new Exception("Já existe um usuário cadastrado com este CPF.");
+                }
+            }
+            
+            throw new Exception("Erro ao atualizar usuário: " . $e->getMessage());
+        }
+    }
+
+    public function delete() {
+        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $stmt->bindParam(1, $this->id);
+
+        try {
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Erro ao deletar usuário: " . $e->getMessage());
+            throw new Exception("Erro ao deletar usuário: " . $e->getMessage());
+        }
+    }
+
+    // metodo para verificar login (email e senha)
+    public function login($email, $senha) {
+        $query = "SELECT id, nome, email, senha, tipo FROM " . $this->table_name . " 
+                  WHERE email = ? LIMIT 0,1";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $email);
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 1) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($senha === $row['senha']) {
+                $this->id = $row['id'];
+                $this->nome = $row['nome'];
+                $this->email = $row['email'];
+                $this->tipo = $row['tipo'];
+                
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    public function emailExists($email) {
+        $query = "SELECT id FROM " . $this->table_name . " WHERE email = ?";
+        $stmt = $this->conn->prepare($query);
+        
+        $email = htmlspecialchars(strip_tags($email));
+        $stmt->bindParam(1, $email);
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 0;
+    }
+
+    public function cpfExists($cpf) {
+        $query = "SELECT id FROM " . $this->table_name . " WHERE CPF = ?";
+        $stmt = $this->conn->prepare($query);
+        
+        $cpf = htmlspecialchars(strip_tags($cpf));
+        $stmt->bindParam(1, $cpf);
+        $stmt->execute();
+        
+        return $stmt->rowCount() > 0;
+    }
+}
+?>
