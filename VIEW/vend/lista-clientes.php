@@ -1,27 +1,5 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
-require_once "../../DB/Database.php";
-
-// 1. Conexão com PDO
-$db = new Database();
-$conn = $db->getConnection();
-
-// 2. Paginação
-$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-$limite = 4;
-$inicio = ($pagina - 1) * $limite;
-
-// 3. Buscar registros limitados
-$stmt = $conn->prepare("SELECT * FROM cliente LIMIT :inicio, :limite");
-$stmt->bindValue(':inicio', $inicio, PDO::PARAM_INT);
-$stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
-$stmt->execute();
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// 4. Contar total de clientes
-$totalStmt = $conn->query("SELECT COUNT(*) FROM cliente");
-$total_clientes = $totalStmt->fetchColumn();
-$totalPaginas = ceil($total_clientes / $limite);
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +53,7 @@ $totalPaginas = ceil($total_clientes / $limite);
 <div class="header-content">
 <div class="title-section">
 <h1 class="title"><div class="title-bar"></div>Lista de Clientes</h1>
-<p class="subtitle"><?php echo $total_clientes; ?> clientes encontrados</p>
+<p class="subtitle"><?php //echo $total_clientes; ?>10 clientes encontrados</p>
 </div>
 <div class="actions">
 <button class="btn btn-primary">
@@ -106,19 +84,7 @@ $totalPaginas = ceil($total_clientes / $limite);
 </tr>
 </thead>
 <tbody id="customerTableBody">
-<?php 
-if ($result && count($result) > 0) {
-    foreach ($result as $row) {
-        $nome = $row['nome'];
-        $email = $row['email'];
-        $data = $row['data_nasc'];
-        $totalCompras = 10; // Exemplo fixo, pode ser calculado via banco
-        $valorGasto = 1200.00; // Exemplo fixo, pode ser calculado via banco
 
-        $partes = explode(" ", $nome);
-        $iniciais = strtoupper(substr($partes[0],0,1) . (isset($partes[1]) ? substr($partes[1],0,1) : ""));
-
-        echo '
         <tr>
             <td>
                 <div class="jv_customer-info">
@@ -137,25 +103,23 @@ if ($result && count($result) > 0) {
                     <i class="fas fa-ellipsis-h"></i>
                 </button>
             </td>
-        </tr>';
-    }
-} else {
-    echo '<tr><td colspan="5" style="text-align:center;">Nenhum cliente encontrado</td></tr>';
-}
-?>
-</tbody>
+        </tr>
+
+        <!-- <tr><td colspan="5" style="text-align:center;">Nenhum cliente encontrado</td></tr> -->
+
+    </tbody>
 </table>
 </div>
 
 <!-- Paginação -->
 <div class="paginacao">
 <?php 
-if ($pagina > 1) echo "<a href='?pagina=".($pagina-1)."'>&laquo; Anterior</a>";
-for ($i=1;$i<=$totalPaginas;$i++){
-    if($i==$pagina) echo "<strong>$i</strong>";
-    else echo "<a href='?pagina=$i'>$i</a>";
-}
-if($pagina<$totalPaginas) echo "<a href='?pagina=".($pagina+1)."'>Próxima &raquo;</a>";
+// if ($pagina > 1) echo "<a href='?pagina=".($pagina-1)."'>&laquo; Anterior</a>";
+// for ($i=1;$i<=$totalPaginas;$i++){
+//     if($i==$pagina) echo "<strong>$i</strong>";
+//     else echo "<a href='?pagina=$i'>$i</a>";
+// }
+// if($pagina<$totalPaginas) echo "<a href='?pagina=".($pagina+1)."'>Próxima &raquo;</a>";
 ?>
 </div>
 </div>

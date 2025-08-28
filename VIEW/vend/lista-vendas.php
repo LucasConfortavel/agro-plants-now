@@ -1,27 +1,5 @@
 <?php
-include "../../INCLUDE/Menu_vend.php";
-require_once "../../DB/Database.php";
-
-// 1. Conexão
-$db = new Database();
-$conn = $db->getConnection();
-
-// 2. Página atual
-$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-$limite = 4;
-$inicio = ($pagina - 1) * $limite;
-
-// 3. Buscar registros de vendas
-$stmt = $conn->prepare("SELECT * FROM venda LIMIT :inicio, :limite");
-$stmt->bindValue(':inicio', $inicio, PDO::PARAM_INT);
-$stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
-$stmt->execute();
-$vendas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// 4. Total de registros
-$totalStmt = $conn->query("SELECT COUNT(*) FROM venda");
-$total_vendas = $totalStmt->fetchColumn();
-$totalPaginas = ceil($total_vendas / $limite);
+    include "../../INCLUDE/Menu_vend.php";
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +9,6 @@ $totalPaginas = ceil($total_vendas / $limite);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Venda</title>
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendas-vend.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
@@ -94,7 +71,7 @@ $totalPaginas = ceil($total_vendas / $limite);
                                 Vendas
                             </h1>
                             <p class="subtitle" id="customerCount">
-                                <?php echo $total_vendas; ?> vendas registradas
+                                <?php// echo $total_vendas; ?>10     vendas registradas
                             </p>
                         </div>
 
@@ -135,54 +112,29 @@ $totalPaginas = ceil($total_vendas / $limite);
                                 </tr>
                             </thead>
                             <tbody id="customerTableBody">
-                                <?php
-                                if ($vendas && count($vendas) > 0) {
-                                    foreach ($vendas as $row) {
-                                        $id = $row['id'];
-                                        $vendedor_id = $row['id_vendedor'];
+                                <tr>
+                                    <td>
+                                        <div class="customer-info">
+                                            <div class="avatar">' . strtoupper(substr($vendedor_nome, 0, 2)) . '</div>
+                                            <div class="customer-details">
+                                                <h4>' . $vendedor_nome . '</h4>
+                                                <p>' . $vendedor_email . '</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Comprador</td>
+                                    <td>' . $data . '</td>
+                                    <td><span class="amount">R$ ' . number_format($total,2,",",".") . '</span></td>
+                                    <td>
+                                        <button class="menu-btn" onclick="showDropdown(event, ' . $id . ')">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
 
-                                        // Buscar dados do vendedor
-                                        $stmtVend = $conn->prepare('SELECT nome, email FROM usuario WHERE tipo = "vendedor" AND id = :id');
-                                        $stmtVend->bindValue(':id', $vendedor_id, PDO::PARAM_INT);
-                                        $stmtVend->execute();
-                                        $dado_vendedor = $stmtVend->fetch(PDO::FETCH_ASSOC);
-
-                                        $vendedor_nome = $dado_vendedor['nome'] ?? 'Desconhecido';
-                                        $vendedor_email = $dado_vendedor['email'] ?? '-';
-
-                                        $total = $row['total'];
-                                        $data = $row['data_venda'];
-
-                                        echo '
-                                        <tr>
-                                            <td>
-                                                <div class="customer-info">
-                                                    <div class="avatar">' . strtoupper(substr($vendedor_nome, 0, 2)) . '</div>
-                                                    <div class="customer-details">
-                                                        <h4>' . $vendedor_nome . '</h4>
-                                                        <p>' . $vendedor_email . '</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Comprador</td>
-                                            <td>' . $data . '</td>
-                                            <td><span class="amount">R$ ' . number_format($total,2,",",".") . '</span></td>
-                                            <td>
-                                                <button class="menu-btn" onclick="showDropdown(event, ' . $id . ')">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        ';
-                                    }
-                                } else {
-                                    echo '<tr>
-                                        <td colspan="5" style="text-align:center;height:49.7vh;">
-                                            Nenhuma venda encontrada
-                                        </td>
-                                    </tr>';
-                                }
-                                ?>
+                                    <!-- <td colspan="5" style="text-align:center;height:49.7vh;">
+                                        Nenhuma venda encontrada
+                                    </td> -->
                             </tbody>
                         </table>
                     </div>
@@ -190,21 +142,21 @@ $totalPaginas = ceil($total_vendas / $limite);
                     <!-- Paginação -->
                     <div class="paginacao">
                         <?php
-                        if ($pagina > 1) {
-                            echo "<a href='?pagina=" . ($pagina - 1) . "'>&laquo; Anterior</a>";
-                        }
+                        // if ($pagina > 1) {
+                        //     echo "<a href='?pagina=" . ($pagina - 1) . "'>&laquo; Anterior</a>";
+                        // }
 
-                        for ($i = 1; $i <= $totalPaginas; $i++) {
-                            if ($i == $pagina) {
-                                echo "<strong>$i</strong>";
-                            } else {
-                                echo "<a href='?pagina=$i'>$i</a>";
-                            }
-                        }
+                        // for ($i = 1; $i <= $totalPaginas; $i++) {
+                        //     if ($i == $pagina) {
+                        //         echo "<strong>$i</strong>";
+                        //     } else {
+                        //         echo "<a href='?pagina=$i'>$i</a>";
+                        //     }
+                        // }
 
-                        if ($pagina < $totalPaginas) {
-                            echo "<a href='?pagina=" . ($pagina + 1) . "'>Próxima &raquo;</a>";
-                        }
+                        // if ($pagina < $totalPaginas) {
+                        //     echo "<a href='?pagina=" . ($pagina + 1) . "'>Próxima &raquo;</a>";
+                        // }
                         ?>
                     </div>
                 </div>
