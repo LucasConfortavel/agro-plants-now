@@ -1,10 +1,5 @@
 <?php
     include "../../INCLUDE/Menu_vend.php";
-    require_once "../../DB/connect.php";
-    
-    $sql = 'SELECT * FROM cupom';
-    $result = mysqli_query($con, $sql);
-    $total_cupom = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +36,7 @@
                                 <div class="title-bar"></div>
                                 Cupons
                             </h1>
-                            <p class="subtitle" id="customerCount"><?php echo $total_cupom; ?> cupons encontrados</p>
+                            <p class="subtitle" id="customerCount"><?php// echo $total_cupom; ?>10 cupons encontrados</p>
                         </div>
 
                         <div class="actions">
@@ -74,37 +69,26 @@
                                 </tr>
                             </thead>
                             <tbody id="customerTableBody">
-                                <?php 
-                                    if($result && mysqli_num_rows($result) > 0){
-                                        while($row = mysqli_fetch_assoc($result)){
-                                            $id = $row['id'];
-                                            $codigo = $row['codigo'];
-                                            $desconto = $row['valor'];
-                                            $data = $row['data'];
-                                            $validade = $row['validade'];   
-                                    
-                                            echo '
-                                                <tr>
-                                                    <td>
-                                                        <input type="checkbox" class="checkbox customer-checkbox" data-customer-id="'.$id.'">
-                                                    </td>
-                                                    <td>
-                                                        <div class="customer-info">
-                                                            <div class="avatar">YM</div>
-                                                            <div class="customer-details">
-                                                                <h4>'.$codigo.'</h4>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>'.$desconto.'</td>
-                                                    <td>'.$data.'</td>
-                                                    <td>'.$validade.'</td>
-                                                </tr>';
-                                        }
-                                    } else {
-                                        echo '<tr><td colspan="6" style="text-align: center; height: 49.7vh;">Nenhum cupom encontrado</td></tr>';
-                                    }
-                                ?>
+                                
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkbox customer-checkbox">
+                                    </td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <div class="avatar">YM</div>
+                                            <div class="customer-details">
+                                                <h4>Código</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>100,00</td>
+                                    <td>10/11/25</td>
+                                    <td>07/02/26</td>
+                                </tr>
+                        
+                            <!-- <tr><td colspan="6" style="text-align: center; height: 49.7vh;">Nenhum cupom encontrado</td></tr> -->
+
                             </tbody>
                         </table>
                     </div>
