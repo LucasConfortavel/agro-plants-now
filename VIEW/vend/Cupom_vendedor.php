@@ -1,10 +1,5 @@
 <?php
     include "../../INCLUDE/Menu_vend.php";
-    require_once "../../DB/connect.php";
-    
-    $sql = 'SELECT * FROM cupom';
-    $result = mysqli_query($con, $sql);
-    $total_cupom = mysqli_num_rows($result);
 ?>
 
 <!DOCTYPE html>
