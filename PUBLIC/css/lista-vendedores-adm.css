@@ -151,6 +151,8 @@
     margin-bottom: 4px;
 }
 
+
+
 .jv_title-bar {
     width: 4px;
     height: 32px;
@@ -162,7 +164,7 @@
     color: #6b7280;
     font-size: 14px;
     font-family: 'poppins';
-    margin-left: 39%;
+    
 
 }
 
@@ -187,31 +189,7 @@
     transition: all 0.2s;
 }
 
-.jv_btn-primary {
-    padding: 16px 8px;
-    background: linear-gradient(135deg, #45734b);
-    color: white;
-}
 
-.jv_btn-primary a{
-    font-size: 14px;
-}
-
-
-.jv_btn-primary:hover {
-    background: #047857;
-    
-}
-
-.jv_btn-danger {
-    background: #dc2626;
-    color: white;
-    margin-right: 12px;
-}
-
-.jv_btn-danger:hover {
-    background: #b91c1c;
-}
 
 .jv_search-section {
     margin-top: 16px;

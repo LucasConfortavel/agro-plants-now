@@ -180,24 +180,12 @@
     gap: 8px;
     transition: all 0.2s;
 }
-
-.jv_btn-primary {
-    padding: 16px 8px;
-    background: linear-gradient(135deg, #45734b);
-    color: white;
+.ym_btn-padrao{
+    gap: 12px;
 }
 
-.jv_btn-primary:hover {
-    background: #047857;
-}
-
-.jv_btn-danger {
-    background: #dc2626;
-    color: white;
-}
-
-.jv_btn-danger:hover {
-    background: #b91c1c;
+.ym_btn-remover{
+    gap: 12px;
 }
 
 .jv_search-section {
