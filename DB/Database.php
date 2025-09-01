@@ -6,7 +6,7 @@ class DatabaseConnectionException extends RuntimeException {}
 class Database {
     private ?PDO $conn = null;
 
-    public function getConnection(): PDO {
+    public function getConexao(): PDO {
         if ($this->conn !== null) {
             return $this->conn;
         }

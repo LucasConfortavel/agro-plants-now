@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/../DB/Database.php';
 
-class User {
+class UsuarioModel {
     private $conn;
-    private $table_name = "usuarios";
+    private $table_name = "usuario";
 
     public $id;
     public $nome;
@@ -20,10 +20,10 @@ class User {
 
     public function __construct() {
         $database = new Database();
-        $this->conn = $database->getConnection();
+        $this->conn = $database->getConexao();
     }
 
-    public function create() {
+    public function criar() {
         $query = "INSERT INTO " . $this->table_name . " 
                  SET nome=:nome, email=:email, senha=:senha, tipo=:tipo, 
                      telefone=:telefone, CPF=:CPF, endereco=:endereco, 
@@ -63,7 +63,7 @@ class User {
         } catch (PDOException $e) {
             error_log("Erro ao criar usuário: " . $e->getMessage());
             
-            // verificar se é violação de email ou CPF unico
+            // verificar se e violação de email ou CPF unico
             if ($e->getCode() == 23000) {
                 if (strpos($e->getMessage(), 'email') !== false) {
                     throw new Exception("Já existe um usuário cadastrado com este email.");
@@ -78,7 +78,7 @@ class User {
         return false;
     }
 
-    public function readOne() {
+    public function lerUm() {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = ? LIMIT 0,1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
@@ -104,7 +104,7 @@ class User {
         return false;
     }
 
-    public function readAll() {
+    public function lerTodos() {
         $query = "SELECT id, nome, email, tipo, telefone, CPF, endereco, cidade, estado, data_nasc, foto 
                   FROM " . $this->table_name . " ORDER BY nome";
         
@@ -114,7 +114,7 @@ class User {
         return $stmt;
     }
 
-    public function update() {
+    public function atualizar() {
         // query base, sem a senha
         $query = "UPDATE " . $this->table_name . " 
                  SET nome=:nome, email=:email, tipo=:tipo, 
@@ -181,7 +181,7 @@ class User {
         }
     }
 
-    public function delete() {
+    public function deletar() {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
         $stmt = $this->conn->prepare($query);
 
@@ -196,7 +196,6 @@ class User {
         }
     }
 
-    // metodo para verificar login (email e senha)
     public function login($email, $senha) {
         $query = "SELECT id, nome, email, senha, tipo FROM " . $this->table_name . " 
                   WHERE email = ? LIMIT 0,1";
@@ -204,7 +203,7 @@ class User {
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $email);
         $stmt->execute();
-
+    
         if ($stmt->rowCount() == 1) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             
@@ -221,7 +220,7 @@ class User {
         return false;
     }
 
-    public function emailExists($email) {
+    public function emailExiste($email) {
         $query = "SELECT id FROM " . $this->table_name . " WHERE email = ?";
         $stmt = $this->conn->prepare($query);
         
@@ -232,7 +231,7 @@ class User {
         return $stmt->rowCount() > 0;
     }
 
-    public function cpfExists($cpf) {
+    public function cpfExiste($cpf) {
         $query = "SELECT id FROM " . $this->table_name . " WHERE CPF = ?";
         $stmt = $this->conn->prepare($query);
         
