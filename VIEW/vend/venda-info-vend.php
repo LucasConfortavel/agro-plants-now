@@ -27,6 +27,27 @@ include "../../INCLUDE/Menu_vend.php";
         <div class="back-button">
             <a href="sobre_prod.php" class="ym_link-volta"> <i class="fa-solid fa-arrow-left"></i> </a>
         </div>
+
+        <div class="P_customer-info">
+            <div class="P_customer-details">
+                <div class="P_customer-label">Cliente</div>
+                <div class="P_customer-name">
+                    Rafael Germinari
+                </div>
+                <div class="P_customer-date">
+                    <div>Data de criação</div>
+                    <div>16/08</div>
+                </div>
+            </div>
+            
+            <div class="P_action-buttons">
+
+                <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
+
+                    Gerar link de venda
+                </a>
+            </div>
+        </div>
         <div class="P_cart-table">
             <div class="P_table-header">
                 <div class="P_header-produto">Produto</div>
@@ -36,11 +57,6 @@ include "../../INCLUDE/Menu_vend.php";
             </div>
 
             <div class="P_cart-item">
-                <div class="P_item-remove">
-                    <button class="P_remove-button">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
                 <div class="P_item-produto">
                     <div class="P_product-image"></div>
                     <span>Produto</span>
@@ -51,7 +67,16 @@ include "../../INCLUDE/Menu_vend.php";
                     <span class="P_quantity-value" id="valor">1</span>
                     <button class="P_quantity-button" id="mais">+</button>
                 </div>
-                <div class="P_item-total">R$1000</div>
+                <div class="P_item-total">
+                    R$1000
+
+                    <div class="P_item-remove">
+                        <button class="P_remove-button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                </div>
             </div>
         </div>
 
@@ -86,27 +111,6 @@ include "../../INCLUDE/Menu_vend.php";
                 </div>
             </div>
 
-        </div>
-
-        <div class="P_customer-info">
-            <div class="P_customer-details">
-                <div class="P_customer-label">Cliente</div>
-                <div class="P_customer-name">
-                    Rafael Germinari
-                </div>
-                <div class="P_customer-date">
-                    <div>Data de criação</div>
-                    <div>16/08</div>
-                </div>
-            </div>
-            
-            <div class="P_action-buttons">
-
-                <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
-
-                    Gerar link de venda
-                </a>
-            </div>
         </div>
     </main>
 
