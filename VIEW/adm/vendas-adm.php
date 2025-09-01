@@ -151,51 +151,47 @@
                     </div>
                 </div>
             </div>
-        </main>
-
-                        <!-- Paginação
+                        <!-- Paginação -->
                         <div class="jv_page-navigation">
-                            <?php if($pagina_atual > 1): ?>
-                                <a href="?pagina=<?php //echo $pagina_atual - 1; ?>" class="jv_page-arrow">
+                            <?php //if($pagina_atual > 1): ?>
+                                <a href="?pagina=<?php echo $pagina_atual - 1; ?>" class="jv_page-arrow">
                                     <i class="fas fa-arrow-left"></i>
                                 </a>
-                            <?php endif; ?>
+                            <?php //endif; ?>
 
-                            <?php 
-                                // $inicio = max(1, $pagina_atual - 2);
-                                // $fim = min($total_paginas, $pagina_atual + 2);
-                                
-                                // for ($i = $inicio; $i <= $fim; $i++):
-                             ?>
-                                <a href="?pagina=<?php echo $i; ?>" class="jv_page-number <?php echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                    <?php //echo $i; ?>
+                            <?php
+                            // $inicio = max(1, $pagina_atual - 2);
+                            // $fim = min($total_paginas, $pagina_atual + 2);
+                            
+                            // for ($i = $inicio; $i <= $fim; $i++): ?>
+                                <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    <?php// echo $i; ?>
                                 </a>
-                            <?php //endfor; ?>
+                            <?php// endfor; ?>
 
                             <?php //if($pagina_atual < $total_paginas): ?>
-                                <a href="?pagina=<?php //echo $pagina_atual + 1; ?>" class="jv_page-arrow">
+                                <a href="?pagina=<?php// echo $pagina_atual + 1; ?>" class="jv_page-arrow">
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
                             <?php //endif; ?>
-                        </div> -->
-
-                        <!-- Empty State -->
-                        <div id="emptyState" class="jv_empty-state" style="display: none;">
-                            <i class="fas fa-search empty-icon"></i>
-                            <h3>Nenhuma venda encontrada</h3>
-                            <p>Tente ajustar os termos de pesquisa</p>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        
+
+
+        
+                    <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
+                    <script src="../../PUBLIC/JS/script.js"></script>
+                    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 
 
 
+        </main>
 
-    </main>
-    <script src="../../PUBLIC/JS/vendas-adm.js"></script>
-    <script src="../../PUBLIC/JS/script.js"></script>
-    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+
+
+        
+
+
 
 </body>
 </html>

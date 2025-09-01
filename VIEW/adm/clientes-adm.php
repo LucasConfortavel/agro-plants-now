@@ -151,8 +151,7 @@
                     </div>
                 </div>
             </div>
-        </main>
-                        
+                                    
                         <!-- Paginação -->
                         <div class="jv_page-navigation">
                             <?php //if($pagina_atual > 1): ?>
@@ -178,23 +177,16 @@
                             <?php //endif; ?>
                         </div>
                         
-                        <!-- Empty State -->
-                        <div id="emptyState" class="jv_empty-state" style="display: none;">
-                            <i class="fas fa-search empty-icon"></i>
-                            <h3>Nenhum cliente encontrado</h3>
-                            <p>Tente ajustar os termos de pesquisa</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                    
-      </div> 
+
 
         
-    </main>
-    <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
-    <script src="../../PUBLIC/JS/script.js"></script>
-    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+                    <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
+                    <script src="../../PUBLIC/JS/script.js"></script>
+                    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 
+
+
+        </main>
+                                            
 </body>
 </html>

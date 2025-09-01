@@ -151,24 +151,44 @@
                     </div>
                 </div>
             </div>
+                    <!-- Paginação -->
+                        <div class="jv_page-navigation">
+                            <?php //if($pagina_atual > 1): ?>
+                                <a href="?pagina=<?php echo $pagina_atual - 1; ?>" class="jv_page-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
+                            <?php //endif; ?>
+
+                            <?php
+                            // $inicio = max(1, $pagina_atual - 2);
+                            // $fim = min($total_paginas, $pagina_atual + 2);
+                            
+                            // for ($i = $inicio; $i <= $fim; $i++): ?>
+                                <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    <?php// echo $i; ?>
+                                </a>
+                            <?php// endfor; ?>
+
+                            <?php //if($pagina_atual < $total_paginas): ?>
+                                <a href="?pagina=<?php// echo $pagina_atual + 1; ?>" class="jv_page-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            <?php //endif; ?>
+                        </div>
+                        
+
+
+        
+                    <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
+                    <script src="../../PUBLIC/JS/script.js"></script>
+                    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+
+
+
+        </main>
         </main>
 
-            <div class="jv_page-navigation">
-                <div class="jv_page-number active">1</div>
-                <div class="jv_page-number">2</div>
-                <div class="jv_page-number">3</div>
-                <div class="jv_page-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-            
-        </div> 
-        
-    </main>
-    
-    <script src="../../PUBLIC/JS/cupom-adm.js"></script>
-    <script src="../../PUBLIC/JS/script.js"></script>
-    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+
 
 </body>
 </html>

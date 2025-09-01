@@ -164,6 +164,8 @@
     color: #6b7280;
     font-size: 14px;
     font-family: 'poppins';
+    margin-top: 23px;
+    margin-left: 5px;
     
 
 }
@@ -197,25 +199,26 @@
 
 .jv_search-container {
     position: relative;
-    max-width: 384px;
+    max-width: 484px;
 }
 
-.jv_search-icon {
+.search-icon {
     position: absolute;
     left: 12px;
-    top: 50%;
+    top: 45%;
     transform: translateY(-50%);
     color: #9ca3af;
     font-size: 14px;
 }
 
 .jv_search-input {
-    width: 84%;
+    width: 104%;
     padding: 10px 12px 10px 40px;
     border: 1px solid #d1d5db;
     border-radius: 6px;
     font-size: 14px;
     transition: border-color 0.2s;
+    margin-top: -18%;
     
 }
 
