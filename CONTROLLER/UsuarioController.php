@@ -168,7 +168,7 @@ class UsuarioController {
                 }
             }
         } catch (Exception $e) {
-            // retornar para a página de login com mensagem de erro
+            // retornar para a pagina de login com mensagem de erro
             header("Location: ../VIEW/paginas-iniciais/pagina-de-login.php?error=" . urlencode($e->getMessage()));
             exit();
         }
