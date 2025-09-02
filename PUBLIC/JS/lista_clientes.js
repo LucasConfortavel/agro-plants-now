@@ -4,7 +4,8 @@ function showDropdown(event, customerId){
     event.stopPropagation();
     const menu = document.getElementById('dropdownMenu');
     if(currentOpenDropdown===customerId && menu.style.display==='block'){ menu.style.display='none'; currentOpenDropdown=null; return; }
-    const rect = event.target.getBoundingClientRect();
+    const rect = event.currentTarget.getBoundingClientRect();
+
     menu.style.display='block';
     menu.style.left = rect.left - 70 + 'px';
     menu.style.top = rect.bottom + window.scrollY + 5 + 'px';

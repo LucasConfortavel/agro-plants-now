@@ -1,5 +1,5 @@
 <?php
-    include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/Menu_vend.php";
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* ---- PAGINAÇÃO ---- */
+        /* Paginação */
         .paginacao {
             margin: 20px 0;
             display: flex;
@@ -39,7 +39,7 @@
             border-color: #45734b;
         }
 
-        /* ---- DROPDOWN AJUSTADO ---- */
+        /* Dropdown */
         .dropdown-menu {
             position: absolute;
             background: white;
@@ -53,188 +53,140 @@
         .dropdown-item {
             padding: 6px 12px;
             font-size: 13px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <main class="jp_main-content">
-        <div class="container">
-            <div class="card">
+<main class="jp_main-content">
+    <div class="container">
+        <div class="card">
 
-                <!-- Header -->
-                <div class="card-header">
-                    <div class="header-content">
-                        <div class="title-section">
-                            <h1 class="title">
-                                <div class="title-bar"></div>
-                                Vendas
-                            </h1>
-                            <p class="subtitle" id="customerCount">
-                                <?php// echo $total_vendas; ?>10     vendas registradas
-                            </p>
-                        </div>
-
-                        <div class="actions">
-                            <button class="btn btn-danger" id="removeSelected" style="display:none;">
-                                <i class="fa-solid fa-trash-can"></i>
-                                Remover (<span id="selectedCount">0</span>)
-                            </button>
-
-                            <button class="btn btn-primary">
-                                <i class="fas fa-plus"></i>
-                                <a onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-vend.php','Cadastro de clientes')">
-                                    Cadastrar Venda
-                                </a>
-                            </button>
-                        </div>
+            <!-- Header -->
+            <div class="card-header">
+                <div class="header-content">
+                    <div class="title-section">
+                        <h1 class="title">
+                            <div class="title-bar"></div>
+                            Vendas
+                        </h1>
+                        <p class="subtitle" id="customerCount">10 vendas registradas</p>
                     </div>
 
-                    <div class="search-section">
-                        <div class="search-container">
-                            <i class="fas fa-search search-icon"></i>
-                            <input type="text" id="searchInput" placeholder="Pesquisar por nome ou email..." class="search-input">
-                        </div>
+                    <div class="actions">
+                        <button class="btn btn-danger" id="removeSelected" style="display:none;">
+                            <i class="fa-solid fa-trash-can"></i>
+                            Remover (<span id="selectedCount">0</span>)
+                        </button>
+
+                        <button class="btn btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroVenda-vend.php','Cadastro de clientes')">
+                            <i class="fas fa-plus"></i> Cadastrar Venda
+                        </button>
                     </div>
                 </div>
 
-                <!-- Table -->
-                <div class="card-content">
-                    <div class="table-container">
-                        <table class="table">
-                            <thead>
-                                <tr class="table-header">
-                                    <th>Vendedor</th>
-                                    <th>Comprador</th>
-                                    <th>Data de cadastro</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="customerTableBody">
-                                <tr>
-                                    <td>
-                                        <div class="customer-info">
-                                            <div class="avatar">' . strtoupper(substr($vendedor_nome, 0, 2)) . '</div>
-                                            <div class="customer-details">
-                                                <h4>' . $vendedor_nome . '</h4>
-                                                <p>' . $vendedor_email . '</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Comprador</td>
-                                    <td>' . $data . '</td>
-                                    <td><span class="amount">R$ ' . number_format($total,2,",",".") . '</span></td>
-                                    <td>
-                                        <button class="menu-btn" onclick="showDropdown(event, ' . $id . ')">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                    <!-- <td colspan="5" style="text-align:center;height:49.7vh;">
-                                        Nenhuma venda encontrada
-                                    </td> -->
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Paginação -->
-                    <div class="paginacao">
-                        <?php
-                        // if ($pagina > 1) {
-                        //     echo "<a href='?pagina=" . ($pagina - 1) . "'>&laquo; Anterior</a>";
-                        // }
-
-                        // for ($i = 1; $i <= $totalPaginas; $i++) {
-                        //     if ($i == $pagina) {
-                        //         echo "<strong>$i</strong>";
-                        //     } else {
-                        //         echo "<a href='?pagina=$i'>$i</a>";
-                        //     }
-                        // }
-
-                        // if ($pagina < $totalPaginas) {
-                        //     echo "<a href='?pagina=" . ($pagina + 1) . "'>Próxima &raquo;</a>";
-                        // }
-                        ?>
+                <div class="search-section">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Pesquisar por nome ou email..." class="search-input">
                     </div>
                 </div>
-
             </div>
-        </div>
-    </main>
 
-    <!-- Dropdown menu -->
-    <div id="dropdownMenu" class="dropdown-menu" style="display:none;">
-        <div class="dropdown-item" data-action="view">
-            <i class="fas fa-eye"></i> Visualizar
-        </div>
-        <div class="dropdown-item" data-action="edit">
-            <i class="fas fa-edit"></i> Editar
-        </div>
-        <div class="dropdown-item danger" data-action="delete">
-            <i class="fas fa-trash-alt"></i> Excluir
+            <!-- Table -->
+            <div class="card-content">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-header">
+                                <th>Vendedor</th>
+                                <th>Comprador</th>
+                                <th>Data de cadastro</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerTableBody">
+                            <tr>
+                                <td>
+                                    <div class="customer-info">
+                                        <div class="avatar">AB</div>
+                                        <div class="customer-details">
+                                            <h4>Alex Barros</h4>
+                                            <p>alex@email.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>João Silva</td>
+                                <td>01/09/2025 14:30</td>
+                                <td><span class="amount">R$ 150,00</span></td>
+                                <td>
+                                    <button class="menu-btn" onclick="showDropdown(event, 1)">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Paginação -->
+                <div class="paginacao">
+                    <strong>1</strong>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
+
         </div>
     </div>
+</main>
 
-    <script>
-        let currentOpenDropdown = null;
+<!-- Dropdown menu -->
+<div id="dropdownMenu" class="dropdown-menu" style="display:none;">
+    <div class="dropdown-item" data-action="view"><i class="fas fa-eye"></i> Visualizar</div>
+    <div class="dropdown-item" data-action="edit"><i class="fas fa-edit"></i> Editar</div>
+    <div class="dropdown-item danger" data-action="delete"><i class="fas fa-trash-alt"></i> Excluir</div>
+</div>
 
-        function showDropdown(event, customerId) {
-            event.stopPropagation();
-            const menu = document.getElementById('dropdownMenu');
+<script>
+let currentOpenDropdown = null;
 
-            if (currentOpenDropdown === customerId && menu.style.display === 'block') {
-                menu.style.display = 'none';
-                currentOpenDropdown = null;
-                return;
-            }
+function showDropdown(event, id) {
+    event.stopPropagation();
+    const menu = document.getElementById('dropdownMenu');
 
-            const rect = event.currentTarget.getBoundingClientRect();
-            menu.style.display = 'block';
-            menu.style.left = rect.left + window.scrollX - 50 + 'px';
-            menu.style.top = rect.bottom + window.scrollY + 5 + 'px';
+    if(currentOpenDropdown === id && menu.style.display === 'block'){
+        menu.style.display = 'none';
+        currentOpenDropdown = null;
+        return;
+    }
 
-            currentOpenDropdown = customerId;
+    const rect = event.currentTarget.getBoundingClientRect();
+    menu.style.display = 'block';
+    menu.style.left = rect.left + window.scrollX - 50 + 'px';
+    menu.style.top = rect.bottom + window.scrollY + 5 + 'px';
+    currentOpenDropdown = id;
 
-            menu.querySelectorAll('.dropdown-item').forEach(item => {
-                item.onclick = () => {
-                    handleDropdownAction(item.dataset.action, customerId);
-                    menu.style.display = 'none';
-                    currentOpenDropdown = null;
-                };
-            });
-        }
-
-        document.addEventListener('click', () => {
-            const menu = document.getElementById('dropdownMenu');
+    menu.querySelectorAll('.dropdown-item').forEach(item => {
+        item.onclick = () => {
+            alert(`${item.dataset.action} - ID ${id}`);
             menu.style.display = 'none';
             currentOpenDropdown = null;
-        });
-
-        function handleDropdownAction(action, customerId) {
-            let name = document.querySelector(`button[onclick*='${customerId}']`)
-                .closest('tr')
-                .querySelector('h4').innerText;
-
-            switch (action) {
-                case 'view':
-                    alert('Visualizando ' + name);
-                    break;
-                case 'edit':
-                    alert('Editando ' + name);
-                    break;
-                case 'delete':
-                    if (confirm('Deseja remover ' + name + '?'))
-                        alert(name + ' removido');
-                    break;
-            }
         }
-    </script>
+    });
+}
 
-    <script src="../../PUBLIC/JS/script.js"></script>
-    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
-    <script src="../../PUBLIC/JS/lista-vendas.js"></script>
+document.addEventListener('click', () => {
+    document.getElementById('dropdownMenu').style.display = 'none';
+    currentOpenDropdown = null;
+});
+</script>
+
+<script src="../../PUBLIC/JS/script.js"></script>
+<script src="../../PUBLIC/JS/script-pop-up.js"></script>
+<script src="../../PUBLIC/JS/lista-vendas.js"></script>
 </body>
 </html>

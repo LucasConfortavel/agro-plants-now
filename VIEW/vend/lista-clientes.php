@@ -1,5 +1,27 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
+require_once __DIR__ . "/../../DB/Database.php";
+
+// Criar conexão com o banco
+$db = new Database();
+$conn = $db->getConexao();
+
+try {
+    $sql = "SELECT c.id, c.nome, c.email, c.data_cadastro,
+                   COUNT(v.id) AS total_compras,
+                   IFNULL(SUM(v.total),0) AS valor_gasto
+            FROM clientes c
+            LEFT JOIN vendas v ON c.id = v.cliente_id
+            GROUP BY c.id
+            ORDER BY c.data_cadastro DESC";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $total_clientes = count($clientes);
+} catch (PDOException $e) {
+    die("Erro ao buscar clientes: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +44,7 @@ include "../../INCLUDE/Menu_vend.php";
 /* Tabela */
 .table { width:100%; border-collapse:collapse; }
 .table th, .table td { padding:12px 16px; border-bottom:1px solid #ddd; vertical-align:middle; }
-.table th:first-child, .table td:first-child { text-align:left; }
 .table td:last-child { text-align:center; }
-.table tbody tr:hover { background:#f9fafb; }
 
 /* Cliente */
 .jv_customer-info { display:flex; align-items:center; gap:12px; }
@@ -53,12 +73,11 @@ include "../../INCLUDE/Menu_vend.php";
 <div class="header-content">
 <div class="title-section">
 <h1 class="title"><div class="title-bar"></div>Lista de Clientes</h1>
-<p class="subtitle"><?php //echo $total_clientes; ?>10 clientes encontrados</p>
+<p class="subtitle"><?= $total_clientes ?> clientes encontrados</p>
 </div>
 <div class="actions">
-<button class="btn btn-primary">
-<i class="fas fa-plus"></i>
-<a onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de Cliente')">Cadastrar Clientes</a>
+<button class="btn btn-primary" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de Cliente')">
+<i class="fas fa-plus"></i> Cadastrar Clientes
 </button>
 </div>
 </div>
@@ -85,42 +104,42 @@ include "../../INCLUDE/Menu_vend.php";
 </thead>
 <tbody id="customerTableBody">
 
-        <tr>
-            <td>
-                <div class="jv_customer-info">
-                    <div class="jv_avatar">'.$iniciais.'</div>
-                    <div class="jv_customer-details">
-                        <h4>'.$nome.'</h4>
-                        <p>'.$email.'</p>
-                    </div>
+<?php if($total_clientes>0): ?>
+    <?php foreach($clientes as $row): 
+        $iniciais = strtoupper(substr($row['nome'],0,2));
+        $data = date('d/m/Y', strtotime($row['data_cadastro']));
+    ?>
+    <tr>
+        <td>
+            <div class="jv_customer-info">
+                <div class="jv_avatar"><?= $iniciais ?></div>
+                <div class="jv_customer-details">
+                    <h4><?= htmlspecialchars($row['nome']) ?></h4>
+                    <p><?= htmlspecialchars($row['email']) ?></p>
                 </div>
-            </td>
-            <td>'.$data.'</td>
-            <td style="text-align:center;">'.$totalCompras.'</td>
-            <td><span class="jv_amount">R$ '.number_format($valorGasto,2,",",".").'</span></td>
-            <td style="text-align:center;">
-                <button class="menu-btn" onclick="showDropdown(event, '.$row['id'].')">
-                    <i class="fas fa-ellipsis-h"></i>
-                </button>
-            </td>
-        </tr>
+            </div>
+        </td>
+        <td><?= $data ?></td>
+        <td style="text-align:center;"><?= $row['total_compras'] ?></td>
+        <td>R$ <?= number_format($row['valor_gasto'],2,",",".") ?></td>
+        <td style="text-align:center;">
+            <button class="menu-btn" onclick="showDropdown(event, <?= $row['id'] ?>)">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+    <tr><td colspan="5" style="text-align:center;">Nenhum cliente encontrado</td></tr>
+<?php endif; ?>
 
-        <!-- <tr><td colspan="5" style="text-align:center;">Nenhum cliente encontrado</td></tr> -->
-
-    </tbody>
+</tbody>
 </table>
 </div>
 
 <!-- Paginação -->
 <div class="paginacao">
-<?php 
-// if ($pagina > 1) echo "<a href='?pagina=".($pagina-1)."'>&laquo; Anterior</a>";
-// for ($i=1;$i<=$totalPaginas;$i++){
-//     if($i==$pagina) echo "<strong>$i</strong>";
-//     else echo "<a href='?pagina=$i'>$i</a>";
-// }
-// if($pagina<$totalPaginas) echo "<a href='?pagina=".($pagina+1)."'>Próxima &raquo;</a>";
-?>
+<!-- Aqui você pode colocar a lógica de paginação -->
 </div>
 </div>
 </div>
@@ -133,6 +152,40 @@ include "../../INCLUDE/Menu_vend.php";
 <div class="dropdown-item" data-action="edit"><i class="fas fa-edit"></i> Editar</div>
 <div class="dropdown-item danger" data-action="delete"><i class="fas fa-trash-alt"></i> Excluir</div>
 </div>
+
+<script>
+let currentOpenDropdown = null;
+
+function showDropdown(event, id) {
+    event.stopPropagation();
+    const menu = document.getElementById('dropdownMenu');
+
+    if(currentOpenDropdown === id && menu.style.display==='block'){
+        menu.style.display='none';
+        currentOpenDropdown = null;
+        return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    menu.style.display='block';
+    menu.style.left = rect.left + window.scrollX - 50 + 'px';
+    menu.style.top = rect.bottom + window.scrollY + 5 + 'px';
+    currentOpenDropdown = id;
+
+    menu.querySelectorAll('.dropdown-item').forEach(item=>{
+        item.onclick = () => {
+            alert(`${item.dataset.action} - ID ${id}`);
+            menu.style.display='none';
+            currentOpenDropdown = null;
+        };
+    });
+}
+
+document.addEventListener('click', () => {
+    document.getElementById('dropdownMenu').style.display='none';
+    currentOpenDropdown = null;
+});
+</script>
 
 <script src="../../PUBLIC/JS/script.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>
