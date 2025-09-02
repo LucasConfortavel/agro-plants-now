@@ -4,7 +4,7 @@
     
     try {
         $db = new Database();
-        $conn = $db->getConnection();
+        $conn = $db->getConexao();
     
         // Pesquisa
         $pesquisa = "";
@@ -47,6 +47,14 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
+        <!-- pop-up -->
+        <div class="ym_popup-overlay">
+            <div class="ym_popup-content">
+                <div class="ym_area-superior-popup"></div>
+                <div class="ym_conteudo-popup"></div>
+            </div>
+        </div>
+
         <main class="jp_main-content">
             <h1 class="ym_titulo">Vendas</h1>
     
@@ -151,6 +159,7 @@
                     </div>
                 </div>
             </div>
+
                         <!-- Paginação -->
                         <div class="jv_page-navigation">
                             <?php //if($pagina_atual > 1): ?>
@@ -165,7 +174,15 @@
                             
                             // for ($i = $inicio; $i <= $fim; $i++): ?>
                                 <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                    <?php// echo $i; ?>
+                                    1<?php// echo $i; ?>
+                                </a>
+                            <?php// endfor; ?>
+                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    2<?php// echo $i; ?>
+                                </a>
+                            <?php// endfor; ?>
+                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    3<?php// echo $i; ?>
                                 </a>
                             <?php// endfor; ?>
 

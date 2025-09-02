@@ -1,11 +1,12 @@
 .jv_page-navigation {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     margin: 25px 0;
     gap: 8px;
     flex-wrap: wrap;
-}
+    margin-right: 5%;
+} 
 
 .jv_page-number {
     width: 35px;
@@ -122,23 +123,12 @@
     transition: all 0.2s;
 }
 
-.jv_btn-primary {
-    background: linear-gradient(135deg, #45734b, #2d4e32);
-    color: white;
+.ym_btn-padrao{
+    gap: 12px;
 }
 
-.jv_btn-primary:hover {
-    background: #047857;
-}
-
-.jv_btn-danger {
-    background: #dc2626;
-    color: white;
-    margin-right: 12px;
-}
-
-.jv_btn-danger:hover {
-    background: #b91c1c;
+.ym_btn-remover{
+    gap: 12px;
 }
 
 .jv_search-section {
