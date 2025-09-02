@@ -13,7 +13,7 @@ class UsuarioController {
         try {
             $stmt = $this->user->lerTodos();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $users;
+            return $users
             // carregar a view de listagem
             include_once __DIR__ . '/../views/users/index.php';
         } catch (Exception $e) {
@@ -168,7 +168,7 @@ class UsuarioController {
                 }
             }
         } catch (Exception $e) {
-            // retornar para a pagina de login com mensagem de erro
+            // retornar para a página de login com mensagem de erro
             header("Location: ../VIEW/paginas-iniciais/pagina-de-login.php?error=" . urlencode($e->getMessage()));
             exit();
         }
