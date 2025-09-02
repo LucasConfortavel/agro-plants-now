@@ -28,7 +28,7 @@ class UsuarioController {
         try {
             $stmt = $this->user->lerTodos();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $users
+            return $users;
             // carregar a view de listagem
             include_once __DIR__ . '/../views/users/index.php';
         } catch (Exception $e) {
