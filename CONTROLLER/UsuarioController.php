@@ -13,7 +13,7 @@ class UsuarioController {
         try {
             $stmt = $this->user->lerTodos();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $users
+            return $users;
             // carregar a view de listagem
             include_once __DIR__ . '/../views/users/index.php';
         } catch (Exception $e) {
@@ -22,32 +22,24 @@ class UsuarioController {
         }
     }
 
-    // mostrar formulario de criação de usuario
-    public function create() {
-        include_once __DIR__ . '/../views/users/create.php';
-    }
-
-    // processar criação de usuario
-    public function armazenar() {
+    public function criarVendedor() {
         try {
             $this->user->nome = $_POST['nome'];
             $this->user->email = $_POST['email'];
-            $this->user->senha = $_POST['senha']; // sem hash por enquanto
-            $this->user->tipo = $_POST['tipo'];
+            $this->user->senha = $_POST['senha'] ?? "senha_vendedor"; // sem hash por enquanto
+            $this->user->tipo = 'vendedor';
             $this->user->telefone = $_POST['telefone'] ?? null;
-            $this->user->CPF = $_POST['cpf'];
+            $this->user->CPF = $_POST['CPF'];
             $this->user->endereco = $_POST['endereco'] ?? null;
             $this->user->cidade = $_POST['cidade'] ?? null;
             $this->user->estado = $_POST['estado'] ?? null;
             $this->user->data_nasc = $_POST['data_nasc'] ?? null;
             $this->user->foto = $_POST['foto'] ?? null;
 
-            if ($this->user->create()) {
-                header("Location: /users?success=Usuário criado com sucesso");
-                exit();
-            } else {
-                throw new Exception("Erro ao criar usuário");
-            }
+            $stmt = $this->user->criar();
+            $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return true;
+
         } catch (Exception $e) {
             $error = $e->getMessage();
             return $error;
@@ -87,7 +79,7 @@ class UsuarioController {
     }
 
     // processar atualização de usuario
-    public function update($id) {
+    public function atualizar($id) {
         try {
             $this->user->id = $id;
             
