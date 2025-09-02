@@ -5,6 +5,7 @@
     margin: 25px 0;
     gap: 8px;
     flex-wrap: wrap;
+    margin-left: 15%;
 }
 
 .jv_page-number {

@@ -4,7 +4,7 @@
     
     try {
         $db = new Database();
-        $conn = $db->getConnection();
+        $conn = $db->getConexao();
     
         // Pesquisa
         $pesquisa = "";
