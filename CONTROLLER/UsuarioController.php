@@ -132,7 +132,7 @@ class UsuarioController {
         try {
             $this->user->id = $id;
             
-            if ($this->user->delete()) {
+            if ($this->user->deletar()) {
                 header("Location: /users?success=Usuário excluído com sucesso");
                 exit();
             } else {

@@ -127,7 +127,7 @@ class UsuarioModel {
         return $stmt;
     }
 
-    public function update() {
+    public function atualizar() {
         // query base, sem a senha
         $query = "UPDATE " . $this->table_name . " 
                  SET nome=:nome, email=:email, tipo=:tipo, 
