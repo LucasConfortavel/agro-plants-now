@@ -48,7 +48,7 @@
                             <label class="eze-label-text">CPF</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="text" class="ym_input-padrao" name="CPF/CNPJ" placeholder="CPF ou CNPJ" required>
+                        <input type="text" class="ym_input-padrao" name="CPF" placeholder="CPF ou CNPJ" required>
                     </div>
 
                 </div>
