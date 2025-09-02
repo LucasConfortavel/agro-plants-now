@@ -8,6 +8,21 @@ class UsuarioController {
         $this->user = new UsuarioModel();
     }
 
+    // listar todos os Vendedores
+    public function indexVend() {
+        try {
+            
+            $stmt = $this->user->lerEspecifico('vendedor');
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $users;
+            // carregar a view de listagem
+            include_once __DIR__ . '/../views/users/index.php';
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            include_once __DIR__ . '/../views/error.php';
+        }
+    }
+
     // listar todos os usuarios
     public function index() {
         try {
@@ -26,6 +41,8 @@ class UsuarioController {
     public function create() {
         include_once __DIR__ . '/../views/users/create.php';
     }
+
+
 
     // processar criação de usuario
     public function armazenar() {

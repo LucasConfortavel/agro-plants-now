@@ -1,5 +1,6 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
+
     require_once "../../DB/Database.php";
    
     try {
@@ -33,6 +34,7 @@
         $vendedores = [];
         $total_vendedores = 0;
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
