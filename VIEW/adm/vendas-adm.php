@@ -159,6 +159,7 @@
                     </div>
                 </div>
             </div>
+
                         <!-- Paginação -->
                         <div class="jv_page-navigation">
                             <?php //if($pagina_atual > 1): ?>
@@ -173,7 +174,15 @@
                             
                             // for ($i = $inicio; $i <= $fim; $i++): ?>
                                 <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                    <?php// echo $i; ?>
+                                    1<?php// echo $i; ?>
+                                </a>
+                            <?php// endfor; ?>
+                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    2<?php// echo $i; ?>
+                                </a>
+                            <?php// endfor; ?>
+                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    3<?php// echo $i; ?>
                                 </a>
                             <?php// endfor; ?>
 
