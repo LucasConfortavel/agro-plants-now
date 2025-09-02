@@ -1,11 +1,12 @@
 .jv_page-navigation {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     margin: 25px 0;
     gap: 8px;
     flex-wrap: wrap;
-}
+    margin-right: 5%;
+} 
 
 .jv_page-number {
     width: 35px;

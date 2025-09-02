@@ -4,7 +4,7 @@
     
     try {
         $db = new Database();
-        $conn = $db->getConnection();
+        $conn = $db->getConexao();
     
         // Pesquisa
         $pesquisa = "";
@@ -41,7 +41,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Gerenciamento de Vendedores</title>
-        <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
+        <link rel="stylesheet" href="../../PUBLIC/css/clientes-adm.css">
         <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
         <link rel="stylesheet" href="../../PUBLIC/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -166,7 +166,15 @@
                             
                             // for ($i = $inicio; $i <= $fim; $i++): ?>
                                 <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                    <?php// echo $i; ?>
+                                    1<?php// echo $i; ?>
+                                </a>
+                            <?php// endfor; ?>
+                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    2<?php// echo $i; ?>
+                                </a>
+                            <?php// endfor; ?>
+                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    3<?php// echo $i; ?>
                                 </a>
                             <?php// endfor; ?>
 
