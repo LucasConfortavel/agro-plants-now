@@ -1,47 +1,39 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
-    include "../../CONTROLLER/UsuarioController.php";
-
-    $controler_user = new UsuarioController();
-
-    $usuarios = $controler_user->index();
-
-
-    // require_once "../../DB/Database.php";
-
+    require_once "../../DB/Database.php";
+   
     try {
         $db = new Database();
         $conn = $db->getConexao();
-
-    //     // Pesquisa
-    //     $pesquisa = "";
-    //     if (isset($_POST['pesquisar']) && !empty($_POST['pesquisa'])) {
-    //         $pesquisa = "%" . $_POST['pesquisa'] . "%";
-    //         $sql = "SELECT * FROM usuario 
-    //                 WHERE tipo = 'vendedor' 
-    //                 AND (nome LIKE :pesquisa OR email LIKE :pesquisa)";
-    //         $stmt = $conn->prepare($sql);
-    //         $stmt->bindParam(':pesquisa', $pesquisa);
-    //     } else {
-    //         $sql = "SELECT * FROM usuario WHERE tipo = 'vendedor'";
-    //         $stmt = $conn->prepare($sql);
-    //     }
-    
-    //     $stmt->execute();
-    //     $vendedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //     $total_vendedores = count($vendedores);
-    
-    // } catch (DatabaseConnectionException $e) {
-    //     error_log("Erro de conexão: " . $e->getMessage());
-    //     $vendedores = [];
-    //     $total_vendedores = 0;
-    // } catch (PDOException $e) {
-    //     error_log("Erro PDO: " . $e->getMessage());
-    //     $vendedores = [];
-    //     $total_vendedores = 0;
-    // }
+   
+        // Pesquisa
+        $pesquisa = "";
+        if (isset($_POST['pesquisar']) && !empty($_POST['pesquisa'])) {
+            $pesquisa = "%" . $_POST['pesquisa'] . "%";
+            $sql = "SELECT * FROM usuario
+                    WHERE tipo = 'vendedor'
+                    AND (nome LIKE :pesquisa OR email LIKE :pesquisa)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':pesquisa', $pesquisa);
+        } else {
+            $sql = "SELECT * FROM usuario WHERE tipo = 'vendedor'";
+            $stmt = $conn->prepare($sql);
+        }
+   
+        $stmt->execute();
+        $vendedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $total_vendedores = count($vendedores);
+   
+    } catch (DatabaseConnectionException $e) {
+        error_log("Erro de conexão: " . $e->getMessage());
+        $vendedores = [];
+        $total_vendedores = 0;
+    } catch (PDOException $e) {
+        error_log("Erro PDO: " . $e->getMessage());
+        $vendedores = [];
+        $total_vendedores = 0;
+    }
 ?>
-    
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

@@ -165,9 +165,28 @@
                             
                             // for ($i = $inicio; $i <= $fim; $i++): ?>
                                 <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                    <?php// echo $i; ?>
+                                    1<?php// echo $i; ?>
                                 </a>
                             <?php// endfor; ?>
+                            <?php
+                            // $inicio = max(1, $pagina_atual - 2);
+                            // $fim = min($total_paginas, $pagina_atual + 2);
+                            
+                            // for ($i = $inicio; $i <= $fim; $i++): ?>
+                                <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    2<?php// echo $i; ?>
+                                </a>
+                            <?php// endfor; ?>
+                            <?php
+                            // $inicio = max(1, $pagina_atual - 2);
+                            // $fim = min($total_paginas, $pagina_atual + 2);
+                            
+                            // for ($i = $inicio; $i <= $fim; $i++): ?>
+                                <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
+                                    3<?php// echo $i; ?>
+                                </a>
+                            <?php// endfor; ?>
+                            
 
                             <?php //if($pagina_atual < $total_paginas): ?>
                                 <a href="?pagina=<?php// echo $pagina_atual + 1; ?>" class="jv_page-arrow">
