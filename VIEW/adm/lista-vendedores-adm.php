@@ -1,38 +1,45 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
-    require_once "../../DB/Database.php";
+    include "../../CONTROLLER/UsuarioController.php";
+
+    $controler_user = new UsuarioController();
+
+    $usuarios = $controler_user->index();
+
+
+    // require_once "../../DB/Database.php";
     
-    try {
-        $db = new Database();
-        $conn = $db->getConnection();
+    // try {
+    //     $db = new Database();
+    //     $conn = $db->getConnection();
     
-        // Pesquisa
-        $pesquisa = "";
-        if (isset($_POST['pesquisar']) && !empty($_POST['pesquisa'])) {
-            $pesquisa = "%" . $_POST['pesquisa'] . "%";
-            $sql = "SELECT * FROM usuario 
-                    WHERE tipo = 'vendedor' 
-                    AND (nome LIKE :pesquisa OR email LIKE :pesquisa)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':pesquisa', $pesquisa);
-        } else {
-            $sql = "SELECT * FROM usuario WHERE tipo = 'vendedor'";
-            $stmt = $conn->prepare($sql);
-        }
+    //     // Pesquisa
+    //     $pesquisa = "";
+    //     if (isset($_POST['pesquisar']) && !empty($_POST['pesquisa'])) {
+    //         $pesquisa = "%" . $_POST['pesquisa'] . "%";
+    //         $sql = "SELECT * FROM usuario 
+    //                 WHERE tipo = 'vendedor' 
+    //                 AND (nome LIKE :pesquisa OR email LIKE :pesquisa)";
+    //         $stmt = $conn->prepare($sql);
+    //         $stmt->bindParam(':pesquisa', $pesquisa);
+    //     } else {
+    //         $sql = "SELECT * FROM usuario WHERE tipo = 'vendedor'";
+    //         $stmt = $conn->prepare($sql);
+    //     }
     
-        $stmt->execute();
-        $vendedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $total_vendedores = count($vendedores);
+    //     $stmt->execute();
+    //     $vendedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     $total_vendedores = count($vendedores);
     
-    } catch (DatabaseConnectionException $e) {
-        error_log("Erro de conexão: " . $e->getMessage());
-        $vendedores = [];
-        $total_vendedores = 0;
-    } catch (PDOException $e) {
-        error_log("Erro PDO: " . $e->getMessage());
-        $vendedores = [];
-        $total_vendedores = 0;
-    }
+    // } catch (DatabaseConnectionException $e) {
+    //     error_log("Erro de conexão: " . $e->getMessage());
+    //     $vendedores = [];
+    //     $total_vendedores = 0;
+    // } catch (PDOException $e) {
+    //     error_log("Erro PDO: " . $e->getMessage());
+    //     $vendedores = [];
+    //     $total_vendedores = 0;
+    // }
 ?>
     
 <!DOCTYPE html>
@@ -102,8 +109,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="jv_customerTableBody">
-                                    <?php if ($total_vendedores > 0): ?>
-                                        <?php foreach ($vendedores as $vend): ?>
+                                        <?php foreach ($usuarios as $vend): ?>
                                             <tr>
                                                 <td>
                                                     <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $vend['id'] ?>">
@@ -141,9 +147,7 @@
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum vendedor encontrado</td></tr>
-                                    <?php endif; ?>
+
                                 </tbody>
                             </table>
                         </div>

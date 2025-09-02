@@ -23,7 +23,7 @@ class UsuarioModel {
         $this->conn = $database->getConexao();
     }
 
-    public function criar() {
+    public function create() {
         $query = "INSERT INTO " . $this->table_name . " 
                  SET nome=:nome, email=:email, senha=:senha, tipo=:tipo, 
                      telefone=:telefone, CPF=:CPF, endereco=:endereco, 
@@ -114,7 +114,7 @@ class UsuarioModel {
         return $stmt;
     }
 
-    public function atualizar() {
+    public function update() {
         // query base, sem a senha
         $query = "UPDATE " . $this->table_name . " 
                  SET nome=:nome, email=:email, tipo=:tipo, 
@@ -181,7 +181,7 @@ class UsuarioModel {
         }
     }
 
-    public function deletar() {
+    public function delete() {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
         $stmt = $this->conn->prepare($query);
 
