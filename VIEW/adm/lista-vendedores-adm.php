@@ -4,7 +4,9 @@
 
     $controler_user = new UsuarioController();
 
-    $usuarios = $controler_user->index();
+    $usuarios = $controler_user->indexVend();
+
+    $total_vendedores = count($usuarios);
 
 
     // require_once "../../DB/Database.php";
@@ -15,7 +17,7 @@
     
     //     // Pesquisa
     //     $pesquisa = "";
-    //     if (isset($_POST['pesquisar']) && !empty($_POST['pesquisa'])) {
+    //     if (isset($_POST['pesquisar']) && !empty($_POST['pesquisa'])) {  
     //         $pesquisa = "%" . $_POST['pesquisa'] . "%";
     //         $sql = "SELECT * FROM usuario 
     //                 WHERE tipo = 'vendedor' 
