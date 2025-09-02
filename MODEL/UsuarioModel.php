@@ -1,9 +1,11 @@
 <?php
 require_once __DIR__ . '/../DB/Database.php';
+require_once __DIR__ . '/../INCLUDE/ImageHandler.php';
 
 class UsuarioModel {
     private $conn;
     private $table_name = "usuario";
+    private $imagemHandler;
 
     public $id;
     public $nome;
@@ -21,6 +23,7 @@ class UsuarioModel {
     public function __construct() {
         $database = new Database();
         $this->conn = $database->getConexao();
+        $this->imagemHandler = new ImagemHandler();
     }
 
     public function criar() {
@@ -31,7 +34,7 @@ class UsuarioModel {
 
         $stmt = $this->conn->prepare($query);
 
-        // sanitização dos dados
+        // Sanitização dos dados
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->tipo = htmlspecialchars(strip_tags($this->tipo));
@@ -63,7 +66,7 @@ class UsuarioModel {
         } catch (PDOException $e) {
             error_log("Erro ao criar usuário: " . $e->getMessage());
             
-            // verificar se e violação de email ou CPF unico
+            // Verificar se é violação de email ou CPF único
             if ($e->getCode() == 23000) {
                 if (strpos($e->getMessage(), 'email') !== false) {
                     throw new Exception("Já existe um usuário cadastrado com este email.");
@@ -182,13 +185,17 @@ class UsuarioModel {
     }
 
     public function deletar() {
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
-
-        $this->id = htmlspecialchars(strip_tags($this->id));
-        $stmt->bindParam(1, $this->id);
-
         try {
+            $this->lerUm();
+            
+            $this->imagemHandler->deletarImagem($this->foto, 'usuarios');
+            
+            $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+            $stmt = $this->conn->prepare($query);
+
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $stmt->bindParam(1, $this->id);
+
             return $stmt->execute();
         } catch (PDOException $e) {
             error_log("Erro ao deletar usuário: " . $e->getMessage());
