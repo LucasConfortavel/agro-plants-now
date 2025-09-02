@@ -47,6 +47,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
+
+        <!-- pop-up -->
+        <div class="ym_popup-overlay">
+            <div class="ym_popup-content">
+                <div class="ym_area-superior-popup"></div>
+                <div class="ym_conteudo-popup"></div>
+            </div>
+        </div>
+
         <main class="jp_main-content">
             <h1 class="ym_titulo">Cupom</h1>
     
