@@ -128,7 +128,7 @@ class UsuarioController {
         }
     }
 
-    public function delete($id) {
+    public function deletar($id) {
         try {
             $this->user->id = $id;
             

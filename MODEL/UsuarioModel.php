@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../DB/Database.php';
-require_once __DIR__ . '/../INCLUDE/ImageHandler.php';
 
 class UsuarioModel {
     private $conn;
@@ -23,7 +22,6 @@ class UsuarioModel {
     public function __construct() {
         $database = new Database();
         $this->conn = $database->getConexao();
-        $this->imagemHandler = new ImagemHandler();
     }
 
     public function criar() {
