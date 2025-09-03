@@ -5,7 +5,7 @@
     margin: 25px 0;
     gap: 8px;
     flex-wrap: wrap;
-    margin-right: 5%;
+    margin-right: 6%;
 } 
 
 .jv_page-number {
@@ -125,10 +125,12 @@
 
 .ym_btn-padrao{
     gap: 12px;
+    width: 231px;
 }
 
 .ym_btn-remover{
     gap: 12px;
+    width: 231px;
 }
 
 .jv_search-section {

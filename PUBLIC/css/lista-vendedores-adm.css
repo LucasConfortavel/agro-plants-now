@@ -5,7 +5,7 @@
     margin: 25px 0;
     gap: 8px;
     flex-wrap: wrap;
-    margin-right: 1%;
+    margin-left: 16%;
 }
 .jv_page-number {
     width: 35px;
@@ -230,10 +230,12 @@
 
 .ym_btn-padrao{
     gap: 12px;
+    width: 231px;
 }
 
 .ym_btn-remover{
     gap: 12px;
+    padding: 8px 20px;
 }
 
 .jv_card-content {
