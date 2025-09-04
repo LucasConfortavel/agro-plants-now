@@ -1,12 +1,13 @@
+/* === Paginação === */
 .jv_page-navigation {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     margin: 25px 0;
     gap: 8px;
     flex-wrap: wrap;
     margin-right: 5%;
-} 
+}
 
 .jv_page-number {
     width: 35px;
@@ -168,41 +169,66 @@
     padding: 0;
 }
 
+/* ======================== */
+/* Área da tabela (container) */
+/* Não permite scroll vertical da página por causa da tabela */
 .jv_table-container {
-    overflow-x: auto; /* permite rolagem horizontal */
+    width: 100%;
+    overflow-x: auto; /* permite scroll horizontal em telas pequenas */
+    overflow-y: hidden; /* sem scroll vertical */
 }
 
+/* === TABELA: layout fixo para manter largura de colunas estável === */
 .jv_table {
     width: 100%;
-    min-width: 600px; /* evita quebrar em telas pequenas */
     border-collapse: collapse;
+    table-layout: fixed; /* IMPORTANT: fixa colunas para não 'dançarem' */
+    min-width: 600px;
 }
 
+/* Cabeçalho */
 .jv_table-header {
     background: #f9fafb;
 }
 
+/* Definindo larguras fixas (percentuais) para evitar recalculo */
 .jv_table-header th {
     padding: 12px 16px;
     font-weight: 600;
     color: #000;
     text-align: center;
+    box-sizing: border-box;
 }
 
-.jv_table-header .jv_name {
+/* larguras percentuais somando ~100% */
+.jv_table-header .jv_name { width: 40%; text-align: left; }
+.jv_table-header .jv_date { width: 20%; }
+.jv_table-header .jv_total_comp { width: 15%; }
+.jv_table-header .jv_valor_gast { width: 15%; }
+.jv_table-header .jv_actions-col { width: 10%; text-align: center; }
+
+/* Células (corpo) */
+.jv_table td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    text-align: center;
+    box-sizing: border-box;
+    white-space: nowrap;              /* evita quebra de linha que muda largura */
+    overflow: hidden;                 /* corta o conteúdo que extrapola */
+    text-overflow: ellipsis;          /* mostra "..." para textos longos */
+}
+
+/* Primeiro coluna (nome) alinhada à esquerda */
+.jv_table td:first-child {
     text-align: left;
 }
 
-.jv_table-header .jv_checkbox-col,
-.jv_table-header .jv_actions-col {
-    width: 48px;
+/* Altura fixa para cada linha (garante que cada linha ocupe o mesmo espaço) */
+.jv_table tr {
+    height: 70px;
 }
 
-.jv_table td {
-    padding: 16px;
-    vertical-align: middle;
-}
-
+/* Info do cliente */
 .jv_customer-info {
     display: flex;
     align-items: center;
@@ -226,18 +252,20 @@
     font-weight: 500;
     color: #111827;
     margin-bottom: 2px;
+    margin-top: 0;
 }
 
 .jv_customer-details p {
     font-size: 14px;
     color: #6b7280;
+    margin: 0;
 }
 
 /* ========================== */
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
     .jv_table {
-        min-width: 500px; /* menor largura para tablets */
+        min-width: 500px;
     }
 }
 
@@ -269,12 +297,12 @@
     }
 
     .jv_table-container {
-        overflow-x: auto; /* mantém rolagem horizontal */
+        overflow-x: auto;
     }
 
     .jv_table {
         width: 100%;
-        min-width: 480px; /* tabela não quebra no celular */
+        min-width: 480px;
     }
 
     .jv_table td, .jv_table th {
