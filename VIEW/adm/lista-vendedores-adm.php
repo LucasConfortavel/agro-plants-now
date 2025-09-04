@@ -7,6 +7,15 @@
     $usuarios = $controler_user->indexVend();
     $total_vendedores = count($usuarios);
 
+    $limite = 4; 
+    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $offset = ($pagina_atual - 1) * $limite;
+
+    $total_paginas = ceil($total_vendedores / $limite);
+
+   
+    $usuarios = array_slice($usuarios, $offset, $limite);
+
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $controler_user->criarVendedor();
         unset($_POST);
@@ -88,7 +97,7 @@
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
-                                    <?php foreach ($usuarios as $vend): ?>
+                                    <?php foreach (array_slice($usuarios, 0, 4) as $vend): ?>
                                         <tr>
                                             <td>
                                                 <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $vend['id'] ?>">
@@ -140,46 +149,29 @@
     
                     <!-- Paginação -->
                     <div class="jv_page-navigation">
-                        <!-- <?php// if($pagina_atual > 1): ?> -->
-                            <a href="?pagina=<?php// echo $pagina_atual - 1; ?>" class="jv_page-arrow">
+                         
+                        <?php if($pagina_atual > 1): ?>
+                            <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
                                 <i class="fas fa-arrow-left"></i>
                             </a>
-                        <?php// endif; ?>
+                        <?php endif; ?>
 
+                       
                         <?php 
-                        // $inicio = max(1, $pagina_atual - 2);
-                        // $fim = min($total_paginas, $pagina_atual + 2);
-                        
-                        // for ($i = $inicio; $i <= $fim; $i++): ?>
-                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php// echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                1<?php// echo $i; ?>
-                            </a>
-                        <?php// endfor; ?>
-                        <?php 
-                        // $inicio = max(1, $pagina_atual - 2);
-                        // $fim = min($total_paginas, $pagina_atual + 2);
-                        
-                        // for ($i = $inicio; $i <= $fim; $i++): ?>
-                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php// echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                2<?php// echo $i; ?>
-                            </a>
-                        <?php// endfor; ?>
-                        <?php 
-                        // $inicio = max(1, $pagina_atual - 2);
-                        // $fim = min($total_paginas, $pagina_atual + 2);
-                        
-                        // for ($i = $inicio; $i <= $fim; $i++): ?>
-                            <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php// echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                3<?php// echo $i; ?>
-                            </a>
-                        <?php// endfor; ?>
-                        
+                        $inicio = max(1, $pagina_atual - 2);
+                        $fim = min($total_paginas, $pagina_atual + 2);
 
-                        <?php// if($pagina_atual < $total_paginas): ?>
-                            <a href="?pagina=<?php// echo $pagina_atual + 1; ?>" class="jv_page-arrow">
+                        for ($i = $inicio; $i <= $fim; $i++): ?>
+                            <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                                <?= $i ?>
+                            </a>
+                        <?php endfor; ?>
+
+                        <?php if($pagina_atual < $total_paginas): ?>
+                            <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
                                 <i class="fas fa-arrow-right"></i>
                             </a>
-                        <?php// endif; ?>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Empty State -->
