@@ -1,37 +1,18 @@
 <?php
     include "../../INCLUDE/Menu_vend.php";
-    require_once "../../DB/Database.php";
+    include "../../DB/Database.php";
     
-    try {
-        $db = new Database();
-        $conn = $db->getConexao();
+    $controler_user = new UsuarioController();
 
-        // Pesquisa
-        $pesquisa = "";
-        if (isset($_POST['pesquisar']) && !empty($_POST['pesquisa'])) {
-            $pesquisa = "%" . $_POST['pesquisa'] . "%";
-            $sql = "SELECT * FROM usuario 
-                    WHERE tipo = 'vendas' 
-                    AND (nome LIKE :pesquisa OR email LIKE :pesquisa)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':pesquisa', $pesquisa);
-        } else {
-            $sql = "SELECT * FROM usuario WHERE tipo = 'vendas'";
-            $stmt = $conn->prepare($sql);
-        }
+    $usuarios = $controler_user->indexVend();
+    $total_vendedores = count($usuarios);
 
-        $stmt->execute();
-        $vendedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $total_vendedores = count($vendedores);
+    if(isset($_POST["adicionar"])){
+        $controler_user->criarVendedor();
+        // if($controler_user){
 
-    } catch (DatabaseConnectionException $e) {
-        error_log("Erro de conexão: " . $e->getMessage());
-        $vendedores = [];
-        $total_vendedores = 0;
-    } catch (PDOException $e) {
-        error_log("Erro PDO: " . $e->getMessage());
-        $vendedores = [];
-        $total_vendedores = 0;
+        // }
+        unset($_POST);
     }
 ?>
     
