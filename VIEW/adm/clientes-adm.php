@@ -1,38 +1,19 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
-    require_once "../../DB/Database.php";
+    include "../../CONTROLLER/ClienteController.php";
     
-    try {
-        $db = new Database();
-        $conn = $db->getConexao();
-    
-        // Pesquisa
-        $pesquisa = "";
-        if (isset($_POST['pesquisar']) && !empty($_POST['pesquisa'])) {
-            $pesquisa = "%" . $_POST['pesquisa'] . "%";
-            $sql = "SELECT * FROM usuario 
-                    WHERE tipo = 'cliente' 
-                    AND (nome LIKE :pesquisa OR email LIKE :pesquisa)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':pesquisa', $pesquisa);
-        } else {
-            $sql = "SELECT * FROM usuario WHERE tipo = 'cliente'";
-            $stmt = $conn->prepare($sql);
-        }
-    
-        $stmt->execute();
-        $vendedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $total_vendedores = count($vendedores);
-    
-    } catch (DatabaseConnectionException $e) {
-        error_log("Erro de conexão: " . $e->getMessage());
-        $vendedores = [];
-        $total_vendedores = 0;
-    } catch (PDOException $e) {
-        error_log("Erro PDO: " . $e->getMessage());
-        $vendedores = [];
-        $total_vendedores = 0;
+    $cliente_control = new ClienteController(); 
+    $clientes = $cliente_control->index();
+
+    $total = sizeof($clientes);
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $result = $cliente_control->criarCliente();
+        print_r($result);
+        // print_r($_POST);
+        unset($_POST);
     }
+
 ?>
     
 <!DOCTYPE html>
@@ -82,7 +63,7 @@
                                     </button>
                                 </div>
                                 <div>
-                                    <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                    <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de Pessoas')">
                                         <i class="fas fa-plus"></i>
                                         <a>Cadastrar Cliente</a>
                                     </button>
@@ -91,7 +72,7 @@
                         </div>
                         
                         <p class="jv_subtitle" id="jv_customerCount">
-                                <?= $total_vendedores ?> clientes encontrados
+                                <?= $total ?> clientes encontrados
                         </p>
 
                     </div>
@@ -106,32 +87,33 @@
                                             <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                         </th>
                                         <th class="jv_name">Nome</th> 
-                                        <th class="jv_date">Data de Cadastro</th>
-                                        <th class="jv_total_comp">Total de Compras</t>
-                                        <th class="jv_valor_gast">Valor Gasto</th>
+                                        <th class="jv_date">Data de Nascimento</th>
+                                        <th class="jv_total_comp">Telefone</t>
+                                        <th class="jv_valor_gast">CPF/CNPJ</th>
                                         <th class="jv_actions-col"></th> 
                                     </tr>
                                 </thead>
                                 <tbody id="jv_customerTableBody">
-                                    <?php if ($total_vendedores > 0): ?>
-                                        <?php foreach ($vendedores as $vend): ?>
+                                    <?php if ($total > 0): ?>
+                                        <?php foreach ($clientes as $cliente): ?>
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $vend['id'] ?>">
+                                                    <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
                                                 </td>
                                                 <td>
                                                     <div class="jv_customer-info">
                                                         <div class="jv_avatar">
-                                                            <?= strtoupper(substr($vend['nome'], 0, 2)) ?>
+                                                            <?= strtoupper(substr($cliente['nome'], 0, 2)) ?>
                                                         </div>
                                                         <div class="jv_customer-details">
-                                                            <h4><?= htmlspecialchars($vend['nome']) ?></h4>
-                                                            <p><?= htmlspecialchars($vend['email']) ?></p>
+                                                            <h4><?= htmlspecialchars($cliente['nome']) ?></h4>
+                                                            <p><?= htmlspecialchars($cliente['email']) ?></p>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td><?= htmlspecialchars($vend['telefone']) ?></td>
-                                                <td><?= date("d/m/Y", strtotime($vend['data_nasc'])) ?></td>
+                                                <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
+                                                <td><?= htmlspecialchars($cliente['telefone']) ?></td>
+                                                <td><?= htmlspecialchars($cliente['CPF'] ?? $cliente['CNPJ']) ?></td>
                                                 <td class="jv_table-action">
                                                     <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                         <i class="fas fa-ellipsis-h"></i>

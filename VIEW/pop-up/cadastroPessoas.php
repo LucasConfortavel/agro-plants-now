@@ -1,7 +1,3 @@
-<?php
-    require_once "../../DB/connect.php";
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,7 +14,7 @@
             <button class="eze-tab-button eze-active" id="cliente-tab">Cadastrar Clientes</button>
         </div>
 
-        <form action="" method="post" class="ym_form-pop-up">
+        <form method="POST" class="ym_form-pop-up">
             <div id="cliente-content" class="eze-form-section active">
                 <div class="eze-form-row">
                     <div class="eze-form-group">
@@ -70,7 +66,7 @@
                 </div>
 
                 <div class="eze-button-container">
-                    <button type="submit" class="eze-add-button" name="adicionar">Cadastrar Clientes</button>
+                    <button type="submit" class="eze-add-button">Cadastrar Clientes</button>
                     <p class="eze-help-text"><span class="eze-required">*</span>Campos obrigatórios</p>
                 </div>
             </div>

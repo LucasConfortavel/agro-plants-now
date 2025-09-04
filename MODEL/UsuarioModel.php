@@ -87,22 +87,7 @@ class UsuarioModel {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($row) {
-            $this->nome = $row['nome'];
-            $this->email = $row['email'];
-            $this->tipo = $row['tipo'];
-            $this->telefone = $row['telefone'];
-            $this->CPF = $row['CPF'];
-            $this->endereco = $row['endereco'];
-            $this->cidade = $row['cidade'];
-            $this->estado = $row['estado'];
-            $this->data_nasc = $row['data_nasc'];
-            $this->foto = $row['foto'];
-            
-            return true;
-        }
-
-        return false;
+        return $row;
     }
 
     public function lerTodos() {

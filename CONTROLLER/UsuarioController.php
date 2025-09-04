@@ -65,15 +65,15 @@ class UsuarioController {
     public function mostrar($id) {
         try {
             $this->user->id = $id;
-            
+            $user = $this->user->lerUm();
             if ($this->user->lerUm()) {
-                include_once __DIR__ . '/../views/users/show.php';
+                return $user;
             } else {
                 throw new Exception("Usuário não encontrado");
             }
         } catch (Exception $e) {
             $error = $e->getMessage();
-            include_once __DIR__ . '/../views/error.php';
+            echo $error;
         }
     }
 

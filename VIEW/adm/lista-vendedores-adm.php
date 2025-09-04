@@ -7,11 +7,8 @@
     $usuarios = $controler_user->indexVend();
     $total_vendedores = count($usuarios);
 
-    if(isset($_POST["adicionar"])){
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $controler_user->criarVendedor();
-        // if($controler_user){
-
-        // }
         unset($_POST);
     }
 ?>
