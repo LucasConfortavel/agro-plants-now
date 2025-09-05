@@ -53,14 +53,6 @@
                             </div>
                         </form>
                         
-                        <div class="jv_actions">
-                            <div>
-                                <button class="ym_btn-padrao" name="cadastrar">
-                                    <i class="fas fa-plus"></i>
-                                    <a>Cadastrar Cliente</a>
-                                </button>
-                            </div>
-                        </div>
                     </div>
                     
                     <p class="jv_subtitle" id="jv_customerCount">
@@ -78,7 +70,6 @@
                                     <th class="jv_date">Telefone</th>
                                     <th class="jv_total_comp">Data de Nascimento</th>
                                     <th class="jv_valor_gast">Valor Gasto</th>
-                                    <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
@@ -96,25 +87,22 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td><?= htmlspecialchars($vend['telefone']) ?></td>
-                                            <td><?= date("d/m/Y", strtotime($vend['data_nasc'])) ?></td>
-                                            <td>R$ 0,00</td>
-                                            <td class="jv_table-action" style="text-align:center;">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </td>
+                                            <td style="text-align:center;"><?= htmlspecialchars($vend['telefone']) ?></td>
+                                            <td style="text-align:center;"><?= date("d/m/Y", strtotime($vend['data_nasc'])) ?></td>
+                                            <td style="text-align:center;">R$ 0,00</td>
                                         </tr>
                                     <?php endforeach; ?>
 
                                     <!-- Completa linhas vazias até dar 5 -->
                                     <?php for ($i = count($usuarios); $i < 5; $i++): ?>
                                         <tr>
-                                            <td colspan="5" style="height:70px;"></td>
+                                            <td colspan="4" style="height:70px;"></td>
                                         </tr>
                                     <?php endfor; ?>
 
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="5" style="text-align: center; height: 350px;">
+                                        <td colspan="4" style="text-align: center; height: 350px;">
                                             Nenhum cliente encontrado
                                         </td>
                                     </tr>
