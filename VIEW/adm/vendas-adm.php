@@ -23,7 +23,7 @@ $total_paginas = ceil($total_vendas / $limite);
 // Fatiar o array para exibir apenas os registros da página atual
 $vendas = array_slice($vendas, $offset, $limite);
 ?>
-    
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -101,7 +101,17 @@ $vendas = array_slice($vendas, $offset, $limite);
                                             <td>
                                                 <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>">
                                             </td>
-                                            <td><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></td>
+                                            <td>
+                                                <div class="jv_customer-info">
+                                                    <div class="jv_avatar">
+                                                        <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?>
+                                                    </div>
+                                                    <div class="jv_customer-details">
+                                                        <h4><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></h4>
+                                                        <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
                                             <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
                                             <td class="jv_table-action">
@@ -162,8 +172,6 @@ $vendas = array_slice($vendas, $offset, $limite);
     <script src="../../PUBLIC/JS/vendas-adm.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
-
-
 </body>
 </html>
   
