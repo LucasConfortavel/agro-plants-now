@@ -23,11 +23,11 @@
                             <label class="eze-label-text">Desconto</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="number" class="ym_input-padrao" name="desconto" placeholder="Valor do Desconto" required>
+                        <input type="number" class="ym_input-padrao" name="valor" placeholder="Valor do Desconto" required>
                     </div>
                 </div>
 
-                <div class="eze-form-row">
+                <!-- <div class="eze-form-row">
                     <div class="eze-form-group">
                         <div class="eze-form-label-group">
                             <label class="eze-label-text">Email</label>
@@ -35,15 +35,15 @@
                         </div>
                         <input type="email" class="ym_input-padrao" name="email" placeholder="Email" required>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="eze-form-row">
                     <div class="eze-form-group">
                         <div class="eze-form-label-group">
-                            <label class="eze-label-text">Data de nascimento</label>
+                            <label class="eze-label-text">Data de Validade</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="date" class="ym_input-padrao" name="data" required>
+                        <input type="date" class="ym_input-padrao" name="data_validade" required>
                     </div>
 
                     <div class="eze-form-group">
@@ -68,14 +68,14 @@
                             <label class="eze-label-text">Descrição</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <textarea style="resize: none;" class="ym_input-padrao" name="telefone" placeholder="Descrição" required></textarea>
+                        <textarea style="resize: none;" class="ym_input-padrao" name="descricao" placeholder="Descrição" required></textarea>
                     </div>
                 </div>
 
 
 
                 <div class="eze-button-container">
-                    <button type="submit" class="eze-add-button" name="adicionar">Cadastrar Vendedor</button>
+                    <button type="submit" class="eze-add-button" name="adicionar">Cadastrar Cupom</button>
                     <p class="eze-help-text"><span class="eze-required">*</span>Campos obrigatórios</p>
                 </div>
             </div>

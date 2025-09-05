@@ -21,22 +21,15 @@ class CupomController {
         }
     }
 
-    public function criarcupom() {
+    public function criarCupom() {
         try {
-            if(strlen($_POST['CPF/CNPJ']) == 14){
-                $_POST['CNPJ'] = $_POST['CPF/CNPJ'];
-            } elseif (strlen($_POST['CPF/CNPJ']) == 11){
-                $_POST['CPF'] = $_POST['CPF/CNPJ'];
-            }
-            else{
-                die();
-            }
-            $this->cupom->nome = $_POST['nome'];
-            $this->cupom->email = $_POST['email'];
-            $this->cupom->telefone = !empty($_POST['telefone']) ? $_POST['telefone'] : null;
-            $this->cupom->CPF = !empty($_POST['CPF']) ? $_POST['CPF'] : null;
-            $this->cupom->CNPJ = !empty($_POST['CNPJ']) ? $_POST['CNPJ'] : null;
-            $this->cupom->data_nasc = $_POST['data_nasc'] ?? null;
+
+            $this->cupom->codigo = $_POST['codigo'];
+            $this->cupom->descricao = $_POST['descricao'];
+            $this->cupom->tipo = "FIXO";
+            $this->cupom->valor = $_POST['valor'];
+            $this->cupom->data_validade = $_POST['data_validade'];
+            $this->cupom->data_emissao = date('Y-m-d');
 
             $stmt = $this->cupom->criar();
             return true;
