@@ -101,7 +101,7 @@ class UsuarioModel {
     }
 
     public function lerEspecifico($filtro) {
-        $query = "SELECT id, nome, email, tipo, telefone, CPF, cep, data_nasc, foto 
+        $query = "SELECT id, nome, email, tipo, telefone, CPF, cep,  data_nasc, foto 
                   FROM " . $this->table_name . " WHERE tipo = '$filtro' ORDER BY nome";
         
         $stmt = $this->conn->prepare($query);
