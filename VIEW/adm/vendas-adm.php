@@ -85,7 +85,7 @@ $vendas = array_slice($vendas, $offset, $limite);
                                     <th class="jv_checkbox-col">
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                     </th>
-                                    <th class="jv_name">Vendedor</th> 
+                                    <th class="jv_name">Vendedor</th>
                                     <th class="jv_date">Cliente</th>
                                     <th class="jv_valor_gast">Valor Gasto</th>
                                     <th class="jv_actions-col"></th> 
