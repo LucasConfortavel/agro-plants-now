@@ -5,6 +5,13 @@
     $cupom_control = new CupomController(); 
     $cupons = $cupom_control->index();
     $total = sizeof($cupons);
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $result = $cupom_control->criarCupom();
+        print_r($result);
+        unset($_POST);
+    }
+
 ?>
     
 <!DOCTYPE html>
@@ -53,7 +60,7 @@
                                     </button>
                                 </div>
                                 <div>
-                                    <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                    <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php','Cadastro de Cupom')">
                                         <i class="fas fa-plus"></i>
                                         <a>Cadastrar Cupom</a>
                                     </button>

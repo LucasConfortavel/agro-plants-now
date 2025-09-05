@@ -52,7 +52,6 @@ class UsuarioController {
             $this->user->foto = $_POST['foto'] ?? null;
 
             $stmt = $this->user->criar();
-            $stmt->fetchAll(PDO::FETCH_ASSOC);
             return true;
 
         } catch (Exception $e) {

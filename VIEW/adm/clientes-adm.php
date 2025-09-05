@@ -10,7 +10,6 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $result = $cliente_control->criarCliente();
         print_r($result);
-        // print_r($_POST);
         unset($_POST);
     }
 

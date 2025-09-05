@@ -25,18 +25,22 @@ class ClienteController {
         try {
             if(strlen($_POST['CPF/CNPJ']) == 14){
                 $_POST['CNPJ'] = $_POST['CPF/CNPJ'];
+                $_POST['CPF'] = null;
             } elseif (strlen($_POST['CPF/CNPJ']) == 11){
                 $_POST['CPF'] = $_POST['CPF/CNPJ'];
+                $_POST['CNPJ'] = null;
             }
             else{
-                die();
+                $_POST['CNPJ'] = null;
+                $_POST['CPF'] = null;
+
             }
             $this->cliente->nome = $_POST['nome'];
             $this->cliente->email = $_POST['email'];
-            $this->cliente->telefone = !empty($_POST['telefone']) ? $_POST['telefone'] : null;
-            $this->cliente->CPF = !empty($_POST['CPF']) ? $_POST['CPF'] : null;
-            $this->cliente->CNPJ = !empty($_POST['CNPJ']) ? $_POST['CNPJ'] : null;
-            $this->cliente->data_nasc = $_POST['data_nasc'] ?? null;
+            $this->cliente->telefone = $_POST['telefone'];
+            $this->cliente->CPF = $_POST['CPF'];
+            $this->cliente->CNPJ = $_POST['CNPJ'];
+            $this->cliente->data_nasc = $_POST['data_nasc'] ?? 'null';
 
             $stmt = $this->cliente->criar();
             return true;
@@ -58,7 +62,7 @@ class ClienteController {
             }
         } catch (Exception $e) {
             $error = $e->getMessage();
-            echo $error;
+            return $error;
         }
     }
 

@@ -20,23 +20,23 @@ class CupomModel {
 
     public function criar() {
         $query = "INSERT INTO " . $this->table_name . " 
-                 SET nome=:nome, email=:email,telefone=:telefone, CPF=:CPF,  CNPJ=:CNPJ, data_nasc=:data_nasc";
+                 SET codigo=:codigo, descricao=:descricao,tipo=:tipo, valor=:valor,  data_validade=:data_validade, data_emissao=:data_emissao";
         $stmt = $this->conn->prepare($query);
 
         // sanitização dos dados
-        $this->nome = htmlspecialchars(strip_tags($this->nome));
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->telefone = htmlspecialchars(strip_tags($this->telefone));
-        $this->CPF = htmlspecialchars(strip_tags($this->CPF));
-        $this->CNPJ = htmlspecialchars(strip_tags($this->CNPJ));
-        $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
+        $this->codigo = htmlspecialchars(strip_tags($this->codigo));
+        $this->descricao = htmlspecialchars(strip_tags($this->descricao));
+        $this->tipo = htmlspecialchars(strip_tags($this->tipo));
+        $this->valor = htmlspecialchars(strip_tags($this->valor));
+        $this->data_validade = htmlspecialchars(strip_tags($this->data_validade));
+        $this->data_emissao = htmlspecialchars(strip_tags($this->data_emissao));
 
-        $stmt->bindParam(":nome", $this->nome);
-        $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":telefone", $this->telefone);
-        $stmt->bindParam(":CPF", $this->CPF);
-        $stmt->bindParam(":CNPJ", $this->CNPJ);
-        $stmt->bindParam(":data_nasc", $this->data_nasc);
+        $stmt->bindParam(":codigo", $this->codigo);
+        $stmt->bindParam(":descricao", $this->descricao);
+        $stmt->bindParam(":tipo", $this->tipo);
+        $stmt->bindParam(":valor", $this->valor);
+        $stmt->bindParam(":data_validade", $this->data_validade);
+        $stmt->bindParam(":data_emissao", $this->data_emissao);
 
         try {
             if ($stmt->execute()) {
@@ -89,9 +89,8 @@ class CupomModel {
 
         // return false;
     }
-
     public function lerTodos() {
-        $query = "SELECT id, codigo, data_emissao, data_validade, valor FROM " . $this->table_name;
+        $query = "SELECT id, codigo, data_emissao, data_validade, valor FROM " . $this->table_name .  " ORDER BY data_emissao desc";
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
