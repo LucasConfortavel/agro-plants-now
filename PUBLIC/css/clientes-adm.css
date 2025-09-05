@@ -102,6 +102,10 @@
 .jv_subtitle {
     color: #6b7280;
     font-size: 14px;
+    font-family: 'poppins';
+    margin-top: 23px;
+    margin-left: 5px;
+    
 }
 
 .jv_actions {
@@ -152,12 +156,14 @@
 }
 
 .jv_search-input {
-    width: 100%;
+    width: 104%;
     padding: 10px 12px 10px 40px;
     border: 1px solid #d1d5db;
     border-radius: 6px;
     font-size: 14px;
     transition: border-color 0.2s;
+    margin-top: -18%;
+    
 }
 
 .jv_search-input:focus {
