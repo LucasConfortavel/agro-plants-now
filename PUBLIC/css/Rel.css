@@ -59,6 +59,7 @@ body {
   cursor: pointer;
   transition: all 0.2s;
   color: #6b7280;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .po-tab-button.po-active {

@@ -10,7 +10,7 @@ $conn = $db->getConexao();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_info'])) {
     $stmt = $conn->prepare('
         UPDATE usuario 
-        SET nome = ?, email = ?, telefone = ?, cpf = ?, endereco = ?, cidade = ?, estado = ?, data_nasc = ? 
+        SET nome = ?, email = ?, telefone = ?, cpf = ?, endereco = ?, cep = ?, data_nasc = ?
         WHERE id = ?
     ');
     $stmt->execute([
@@ -18,9 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_info'])) {
         $_POST['email'],
         $_POST['telefone'],
         $_POST['cpf'],
-        $_POST['endereco'],
-        $_POST['cidade'],
-        $_POST['estado'],
+        $_POST['cep'],
         $_POST['data_nasc'],
         $user_id
     ]);
@@ -38,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
 }
 
 $stmt = $conn->prepare('
-    SELECT nome, email, tipo, telefone, cpf, endereco, cidade, estado, data_nasc, foto
+    SELECT nome, email, tipo, telefone, cpf, cep, data_nasc, foto
     FROM usuario 
     WHERE id = ?
 ');
@@ -137,16 +135,8 @@ include "../../INCLUDE/Menu_adm.php";
                 <input type="text" value="<?php echo htmlspecialchars($user_data['tipo'] === 'admin' ? 'Administrador' : $user_data['tipo']); ?>" readonly disabled>
             </div>
             <div class="form-group full-width">
-                <label>Endereço</label>
-                <input type="text" name="endereco" value="<?php echo htmlspecialchars($user_data['endereco']); ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label>Cidade</label>
-                <input type="text" name="cidade" value="<?php echo htmlspecialchars($user_data['cidade']); ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label>Estado</label>
-                <input type="text" name="estado" value="<?php echo htmlspecialchars($user_data['estado']); ?>" readonly>
+                <label>CEP</label>
+                <input type="text" name="endereco" value="<?php echo htmlspecialchars($user_data['cep']); ?>" readonly>
             </div>
             <div class="form-actions" style="display: none;">
                 <button type="button" class="btn-cancel" onclick="cancelEdit('personal')">Cancelar</button>
