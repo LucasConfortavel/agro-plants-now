@@ -112,6 +112,7 @@
 .jv_container {
     max-width: 1200px;
     margin: 0 auto;
+    
 }
 
 .jv_card {
@@ -119,7 +120,7 @@
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    height: 620px;
+    
 }
 
 .jv_card-header {
@@ -160,6 +161,11 @@
 .jv_subtitle {
     color: #6b7280;
     font-size: 14px;
+    font-family: 'poppins';
+    margin-top: 23px;
+    margin-left: 5px;
+    
+
 }
 
 .jv_actions {
@@ -209,12 +215,14 @@
 }
 
 .jv_search-input {
-    width: 100%;
+    width: 104%;
     padding: 10px 12px 10px 40px;
     border: 1px solid #d1d5db;
     border-radius: 6px;
     font-size: 14px;
     transition: border-color 0.2s;
+    margin-top: -18%;
+    
 }
 
 .jv_search-input:focus {
@@ -244,15 +252,77 @@
 }
 
 
-.jv_table-header #jv_banguela {
+.jv_table-header .jv_name {
     padding: 12px 16px;
     text-align: left;
     font-weight: 600;
-    color: #111827;
+    color: #000000; 
     font-size: 1rem;
 }
 
+.jv_table-header .jv_status {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
 
+.jv_table-header .jv_date {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_total_comp {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_valor_gast {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_desconto{
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_cadastro {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_validade {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_valor_gast {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
 
 
 

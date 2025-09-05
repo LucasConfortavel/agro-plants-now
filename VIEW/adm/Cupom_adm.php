@@ -92,9 +92,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                 </th>
                                 <th class="jv_name">Código</th>
-                                <th class="jv_date">Desconto</th>
-                                <th class="jv_total_comp">Data de Cadastro</th>
-                                <th class="jv_valor_gast">Validade</th>
+                                <th class="jv_desconto">Desconto</th>
+                                <th class="jv_cadastro">Data de Cadastro</th>
+                                <th class="jv_validade">Validade</th>
                                 <th class="jv_actions-col"></th>
                             </tr>
                         </thead>

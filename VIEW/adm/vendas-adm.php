@@ -87,7 +87,7 @@
                                                     <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>">
                                                 </td>
                                                 <td>
-                                                    <?= $vendedor['nome'] ?>
+                                                    <?= $vendedor['nome'] ?> 
                                                 </td>
                                                 <td><?= $cliente['nome'] ?></td>
                                                 <td><?='R$' .  htmlspecialchars($venda['total']) ?></td>
