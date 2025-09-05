@@ -91,7 +91,7 @@ class UsuarioModel {
     }
 
     public function lerTodos() {
-        $query = "SELECT id, nome, email, tipo, telefone, CPF, endereco, cidade, estado, data_nasc, foto 
+        $query = "SELECT id, nome, email, tipo, telefone, CPF, cep, data_nasc, foto 
                   FROM " . $this->table_name . " ORDER BY nome";
         
         $stmt = $this->conn->prepare($query);
@@ -101,7 +101,7 @@ class UsuarioModel {
     }
 
     public function lerEspecifico($filtro) {
-        $query = "SELECT id, nome, email, tipo, telefone, CPF, endereco, cidade, estado, data_nasc, foto 
+        $query = "SELECT id, nome, email, tipo, telefone, CPF, cep, data_nasc, foto 
                   FROM " . $this->table_name . " WHERE tipo = '$filtro' ORDER BY nome";
         
         $stmt = $this->conn->prepare($query);
@@ -179,9 +179,9 @@ class UsuarioModel {
 
     public function deletar() {
         try {
-            $this->lerUm();
+            // $this->lerUm();
             
-            $this->imagemHandler->deletarImagem($this->foto, 'usuarios');
+            // $this->imagemHandler->deletarImagem($this->foto, 'usuarios');
             
             $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
             $stmt = $this->conn->prepare($query);
