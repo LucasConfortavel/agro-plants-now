@@ -36,8 +36,9 @@
         header('Location: ' . $redirect);
         exit;
     }
+    
+    $usuarios = $controler_user->index();
 
-    $usuarios = $controler_user->indexVend();
     $total_vendedores = count($usuarios);
 
     $limite = 4;
