@@ -572,8 +572,12 @@
     }
 
     .jv_search-container {
-        width: 100%;
+        width: 80%;
         max-width: 100%;
+    }
+
+    .ym_btn-padrao{
+        margin-left: -10px;
     }
 
     .jv_table-container {
