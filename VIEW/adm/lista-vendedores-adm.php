@@ -40,7 +40,7 @@
     $usuarios = $controler_user->indexVend();
     $total_vendedores = count($usuarios);
 
-    $limite = 2;
+    $limite = 4;
     $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     if ($pagina_atual < 1) $pagina_atual = 1;
     $offset = ($pagina_atual - 1) * $limite;

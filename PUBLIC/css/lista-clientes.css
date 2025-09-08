@@ -1,4 +1,183 @@
-/* === Paginação === */
+/* ======================== */
+/* Container principal */
+.jv_container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.jv_card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.jv_card-header {
+    padding: 24px;
+    border-bottom: 1px solid #e5e7eb;
+    background: white;
+}
+
+.jv_header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.jv_subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.jv_actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.jv_btn {
+    padding: 16px 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.ym_btn-padrao{
+    gap: 12px;
+}
+
+.jv_search-section {
+    margin-top: 16px;
+}
+
+.jv_search-container {
+    position: relative;
+    max-width: 384px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 45%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+.jv_search-input {
+    width: 100%;
+    padding: 10px 12px 10px 40px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.jv_search-input:focus {
+    outline: none;
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.jv_card-content {
+    padding: 0;
+}
+
+/* ======================== */
+/* Área da tabela */
+.jv_table-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.jv_table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; 
+    min-width: 600px;
+}
+
+.jv_table-header {
+    background: #f9fafb;
+}
+
+/* Cabeçalho */
+.jv_table-header th {
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #000;
+    box-sizing: border-box;
+}
+
+/* Centraliza apenas o título "Nome" */
+.jv_table-header .jv_name { text-align: center; width: 40%; }
+.jv_table-header .jv_date { text-align: center; width: 20%; }
+.jv_table-header .jv_total_comp { text-align: center; width: 20%; }
+.jv_table-header .jv_valor_gast { text-align: center; width: 20%; }
+
+/* Células (dados) */
+.jv_table td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    text-align: left; /* dados à esquerda */
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jv_table td:nth-child(n+2) {
+    text-align: center; /* colunas telefone, data, valor centralizadas */
+}
+
+/* Info do cliente */
+.jv_customer-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.jv_avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #45734b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.jv_customer-details h4 {
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 2px;
+    margin-top: 0;
+}
+
+.jv_customer-details p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Altura fixa das linhas */
+.jv_table tr { height: 70px; }
+
+/* ========================== */
+/* Paginação */
 .jv_page-navigation {
     display: flex;
     justify-content: center;
@@ -6,7 +185,6 @@
     margin: 25px 0;
     gap: 8px;
     flex-wrap: wrap;
-    margin-right: 5%;
 }
 
 .jv_page-number {
@@ -63,206 +241,8 @@
     cursor: not-allowed;
 }
 
-/* ======================== */
-.jv_container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.jv_card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.jv_card-header {
-    padding: 24px;
-    border-bottom: 1px solid #e5e7eb;
-    background: white;
-}
-
-.jv_header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-.jv_title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 24px;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 4px;
-}
-
-.jv_subtitle {
-    color: #6b7280;
-    font-size: 14px;
-}
-
-.jv_actions {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.jv_btn {
-    padding: 16px 8px;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s;
-}
-
-.ym_btn-padrao{
-    gap: 12px;
-}
-
-.ym_btn-remover{
-    gap: 12px;
-}
-
-.jv_search-section {
-    margin-top: 16px;
-}
-
-.jv_search-container {
-    position: relative;
-    max-width: 384px;
-}
-
-.search-icon {
-    position: absolute;
-    left: 12px;
-    top: 45%;
-    transform: translateY(-50%);
-    color: #9ca3af;
-    font-size: 14px;
-}
-
-.jv_search-input {
-    width: 100%;
-    padding: 10px 12px 10px 40px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border-color 0.2s;
-}
-
-.jv_search-input:focus {
-    outline: none;
-    border-color: #059669;
-    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
-}
-
-.jv_card-content {
-    padding: 0;
-}
-
-/* ======================== */
-/* Área da tabela (container) */
-/* Não permite scroll vertical da página por causa da tabela */
-.jv_table-container {
-    width: 100%;
-    overflow-x: auto; /* permite scroll horizontal em telas pequenas */
-    overflow-y: hidden; /* sem scroll vertical */
-}
-
-/* === TABELA: layout fixo para manter largura de colunas estável === */
-.jv_table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* IMPORTANT: fixa colunas para não 'dançarem' */
-    min-width: 600px;
-}
-
-/* Cabeçalho */
-.jv_table-header {
-    background: #f9fafb;
-}
-
-/* Definindo larguras fixas (percentuais) para evitar recalculo */
-.jv_table-header th {
-    padding: 12px 16px;
-    font-weight: 600;
-    color: #000;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-/* larguras percentuais somando ~100% */
-.jv_table-header .jv_name { width: 40%; text-align: left; }
-.jv_table-header .jv_date { width: 20%; }
-.jv_table-header .jv_total_comp { width: 15%; }
-.jv_table-header .jv_valor_gast { width: 15%; }
-.jv_table-header .jv_actions-col { width: 10%; text-align: center; }
-
-/* Células (corpo) */
-.jv_table td {
-    padding: 12px 16px;
-    vertical-align: middle;
-    text-align: center;
-    box-sizing: border-box;
-    white-space: nowrap;              /* evita quebra de linha que muda largura */
-    overflow: hidden;                 /* corta o conteúdo que extrapola */
-    text-overflow: ellipsis;          /* mostra "..." para textos longos */
-}
-
-/* Primeiro coluna (nome) alinhada à esquerda */
-.jv_table td:first-child {
-    text-align: left;
-}
-
-/* Altura fixa para cada linha (garante que cada linha ocupe o mesmo espaço) */
-.jv_table tr {
-    height: 70px;
-}
-
-/* Info do cliente */
-.jv_customer-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.jv_avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #45734b);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.jv_customer-details h4 {
-    font-weight: 500;
-    color: #111827;
-    margin-bottom: 2px;
-    margin-top: 0;
-}
-
-.jv_customer-details p {
-    font-size: 14px;
-    color: #6b7280;
-    margin: 0;
-}
-
 /* ========================== */
-/* RESPONSIVIDADE */
+/* Responsividade */
 @media (max-width: 1024px) {
     .jv_table {
         min-width: 500px;
