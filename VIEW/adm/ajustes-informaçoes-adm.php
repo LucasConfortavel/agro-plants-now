@@ -57,7 +57,25 @@ include "../../INCLUDE/Menu_adm.php";
     <link rel="stylesheet" href="../../PUBLIC/css/ajustes-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        
+        .page-header {
+            margin-top: 50px; 
+        }
+        
+        .profile-header {
+            margin-top: 20px; 
+        }
+
+        
+        @media (max-width: 768px) {
+            .page-header {
+                margin-top: 40px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <main class="jp_main-content">
         <div class="page-header">
