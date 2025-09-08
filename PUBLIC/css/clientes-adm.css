@@ -315,6 +315,11 @@
     margin: 4px 0;
 }
 
+.jv_checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: #059669;
+}
 /* ========================== */
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
@@ -359,9 +364,10 @@
         min-width: 480px; /* tabela não quebra no celular */
     }
 
-    .jv_table td, .jv_table th {
+    .jv_table td, .jv_table .jv_name {
         padding: 12px 10px;
         font-size: 14px;
+        margin-left: 2px;
     }
 
     .jv_customer-details h4 {
