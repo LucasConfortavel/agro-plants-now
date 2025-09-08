@@ -4,7 +4,6 @@ require_once __DIR__ . '/../DB/Database.php';
 class UsuarioModel {
     private $conn;
     private $table_name = "usuario";
-    private $imagemHandler;
 
     public $id;
     public $nome;
@@ -179,10 +178,6 @@ class UsuarioModel {
 
     public function deletar() {
         try {
-            // $this->lerUm();
-            
-            // $this->imagemHandler->deletarImagem($this->foto, 'usuarios');
-            
             $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
             $stmt = $this->conn->prepare($query);
 
