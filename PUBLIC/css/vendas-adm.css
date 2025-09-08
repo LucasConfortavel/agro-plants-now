@@ -607,8 +607,12 @@
         font-size: 14px;
     }
 
+    .ym_btn-padrao{
+        margin-left: -10px;
+    }
+
     .jv_search-container {
-        width: 100%;
+        width: 80%;
         max-width: 100%;
     }
 
@@ -620,9 +624,10 @@
         min-width: 768px;
     }
 
-    .jv_table td, .jv_table-header td {
+    .jv_table td, .jv_table-header .jv_name {
         padding: 12px 10px;
         font-size: 14px;
+        margin-left: 2px;
     }
 
     .jv_customer-details h4 {
