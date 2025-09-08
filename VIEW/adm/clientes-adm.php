@@ -7,7 +7,7 @@ $clientes = $cliente_control->index();
 $total_clientes = count($clientes);
 
 // Paginação
-$limite = 3;
+$limite = 4;
 $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_clientes / $limite);
