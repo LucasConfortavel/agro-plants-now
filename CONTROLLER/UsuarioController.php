@@ -19,7 +19,7 @@ class UsuarioController {
             include_once __DIR__ . '/../views/users/index.php';
         } catch (Exception $e) {
             $error = $e->getMessage();
-            include_once __DIR__ . '/../views/error.php';
+            return $error;
         }
     }
 
@@ -132,14 +132,14 @@ class UsuarioController {
             $this->user->id = $id;
             
             if ($this->user->deletar()) {
-                header("Location: /users?success=Usuário excluído com sucesso");
+                return true;
                 exit();
             } else {
                 throw new Exception("Erro ao excluir usuário");
             }
         } catch (Exception $e) {
             $error = $e->getMessage();
-            include_once __DIR__ . '/../views/error.php';
+            return $error;
         }
     }
 
