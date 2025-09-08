@@ -8,8 +8,8 @@
     $cliente = $controler_user->index();
     $total_clientes = count($cliente);
 
-    // Paginação: 5 por página
-    $limite = 5; 
+    // Paginação: 4 por página
+    $limite = 4; 
     $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     if ($pagina_atual < 1) $pagina_atual = 1;
 
@@ -93,8 +93,8 @@
                                         </tr>
                                     <?php endforeach; ?>
 
-                                    <!-- Completa linhas vazias até dar 5 -->
-                                    <?php for ($i = count($usuarios); $i < 5; $i++): ?>
+                                    <!-- Completa linhas vazias até dar 4 -->
+                                    <?php for ($i = count($usuarios); $i < $limite; $i++): ?>
                                         <tr>
                                             <td colspan="4" style="height:70px;"></td>
                                         </tr>
@@ -102,7 +102,7 @@
 
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="4" style="text-align: center; height: 350px;">
+                                        <td colspan="4" class="jv_empty">
                                             Nenhum cliente encontrado
                                         </td>
                                     </tr>
