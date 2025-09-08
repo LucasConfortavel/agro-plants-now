@@ -448,6 +448,11 @@
     accent-color: #059669;
 }
 
+.jv_checkbox-col .jv_checkbox{
+    display: flex;
+    margin-left: 6px;
+}
+
 .jv_menu-btn {
     background: none;
     width: auto;
