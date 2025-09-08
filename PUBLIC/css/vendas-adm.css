@@ -620,9 +620,10 @@
         min-width: 768px;
     }
 
-    .jv_table td, .jv_table-header td {
+    .jv_table td, .jv_table-header .jv_name {
         padding: 12px 10px;
         font-size: 14px;
+        margin-left: 2px;
     }
 
     .jv_customer-details h4 {

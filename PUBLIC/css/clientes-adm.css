@@ -364,9 +364,10 @@
         min-width: 480px; /* tabela não quebra no celular */
     }
 
-    .jv_table td, .jv_table th {
+    .jv_table td, .jv_table .jv_name {
         padding: 12px 10px;
         font-size: 14px;
+        margin-left: 2px;
     }
 
     .jv_customer-details h4 {
