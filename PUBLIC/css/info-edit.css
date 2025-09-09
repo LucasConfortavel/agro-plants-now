@@ -10,17 +10,49 @@ body {
     background-color: #f5f5f5;
 }
 
+
 .jp_main-content {
     flex: 1;
     padding: 30px;
 }
 
+.ym_btn-padrao{
+    max-width: 12%;
+    gap: 8px;
+    animation: aparecer ease 0.4s;
+}
+
+.ym_btn-remover{
+    max-width: 12%;
+    gap: 8px;
+}
+
 .ym_area-info{
-    height: 63vh;
+    padding-top: 25px;
     flex-direction: column; 
     display: flex; 
     align-items: center; 
     justify-content: center;
+}
+
+.ym_btn-salvar{
+    height: 70%;
+    max-width: 50%;
+    display: none; 
+  }
+  
+@keyframes aparecer {
+    0%{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+}
+
+.ym_input-info{
+    border: 1px solid rgba(0, 0, 0, 0.159);
+    padding: 4px;
+    border-radius: 5px;
+    display: none;
 }
 
 .jp_profile-header {

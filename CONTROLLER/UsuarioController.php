@@ -78,18 +78,18 @@ class UsuarioController {
 
     // mostrar formulario de edição
     public function editar($id) {
-        try {
-            $this->user->id = $id;
+        // try {
+        //     $this->user->id = $id;
             
-            if ($this->user->lerUm()) {
-                include_once __DIR__ . '/../views/users/edit.php';
-            } else {
-                throw new Exception("Usuário não encontrado");
-            }
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            include_once __DIR__ . '/../views/error.php';
-        }
+        //     if ($this->user->lerUm()) {
+        //         include_once __DIR__ . '/../views/users/edit.php';
+        //     } else {
+        //         throw new Exception("Usuário não encontrado");
+        //     }
+        // } catch (Exception $e) {
+        //     $error = $e->getMessage();
+        //     include_once __DIR__ . '/../views/error.php';
+        // }
     }
 
     // processar atualização de usuario
@@ -100,12 +100,9 @@ class UsuarioController {
             // receber dados do formulario
             $this->user->nome = $_POST['nome'];
             $this->user->email = $_POST['email'];
-            $this->user->tipo = $_POST['tipo'];
             $this->user->telefone = $_POST['telefone'] ?? null;
             $this->user->CPF = $_POST['cpf'];
-            $this->user->endereco = $_POST['endereco'] ?? null;
-            $this->user->cidade = $_POST['cidade'] ?? null;
-            $this->user->estado = $_POST['estado'] ?? null;
+            $this->user->CEP = $_POST['cep'] ?? null;
             $this->user->data_nasc = $_POST['data_nasc'] ?? null;
             $this->user->foto = $_POST['foto'] ?? null;
             
@@ -116,14 +113,15 @@ class UsuarioController {
 
             // atualizar usuario
             if ($this->user->atualizar()) {
-                header("Location: /users/$id?success=Usuário atualizado com sucesso");
+                header('Location: ' .  $_SERVER['REQUEST_URI']);
                 exit();
             } else {
                 throw new Exception("Erro ao atualizar usuário");
             }
         } catch (Exception $e) {
             $error = $e->getMessage();
-            $this->editar($id); // voltar para o formulario de edição com erro
+            return $error;
+            // $this->editar($id); // voltar para o formulario de edição com erro
         }
     }
 

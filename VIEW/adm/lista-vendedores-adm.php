@@ -26,20 +26,16 @@
         if (isset($_GET['visualizar'])){
             $id = $_GET['visualizar'];
             $usuario = $controler_user->mostrar($id);
-            print_r($usuario);
-
-        } elseif (isset($_GET['editar'])){
-            $id = $_GET['editar'];
-            $usuario = $controler_user->mostrar($id);
+            header('Location: info-edit-adm.php?id=' . $id);
 
         } elseif (isset($_GET['remover'])){
             $id = $_GET['remover'];
             $usuario = $controler_user->deletar($id);
-
+            // print_r($usuario);
+            header('Location: ' . $_SERVER['PHP_SELF']);
         }
 
 
-        header('Location: ' . $_SERVER['PHP_SELF']);
         exit;
     }
 
@@ -145,10 +141,6 @@
                                                 <form class="jv_dropdown">
                                                     <button type="submit" name="visualizar" value=<?= htmlspecialchars($vend['id']); ?> class="jv_dropdown-item">
                                                         <i class="fas fa-eye"></i> Visualizar
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <button type="submit" name="editar" value=<?= htmlspecialchars($vend['id']); ?>  class="jv_dropdown-item">
-                                                        <i class="fas fa-edit"></i> Editar
                                                     </button>
                                                     <div class="jv_dropdown-separator"></div>
                                                     <button type="submit" name="remover" value=<?= htmlspecialchars($vend['id']); ?>  class="jv_dropdown-item jv_danger">

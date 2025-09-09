@@ -13,9 +13,7 @@ class UsuarioModel {
     public $tipo;
     public $telefone;
     public $CPF;
-    public $endereco;
-    public $cidade;
-    public $estado;
+    public $CEP;
     public $data_nasc;
     public $foto;
 
@@ -113,17 +111,14 @@ class UsuarioModel {
     public function atualizar() {
         // query base, sem a senha
         $query = "UPDATE " . $this->table_name . " 
-                 SET nome=:nome, email=:email, tipo=:tipo, 
-                     telefone=:telefone, CPF=:CPF, endereco=:endereco, 
-                     cidade=:cidade, estado=:estado, data_nasc=:data_nasc, foto=:foto 
+                 SET nome=:nome, email=:email, 
+                     telefone=:telefone, CPF=:CPF, CEP=:CEP, data_nasc=:data_nasc, foto=:foto 
                  WHERE id=:id";
 
         // se uma nova senha foi fornecida, adicionar a query
         if (!empty($this->senha)) {
             $query = "UPDATE " . $this->table_name . " 
-                     SET nome=:nome, email=:email, senha=:senha, tipo=:tipo, 
-                         telefone=:telefone, CPF=:CPF, endereco=:endereco, 
-                         cidade=:cidade, estado=:estado, data_nasc=:data_nasc, foto=:foto 
+                     SET nome=:nome, email=:email, senha=:senha, telefone=:telefone, CPF=:CPF, CEP=:CEP, data_nasc=:data_nasc, foto=:foto 
                      WHERE id=:id";
         }
 
@@ -132,24 +127,18 @@ class UsuarioModel {
         // sanitização
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->tipo = htmlspecialchars(strip_tags($this->tipo));
         $this->telefone = htmlspecialchars(strip_tags($this->telefone));
         $this->CPF = htmlspecialchars(strip_tags($this->CPF));
-        $this->endereco = htmlspecialchars(strip_tags($this->endereco));
-        $this->cidade = htmlspecialchars(strip_tags($this->cidade));
-        $this->estado = htmlspecialchars(strip_tags($this->estado));
+        $this->endereco = htmlspecialchars(strip_tags($this->CEP));
         $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
         $this->foto = htmlspecialchars(strip_tags($this->foto));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $stmt->bindParam(":nome", $this->nome);
         $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":tipo", $this->tipo);
         $stmt->bindParam(":telefone", $this->telefone);
         $stmt->bindParam(":CPF", $this->CPF);
-        $stmt->bindParam(":endereco", $this->endereco);
-        $stmt->bindParam(":cidade", $this->cidade);
-        $stmt->bindParam(":estado", $this->estado);
+        $stmt->bindParam(":CEP", $this->CEP);
         $stmt->bindParam(":data_nasc", $this->data_nasc);
         $stmt->bindParam(":foto", $this->foto);
         $stmt->bindParam(":id", $this->id);
