@@ -50,6 +50,7 @@ include "../../INCLUDE/Menu_vend.php";
         </div>
         <div class="P_cart-table">
             <div class="P_table-header">
+                <div class="P_header-id">ID</div>
                 <div class="P_header-produto">Produto</div>
                 <div class="P_header-preco">Preço</div>   
                 <div class="P_header-quantidade">Quantidade</div>
@@ -57,6 +58,9 @@ include "../../INCLUDE/Menu_vend.php";
             </div>
 
             <div class="P_cart-item">
+                <div class="P_item-id">
+                    <span>K23</span>
+                </div>
                 <div class="P_item-produto">
                     <div class="P_product-image"></div>
                     <span>Produto</span>

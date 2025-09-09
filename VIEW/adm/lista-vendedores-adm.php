@@ -4,52 +4,63 @@
 
     $controler_user = new UsuarioController();
 
-    $usuarios = $controler_user->indexVend();
-    $total_vendedores = count($usuarios);
-
-    $limite = 4; 
-    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-    $offset = ($pagina_atual - 1) * $limite;
-
-    $total_paginas = ceil($total_vendedores / $limite);
-
-   
-    $usuarios = array_slice($usuarios, $offset, $limite);
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    // POST: criar vendedor
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $controler_user->criarVendedor();
         header('Location: ' . $_SERVER['PHP_SELF']);
         exit;
     }
 
+    $action_handled = false;
+
     if(!empty($_GET)){
         if (isset($_GET['visualizar'])){
             $id = $_GET['visualizar'];
             $usuario = $controler_user->mostrar($id);
+            $action_handled = true;
             header('Location: info-edit-adm.php?id=' . $id);
 
         } elseif (isset($_GET['remover'])){
             $id = $_GET['remover'];
             $usuario = $controler_user->deletar($id);
-            // print_r($usuario);
+            $action_handled = true;
             header('Location: ' . $_SERVER['PHP_SELF']);
         }
-
-
-        exit;
     }
 
+    if ($action_handled) {
+
+        $redirect = $_SERVER['PHP_SELF'];
+        if (isset($_GET['pagina'])) {
+            $redirect .= '?pagina=' . (int)$_GET['pagina'];
+        }
+        header('Location: ' . $redirect);
+        exit;
+    }
+    
+    $usuarios = $controler_user->index();
+
+    $total_vendedores = count($usuarios);
+
+    $limite = 4;
+    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    if ($pagina_atual < 1) $pagina_atual = 1;
+    $offset = ($pagina_atual - 1) * $limite;
+
+    $total_paginas = ($total_vendedores > 0) ? ceil($total_vendedores / $limite) : 1;
+
+    $usuarios = array_slice($usuarios, $offset, $limite);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gerenciamento de Vendedores</title>
-        <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
-        <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
-        <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Vendedores</title>
+    <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 
@@ -69,15 +80,15 @@
                 <!-- Header -->
                 <div class="jv_card-header">
                     <div class="jv_header-content">
-                    <form method="POST" action="#" class="jv_search-section">
-                        <div class="jv_search-container">
-                            <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
-                                <i class="fas fa-search search-icon"></i>
-                            </button>
-                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
-                        </div>
-                    </form>
-                        
+                        <form method="POST" action="#" class="jv_search-section">
+                            <div class="jv_search-container">
+                                <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
+                                    <i class="fas fa-search search-icon"></i>
+                                </button>
+                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
+                            </div>
+                        </form>
+
                         <div class="jv_actions">
                             <div>
                                 <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
@@ -86,18 +97,17 @@
                                 </button>
                             </div>
                             <div>
-                                <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                <button type="button" class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
                                     <i class="fas fa-plus"></i>
-                                    <a>Cadastrar Vendedor</a>
+                                    <span>Cadastrar Vendedor</span>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    
-                    <p class="jv_subtitle" id="jv_customerCount">
-                            <?= $total_vendedores ?> vendedores encontrados
-                    </p>
 
+                    <p class="jv_subtitle" id="jv_customerCount">
+                        <?= $total_vendedores ?> vendedores encontrados
+                    </p>
                 </div>
 
                 <!-- Table -->
@@ -116,10 +126,17 @@
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
-                                    <?php foreach (array_slice($usuarios, 0, 4) as $vend): ?>
+                                <?php if (count($usuarios) === 0): ?>
+                                    <tr>
+                                        <td colspan="5" style="text-align:center; padding: 2rem;">
+                                            Nenhum vendedor nesta página.
+                                        </td>
+                                    </tr>
+                                <?php else: ?>
+                                    <?php foreach ($usuarios as $vend): ?>
                                         <tr>
                                             <td>
-                                                <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $vend['id'] ?>">
+                                                <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= htmlspecialchars($vend['id']) ?>">
                                             </td>
                                             <td>
                                                 <div class="jv_customer-info">
@@ -138,8 +155,8 @@
                                                 <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </button>
-                                                <form class="jv_dropdown">
-                                                    <button type="submit" name="visualizar" value=<?= htmlspecialchars($vend['id']); ?> class="jv_dropdown-item">
+                                                <form class="jv_dropdown" method="GET" action="">
+                                                    <button type="submit" name="visualizar" value="<?= htmlspecialchars($vend['id']) ?>" class="jv_dropdown-item">
                                                         <i class="fas fa-eye"></i> Visualizar
                                                     </button>
                                                     <div class="jv_dropdown-separator"></div>
@@ -150,7 +167,7 @@
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
-
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -158,13 +175,10 @@
             </div>
         </div>
     </main>
-    
 
-   
-    
-                    <!-- Paginação -->
+    <!-- Paginação -->
     <div class="jv_page-navigation">
-        <?php if($pagina_atual > 1): ?>
+        <?php if ($pagina_atual > 1): ?>
             <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
                 <i class="fas fa-arrow-left"></i>
             </a>
@@ -179,27 +193,19 @@
             </a>
         <?php endfor; ?>
 
-        <?php if($pagina_atual < $total_paginas): ?>
+        <?php if ($pagina_atual < $total_paginas): ?>
             <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
                 <i class="fas fa-arrow-right"></i>
             </a>
         <?php endif; ?>
     </div>
 
-    <!-- Empty State -->
-     <div id="jv_emptyState" class="jv_empty-state" style="display: none;">
-            <i class="fas fa-search empty-icon"></i>
-            <h3>Nenhum Vendedor encontrado</h3>
-            <p>Tente ajustar os termos de pesquisa</p>
-    </div>
-
     <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
         <i class="fa-solid fa-circle-info"></i>
     </a>
 
-    </main>
-        <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
-        <script src="../../PUBLIC/JS/script.js"></script>
-        <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+    <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
+    <script src="../../PUBLIC/JS/script.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 </body>
 </html>

@@ -404,6 +404,10 @@
     accent-color: #059669;
 }
 
+.jv_checkbox-col .jv_checkbox{
+    display: flex;
+    margin-left: 6px;
+}
 
 
 .jv_empty-state {
@@ -571,8 +575,12 @@
     }
 
     .jv_search-container {
-        width: 100%;
+        width: 80%;
         max-width: 100%;
+    }
+
+    .ym_btn-padrao{
+        margin-left: -10px;
     }
 
     .jv_table-container {
