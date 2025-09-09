@@ -207,7 +207,7 @@
         <i class="fa-solid fa-circle-info"></i>
     </a>
 
-    <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
+    <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 </body>
