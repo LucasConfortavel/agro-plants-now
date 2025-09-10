@@ -167,11 +167,12 @@ $vendas = array_slice($vendas, $offset, $limite);
                 </a>
             <?php endif; ?>
         </div>
-    </main>
+ 
 
-    <script src="../../PUBLIC/JS/vendas-adm.js"></script>
-    <script src="../../PUBLIC/JS/script.js"></script>
-    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+        <script src="../../PUBLIC/JS/vendas-adm.js"></script>
+        <script src="../../PUBLIC/JS/script.js"></script>
+        <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+</main>
 </body>
 </html>
   
