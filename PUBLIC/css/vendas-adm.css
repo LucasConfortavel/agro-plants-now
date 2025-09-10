@@ -254,10 +254,10 @@
 
 .jv_table-header .jv_name {
     padding: 12px 16px;
+    font-weight: 600;
     justify-content: center;
     display: flex;
-    margin-left: -199px;
-    font-weight: 600;
+    margin-left: -139px;
     color: #000000; 
     font-size: 1rem;
 }
