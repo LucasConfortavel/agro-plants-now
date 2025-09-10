@@ -33,11 +33,9 @@ class UsuarioController {
             $this->user->tipo = $_POST['tipo'];
             $this->user->telefone = $_POST['telefone'] ?? null;
             $this->user->CPF = $_POST['CPF'];
-            $this->user->endereco = $_POST['endereco'] ?? null;
-            $this->user->cidade = $_POST['cidade'] ?? null;
-            $this->user->estado = $_POST['estado'] ?? null;
             $this->user->data_nasc = $_POST['data_nasc'] ?? null;
             $this->user->foto = $_POST['foto'] ?? null;
+            $this->user->CEP = $_POST['cep'] ?? null;
 
             if ($this->user->criar()) {
                 return ['success' => 'Usuário criado com sucesso', 'id' => $this->user->id];
@@ -126,9 +124,11 @@ class UsuarioController {
 
                     // Retornar redirecionamento com base no tipo de usuário
                     if ($_SESSION['tipo'] == 'admin') {  
-                        return ['redirect' => '../VIEW/adm/dashboard-adm.php'];
+                        header('Location: ../VIEW/adm/dashboard-adm.php');
+                        exit;
                     } elseif ($_SESSION['tipo'] == 'vendedor') {
-                        return ['redirect' => '../VIEW/vend/dashboard_vendedor.php'];
+                        header('Location: ../VIEW/vend/dashboard_vendedor.php');
+                        exit;
                     }
                 } else {
                     throw new Exception("Email ou senha inválidos.");
