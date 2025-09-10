@@ -198,8 +198,8 @@
 
 .jv_table-header .jv_name {
     padding: 12px 16px;
-    font-weight: 600;
     display: flex;
+    font-weight: 600;
     color: #000000; 
     font-size: 1rem;
 }
