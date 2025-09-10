@@ -85,25 +85,29 @@ class ClienteController {
     public function atualizar($id) {
         try {
             $this->cliente->id = $id;
-            
             // receber dados do formulario
             $this->cliente->nome = $_POST['nome'];
             $this->cliente->email = $_POST['email'];
             $this->cliente->telefone = $_POST['telefone'] ?? null;
-            $this->cliente->CPF = $_POST['CPF'];
-            $this->cliente->CNPJ = $_POST['CNPJ'];
+            if(isset($_POST['CPF'])){
+                $this->cliente->CPF = $_POST['CPF'];
+            }
+            if(isset($_POST['CNPJ'])){
+                $this->cliente->CNPJ = $_POST['CNPJ'];
+            }
             $this->cliente->data_nasc = $_POST['data_nasc'] ?? null;
             
             // atualizar usuario
             if ($this->cliente->atualizar()) {
-                header("Location: /clientes/$id?success=Usuário atualizado com sucesso");
+                return True;
                 exit();
             } else {
                 throw new Exception("Erro ao atualizar usuário");
             }
         } catch (Exception $e) {
             $error = $e->getMessage();
-            $this->editar($id); // voltar para o formulario de edição com erro
+            return $error;
+            // $this->editar($id); // voltar para o formulario de edição com erro
         }
     }
 

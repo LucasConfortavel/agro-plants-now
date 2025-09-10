@@ -112,9 +112,14 @@ class ClienteModel {
         return $stmt;
     }
 
-    public function update() {
-        $query = "UPDATE " . $this->table_name . " 
-                 SET nome=:nome, email=:email, telefone=:telefone, CPF=:CPF, CNPJ=:CNPJ,data_nasc=:data_nasc WHERE id=:id";
+    public function atualizar() {
+        if(!empty($this->CPF)){        
+            $query = "UPDATE " . $this->table_name . " 
+                     SET nome=:nome, email=:email, telefone=:telefone, CPF=:CPF,data_nasc=:data_nasc WHERE id=:id";
+        }   else if(!empty($this->CNPJ)){
+            $query = "UPDATE " . $this->table_name . " 
+                     SET nome=:nome, email=:email, telefone=:telefone, CNPJ=:CNPJ,data_nasc=:data_nasc WHERE id=:id";
+        }
 
         $stmt = $this->conn->prepare($query);
 
@@ -122,16 +127,23 @@ class ClienteModel {
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->telefone = htmlspecialchars(strip_tags($this->telefone));
-        $this->CPF = htmlspecialchars(strip_tags($this->CPF));
-        $this->CNPJ = htmlspecialchars(strip_tags($this->CNPJ));
+        if(!empty($this->CPF)){
+            $this->CPF = htmlspecialchars(strip_tags($this->CPF));
+        }
+        else if(!empty($this->CNPJ)){
+            $this->CNPJ = htmlspecialchars(strip_tags($this->CNPJ));
+        }
         $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $stmt->bindParam(":nome", $this->nome);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":telefone", $this->telefone);
-        $stmt->bindParam(":CPF", $this->CPF);
-        $stmt->bindParam(":CNPJ", $this->CNPJ);
+        if(!empty($this->CPF)){        
+            $stmt->bindParam(":CPF", $this->CPF);
+        } else if(!empty($this->CNPJ)){
+            $stmt->bindParam(":CNPJ", $this->CNPJ);
+        }
         $stmt->bindParam(":data_nasc", $this->data_nasc);
         $stmt->bindParam(":id", $this->id);
 

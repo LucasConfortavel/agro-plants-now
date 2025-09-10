@@ -1,17 +1,53 @@
 <?php
+    include "../../CONTROLLER/ClienteController.php";
     include "../../CONTROLLER/UsuarioController.php";
     include "../../INCLUDE/Menu_adm.php";
-    $controler_user = new UsuarioController();
+
+    $controler_cliente = new ClienteController();
+    $controler_usuario = new UsuarioController();
+
     if(isset($_GET['id'])){
         $id=$_GET["id"];
-        $usuario = $controler_user->mostrar($id);
-        $dataNascimento = new DateTime($usuario['data_nasc']);
+        $tipo_user = $_GET["usuario"];
+        
+        if($tipo_user=="cliente"){
+            $usuario = $controler_cliente->mostrar($id);
+            $dataNascimento = new DateTime($usuario['data_nasc']);
+            if(empty($usuario['CPF'])){
+                $CPF_CNPJ = "CNPJ";
+                $limite  = 14;
+
+            }
+            else{
+                $CPF_CNPJ = "CPF";
+                $limite  = 11;
+
+            }
+        } elseif($tipo_user=="vendedor"){
+            $usuario = $controler_usuario->mostrar($id);
+            $dataNascimento = new DateTime($usuario['data_nasc']);
+            $CPF_CNPJ = "CPF";
+            $limite  = 11;
+        }
+        
+
         $hoje = new DateTime();
+        
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $controler_user->atualizar($id);
-            echo $controler_user->atualizar($id);
+            if($tipo_user=="cliente"){
+                $controler_cliente->atualizar($id);
+                // echo $controler_cliente->atualizar($id);
+            
+            } elseif($tipo_user=="vendedor"){
+                $controler_usuario->atualizar($id);
+                // echo $controler_usuario->atualizar($id);
+            }
+
+            header("Refresh:0");
+            exit;
         }
+
     }
 
 
@@ -45,7 +81,7 @@
                             <p><?= $usuario['email']?></p>
                         </div>
                     </div>
-                    <div class="jp_role"><?= $usuario['tipo']?></div>
+                    <div class="jp_role"><?=$tipo_user?></div>
                 </header>
 
             
@@ -66,8 +102,7 @@
                             </div>
                             <div class="jp_info-item">
                                 <label>Idade</label>
-                                <p><?=$hoje->diff($dataNascimento)->y?></p>
-                                <input class="ym_input-info" name="idade" type="text" value=<?=$hoje->diff($dataNascimento)->y?>>
+                                <span><?=$hoje->diff($dataNascimento)->y?></span>
                             </div>
                             <div class="jp_info-item">
                                 <label>Data de nascimento</label>
@@ -86,18 +121,24 @@
                             </div>
                             <div class="jp_info-item">
                                 <label>Posição</label>
-                                <span id="ym_tipo"><?= $usuario['tipo']?></span>
+                                <span id="ym_tipo"><?= $tipo_user?></span>
                             </div>
                             <div class="jp_info-item">
-                                <label>CPF</label>
-                                <p><?= $usuario['CPF']?></p>
-                                <input class="ym_input-info" name="cpf" type="text" value=<?= $usuario['CPF']?>>
+                                <label><?= $CPF_CNPJ?></label>
+                                <p><?= $usuario[$CPF_CNPJ]?></p>
+                                <input class="ym_input-info" name=<?= $CPF_CNPJ?>  maxlength=<?= $limite ?> type="text" value=<?= $usuario[$CPF_CNPJ]?>>
                             </div>
-                            <div class="jp_info-item">
-                                <label>CEP</label>
-                                <p><?= $usuario['cep']?></p>
-                                <input class="ym_input-info" name="cep" type="text" value=<?= $usuario['cep']?>>
-                            </div>
+                            <?php
+                            if($tipo_user=="vendedor"){
+                                echo'
+                                <div class="jp_info-item">
+                                    <label>CEP</label>
+                                    <p>' . $usuario['cep'] . '</p>
+                                    <input class="ym_input-info" name="cep" type="text"  maxlength="8" value=' . $usuario['cep'] . '>
+                                </div>';
+                            }
+                            
+                            ?>
 
                             <button class="ym_btn-salvar ym_btn-padrao">Salvar <i class="fa-solid fa-floppy-disk"></i> </button>
 

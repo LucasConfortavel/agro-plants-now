@@ -6,6 +6,21 @@ $cliente_control = new ClienteController();
 $clientes = $cliente_control->index();
 $total_clientes = count($clientes);
 
+if(!empty($_GET)){
+    if (isset($_GET['visualizar'])){
+        $id = $_GET['visualizar'];
+        $cliente = $cliente_control->mostrar($id);
+        $action_handled = true;
+        header('Location: info-edit-adm.php?id=' . $id . '&usuario=cliente');
+
+    } elseif (isset($_GET['remover'])){
+        $id = $_GET['remover'];
+        $cliente = $cliente_control->deletar($id);
+        $action_handled = true;
+        header('Location: ' . $_SERVER['PHP_SELF']);
+    }
+}
+
 // Paginação
 $limite = 4;
 $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
@@ -120,19 +135,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                             <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
-                                            <div class="jv_dropdown">
-                                                <button class="jv_dropdown-item">
+                                            <form class="jv_dropdown">
+                                                <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($cliente['id'])?>">
                                                     <i class="fas fa-eye"></i> Visualizar
                                                 </button>
                                                 <div class="jv_dropdown-separator"></div>
-                                                <button class="jv_dropdown-item">
-                                                    <i class="fas fa-edit"></i> Editar
-                                                </button>
-                                                <div class="jv_dropdown-separator"></div>
-                                                <button class="jv_dropdown-item jv_danger">
+                                                <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($cliente['id'])?>">
                                                     <i class="fas fa-trash"></i> Remover
                                                 </button>
-                                            </div>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

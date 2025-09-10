@@ -74,7 +74,7 @@ class UsuarioController {
             $this->user->nome = $_POST['nome'];
             $this->user->email = $_POST['email'];
             $this->user->telefone = $_POST['telefone'] ?? null;
-            $this->user->CPF = $_POST['cpf'];
+            $this->user->CPF = $_POST['CPF'];
             $this->user->CEP = $_POST['cep'] ?? null;
             $this->user->data_nasc = $_POST['data_nasc'] ?? null;
             $this->user->foto = $_POST['foto'] ?? null;

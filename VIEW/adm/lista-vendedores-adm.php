@@ -6,8 +6,9 @@
 
     // POST: criar vendedor
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $controler_user->criarVendedor();
-        header('Location: ' . $_SERVER['PHP_SELF']);
+        $teste = $controler_user->criar();
+        print_r($teste);
+        // header('Location: ' . $_SERVER['PHP_SELF']);
         exit;
     }
 
@@ -18,7 +19,7 @@
             $id = $_GET['visualizar'];
             $usuario = $controler_user->mostrar($id);
             $action_handled = true;
-            header('Location: info-edit-adm.php?id=' . $id);
+            header('Location: info-edit-adm.php?id=' . $id . "&usuario=" . $usuario['tipo']);
 
         } elseif (isset($_GET['remover'])){
             $id = $_GET['remover'];
@@ -28,15 +29,15 @@
         }
     }
 
-    if ($action_handled) {
+    // if ($action_handled) {
 
-        $redirect = $_SERVER['PHP_SELF'];
-        if (isset($_GET['pagina'])) {
-            $redirect .= '?pagina=' . (int)$_GET['pagina'];
-        }
-        header('Location: ' . $redirect);
-        exit;
-    }
+    //     $redirect = $_SERVER['PHP_SELF'];
+    //     if (isset($_GET['pagina'])) {
+    //         $redirect .= '?pagina=' . (int)$_GET['pagina'];
+    //     }
+    //     header('Location: ' . $redirect);
+    //     exit;
+    // }
     
     $usuarios = $controler_user->index();
 

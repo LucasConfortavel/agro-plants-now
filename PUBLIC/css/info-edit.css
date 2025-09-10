@@ -38,7 +38,9 @@ body {
 .ym_btn-salvar{
     height: 70%;
     max-width: 50%;
-    display: none; 
+    display: none;
+    grid-column-start: 3;
+    grid-column-end: 4;
   }
   
 @keyframes aparecer {
@@ -53,6 +55,8 @@ body {
     padding: 4px;
     border-radius: 5px;
     display: none;
+    width: 100%;
+    max-width: 250px;
 }
 
 .jp_profile-header {
@@ -153,6 +157,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
+    align-items: center;
 }
 
 .jp_info-item label {
