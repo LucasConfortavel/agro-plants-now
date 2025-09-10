@@ -42,7 +42,7 @@ include "../../INCLUDE/Menu_vend.php";
             
             <div class="P_action-buttons">
 
-                <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
+                <a class="vc_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
 
                     Gerar link de venda
                 </a>
@@ -65,7 +65,9 @@ include "../../INCLUDE/Menu_vend.php";
                     <div class="P_product-image"></div>
                     <span>Produto</span>
                 </div>
-                <div class="P_item-preco">R$1000</div>
+                <div class="P_item-preco">
+                    <span>R$1000</span>
+                </div>
                 <div class="P_item-quantidade">
                     <button class="P_quantity-button" id="menos">−</button>
                     <span class="P_quantity-value" id="valor">1</span>
