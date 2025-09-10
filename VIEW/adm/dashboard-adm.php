@@ -1,6 +1,21 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
     include "../../INCLUDE/btn-notificacao.php";
+    include "../../CONTROLLER/ProdutoController.php";
+        
+    $produtoController = new ProdutoController();
+    $produtos = $produtoController->index();
+    
+    $limite = 5;
+    $alertas = [];
+    
+    if (!isset($produtos['error'])) {
+        foreach ($produtos as $produto) {
+            if ($produto['quantidade'] <= $limite) {
+                $alertas[] = "O produto <b>{$produto['nome']}</b> está com apenas <b>{$produto['quantidade']}</b> unidades restantes!";
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +33,7 @@
     <main class="jp_main-content">
       
         <h1 class="ym_titulo">Dashboard</h1> 
+
 
         <div class="jp_cards-container">
             <div class="jp_card">

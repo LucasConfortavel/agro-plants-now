@@ -162,11 +162,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </a>
         <?php endif; ?>
     </div>
+
+
+        <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
+        <script src="../../PUBLIC/JS/script.js"></script>
+        <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 </main>
-
-<script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
-<script src="../../PUBLIC/JS/script.js"></script>
-<script src="../../PUBLIC/JS/script-pop-up.js"></script>
-
 </body>
 </html>

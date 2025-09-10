@@ -175,38 +175,39 @@
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- Paginação -->
-    <div class="jv_page-navigation">
-        <?php if ($pagina_atual > 1): ?>
-            <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-        <?php endif; ?>
 
-        <?php
-        $inicio = max(1, $pagina_atual - 2);
-        $fim = min($total_paginas, $pagina_atual + 2);
-        for ($i = $inicio; $i <= $fim; $i++): ?>
-            <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                <?= $i ?>
-            </a>
-        <?php endfor; ?>
+        <!-- Paginação -->
+        <div class="jv_page-navigation">
+            <?php if ($pagina_atual > 1): ?>
+                <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            <?php endif; ?>
 
-        <?php if ($pagina_atual < $total_paginas): ?>
-            <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        <?php endif; ?>
-    </div>
+            <?php
+            $inicio = max(1, $pagina_atual - 2);
+            $fim = min($total_paginas, $pagina_atual + 2);
+            for ($i = $inicio; $i <= $fim; $i++): ?>
+                <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                    <?= $i ?>
+                </a>
+            <?php endfor; ?>
 
-    <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
-        <i class="fa-solid fa-circle-info"></i>
-    </a>
+            <?php if ($pagina_atual < $total_paginas): ?>
+                <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            <?php endif; ?>
+        </div>
 
-    <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
-    <script src="../../PUBLIC/JS/script.js"></script>
-    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+        <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+            <i class="fa-solid fa-circle-info"></i>
+        </a>
+
+        <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
+        <script src="../../PUBLIC/JS/script.js"></script>
+        <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+</main>
 </body>
 </html>

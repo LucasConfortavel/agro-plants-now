@@ -35,9 +35,7 @@ class UsuarioModel {
         $this->tipo = htmlspecialchars(strip_tags($this->tipo));
         $this->telefone = htmlspecialchars(strip_tags($this->telefone));
         $this->CPF = htmlspecialchars(strip_tags($this->CPF));
-        $this->endereco = htmlspecialchars(strip_tags($this->endereco));
-        $this->cidade = htmlspecialchars(strip_tags($this->cidade));
-        $this->estado = htmlspecialchars(strip_tags($this->estado));
+        $this->CEP = htmlspecialchars(strip_tags($this->CEP));
         $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
         $this->foto = htmlspecialchars(strip_tags($this->foto));
 
@@ -47,9 +45,7 @@ class UsuarioModel {
         $stmt->bindParam(":tipo", $this->tipo);
         $stmt->bindParam(":telefone", $this->telefone);
         $stmt->bindParam(":CPF", $this->CPF);
-        $stmt->bindParam(":endereco", $this->endereco);
-        $stmt->bindParam(":cidade", $this->cidade);
-        $stmt->bindParam(":estado", $this->estado);
+        $stmt->bindParam(":CEP", $this->CEP);
         $stmt->bindParam(":data_nasc", $this->data_nasc);
         $stmt->bindParam(":foto", $this->foto);
 
@@ -128,7 +124,7 @@ class UsuarioModel {
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->telefone = htmlspecialchars(strip_tags($this->telefone));
         $this->CPF = htmlspecialchars(strip_tags($this->CPF));
-        $this->endereco = htmlspecialchars(strip_tags($this->CEP));
+        $this->CEP = htmlspecialchars(strip_tags($this->CEP));
         $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
         $this->foto = htmlspecialchars(strip_tags($this->foto));
         $this->id = htmlspecialchars(strip_tags($this->id));
