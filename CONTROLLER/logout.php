@@ -2,5 +2,10 @@
 require_once 'UsuarioController.php';
 
 $controller = new UsuarioController();
-$controller->logout();
+$result = $controller->logout();
+
+if (isset($result['redirect'])) {
+    header('Location: ' . $result['redirect']);
+    exit;
+}
 ?>

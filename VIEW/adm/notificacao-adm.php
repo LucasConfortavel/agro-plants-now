@@ -29,7 +29,7 @@ try {
     $total_notificacoes = 0;
 }
 ?>
-    
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
