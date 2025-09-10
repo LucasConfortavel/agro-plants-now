@@ -118,6 +118,10 @@ include "../../INCLUDE/Menu_vend.php";
             </div>
 
         </div>
+
+        <div class="back-button-mobile">
+            <a href="vendas-adm.php" class="ym_link-volta2"> <i class="fa-solid fa-arrow-left"></i> </a>
+        </div>
     </main>
 
     <script src="../../PUBLIC/JS/script-info_vendas.js"></script>
