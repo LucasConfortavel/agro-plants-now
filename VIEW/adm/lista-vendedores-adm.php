@@ -161,7 +161,7 @@
                                                         <i class="fas fa-eye"></i> Visualizar
                                                     </button>
                                                     <div class="jv_dropdown-separator"></div>
-                                                    <button type="submit" name="remover" value=<?= htmlspecialchars($vend['id']); ?>  class="jv_dropdown-item jv_danger">
+                                                    <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php','Cadastro de Vendedores')" class="jv_dropdown-item jv_danger">
                                                         <i class="fas fa-trash"></i> Remover
                                                     </button>
                                                 </form>

@@ -6,6 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
 .ym_area-titulo{
     width: 100%;
     display: flex;
@@ -57,4 +58,54 @@
 
 .ym_btn-padrao{
     max-width: 25%;
+}
+
+
+#btn-sim{
+    width: 100px;
+
+}
+
+#btn-nao{
+    width: 100px;
+    background-color: rgb(234, 36, 36);
+
+}
+
+#btn-nao:hover{
+    background-color: rgb(231, 42, 42);
+
+}
+
+#btn-cancelar-senha{
+    background: rgb(234, 36, 36);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 180px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.btn-confimar-senha{
+    min-width: 180px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.eze-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
 }

@@ -16,6 +16,7 @@ if (isset($_SESSION['id'], $_SESSION['email'], $_SESSION['tipo'])) {
 $error = isset($_GET['error']) ? $_GET['error'] : '';
 
 include "../../INCLUDE/Menu_superior.php";
+
 ?>
 
 <!DOCTYPE html>
