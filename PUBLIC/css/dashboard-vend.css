@@ -245,13 +245,12 @@
   }
   
   .jp_bottom-section {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
     gap: 20px;
   }
   
   .jp_clients-panel,
   .jp_chart-panel {
+    width: 97%;
     background-color: white;
     border-radius: 10px;
     padding: 20px;

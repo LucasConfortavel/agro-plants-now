@@ -91,7 +91,7 @@ include "../../INCLUDE/Menu_vend.php";
         </div>
 
         <div class="jp_bottom-section">
-            <div class="jp_clients-panel">
+            <!-- <div class="jp_clients-panel">
                 <div class="jp_clients-header">Clientes fixados</div>
                 <div class="jp_clients-list">
                     <div class="jp_client-item">
@@ -113,7 +113,7 @@ include "../../INCLUDE/Menu_vend.php";
                         <div class="jp_client-name">Rafael Germinari</div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="jp_chart-panel">
                 <div class="jp_chart-header">
