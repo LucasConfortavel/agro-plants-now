@@ -1,16 +1,14 @@
 <?php
 require_once __DIR__ . '/../DB/Database.php';
 
-class ProdutoModel {
+class ServicoModel {
     private $conn;
-    private $table_name = "produtos";
+    private $table_name = "servicos";
 
     public $id;
     public $nome;
     public $preco;
     public $descricao;
-    public $quantidade;
-    public $reservado;
     public $id_cat;
     public $foto;
 
@@ -21,8 +19,7 @@ class ProdutoModel {
 
     public function criar() {
         $query = "INSERT INTO " . $this->table_name . " 
-                 SET nome=:nome, preco=:preco, descricao=:descricao, 
-                     quantidade=:quantidade, reservado=:reservado, id_cat=:id_cat";
+                 SET nome=:nome, preco=:preco, descricao=:descricao, id_cat=:id_cat, foto=:foto";
 
         $stmt = $this->conn->prepare($query);
 
@@ -30,16 +27,12 @@ class ProdutoModel {
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->preco = htmlspecialchars(strip_tags($this->preco));
         $this->descricao = htmlspecialchars(strip_tags($this->descricao));
-        $this->quantidade = htmlspecialchars(strip_tags($this->quantidade));
-        $this->reservado = htmlspecialchars(strip_tags($this->reservado));
         $this->id_cat = htmlspecialchars(strip_tags($this->id_cat));
         $this->foto = htmlspecialchars(strip_tags($this->foto));
 
         $stmt->bindParam(":nome", $this->nome);
         $stmt->bindParam(":preco", $this->preco);
         $stmt->bindParam(":descricao", $this->descricao);
-        $stmt->bindParam(":quantidade", $this->quantidade);
-        $stmt->bindParam(":reservado", $this->reservado);
         $stmt->bindParam(":id_cat", $this->id_cat);
         $stmt->bindParam(":foto", $this->foto);
 
@@ -49,8 +42,8 @@ class ProdutoModel {
                 return true;
             }
         } catch (PDOException $e) {
-            error_log("Erro ao criar produto: " . $e->getMessage());
-            throw new Exception("Erro ao criar produto: " . $e->getMessage());
+            error_log("Erro ao criar serviço: " . $e->getMessage());
+            throw new Exception("Erro ao criar serviço: " . $e->getMessage());
         }
 
         return false;
@@ -68,8 +61,6 @@ class ProdutoModel {
             $this->nome = $row['nome'];
             $this->preco = $row['preco'];
             $this->descricao = $row['descricao'];
-            $this->quantidade = $row['quantidade'];
-            $this->reservado = $row['reservado'];
             $this->id_cat = $row['id_cat'];
             $this->foto = $row['foto'];
         }
@@ -98,8 +89,7 @@ class ProdutoModel {
 
     public function atualizar() {
         $query = "UPDATE " . $this->table_name . " 
-                 SET nome=:nome, preco=:preco, descricao=:descricao, 
-                     quantidade=:quantidade, reservado=:reservado, id_cat=:id_cat 
+                 SET nome=:nome, preco=:preco, descricao=:descricao, id_cat=:id_cat, foto=:foto 
                  WHERE id=:id";
 
         $stmt = $this->conn->prepare($query);
@@ -108,8 +98,6 @@ class ProdutoModel {
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->preco = htmlspecialchars(strip_tags($this->preco));
         $this->descricao = htmlspecialchars(strip_tags($this->descricao));
-        $this->quantidade = htmlspecialchars(strip_tags($this->quantidade));
-        $this->reservado = htmlspecialchars(strip_tags($this->reservado));
         $this->id_cat = htmlspecialchars(strip_tags($this->id_cat));
         $this->foto = htmlspecialchars(strip_tags($this->foto));
         $this->id = htmlspecialchars(strip_tags($this->id));
@@ -117,8 +105,6 @@ class ProdutoModel {
         $stmt->bindParam(":nome", $this->nome);
         $stmt->bindParam(":preco", $this->preco);
         $stmt->bindParam(":descricao", $this->descricao);
-        $stmt->bindParam(":quantidade", $this->quantidade);
-        $stmt->bindParam(":reservado", $this->reservado);
         $stmt->bindParam(":id_cat", $this->id_cat);
         $stmt->bindParam(":foto", $this->foto);
         $stmt->bindParam(":id", $this->id);
@@ -126,8 +112,8 @@ class ProdutoModel {
         try {
             return $stmt->execute();
         } catch (PDOException $e) {
-            error_log("Erro ao atualizar produto: " . $e->getMessage());
-            throw new Exception("Erro ao atualizar produto: " . $e->getMessage());
+            error_log("Erro ao atualizar serviço: " . $e->getMessage());
+            throw new Exception("Erro ao atualizar serviço: " . $e->getMessage());
         }
     }
 
@@ -141,44 +127,8 @@ class ProdutoModel {
 
             return $stmt->execute();
         } catch (PDOException $e) {
-            error_log("Erro ao deletar produto: " . $e->getMessage());
-            throw new Exception("Erro ao deletar produto: " . $e->getMessage());
-        }
-    }
-
-    public function atualizarEstoque($id, $quantidade) {
-        $query = "UPDATE " . $this->table_name . " SET quantidade = ? WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
-        
-        $quantidade = htmlspecialchars(strip_tags($quantidade));
-        $id = htmlspecialchars(strip_tags($id));
-        
-        $stmt->bindParam(1, $quantidade);
-        $stmt->bindParam(2, $id);
-        
-        try {
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            error_log("Erro ao atualizar estoque: " . $e->getMessage());
-            throw new Exception("Erro ao atualizar estoque: " . $e->getMessage());
-        }
-    }
-
-    public function atualizarReserva($id, $reservado) {
-        $query = "UPDATE " . $this->table_name . " SET reservado = ? WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
-        
-        $reservado = htmlspecialchars(strip_tags($reservado));
-        $id = htmlspecialchars(strip_tags($id));
-        
-        $stmt->bindParam(1, $reservado);
-        $stmt->bindParam(2, $id);
-        
-        try {
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            error_log("Erro ao atualizar reserva: " . $e->getMessage());
-            throw new Exception("Erro ao atualizar reserva: " . $e->getMessage());
+            error_log("Erro ao deletar serviço: " . $e->getMessage());
+            throw new Exception("Erro ao deletar serviço: " . $e->getMessage());
         }
     }
 
