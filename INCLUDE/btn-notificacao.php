@@ -18,6 +18,7 @@ foreach ($produtosBaixoEstoque as $prod) {
     ];
 }
 
+$alertasVisiveis = array_slice($alertas, 0, 5);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -51,8 +52,8 @@ foreach ($produtosBaixoEstoque as $prod) {
             </div>
 
             <div class="ym_notificacoes">
-                <?php if (!empty($alertas)): ?>
-                    <?php foreach ($alertas as $alerta): ?>
+                <?php if (!empty($alertasVisiveis)): ?>
+                    <?php foreach ($alertasVisiveis as $alerta): ?>
                         <div class="ym_notificacao-item">
                             <p class="ym_p"><?= $alerta['mensagem'] ?></p>
                             <p class="ym_p"><?= $alerta['hora'] ?></p>
