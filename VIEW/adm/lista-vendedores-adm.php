@@ -28,16 +28,6 @@
             header('Location: ' . $_SERVER['PHP_SELF']);
         }
     }
-
-    // if ($action_handled) {
-
-    //     $redirect = $_SERVER['PHP_SELF'];
-    //     if (isset($_GET['pagina'])) {
-    //         $redirect .= '?pagina=' . (int)$_GET['pagina'];
-    //     }
-    //     header('Location: ' . $redirect);
-    //     exit;
-    // }
     
     $usuarios = $controler_user->index();
 
