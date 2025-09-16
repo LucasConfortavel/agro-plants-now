@@ -51,6 +51,7 @@ include "../../INCLUDE/Menu_adm.php";
 
         <div class="P_cart-table">
             <div class="P_table-header">
+                <div class="P_header-id">ID</div>
                 <div class="P_header-produto">Produto</div>
                 <div class="P_header-preco">Preço</div>   
                 <div class="P_header-quantidade">Quantidade</div>
@@ -58,6 +59,9 @@ include "../../INCLUDE/Menu_adm.php";
             </div>
 
             <div class="P_cart-item">
+                <div class="P_item-id">
+                    <span>K23</span>
+                </div>
                 <!-- <div class="P_item-remove">
                     <button class="P_remove-button">
                         <i class="fa-solid fa-xmark"></i>
@@ -107,7 +111,7 @@ include "../../INCLUDE/Menu_adm.php";
                     <span class="P_price total">R$1000</span>
                 </div>
                 <div class="P_detail-row status-row">
-                    <span>Status da Compra</span>
+                    <span>Status da Compra</span>  
                     <span class="P_price total">Pago</span>
                 </div>
             </div>
