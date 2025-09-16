@@ -43,33 +43,43 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.po-tabs {
+.tabs-nav {
   display: flex;
-  background-color: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+  width: 400px;
+  background: white;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  gap: 0.25rem;
 }
 
-.po-tab-button {
+.po-tab-btn {
   flex: 1;
-  padding: 1rem 1.5rem;
-  background: none;
+  width: 150px;
+  padding: 0.75rem 1rem;
   border: none;
-  font-size: 0.875rem;
-  font-weight: 500;
+  background: transparent;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
-  color: #6b7280;
-  border-radius: 10px 10px 0px 0px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #64748b;
+  white-space: nowrap;
 }
 
-.po-tab-button.po-active {
-  background-color: #45734b;
+.po-tab-btn:hover {
+  background: #f1f5f9;
+  color: #45734b;
+}
+
+.po-tab-btn.po-active {
+  background: #45734b;
   color: white;
-  border-bottom: 2px solid #15803d;
-}
-
-.po-tab-button:hover:not(.po-active) {
-  background-color: #f3f4f6;
 }
 
 .po-card-content {
@@ -285,6 +295,7 @@ body {
   .po-charts-grid {
       grid-template-columns: 1fr 1fr;
   }
+
 }
 
 @media (min-width: 1024px) {
@@ -332,7 +343,11 @@ body {
       flex-direction: column;
   }
 
-  .po-tab-button {
+  .tabs-nav{
+    width: 300px;
+  }
+
+  .po-tab-btn {
       padding: 0.75rem 1rem;
   }
 
@@ -371,6 +386,10 @@ body {
 @media (max-width: 480px) {
   .po-container {
       padding: 0.75rem;
+  }
+
+  .tabs-nav{
+    width: 320px;
   }
 
   .po-header {

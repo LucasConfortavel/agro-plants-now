@@ -22,11 +22,14 @@ include "../../INCLUDE/Menu_adm.php";
         <div class="po-container">
             <h1 class="ym_titulo" >Relatório de Vendas</h1>
 
-            <div class="po-card">
-                <div class="po-tabs">
-                    <button class="po-tab-button po-active" data-tab="sales">Vendas</button>
-                    <button class="po-tab-button" data-tab="commissions">Comissões</button>
+            <nav class="tabs-nav">
+                    <button class="po-tab-btn po-active" data-tab="sales">Vendas</button>
+                    <button class="po-tab-btn" data-tab="commissions">Comissões</button>
                 </div>
+            </nav>
+
+            <div class="po-card">
+
 
                 <div class="po-card-content">
                     <div class="po-controls">
