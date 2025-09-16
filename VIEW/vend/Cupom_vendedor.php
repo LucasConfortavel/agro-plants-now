@@ -1,223 +1,134 @@
 <?php
-    include "../../INCLUDE/Menu_vend.php";
-    require_once "../../DB/Database.php";
-    
-    try {
-        $db = new Database();
-        $conn = $db->getConexao();
-    
-        // Pesquisa
-        $pesquisa = "";
-        if (isset($_POST['pesquisar']) && !empty($_POST['pesquisa'])) {
-            $pesquisa = "%" . $_POST['pesquisa'] . "%";
-            $sql = "SELECT * FROM usuario 
-                    WHERE tipo = 'cupom' 
-                    AND (nome LIKE :pesquisa OR email LIKE :pesquisa)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':pesquisa', $pesquisa);
-        } else {
-            $sql = "SELECT * FROM usuario WHERE tipo = 'cupom'";
-            $stmt = $conn->prepare($sql);
-        }
-    
-        $stmt->execute();
-        $vendedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $total_vendedores = count($vendedores);
-    
-    } catch (DatabaseConnectionException $e) {
-        error_log("Erro de conexão: " . $e->getMessage());
-        $vendedores = [];
-        $total_vendedores = 0;
-    } catch (PDOException $e) {
-        error_log("Erro PDO: " . $e->getMessage());
-        $vendedores = [];
-        $total_vendedores = 0;
-    }
+include "../../INCLUDE/Menu_vend.php";
+include "../../CONTROLLER/CupomController.php";
+
+$cupom_control = new CupomController();
+$cupons = $cupom_control->index();
+$total_cupons = count($cupons);
+
+// Paginação
+$limite = 4;
+$pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+if ($pagina_atual < 1) $pagina_atual = 1;
+
+$offset = ($pagina_atual - 1) * $limite;
+$total_paginas = ceil($total_cupons / $limite);
+
+// Slice para limitar os cupons exibidos na página
+$cupons = array_slice($cupons, $offset, $limite);
+
+// Criação de cupom via POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $cupom_control->criarCupom(); // atenção ao método com C maiúsculo
+    unset($_POST);
+}
 ?>
-    
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gerenciamento de Vendedores</title>
-        <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
-        <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
-        <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Cupons</title>
+    <link rel="stylesheet" href="../../PUBLIC/css/vendas-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 
-        <!-- pop-up -->
-        <div class="ym_popup-overlay">
-            <div class="ym_popup-content">
-                <div class="ym_area-superior-popup"></div>
-                <div class="ym_conteudo-popup"></div>
+<main class="jp_main-content">
+    <h1 class="ym_titulo">Cupons</h1>
+
+    <div class="jv_container">
+        <div class="jv_card">
+            <!-- Header -->
+            <div class="jv_card-header">
+                <div class="jv_header-content">
+                    <form method="POST" action="#" class="jv_search-section">
+                        <div class="jv_search-container">
+                            <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
+                                <i class="fas fa-search search-icon"></i>
+                            </button>
+                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por código..." class="jv_search-input">
+                        </div>
+                    </form>
+                </div>
+
+                <p class="jv_subtitle" id="jv_customerCount">
+                    <?= $total_cupons ?> <?= $total_cupons == 1 ? 'cupom encontrado' : 'cupons encontrados' ?>
+                </p>
             </div>
-        </div>
 
-        <main class="jp_main-content">
-            <h1 class="ym_titulo">Cupom</h1>
-    
-            <div class="jv_container">
-                <div class="jv_card">
-                    <!-- Header -->
-                    <div class="jv_card-header">
-                        <div class="jv_header-content">
-                        <form method="POST" action="#" class="jv_search-section">
-                            <div class="jv_search-container">
-                                <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
-                                    <i class="fas fa-search search-icon"></i>
-                                </button>
-                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
-                            </div>
-                        </form>
-                            
-                            <div class="jv_actions">
-                                <div>
-                                    <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        Remover (<span id="jv_selectedCount">0</span>)
-                                    </button>
-                                </div>
-                                <div>
-                                    <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                        <i class="fas fa-plus"></i>
-                                        <a>Cadastrar Cupom</a>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <p class="jv_subtitle" id="jv_customerCount">
-                                <?= $total_vendedores ?> cupom encontrados
-                        </p>
-
-                    </div>
-    
-                    <!-- Table -->
-                    <div class="jv_card-content">
-                        <div class="jv_table-container">
-                            <table class="jv_table">
-                                <thead>
-                                    <tr class="jv_table-header">
-                                        <th class="jv_checkbox-col">
-                                            <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                        </th>
-                                        <th class="jv_name">Codigo</th> 
-                                        <th class="jv_date">Desconto</th>
-                                        <th class="jv_total_comp">Data de Cadastro</t>
-                                        <th class="jv_valor_gast">Validade</th>
-                                        <th class="jv_actions-col"></th> 
+            <!-- Table -->
+            <div class="jv_card-content">
+                <div class="jv_table-container">
+                    <table class="jv_table">
+                        <thead>
+                            <tr class="jv_table-header">
+                                <th class="jv_checkbox-col">
+                                </th>
+                                <th class="jv_codigo">Código</th>
+                                <th class="jv_desconto">Desconto</th>
+                                <th class="jv_cadastro">Data de Cadastro</th>
+                                <th class="jv_validade">Validade</th>
+                                <th class="jv_actions-col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="jv_customerTableBody">
+                            <?php if ($total_cupons > 0): ?>
+                                <?php foreach ($cupons as $cupom): ?>
+                                    <tr>
+                                        <td>
+                                            
+                                        </td>
+                                        <td ><?= htmlspecialchars($cupom['codigo'] ?? '-') ?></td>
+                                        <td ><?= htmlspecialchars($cupom['valor'] ?? $cupom['desconto'] ?? '0') ?>%</td>
+                                        <td ><?= isset($cupom['data_emissao']) ? date("d/m/Y", strtotime($cupom['data_emissao'])) : (isset($cupom['data_criacao']) ? date("d/m/Y", strtotime($cupom['data_criacao'])) : '-') ?></td>
+                                        <td ><?= isset($cupom['data_validade']) ? date("d/m/Y", strtotime($cupom['data_validade'])) : (isset($cupom['validade']) ? date("d/m/Y", strtotime($cupom['validade'])) : '-') ?></td>
+                                        <td class="">
+                                        
+                                            
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody id="jv_customerTableBody">
-                                    <?php if ($total_vendedores > 0): ?>
-                                        <?php foreach ($vendedores as $vend): ?>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $vend['id'] ?>">
-                                                </td>
-                                                <td>
-                                                    <div class="jv_customer-info">
-                                                        <div class="jv_avatar">
-                                                            <?= strtoupper(substr($vend['nome'], 0, 2)) ?>
-                                                        </div>
-                                                        <div class="jv_customer-details">
-                                                            <h4><?= htmlspecialchars($vend['nome']) ?></h4>
-                                                            <p><?= htmlspecialchars($vend['email']) ?></p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td><?= htmlspecialchars($vend['telefone']) ?></td>
-                                                <td><?= date("d/m/Y", strtotime($vend['data_nasc'])) ?></td>
-                                                <td class="jv_table-action">
-                                                    <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                        <i class="fas fa-ellipsis-h"></i>
-                                                    </button>
-                                                    <div class="jv_dropdown">
-                                                        <button class="jv_dropdown-item">
-                                                            <i class="fas fa-eye"></i> Visualizar
-                                                        </button>
-                                                        <div class="jv_dropdown-separator"></div>
-                                                        <button class="jv_dropdown-item">
-                                                            <i class="fas fa-edit"></i> Editar
-                                                        </button>
-                                                        <div class="jv_dropdown-separator"></div>
-                                                        <button class="jv_dropdown-item jv_danger">
-                                                            <i class="fas fa-trash"></i> Remover
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhum cupom encontrado</td></tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr><td colspan="6" style="text-align: center; height: 49.7vh;">Nenhum cupom encontrado</td></tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-                    <!-- Paginação -->
-                        <div class="jv_page-navigation">
-                            <?php //if($pagina_atual > 1): ?>
-                                <a href="?pagina=<?php echo $pagina_atual - 1; ?>" class="jv_page-arrow">
-                                    <i class="fas fa-arrow-left"></i>
-                                </a>
-                            <?php //endif; ?>
+        </div>
+    </div>
 
-                            <?php
-                            // $inicio = max(1, $pagina_atual - 2);
-                            // $fim = min($total_paginas, $pagina_atual + 2);
-                            
-                            // for ($i = $inicio; $i <= $fim; $i++): ?>
-                                <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                    1<?php// echo $i; ?>
-                                </a>
-                            <?php// endfor; ?>
-                            <?php
-                            // $inicio = max(1, $pagina_atual - 2);
-                            // $fim = min($total_paginas, $pagina_atual + 2);
-                            
-                            // for ($i = $inicio; $i <= $fim; $i++): ?>
-                                <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                    2<?php// echo $i; ?>
-                                </a>
-                            <?php// endfor; ?>
-                            <?php
-                            // $inicio = max(1, $pagina_atual - 2);
-                            // $fim = min($total_paginas, $pagina_atual + 2);
-                            
-                            // for ($i = $inicio; $i <= $fim; $i++): ?>
-                                <a href="?pagina=<?php// echo $i; ?>" class="jv_page-number <?php //echo $i == $pagina_atual ? 'active' : ''; ?>">
-                                    3<?php// echo $i; ?>
-                                </a>
-                            <?php// endfor; ?>
-                            
+    <!-- Paginação -->
+    <div class="jv_page-navigation">
+        <?php if($pagina_atual > 1): ?>
+            <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        <?php endif; ?>
 
-                            <?php //if($pagina_atual < $total_paginas): ?>
-                                <a href="?pagina=<?php// echo $pagina_atual + 1; ?>" class="jv_page-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-                            <?php //endif; ?>
-                        </div>
-                        
+        <?php
+        $inicio = max(1, $pagina_atual - 2);
+        $fim = min($total_paginas, $pagina_atual + 2);
+        for ($i = $inicio; $i <= $fim; $i++): ?>
+            <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                <?= $i ?>
+            </a>
+        <?php endfor; ?>
+
+        <?php if($pagina_atual < $total_paginas): ?>
+            <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        <?php endif; ?>
+    </div>
 
 
-        
-                    <script src="../../PUBLIC/JS/cupom-vend.js"></script>
-                    <script src="../../PUBLIC/JS/script.js"></script>
-                    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
-
-
-
-        </main>
-        </main>
-
-
-
+        <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
+        <script src="../../PUBLIC/JS/script.js"></script>
+        <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+</main>
 </body>
 </html>
-                                        

@@ -189,8 +189,12 @@
 .jv_table-header .jv_name {
     text-align: center;
     justify-content: center;
-    display: table-cell; 
-    margin-left: 0; 
+    display: table-cell;
+    margin-left: 0;
+}
+
+.jv_table td.jv_name {
+    text-align: left;
 }
 
 .jv_table-header {

@@ -1,12 +1,12 @@
 .jv_page-navigation {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     margin: 25px 0;
     gap: 8px;
     flex-wrap: wrap;
-    margin-right: 6%;
-} 
+
+}
 
 .jv_page-number {
     width: 35px;
@@ -62,10 +62,57 @@
     cursor: not-allowed;
 }
 
-/* ======================== */
+
+.jv_page-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+  
+.jv_page-number {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    user-select: none;
+    font-weight: 500;
+}
+  
+.jv_page-number:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-1px);
+}
+  
+.jv_page-number.active {
+    background-color: #45734b;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+  
+.jv_page-arrow {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+  
+.jv_page-arrow:hover {
+    background-color: #f0f0f0;
+    transform: translateX(3px);
+}
+
 .jv_container {
     max-width: 1200px;
     margin: 0 auto;
+    
 }
 
 .jv_card {
@@ -73,6 +120,7 @@
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    
 }
 
 .jv_card-header {
@@ -89,6 +137,10 @@
     flex-wrap: wrap;
 }
 
+.jv_title-section {
+    flex: 1;
+}
+
 .jv_title {
     display: flex;
     align-items: center;
@@ -99,6 +151,13 @@
     margin-bottom: 4px;
 }
 
+.jv_title-bar {
+    width: 4px;
+    height: 32px;
+    background: #059669;
+    border-radius: 2px;
+}
+
 .jv_subtitle {
     color: #6b7280;
     font-size: 14px;
@@ -106,6 +165,7 @@
     margin-top: 23px;
     margin-left: 5px;
     
+
 }
 
 .jv_actions {
@@ -126,7 +186,6 @@
     gap: 8px;
     transition: all 0.2s;
 }
-
 .ym_btn-padrao{
     gap: 12px;
     width: 231px;
@@ -177,56 +236,140 @@
 }
 
 .jv_table-container {
-    overflow-x: auto; /* permite rolagem horizontal */
+    max-height: 60vh;
+    overflow-x: auto;
 }
 
 .jv_table {
     width: 100%;
-    min-width: 600px; /* evita quebrar em telas pequenas */
     border-collapse: collapse;
-}
-
-.jv_table-header .jv_name {
-    text-align: center;
-    justify-content: center;
-    display: table-cell; 
-    margin-left: 0; 
 }
 
 .jv_table-header {
     background: #f9fafb;
+    
+    
 }
 
-.jv_table-header th {
+
+.jv_table-header .jv_name {
+    padding: 12px 16px;
+    display: flex;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+
+
+.jv_table-header .jv_status {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_date {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_total_comp {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_valor_gast {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_codigo {
     padding: 12px 16px;
     font-weight: 600;
-    color: #000;
-    text-align: center;
+    color: #000000; 
+    font-size: 1rem;
 }
 
+.jv_table-header .jv_desconto{
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
 
+.jv_table-header .jv_cadastro {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
 
-.jv_table-header .jv_checkbox-col,
-.jv_table-header .jv_actions-col {
+.jv_table-header .jv_validade {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_table-header .jv_valor_gast {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #000000; 
+    font-size: 1rem;
+}
+
+.jv_checkbox-col {
     width: 48px;
+    padding-left: 24px !important;
+}
+
+.jv_actions-col {
+    width: 48px;
+    padding-right: 24px !important;
+}
+
+.jv_table tbody tr {
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.2s;
+}
+
+.jv_table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.jv_table tbody tr:last-child {
+    border-bottom: none;
 }
 
 .jv_table td {
-    padding: 16px;
+    padding: 19px;
     vertical-align: middle;
+   
+
 }
+
+
 
 .jv_customer-info {
     display: flex;
     align-items: center;
     gap: 12px;
 }
-
-.jv_table th.jv_name { width: 400px; }
-.jv_table th.jv_date { width: 150px; }
-.jv_table th.jv_total_comp { width: 180px; }
-.jv_table th.jv_valor_gast { width: 200px; }
-
 
 .jv_avatar {
     width: 40px;
@@ -241,24 +384,71 @@
     font-size: 14px;
 }
 
-.jv_customer-details {
-    display: flex;
-    flex-direction: column; 
-    align-items: flex-start; 
-    text-align: left; 
-}
-
-
 .jv_customer-details h4 {
     font-weight: 500;
     color: #111827;
     margin-bottom: 2px;
-    
 }
 
 .jv_customer-details p {
     font-size: 14px;
     color: #6b7280;
+}
+
+.jv_badge {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-left:-69%;
+}
+
+.jv_badge-active {
+    background: #dcfce7;
+    color: #166534;
+   
+}
+
+.jv_badge-inactive {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.jv_badge-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.purchase-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.purchase-count {
+    font-weight: 500;
+    color: #111827;
+}
+
+.purchase-label {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.amount {
+    font-weight: 600;
+    color: #059669;
+}
+
+.jv_checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: #059669;
+}
+
+.jv_checkbox-col .jv_checkbox{
+    display: flex;
+    margin-left: 6px;
 }
 
 .jv_menu-btn {
@@ -299,6 +489,7 @@
     }
 }
 
+
 .jv_dropdown-item {
     display: block;
     width: 100%;
@@ -329,24 +520,79 @@
     margin: 4px 0;
 }
 
-.jv_checkbox {
-    width: 16px;
-    height: 16px;
-    accent-color: #059669;
+.jv_empty-state {
+    text-align: center;
+    padding: 48px 24px;
 }
-/* ========================== */
-/* RESPONSIVIDADE */
-@media (max-width: 1024px) {
-    .jv_table {
-        min-width: 500px; /* menor largura para tablets */
+
+.jv_empty-icon {
+    font-size: 48px;
+    color: #d1d5db;
+    margin-bottom: 16px;
+}
+
+.jv_empty-state h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.jv_empty-state p {
+    color: #6b7280;
+}
+
+.banguela{
+    margin-left: 134%;
+}
+
+
+/* ===================================== */
+/* Responsividade para telas >= 1400px  */
+/* ===================================== */
+@media (max-width: 1400px) {
+    .jv_container {
+        max-width: 1700px;
     }
 }
 
+/* ===================================== */
+/* Responsividade para telas 1024px–1399px */
+/* ===================================== */
+@media (max-width: 1399px) {
+    .jv_header-content {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .jv_title {
+        font-size: 22px;
+    }
+
+    .jv_btn {
+        font-size: 13px;
+        padding: 12px 8px;
+    }
+
+    .jv_search-container {
+        max-width: 100%;
+    }
+
+    .jv_table-header #jv_banguela {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+}
+
+/* ===================================== */
+/* Responsividade para tablets (768px–1023px) */
+/* ===================================== */
 @media (max-width: 768px) {
-    .jv_container {
+
+    .jv_container{
         margin-top: 10%;
     }
-
     .jv_header-content {
         flex-direction: column;
         align-items: stretch;
@@ -364,29 +610,27 @@
         font-size: 14px;
     }
 
+    .ym_btn-padrao{
+        margin-left: -10px;
+    }
+
     .jv_search-container {
         width: 80%;
         max-width: 100%;
     }
 
-    .ym_btn-padrao{
-        margin-left: -10px;
-    }
-
     .jv_table-container {
-        overflow-x: auto; /* mantém rolagem horizontal */
+        overflow-x: auto;
     }
 
     .jv_table {
-        width: 100%;
-        min-width: 480px; /* tabela não quebra no celular */
+        min-width: 768px;
     }
 
-    .jv_table td, .jv_table .jv_name {
+    .jv_table td, .jv_table-header .jv_name {
         padding: 12px 10px;
         font-size: 14px;
         margin-left: 2px;
-        margin-top: 28px;
     }
 
     .jv_customer-details h4 {

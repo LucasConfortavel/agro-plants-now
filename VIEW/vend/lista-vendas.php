@@ -60,15 +60,6 @@ $vendas = array_slice($vendas, $offset, $limite);
                                 <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou cliente..." class="jv_search-input">
                             </div>
                         </form>
-                        
-                        <div class="jv_actions">
-                            <div>
-                                <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    Remover (<span id="jv_selectedCount">0</span>)
-                                </button>
-                            </div>
-                        </div>
                     </div>
                     
                     <p class="jv_subtitle" id="jv_customerCount">
@@ -82,13 +73,9 @@ $vendas = array_slice($vendas, $offset, $limite);
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
-                                        <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
                                     <th class="jv_name">Vendedor</th>
                                     <th class="jv_date">Cliente</th>
                                     <th class="jv_valor_gast">Valor Gasto</th>
-                                    <th class="jv_actions-col"></th> 
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
@@ -98,9 +85,6 @@ $vendas = array_slice($vendas, $offset, $limite);
                                         $cliente = $cliente_control->mostrar($venda["id_cliente"]);
                                     ?>
                                         <tr>
-                                            <td>
-                                                <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>">
-                                            </td>
                                             <td>
                                                 <div class="jv_customer-info">
                                                     <div class="jv_avatar">
@@ -114,28 +98,10 @@ $vendas = array_slice($vendas, $offset, $limite);
                                             </td>
                                             <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
                                             <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
-                                            <td class="jv_table-action">
-                                                <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <div class="jv_dropdown">
-                                                    <button class="jv_dropdown-item">
-                                                        <i class="fas fa-eye"></i> Visualizar
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <button class="jv_dropdown-item">
-                                                        <i class="fas fa-edit"></i> Editar
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <button class="jv_dropdown-item jv_danger">
-                                                        <i class="fas fa-trash"></i> Remover
-                                                    </button>
-                                                </div>
-                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else: ?>
-                                    <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
+                                    <tr><td colspan="3" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
                                 <?php endif; ?>
                             </tbody>
                         </table>
