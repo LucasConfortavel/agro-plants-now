@@ -2,6 +2,8 @@
     include "../../INCLUDE/Menu_adm.php";
     include "../../INCLUDE/btn-notificacao.php";
     include "../../CONTROLLER/ProdutoController.php";
+    include "../../INCLUDE/vlibras.php";
+
         
     $produtoController = new ProdutoController();
     $produtos = $produtoController->index();

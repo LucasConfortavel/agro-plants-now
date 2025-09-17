@@ -1,6 +1,8 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
  include "../../CONTROLLER/UsuarioController.php";
+ include "../../INCLUDE/vlibras.php";
+
 
     $controler_user = new UsuarioController();
 

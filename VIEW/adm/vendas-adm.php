@@ -3,6 +3,8 @@ include "../../INCLUDE/Menu_adm.php";
 include "../../CONTROLLER/VendaController.php";
 include "../../CONTROLLER/UsuarioController.php";
 include "../../CONTROLLER/ClienteController.php";
+include "../../INCLUDE/vlibras.php";
+
 
 $venda_control = new VendaController(); 
 $vendas = $venda_control->index();

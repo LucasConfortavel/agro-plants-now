@@ -1,6 +1,8 @@
 <?php
-
+include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/vlibras.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
