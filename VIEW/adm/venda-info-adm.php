@@ -1,7 +1,21 @@
 <?php
 include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/Menu_adm.php";
-include "../../INCLUDE/vlibras.php";
+include "../../CONTROLLER/VendaController.php";
+include "../../CONTROLLER/ClienteController.php";
+include "../../CONTROLLER/UsuarioController.php";
+
+$controler_venda = new VendaController(); 
+$controler_cliente = new ClienteController();
+$controler_usuario = new UsuarioController();
+
+if(isset($_GET['id'])){
+        $id=$_GET["id"];
+        $venda = $controler_venda->mostrar($id);
+        $cliente = $controler_cliente->mostrar($venda['id_cliente']);
+        $usuario = $controler_usuario->mostrar($venda['id_vendedor']);
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -34,11 +48,11 @@ include "../../INCLUDE/vlibras.php";
             <div class="P_customer-details">
                 <div class="P_customer-label">Cliente</div>
                 <div class="P_customer-name">
-                    Rafael Germinari
+                    <?= $cliente['nome']?>
                 </div>
                 <div class="P_customer-date">
                     <div>Data de criação</div>
-                    <div>16/08</div>
+                    <div><?= $venda['data_venda']?></div>
                 </div>
             </div>
             
@@ -62,7 +76,7 @@ include "../../INCLUDE/vlibras.php";
 
             <div class="P_cart-item">
                 <div class="P_item-id">
-                    <span>K23</span>
+                    <span><?= $venda["id"];?></span>
                 </div>
                 <!-- <div class="P_item-remove">
                     <button class="P_remove-button">
@@ -79,7 +93,7 @@ include "../../INCLUDE/vlibras.php";
                     <span class="P_quantity-value" id="valor">1</span>
                     <!-- <button class="P_quantity-button" id="mais">+</button> -->
                 </div>
-                <div class="P_item-total">R$1000</div>
+                <div class="P_item-total"><?= $venda['total']?></div>
             </div>
         </div>
         
@@ -110,7 +124,7 @@ include "../../INCLUDE/vlibras.php";
                 
                 <div class="P_detail-row total-row">
                     <span>Total</span>
-                    <span class="P_price total">R$1000</span>
+                    <span class="P_price total"><?= $venda['total']?></span>
                 </div>
                 <div class="P_detail-row status-row">
                     <span>Status da Compra</span>  

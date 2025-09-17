@@ -12,7 +12,7 @@ $conn = $db->getConexao();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_info'])) {
     $stmt = $conn->prepare('
         UPDATE usuario 
-        SET nome = ?, email = ?, telefone = ?, cpf = ?, endereco = ?, cep = ?, data_nasc = ?
+        SET nome = ?, email = ?, telefone = ?, cpf = ?, cep = ?, data_nasc = ?
         WHERE id = ?
     ');
     $stmt->execute([
@@ -156,7 +156,7 @@ include "../../INCLUDE/Menu_adm.php";
             </div>
             <div class="form-group full-width">
                 <label>CEP</label>
-                <input type="text" name="endereco" value="<?php echo htmlspecialchars($user_data['cep']); ?>" readonly>
+                <input type="text" name="cep" value="<?php echo htmlspecialchars($user_data['cep']); ?>" readonly>
             </div>
             <div class="form-actions" style="display: none;">
                 <button type="button" class="btn-cancel" onclick="cancelEdit('personal')">Cancelar</button>

@@ -24,8 +24,7 @@ class UsuarioModel {
     public function criar() {
         $query = "INSERT INTO " . $this->table_name . " 
                  SET nome=:nome, email=:email, senha=:senha, tipo=:tipo, 
-                     telefone=:telefone, CPF=:CPF, endereco=:endereco, 
-                     cidade=:cidade, estado=:estado, data_nasc=:data_nasc, foto=:foto";
+                     telefone=:telefone, CPF=:CPF, CEP=:CEP, data_nasc=:data_nasc, foto=:foto";
 
         $stmt = $this->conn->prepare($query);
 
@@ -84,7 +83,7 @@ class UsuarioModel {
     }
 
     public function lerTodos() {
-        $query = "SELECT id, nome, email, tipo, telefone, CPF, cep, data_nasc, foto 
+        $query = "SELECT id, nome, email, tipo, telefone, CPF, cep, data_nasc, foto,status
                   FROM " . $this->table_name . " ORDER BY nome";
         
         $stmt = $this->conn->prepare($query);
@@ -94,7 +93,7 @@ class UsuarioModel {
     }
 
     public function lerEspecifico($filtro) {
-        $query = "SELECT id, nome, email, tipo, telefone, CPF, cep,  data_nasc, foto 
+        $query = "SELECT id, nome, email, tipo, telefone, CPF, cep,  data_nasc, foto,status 
                   FROM " . $this->table_name . " WHERE tipo = '$filtro' ORDER BY nome";
         
         $stmt = $this->conn->prepare($query);
@@ -220,6 +219,22 @@ class UsuarioModel {
         $stmt->execute();
         
         return $stmt->rowCount() > 0;
+    }
+
+    public function desativar(){
+        try {
+        
+            $query = "UPDATE " . $this->table_name . " SET status = 'DESATIVADO'" . " WHERE id = ?";
+            $stmt = $this->conn->prepare($query);
+
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $stmt->bindParam(1, $this->id);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Erro ao desativar usuário: " . $e->getMessage());
+            throw new Exception("Erro ao desativar usuário: " . $e->getMessage());
+        }
     }
 }
 ?>

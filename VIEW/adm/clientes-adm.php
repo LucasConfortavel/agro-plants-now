@@ -12,13 +12,11 @@ if(!empty($_GET)){
     if (isset($_GET['visualizar'])){
         $id = $_GET['visualizar'];
         $cliente = $cliente_control->mostrar($id);
-        $action_handled = true;
         header('Location: info-edit-adm.php?id=' . $id . '&usuario=cliente');
 
     } elseif (isset($_GET['remover'])){
         $id = $_GET['remover'];
         $cliente = $cliente_control->deletar($id);
-        $action_handled = true;
         header('Location: ' . $_SERVER['PHP_SELF']);
     }
 }

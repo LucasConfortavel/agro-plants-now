@@ -25,12 +25,12 @@ class UsuarioController {
     }
 
     // Criar um novo usuário
-    public function criar() {
+    public function criar($tipo) {
         try {
             $this->user->nome = $_POST['nome'];
             $this->user->email = $_POST['email'];
             $this->user->senha = $_POST['senha'];
-            $this->user->tipo = $_POST['tipo'];
+            $this->user->tipo = $tipo;
             $this->user->telefone = $_POST['telefone'] ?? null;
             $this->user->CPF = $_POST['CPF'];
             $this->user->data_nasc = $_POST['data_nasc'] ?? null;
@@ -102,6 +102,20 @@ class UsuarioController {
                 return ['success' => 'Usuário deletado com sucesso'];
             } else {
                 throw new Exception("Erro ao excluir usuário");
+            }
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+    
+    public function desativar($id) {
+        try {
+            $this->user->id = $id;
+            
+            if ($this->user->desativar()) {
+                return ['success' => 'Usuário desativado com sucesso'];
+            } else {
+                throw new Exception("Erro ao desativar usuário");
             }
         } catch (Exception $e) {
             return ['error' => $e->getMessage()];

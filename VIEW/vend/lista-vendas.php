@@ -32,7 +32,7 @@ $vendas = array_slice($vendas, $offset, $limite);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Vendas</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/vendas-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/lista-vendas-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -75,7 +75,7 @@ $vendas = array_slice($vendas, $offset, $limite);
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_name">Vendedor</th>
+                                     <th><p class="jv_name">Vendedor</p></th>
                                     <th class="jv_date">Cliente</th>
                                     <th class="jv_valor_gast">Valor Gasto</th>
                                 </tr>

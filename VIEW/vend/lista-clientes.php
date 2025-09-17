@@ -65,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
-                                <th class="jv_name">Nome</th>
+                                <th><p class="jv_name">Nome</p></th>
                                 <th class="jv_date">Data de Nascimento</th>
                                 <th class="jv_total_comp">Telefone</th>
                                 <th class="jv_valor_gast">CPF/CNPJ</th>

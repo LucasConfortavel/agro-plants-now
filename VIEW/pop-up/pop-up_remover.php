@@ -17,20 +17,21 @@
     <p>Tem certeza que deseja remover este usuário?</p>
     <div class="eze-button-container">
       <button type="button" class="eze-add-button" id="btn-sim">Sim</button>
-      <button type="button" class="eze-add-button eze-add-button2" id="btn-nao">Não</button>
+      <button type="button" class="eze-add-button eze-add-button2" onclick="fecharPopup()" class="eze-add-button eze-add-button2" id="btn-nao">Não</button>
     </div>
   </div>
 </div>
 
-<div id="password-step" class="hidden">
+<form method="post" id="password-step" class="hidden">
   <p>Insira sua senha para confirmar a remoção:</p>
-  <input type="password" class="ym_input-padrao" placeholder="Digite sua senha" required>
+  <input type="password" name ="remover" class="ym_input-padrao" placeholder="Digite sua senha" required>
+  <input type="hidden" name ="id" value="<?= htmlspecialchars($_GET['id'])?>">
   
   <div class="eze-button-container">
-    <button type="button" class="eze-add-button" id="btn-confirmar">Confirmar</button>
-    <button type="button" class="eze-add-button eze-add-button2" id="btn-cancelar-senha">Cancelar</button>
+    <button type="submit" class="eze-add-button" id="btn-confirmar">Confirmar</button>
+    <button type="button" onclick="fecharPopup()" class="eze-add-button eze-add-button2" id="btn-cancelar-senha">Cancelar</button>
   </div>
-</div>
+</form>
 
 <script>
 const btnSim = document.getElementById('btn-sim');
@@ -60,3 +61,5 @@ btnConfirmar.addEventListener('click', () => {
 
 </body>
 </html>
+
+<script src="../../PUBLIC/JS/script-pop-up.js"></script>

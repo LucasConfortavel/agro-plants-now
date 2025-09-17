@@ -111,12 +111,12 @@ class ClienteController {
         }
     }
 
-    public function delete($id) {
+    public function deletar($id) {
         try {
             $this->cliente->id = $id;
             
-            if ($this->cliente->delete()) {
-                header("Location: /clientes?success=Usuário excluído com sucesso");
+            if ($this->cliente->deletar()) {
+               return true;
                 exit();
             } else {
                 throw new Exception("Erro ao excluir cliente");

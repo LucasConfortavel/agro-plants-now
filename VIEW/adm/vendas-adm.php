@@ -24,6 +24,19 @@ $total_paginas = ceil($total_vendas / $limite);
 
 // Fatiar o array para exibir apenas os registros da página atual
 $vendas = array_slice($vendas, $offset, $limite);
+
+if(!empty($_GET)){
+    if (isset($_GET['visualizar'])){
+        $id = $_GET['visualizar'];
+        header('Location: venda-info-adm.php?id=' . $id);
+
+    } elseif (isset($_GET['remover'])){
+        $id = $_GET['remover'];
+        $venda = $venda_control->deletar($id);
+        header('Location: ' . $_SERVER['PHP_SELF']);
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +45,7 @@ $vendas = array_slice($vendas, $offset, $limite);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Vendas</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/vendas-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/vendas-cupom-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -120,19 +133,15 @@ $vendas = array_slice($vendas, $offset, $limite);
                                                 <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </button>
-                                                <div class="jv_dropdown">
-                                                    <button class="jv_dropdown-item">
+                                                <form class="jv_dropdown">
+                                                    <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
                                                         <i class="fas fa-eye"></i> Visualizar
                                                     </button>
                                                     <div class="jv_dropdown-separator"></div>
-                                                    <button class="jv_dropdown-item">
-                                                        <i class="fas fa-edit"></i> Editar
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <button class="jv_dropdown-item jv_danger">
+                                                    <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($venda['id'])?>">
                                                         <i class="fas fa-trash"></i> Remover
                                                     </button>
-                                                </div>
+                                                </form>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
