@@ -98,6 +98,15 @@ class VendaModel {
         return $stmt;
     }
 
+    public function lerEspecifico($filtro) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id_vendedor = '$filtro'";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
     public function update() {
         $query = "UPDATE " . $this->table_name . " 
                  SET nome=:nome, email=:email, telefone=:telefone, CPF=:CPF, CNPJ=:CNPJ,data_nasc=:data_nasc WHERE id=:id";

@@ -9,11 +9,18 @@ class VendaController {
     }
 
     // listar todos os usuarios
-    public function index() {
+    public function index($filtro = null) {
         // try {
+            if ($filtro == null) {
+
             $stmt = $this->venda->lerTodos();
             $vendas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $vendas;
+        } else{
+            $stmt = $this->venda->lerEspecifico($filtro);
+            $vendas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $vendas;
+        }
 
         // } catch (Exception $e) {
         //     $error = $e->getMessage();
