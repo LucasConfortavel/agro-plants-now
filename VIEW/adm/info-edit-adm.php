@@ -2,6 +2,8 @@
     include "../../CONTROLLER/ClienteController.php";
     include "../../CONTROLLER/UsuarioController.php";
     include "../../INCLUDE/Menu_adm.php";
+    include "../../INCLUDE/vlibras.php";
+
 
     $controler_cliente = new ClienteController();
     $controler_usuario = new UsuarioController();

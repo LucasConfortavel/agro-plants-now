@@ -1,6 +1,8 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
 require_once "../../CONTROLLER/ProdutoController.php";
+include "../../INCLUDE/vlibras.php";
+
 
 try {
     $produtoController = new ProdutoController();

@@ -5,6 +5,117 @@
   padding: 0;
 }
 
+.jv_page-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+    gap: 8px;
+    flex-wrap: wrap;
+
+}
+.jv_page-number {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    user-select: none;
+    font-weight: 500;
+    color: #45734b;
+    border: 1px solid #e5e7eb;
+    background-color: white;
+    text-decoration: none;
+}
+
+.jv_page-number:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-1px);
+    border-color: #d1d5db;
+}
+
+.jv_page-number.active {
+    background-color: #45734b;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+    border-color: #45734b;
+}
+
+.jv_page-arrow {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    color: #45734b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+}
+
+.jv_page-arrow:hover {
+    background-color: #f0f0f0;
+    transform: translateX(3px);
+    border-color: #d1d5db;
+}
+
+.jv_page-arrow.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+.jv_page-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+  
+.jv_page-number {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    user-select: none;
+    font-weight: 500;
+}
+  
+.jv_page-number:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-1px);
+}
+  
+.jv_page-number.active {
+    background-color: #45734b;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+  
+.jv_page-arrow {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.jv_page-arrow:hover {
+    background-color: #f0f0f0;
+    transform: translateX(3px);
+}
+
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f9fafb;
@@ -43,33 +154,43 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.po-tabs {
+.tabs-nav {
   display: flex;
-  background-color: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+  width: 400px;
+  background: white;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  gap: 0.25rem;
 }
 
-.po-tab-button {
+.po-tab-btn {
   flex: 1;
-  padding: 1rem 1.5rem;
-  background: none;
+  width: 150px;
+  padding: 0.75rem 1rem;
   border: none;
-  font-size: 0.875rem;
-  font-weight: 500;
+  background: transparent;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
-  color: #6b7280;
-  border-radius: 10px 10px 0px 0px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #64748b;
+  white-space: nowrap;
 }
 
-.po-tab-button.po-active {
-  background-color: #45734b;
+.po-tab-btn:hover {
+  background: #f1f5f9;
+  color: #45734b;
+}
+
+.po-tab-btn.po-active {
+  background: #45734b;
   color: white;
-  border-bottom: 2px solid #15803d;
-}
-
-.po-tab-button:hover:not(.po-active) {
-  background-color: #f3f4f6;
 }
 
 .po-card-content {
@@ -110,6 +231,14 @@ body {
   white-space: nowrap;
   display: flex;
   justify-content: center;
+  margin-top: 30px;
+}
+
+.jv_search-input{
+  margin-top: 7px;
+}
+.search-icon{
+   margin-top: 7px;
 }
 
 .po-btn:hover {
@@ -285,6 +414,7 @@ body {
   .po-charts-grid {
       grid-template-columns: 1fr 1fr;
   }
+
 }
 
 @media (min-width: 1024px) {
@@ -332,7 +462,11 @@ body {
       flex-direction: column;
   }
 
-  .po-tab-button {
+  .tabs-nav{
+    width: 300px;
+  }
+
+  .po-tab-btn {
       padding: 0.75rem 1rem;
   }
 
@@ -371,6 +505,10 @@ body {
 @media (max-width: 480px) {
   .po-container {
       padding: 0.75rem;
+  }
+
+  .tabs-nav{
+    width: 320px;
   }
 
   .po-header {

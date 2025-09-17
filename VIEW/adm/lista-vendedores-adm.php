@@ -1,7 +1,9 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
     include "../../CONTROLLER/UsuarioController.php";
+    include "../../INCLUDE/vlibras.php";
     require_once "../../INCLUDE/verificarLogin.php"; 
+
 
     $controler_user = new UsuarioController();
 

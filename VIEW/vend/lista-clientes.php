@@ -1,6 +1,8 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
 include "../../CONTROLLER/ClienteController.php";
+include "../../INCLUDE/vlibras.php";
+
 
 $cliente_control = new ClienteController();
 $clientes = $cliente_control->index();

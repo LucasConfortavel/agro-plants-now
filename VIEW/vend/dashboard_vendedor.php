@@ -1,6 +1,8 @@
 <?php
 require_once '../../INCLUDE/verificarLogin.php';
 include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/vlibras.php";
+
 ?>
 
 <!DOCTYPE html>

@@ -1,4 +1,7 @@
-<?php include "../../INCLUDE/Menu_superior.php"; ?>
+<?php
+include "../../INCLUDE/Menu_superior.php";
+include "../../INCLUDE/vlibras.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

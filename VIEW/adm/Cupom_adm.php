@@ -1,6 +1,8 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
 include "../../CONTROLLER/CupomController.php";
+include "../../INCLUDE/vlibras.php";
+
 
 $cupom_control = new CupomController();
 $cupons = $cupom_control->index();

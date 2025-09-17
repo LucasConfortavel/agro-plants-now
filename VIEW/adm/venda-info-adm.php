@@ -1,5 +1,5 @@
 <?php
-
+include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/Menu_adm.php";
 include "../../CONTROLLER/VendaController.php";
 include "../../CONTROLLER/ClienteController.php";

@@ -1,6 +1,8 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
 require_once "../../DB/connect.php";
+include "../../INCLUDE/vlibras.php";
+
 
 if (isset($_GET['id'])){
     $id = $_GET['id'];

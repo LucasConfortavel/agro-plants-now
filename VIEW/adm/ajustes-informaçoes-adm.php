@@ -1,6 +1,8 @@
 <?php
 require_once "../../DB/Database.php"; 
 require_once "../../INCLUDE/verificarLogin.php"; 
+include "../../INCLUDE/vlibras.php";
+
 
 $user_id = $_SESSION['id'] ?? null;
 

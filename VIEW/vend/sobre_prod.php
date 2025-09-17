@@ -1,5 +1,7 @@
 <?php
 include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/vlibras.php";
+
 
 require_once '../../CONTROLLER/ProdutoController.php';
 
