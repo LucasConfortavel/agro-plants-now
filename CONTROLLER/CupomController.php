@@ -96,12 +96,12 @@ class CupomController {
         }
     }
 
-    public function delete($id) {
+    public function deletar($id) {
         try {
             $this->cupom->id = $id;
             
-            if ($this->cupom->delete()) {
-                header("Location: /cupons?success=Usuário excluído com sucesso");
+            if ($this->cupom->deletar()) {
+                return true;
                 exit();
             } else {
                 throw new Exception("Erro ao excluir cupom");

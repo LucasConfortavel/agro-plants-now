@@ -13,7 +13,7 @@
             <button class="eze-tab-button" id="documento-tab">Foto de Perfil</button>
         </div>
 
-        <form action="" method="post" class="ym_form-pop-up">
+        <form action="#" method="post" class="ym_form-pop-up">
             <div id="cliente-content" class="eze-form-section active">
                 <div class="eze-form-row">
                     <div class="eze-form-group">
@@ -38,7 +38,7 @@
                             <label class="eze-label-text">Senha</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="text" class="ym_input-padrao" name="Senha" placeholder="Senha" required>
+                        <input type="text" class="ym_input-padrao" name="senha" placeholder="Senha" required>
                     </div>
                 </div>
 

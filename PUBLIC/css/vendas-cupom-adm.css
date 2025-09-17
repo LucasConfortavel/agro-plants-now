@@ -506,7 +506,7 @@
 }
   
 
-.jv_dropdown-item.danger {
+.jv_danger {
     color: #dc2626;
 }
 
@@ -517,7 +517,6 @@
 .jv_dropdown-separator {
     height: 1px;
     background: #e5e7eb;
-    margin: 4px 0;
 }
 
 .jv_empty-state {

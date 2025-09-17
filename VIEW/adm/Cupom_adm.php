@@ -19,9 +19,18 @@ $cupons = array_slice($cupons, $offset, $limite);
 
 // Criação de cupom via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $cupom_control->criarCupom(); // atenção ao método com C maiúsculo
-    unset($_POST);
+    $cupom_control->criarCupom();
+    header('Location: ' . $_SERVER['PHP_SELF']);
 }
+
+if(!empty($_GET)){
+    if(isset($_GET['remover'])){
+        $id = $_GET['remover'];
+        $cupom = $cupom_control->deletar($id);
+        header('Location: ' . $_SERVER['PHP_SELF']);
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Cupons</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/vendas-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/vendas-cupom-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -69,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </button>
                         </div>
                         <div>
-                            <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_cupom.php','Cadastro de Cupom')">
+                            <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php','Cadastro de Cupom')">
                                 <i class="fas fa-plus"></i>
                                 <a>Cadastrar Cupom</a>
                             </button>
@@ -113,19 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
-                                            <div class="jv_dropdown">
-                                                <button class="jv_dropdown-item">
-                                                    <i class="fas fa-eye"></i> Visualizar
-                                                </button>
-                                                <div class="jv_dropdown-separator"></div>
-                                                <button class="jv_dropdown-item">
-                                                    <i class="fas fa-edit"></i> Editar
-                                                </button>
-                                                <div class="jv_dropdown-separator"></div>
-                                                <button class="jv_dropdown-item jv_danger">
+                                            <form class="jv_dropdown">
+                                                <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value=<?= $cupom['id'] ?>>
                                                     <i class="fas fa-trash"></i> Remover
                                                 </button>
-                                            </div>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

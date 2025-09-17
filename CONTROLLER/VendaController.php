@@ -52,13 +52,13 @@ class VendaController {
             $this->venda->id = $id;
             
             if ($this->venda->lerUm()) {
-                include_once __DIR__ . '/../views/vendas/show.php';
+                return $this->venda->lerUm();
             } else {
-                throw new Exception("Usuário não encontrado");
+                throw new Exception("Venda não encontrada");
             }
         } catch (Exception $e) {
             $error = $e->getMessage();
-            include_once __DIR__ . '/../views/error.php';
+           return $error;
         }
     }
 

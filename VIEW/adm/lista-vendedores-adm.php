@@ -1,45 +1,43 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
     include "../../CONTROLLER/UsuarioController.php";
+    require_once "../../INCLUDE/verificarLogin.php"; 
 
     $controler_user = new UsuarioController();
 
     // POST: criar vendedor
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $teste = $controler_user->criar();
-        print_r($teste);
-        // header('Location: ' . $_SERVER['PHP_SELF']);
-        exit;
-    }
-
-    $action_handled = false;
-
-    if(!empty($_GET)){
-        if (isset($_GET['visualizar'])){
-            $id = $_GET['visualizar'];
-            $usuario = $controler_user->mostrar($id);
-            $action_handled = true;
-            header('Location: info-edit-adm.php?id=' . $id . "&usuario=" . $usuario['tipo']);
-
-        } elseif (isset($_GET['remover'])){
-            $id = $_GET['remover'];
-            $usuario = $controler_user->deletar($id);
-            $action_handled = true;
-            header('Location: ' . $_SERVER['PHP_SELF']);
+        if (isset($_POST['adicionar'])){
+            $usuario = $controler_user->criar("vendedor");
         }
+
+        if (isset($_POST['remover'])){
+            $user_id = $_SESSION['id'] ?? null;
+            $usuario = $controler_user->mostrar($user_id);
+            $id = $_POST['id'];
+            $senha = $_POST['remover'];
+
+            if($usuario["senha"] == $senha){
+                $usuario = $controler_user->desativar($id);
+                print_r($usuario);
+            }else{
+                print_r("Senha incorreta");
+            }
+        }
+
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
+
     }
 
-    // if ($action_handled) {
 
-    //     $redirect = $_SERVER['PHP_SELF'];
-    //     if (isset($_GET['pagina'])) {
-    //         $redirect .= '?pagina=' . (int)$_GET['pagina'];
-    //     }
-    //     header('Location: ' . $redirect);
-    //     exit;
-    // }
+    if (isset($_GET['visualizar'])){
+        $id = $_GET['visualizar'];
+        $usuario = $controler_user->mostrar($id);
+        header('Location: info-edit-adm.php?id=' . $id . "&usuario=" . $usuario['tipo']);
+    } 
     
-    $usuarios = $controler_user->index();
+    $usuarios = $controler_user->index("vendedor");
 
     $total_vendedores = count($usuarios);
 
@@ -122,7 +120,8 @@
                                     </th>
                                     <th class="jv_name">Nome</th>
                                     <th class="jv_banguela">Telefone</th>
-                                    <th class="jv_data">Data de Cadastro</th>
+                                    <th class="jv_data">Data de Nascimento</th>
+                                    <th class="jv_data">Status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
@@ -152,6 +151,7 @@
                                             </td>
                                             <td><?= htmlspecialchars($vend['telefone']) ?></td>
                                             <td><?= date("d/m/Y", strtotime($vend['data_nasc'])) ?></td>
+                                            <td><?= htmlspecialchars($vend['status']) ?></td>
                                             <td class="jv_table-action">
                                                 <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                     <i class="fas fa-ellipsis-h"></i>
@@ -161,8 +161,8 @@
                                                         <i class="fas fa-eye"></i> Visualizar
                                                     </button>
                                                     <div class="jv_dropdown-separator"></div>
-                                                    <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php','Cadastro de Vendedores')" class="jv_dropdown-item jv_danger">
-                                                        <i class="fas fa-trash"></i> Remover
+                                                    <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($vend['id'])?>','Cadastro de Vendedores')" class="jv_dropdown-item jv_danger">
+                                                        <i class="fa-solid fa-ban"></i> Desativar
                                                     </button>
                                                 </form>
                                             </td>
