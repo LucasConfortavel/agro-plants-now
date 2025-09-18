@@ -87,16 +87,24 @@ include "../../INCLUDE/Menu_adm.php";
 
                         <div class="jv_actions">
                             <div>
-                                <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    Remover (<span id="jv_selectedCount">0</span>)
+                                <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                    <span><i class="fa-regular fa-file"></i></span>
+                                    Exportar CSV
                                 </button>
                             </div>
-                            <div>
-                                <button type="button" class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                    <i class="fas fa-plus"></i>
-                                    <span>Cadastrar Vendedor</span>
-                                </button>
+
+                            <div class="ym_area-select">
+                                <div class="ym_select" onclick="mostrar_categorias()">
+                                    <p class="ym_categoria-select">Último mês</p>
+                                    <p class="ym_seta-categoria">></p>
+                                </div>
+                                   
+                                   
+                                <div class="ym_options">
+                                    <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                                    <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                </div>
+                                   
                             </div>
                         </div>
                     </div>
@@ -173,11 +181,11 @@ include "../../INCLUDE/Menu_adm.php";
             </div>
             <div class="po-charts-grid">
                 <div class="po-card">
-                    <h3>Vendas por mês</h3>
+                    <h5>Vendas por mês</h5>
                     <canvas id="sales-bar-chart"></canvas>
                 </div>
                 <div class="po-card">
-                    <h3>Status dos pedidos</h3>
+                    <h5>Status dos pedidos</h5>
                     <canvas id="sales-pie-chart"></canvas>
                 </div>
             </div>
@@ -206,20 +214,7 @@ include "../../INCLUDE/Menu_adm.php";
                             </div>
                         </form>
 
-                        <div class="jv_actions">
-                            <div>
-                                <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    Remover (<span id="jv_selectedCount">0</span>)
-                                </button>
-                            </div>
-                            <div>
-                                <button type="button" class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                    <i class="fas fa-plus"></i>
-                                    <span>Cadastrar Vendedor</span>
-                                </button>
-                            </div>
-                        </div>
+
                     </div>
 
                     <p class="jv_subtitle" id="jv_customerCount">

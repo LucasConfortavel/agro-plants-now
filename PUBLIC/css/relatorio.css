@@ -233,7 +233,7 @@ body {
   white-space: nowrap;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: -1px;
 }
 
 .jv_search-input{
