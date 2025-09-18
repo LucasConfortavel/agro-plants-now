@@ -411,6 +411,33 @@ body {
   max-width: 8px;
 }
 
+.po-charts-grid .po-card h3{
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+.po-charts-grid .po-card .banguela{
+  margin-left: 5%;
+  margin-top: 9%;
+}
+#sales-bar-chart{
+  width: 700px;      
+  height: 300px;     
+  max-width: 100%;   
+  margin: 0 auto;    
+  display: block;    
+  margin-top:40px;
+}
+
+#sales-pie-chart{
+  width: 700px;      
+  height: 300px;     
+  max-width: 100%;   
+  margin: 0 auto;    
+  display: block;    
+  margin-top:40px;
+}
+
 
 @media (min-width: 768px) {
   .po-charts-grid {

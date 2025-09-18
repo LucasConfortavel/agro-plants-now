@@ -181,11 +181,11 @@ include "../../INCLUDE/Menu_adm.php";
             </div>
             <div class="po-charts-grid">
                 <div class="po-card">
-                    <h5>Vendas por mês</h5>
+                    <h3>Vendas por mês</h3>
                     <canvas id="sales-bar-chart"></canvas>
                 </div>
                 <div class="po-card">
-                    <h5>Status dos pedidos</h5>
+                    <h3 class="banguela">Status dos pedidos</h3>
                     <canvas id="sales-pie-chart"></canvas>
                 </div>
             </div>
