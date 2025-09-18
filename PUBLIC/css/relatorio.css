@@ -45,6 +45,7 @@
     border-color: #45734b;
 }
 
+
 .jv_page-arrow {
     cursor: pointer;
     padding: 8px;
@@ -158,6 +159,7 @@ body {
   display: flex;
   width: 400px;
   background: white;
+  margin-bottom: 15px;
   border-radius: 12px;
   padding: 0.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
