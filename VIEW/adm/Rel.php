@@ -296,7 +296,7 @@ include "../../INCLUDE/Menu_adm.php";
                     <canvas id="comm-bar-chart"></canvas>
                 </div>
                 <div class="po-card">
-                    <h3>Distribuição de comissões</h3>
+                    <h3 class="banguela">Distribuição de comissões</h3>
                     <canvas id="comm-doughnut-chart"></canvas>
                 </div>
             </div>
