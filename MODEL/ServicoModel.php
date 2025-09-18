@@ -23,7 +23,6 @@ class ServicoModel {
 
         $stmt = $this->conn->prepare($query);
 
-        // Sanitização dos dados
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->preco = htmlspecialchars(strip_tags($this->preco));
         $this->descricao = htmlspecialchars(strip_tags($this->descricao));
@@ -50,7 +49,9 @@ class ServicoModel {
     }
 
     public function lerUm() {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id = ? LIMIT 0,1";
+        $query = "SELECT s.*, c.nome as categoria_nome FROM " . $this->table_name . " s 
+                  LEFT JOIN categoria c ON s.id_cat = c.id 
+                  WHERE s.id = ? LIMIT 0,1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
         $stmt->execute();
@@ -69,7 +70,10 @@ class ServicoModel {
     }
 
     public function lerTodos() {
-        $query = "SELECT * FROM " . $this->table_name . " ORDER BY nome";
+        $query = "SELECT s.*, c.nome as categoria_nome FROM " . $this->table_name . " s 
+                LEFT JOIN categoria c ON s.id_cat = c.id 
+                WHERE s.status = 'ATIVADO'
+                ORDER BY s.nome";
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -78,7 +82,10 @@ class ServicoModel {
     }
 
     public function lerPorCategoria($id_categoria) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id_cat = ? ORDER BY nome";
+        $query = "SELECT s.*, c.nome as categoria_nome FROM " . $this->table_name . " s 
+                LEFT JOIN categoria c ON s.id_cat = c.id 
+                WHERE s.id_cat = ? AND s.status = 'ATIVADO'
+                ORDER BY s.nome";
         
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id_categoria);

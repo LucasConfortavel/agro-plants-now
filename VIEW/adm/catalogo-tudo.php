@@ -1,6 +1,41 @@
 <?php
-    include "../../INCLUDE/Menu_adm.php";   
-    include "../../INCLUDE/vlibras.php";
+include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/vlibras.php";
+require_once '../../CONTROLLER/ProdutoController.php';
+require_once '../../CONTROLLER/ServicoController.php';
+require_once '../../CONTROLLER/CategoriaController.php';
+
+$produtoController = new ProdutoController();
+$servicoController = new ServicoController();
+$categoriaController = new CategoriaController();
+
+$produtos = $produtoController->index();
+$servicos = $servicoController->index();
+
+$errorProdutos = isset($produtos['error']);
+$errorServicos = isset($servicos['error']);
+
+if (isset($_GET['remover'])) {
+    $id = $_GET['remover'];
+    $tipo = $_GET['tipo'] ?? 'produto';
+    
+    if ($tipo === 'produto') {
+        $resultado = $produtoController->deletar($id);
+    } else {
+        $resultado = $servicoController->deletar($id);
+    }
+    
+    if (isset($resultado['success'])) {
+        header("Location: catalogo-tudo.php?success=" . urlencode($resultado['success']));
+        exit;
+    } else {
+        header("Location: catalogo-tudo.php?error=" . urlencode($resultado['error']));
+        exit;
+    }
+}
+
+$successMessage = $_GET['success'] ?? '';
+$errorMessage = $_GET['error'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +51,7 @@
 </head>
 <body>
 
-    <!-- pop-up -->
-    <div class="ym_popup-overlay" >
+    <div class="ym_popup-overlay">
         <div class="ym_popup-content">
             <div class="ym_area-superior-popup"></div>
             <div class="ym_conteudo-popup"></div>
@@ -26,139 +60,140 @@
 
     <main class="jp_main-content">
         
-            <section class="ym_sectionProdutos">
-    
-                <h1 class="ym_titulo">Catálogo - Geral</h1>
+        <section class="ym_sectionProdutos">
 
-                <div class="ym_categorias">
-                    
-                    <div class="ym_area-input-pesquisa">
-                        <a href="" class="ym_lupa"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        <input  type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
-                    </div>  
-                    
-                    
-                    <div class="ym_area-select">
-                        <div class="ym_select" onclick="mostrar_categorias()">
-                            <p class="ym_categoria-select">Todos</p>
-                            <p class="ym_seta-categoria">></p>
-                        </div>
-                        
-                        
-                        <div class="ym_options">
-                            <a href="catalogo-produtos.php" class="ym_link-option"><i class="fa-solid fa-building-wheat"></i> produto</a>
-                            <a href="catalogo-servicos.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> serviço</a>
-                        </div>
-                        
+            <h1 class="ym_titulo">Catálogo - Geral</h1>
+
+            <?php if ($successMessage): ?>
+                <div class="ym-alert ym-alert-success"><?php echo htmlspecialchars($successMessage); ?></div>
+            <?php endif; ?>
+            
+            <?php if ($errorMessage): ?>
+                <div class="ym-alert ym-alert-error"><?php echo htmlspecialchars($errorMessage); ?></div>
+            <?php endif; ?>
+
+            <div class="ym_categorias">
+                
+                <div class="ym_area-input-pesquisa">
+                    <a href="" class="ym_lupa"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <input id="inputPesquisa" type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
+                </div>  
+                
+                
+                <div class="ym_area-select">
+                    <div class="ym_select" onclick="mostrar_categorias()">
+                        <p class="ym_categoria-select">Todos</p>
+                        <p class="ym_seta-categoria">></p>
                     </div>
                     
-                    <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')" >+</a>
+                    
+                    <div class="ym_options">
+                        <a href="catalogo-produtos.php" class="ym_link-option"><i class="fa-solid fa-building-wheat"></i> produto</a>
+                        <a href="catalogo-servicos.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> serviço</a>
+                    </div>
+                    
                 </div>
                 
-                <p class="ym_textoArea">Principais produtos</p>
-                    
-                    <div class="ym_areaProdutos">
-                        <div class="ym_todos-produtos">
-                           
+                <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')">+</a>
+            </div>
+            
+            <p class="ym_textoArea">Principais produtos</p>
+                
+            <div class="ym_areaProdutos">
+                <div class="ym_todos-produtos" id="produtos-container">
+                    <?php if (!$errorProdutos && is_array($produtos) && count($produtos) > 0): ?>
+                        <?php foreach ($produtos as $produto):
+                            $categoriaNome = $produto['categoria_nome'] ?? 'Categoria não encontrada';
+                        ?>
                             <div class="ym_cardProduto">
                                 <div class="ym_img-placeholder">
-                                    <img src="'. $imagem.'" alt="img-produto" class="ym_img">
+                                    <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="ym_img">
                                     <div class="ym_img-label">
-                                        <span>Bioestimulante</span>
+                                        <span><?php echo htmlspecialchars($categoriaNome); ?></span>
                                     </div>
-                                    <form action="#" method="get" class="ym_form-remover">
-                                        <button type="submit" name="remover" value='.$id.'>
-                                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
-                                        </button>
-                                    </form>
+                                    <a href="catalogo-tudo.php?remover=<?php echo $produto['id']; ?>&tipo=produto" class="ym_delete-link" onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                        <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                    </a>
                                 </div>
 
-                                <p class="ym_nomeProduto">'. $nome .'</p>
-                                <p class="ym_preco">R$ '.$preco.'</p>
-                                <p class="ym_descricao">'.$descricao.'</p>
-                                <a href="sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                <p class="ym_nomeProduto"><?php echo htmlspecialchars($produto['nome']); ?></p>
+                                <p class="ym_preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                                <p class="ym_descricao"><?php echo htmlspecialchars($produto['descricao']); ?></p>
+                                <a href="sobre_prod_adm.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                             </div>
-                        </div>
-                        
-                        <div class="ym_btn-slide-area">
-                            <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.mysqli_num_rows($result).',0)"> < </button>
-                            <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.mysqli_num_rows($result).',0)"> > </button>
-                        </div>
-                        
-                    </div>
-                    
-                    
-                    
-                    
-                    
-                    <p class="ym_textoArea">Principais serviços</p>
-                    
-                    
-                    <div class="ym_areaProdutos">
-                        <div class="ym_todos-produtos">
-
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="ym-sem-registros">
+                            <?php 
+                            if ($errorProdutos) {
+                                echo "Erro ao carregar produtos: " . htmlspecialchars($produtos['error']);
+                            } else {
+                                echo "Nenhum produto cadastrado ou ativado.";
+                            }
+                            ?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+                
+                <?php if (!$errorProdutos && is_array($produtos) && count($produtos) > 3): ?>
+                <div class="ym_btn-slide-area">
+                    <button class="ym_btn-slide ym_slideBack" onclick="slideBack(<?php echo count($produtos); ?>,0)"> < </button>
+                    <button class="ym_btn-slide ym_slideGo" onclick="slideGo(<?php echo count($produtos); ?>,0)"> > </button>
+                </div>
+                <?php endif; ?>
+            </div>
+            
+            <p class="ym_textoArea">Principais serviços</p>
+            
+            <div class="ym_areaProdutos">
+                <div class="ym_todos-produtos" id="servicos-container">
+                    <?php if (!$errorServicos && is_array($servicos) && count($servicos) > 0): ?>
+                        <?php foreach ($servicos as $servico): 
+                            $categoriaNome = $servico['categoria_nome'] ?? 'Categoria não encontrada';
+                        ?>
                             <div class="ym_cardProduto">
                                 <div class="ym_img-placeholder">
-                                    <img src="'. $imagem.'" alt="img-produto" class="ym_img">
+                                    <img src="../../PUBLIC/img/<?php echo !empty($servico['foto']) ? $servico['foto'] : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($servico['nome']); ?>" class="ym_img">
                                     <div class="ym_img-label">
-                                        <span>Bioestimulante</span>
+                                        <span><?php echo htmlspecialchars($categoriaNome); ?></span>
                                     </div>
-                                    <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                    <a href="catalogo-tudo.php?remover=<?php echo $servico['id']; ?>&tipo=servico" class="ym_delete-link" onclick="return confirm('Tem certeza que deseja excluir este serviço?')">
+                                        <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                    </a>
                                 </div>
-                                <p class="ym_nomeProduto">'. $nome .'</p>
-                                <p class="ym_preco">R$ '.$preco.'</p>
-                                <p class="ym_descricao">'.$descricao.'</p>
-                                <a href="sobre_prod_adm.php " class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                <p class="ym_nomeProduto"><?php echo htmlspecialchars($servico['nome']); ?></p>
+                                <p class="ym_preco">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></p>
+                                <p class="ym_descricao"><?php echo htmlspecialchars($servico['descricao']); ?></p>
+                                <a href="sobre_serv_adm.php?id=<?php echo $servico['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                             </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="ym-sem-registros">
+                            <?php 
+                            if ($errorServicos) {
+                                echo "Erro ao carregar serviços: " . htmlspecialchars($servicos['error']);
+                            } else {
+                                echo "Nenhum serviço cadastrado ou ativado.";
+                            }
+                            ?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+                
+                <?php if (!$errorServicos && is_array($servicos) && count($servicos) > 3): ?>
+                <div class="ym_btn-slide-area">
+                    <button class="ym_btn-slide ym_slideBack" onclick="slideBack(<?php echo count($servicos); ?>,1)"> < </button>
+                    <button class="ym_btn-slide ym_slideGo" onclick="slideGo(<?php echo count($servicos); ?>,1)"> > </button>
+                </div>
+                <?php endif; ?>
+            </div>
 
-                        </div>
-                        
-                        <div class="ym_btn-slide-area">
-                            <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.mysqli_num_rows($result).',1)"> < </button>
-                            <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.mysqli_num_rows($result).',1)"> > </button>
-                        </div>
-                        
-                    </div>
-
-            </section>
+        </section>
     </main>
-
 
 </body>
 </html>
 
-<?php
-
-// if(mysqli_num_rows($result) < 5){
-
-//     echo"<script>
-//         var area1 = document.getElementsByClassName('ym_btn-slide-area')[0];
-//         area1.style.display = 'none'; 
-//         var area2 = document.getElementsByClassName('ym_btn-slide-area')[1];
-//         area2.style.display = 'none';
-//     </script>";
-// }
-
-?>
-
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 <script src="../../PUBLIC/JS/script-catalogo.js"></script>
-<?php
-
-    // if(isset($_GET['remover'])){
-    //     echo "<script> abrirPopup('../../VIEW/pop-up/conf_remover_produto.php','Deseja remover este produto?') </script>";    
-    // }
-
-    // if (isset($_POST['cancelar'])){
-    //     echo "<script> location.href = 'catalogo-tudo.php'; </script>";
-    // }
-    
-    // if (isset($_POST['confirmar'])){
-    //     $id = $_GET['remover'];
-    //     $sql = 'DELETE FROM produtos WHERE id = '.$id.'';
-    //     mysqli_query($con, $sql);
-    //     echo "<script> location.href = 'catalogo-tudo.php'; </script>";
-    // }
-
-?>

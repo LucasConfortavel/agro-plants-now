@@ -308,6 +308,54 @@
   width: 60%;
 }
 
+.ym-alert {
+    padding: 12px 20px;
+    margin: 15px 0;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.ym-alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.ym-alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.ym-sem-registros {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-style: italic;
+    width: 100%;
+}
+
+.ym_delete-link {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #dc3545;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.ym_delete-link:hover {
+    background: rgba(220, 53, 69, 0.1);
+    transform: scale(1.1);
+}
+
 @media screen and (max-width: 1000px) {
   .ym_sectionProdutos{
     gap: 7vh;

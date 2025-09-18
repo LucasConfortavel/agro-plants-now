@@ -1,7 +1,34 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
 include "../../INCLUDE/vlibras.php";
+require_once '../../CONTROLLER/ProdutoController.php';
+require_once '../../CONTROLLER/CategoriaController.php';
 
+$produtoController = new ProdutoController();
+$categoriaController = new CategoriaController();
+
+$produtos = $produtoController->index();
+
+$categorias = $categoriaController->indexComProdutos();
+
+$errorProdutos = isset($produtos['error']);
+$errorCategorias = isset($categorias['error']);
+
+if (isset($_GET['remover'])) {
+    $id = $_GET['remover'];
+    $resultado = $produtoController->deletar($id);
+    
+    if (isset($resultado['success'])) {
+        header("Location: catalogo-produtos.php?success=" . urlencode($resultado['success']));
+        exit;
+    } else {
+        header("Location: catalogo-produtos.php?error=" . urlencode($resultado['error']));
+        exit;
+    }
+}
+
+$successMessage = $_GET['success'] ?? '';
+$errorMessage = $_GET['error'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +44,7 @@ include "../../INCLUDE/vlibras.php";
 </head>
 <body>
 
-    <!-- pop-up -->
-    <div class="ym_popup-overlay" >
+    <div class="ym_popup-overlay">
         <div class="ym_popup-content">
             <div class="ym_area-superior-popup"></div>
             <div class="ym_conteudo-popup"></div>
@@ -26,110 +52,94 @@ include "../../INCLUDE/vlibras.php";
     </div>
 
     <main class="jp_main-content">
-
-        <?php $nome_produto = 'Nome do produto'; $imagem_produto = '../../PUBLIC/img/img_produto.png';?>
-        <?php $nome_produto = 'Nome do produto'; $imagem_produto2 = '../../PUBLIC/img/img_o-que-fazemos.png';?>
         
-            <section class="ym_sectionProdutos">
-    
-                <h1 class="ym_titulo">Catálogo - Produtos</h1>
+        <section class="ym_sectionProdutos">
 
-                <div class="ym_categorias">
-                    
-                    <div class="ym_area-input-pesquisa">
-                        <a href="" class="ym_lupa"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        <input  type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
-                    </div>    
-                    
-                    
-                    <div class="ym_area-select">
-                        <div class="ym_select" onclick="mostrar_categorias()">
-                            <p class="ym_categoria-select">Produto</p>
-                            <p class="ym_seta-categoria">></p>
-                        </div>
-                        
-                        
-                        <div class="ym_options">
-                            <a href="catalogo-tudo.php" class="ym_link-option"><i class="fa-solid fa-cube"></i> todos</a>
-                            <a href="catalogo-servicos.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> serviço</a>
-                        </div>
-                    </div>
-                    <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')" >+</a>
-                </div>
+            <h1 class="ym_titulo">Catálogo - Produtos</h1>
+
+            <?php if ($successMessage): ?>
+                <div class="ym-alert ym-alert-success"><?php echo htmlspecialchars($successMessage); ?></div>
+            <?php endif; ?>
+            
+            <?php if ($errorMessage): ?>
+                <div class="ym-alert ym-alert-error"><?php echo htmlspecialchars($errorMessage); ?></div>
+            <?php endif; ?>
+
+            <div class="ym_categorias">
                 
+                <div class="ym_area-input-pesquisa">
+                    <a href="" class="ym_lupa"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <input id="inputPesquisa" type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
+                </div>    
+                
+                
+                <div class="ym_area-select">
+                    <div class="ym_select" onclick="mostrar_categorias()">
+                        <p class="ym_categoria-select">Produto</p>
+                        <p class="ym_seta-categoria">></p>
+                    </div>
+                    
+                    
+                    <div class="ym_options">
+                        <a href="catalogo-tudo.php" class="ym_link-option"><i class="fa-solid fa-cube"></i> todos</a>
+                        <a href="catalogo-servicos.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> serviço</a>
+                    </div>
+                </div>
+                <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')">+</a>
+            </div>
+            
+            <?php if (!$errorCategorias && is_array($categorias) && count($categorias) > 0): ?>
+                <?php foreach ($categorias as $categoria): ?>
                 <div class="ym_titulo-produtos">
-                    <p class="ym_textoArea">Inoculantes microbianos</p>
+                    <p class="ym_textoArea"><?php echo htmlspecialchars($categoria['nome']); ?></p>
                     <a class="ym_textoLink">Ver Mais</a>
                 </div>
-                    
-                    <div class="ym_areaProdutos">
-                        <div class="ym_todos-produtos">
-                            <?php for($i=0; $i < 20; $i++){echo'
-                                <div class="ym_cardProduto">
-                                    <div class="ym_img-placeholder">
-                                        <img src="'. $imagem_produto .'" alt="umg-produto" class="ym_img">
-                                        <div class="ym_img-label">
-                                            <span>Bioestimulante</span>
-                                        </div>
-                                        <i class="fa-solid fa-trash-can ym_delete-icon"></i>
-                                    </div>
-                                    <p class="ym_nomeProduto">'. $nome_produto .'</p>
-                                    <p class="ym_preco">R$ 120,00</p>
-                                    <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
-                                    <a href="sobre_prod_adm.php" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>';}
-                                ?>
-                        </div>
-                        
-                        <?php echo'
-                        <div class="ym_btn-slide-area">
-                            <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.$i.',0)"> < </button>
-                            <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.$i.',0)"> > </button>
-                        </div>'
-                        ?>
-                        
-                    </div>
                 
-
-
-
-
-                <div class="ym_titulo-produtos">
-                    <p class="ym_textoArea">Bioestimulantes</p>
-                    <a class="ym_textoLink">Ver Mais</a>
-                </div>
-
                 <div class="ym_areaProdutos">
-                        <div class="ym_todos-produtos">
-                            <?php for($i=0; $i < 20; $i++){echo'
-                                <div class="ym_cardProduto">
-                                    <div class="ym_img-placeholder">
-                                        <img src="'. $imagem_produto .'" alt="umg-produto" class="ym_img">
-                                        <div class="ym_img-label">
-                                            <span>Bioestimulante</span>
-                                        </div>
-                                        <i class="fa-solid fa-trash-can ym_delete-icon"></i>
-                                    </div>
-                                    <p class="ym_nomeProduto">'. $nome_produto .'</p>
-                                    <p class="ym_preco">R$ 120,00</p>
-                                    <p class="ym_descricao">Estimula o crescimento e a produtividade das plantas.</p>
-                                    <a href="#" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                                </div>';}
-                                ?>
-                        </div>
-                        
-                        <?php echo'
-                        <div class="ym_btn-slide-area">
-                            <button class="ym_btn-slide ym_slideBack" onclick="slideBack('.$i.',1)"> < </button>
-                            <button class="ym_btn-slide ym_slideGo" onclick="slideGo('.$i.',1)"> > </button>
-                        </div>'
+                    <div class="ym_todos-produtos">
+                        <?php 
+                        $produtosCategoria = array_filter($produtos, function($produto) use ($categoria) {
+                            return $produto['id_cat'] == $categoria['id'];
+                        });
                         ?>
                         
+                        <?php if (count($produtosCategoria) > 0): ?>
+                            <?php foreach ($produtosCategoria as $produto): ?>
+                                <div class="ym_cardProduto">
+                                    <div class="ym_img-placeholder">
+                                        <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="ym_img">
+                                        <div class="ym_img-label">
+                                            <span><?php echo htmlspecialchars($categoria['nome']); ?></span>
+                                        </div>
+                                        <a href="catalogo-produtos.php?remover=<?php echo $produto['id']; ?>" class="ym_delete-link" onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                        </a>
+                                    </div>
+                                    <p class="ym_nomeProduto"><?php echo htmlspecialchars($produto['nome']); ?></p>
+                                    <p class="ym_preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                                    <p class="ym_descricao"><?php echo htmlspecialchars($produto['descricao']); ?></p>
+                                    <a href="sobre_prod_adm.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p class="ym-sem-registros">Nenhum produto nesta categoria.</p>
+                        <?php endif; ?>
                     </div>
+                    
+                    <?php if (count($produtosCategoria) > 3): ?>
+                    <div class="ym_btn-slide-area">
+                        <button class="ym_btn-slide ym_slideBack" onclick="slideBack(<?php echo count($produtosCategoria); ?>,0)"> < </button>
+                        <button class="ym_btn-slide ym_slideGo" onclick="slideGo(<?php echo count($produtosCategoria); ?>,0)"> > </button>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="ym-sem-registros">Nenhuma categoria com produtos encontrada.</p>
+            <?php endif; ?>
 
-            </section>
+        </section>
     </main>
-
 
 </body>
 </html>

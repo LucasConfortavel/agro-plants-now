@@ -1,31 +1,30 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
 include "../../INCLUDE/vlibras.php";
-require_once '../../CONTROLLER/ProdutoController.php';
+require_once '../../CONTROLLER/ServicoController.php';
 require_once '../../CONTROLLER/CategoriaController.php';
 
-$produtoController = new ProdutoController();
+$servicoController = new ServicoController();
 $categoriaController = new CategoriaController();
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $produto = $produtoController->mostrar($id);
+    $servico = $servicoController->mostrar($id);
     
-    if (isset($produto['error'])) {
-        $error = $produto['error'];
+    if (isset($servico['error'])) {
+        $error = $servico['error'];
     } else {
-        $nome = $produto['nome'];
-        $preco = $produto['preco'];
-        $estoque = $produto['quantidade'];
-        $descricao = $produto['descricao'];
-        $foto = $produto['foto'];
-        $id_cat = $produto['id_cat'];
+        $nome = $servico['nome'];
+        $preco = $servico['preco'];
+        $descricao = $servico['descricao'];
+        $foto = $servico['foto'];
+        $id_cat = $servico['id_cat'];
         
         $categoria = $categoriaController->mostrar($id_cat);
         $categoria_nome = isset($categoria['error']) ? 'Categoria não encontrada' : $categoria['nome'];
     }
 } else {
-    $error = "Nenhum produto selecionado.";
+    $error = "Nenhum serviço selecionado.";
 }
 ?>
 
@@ -34,7 +33,7 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informações do Produto</title>
+    <title>Informações do Serviço</title>
     <link rel="stylesheet" href="../../PUBLIC/css/sobre_prod.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
@@ -49,11 +48,11 @@ if (isset($_GET['id'])) {
         <section class="gs_product-container">
 
             <div class="gs_area-img">
-                <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image">
+                <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image">
                 <div class="gs_area-img-select">
-                    <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image-select">
-                    <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image-select">
-                    <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image-select">
+                    <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image-select">
+                    <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image-select">
+                    <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image-select">
                 </div>
             </div>
 
@@ -71,11 +70,6 @@ if (isset($_GET['id'])) {
                 <div class="gs_names">
                     <p class="gs_label">Preço</p>
                     <p class="gs_value">R$ <?php echo number_format($preco, 2, ',', '.'); ?></p>
-                </div>
-
-                <div class="gs_names">
-                    <p class="gs_label">Estoque</p>
-                    <p class="gs_value"><?php echo $estoque; ?> unidades</p>
                 </div>
                 
                 <div class="gs_names gs_desc">
