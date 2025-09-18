@@ -2,6 +2,20 @@
 require_once '../../INCLUDE/verificarLogin.php';
 include "../../INCLUDE/Menu_vend.php";
 include "../../INCLUDE/vlibras.php";
+include "../../CONTROLLER/VendaController.php";
+
+$user_id = $_SESSION['id'] ?? null;
+$venda_control = new VendaController(); 
+
+$vendas_usuario = $venda_control->index($user_id);
+$total_vendido = 0;
+$numero_vendas = 0;
+
+
+foreach ($vendas_usuario as $venda) {
+    $total_vendido += $venda['total'];
+    $numero_vendas += 1;
+} 
 
 ?>
 
@@ -26,21 +40,21 @@ include "../../INCLUDE/vlibras.php";
                     <div class="jp_metric-title">Total Vendido</div>
                     <div class="jp_metric-badge">22.0%</div>
                 </div>
-                <div class="jp_metric-value">R$17500</div>
+                <div class="jp_metric-value">R$<?= $total_vendido?></div>
             </div>
             <div class="jp_metric-box jp_metric-blue">
                 <div class="jp_metric-header">
                     <div class="jp_metric-title">Número de Vendas</div>
                     <div class="jp_metric-badge">22.0%</div>
                 </div>
-                <div class="jp_metric-value">3,342</div>
+                <div class="jp_metric-value"><?= $numero_vendas;?></div>
             </div>
             <div class="jp_metric-box jp_metric-orange">
                 <div class="jp_metric-header">
                     <div class="jp_metric-title">Total de Comissões</div>
                     <div class="jp_metric-badge">22.0%</div>
                 </div>
-                <div class="jp_metric-value">R$ 31,313</div>
+                <div class="jp_metric-value">R$<?php echo number_format(($total_vendido/10),2,',','.');?></div>
             </div>
         </div>
 
