@@ -307,7 +307,7 @@ include "../../INCLUDE/Menu_adm.php";
 
 <?php
 $vendas_mensais = [1200, 1900, 3000, 500, 2000, 3000]; 
-$status_pedidos = ["Concluído" => 45, "Pendente" => 10, "Cancelado" => 5];
+$status_pedidos = ["Concluído" => 85, "Pendente" => 10, "Cancelado" => 5];
 
 $comissoes_vendedor = ["João" => 1500, "Maria" => 2500, "Carlos" => 1800];
 $comissoes_dist = ["Fixas" => 40, "Variáveis" => 60];
