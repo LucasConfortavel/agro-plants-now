@@ -35,6 +35,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 <body>
 
+<!-- Pop-up -->
+<div class="ym_popup-overlay">
+    <div class="ym_popup-content">
+        <div class="ym_area-superior-popup"></div>
+        <div class="ym_conteudo-popup"></div>
+    </div>
+</div>
+
 
 <main class="jp_main-content">
     <h1 class="ym_titulo">Clientes</h1>
@@ -52,6 +60,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
                         </div>
                     </form>
+                    <div class="jv_actions">
+                        <div>
+                            <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php')">
+                                <i class="fas fa-plus"></i>
+                                <a>Cadastrar Cliente</a>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <p class="jv_subtitle" id="jv_customerCount">
@@ -65,6 +81,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
+                                <th class="jv_checkbox-col">
+                                    <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
+                                </th>
                                 <th><p class="jv_name">Nome</p></th>
                                 <th class="jv_date">Data de Nascimento</th>
                                 <th class="jv_total_comp">Telefone</th>
@@ -75,6 +94,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <?php if ($total_clientes > 0): ?>
                                 <?php foreach ($clientes as $cliente): ?>
                                     <tr>
+                                        <td>
+                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
+                                        </td>
                                         <td>
                                             <div class="jv_customer-info">
                                                 <div class="jv_avatar">
