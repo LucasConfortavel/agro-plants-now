@@ -22,11 +22,10 @@ class ProdutoModel {
     public function criar() {
         $query = "INSERT INTO " . $this->table_name . " 
                  SET nome=:nome, preco=:preco, descricao=:descricao, 
-                     quantidade=:quantidade, reservado=:reservado, id_cat=:id_cat";
+                     quantidade=:quantidade, reservado=:reservado, id_cat=:id_cat, foto=:foto";
 
         $stmt = $this->conn->prepare($query);
 
-        // Sanitização dos dados
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->preco = htmlspecialchars(strip_tags($this->preco));
         $this->descricao = htmlspecialchars(strip_tags($this->descricao));
@@ -57,7 +56,9 @@ class ProdutoModel {
     }
 
     public function lerUm() {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id = ? LIMIT 0,1";
+        $query = "SELECT p.*, c.nome as categoria_nome FROM " . $this->table_name . " p 
+                  LEFT JOIN categoria c ON p.id_cat = c.id 
+                  WHERE p.id = ? LIMIT 0,1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
         $stmt->execute();
@@ -78,7 +79,10 @@ class ProdutoModel {
     }
 
     public function lerTodos() {
-        $query = "SELECT * FROM " . $this->table_name . " ORDER BY nome";
+        $query = "SELECT p.*, c.nome as categoria_nome FROM " . $this->table_name . " p 
+                LEFT JOIN categoria c ON p.id_cat = c.id 
+                WHERE p.status = 'ATIVADO'
+                ORDER BY p.nome";
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -87,7 +91,10 @@ class ProdutoModel {
     }
 
     public function lerPorCategoria($id_categoria) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id_cat = ? ORDER BY nome";
+        $query = "SELECT p.*, c.nome as categoria_nome FROM " . $this->table_name . " p 
+                LEFT JOIN categoria c ON p.id_cat = c.id 
+                WHERE p.id_cat = ? AND p.status = 'ATIVADO'
+                ORDER BY p.nome";
         
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id_categoria);
