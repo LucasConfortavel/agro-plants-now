@@ -234,8 +234,6 @@ include "../../INCLUDE/Menu_adm.php";
                                     <th class="jv_banguela">Telefone</th>
                                     <th class="jv_data">Data de Nascimento</th>
                                     <th class="jv_data">Status</th>
-                                    <th class="jv_data">Status</th>
-                                    <th class="jv_data">Status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
