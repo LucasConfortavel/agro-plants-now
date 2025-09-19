@@ -5,11 +5,12 @@ include "../../CONTROLLER/UsuarioController.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../INCLUDE/vlibras.php";
 
+session_start();
+$vendedor_logado = $_SESSION['id'] ?? null; // pega o id do vendedor logado
 
 $venda_control = new VendaController(); 
-$vendas = $venda_control->index();
+$vendas = $venda_control->index($vendedor_logado); // filtra pelas vendas do vendedor logado
 
-$usuario_control = new UsuarioController();
 $cliente_control = new ClienteController();
 
 $total_vendas = count($vendas);
@@ -75,26 +76,26 @@ $vendas = array_slice($vendas, $offset, $limite);
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                     <th><p class="jv_name">Vendedor</p></th>
+                                    <th><p class="jv_name">Venda</p></th>
                                     <th class="jv_date">Cliente</th>
-                                    <th class="jv_valor_gast">Valor Gasto</th>
+                                    <th class="jv_valor_gast">Valor</th>
+                                    <th class="jv_valor_gast">Valor</th>
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
                                 <?php if ($total_vendas > 0): ?>
                                     <?php foreach ($vendas as $venda):     
-                                        $vendedor = $usuario_control->mostrar($venda["id_vendedor"]);  
                                         $cliente = $cliente_control->mostrar($venda["id_cliente"]);
                                     ?>
                                         <tr>
                                             <td>
                                                 <div class="jv_customer-info">
                                                     <div class="jv_avatar">
-                                                        <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?>
+                                                        <?= strtoupper(substr($venda['nome'] ?? '', 0, 2)) ?>
                                                     </div>
                                                     <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></h4>
-                                                        <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
+                                                        <h4><?= htmlspecialchars($venda['nome'] ?? 'Venda #' . $venda['id']) ?></h4>
+                                                        <p>Data: <?= htmlspecialchars($venda['data'] ?? '-') ?></p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -135,14 +136,10 @@ $vendas = array_slice($vendas, $offset, $limite);
                 </a>
             <?php endif; ?>
         </div>
- 
 
         <script src="../../PUBLIC/JS/vendas-adm.js"></script>
         <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
-</main>
+    </main>
 </body>
 </html>
-  
-
-
