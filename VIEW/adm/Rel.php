@@ -184,7 +184,7 @@ include "../../INCLUDE/Menu_adm.php";
                 <div class="po-card">
                     <h3>Vendas por mês</h3>
                     <div class="ym_areaselect">
-                        <div class="ym_select" onclick="mostrar_categorias()">
+                        <div class="ym_select" onclick="mostrar_categorias(1)">
                             <p class="ym_categoria-select">Último mês</p>
                             <p class="ym_seta-categoria">></p>
                         </div>
