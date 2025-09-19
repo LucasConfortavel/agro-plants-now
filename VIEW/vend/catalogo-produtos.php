@@ -50,7 +50,6 @@ include "../../INCLUDE/vlibras.php";
                 
                 <div class="ym_titulo-produtos">
                     <p class="ym_textoArea">Inoculantes microbianos</p>
-                    <a class="ym_textoLink">Ver Mais</a>
                 </div>
                     
                     <div class="ym_areaProdutos">
