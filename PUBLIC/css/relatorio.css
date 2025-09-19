@@ -137,6 +137,13 @@ body {
   
 }
 
+.ym_areaselect{
+  min-width: 11.5vw;
+  max-width: 11.5vw;
+  height: 5vh;
+  margin-left: 74%;
+  margin-top: -4%;
+}
 
 .ym_select{
     height: 100%;

@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    function mostrar_categorias(id=0){ 
+  function mostrar_categorias(id=0){ 
         let option = document.getElementsByClassName("ym_options")[id];
         let seta = document.getElementsByClassName("ym_seta-categoria")[id];
         let option_area = document.getElementsByClassName("ym_options")[id];
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // function trocar_categoria(id){ 
+    //function trocar_categoria(id){ 
     //     let option = document.getElementsByClassName("ym_options")[id];
 
     // }
