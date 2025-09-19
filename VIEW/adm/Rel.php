@@ -179,9 +179,24 @@ include "../../INCLUDE/Menu_adm.php";
                 </div>
             </div>
             </div>
+
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Vendas por mês</h3>
+                    <div class="ym_area-select">
+                        <div class="ym_select" onclick="mostrar_categorias()">
+                            <p class="ym_categoria-select">Último mês</p>
+                            <p class="ym_seta-categoria">></p>
+                        </div>
+                                   
+                                   
+                        <div class="ym_options">
+                            <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                        </div>
+                    </div>
+
+
                     <canvas id="sales-bar-chart"></canvas>
                 </div>
                 <div class="po-card">
