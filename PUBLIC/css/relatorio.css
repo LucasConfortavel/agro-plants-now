@@ -45,7 +45,6 @@
     border-color: #45734b;
 }
 
-
 .jv_page-arrow {
     cursor: pointer;
     padding: 8px;
@@ -346,10 +345,10 @@ body {
 }
 
 .jv_search-input{
-  margin-top: 7px;
+  margin-top: -29px;
 }
 .search-icon{
-   margin-top: 7px;
+   margin-top: -1px;
 }
 
 .po-btn:hover {
