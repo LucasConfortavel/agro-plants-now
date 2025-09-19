@@ -184,7 +184,7 @@ include "../../INCLUDE/Menu_adm.php";
                 <div class="po-card">
                     <h3>Vendas por mês</h3>
                     <div class="ym_areaselect">
-                        <div class="ym_select" onclick="mostrar_categorias()">
+                        <div class="ym_select" onclick="mostrar_categorias(1)">
                             <p class="ym_categoria-select">Último mês</p>
                             <p class="ym_seta-categoria">></p>
                         </div>
@@ -319,11 +319,22 @@ include "../../INCLUDE/Menu_adm.php";
 </main>
 
 <?php
-$vendas_mensais = [1200, 1900, 3000, 500, 2000, 3000]; 
+$vendas_mensais = [1200, 1900, 2000, 500, 2100, 3050, 1200, 1900, 3000, 500, 2000, 2100]; 
 $status_pedidos = ["Concluído" => 85, "Pendente" => 10, "Cancelado" => 5];
 
 $comissoes_vendedor = ["João" => 1500, "Maria" => 2500, "Carlos" => 1800];
 $comissoes_dist = ["Fixas" => 40, "Variáveis" => 60];
+
+$max_venda = max($vendas_mensais);
+
+$colors_vendas = [];
+foreach ($vendas_mensais as $valor) {
+    if ($valor == $max_venda) {
+        $colors_vendas[] = "#27bb3bff";
+    } else {
+        $colors_vendas[] = "#469851ff";
+    }
+}
 ?>
 
 <script>
@@ -331,12 +342,46 @@ document.addEventListener("DOMContentLoaded", () => {
     new Chart(document.getElementById("sales-bar-chart"), {
         type: "bar",
         data: {
-            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"],
+            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun","Jul","Ago","Set","Oct","Nov","Dez"],
             datasets: [{
-                label: "Vendas (R$)",
+                label: "Vendas",
                 data: <?= json_encode($vendas_mensais) ?>,
-                backgroundColor: "#469851ff"
-            }]
+                backgroundColor: <?= json_encode($colors_vendas) ?>,
+                borderColor: "#469851ff",
+                borderWidth: 1
+        }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        font: { size: 14, weight: "bold" },
+                        color: "#333"
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => {
+                            return `${ctx.dataset.label}: ` + ctx.raw.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL"
+                            });
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: "rgba(0,0,0,0.05)" },
+                    ticks: {
+                        callback: (value) => "R$ " + value
+                    }
+                },
+                x: {
+                    grid: { display: false }
+                }
+            }
         }
     });
 
@@ -382,3 +427,5 @@ document.addEventListener("DOMContentLoaded", () => {
 <script src="../../PUBLIC/JS/script-relatorio.js"></script>
 </body>
 </html>
+
+
