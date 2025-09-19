@@ -33,15 +33,17 @@ include "../../INCLUDE/vlibras.php";
         <div class="P_customer-info">
             <div class="P_customer-details">
                 <div class="P_customer-label">Cliente</div>
-                <div class="P_customer-name">
-                    Rafael Germinari
-                </div>
+                <form method="POST" action="#" class="jv_search-section">
+                        <div class="jv_search-container">
+                          <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome" class="jv_search-input">
+                        </div>
+                    </form>
                 <div class="P_customer-date">
                     <div>Data de criação</div>
                     <div>16/08</div>
                 </div>
             </div>
-            
+                  
             <div class="P_action-buttons">
 
                 <a class="vc_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">

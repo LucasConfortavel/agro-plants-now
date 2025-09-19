@@ -43,6 +43,33 @@ body {
   background-color: var(--background);
   transition: var(--transition);
   box-shadow: var(--shadow-sm);
+
+}
+
+.jv_search-input {
+  width: 104%;
+  padding: 10px 12px 10px 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  margin-top: -18%;
+    
+}
+
+.jv_search-input:focus {
+  outline: none;
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.jv_search-container {
+  position: relative;
+  max-width: 384px;
+}
+
+.jv_search-section {
+  margin-top: 16px;
 }
 
 .ym_link-volta2 {

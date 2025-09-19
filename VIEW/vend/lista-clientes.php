@@ -92,7 +92,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <?php if ($total_clientes > 0): ?>
                                 <?php foreach ($clientes as $cliente): ?>
                                     <tr>
-                                        
+                                    
                                         <td>
                                             <div class="jv_customer-info">
                                                 <div class="jv_avatar">
