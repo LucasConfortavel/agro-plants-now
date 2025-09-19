@@ -178,6 +178,29 @@ include "../../INCLUDE/Menu_adm.php";
                     </div>
                 </div>
             </div>
+            
+            <!-- Paginação -->
+            <div class="jv_page-navigation">
+                <?php if ($pagina_atual > 1): ?>
+                    <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                <?php endif; ?>
+
+                <?php
+                $inicio = max(1, $pagina_atual - 2);
+                $fim = min($total_paginas, $pagina_atual + 2);
+                for ($i = $inicio; $i <= $fim; $i++): ?>
+                    <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($pagina_atual < $total_paginas): ?>
+                    <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                <?php endif; ?>
             </div>
 
             <div class="po-charts-grid">
@@ -228,6 +251,29 @@ include "../../INCLUDE/Menu_adm.php";
                                 <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
                             </div>
                         </form>
+
+                        <div class="jv_actions">
+                            <div>
+                                <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                    <span><i class="fa-regular fa-file"></i></span>
+                                    Exportar CSV
+                                </button>
+                            </div>
+
+                            <div class="ym_area-select">
+                                <div class="ym_select" onclick="mostrar_categorias(2)">
+                                    <p class="ym_categoria-select">Último mês</p>
+                                    <p class="ym_seta-categoria">></p>
+                                </div>
+                                   
+                                   
+                                <div class="ym_options">
+                                    <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                                    <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                </div>
+                                   
+                            </div>
+                        </div>
 
 
                     </div>
@@ -301,11 +347,46 @@ include "../../INCLUDE/Menu_adm.php";
                     </div>
                 </div>
             </div>
+                   <!-- Paginação -->
+            <div class="jv_page-navigation">
+                <?php if ($pagina_atual > 1): ?>
+                    <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                <?php endif; ?>
+
+                <?php
+                $inicio = max(1, $pagina_atual - 2);
+                $fim = min($total_paginas, $pagina_atual + 2);
+                for ($i = $inicio; $i <= $fim; $i++): ?>
+                    <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($pagina_atual < $total_paginas): ?>
+                    <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                <?php endif; ?>
             </div>
+
 
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Comissões por vendedor</h3>
+                    <div class="ym_areaselect">
+                        <div class="ym_select" onclick="mostrar_categorias(3)">
+                            <p class="ym_categoria-select">Último mês</p>
+                            <p class="ym_seta-categoria">></p>
+                        </div>
+                                   
+                                   
+                        <div class="ym_options">
+                            <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
+                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                        </div>
+                    </div>
                     <canvas id="comm-bar-chart"></canvas>
                 </div>
                 <div class="po-card">
@@ -376,7 +457,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-
+<script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
 <script src="../../PUBLIC/JS/script-tabs.js"></script>
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-relatorio.js"></script>
