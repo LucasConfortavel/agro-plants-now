@@ -81,9 +81,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
-                                <th class="jv_checkbox-col">
-                                    <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                </th>
+                              
                                 <th><p class="jv_name">Nome</p></th>
                                 <th class="jv_date">Data de Nascimento</th>
                                 <th class="jv_total_comp">Telefone</th>
@@ -94,9 +92,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <?php if ($total_clientes > 0): ?>
                                 <?php foreach ($clientes as $cliente): ?>
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
-                                        </td>
+                                        
                                         <td>
                                             <div class="jv_customer-info">
                                                 <div class="jv_avatar">
