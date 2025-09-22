@@ -347,7 +347,8 @@ include "../../INCLUDE/Menu_adm.php";
                     </div>
                 </div>
             </div>
-                   <!-- Paginação -->
+                   
+            <!-- Paginação -->
             <div class="jv_page-navigation">
                 <?php if ($pagina_atual > 1): ?>
                     <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
@@ -370,6 +371,7 @@ include "../../INCLUDE/Menu_adm.php";
                     </a>
                 <?php endif; ?>
             </div>
+
 
 
             <div class="po-charts-grid">
