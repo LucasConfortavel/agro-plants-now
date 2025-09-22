@@ -77,8 +77,8 @@ $vendas = array_slice($vendas, $offset, $limite);
                             <thead>
                                 <tr class="jv_table-header">
                                     <th><p class="jv_name">Venda</p></th>
+                                    <th class="jv_valor_gast">Data</th>
                                     <th class="jv_date">Cliente</th>
-                                    <th class="jv_valor_gast">Valor</th>
                                     <th class="jv_valor_gast">Valor</th>
                                 </tr>
                             </thead>
@@ -91,22 +91,23 @@ $vendas = array_slice($vendas, $offset, $limite);
                                             <td>
                                                 <div class="jv_customer-info">
                                                     <div class="jv_avatar">
-                                                        <?= strtoupper(substr($venda['nome'] ?? '', 0, 2)) ?>
+                                                        <?= strtoupper(substr($cliente['nome'] ?? 'CL', 0, 2)) ?>
                                                     </div>
                                                     <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars($venda['nome'] ?? 'Venda #' . $venda['id']) ?></h4>
-                                                        <p>Data: <?= htmlspecialchars($venda['data'] ?? '-') ?></p>
+                                                        <h4><?= htmlspecialchars('Venda #' . $venda['id']) ?></h4>
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td><?= htmlspecialchars($venda['data_venda'] ?? '-') ?></td>
                                             <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
                                             <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else: ?>
-                                    <tr><td colspan="3" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
+                                    <tr><td colspan="4" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
                                 <?php endif; ?>
                             </tbody>
+
                         </table>
                     </div>
                 </div>
