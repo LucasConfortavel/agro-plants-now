@@ -58,7 +58,6 @@ include "../../INCLUDE/Menu_adm.php";
     <link rel="stylesheet" href="../../PUBLIC/css/relatorio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-</head>
 <body>
 
     
@@ -72,7 +71,11 @@ include "../../INCLUDE/Menu_adm.php";
                     <button class="po-tab-btn" data-tab="commissions">Comissões</button>
                 </nav>
             
+
             <div class="po-card">
+
+
+
                 <div class="jv_card">
                 <div class="jv_card-header">
                     <div class="jv_header-content">
@@ -87,26 +90,35 @@ include "../../INCLUDE/Menu_adm.php";
 
                         <div class="jv_actions">
                             <div>
-                                <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                    <span><i class="fa-regular fa-file"></i></span>
-                                    Exportar CSV
+                                <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                    Remover (<span id="jv_selectedCount">0</span>)
                                 </button>
                             </div>
+                            <div>
+                                <button type="button" class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Cadastrar Vendedor</span>
+                                </button>
 
-                            <div class="ym_area-select">
-                                <div class="ym_select" onclick="mostrar_categorias()">
-                                    <p class="ym_categoria-select">Último mês</p>
-                                    <p class="ym_seta-categoria">></p>
-                                </div>
-                                   
-                                   
-                                <div class="ym_options">
-                                    <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
-                                    <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
-                                </div>
-                                   
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
                         </div>
+
+
+
+
                     </div>
 
                     <p class="jv_subtitle" id="jv_customerCount">
@@ -138,6 +150,7 @@ include "../../INCLUDE/Menu_adm.php";
                                     </tr>
                                 <?php else: ?>
                                     <?php foreach ($usuarios as $vend): ?>
+
                                         <tr>
                                             <td>
                                                 <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= htmlspecialchars($vend['id']) ?>">
@@ -150,6 +163,14 @@ include "../../INCLUDE/Menu_adm.php";
                                                     <div class="jv_customer-details">
                                                         <h4><?= htmlspecialchars($vend['nome']) ?></h4>
                                                         <p><?= htmlspecialchars($vend['email']) ?></p>
+
+
+
+
+
+
+
+
                                                     </div>
                                                 </div>
                                             </td>
@@ -175,55 +196,22 @@ include "../../INCLUDE/Menu_adm.php";
                                 <?php endif; ?>
                             </tbody>
                         </table>
+
+
+
+
+
                     </div>
                 </div>
             </div>
-            
-            <!-- Paginação -->
-            <div class="jv_page-navigation">
-                <?php if ($pagina_atual > 1): ?>
-                    <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                <?php endif; ?>
-
-                <?php
-                $inicio = max(1, $pagina_atual - 2);
-                $fim = min($total_paginas, $pagina_atual + 2);
-                for ($i = $inicio; $i <= $fim; $i++): ?>
-                    <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                        <?= $i ?>
-                    </a>
-                <?php endfor; ?>
-
-                <?php if ($pagina_atual < $total_paginas): ?>
-                    <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                <?php endif; ?>
             </div>
-
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Vendas por mês</h3>
-                    <div class="ym_areaselect">
-                        <div class="ym_select" onclick="mostrar_categorias(1)">
-                            <p class="ym_categoria-select">Último mês</p>
-                            <p class="ym_seta-categoria">></p>
-                        </div>
-                                   
-                                   
-                        <div class="ym_options">
-                            <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
-                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
-                        </div>
-                    </div>
-
-
                     <canvas id="sales-bar-chart"></canvas>
                 </div>
                 <div class="po-card">
-                    <h3 class="banguela">Status dos pedidos</h3>
+                    <h3>Status dos pedidos</h3>
                     <canvas id="sales-pie-chart"></canvas>
                 </div>
             </div>
@@ -235,7 +223,7 @@ include "../../INCLUDE/Menu_adm.php";
             <h1 class="ym_titulo">Relatório de Comissões</h1>
 
                             <nav class="tabs-nav">
-                                <button class="po-tab-btn po-active" data-tab="sales">Vendas</button>
+                                <button class="po-tab-btn" data-tab="sales">Vendas</button>
                                 <button class="po-tab-btn" data-tab="commissions">Comissões</button>
                             </nav>
             
@@ -254,28 +242,18 @@ include "../../INCLUDE/Menu_adm.php";
 
                         <div class="jv_actions">
                             <div>
-                                <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                    <span><i class="fa-regular fa-file"></i></span>
-                                    Exportar CSV
+                                <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                    Remover (<span id="jv_selectedCount">0</span>)
                                 </button>
                             </div>
-
-                            <div class="ym_area-select">
-                                <div class="ym_select" onclick="mostrar_categorias(2)">
-                                    <p class="ym_categoria-select">Último mês</p>
-                                    <p class="ym_seta-categoria">></p>
-                                </div>
-                                   
-                                   
-                                <div class="ym_options">
-                                    <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
-                                    <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
-                                </div>
-                                   
+                            <div>
+                                <button type="button" class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Cadastrar Vendedor</span>
+                                </button>
                             </div>
                         </div>
-
-
                     </div>
 
                     <p class="jv_subtitle" id="jv_customerCount">
@@ -294,6 +272,8 @@ include "../../INCLUDE/Menu_adm.php";
                                     <th class="jv_name">Nome</th>
                                     <th class="jv_banguela">Telefone</th>
                                     <th class="jv_data">Data de Nascimento</th>
+                                    <th class="jv_data">Status</th>
+                                    <th class="jv_data">Status</th>
                                     <th class="jv_data">Status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
@@ -347,52 +327,16 @@ include "../../INCLUDE/Menu_adm.php";
                     </div>
                 </div>
             </div>
-                   
-            <!-- Paginação -->
-            <div class="jv_page-navigation">
-                <?php if ($pagina_atual > 1): ?>
-                    <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                <?php endif; ?>
-
-                <?php
-                $inicio = max(1, $pagina_atual - 2);
-                $fim = min($total_paginas, $pagina_atual + 2);
-                for ($i = $inicio; $i <= $fim; $i++): ?>
-                    <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                        <?= $i ?>
-                    </a>
-                <?php endfor; ?>
-
-                <?php if ($pagina_atual < $total_paginas): ?>
-                    <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                <?php endif; ?>
             </div>
-
-
 
             <div class="po-charts-grid">
                 <div class="po-card">
-                    <h3>Comissões por vendedor</h3>
-                    <div class="ym_areaselect">
-                        <div class="ym_select" onclick="mostrar_categorias(3)">
-                            <p class="ym_categoria-select">Último mês</p>
-                            <p class="ym_seta-categoria">></p>
-                        </div>
-                                   
-                                   
-                        <div class="ym_options">
-                            <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
-                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
-                        </div>
-                    </div>
-                    <canvas id="comm-bar-chart"></canvas>
+                    <h3>Gasto com Comissões</h3>
+                    <canvas id="comm-line-chart"></canvas>
                 </div>
+
                 <div class="po-card">
-                    <h3 class="banguela">Distribuição de comissões</h3>
+                    <h3>Distribuição de comissões</h3>
                     <canvas id="comm-doughnut-chart"></canvas>
                 </div>
             </div>
@@ -402,68 +346,44 @@ include "../../INCLUDE/Menu_adm.php";
 </main>
 
 <?php
-$vendas_mensais = [1200, 1900, 2000, 500, 2100, 3050, 1200, 1900, 3000, 500, 2000, 2100]; 
-$status_pedidos = ["Concluído" => 85, "Pendente" => 10, "Cancelado" => 5];
-
-$comissoes_vendedor = ["João" => 1500, "Maria" => 2500, "Carlos" => 1800];
+$vendas_mensais = [1200, 1900, 2100, 500, 2000, 3000, 1200, 1900, 2100, 500, 2000, 3300]; 
+$status_pedidos = ["Concluído" => 45, "Pendente" => 10, "Cancelado" => 5];
+$comissoes_vendedor = [1500, 2200, 1700, 1200, 500, 800, 1000, 3000, 1600, 4000, 2700, 2260];
 $comissoes_dist = ["Fixas" => 40, "Variáveis" => 60];
 
 $max_venda = max($vendas_mensais);
-
 $colors_vendas = [];
-foreach ($vendas_mensais as $valor) {
-    if ($valor == $max_venda) {
-        $colors_vendas[] = "#27bb3bff";
-    } else {
-        $colors_vendas[] = "#469851ff";
-    }
+foreach ($vendas_mensais as $v) {
+    $colors_vendas[] = $v == $max_venda ? "#45734b" : "rgba(36, 146, 51, 0.5)";
 }
+
+$colors_status = ["#45734b", "rgba(69,115,75,0.7)", "rgba(69,115,75,0.4)"];
 ?>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
     new Chart(document.getElementById("sales-bar-chart"), {
         type: "bar",
         data: {
-            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun","Jul","Ago","Set","Oct","Nov","Dez"],
+            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Agos","Set","Oct","Nov","Dec"],
             datasets: [{
-                label: "Vendas",
+                label: "Vendas (R$)",
                 data: <?= json_encode($vendas_mensais) ?>,
                 backgroundColor: <?= json_encode($colors_vendas) ?>,
-                borderColor: "#469851ff",
+                borderRadius: 8,
                 borderWidth: 1
-        }]
+            }]
         },
         options: {
             plugins: {
-                legend: {
-                    labels: {
-                        font: { size: 14, weight: "bold" },
-                        color: "#333"
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: (ctx) => {
-                            return `${ctx.dataset.label}: ` + ctx.raw.toLocaleString("pt-BR", {
-                                style: "currency",
-                                currency: "BRL"
-                            });
-                        }
-                    }
-                }
+                legend: { display: false },
+                tooltip: { callbacks: { label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR") } }
             },
             scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { color: "rgba(0,0,0,0.05)" },
-                    ticks: {
-                        callback: (value) => "R$ " + value
-                    }
-                },
-                x: {
-                    grid: { display: false }
-                }
+                y: { beginAtZero: true, ticks: { callback: v => "R$ " + v }, grid: { color: "rgba(0,0,0,0.05)" } },
+                x: { grid: { display: false } }
             }
         }
     });
@@ -474,41 +394,82 @@ document.addEventListener("DOMContentLoaded", () => {
             labels: <?= json_encode(array_keys($status_pedidos)) ?>,
             datasets: [{
                 data: <?= json_encode(array_values($status_pedidos)) ?>,
-                backgroundColor: ["#358e40ff", "#ff9800", "#f44336"]
+                backgroundColor: <?= json_encode($colors_status) ?>,
+                borderColor: "#fff",
+                borderWidth: 2,
+                hoverOffset: 12
             }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: "bottom", labels: { font: { size: 13 } } },
+                tooltip: { callbacks: { label: ctx => ctx.label + ": " + ctx.raw + "%" } }
+            }
         }
     });
 
-    new Chart(document.getElementById("comm-bar-chart"), {
-        type: "bar",
+    new Chart(document.getElementById("comm-line-chart"), {
+        type: "line",
         data: {
-            labels: <?= json_encode(array_keys($comissoes_vendedor)) ?>,
+            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Agos","Set","Oct","Nov","Dec"],
             datasets: [{
-                label: "Comissões (R$)",
+                label: "Gasto com Comissões (R$)",
                 data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
-                backgroundColor: "#4cb059ff"
+                backgroundColor: "rgba(69,115,75,0.2)",
+                borderColor: "#45734b",
+                borderWidth: 3,
+                fill: true,
+                tension: 0.3,
+                pointBackgroundColor: "#45734b",
+                pointRadius: 6
             }]
+        },
+        options: {
+            plugins: {
+                legend: { labels: { font: { size: 14 } } },
+                tooltip: {
+                    callbacks: {
+                        label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR")
+                    }
+                }
+            },
+            scales: {
+                y: { beginAtZero: true, ticks: { callback: v => "R$ " + v }, grid: { color: "rgba(0,0,0,0.05)" } },
+                x: { grid: { display: false } }
+            }
         }
     });
 
-    new Chart(document.getElementById("comm-doughnut-chart"), {
+        new Chart(document.getElementById("comm-doughnut-chart"), {
         type: "doughnut",
         data: {
             labels: <?= json_encode(array_keys($comissoes_dist)) ?>,
             datasets: [{
                 data: <?= json_encode(array_values($comissoes_dist)) ?>,
-                backgroundColor: ["#45734b", "#17e332ff"]
+                backgroundColor: ["#45734b","#17e33293"],
+                borderColor: "#fff",
+                borderWidth: 2,
+                hoverOffset: 12
             }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: "bottom", labels: { font: { size: 13 } } },
+                tooltip: { callbacks: { label: ctx => ctx.label + ": " + ctx.raw + "%" } }
+            }
         }
     });
+
 });
+
+
 </script>
 
-<script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
+
 <script src="../../PUBLIC/JS/script-tabs.js"></script>
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-relatorio.js"></script>
 </body>
 </html>
-
-
