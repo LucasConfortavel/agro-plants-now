@@ -8,7 +8,6 @@ class ProdutoController {
         $this->produto = new ProdutoModel();
     }
 
-    // Listar todos os produtos
     public function index() {
         try {
             $stmt = $this->produto->lerTodos();
@@ -20,7 +19,6 @@ class ProdutoController {
         }
     }
 
-    // Listar produtos por categoria
     public function indexPorCategoria($id_categoria) {
         try {
             $stmt = $this->produto->lerPorCategoria($id_categoria);
@@ -32,7 +30,6 @@ class ProdutoController {
         }
     }
 
-    // Buscar produtos por nome
     public function buscarPorNome($nome) {
         try {
             $stmt = $this->produto->buscarPorNome($nome);
@@ -44,15 +41,28 @@ class ProdutoController {
         }
     }
 
-    // Criar um novo produto
     public function criar() {
         try {
+            require_once __DIR__ . '/ImageController.php';
+            $imageController = new ImageController();
+            
             $this->produto->nome = $_POST['nome'];
-            $this->produto->preco = $_POST['preco'];
+            $this->produto->preco = $this->formatarPreco($_POST['preco']);
             $this->produto->descricao = $_POST['descricao'] ?? null;
             $this->produto->quantidade = $_POST['quantidade'] ?? 0;
             $this->produto->reservado = $_POST['reservado'] ?? 0;
             $this->produto->id_cat = $_POST['id_cat'];
+
+            if (!empty($_FILES['foto']['name'])) {
+                $uploadResult = $imageController->upload($_FILES['foto'], 'prod_');
+                if ($uploadResult['success']) {
+                    $this->produto->foto = $uploadResult['filename'];
+                } else {
+                    throw new Exception("Erro no upload da imagem: " . $uploadResult['error']);
+                }
+            } else {
+                $this->produto->foto = 'img_produto.webp';
+            }
 
             if ($this->produto->criar()) {
                 return ['success' => 'Produto criado com sucesso', 'id' => $this->produto->id];
@@ -65,7 +75,6 @@ class ProdutoController {
         }
     }
 
-    // Mostrar detalhes de um produto
     public function mostrar($id) {
         try {
             $this->produto->id = $id;
@@ -82,18 +91,37 @@ class ProdutoController {
         }
     }
 
-    // Atualizar um produto
     public function atualizar($id) {
         try {
+            require_once __DIR__ . '/ImageController.php';
+            $imageController = new ImageController();
+            
             $this->produto->id = $id;
+            
+            $produtoExistente = $this->produto->lerUm();
             
             // Receber dados do formulário
             $this->produto->nome = $_POST['nome'];
-            $this->produto->preco = $_POST['preco'];
+            $this->produto->preco = $this->formatarPreco($_POST['preco']);
             $this->produto->descricao = $_POST['descricao'] ?? null;
             $this->produto->quantidade = $_POST['quantidade'];
             $this->produto->reservado = $_POST['reservado'];
             $this->produto->id_cat = $_POST['id_cat'];
+
+            // Processar nova imagem se enviada
+            if (!empty($_FILES['foto']['name'])) {
+                $uploadResult = $imageController->upload($_FILES['foto'], 'prod_');
+                if ($uploadResult['success']) {
+                    if ($produtoExistente['foto'] !== 'img_produto.webp') {
+                        $imageController->delete($produtoExistente['foto']);
+                    }
+                    $this->produto->foto = $uploadResult['filename'];
+                } else {
+                    throw new Exception("Erro no upload da imagem: " . $uploadResult['error']);
+                }
+            } else {
+                $this->produto->foto = $produtoExistente['foto'];
+            }
 
             if ($this->produto->atualizar()) {
                 return ['success' => 'Produto atualizado com sucesso'];
@@ -106,7 +134,6 @@ class ProdutoController {
         }
     }
 
-    // Deletar um produto
     public function deletar($id) {
         try {
             $this->produto->id = $id;
@@ -122,7 +149,6 @@ class ProdutoController {
         }
     }
 
-    // Atualizar estoque
     public function atualizarEstoque($id, $quantidade) {
         try {
             if ($this->produto->atualizarEstoque($id, $quantidade)) {
@@ -136,7 +162,6 @@ class ProdutoController {
         }
     }
 
-    // Atualizar quantidade reservada
     public function atualizarReserva($id, $reservado) {
         try {
             if ($this->produto->atualizarReserva($id, $reservado)) {
@@ -148,5 +173,15 @@ class ProdutoController {
             $error = $e->getMessage();
             return ['error' => $error];
         }
+    }
+
+    private function formatarPreco($preco) {
+        $preco = str_replace(['R$', ' '], '', $preco);
+        
+        $preco = str_replace(',', '.', $preco);
+        
+        $preco = preg_replace('/[^0-9.]/', '', $preco);
+        
+        return floatval($preco);
     }
 }

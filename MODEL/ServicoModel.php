@@ -101,7 +101,6 @@ class ServicoModel {
 
         $stmt = $this->conn->prepare($query);
 
-        // Sanitização
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->preco = htmlspecialchars(strip_tags($this->preco));
         $this->descricao = htmlspecialchars(strip_tags($this->descricao));
@@ -126,16 +125,28 @@ class ServicoModel {
 
     public function deletar() {
         try {
+            $this->lerUm();
+            $foto = $this->foto;
+            
             $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
             $stmt = $this->conn->prepare($query);
 
             $this->id = htmlspecialchars(strip_tags($this->id));
             $stmt->bindParam(1, $this->id);
 
-            return $stmt->execute();
+            if ($stmt->execute()) {
+                if (!empty($foto) && $foto !== 'img_produto.webp') {
+                    $imagePath = __DIR__ . '/../../PUBLIC/img/' . $foto;
+                    if (file_exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                }
+                return true;
+            }
+            return false;
         } catch (PDOException $e) {
-            error_log("Erro ao deletar serviço: " . $e->getMessage());
-            throw new Exception("Erro ao deletar serviço: " . $e->getMessage());
+            error_log("Erro ao deletar: " . $e->getMessage());
+            throw new Exception("Erro ao deletar: " . $e->getMessage());
         }
     }
 

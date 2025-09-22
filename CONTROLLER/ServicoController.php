@@ -43,11 +43,24 @@ class ServicoController {
 
     public function criar() {
         try {
+            require_once __DIR__ . '/ImageController.php';
+            $imageController = new ImageController();
+            
             $this->servico->nome = $_POST['nome'];
-            $this->servico->preco = $_POST['preco'];
+            $this->servico->preco = $this->formatarPreco($_POST['preco']);
             $this->servico->descricao = $_POST['descricao'] ?? null;
             $this->servico->id_cat = $_POST['id_cat'];
-            $this->servico->foto = $_POST['foto'] ?? null;
+
+            if (!empty($_FILES['foto']['name'])) {
+                $uploadResult = $imageController->upload($_FILES['foto'], 'serv_');
+                if ($uploadResult['success']) {
+                    $this->servico->foto = $uploadResult['filename'];
+                } else {
+                    throw new Exception("Erro no upload da imagem: " . $uploadResult['error']);
+                }
+            } else {
+                $this->servico->foto = 'img_servico.webp';
+            }
 
             if ($this->servico->criar()) {
                 return ['success' => 'Serviço criado com sucesso', 'id' => $this->servico->id];
@@ -110,6 +123,16 @@ class ServicoController {
             $error = $e->getMessage();
             return ['error' => $error];
         }
+    }
+
+    private function formatarPreco($preco) {
+        $preco = str_replace(['R$', ' '], '', $preco);
+        
+        $preco = str_replace(',', '.', $preco);
+        
+        $preco = preg_replace('/[^0-9.]/', '', $preco);
+        
+        return floatval($preco);
     }
 }
 ?>

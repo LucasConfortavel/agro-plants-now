@@ -14,6 +14,22 @@ $categorias = $categoriaController->indexComProdutos();
 $errorProdutos = isset($produtos['error']);
 $errorCategorias = isset($categorias['error']);
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['adicionar_servico'])) {
+        $resultado = $servicoController->criar();
+    } elseif (isset($_POST['adicionar'])) {
+        $resultado = $produtoController->criar();
+    }
+    
+    if (isset($resultado['success'])) {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($resultado['success']));
+        exit;
+    } else {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($resultado['error']));
+        exit;
+    }
+}
+
 if (isset($_GET['remover'])) {
     $id = $_GET['remover'];
     $resultado = $produtoController->deletar($id);
@@ -23,6 +39,22 @@ if (isset($_GET['remover'])) {
         exit;
     } else {
         header("Location: catalogo-produtos.php?error=" . urlencode($resultado['error']));
+        exit;
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adicionar'])) {
+    if (isset($_POST['quantidade'])) { // É um produto
+        $resultado = $produtoController->criar();
+    } else {
+        $resultado = $servicoController->criar();
+    }
+    
+    if (isset($resultado['success'])) {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($resultado['success']));
+        exit;
+    } else {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($resultado['error']));
         exit;
     }
 }

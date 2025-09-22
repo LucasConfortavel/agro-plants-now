@@ -14,6 +14,22 @@ $categorias = $categoriaController->indexComServicos();
 $errorServicos = isset($servicos['error']);
 $errorCategorias = isset($categorias['error']);
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['adicionar_servico'])) {
+        $resultado = $servicoController->criar();
+    } elseif (isset($_POST['adicionar'])) {
+        $resultado = $produtoController->criar();
+    }
+    
+    if (isset($resultado['success'])) {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($resultado['success']));
+        exit;
+    } else {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($resultado['error']));
+        exit;
+    }
+}
+
 if (isset($_GET['remover'])) {
     $id = $_GET['remover'];
     $resultado = $servicoController->deletar($id);
@@ -23,6 +39,22 @@ if (isset($_GET['remover'])) {
         exit;
     } else {
         header("Location: catalogo-servicos.php?error=" . urlencode($resultado['error']));
+        exit;
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adicionar'])) {
+    if (isset($_POST['quantidade'])) {
+        $resultado = $produtoController->criar();
+    } else {
+        $resultado = $servicoController->criar();
+    }
+    
+    if (isset($resultado['success'])) {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($resultado['success']));
+        exit;
+    } else {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($resultado['error']));
         exit;
     }
 }
@@ -97,7 +129,6 @@ $errorMessage = $_GET['error'] ?? '';
                 <div class="ym_areaProdutos">
                     <div class="ym_todos-produtos">
                         <?php 
-                        // Filtrar serviços por categoria
                         $servicosCategoria = array_filter($servicos, function($servico) use ($categoria) {
                             return $servico['id_cat'] == $categoria['id'];
                         });

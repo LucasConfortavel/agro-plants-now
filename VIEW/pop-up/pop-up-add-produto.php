@@ -9,11 +9,11 @@
 <body>
     <div class="eze-container">
         <div class="eze-tab-header">
-            <button class="eze-tab-button eze-active" id="cliente-tab">Adicionar produto</button>
-            <button class="eze-tab-button" id="documento-tab">Imagem</button>
+            <button type="button" class="eze-tab-button eze-active" id="cliente-tab">Adicionar produto</button>
+            <button type="button" class="eze-tab-button" id="documento-tab">Imagem</button>
         </div>
 
-        <form action="" method="post" class="ym_form-pop-up">
+        <form action="catalogo-tudo.php" method="post" enctype="multipart/form-data" class="ym_form-pop-up">
             <div id="cliente-content" class="eze-form-section active">
                 <div class="eze-form-row">
                     <div class="eze-form-group">
@@ -21,7 +21,7 @@
                             <label class="eze-label-text">Nome</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="text" class="ym_input-padrao" name="nome" placeholder="Nome completo" required>
+                        <input type="text" class="ym_input-padrao" name="nome" placeholder="Nome do produto" required>
                     </div>
                 </div>
 
@@ -31,20 +31,19 @@
                             <label class="eze-label-text">Categoria</label>
                             <span class="eze-required">*</span>
                         </div>
-
-                        <div class="ym_area-select">
-                            <div class="ym_select" onclick="mostrar_categorias()">
-                                <p class="ym_categoria-select">Produto</p>
-                                <p class="ym_seta-categoria">></p>
-                            </div>
-                            
-                            
-                            <div class="ym_options">
-                                <a class="ym_link-option" onclick="trocar_categoria()"></i> Serviço</a>
-                            </div>
-                            
-                        </div>
-
+                        <select class="ym_input-padrao" name="id_cat" required>
+                            <option value="">Selecione uma categoria</option>
+                            <?php
+                            require_once '../../CONTROLLER/CategoriaController.php';
+                            $categoriaController = new CategoriaController();
+                            $categorias = $categoriaController->index();
+                            if (is_array($categorias)) {
+                                foreach ($categorias as $categoria) {
+                                    echo '<option value="' . $categoria['id'] . '">' . htmlspecialchars($categoria['nome']) . '</option>';
+                                }
+                            }
+                            ?>
+                        </select>
                     </div>
 
                     <div class="eze-form-group">
@@ -56,22 +55,34 @@
                     </div>
                 </div>
 
+                <div class="eze-form-row">
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Quantidade</label>
+                            <span class="eze-required">*</span>
+                        </div>
+                        <input type="number" class="ym_input-padrao" name="quantidade" placeholder="Quantidade em estoque" required min="0">
+                    </div>
+                    
+                    <div class="eze-form-group">
+                        <div class="eze-form-label-group">
+                            <label class="eze-label-text">Quantidade Reservada</label>
+                        </div>
+                        <input type="number" class="ym_input-padrao" name="reservado" placeholder="Quantidade reservada" value="0" min="0">
+                    </div>
+                </div>
+
                 <div class="eze-form-group">
                     <div class="eze-form-label-group">
                         <label class="eze-label-text">Descrição</label>
                         <span class="eze-required">*</span>
                     </div>
-                    <textarea class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" style="resize: none;"></textarea>
-                </div>
-
-                <div class="eze-button-container eze-button-container2">
-                    <button type="submit" class="eze-add-button" name="adicionar">Adicionar produto</button>
-                    <p class="eze-help-text"><span class="eze-required">*</span>Campos obrigatórios</p>
+                    <textarea class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" required></textarea>
                 </div>
             </div>
 
             <div id="documento-content" class="eze-form-section">
-                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                <input type="file" id="imageInput" name="foto" accept="image/*" style="display: none;">
                 
                 <div class="eze-image-placeholder ym_input-padrao" id="imagePreview">
                     <div class="eze-placeholder-icon">
@@ -87,8 +98,13 @@
                 </div>
 
                 <div class="eze-button-container">
-                    <button type="button" class="eze-add-button eze-add-button2 eze-add-documento">Adicionar Imagem</button>
+                    <button type="button" class="eze-add-button eze-add-button2 eze-add-documento">Selecionar Imagem</button>
                 </div>
+            </div>
+
+            <div class="eze-button-container eze-button-container2">
+                <button type="submit" class="eze-add-button" name="adicionar">Adicionar produto</button>
+                <p class="eze-help-text"><span class="eze-required">*</span> Campos obrigatórios</p>
             </div>
         </form>
     </div>
@@ -145,12 +161,65 @@
 
         document.querySelector('input[name="preco"]').addEventListener('input', function(e) {
             let valor = e.target.value.replace(/\D/g, '');
-            valor = (valor / 100).toFixed(2) + '';
-            valor = valor.replace(".", ",");
-            valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-            e.target.value = 'R$ ' + valor;
+            
+            if (valor.length === 0) {
+                e.target.value = '';
+                return;
+            }
+            
+            while (valor.length < 3) {
+                valor = '0' + valor;
+            }
+            
+            const inteiros = valor.slice(0, -2) || '0';
+            const centavos = valor.slice(-2);
+            
+            let inteirosFormatados = inteiros.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            
+            e.target.value = `R$ ${inteirosFormatados},${centavos}`;
         });
 
+        document.querySelector('input[name="preco"]').addEventListener('focus', function(e) {
+            let valor = e.target.value.replace(/\D/g, '');
+            e.target.value = valor;
+        });
+
+        document.querySelector('input[name="preco"]').addEventListener('blur', function(e) {
+            let valor = e.target.value.replace(/\D/g, '');
+            
+            if (valor.length === 0) {
+                e.target.value = '';
+                return;
+            }
+            
+            while (valor.length < 3) {
+                valor = '0' + valor;
+            }
+            
+            const inteiros = valor.slice(0, -2) || '0';
+            const centavos = valor.slice(-2);
+            let inteirosFormatados = inteiros.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            
+            e.target.value = `R$ ${inteirosFormatados},${centavos}`;
+        });
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            // Processar o preço antes do envio
+            let priceInput = document.querySelector('input[name="preco"]');
+            if (priceInput.value) {
+                let rawValue = priceInput.value.replace('R$', '')
+                                            .replace(/\./g, '')
+                                            .replace(',', '.');
+                priceInput.value = parseFloat(rawValue).toFixed(2);
+            }
+            
+            const imageInput = document.getElementById('imageInput');
+            if (imageInput.files.length === 0) {
+                alert('Por favor, selecione uma imagem para o produto.');
+                e.preventDefault();
+                return;
+            }
+        });
     </script>
 </body>
 </html>
