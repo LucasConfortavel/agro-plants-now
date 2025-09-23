@@ -3,6 +3,9 @@
     include "../../INCLUDE/btn-notificacao.php";
     include "../../CONTROLLER/ProdutoController.php";
     include "../../INCLUDE/vlibras.php";
+    include "../../CONTROLLER/VendaController.php";
+    include "../../CONTROLLER/ClienteController.php";
+    include "../../CONTROLLER/UsuarioController.php";
 
         
     $produtoController = new ProdutoController();
@@ -18,6 +21,26 @@
             }
         }
     }
+
+    $venda_control = new VendaController();
+    $vendas_totais = $venda_control->index();
+    $total_vendido = 0;
+    $numero_vendas = 0;
+
+    foreach ($vendas_totais as $venda) {
+    $total_vendido += $venda['total'];
+    $numero_vendas += 1;
+    } 
+
+    $cliente_control = new ClienteController();
+    $clientes_totais = $cliente_control->index();
+    $total_de_clientes = count($clientes_totais);
+
+    
+    $vendedores_control = new UsuarioController();
+    $vendedores_totais = $vendedores_control->index('vendedor');
+    $TotalVendedor = count($vendedores_totais);
+
 ?>
 
 <!DOCTYPE html>
@@ -43,28 +66,28 @@
                     <div class="jp_card-title">Total Vendido</div>
                     <div class="jp_card-indicator">22.0%</div>
                 </div>
-                <div class="jp_card-value">R$3.917.500</div>
+                <div class="jp_card-value">R$<?= $total_vendido?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
-                    <div class="jp_card-title">Produtos Vendidos</div>
+                    <div class="jp_card-title">Total de Pedidos</div>
                     <div class="jp_card-indicator">22.0%</div>
                 </div>
-                <div class="jp_card-value">23,342</div>
+                <div class="jp_card-value"><?= $numero_vendas;?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
-                    <div class="jp_card-title">Total Cupons</div>
+                    <div class="jp_card-title">Vendedores</div>
                     <div class="jp_card-indicator">22.0%</div>
                 </div>
-                <div class="jp_card-value">R$30.726</div>
+                <div class="jp_card-value"><?=$TotalVendedor?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Cliente Cadastrado</div>
                     <div class="jp_card-indicator">22.0%</div>
                 </div>
-                <div class="jp_card-value">3,342</div>
+                <div class="jp_card-value"><?=$total_de_clientes?></div>
             </div>
         </div>
 

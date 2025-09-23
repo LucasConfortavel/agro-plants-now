@@ -1,26 +1,20 @@
 <?php
+require_once '../../INCLUDE/verificarLogin.php';
 include "../../INCLUDE/Menu_vend.php";
 include "../../INCLUDE/vlibras.php";
+require_once '../../CONTROLLER/SobreProdutoController.php';
 
+$sobreProdutoController = new SobreProdutoController();
+$dados = [];
 
-require_once '../../CONTROLLER/ProdutoController.php';
-
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header('Location: catalogo-tudo.php');
-    exit;
+if (isset($_GET['id'])) {
+    $dados = $sobreProdutoController->carregarProduto($_GET['id']);
+} else {
+    $dados = ['success' => false, 'error' => 'Nenhum produto selecionado.'];
 }
 
-$id_produto = $_GET['id'];
-
-$produtoController = new ProdutoController();
-$produto = $produtoController->mostrar($id_produto);
-
-if (isset($produto['error'])) {
-    header('Location: catalogo-tudo.php?error=' . urlencode($produto['error']));
-    exit;
-}
-
-$imagemPadrao = '../../PUBLIC/img/img_produto.webp';
+$successMessage = $_GET['success'] ?? '';
+$errorMessage = $_GET['error'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +22,7 @@ $imagemPadrao = '../../PUBLIC/img/img_produto.webp';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informações do Produto - <?php echo htmlspecialchars($produto['nome']); ?></title>
+    <title>Informações do Produto</title>
     <link rel="stylesheet" href="../../PUBLIC/css/sobre_prod.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
@@ -36,59 +30,89 @@ $imagemPadrao = '../../PUBLIC/img/img_produto.webp';
 <body>
 
     <main class="jp_main-content">
-        <div>
-            <section class="gs_product-container">
+        <?php if ($successMessage): ?>
+            <div class="ym-alert ym-alert-success"><?php echo htmlspecialchars($successMessage); ?></div>
+        <?php endif; ?>
+        
+        <?php if ($errorMessage): ?>
+            <div class="ym-alert ym-alert-error"><?php echo htmlspecialchars($errorMessage); ?></div>
+        <?php endif; ?>
+
+        <?php if (!$dados['success']): ?>
+            <div class="ym-alert ym-alert-error"><?php echo $dados['error']; ?></div>
+            <a href="catalogo-tudo.php" class="ym_btn-padrao">Voltar</a>
+        <?php else: 
+            $produto = $dados['produto'];
+            $categoria_nome = $dados['categoria_nome'];
+            $imagemPrincipal = !empty($produto['foto']) ? '../../PUBLIC/img/' . $produto['foto'] : '../../PUBLIC/img/img_produto.webp';
+        ?>
+        <section class="gs_product-container">
+
+            <div class="gs_area-img">
+                <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="gs_product-image">
+                <div class="gs_area-img-select">
+                    <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?> - Vista 1" class="gs_product-image-select">
+                    <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?> - Vista 2" class="gs_product-image-select">
+                    <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?> - Vista 3" class="gs_product-image-select">
+                </div>
+            </div>
+
+            <div class="gs_product-info">
+                <div class="gs_names">
+                    <p class="gs_label">Nome</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($produto['nome']); ?></p>
+                </div>
+
+                <div class="gs_names">
+                    <p class="gs_label">Categoria</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($categoria_nome); ?></p>
+                </div>
+
+                <div class="gs_names">
+                    <p class="gs_label">Preço</p>
+                    <p class="gs_value">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                </div>
+
+                <div class="gs_names">
+                    <p class="gs_label">Estoque Disponível</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($produto['quantidade']); ?> unidades</p>
+                </div>
                 
-                <div class="gs_area-img">
-                    <img src="<?php echo $imagemPadrao; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="gs_product-image">
-                    <div class="gs_area-img-select">
-                        <img src="<?php echo $imagemPadrao; ?>" alt="Imagem 1" class="gs_product-image-select" id="gs_img-select1">
-                        <img src="<?php echo $imagemPadrao; ?>" alt="Imagem 2" class="gs_product-image-select" id="gs_img-select2">
-                        <img src="<?php echo $imagemPadrao; ?>" alt="Imagem 3" class="gs_product-image-select" id="gs_img-select3">
-                    </div>
+                <div class="gs_names">
+                    <p class="gs_label">Reservado</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($produto['reservado']); ?> unidades</p>
                 </div>
 
-                <div class="gs_product-info">
-                    <div class="gs_names">
-                        <p class="gs_label">Nome</p>
-                        <p class="gs_value"><?php echo htmlspecialchars($produto['nome']); ?></p>
-                    </div>
-
-                    <div class="gs_names">
-                        <p class="gs_label">Categoria</p>
-                        <p class="gs_value">Produto</p>
-                    </div>
-
-                    <div class="gs_names">
-                        <p class="gs_label">Preço</p>
-                        <p class="gs_value">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
-                    </div>
-
-                    <div class="gs_names">
-                        <p class="gs_label">Estoque</p>
-                        <p class="gs_value"><?php echo htmlspecialchars($produto['quantidade']); ?> unidades</p>
-                    </div>
-                    
-                    <div class="gs_names">
-                        <p class="gs_label">Reservado</p>
-                        <p class="gs_value"><?php echo htmlspecialchars($produto['reservado']); ?> unidades</p>
-                    </div>
-                    
-                    <div class="gs_names gs_desc">
-                        <p class="gs_label">Descrição</p>
-                        <p class="gs_value gs_desc"><?php echo htmlspecialchars($produto['descricao'] ?? 'Sem descrição disponível.'); ?></p>
-                    </div>
-
-                    <div class="ym_area-btn">
-                        <a href="venda-info-vend.php?produto_id=<?php echo $produto['id']; ?>" class="ym_btn-padrao">Comprar</a>
-                        <a href="catalogo-tudo.php" class="ym_btn-padrao">Voltar</a>
-                    </div>
+                <div class="gs_names">
+                    <p class="gs_label">Disponível para Venda</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($produto['quantidade'] - $produto['reservado']); ?> unidades</p>
                 </div>
-            </section>
-        </div>
+                
+                <div class="gs_names gs_desc">
+                    <p class="gs_label">Descrição</p>
+                    <p class="gs_value gs_desc"><?php echo htmlspecialchars($produto['descricao'] ?? 'Sem descrição disponível.'); ?></p>
+                </div>
+
+                <div class="ym_area-btn">
+                    <?php if (($produto['quantidade'] - $produto['reservado']) > 0): ?>
+                        <a href="venda-info-vend.php?produto_id=<?php echo $produto['id']; ?>" class="ym_btn-padrao ym_btn-comprar">
+                            <i class="fa-solid fa-cart-shopping"></i> Comprar
+                        </a>
+                    <?php else: ?>
+                        <button class="ym_btn-padrao ym_btn-indisponivel" disabled>
+                            <i class="fa-solid fa-ban"></i> Indisponível
+                        </button>
+                    <?php endif; ?>
+                    <a href="catalogo-tudo.php" class="ym_btn-padrao ym_btn-voltar">
+                        <i class="fa-solid fa-arrow-left"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
     </main>
 
-    <script src="../../PUBLIC/JS/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
     <script src="../../PUBLIC/JS/script-sobre-prod.js"></script>
 </body>
 </html>
