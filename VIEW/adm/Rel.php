@@ -88,9 +88,6 @@ include "../../INCLUDE/Menu_adm.php";
                             </div>
                         </form>
 
-
-
-                        
                         <div class="jv_actions">
                             <div>
                                 <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
@@ -113,11 +110,6 @@ include "../../INCLUDE/Menu_adm.php";
                                    
                             </div>
                         </div>
-
-
-
-
-
                     </div>
 
                     <p class="jv_subtitle" id="jv_customerCount">
@@ -133,10 +125,11 @@ include "../../INCLUDE/Menu_adm.php";
                                     <th class="jv_checkbox-col">
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                     </th>
-                                    <th class="jv_name">Nome</th>
-                                    <th class="jv_banguela">Telefone</th>
-                                    <th class="jv_data">Data de Nascimento</th>
-                                    <th class="jv_data">Status</th>
+                                    <th class="jv_name">Data</th>
+                                    <th class="jv_banguela">Vendedor</th>
+                                    <th class="jv_data">Produto/Serviço</th>
+                                    <th class="jv_data">Valor de Venda</th>
+                                    <th class="jv_status">status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
@@ -162,14 +155,6 @@ include "../../INCLUDE/Menu_adm.php";
                                                     <div class="jv_customer-details">
                                                         <h4><?= htmlspecialchars($vend['nome']) ?></h4>
                                                         <p><?= htmlspecialchars($vend['email']) ?></p>
-
-
-
-
-
-
-
-
                                                     </div>
                                                 </div>
                                             </td>
@@ -195,11 +180,33 @@ include "../../INCLUDE/Menu_adm.php";
                                 <?php endif; ?>
                             </tbody>
                         </table>
+                                    
+                        <div class="jv_page-navigation">
+                            <?php if ($pagina_atual > 1): ?>
+                                <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
+                            <?php endif; ?>
 
+                            <?php
+                            $inicio = max(1, $pagina_atual - 2);
+                            $fim = min($total_paginas, $pagina_atual + 2);
+                            for ($i = $inicio; $i <= $fim; $i++): ?>
+                                <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                                    <?= $i ?>
+                                </a>
+                            <?php endfor; ?>
 
+                            <?php if ($pagina_atual < $total_paginas): ?>
+                                <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            <?php endif; ?>
+                        </div>
 
-
-
+                        <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -207,19 +214,19 @@ include "../../INCLUDE/Menu_adm.php";
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Vendas por mês</h3>
-                        <div class="ym_areaselect">
-                            <div class="ym_select" onclick="mostrar_categorias(1)">
-                                <p class="ym_categoria-select">Último mês</p>
-                                <p class="ym_seta-categoria">></p>
-                            </div>
-                                   
-                                   
-                            <div class="ym_options">
-                                <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
-                                <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
-                            </div>
-                                   
+                    <div class="ym_areaselect">
+                        <div class="ym_select" onclick="mostrar_categorias(1)">
+                            <p class="ym_categoria-select">Último mês</p>
+                            <p class="ym_seta-categoria">></p>
                         </div>
+                                   
+                                   
+                        <div class="ym_options">
+                            <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
+                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                        </div>
+                    </div>
+                    
                     <canvas id="sales-bar-chart"></canvas>
                 </div>
                 <div class="po-card">
@@ -273,6 +280,7 @@ include "../../INCLUDE/Menu_adm.php";
                                 </div>
                                    
                             </div>
+                            
                         </div>
                     </div>
 
@@ -289,10 +297,13 @@ include "../../INCLUDE/Menu_adm.php";
                                     <th class="jv_checkbox-col">
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                     </th>
-                                    <th class="jv_name">Nome</th>
-                                    <th class="jv_banguela">Telefone</th>
-                                    <th class="jv_data">Data de Nascimento</th>
-                                    <th class="jv_data">Status</th>
+                                    <th class="jv_name">Data</th>
+                                    <th class="jv_banguela">Vendedor</th>
+                                    <th class="jv_data">Produto/Serviço</th>
+                                    <th class="jv_data">Valor de Venda</th>
+                                    <th class="jv_comissao">Comissao</th>
+                                    <th class="jv_banguela">Valor da Comissao</th>
+                                    <th class="jv_status">status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
@@ -344,24 +355,52 @@ include "../../INCLUDE/Menu_adm.php";
                         </table>
                     </div>
                 </div>
+                            
+                        <div class="jv_page-navigation">
+                            <?php if ($pagina_atual > 1): ?>
+                                <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php
+                            $inicio = max(1, $pagina_atual - 2);
+                            $fim = min($total_paginas, $pagina_atual + 2);
+                            for ($i = $inicio; $i <= $fim; $i++): ?>
+                                <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                                    <?= $i ?>
+                                </a>
+                            <?php endfor; ?>
+
+                            <?php if ($pagina_atual < $total_paginas): ?>
+                                <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+
+                        <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
             </div>
             </div>
+
+            
 
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Gasto com Comissões</h3>
                     <div class="ym_areaselect">
-                            <div class="ym_select" onclick="mostrar_categorias(3)">
-                                <p class="ym_categoria-select">Último mês</p>
-                                <p class="ym_seta-categoria">></p>
-                            </div>
+                        <div class="ym_select" onclick="mostrar_categorias(3)">
+                            <p class="ym_categoria-select">Último mês</p>
+                            <p class="ym_seta-categoria">></p>
+                        </div>
                                    
                                    
-                            <div class="ym_options">
-                                <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
-                                <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
-                            </div>
-                                   
+                        <div class="ym_options">
+                            <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
+                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                        </div>
                     </div>
                     <canvas id="comm-line-chart"></canvas>
                 </div>
@@ -498,7 +537,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </script>
 
-
+<script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
 <script src="../../PUBLIC/JS/script-tabs.js"></script>
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-relatorio.js"></script>
