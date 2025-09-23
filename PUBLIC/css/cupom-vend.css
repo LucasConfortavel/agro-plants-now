@@ -1,3 +1,5 @@
+
+
 .jv_page-navigation {
     display: flex;
     justify-content: center;
@@ -488,7 +490,6 @@
         transform: scale(0.1);
     }
 }
-
 
 .jv_dropdown-item {
     display: block;

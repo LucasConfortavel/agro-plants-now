@@ -79,3 +79,7 @@ body.dark-theme input[type="password"] {
 body.dark-theme .jv_search-input::placeholder {
   color: white;
 }
+
+body.dark-theme .ym_titulo {
+  color: var(--primary-color  );
+}
