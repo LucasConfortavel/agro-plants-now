@@ -1,0 +1,81 @@
+:root {
+  --primary-color: #45734b;
+  --primary-hover: #3a6240;
+  --primary-light: #5a8a62;
+  --primary-dark: #2f4d34;
+}
+
+body.dark-theme {
+  background-color: #232222;
+  color: #e0e0e0;
+  --primary-color: #45734b;
+  --primary-hover: #5a8a62;
+  --primary-light: #5a8a62;
+  --primary-dark: #2f4d34;
+}
+
+body.dark-theme .jv_card,
+body.dark-theme .ym_popup-content,
+body.dark-theme .jv_card-header {
+  background: #323232;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+/* Botões */
+body.dark-theme .ym_btn-padrao,
+body.dark-theme .ym_btn-remover {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+body.dark-theme .ym_btn-padrao:hover,
+body.dark-theme .ym_btn-remover:hover {
+  background: var(--primary-hover);
+}
+
+/* Tabelas */
+body.dark-theme .jv_table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  color: white;
+}
+
+body.dark-theme .jv_table tbody tr:hover {
+    background: #555555;
+}
+
+body.dark-theme .jv_table tbody tr {
+    color: white;
+}
+
+body.dark-theme .jv_table-header {
+  background: var(--table-header-bg);
+}
+
+body.dark-theme .jv_table td,
+body.dark-theme .jv_table th {
+  border-bottom: 1px solid #3a3a3a;
+  padding: 0.8rem;
+}
+
+body.dark-theme .jv_search-input,
+body.dark-theme input[type="text"],
+body.dark-theme input[type="email"],
+body.dark-theme input[type="date"],
+body.dark-theme input[type="password"] {
+  background: var(--card-bg);
+  border: 1px solid #3a3a3a;
+}
+
+body.dark-theme .jv_search-input::placeholder {
+  color: white;
+}
