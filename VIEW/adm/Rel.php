@@ -90,36 +90,26 @@ include "../../INCLUDE/Menu_adm.php";
 
                         <div class="jv_actions">
                             <div>
-                                <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    Remover (<span id="jv_selectedCount">0</span>)
+                                <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                    <span><i class="fa-regular fa-file"></i></span>
+                                    Exportar CSV
                                 </button>
                             </div>
-                            <div>
-                                <button type="button" class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                    <i class="fas fa-plus"></i>
-                                    <span>Cadastrar Vendedor</span>
-                                </button>
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+                            <div class="ym_area-select">
+                                <div class="ym_select" onclick="mostrar_categorias()">
+                                    <p class="ym_categoria-select">Último mês</p>
+                                    <p class="ym_seta-categoria">></p>
+                                </div>
+                                   
+                                   
+                                <div class="ym_options">
+                                    <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                                    <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                </div>
+                                   
                             </div>
                         </div>
-                        
-
-
-
-
                     </div>
 
                     <p class="jv_subtitle" id="jv_customerCount">
@@ -164,14 +154,6 @@ include "../../INCLUDE/Menu_adm.php";
                                                     <div class="jv_customer-details">
                                                         <h4><?= htmlspecialchars($vend['nome']) ?></h4>
                                                         <p><?= htmlspecialchars($vend['email']) ?></p>
-
-
-
-
-
-
-
-
                                                     </div>
                                                 </div>
                                             </td>
@@ -224,14 +206,6 @@ include "../../INCLUDE/Menu_adm.php";
                         <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
                             <i class="fa-solid fa-circle-info"></i>
                         </a>
-
-           
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -239,6 +213,19 @@ include "../../INCLUDE/Menu_adm.php";
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Vendas por mês</h3>
+                    <div class="ym_areaselect">
+                        <div class="ym_select" onclick="mostrar_categorias(1)">
+                            <p class="ym_categoria-select">Último mês</p>
+                            <p class="ym_seta-categoria">></p>
+                        </div>
+                                   
+                                   
+                        <div class="ym_options">
+                            <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
+                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                        </div>
+                    </div>
+                    
                     <canvas id="sales-bar-chart"></canvas>
                 </div>
                 <div class="po-card">
@@ -273,17 +260,26 @@ include "../../INCLUDE/Menu_adm.php";
 
                         <div class="jv_actions">
                             <div>
-                                <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    Remover (<span id="jv_selectedCount">0</span>)
+                                <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                    <span><i class="fa-regular fa-file"></i></span>
+                                    Exportar CSV
                                 </button>
                             </div>
-                            <div>
-                                <button type="button" class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                    <i class="fas fa-plus"></i>
-                                    <span>Cadastrar Vendedor</span>
-                                </button>
+ 
+                            <div class="ym_area-select">
+                                <div class="ym_select" onclick="mostrar_categorias(2)">
+                                    <p class="ym_categoria-select">Último mês</p>
+                                    <p class="ym_seta-categoria">></p>
+                                </div>
+                                   
+                                   
+                                <div class="ym_options">
+                                    <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                                    <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                </div>
+                                   
                             </div>
+                            
                         </div>
                     </div>
 
@@ -390,6 +386,18 @@ include "../../INCLUDE/Menu_adm.php";
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Gasto com Comissões</h3>
+                    <div class="ym_areaselect">
+                        <div class="ym_select" onclick="mostrar_categorias(3)">
+                            <p class="ym_categoria-select">Último mês</p>
+                            <p class="ym_seta-categoria">></p>
+                        </div>
+                                   
+                                   
+                        <div class="ym_options">
+                            <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
+                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                        </div>
+                    </div>
                     <canvas id="comm-line-chart"></canvas>
                 </div>
 
