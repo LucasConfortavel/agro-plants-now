@@ -3,9 +3,11 @@ require_once '../../INCLUDE/verificarLogin.php';
 include "../../INCLUDE/Menu_vend.php";
 include "../../INCLUDE/vlibras.php";
 include "../../CONTROLLER/VendaController.php";
+include "../../CONTROLLER/clienteController.php";
 
 $user_id = $_SESSION['id'] ?? null;
 $venda_control = new VendaController(); 
+$cliente_control = new ClienteController(); 
 
 $vendas_usuario = $venda_control->index($user_id);
 $total_vendido = 0;
@@ -63,47 +65,26 @@ foreach ($vendas_usuario as $venda) {
             <table class="jp_sales-list">
                 <thead>
                     <tr>
-                        <th>Código</th>
                         <th>Cliente</th>
                         <th>Data</th>
                         <th>Valor</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Luiz</td>
-                        <td>02/08</td>
-                        <td class="jp_sales-value">R$7500</td>
-                    </tr>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Luiz</td>
-                        <td>02/08</td>
-                        <td class="jp_sales-value">R$7500</td>
-                    </tr>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Luiz</td>
-                        <td>02/08</td>
-                        <td class="jp_sales-value">R$7500</td>
-                    </tr>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Luiz</td>
-                        <td>02/08</td>
-                        <td class="jp_sales-value">R$7500</td>
-                    </tr>
+                    <?php
+                        foreach ($vendas_usuario as $venda) {
+                            echo'
+                            <tr>
+                                <td>'.$cliente_control->mostrar($venda['id_cliente'])['nome'].'</td>
+                                <td>'.date('d/m/Y', strtotime($venda['data_venda'])).'</td>
+                                <td class="jp_sales-value">R$ '.$venda['total'].'</td>
+                            </tr>';
+                        }
+                    
+                    ?>  
                 </tbody>
             </table>
-            <div class="jp_page-navigation">
-                <div class="jp_page-number active">1</div>
-                <div class="jp_page-number">2</div>
-                <div class="jp_page-number">3</div>
-                <div class="jp_page-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
+          
         </div>
 
         <div class="jp_bottom-section">
