@@ -125,10 +125,11 @@ include "../../INCLUDE/Menu_adm.php";
                                     <th class="jv_checkbox-col">
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                     </th>
-                                    <th class="jv_name">Nome</th>
-                                    <th class="jv_banguela">Telefone</th>
-                                    <th class="jv_data">Data de Nascimento</th>
-                                    <th class="jv_data">Status</th>
+                                    <th class="jv_name">Data</th>
+                                    <th class="jv_banguela">Vendedor</th>
+                                    <th class="jv_data">Produto/Serviço</th>
+                                    <th class="jv_data">Valor de Venda</th>
+                                    <th class="jv_status">status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
@@ -296,10 +297,13 @@ include "../../INCLUDE/Menu_adm.php";
                                     <th class="jv_checkbox-col">
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                     </th>
-                                    <th class="jv_name">Nome</th>
-                                    <th class="jv_banguela">Telefone</th>
-                                    <th class="jv_data">Data de Nascimento</th>
-                                    <th class="jv_data">Status</th>
+                                    <th class="jv_name">Data</th>
+                                    <th class="jv_banguela">Vendedor</th>
+                                    <th class="jv_data">Produto/Serviço</th>
+                                    <th class="jv_data">Valor de Venda</th>
+                                    <th class="jv_comissao">Comissao</th>
+                                    <th class="jv_banguela">Valor da Comissao</th>
+                                    <th class="jv_status">status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
