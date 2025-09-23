@@ -533,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </script>
 
-
+<script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
 <script src="../../PUBLIC/JS/script-tabs.js"></script>
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-relatorio.js"></script>
