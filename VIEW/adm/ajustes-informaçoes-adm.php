@@ -81,7 +81,7 @@ include "../../INCLUDE/Menu_adm.php";
 <body>
     <main class="jp_main-content">
         <div class="page-header">
-            <h1 class="page-title">Configurações do Perfil</h1>
+            <h1 class="page-title ym_titulo">Configurações do Perfil</h1>
         </div>
 
         <header class="profile-header">
@@ -291,60 +291,8 @@ include "../../INCLUDE/Menu_adm.php";
 
     <div id="toast-container"></div>
 
-    <script>
-        const themeOptions = document.querySelectorAll('.theme-option');
-        const body = document.body;
-
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        applyTheme(savedTheme);
-
-        themeOptions.forEach(option => {
-            if (option.dataset.theme === savedTheme) {
-                option.classList.add('active');
-            } else {
-                option.classList.remove('active');
-            }
-        });
-
-        themeOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const selectedTheme = option.dataset.theme;
-                
-                body.classList.add('theme-transitioning');
-                
-                setTimeout(() => {
-                    applyTheme(selectedTheme);
-                    body.classList.remove('theme-transitioning');
-                }, 50);
-
-                themeOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-
-                localStorage.setItem('theme', selectedTheme);
-                
-                showToast(`Tema ${getThemeName(selectedTheme)} aplicado com sucesso!`, 'success');
-            });
-        });
-
-        function applyTheme(theme) {
-            body.classList.remove('dark-theme', 'light-theme');
-            
-            if (theme === 'dark') {
-                body.classList.add('dark-theme');
-            } else if (theme === 'light') {
-                body.classList.add('light-theme');
-            }
-        }
-
-        function getThemeName(theme) {
-            switch(theme) {
-                case 'dark': return 'Escuro';
-                case 'light': return 'Claro';
-                default: return 'Escuro';
-            }
-        }
-    </script>
 
     <script src="../../PUBLIC/JS/script-ajustes-adm.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 </body>
 </html>
