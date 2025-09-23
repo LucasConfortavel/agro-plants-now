@@ -1,62 +1,25 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
 include "../../INCLUDE/vlibras.php";
-require_once '../../CONTROLLER/ProdutoController.php';
-require_once '../../CONTROLLER/CategoriaController.php';
+require_once '../../CONTROLLER/CatalogoController.php';
 
-$produtoController = new ProdutoController();
-$categoriaController = new CategoriaController();
+$catalogoController = new CatalogoController();
+$dados = $catalogoController->carregarCatalogoProdutos();
 
-$produtos = $produtoController->index();
-
-$categorias = $categoriaController->indexComProdutos();
-
-$errorProdutos = isset($produtos['error']);
-$errorCategorias = isset($categorias['error']);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['adicionar_servico'])) {
-        $resultado = $servicoController->criar();
-    } elseif (isset($_POST['adicionar'])) {
-        $resultado = $produtoController->criar();
-    }
-    
-    if (isset($resultado['success'])) {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($resultado['success']));
-        exit;
-    } else {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($resultado['error']));
-        exit;
-    }
+if (isset($dados['postResult']) && isset($dados['postResult']['success'])) {
+    header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($dados['postResult']['success']));
+    exit;
+} elseif (isset($dados['postResult']) && isset($dados['postResult']['error'])) {
+    header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($dados['postResult']['error']));
+    exit;
 }
 
-if (isset($_GET['remover'])) {
-    $id = $_GET['remover'];
-    $resultado = $produtoController->deletar($id);
-    
-    if (isset($resultado['success'])) {
-        header("Location: catalogo-produtos.php?success=" . urlencode($resultado['success']));
-        exit;
-    } else {
-        header("Location: catalogo-produtos.php?error=" . urlencode($resultado['error']));
-        exit;
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adicionar'])) {
-    if (isset($_POST['quantidade'])) { // É um produto
-        $resultado = $produtoController->criar();
-    } else {
-        $resultado = $servicoController->criar();
-    }
-    
-    if (isset($resultado['success'])) {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($resultado['success']));
-        exit;
-    } else {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($resultado['error']));
-        exit;
-    }
+if (isset($dados['remocaoResult']) && isset($dados['remocaoResult']['success'])) {
+    header("Location: catalogo-produtos.php?success=" . urlencode($dados['remocaoResult']['success']));
+    exit;
+} elseif (isset($dados['remocaoResult']) && isset($dados['remocaoResult']['error'])) {
+    header("Location: catalogo-produtos.php?error=" . urlencode($dados['remocaoResult']['error']));
+    exit;
 }
 
 $successMessage = $_GET['success'] ?? '';
@@ -68,11 +31,11 @@ $errorMessage = $_GET['error'] ?? '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo</title>
+    <title>Catálogo - Produtos</title>
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/catalogo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
 
@@ -102,7 +65,7 @@ $errorMessage = $_GET['error'] ?? '';
                 <div class="ym_area-input-pesquisa">
                     <a href="" class="ym_lupa"><i class="fa-solid fa-magnifying-glass"></i></a>
                     <input id="inputPesquisa" type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
-                </div>    
+                </div>  
                 
                 
                 <div class="ym_area-select">
@@ -116,21 +79,22 @@ $errorMessage = $_GET['error'] ?? '';
                         <a href="catalogo-tudo.php" class="ym_link-option"><i class="fa-solid fa-cube"></i> todos</a>
                         <a href="catalogo-servicos.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> serviço</a>
                     </div>
+                    
                 </div>
+                
                 <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')">+</a>
             </div>
             
-            <?php if (!$errorCategorias && is_array($categorias) && count($categorias) > 0): ?>
-                <?php foreach ($categorias as $categoria): ?>
+            <?php if (!$dados['errorCategorias'] && is_array($dados['categorias']) && count($dados['categorias']) > 0): ?>
+                <?php foreach ($dados['categorias'] as $categoria): ?>
                 <div class="ym_titulo-produtos">
                     <p class="ym_textoArea"><?php echo htmlspecialchars($categoria['nome']); ?></p>
-                    <a class="ym_textoLink">Ver Mais</a>
                 </div>
                 
                 <div class="ym_areaProdutos">
                     <div class="ym_todos-produtos">
                         <?php 
-                        $produtosCategoria = array_filter($produtos, function($produto) use ($categoria) {
+                        $produtosCategoria = array_filter($dados['produtos'], function($produto) use ($categoria) {
                             return $produto['id_cat'] == $categoria['id'];
                         });
                         ?>
@@ -143,7 +107,7 @@ $errorMessage = $_GET['error'] ?? '';
                                         <div class="ym_img-label">
                                             <span><?php echo htmlspecialchars($categoria['nome']); ?></span>
                                         </div>
-                                        <a href="catalogo-produtos.php?remover=<?php echo $produto['id']; ?>" class="ym_delete-link" onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                        <a href="catalogo-produtos.php?remover=<?php echo $produto['id']; ?>&tipo=produto" class="ym_delete-link" onclick="return confirm('Tem certeza que deseja excluir este produto?')">
                                             <i class="fa-solid fa-trash-can ym_delete-icon"></i>
                                         </a>
                                     </div>
@@ -167,7 +131,15 @@ $errorMessage = $_GET['error'] ?? '';
                 </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p class="ym-sem-registros">Nenhuma categoria com produtos encontrada.</p>
+                <p class="ym-sem-registros">
+                    <?php 
+                    if ($dados['errorCategorias']) {
+                        echo "Erro ao carregar categorias: " . htmlspecialchars($dados['categorias']['error']);
+                    } else {
+                        echo "Nenhuma categoria com produtos encontrada.";
+                    }
+                    ?>
+                </p>
             <?php endif; ?>
 
         </section>

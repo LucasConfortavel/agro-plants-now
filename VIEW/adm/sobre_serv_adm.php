@@ -1,30 +1,15 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
 include "../../INCLUDE/vlibras.php";
-require_once '../../CONTROLLER/ServicoController.php';
-require_once '../../CONTROLLER/CategoriaController.php';
+require_once '../../CONTROLLER/SobreServicoController.php';
 
-$servicoController = new ServicoController();
-$categoriaController = new CategoriaController();
+$sobreServicoController = new SobreServicoController();
+$dados = [];
 
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $servico = $servicoController->mostrar($id);
-    
-    if (isset($servico['error'])) {
-        $error = $servico['error'];
-    } else {
-        $nome = $servico['nome'];
-        $preco = $servico['preco'];
-        $descricao = $servico['descricao'];
-        $foto = $servico['foto'];
-        $id_cat = $servico['id_cat'];
-        
-        $categoria = $categoriaController->mostrar($id_cat);
-        $categoria_nome = isset($categoria['error']) ? 'Categoria não encontrada' : $categoria['nome'];
-    }
+    $dados = $sobreServicoController->carregarServico($_GET['id']);
 } else {
-    $error = "Nenhum serviço selecionado.";
+    $dados = ['success' => false, 'error' => 'Nenhum serviço selecionado.'];
 }
 ?>
 
@@ -41,25 +26,28 @@ if (isset($_GET['id'])) {
 <body>
 
     <main class="jp_main-content">
-        <?php if (isset($error)): ?>
-            <div class="ym-alert ym-alert-error"><?php echo $error; ?></div>
+        <?php if (!$dados['success']): ?>
+            <div class="ym-alert ym-alert-error"><?php echo $dados['error']; ?></div>
             <a href="catalogo-tudo.php" class="ym_btn-padrao">Voltar</a>
-        <?php else: ?>
+        <?php else: 
+            $servico = $dados['servico'];
+            $categoria_nome = $dados['categoria_nome'];
+        ?>
         <section class="gs_product-container">
 
             <div class="gs_area-img">
-                <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image">
+                <img src="../../PUBLIC/img/<?php echo !empty($servico['foto']) ? $servico['foto'] : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($servico['nome']); ?>" class="gs_product-image">
                 <div class="gs_area-img-select">
-                    <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image-select">
-                    <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image-select">
-                    <img src="../../PUBLIC/img/<?php echo !empty($foto) ? $foto : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($nome); ?>" class="gs_product-image-select">
+                    <img src="../../PUBLIC/img/<?php echo !empty($servico['foto']) ? $servico['foto'] : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($servico['nome']); ?>" class="gs_product-image-select">
+                    <img src="../../PUBLIC/img/<?php echo !empty($servico['foto']) ? $servico['foto'] : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($servico['nome']); ?>" class="gs_product-image-select">
+                    <img src="../../PUBLIC/img/<?php echo !empty($servico['foto']) ? $servico['foto'] : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($servico['nome']); ?>" class="gs_product-image-select">
                 </div>
             </div>
 
             <div class="gs_product-info">
                 <div class="gs_names">
                     <p class="gs_label">Nome</p>
-                    <p class="gs_value"><?php echo htmlspecialchars($nome); ?></p>
+                    <p class="gs_value"><?php echo htmlspecialchars($servico['nome']); ?></p>
                 </div>
 
                 <div class="gs_names">
@@ -69,12 +57,12 @@ if (isset($_GET['id'])) {
 
                 <div class="gs_names">
                     <p class="gs_label">Preço</p>
-                    <p class="gs_value">R$ <?php echo number_format($preco, 2, ',', '.'); ?></p>
+                    <p class="gs_value">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></p>
                 </div>
                 
                 <div class="gs_names gs_desc">
                     <p class="gs_label">Descrição</p>
-                    <p class="gs_value gs_desc"><?php echo htmlspecialchars($descricao); ?></p>
+                    <p class="gs_value gs_desc"><?php echo htmlspecialchars($servico['descricao']); ?></p>
                 </div>
 
                 <div class="ym_area-btn">

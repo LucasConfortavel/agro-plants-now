@@ -1,69 +1,25 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
 include "../../INCLUDE/vlibras.php";
-require_once '../../CONTROLLER/ProdutoController.php';
-require_once '../../CONTROLLER/ServicoController.php';
-require_once '../../CONTROLLER/CategoriaController.php';
+require_once '../../CONTROLLER/CatalogoController.php';
 
-$produtoController = new ProdutoController();
-$servicoController = new ServicoController();
-$categoriaController = new CategoriaController();
+$catalogoController = new CatalogoController();
+$dados = $catalogoController->carregarCatalogo();
 
-$produtos = $produtoController->index();
-$servicos = $servicoController->index();
-
-$errorProdutos = isset($produtos['error']);
-$errorServicos = isset($servicos['error']);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['adicionar_servico'])) {
-        $resultado = $servicoController->criar();
-    } elseif (isset($_POST['adicionar'])) {
-        $resultado = $produtoController->criar();
-    }
-    
-    if (isset($resultado['success'])) {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($resultado['success']));
-        exit;
-    } else {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($resultado['error']));
-        exit;
-    }
+if (isset($dados['postResult']) && isset($dados['postResult']['success'])) {
+    header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($dados['postResult']['success']));
+    exit;
+} elseif (isset($dados['postResult']) && isset($dados['postResult']['error'])) {
+    header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($dados['postResult']['error']));
+    exit;
 }
 
-if (isset($_GET['remover'])) {
-    $id = $_GET['remover'];
-    $tipo = $_GET['tipo'] ?? 'produto';
-    
-    if ($tipo === 'produto') {
-        $resultado = $produtoController->deletar($id);
-    } else {
-        $resultado = $servicoController->deletar($id);
-    }
-    
-    if (isset($resultado['success'])) {
-        header("Location: catalogo-tudo.php?success=" . urlencode($resultado['success']));
-        exit;
-    } else {
-        header("Location: catalogo-tudo.php?error=" . urlencode($resultado['error']));
-        exit;
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adicionar'])) {
-    if (isset($_POST['quantidade'])) { // É um produto
-        $resultado = $produtoController->criar();
-    } else { // É um serviço
-        $resultado = $servicoController->criar();
-    }
-    
-    if (isset($resultado['success'])) {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=" . urlencode($resultado['success']));
-        exit;
-    } else {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($resultado['error']));
-        exit;
-    }
+if (isset($dados['remocaoResult']) && isset($dados['remocaoResult']['success'])) {
+    header("Location: catalogo-tudo.php?success=" . urlencode($dados['remocaoResult']['success']));
+    exit;
+} elseif (isset($dados['remocaoResult']) && isset($dados['remocaoResult']['error'])) {
+    header("Location: catalogo-tudo.php?error=" . urlencode($dados['remocaoResult']['error']));
+    exit;
 }
 
 $successMessage = $_GET['success'] ?? '';
@@ -79,7 +35,7 @@ $errorMessage = $_GET['error'] ?? '';
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/catalogo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
 
@@ -133,8 +89,8 @@ $errorMessage = $_GET['error'] ?? '';
                 
             <div class="ym_areaProdutos">
                 <div class="ym_todos-produtos" id="produtos-container">
-                    <?php if (!$errorProdutos && is_array($produtos) && count($produtos) > 0): ?>
-                        <?php foreach ($produtos as $produto):
+                    <?php if (!$dados['errorProdutos'] && is_array($dados['produtos']) && count($dados['produtos']) > 0): ?>
+                        <?php foreach ($dados['produtos'] as $produto):
                             $categoriaNome = $produto['categoria_nome'] ?? 'Categoria não encontrada';
                         ?>
                             <div class="ym_cardProduto">
@@ -157,8 +113,8 @@ $errorMessage = $_GET['error'] ?? '';
                     <?php else: ?>
                         <p class="ym-sem-registros">
                             <?php 
-                            if ($errorProdutos) {
-                                echo "Erro ao carregar produtos: " . htmlspecialchars($produtos['error']);
+                            if ($dados['errorProdutos']) {
+                                echo "Erro ao carregar produtos: " . htmlspecialchars($dados['produtos']['error']);
                             } else {
                                 echo "Nenhum produto cadastrado ou ativado.";
                             }
@@ -167,10 +123,10 @@ $errorMessage = $_GET['error'] ?? '';
                     <?php endif; ?>
                 </div>
                 
-                <?php if (!$errorProdutos && is_array($produtos) && count($produtos) > 3): ?>
+                <?php if (!$dados['errorProdutos'] && is_array($dados['produtos']) && count($dados['produtos']) > 3): ?>
                 <div class="ym_btn-slide-area">
-                    <button class="ym_btn-slide ym_slideBack" onclick="slideBack(<?php echo count($produtos); ?>,0)"> < </button>
-                    <button class="ym_btn-slide ym_slideGo" onclick="slideGo(<?php echo count($produtos); ?>,0)"> > </button>
+                    <button class="ym_btn-slide ym_slideBack" onclick="slideBack(<?php echo count($dados['produtos']); ?>,0)"> < </button>
+                    <button class="ym_btn-slide ym_slideGo" onclick="slideGo(<?php echo count($dados['produtos']); ?>,0)"> > </button>
                 </div>
                 <?php endif; ?>
             </div>
@@ -179,8 +135,8 @@ $errorMessage = $_GET['error'] ?? '';
             
             <div class="ym_areaProdutos">
                 <div class="ym_todos-produtos" id="servicos-container">
-                    <?php if (!$errorServicos && is_array($servicos) && count($servicos) > 0): ?>
-                        <?php foreach ($servicos as $servico): 
+                    <?php if (!$dados['errorServicos'] && is_array($dados['servicos']) && count($dados['servicos']) > 0): ?>
+                        <?php foreach ($dados['servicos'] as $servico): 
                             $categoriaNome = $servico['categoria_nome'] ?? 'Categoria não encontrada';
                         ?>
                             <div class="ym_cardProduto">
@@ -202,8 +158,8 @@ $errorMessage = $_GET['error'] ?? '';
                     <?php else: ?>
                         <p class="ym-sem-registros">
                             <?php 
-                            if ($errorServicos) {
-                                echo "Erro ao carregar serviços: " . htmlspecialchars($servicos['error']);
+                            if ($dados['errorServicos']) {
+                                echo "Erro ao carregar serviços: " . htmlspecialchars($dados['servicos']['error']);
                             } else {
                                 echo "Nenhum serviço cadastrado ou ativado.";
                             }
@@ -212,10 +168,10 @@ $errorMessage = $_GET['error'] ?? '';
                     <?php endif; ?>
                 </div>
                 
-                <?php if (!$errorServicos && is_array($servicos) && count($servicos) > 3): ?>
+                <?php if (!$dados['errorServicos'] && is_array($dados['servicos']) && count($dados['servicos']) > 3): ?>
                 <div class="ym_btn-slide-area">
-                    <button class="ym_btn-slide ym_slideBack" onclick="slideBack(<?php echo count($servicos); ?>,1)"> < </button>
-                    <button class="ym_btn-slide ym_slideGo" onclick="slideGo(<?php echo count($servicos); ?>,1)"> > </button>
+                    <button class="ym_btn-slide ym_slideBack" onclick="slideBack(<?php echo count($dados['servicos']); ?>,1)"> < </button>
+                    <button class="ym_btn-slide ym_slideGo" onclick="slideGo(<?php echo count($dados['servicos']); ?>,1)"> > </button>
                 </div>
                 <?php endif; ?>
             </div>
