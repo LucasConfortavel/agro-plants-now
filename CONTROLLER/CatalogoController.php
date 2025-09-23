@@ -18,19 +18,16 @@ class CatalogoController {
         $resultado = [];
         
         try {
-            // Carregar produtos e serviços
             $resultado['produtos'] = $this->produtoController->index();
             $resultado['servicos'] = $this->servicoController->index();
             
             $resultado['errorProdutos'] = isset($resultado['produtos']['error']);
             $resultado['errorServicos'] = isset($resultado['servicos']['error']);
             
-            // Processar requisições POST
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $resultado['postResult'] = $this->processarPost();
             }
             
-            // Processar remoções
             if (isset($_GET['remover'])) {
                 $resultado['remocaoResult'] = $this->processarRemocao();
             }

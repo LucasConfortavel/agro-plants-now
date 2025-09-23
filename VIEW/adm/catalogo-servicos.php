@@ -1,4 +1,5 @@
 <?php
+require_once '../../INCLUDE/verificarLogin.php';
 include "../../INCLUDE/Menu_adm.php";
 include "../../INCLUDE/vlibras.php";
 require_once '../../CONTROLLER/CatalogoController.php';
