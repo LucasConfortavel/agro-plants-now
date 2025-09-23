@@ -6,6 +6,7 @@
 @import url(tabela.css);
 @import url(select.css);
 @import url(janela-pop-up.css);
+@import url(alertas.css);
 
 *{
     font-family: Poppins;

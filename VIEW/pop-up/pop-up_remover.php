@@ -14,7 +14,7 @@
 
 <div class="eze-form-row">
   <div id="confirm-step">
-    <p>Tem certeza que deseja remover este usuário?</p>
+    <p>Tem certeza que deseja prosseguir?</p>
     <div class="eze-button-container">
       <button type="button" class="eze-add-button" id="btn-sim">Sim</button>
       <button type="button" class="eze-add-button eze-add-button2" onclick="fecharPopup()" class="eze-add-button eze-add-button2" id="btn-nao">Não</button>
@@ -24,8 +24,8 @@
 
 <form method="post" id="password-step" class="hidden">
   <p>Insira sua senha para confirmar a remoção:</p>
-  <input type="password" name ="remover" class="ym_input-padrao" placeholder="Digite sua senha" required>
-  <input type="hidden" name ="id" value="<?= htmlspecialchars($_GET['id'])?>">
+  <input type="password" name ="alter_status" class="ym_input-padrao" placeholder="Digite sua senha" required>
+  <input type="hidden" name ="id" value="<?= ($_GET['id'])?>">
   
   <div class="eze-button-container">
     <button type="submit" class="eze-add-button" id="btn-confirmar">Confirmar</button>

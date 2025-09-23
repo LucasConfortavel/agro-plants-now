@@ -13,8 +13,6 @@ if (isset($_SESSION['id'], $_SESSION['email'], $_SESSION['tipo'])) {
     }
 }
 
-$error = isset($_GET['error']) ? $_GET['error'] : '';
-
 include "../../INCLUDE/Menu_superior.php";
 include "../../INCLUDE/vlibras.php";
 
@@ -41,6 +39,8 @@ include "../../INCLUDE/vlibras.php";
             <div class="ym_conteudo-popup"></div>
         </div>
     </div>
+
+    <div class="ym_area-alertas"></div>
 
     <section class="jc_login-section">
         <div class="jc_total">
@@ -77,3 +77,10 @@ include "../../INCLUDE/vlibras.php";
 <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 <script src="../../PUBLIC/JS/script-carregamento.js"></script>
+<script src="../../PUBLIC/JS/script-alertas.js"></script>
+
+<?php
+    if(isset($_GET['error'])){
+        echo '<script>exibirAlerta("Não foi possível iniciar a sessão","error")</script>';
+    }
+?>

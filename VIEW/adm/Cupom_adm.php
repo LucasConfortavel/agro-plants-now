@@ -2,7 +2,8 @@
 include "../../INCLUDE/Menu_adm.php";
 include "../../CONTROLLER/CupomController.php";
 include "../../INCLUDE/vlibras.php";
-
+require_once "../../INCLUDE/verificarLogin.php"; 
+include "../../INCLUDE/alertas.php";
 
 $cupom_control = new CupomController();
 $cupons = $cupom_control->index();
@@ -21,16 +22,37 @@ $cupons = array_slice($cupons, $offset, $limite);
 
 // Criação de cupom via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $cupom_control->criarCupom();
+    $criar_cupom = $cupom_control->criarCupom();
+
+    if($criar_cupom == 1){
+        $_SESSION['alerta'] =  '<script> exibirAlerta("Cupom cadastrado com sucesso","sucesso"); </script>';
+    }else{
+        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o Cupom","error"); </script>';
+    }
+
     header('Location: ' . $_SERVER['PHP_SELF']);
+    exit;
 }
 
 if(!empty($_GET)){
     if(isset($_GET['remover'])){
         $id = $_GET['remover'];
         $cupom = $cupom_control->deletar($id);
+
+        if($cupom == 1){
+            $_SESSION['alerta'] = '<script> exibirAlerta("Cupom deletado com sucesso","sucesso"); </script>';
+        }else{
+            $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível deletar o cupom","error"); </script>';
+        }
+
         header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
     }
+}
+
+if(isset($_SESSION['alerta'])){
+    echo($_SESSION['alerta']);
+    unset($_SESSION['alerta']);
 }
 
 ?>
