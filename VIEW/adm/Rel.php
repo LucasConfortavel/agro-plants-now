@@ -1,7 +1,8 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
- include "../../CONTROLLER/UsuarioController.php";
- include "../../INCLUDE/vlibras.php";
+include "../../CONTROLLER/UsuarioController.php";
+include "../../CONTROLLER/ProdutoController.php";
+include "../../INCLUDE/vlibras.php";
 
     $controler_user = new UsuarioController();
 
@@ -31,6 +32,21 @@ include "../../INCLUDE/Menu_adm.php";
     }
     
     $usuarios = $controler_user->index();
+
+    $produto_item = new ProdutoController();
+
+    // POST: criar vendedor
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $teste_prod = $produto_item->criar();
+        print_r($teste_prod);
+        // header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
+    }
+
+    $action_handled = false;
+
+    
+    $produtos = $produto_item->index();
 
     $total_vendedores = count($usuarios);
 
@@ -153,13 +169,12 @@ include "../../INCLUDE/Menu_adm.php";
                                                         <?= strtoupper(substr($vend['nome'], 0, 2)) ?>
                                                     </div>
                                                     <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars($vend['nome']) ?></h4>
-                                                        <p><?= htmlspecialchars($vend['email']) ?></p>
+                                                        <h4><?= date("d/m/Y", strtotime($vend['data_nasc'])) ?></h4>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td><?= htmlspecialchars($vend['telefone']) ?></td>
-                                            <td><?= date("d/m/Y", strtotime($vend['data_nasc'])) ?></td>
+                                            <td><?= htmlspecialchars($vend['nome']) ?></td>
+                                            <td><?= htmlspecialchars($produtos['nome']) ?></td>
                                             <td><?= htmlspecialchars($vend['status']) ?></td>
                                             <td class="jv_table-action">
                                                 <button class="jv_menu-btn" onclick="toggleDropdown(this)">
