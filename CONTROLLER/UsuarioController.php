@@ -38,7 +38,7 @@ class UsuarioController {
             $this->user->CEP = $_POST['cep'] ?? null;
 
             if ($this->user->criar()) {
-                return ['success' => 'Usuário criado com sucesso', 'id' => $this->user->id];
+                return true;
             } else {
                 throw new Exception("Erro ao criar usuário");
             }
@@ -113,7 +113,21 @@ class UsuarioController {
             $this->user->id = $id;
             
             if ($this->user->desativar()) {
-                return ['success' => 'Usuário desativado com sucesso'];
+                return true;
+            } else {
+                throw new Exception("Erro ao desativar usuário");
+            }
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
+    public function ativar($id) {
+        try {
+            $this->user->id = $id;
+            
+            if ($this->user->ativar()) {
+                return true;
             } else {
                 throw new Exception("Erro ao desativar usuário");
             }

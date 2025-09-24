@@ -1,25 +1,14 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/alertas.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../INCLUDE/vlibras.php";
+require_once "../../INCLUDE/verificarLogin.php"; 
 
 
 $cliente_control = new ClienteController();
 $clientes = $cliente_control->index();
 $total_clientes = count($clientes);
-
-if(!empty($_GET)){
-    if (isset($_GET['visualizar'])){
-        $id = $_GET['visualizar'];
-        $cliente = $cliente_control->mostrar($id);
-        header('Location: info-edit-adm.php?id=' . $id . '&usuario=cliente');
-
-    } elseif (isset($_GET['remover'])){
-        $id = $_GET['remover'];
-        $cliente = $cliente_control->deletar($id);
-        header('Location: ' . $_SERVER['PHP_SELF']);
-    }
-}
 
 // Paginação
 $limite = 4;
@@ -31,9 +20,46 @@ $total_paginas = ceil($total_clientes / $limite);
 $clientes = array_slice($clientes, $offset, $limite);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $cliente_control->criarCliente();
-    unset($_POST);
+    $criar_cliente = $cliente_control->criarCliente();
+
+    if($criar_cliente == 1){
+        $_SESSION['alerta'] =  '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
+    }elseif($criar_cliente == "Já existe um usuário cadastrado com este email."){
+        $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um usuário cadastrado com este email"); </script>';
+    }else{
+        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
 }
+
+if(!empty($_GET)){
+    if (isset($_GET['visualizar'])){
+        $id = $_GET['visualizar'];
+        $cliente = $cliente_control->mostrar($id);
+        header('Location: info-edit-adm.php?id=' . $id . '&usuario=cliente');
+        exit;
+
+    } elseif (isset($_GET['remover'])){
+        $id = $_GET['remover'];
+        $cliente = $cliente_control->deletar($id);
+        if($cliente == 1){
+            $_SESSION['alerta'] = '<script> exibirAlerta("Cliente deletado com sucesso","sucesso"); </script>';
+        }else{
+            $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível deletar o cliente","error"); </script>';
+        }
+
+        header("Location: clientes-adm.php");
+        exit;
+    }
+}
+
+if(isset($_SESSION['alerta'])){
+    echo($_SESSION['alerta']);
+    unset($_SESSION['alerta']);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -44,7 +70,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 <body>
 
@@ -55,6 +83,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <div class="ym_conteudo-popup"></div>
     </div>
 </div>
+
+
 
 <main class="jp_main-content">
     <h1 class="ym_titulo">Clientes</h1>
@@ -184,6 +214,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 
 </main>
 </body>

@@ -2,7 +2,8 @@
 require_once "../../DB/Database.php"; 
 require_once "../../INCLUDE/verificarLogin.php"; 
 include "../../INCLUDE/vlibras.php";
-
+include "../../INCLUDE/alertas.php";
+include "../../INCLUDE/Menu_adm.php";
 
 $user_id = $_SESSION['id'] ?? null;
 
@@ -15,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_info'])) {
         SET nome = ?, email = ?, telefone = ?, cpf = ?, cep = ?, data_nasc = ?
         WHERE id = ?
     ');
-    $stmt->execute([
+    $atualizar = $stmt->execute([
         $_POST['nome'],
         $_POST['email'],
         $_POST['telefone'],
@@ -24,6 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_info'])) {
         $_POST['data_nasc'],
         $user_id
     ]);
+
+    if($atualizar == 1){
+        $_SESSION['alerta'] = '<script> exibirAlerta("Informações atualizadas com sucesso","sucesso"); </script>';
+    }else{
+        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível atualizadar as informações","sucesso"); </script>';
+    }
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
@@ -45,7 +53,10 @@ $stmt = $conn->prepare('
 $stmt->execute([$user_id]);
 $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-include "../../INCLUDE/Menu_adm.php";
+if(isset($_SESSION['alerta'])){
+    echo($_SESSION['alerta']);
+    unset($_SESSION['alerta']);
+}
 ?>
 
 
@@ -81,7 +92,7 @@ include "../../INCLUDE/Menu_adm.php";
 <body>
     <main class="jp_main-content">
         <div class="page-header">
-            <h1 class="page-title">Configurações do Perfil</h1>
+            <h1 class="page-title ym_titulo">Configurações do Perfil</h1>
         </div>
 
         <header class="profile-header">
@@ -291,60 +302,8 @@ include "../../INCLUDE/Menu_adm.php";
 
     <div id="toast-container"></div>
 
-    <script>
-        const themeOptions = document.querySelectorAll('.theme-option');
-        const body = document.body;
-
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        applyTheme(savedTheme);
-
-        themeOptions.forEach(option => {
-            if (option.dataset.theme === savedTheme) {
-                option.classList.add('active');
-            } else {
-                option.classList.remove('active');
-            }
-        });
-
-        themeOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const selectedTheme = option.dataset.theme;
-                
-                body.classList.add('theme-transitioning');
-                
-                setTimeout(() => {
-                    applyTheme(selectedTheme);
-                    body.classList.remove('theme-transitioning');
-                }, 50);
-
-                themeOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-
-                localStorage.setItem('theme', selectedTheme);
-                
-                showToast(`Tema ${getThemeName(selectedTheme)} aplicado com sucesso!`, 'success');
-            });
-        });
-
-        function applyTheme(theme) {
-            body.classList.remove('dark-theme', 'light-theme');
-            
-            if (theme === 'dark') {
-                body.classList.add('dark-theme');
-            } else if (theme === 'light') {
-                body.classList.add('light-theme');
-            }
-        }
-
-        function getThemeName(theme) {
-            switch(theme) {
-                case 'dark': return 'Escuro';
-                case 'light': return 'Claro';
-                default: return 'Escuro';
-            }
-        }
-    </script>
 
     <script src="../../PUBLIC/JS/script-ajustes-adm.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 </body>
 </html>

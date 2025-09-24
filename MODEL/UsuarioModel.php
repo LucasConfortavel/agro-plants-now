@@ -236,5 +236,21 @@ class UsuarioModel {
             throw new Exception("Erro ao desativar usuário: " . $e->getMessage());
         }
     }
+
+    public function ativar(){
+        try {
+        
+            $query = "UPDATE " . $this->table_name . " SET status = 'ATIVADO'" . " WHERE id = ?";
+            $stmt = $this->conn->prepare($query);
+
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $stmt->bindParam(1, $this->id);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Erro ao desativar usuário: " . $e->getMessage());
+            throw new Exception("Erro ao desativar usuário: " . $e->getMessage());
+        }
+    }
 }
 ?>

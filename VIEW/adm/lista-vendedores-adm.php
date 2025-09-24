@@ -1,8 +1,9 @@
 <?php
-    include "../../INCLUDE/Menu_adm.php";
     include "../../CONTROLLER/UsuarioController.php";
+    include "../../INCLUDE/Menu_adm.php";
     include "../../INCLUDE/vlibras.php";
     require_once "../../INCLUDE/verificarLogin.php"; 
+    include "../../INCLUDE/alertas.php";
 
 
     $controler_user = new UsuarioController();
@@ -11,19 +12,43 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['adicionar'])){
             $usuario = $controler_user->criar("vendedor");
+
+            if($usuario == 1){
+                $_SESSION['alerta'] =  '<script> exibirAlerta("Vendedor cadastrado com sucesso","sucesso"); </script>';
+            }elseif($usuario == "Já existe um usuário cadastrado com este email."){
+                $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um vendedor cadastrado com este email"); </script>';
+            }else{
+                $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o vendedor","error"); </script>';
+            }
+
         }
 
-        if (isset($_POST['remover'])){
+        if (isset($_POST['alter_status'])){
             $user_id = $_SESSION['id'] ?? null;
             $usuario = $controler_user->mostrar($user_id);
             $id = $_POST['id'];
-            $senha = $_POST['remover'];
+            $vendedor = $controler_user->mostrar($id);
+            $senha = $_POST['alter_status'];
 
             if($usuario["senha"] == $senha){
-                $usuario = $controler_user->desativar($id);
-                print_r($usuario);
+                if($vendedor['status'] == "ATIVADO"){
+                    $vendedor = $controler_user->desativar($id);
+                    if($vendedor == 1){
+                        $_SESSION['alerta'] = '<script> exibirAlerta("Vendedor desativado com sucesso","sucesso"); </script>';
+                    }else{
+                        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível desativar o Vendedor","error"); </script>';
+                    }
+                }else{
+                    $vendedor = $controler_user->ativar($id);
+                    if($vendedor == 1){
+                        $_SESSION['alerta'] = '<script> exibirAlerta("Vendedor ativado com sucesso","sucesso"); </script>';
+                    }else{
+                        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível ativar o Vendedor","error"); </script>';
+                    }
+                }
+                
             }else{
-                print_r("Senha incorreta");
+                $_SESSION['alerta'] = '<script> exibirAlerta("Senha incorreta","error"); </script>';
             }
         }
 
@@ -37,6 +62,7 @@
         $id = $_GET['visualizar'];
         $usuario = $controler_user->mostrar($id);
         header('Location: info-edit-adm.php?id=' . $id . "&usuario=" . $usuario['tipo']);
+        exit;
     } 
     
     $usuarios = $controler_user->index("vendedor");
@@ -51,6 +77,12 @@
     $total_paginas = ($total_vendedores > 0) ? ceil($total_vendedores / $limite) : 1;
 
     $usuarios = array_slice($usuarios, $offset, $limite);
+
+    if(isset($_SESSION['alerta'])){
+        echo($_SESSION['alerta']);
+        unset($_SESSION['alerta']);
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -61,6 +93,7 @@
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
@@ -163,9 +196,19 @@
                                                         <i class="fas fa-eye"></i> Visualizar
                                                     </button>
                                                     <div class="jv_dropdown-separator"></div>
-                                                    <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($vend['id'])?>','Cadastro de Vendedores')" class="jv_dropdown-item jv_danger">
-                                                        <i class="fa-solid fa-ban"></i> Desativar
-                                                    </button>
+                                                    <?php
+                                                        if($vend['status'] == "ATIVADO"){
+                                                            echo'
+                                                            <button type="button" onclick="abrirPopup(\'../../VIEW/pop-up/pop-up_remover.php?id=' . htmlspecialchars($vend['id']) . '\', \'Cadastro de Vendedores\')" class="jv_dropdown-item jv_danger">
+                                                                <i class="fa-solid fa-ban"></i> Desativar
+                                                            </button>';
+                                                        }else{
+                                                            echo'
+                                                            <button type="button" onclick="abrirPopup(\'../../VIEW/pop-up/pop-up_remover.php?id=' . htmlspecialchars($vend['id']) . '\', \'Cadastro de Vendedores\')" class="jv_dropdown-item jv_acess">
+                                                                <i class="fa-solid fa-power-off"></i> Ativar
+                                                            </button>';
+                                                        }
+                                                    ?>
                                                 </form>
                                             </td>
                                         </tr>
@@ -210,6 +253,7 @@
         <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
         <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+        <script src="../../PUBLIC/JS/script-tema.js"></script>
 </main>
 </body>
 </html>
