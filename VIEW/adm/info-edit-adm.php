@@ -3,6 +3,8 @@
     include "../../CONTROLLER/UsuarioController.php";
     include "../../INCLUDE/Menu_adm.php";
     include "../../INCLUDE/vlibras.php";
+    require_once "../../INCLUDE/verificarLogin.php"; 
+    include "../../INCLUDE/alertas.php";
 
 
     $controler_cliente = new ClienteController();
@@ -38,18 +40,31 @@
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if($tipo_user=="cliente"){
-                $controler_cliente->atualizar($id);
-                // echo $controler_cliente->atualizar($id);
+                $atualizar_cliente = $controler_cliente->atualizar($id);
+                if($atualizar_cliente == 1){
+                    $_SESSION['alerta'] =  '<script> exibirAlerta("Cliente atulizado com sucesso","sucesso"); </script>';
+                }else{
+                    $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível atualizar o cliente","error"); </script>';
+                }  
             
             } elseif($tipo_user=="vendedor"){
-                $controler_usuario->atualizar($id);
-                // echo $controler_usuario->atualizar($id);
+                $atualizar_vendedor = $controler_usuario->atualizar($id);
+                if($atualizar_vendedor == 1){
+                    $_SESSION['alerta'] =  '<script> exibirAlerta("Vendedor atulizado com sucesso","sucesso"); </script>';
+                }else{
+                    $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível atualizar o vendedor","error"); </script>';
+                }        
             }
 
             header("Refresh:0");
             exit;
         }
 
+    }
+
+    if(isset($_SESSION['alerta'])){
+        echo($_SESSION['alerta']);
+        unset($_SESSION['alerta']);
     }
 
 

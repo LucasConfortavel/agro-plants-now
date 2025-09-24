@@ -38,6 +38,10 @@
   cursor: pointer;
 }
 
+.fa-xmark{
+  margin-left: 20px;
+}
+
 .ym_area-notificacao{
   color: white;
   display: flex;
@@ -126,10 +130,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .ym_notificacao-item:hover{
-    background-color: #444;
   }
 
   .ym_titulo-notficacoes{
