@@ -143,7 +143,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <?php endif; ?>
     </div>
 
-    <script src="../../PUBLIC/JS/lista_clientes.js"></script>
+    <script src="../../PUBLIC/JS/script-clientes.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 

@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
 
-        <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
+        <script src="../../PUBLIC/JS/script-cupom.js"></script>
         <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 </main>
