@@ -11,7 +11,7 @@
     $produtoController = new ProdutoController();
     $produtos = $produtoController->index();
     
-    $limite = 5;
+    $limite = 4;
     $alertas = [];
     
     if (!isset($produtos['error'])) {

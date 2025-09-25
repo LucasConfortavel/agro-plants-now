@@ -19,6 +19,17 @@ foreach ($vendas_usuario as $venda) {
     $numero_vendas += 1;
 } 
 
+$total_vendas = count($vendas_usuario);
+
+$limite = 4;
+$pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+if ($pagina_atual < 1) $pagina_atual = 1;
+
+$offset = ($pagina_atual - 1) * $limite;
+
+$total_paginas = ($total_vendas > 0) ? ceil($total_vendas / $limite) : 1;
+
+$vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
 ?>
 
 <!DOCTYPE html>
@@ -72,8 +83,8 @@ foreach ($vendas_usuario as $venda) {
                 </thead>
                 <tbody>
                     <?php
-                        foreach ($vendas_usuario as $venda) {
-                            echo'
+                        foreach ($vendas_paginadas as $venda) {
+                        echo '
                             <tr>
                                 <td>'.$cliente_control->mostrar($venda['id_cliente'])['nome'].'</td>
                                 <td>'.date('d/m/Y', strtotime($venda['data_venda'])).'</td>
@@ -84,8 +95,36 @@ foreach ($vendas_usuario as $venda) {
                     ?>  
                 </tbody>
             </table>
+            
+               <div class="jv_page-navigation">
+                     <?php if ($pagina_atual > 1): ?>
+                         <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                              <i class="fas fa-arrow-left"></i>
+                         </a>
+                     <?php endif; ?>
+
+                        <?php
+                            $inicio = max(1, $pagina_atual - 2);
+                            $fim = min($total_paginas, $pagina_atual + 2);
+                            for ($i = $inicio; $i <= $fim; $i++): ?>
+                                <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                                    <?= $i ?>
+                                </a>
+                        <?php endfor; ?>
+
+                        <?php if ($pagina_atual < $total_paginas): ?>
+                          <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                              <i class="fas fa-arrow-right"></i>
+                          </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </a>
+                </div>
           
-        </div>
+         </div>
 
         <div class="jp_bottom-section">
             <!-- <div class="jp_clients-panel">
