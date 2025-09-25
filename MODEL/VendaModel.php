@@ -64,7 +64,11 @@ class VendaModel {
     }
 
     public function lerUm() {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id = ? LIMIT 0,1";
+        $query = "select " . $this->$table_name . ".*,
+                usuario.nome AS nome_vendedor, usuario.email AS email_vendedor, usuario.telefone AS telefone_vendedor, usuario.CPF AS CPF_vendedor, usuario.data_nasc AS data_nasc_vendedor,
+                cliente.nome AS nome_cliente, cliente.email AS email_cliente, cliente.telefone AS telefone_cliente, cliente.CPF AS CPF_cliente, cliente.CNPJ AS CNPJ_cliente, cliente.data_nasc AS data_nasc_cliente  from venda
+                inner join usuario on venda.id_vendedor = usuario.id 
+                inner join cliente on venda.id_cliente = cliente.id" . " WHERE venda.id = ? LIMIT 0,1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
         $stmt->execute();
@@ -75,7 +79,11 @@ class VendaModel {
     }
 
     public function lerTodos() {
-        $query = "SELECT id, data_venda, id_pedido, id_vendedor, id_cliente, total FROM " . $this->table_name ;
+        $query = "select " . $this->$table_name . ".*,
+                usuario.nome AS nome_vendedor, usuario.email AS email_vendedor, usuario.telefone AS telefone_vendedor, usuario.CPF AS CPF_vendedor, usuario.data_nasc AS data_nasc_vendedor,
+                cliente.nome AS nome_cliente, cliente.email AS email_cliente, cliente.telefone AS telefone_cliente, cliente.CPF AS CPF_cliente, cliente.CNPJ AS CNPJ_cliente, cliente.data_nasc AS data_nasc_cliente  from venda
+                inner join usuario on venda.id_vendedor = usuario.id 
+                inner join cliente on venda.id_cliente = cliente.id";
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -84,112 +92,15 @@ class VendaModel {
     }
 
     public function lerEspecifico($filtro) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id_vendedor = '$filtro'";
-        
+        $query = "select " . $this->$table_name . ".*,
+                usuario.nome AS nome_vendedor, usuario.email AS email_vendedor, usuario.telefone AS telefone_vendedor, usuario.CPF AS CPF_vendedor, usuario.data_nasc AS data_nasc_vendedor,
+                cliente.nome AS nome_cliente, cliente.email AS email_cliente, cliente.telefone AS telefone_cliente, cliente.CPF AS CPF_cliente, cliente.CNPJ AS CNPJ_cliente, cliente.data_nasc AS data_nasc_cliente  from venda
+                inner join usuario on venda.id_vendedor = usuario.id 
+                inner join cliente on venda.id_cliente = cliente.id" . " WHERE id_vendedor = " .$filtro;        
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
 
         return $stmt;
     }
 
-    public function update() {
-        $query = "UPDATE " . $this->table_name . " 
-                 SET nome=:nome, email=:email, telefone=:telefone, CPF=:CPF, CNPJ=:CNPJ,data_nasc=:data_nasc WHERE id=:id";
-
-        $stmt = $this->conn->prepare($query);
-
-        // sanitização
-        $this->nome = htmlspecialchars(strip_tags($this->nome));
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->telefone = htmlspecialchars(strip_tags($this->telefone));
-        $this->CPF = htmlspecialchars(strip_tags($this->CPF));
-        $this->CNPJ = htmlspecialchars(strip_tags($this->CNPJ));
-        $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
-        $this->id = htmlspecialchars(strip_tags($this->id));
-
-        $stmt->bindParam(":nome", $this->nome);
-        $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":telefone", $this->telefone);
-        $stmt->bindParam(":CPF", $this->CPF);
-        $stmt->bindParam(":CNPJ", $this->CNPJ);
-        $stmt->bindParam(":data_nasc", $this->data_nasc);
-        $stmt->bindParam(":id", $this->id);
-
-        try {
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            error_log("Erro ao atualizar usuário: " . $e->getMessage());
-            
-            // verificar se é violação de email ou CPF unico
-            if ($e->getCode() == 23000) {
-                if (strpos($e->getMessage(), 'email') !== false) {
-                    throw new Exception("Já existe um usuário cadastrado com este email.");
-                } elseif (strpos($e->getMessage(), 'CPF') !== false) {
-                    throw new Exception("Já existe um usuário cadastrado com este CPF.");
-                }
-            }
-            
-            throw new Exception("Erro ao atualizar usuário: " . $e->getMessage());
-        }
-    }
-
-    public function deletar() {
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
-        $stmt = $this->conn->prepare($query);
-
-        $this->id = htmlspecialchars(strip_tags($this->id));
-        $stmt->bindParam(1, $this->id);
-
-        try {
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            error_log("Erro ao deletar usuário: " . $e->getMessage());
-            throw new Exception("Erro ao deletar usuário: " . $e->getMessage());
-        }
-    }
 }
-    // public function login($email, $senha) {
-    //     $query = "SELECT id, nome, email, senha, tipo FROM " . $this->table_name . " 
-    //               WHERE email = ? LIMIT 0,1";
-        
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->bindParam(1, $email);
-    //     $stmt->execute();
-    
-    //     if ($stmt->rowCount() == 1) {
-    //         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-    //         if ($senha === $row['senha']) {
-    //             $this->id = $row['id'];
-    //             $this->nome = $row['nome'];
-    //             $this->email = $row['email'];
-    //             $this->tipo = $row['tipo'];
-                
-    //             return true;
-    //         }
-    //     }
-        
-    //     return false;
-    // }
-
-    // public function emailExiste($email) {
-    //     $query = "SELECT id FROM " . $this->table_name . " WHERE email = ?";
-    //     $stmt = $this->conn->prepare($query);
-        
-    //     $email = htmlspecialchars(strip_tags($email));
-    //     $stmt->bindParam(1, $email);
-    //     $stmt->execute();
-        
-    //     return $stmt->rowCount() > 0;
-    // }
-
-    // public function cpfExiste($cpf) {
-    //     $query = "SELECT id FROM " . $this->table_name . " WHERE CPF = ?";
-    //     $stmt = $this->conn->prepare($query);
-        
-    //     $cpf = htmlspecialchars(strip_tags($cpf));
-    //     $stmt->bindParam(1, $cpf);
-    //     $stmt->execute();
-        
-    //     return $stmt->rowCount() > 0;
-    // }
