@@ -6,15 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Certifique-se de que o canvas tenha o tamanho correto
   resizeCanvas()
 
-  // Dados do gráfico (aproximados com base na imagem)
-  const data = [
-    200, 220, 250, 300, 350, 400, 450, 500, 550, 520, 480, 450, 420, 400, 380, 400, 450, 500, 520, 500, 480, 450, 420,
-    400, 380, 350, 320, 300, 280, 260,
-  ]
-
-  // Desenhar o gráfico com animação
-  drawChartWithAnimation(data)
-
   // Redimensionar o gráfico quando a janela for redimensionada
   window.addEventListener("resize", () => {
     resizeCanvas()
@@ -35,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Função para desenhar o gráfico com animação
-  function drawChartWithAnimation(data) {
+  window.drawChartWithAnimation = function(data) {
     let progress = 0
     const animationDuration = 1000 // 1 segundo
     const startTime = performance.now()

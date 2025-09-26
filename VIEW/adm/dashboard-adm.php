@@ -7,6 +7,11 @@
     include "../../CONTROLLER/ClienteController.php";
     include "../../CONTROLLER/UsuarioController.php";
 
+            
+    echo"<script>const data = [
+            200, 220, 250, 300, 350, 400, 450, 500, 550, 520, 480, 450, 420, 400, 380, 400, 450, 500, 520, 500, 480, 450, 420,
+            400, 380, 350, 320, 300, 280, 260,
+            ];</script>";
         
     $produtoController = new ProdutoController();
     $produtos = $produtoController->index();
@@ -213,6 +218,12 @@
 
     <script src="../../PUBLIC/JS/script-select.js"></script>    
     <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            drawChartWithAnimation(data);
+        });
+    </script>
 
 </body>
 </html>
