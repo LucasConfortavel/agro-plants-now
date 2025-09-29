@@ -143,7 +143,9 @@ class UsuarioController {
                 $email = $_POST['email'];
                 $senha = $_POST['senha'];
                 
-                if ($this->user->login($email, $senha)) {
+                $login_result = $this->user->login($email, $senha);
+                
+                if ($login_result === 'SUCESSO') {
                     session_start();
                     $_SESSION['id'] = $this->user->id;
                     $_SESSION['email'] = $this->user->email;
@@ -158,6 +160,8 @@ class UsuarioController {
                         header('Location: ../VIEW/vend/dashboard_vendedor.php');
                         exit;
                     }
+                } elseif ($login_result === 'DESATIVADO') {
+                    throw new Exception("Conta desativada. Entre em contato com o administrador.");
                 } else {
                     throw new Exception("Email ou senha inválidos.");
                 }

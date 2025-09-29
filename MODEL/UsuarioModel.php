@@ -22,9 +22,11 @@ class UsuarioModel {
     }
 
     public function criar() {
+        // Adicione status com valor padrão
         $query = "INSERT INTO " . $this->table_name . " 
                  SET nome=:nome, email=:email, senha=:senha, tipo=:tipo, 
-                     telefone=:telefone, CPF=:CPF, CEP=:CEP, data_nasc=:data_nasc, foto=:foto";
+                     telefone=:telefone, CPF=:CPF, CEP=:CEP, data_nasc=:data_nasc, 
+                     foto=:foto, status='ATIVADO'";
 
         $stmt = $this->conn->prepare($query);
 
@@ -176,7 +178,7 @@ class UsuarioModel {
     }
 
     public function login($email, $senha) {
-        $query = "SELECT id, nome, email, senha, tipo FROM " . $this->table_name . " 
+        $query = "SELECT id, nome, email, senha, tipo, status FROM " . $this->table_name . " 
                   WHERE email = ? LIMIT 0,1";
         
         $stmt = $this->conn->prepare($query);
@@ -186,17 +188,22 @@ class UsuarioModel {
         if ($stmt->rowCount() == 1) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             
+            // Verificar se usuário está ativo
+            if ($row['status'] != 'ATIVADO') {
+                return 'DESATIVADO';
+            }
+            
             if ($senha === $row['senha']) {
                 $this->id = $row['id'];
                 $this->nome = $row['nome'];
                 $this->email = $row['email'];
                 $this->tipo = $row['tipo'];
                 
-                return true;
+                return 'SUCESSO';
             }
         }
         
-        return false;
+        return 'FALHOU';
     }
 
     public function emailExiste($email) {
