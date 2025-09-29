@@ -97,18 +97,10 @@ function loadScript(src) {
 
 function fecharPopup() {
     const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
-    const main = document.getElementsByClassName('jp_main-content')[0];
     popup_overlay.style.display = 'none';
-    if (main) {
-        main.style.position = 'relative';
-    }
-    // Não recarregar a página automaticamente, apenas fechar o popup
-    // window.location.reload();
+    document.body.style.overflow = 'auto';
 }
 
 function fixarTela() {
-    const main = document.getElementsByClassName('jp_main-content')[0];
-    if (main) {
-        main.style.position = 'fixed';
-    }
+    document.body.style.overflow = 'hidden';
 }
