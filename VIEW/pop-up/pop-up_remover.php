@@ -14,7 +14,8 @@
 
 <div class="eze-form-row">
   <div id="confirm-step">
-    <p>Tem certeza que deseja prosseguir?</p>
+    <h3>Você tem certeza?</h3>
+    <p>Esta ação irá processar sua solicitação. Deseja continuar?</p>
     <div class="eze-button-container">
       <button type="button" class="eze-add-button" id="btn-sim">Sim</button>
       <button type="button" class="eze-add-button eze-add-button2" onclick="fecharPopup()" class="eze-add-button eze-add-button2" id="btn-nao">Não</button>
