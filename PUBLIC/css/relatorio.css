@@ -144,6 +144,18 @@ body {
   margin-top: -4%;
 }
 
+.jv_table-header .jv_name p {
+    padding: 12px 16px;
+    display: flex;
+    font-weight: 600;
+    color:#45734b; 
+    font-size: 1rem;
+    margin-left: 75px;
+   
+}
+
+
+
 .ym_select{
     height: 100%;
     width: 90%;
@@ -156,6 +168,8 @@ body {
     padding: 0px 3px;
     cursor: pointer;
     transition: all ease 1s;
+    margin-top: -40px;
+    margin-left: 254px;
 }
   
   
@@ -330,7 +344,7 @@ body {
   padding: 0.5rem 1rem;
   border: 1px solid #d1d5db;
   border-radius: 0.375rem;
-  width: 180px;
+  width: 170px;
   background: #45734b;
   cursor: pointer;
   font-size: 0.875rem;
@@ -342,6 +356,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: -1px;
+  margin-right: 204px;
 }
 
 .jv_search-input{

@@ -111,14 +111,30 @@ $total_vendas = count($vendas);
                     </div>
                 </form>
  
-                <div class="jv_actions">
-                    <div>
-                        <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
-                            <i class="fa-solid fa-trash-can"></i>
-                            Remover (<span id="jv_selectedCount">0</span>)
-                        </button>
+                    <div class="jv_actions">
+                        <div>
+                            <div>
+                                <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                    <span><i class="fa-regular fa-file"></i></span>
+                                    Exportar CSV
+                                </button>
+                            </div>
+ 
+                            <div class="ym_area-select">
+                                <div class="ym_select" onclick="mostrar_categorias()">
+                                    <p class="ym_categoria-select">Último mês</p>
+                                    <p class="ym_seta-categoria">></p>
+                                </div>
+                                   
+                                   
+                                <div class="ym_options">
+                                    <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                                    <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                </div>
+                                   
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
  
             <p class="jv_subtitle" id="jv_customerCount">
@@ -135,8 +151,9 @@ $total_vendas = count($vendas);
                             <th class="jv_checkbox-col">
                                 <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                             </th>
-                            <th class="jv_name">Vendedor</th>
-                            <th class="jv_date">Cliente</th>
+                            <th class="jv_date">Data</th>
+                            <th class="jv_name"><p>Vendedor</p></th>
+                            <th class="jv_name_cli">Cliente</th>
                             <th class="jv_valor_gast">Valor Gasto</th>
                             <th class="jv_actions-col"></th>
                         </tr>
@@ -151,6 +168,7 @@ $total_vendas = count($vendas);
                                     <td>
                                         <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>">
                                     </td>
+                                    <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
                                     <td>
                                         <div class="jv_customer-info">
                                             <div class="jv_avatar">
