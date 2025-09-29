@@ -61,31 +61,71 @@ foreach ($vendas_usuario as $venda) {
         </div>
 
         <div class="jp_sales-container">
-            <div class="jp_sales-header">Últimas vendas</div>
-            <table class="jp_sales-list">
-                <thead>
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Data</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        foreach ($vendas_usuario as $venda) {
-                            echo'
-                            <tr>
-                                <td>'.$cliente_control->mostrar($venda['id_cliente'])['nome'].'</td>
-                                <td>'.date('d/m/Y', strtotime($venda['data_venda'])).'</td>
-                                <td class="jp_sales-value">R$ '.$venda['total'].'</td>
-                            </tr>';
-                        }
-                    
-                    ?>  
-                </tbody>
+        <div class="jp_sales-header">Últimas vendas</div>
+        <table class="jp_sales-list">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    // Quantidade de itens por página
+                    $limite = 5;
+
+                    // Página atual (pega da URL, se não tiver assume 1)
+                    $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+
+                    // Calcula o offset
+                    $offset = ($pagina - 1) * $limite;
+
+                    // Total de vendas
+                    $total_vendas = count($vendas_usuario);
+
+                    // Fatia apenas as vendas da página atual
+                    $vendas_pagina = array_slice($vendas_usuario, $offset, $limite);
+
+                    // Exibe vendas da página
+                    foreach ($vendas_pagina as $venda) {
+                        echo '
+                        <tr>
+                            <td>'.$cliente_control->mostrar($venda['id_cliente'])['nome'].'</td>
+                            <td>'.date('d/m/Y', strtotime($venda['data_venda'])).'</td>
+                            <td class="jp_sales-value">R$ '.$venda['total'].'</td>
+                        </tr>';
+                    }
+                ?>  
+            </tbody>
             </table>
-          
+
+        <!-- Paginação -->
+        <div class="jp_pagination">
+            <?php
+                $total_paginas = ceil($total_vendas / $limite);
+
+                // Botão Anterior (seta esquerda)
+                if ($pagina > 1) {
+                    echo '<a class="jp_arrow" href="?pagina='.($pagina - 1).'"><i class="fas fa-arrow-left"></i></a>';
+                }
+
+                // Números das páginas
+                for ($i = 1; $i <= $total_paginas; $i++) {
+                    $classe = ($i == $pagina) ? 'style="font-weight:bold;"' : '';
+                    echo '<a '.$classe.' href="?pagina='.$i.'">'.$i.'</a>';
+                }
+
+                // Botão Próximo (seta direita)
+                if ($pagina < $total_paginas) {
+                    echo '<a class="jp_arrow" href="?pagina='.($pagina + 1).'"><i class="fas fa-arrow-right"></i></a>';
+                }
+            ?>
         </div>
+
+
+        </div>
+
 
         <div class="jp_bottom-section">
             <!-- <div class="jp_clients-panel">
