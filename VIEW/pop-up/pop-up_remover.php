@@ -23,16 +23,21 @@
   </div>
 </div>
 
-<form method="post" id="password-step" class="hidden">
-  <p>Insira sua senha para confirmar a remoção:</p>
-  <input type="password" name ="alter_status" class="ym_input-padrao" placeholder="Digite sua senha" required>
-  <input type="hidden" name ="id" value="<?= ($_GET['id'])?>">
-  
+<form method="post" id="password-step" class="ym_form-pop-up hidden">
+  <h3>Confirme sua senha</h3>
+  <p>Insira sua senha para confirmar a remoção</p>
+
+  <div class="ym_input-area">
+    <input type="password" name="alter_status" class="ym_input-padrao" placeholder="Digite sua senha" required>
+    <input type="hidden" name="id" value="<?= ($_GET['id'])?>">
+  </div>
+
   <div class="eze-button-container">
     <button type="submit" class="eze-add-button" id="btn-confirmar">Confirmar</button>
     <button type="button" onclick="fecharPopup()" class="eze-add-button eze-add-button2" id="btn-cancelar-senha">Cancelar</button>
   </div>
 </form>
+
 
 <script>
 const btnSim = document.getElementById('btn-sim');
