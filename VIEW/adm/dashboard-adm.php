@@ -7,12 +7,6 @@
     include "../../CONTROLLER/ClienteController.php";
     include "../../CONTROLLER/UsuarioController.php";
 
-            
-    echo"<script>const data = [
-            200, 220, 250, 300, 350, 400, 450, 500, 550, 520, 480, 450, 420, 400, 380, 400, 450, 500, 520, 500, 480, 450, 420,
-            400, 380, 350, 320, 300, 280, 260,
-            ];</script>";
-        
     $produtoController = new ProdutoController();
     $produtos = $produtoController->index();
     
@@ -32,9 +26,17 @@
     $total_vendido = 0;
     $numero_vendas = 0;
 
+    $data_grafico = [0,0,0,0,0,0,0,0,0,0,0,0];
+
     foreach ($vendas_totais as $venda) {
-    $total_vendido += $venda['total'];
-    $numero_vendas += 1;
+        $total_vendido += $venda['total'];
+        $numero_vendas += 1;
+        $data_venda = new DateTime($venda['data_venda']);
+        for ($i=0; $i <= 12; $i++) { 
+            if($data_venda->format("m") == $i){
+                $data_grafico[$i-1] = $data_grafico[$i-1] + 1;
+            }
+        }
     } 
 
     $cliente_control = new ClienteController();
@@ -45,6 +47,7 @@
     $vendedores_control = new UsuarioController();
     $vendedores_totais = $vendedores_control->index('vendedor');
     $TotalVendedor = count($vendedores_totais);
+
 
 ?>
 
@@ -58,6 +61,7 @@
     <link rel="stylesheet" href="../../PUBLIC/css/dashboard-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <main class="jp_main-content">
@@ -158,8 +162,7 @@
             <div class="jp_chart-header">
 
                 <div class="jp_chart-title-container">
-                    <div class="jp_chart-title">Vendas por Mês</div>
-                    <div class="jp_chart-indicator">-2% por mês</div>
+                    <div class="jp_chart-title">Vendas deste ano</div>
                 </div>
 
                 <div class="jp_chart-filters">
@@ -177,53 +180,18 @@
                         
                     </div>
                     
-                    <div class="ym_area-select">
-                        <div class="ym_select" onclick="mostrar_categorias(1)">
-                            <p class="ym_categoria-select" >Último mês</p>
-                            <p class="ym_seta-categoria">></p>
-                        </div>
-                        
-                        
-                        <div class="ym_options">
-                            <a class="ym_link-option" onclick="trocar_categoria(1,1)" > Últimos anos</a>
-                        </div>
-                        
-                    </div>
-                    
 
                 </div>
             </div>
-            <div class="jp_chart-container">
-                <div class="jp_chart-y-axis">
-                    <div class="jp_chart-y-label">600</div>
-                    <div class="jp_chart-y-label">500</div>
-                    <div class="jp_chart-y-label">400</div>
-                    <div class="jp_chart-y-label">300</div>
-                    <div class="jp_chart-y-label">200</div>
-                    <div class="jp_chart-y-label">0</div>
-                </div>
-                <canvas id="salesChart" class="jp_chart-canvas"></canvas>
-            </div>
-            <div class="jp_chart-x-axis">
-                <div class="jp_chart-x-label">0</div>
-                <div class="jp_chart-x-label">5</div>
-                <div class="jp_chart-x-label">10</div>
-                <div class="jp_chart-x-label">15</div>
-                <div class="jp_chart-x-label">20</div>
-                <div class="jp_chart-x-label">25</div>
-                <div class="jp_chart-x-label">30</div>
-            </div>
+            <canvas id="grafico_adm" width="700" height="250"></canvas>
         </div>
     </main>
 
     <script src="../../PUBLIC/JS/script-select.js"></script>    
-    <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-
-            drawChartWithAnimation(data);
-        });
+        window.data_grafico = <?php echo json_encode($data_grafico); ?>;
     </script>
+    <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
 
 </body>
 </html>
