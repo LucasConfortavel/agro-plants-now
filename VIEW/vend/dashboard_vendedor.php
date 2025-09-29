@@ -13,10 +13,17 @@ $vendas_usuario = $venda_control->index($user_id);
 $total_vendido = 0;
 $numero_vendas = 0;
 
+$data_grafico = [0,0,0,0,0,0,0,0,0,0,0,0];
 
 foreach ($vendas_usuario as $venda) {
     $total_vendido += $venda['total'];
     $numero_vendas += 1;
+    $data_venda = new DateTime($venda['data_venda']);
+    for ($i=0; $i <= 12; $i++) { 
+        if($data_venda->format("m") == $i){
+            $data_grafico[$i-1] = $data_grafico[$i-1] + 1;
+        }
+    }
 } 
 
 ?>
@@ -31,6 +38,8 @@ foreach ($vendas_usuario as $venda) {
     <link rel="stylesheet" href="../../PUBLIC/css/dashboard-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <main class="jp_main-content">
@@ -88,35 +97,11 @@ foreach ($vendas_usuario as $venda) {
         </div>
 
         <div class="jp_bottom-section">
-            <!-- <div class="jp_clients-panel">
-                <div class="jp_clients-header">Clientes fixados</div>
-                <div class="jp_clients-list">
-                    <div class="jp_client-item">
-                        <div class="jp_client-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="jp_client-name">Rafael Germinari</div>
-                    </div>
-                    <div class="jp_client-item">
-                        <div class="jp_client-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="jp_client-name">Rafael Germinari</div>
-                    </div>
-                    <div class="jp_client-item">
-                        <div class="jp_client-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="jp_client-name">Rafael Germinari</div>
-                    </div>
-                </div>
-            </div> -->
 
             <div class="jp_chart-panel">
                 <div class="jp_chart-header">
                     <div class="jp_chart-title-area">
                         <div class="jp_chart-title">Vendas por Mês</div>
-                        <div class="jp_chart-subtitle">-2% por mês</div>
                     </div>
                     <div class="jp_chart-filters">
                         
@@ -132,28 +117,16 @@ foreach ($vendas_usuario as $venda) {
                             </div>
                             
                         </div>
-                        
-                        <div class="ym_area-select">
-                            <div class="ym_select" onclick="mostrar_categorias(1)">
-                                <p class="ym_categoria-select" >Último mês</p>
-                                <p class="ym_seta-categoria">></p>
-                            </div>
-                            
-                            
-                            <div class="ym_options">
-                                <a class="ym_link-option" onclick="trocar_categoria(1,1)" > Últimos anos</a>
-                            </div>
-                            
-                        </div>
 
                     </div>
                 </div>
-                <div class="jp_chart-area">
-                    <canvas id="vendorSalesChart" class="jp_chart"></canvas>
-                </div>
+                <canvas id="grafico_vend" width="700" height="250"></canvas>
             </div>
         </div>
     </main>
+    <script>
+        window.data_grafico = <?php echo json_encode($data_grafico); ?>;
+    </script>
     <script src="../../PUBLIC/JS/script-dashboard-vend.js"></script>
     <script src="../../PUBLIC/JS/script-select.js"></script>
 </body>
