@@ -1,10 +1,10 @@
-function abrirPopup(link, titulo) {
+function abrirPopup(link, fixar=false) {
     const popup = document.getElementsByClassName('ym_popup-content')[0];
     const cont_popup = document.getElementsByClassName('ym_conteudo-popup')[0];
     const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
     const area_superior = document.getElementsByClassName('ym_area-superior-popup')[0];
 
-    if (titulo == "Calcular comissão" || titulo == "Cadastro de produto" || titulo == "Deseja remover este produto?") {
+    if (fixar) {
         fixarTela();
     }
 

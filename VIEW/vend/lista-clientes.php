@@ -2,6 +2,8 @@
 include "../../INCLUDE/Menu_vend.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../INCLUDE/vlibras.php";
+require_once "../../INCLUDE/verificarLogin.php"; 
+include "../../INCLUDE/alertas.php";
 
 
 $cliente_control = new ClienteController();
@@ -18,9 +20,25 @@ $total_paginas = ceil($total_clientes / $limite);
 $clientes = array_slice($clientes, $offset, $limite);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $cliente_control->criarCliente();
-    unset($_POST);
+    $criar_cliente = $cliente_control->criarCliente();
+    
+    if($criar_cliente == 1){
+        $_SESSION['alerta'] =  '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
+    }elseif($criar_cliente == "Já existe um usuário cadastrado com este email."){
+        $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um usuário cadastrado com este email"); </script>';
+    }else{
+        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
 }
+
+if(isset($_SESSION['alerta'])){
+    echo($_SESSION['alerta']);
+    unset($_SESSION['alerta']);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -143,7 +161,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <?php endif; ?>
     </div>
 
-    <script src="../../PUBLIC/JS/lista_clientes.js"></script>
+    <script src="../../PUBLIC/JS/script-clientes.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 

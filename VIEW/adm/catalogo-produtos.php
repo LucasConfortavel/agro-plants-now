@@ -83,7 +83,7 @@ $errorMessage = $_GET['error'] ?? '';
                     
                 </div>
                 
-                <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')">+</a>
+                <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php')">+</a>
             </div>
             
             <?php if (!$dados['errorCategorias'] && is_array($dados['categorias']) && count($dados['categorias']) > 0): ?>
