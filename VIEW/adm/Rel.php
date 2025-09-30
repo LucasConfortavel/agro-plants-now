@@ -242,7 +242,9 @@ $total_vendas = count($vendas);
                             <p class="ym_seta-categoria">></p>
                         </div>
                                    
-                                   
+                        <!-- comissao -->
+
+                        
                         <div class="ym_options">
                             <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
                             <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
@@ -307,7 +309,7 @@ $total_vendas = count($vendas);
                     </div>
  
                     <p class="jv_subtitle" id="jv_customerCount">
-                        <?= $total_vendedores ?> vendedores encontrados
+                        <?= $total_vendas ?> vendedores encontrados
                     </p>
                 </div>
  
@@ -321,7 +323,7 @@ $total_vendas = count($vendas);
                                     </th>
                                     <th class="jv_name">Data</th>
                                     <th class="jv_banguela">Vendedor</th>
-                                    <th class="jv_data">Produto/Serviço</th>
+                                    <th class="jv_data">Cliente</th>
                                     <th class="jv_data">Valor de Venda</th>
                                     <th class="jv_comissao">Comissao</th>
                                     <th class="jv_banguela">Valor da Comissao</th>
@@ -340,22 +342,22 @@ $total_vendas = count($vendas);
                                     <?php foreach ($usuarios as $vend): ?>
                                         <tr>
                                             <td>
-                                                <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= htmlspecialchars($vend['id']) ?>">
+                                                <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= htmlspecialchars($vendedor['id']) ?>">
                                             </td>
                                             <td>
                                                 <div class="jv_customer-info">
                                                     <div class="jv_avatar">
-                                                        <?= strtoupper(substr($vend['nome'], 0, 2)) ?>
+                                                        <?= strtoupper(substr($vendedor['nome'], 0, 2)) ?>
                                                     </div>
                                                     <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars($vend['nome']) ?></h4>
-                                                        <p><?= htmlspecialchars($vend['email']) ?></p>
+                                                        <h4><?= htmlspecialchars($vendedor['nome']) ?></h4>
+                                                        <p><?= htmlspecialchars($vendedor['email']) ?></p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td><?= htmlspecialchars($vend['telefone']) ?></td>
-                                            <td><?= date("d/m/Y", strtotime($vend['data_nasc'])) ?></td>
-                                            <td><?= htmlspecialchars($vend['status']) ?></td>
+                                            <td><?= htmlspecialchars($vendedor['telefone']) ?></td>
+                                            <td><?= date("d/m/Y", strtotime($vendedor['data_nasc'])) ?></td>
+                                            <td><?= htmlspecialchars($vendedor['status']) ?></td>
                                             <td class="jv_table-action">
                                                 <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                     <i class="fas fa-ellipsis-h"></i>
@@ -365,7 +367,7 @@ $total_vendas = count($vendas);
                                                         <i class="fas fa-eye"></i> Visualizar
                                                     </button>
                                                     <div class="jv_dropdown-separator"></div>
-                                                    <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($vend['id'])?>','Cadastro de Vendedores')" class="jv_dropdown-item jv_danger">
+                                                    <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($vendedor['id'])?>','Cadastro de Vendedores')" class="jv_dropdown-item jv_danger">
                                                         <i class="fa-solid fa-ban"></i> Desativar
                                                     </button>
                                                 </form>
