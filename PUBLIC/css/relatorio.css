@@ -133,6 +133,7 @@ body {
   min-width: 11.5vw;
   max-width: 11.5vw;
   height: 5vh;
+  margin-left: 214px;
   
 }
 
@@ -157,8 +158,8 @@ body {
 
 
 .ym_select{
-    height: 100%;
-    width: 90%;
+  height: 100%;
+  width: 90%;
     display: flex;  
     justify-content: space-between;
     align-items: center;
@@ -169,7 +170,7 @@ body {
     cursor: pointer;
     transition: all ease 1s;
     margin-top: -40px;
-    margin-left: 254px;
+    
 }
   
   
@@ -229,6 +230,7 @@ body {
     margin-top: 10px;
     border: 1px solid rgb(224, 224, 224);
     width: auto;
+    
 }
 
 .ym_link-option{
