@@ -5,7 +5,6 @@ include "../../CONTROLLER/ClienteController.php";
 include "../../INCLUDE/vlibras.php";
 require_once "../../INCLUDE/verificarLogin.php"; 
 
-
 $cliente_control = new ClienteController();
 $clientes = $cliente_control->index();
 $total_clientes = count($clientes);
@@ -19,14 +18,15 @@ $total_paginas = ceil($total_clientes / $limite);
 // Slice para limitar os clientes exibidos
 $clientes = array_slice($clientes, $offset, $limite);
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+// Cadastro de cliente
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $criar_cliente = $cliente_control->criarCliente();
 
-    if($criar_cliente == 1){
-        $_SESSION['alerta'] =  '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
-    }elseif($criar_cliente == "Já existe um usuário cadastrado com este email."){
-        $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um usuário cadastrado com este email"); </script>';
-    }else{
+    if ($criar_cliente == 1) {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
+    } elseif ($criar_cliente == "Já existe um usuário cadastrado com este email.") {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um usuário cadastrado com este email","error"); </script>';
+    } else {
         $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
     }
 
@@ -34,19 +34,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     exit;
 }
 
-if(!empty($_GET)){
-    if (isset($_GET['visualizar'])){
-        $id = $_GET['visualizar'];
-        $cliente = $cliente_control->mostrar($id);
+// Visualizar e Remover cliente
+if (!empty($_GET)) {
+    if (isset($_GET['visualizar'])) {
+        $id = (int) $_GET['visualizar'];
         header('Location: info-edit-adm.php?id=' . $id . '&usuario=cliente');
         exit;
 
-    } elseif (isset($_GET['remover'])){
-        $id = $_GET['remover'];
+    } elseif (isset($_GET['remover'])) {
+        $id = (int) $_GET['remover'];
         $cliente = $cliente_control->deletar($id);
-        if($cliente == 1){
+
+        if ($cliente == 1) {
             $_SESSION['alerta'] = '<script> exibirAlerta("Cliente deletado com sucesso","sucesso"); </script>';
-        }else{
+        } else {
             $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível deletar o cliente","error"); </script>';
         }
 
@@ -55,11 +56,11 @@ if(!empty($_GET)){
     }
 }
 
-if(isset($_SESSION['alerta'])){
-    echo($_SESSION['alerta']);
+// Exibir alertas
+if (isset($_SESSION['alerta'])) {
+    echo $_SESSION['alerta'];
     unset($_SESSION['alerta']);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -72,7 +73,6 @@ if(isset($_SESSION['alerta'])){
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 </head>
 <body>
 
@@ -83,8 +83,6 @@ if(isset($_SESSION['alerta'])){
         <div class="ym_conteudo-popup"></div>
     </div>
 </div>
-
-
 
 <main class="jp_main-content">
     <h1 class="ym_titulo">Clientes</h1>
@@ -111,9 +109,9 @@ if(isset($_SESSION['alerta'])){
                             </button>
                         </div>
                         <div>
-                            <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de Pessoas')">
+                            <button type="button" class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de Pessoas')">
                                 <i class="fas fa-plus"></i>
-                                <a>Cadastrar Cliente</a>
+                                Cadastrar Cliente
                             </button>
                         </div>
                     </div>
@@ -162,15 +160,18 @@ if(isset($_SESSION['alerta'])){
                                         <td><?= htmlspecialchars($cliente['telefone']) ?></td>
                                         <td><?= htmlspecialchars($cliente['CPF'] ?? $cliente['CNPJ']) ?></td>
                                         <td class="jv_table-action">
-                                            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                            <button type="button" class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
-                                            <form class="jv_dropdown">
-                                                <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($cliente['id'])?>">
+                                            
+                                            <form method="get" class="jv_dropdown">
+                                                <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($cliente['id']) ?>">
                                                     <i class="fas fa-eye"></i> Visualizar
                                                 </button>
                                                 <div class="jv_dropdown-separator"></div>
-                                                <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($cliente['id'])?>">
+                                                <button type="button" 
+                                                        class="jv_dropdown-item jv_danger" 
+                                                        onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($cliente['id']) ?>', 'Confirmação de Remoção')">
                                                     <i class="fas fa-trash"></i> Remover
                                                 </button>
                                             </form>
@@ -189,7 +190,7 @@ if(isset($_SESSION['alerta'])){
 
     <!-- Paginação -->
     <div class="jv_page-navigation">
-        <?php if($pagina_atual > 1): ?>
+        <?php if ($pagina_atual > 1): ?>
             <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
                 <i class="fas fa-arrow-left"></i>
             </a>
@@ -204,7 +205,7 @@ if(isset($_SESSION['alerta'])){
             </a>
         <?php endfor; ?>
 
-        <?php if($pagina_atual < $total_paginas): ?>
+        <?php if ($pagina_atual < $total_paginas): ?>
             <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
                 <i class="fas fa-arrow-right"></i>
             </a>
