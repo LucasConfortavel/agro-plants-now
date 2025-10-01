@@ -139,7 +139,9 @@ if(!empty($_GET)){
                                                         <i class="fas fa-eye"></i> Visualizar
                                                     </button>
                                                     <div class="jv_dropdown-separator"></div>
-                                                    <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($venda['id'])?>">
+                                                    <button type="button" 
+                                                        class="jv_dropdown-item jv_danger" 
+                                                        onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($cliente['id']) ?>', 'Confirmação de Remoção')">
                                                         <i class="fas fa-trash"></i> Remover
                                                     </button>
                                                 </form>
