@@ -14,8 +14,6 @@ class ComissaoModel {
         $database = new Database();
         $this->conn = $database->getConexao();
     }
-  
-    }
 
     public function lerUm() {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = ? LIMIT 0,1";
@@ -26,7 +24,6 @@ class ComissaoModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
     public function lerTodos() {
         $query = "SELECT * FROM " . $this->table_name . " ORDER BY id DESC";
         $stmt = $this->conn->prepare($query);
@@ -34,5 +31,4 @@ class ComissaoModel {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-  
+}

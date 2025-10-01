@@ -4,6 +4,7 @@ include "../../CONTROLLER/UsuarioController.php";
 include "../../CONTROLLER/ProdutoController.php";
 include "../../CONTROLLER/VendaController.php";  
 include "../../CONTROLLER/ClienteController.php";
+include "../../CONTROLLER/ComissaoController.php";
 include "../../INCLUDE/vlibras.php";
  
 $controler_user = new UsuarioController();
@@ -11,7 +12,9 @@ $produto_item   = new ProdutoController();
 $usuario_control = new UsuarioController();
 $cliente_control = new ClienteController();
 $venda_control   = new VendaController();  
- 
+$comissao_control = new ComissaoController();
+
+$comissoes = $comissao_control->index(); 
 $vendas = $venda_control->index();
 $total_vendas = count($vendas);
  
@@ -163,6 +166,7 @@ $total_vendas = count($vendas);
                             <?php foreach ($vendas as $venda):    
                                 $vendedor = $usuario_control->mostrar($venda["id_vendedor"]);  
                                 $cliente = $cliente_control->mostrar($venda["id_cliente"]);
+                                
                             ?>
                                 <tr>
                                     <td>
@@ -291,7 +295,7 @@ $total_vendas = count($vendas);
                                 </button>
                             </div>
  
-                            <div class="ym_area-select">
+                            <div class="ym_area-select_com">
                                 <div class="ym_select" onclick="mostrar_categorias(2)">
                                     <p class="ym_categoria-select">Último mês</p>
                                     <p class="ym_seta-categoria">></p>
@@ -327,55 +331,54 @@ $total_vendas = count($vendas);
                                     <th class="jv_data">Valor de Venda</th>
                                     <th class="jv_comissao">Comissao</th>
                                     <th class="jv_banguela">Valor da Comissao</th>
-                                    <th class="jv_status">status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
-                            <tbody id="jv_customerTableBody">
-                                <?php if (count($usuarios) === 0): ?>
+                        <tbody id="jv_customerTableBody">
+                            <?php if ($total_vendas > 0): ?>
+                                <?php foreach ($comissoes as $comissao): ?>
+                                    <?php 
+                                        $vendedor = $usuario_control->mostrar($venda['id_vendedor']);
+                                        $cliente  = $cliente_control->mostrar($venda['id_cliente']);
+                                    ?>
                                     <tr>
-                                        <td colspan="5" style="text-align:center; padding: 2rem;">
-                                            Nenhum vendedor nesta página.
+                                        <td>
+                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= htmlspecialchars($comissao['id']) ?>">
+                                        </td>
+                                        <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
+                                        <td>
+                                            <div class="jv_customer-info">
+                                                <div class="jv_avatar"> <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?> </div>
+                                                <div class="jv_customer-details">
+                                                    <h4><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></h4>
+                                                    <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
+                                        <td><?= 'R$ ' . number_format($comissao['valor_venda'] ?? 0, 2, ',', '.') ?></td>
+                                        <td><?= htmlspecialchars($comissao['percentual'] ?? 0) . '%' ?></td>
+                                        <td><?= 'R$ ' . number_format($comissao['valor_comissao'] ?? 0, 2, ',', '.') ?></td>
+                                        <td class="jv_table-action">
+                                            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </button>
+                                            <form class="jv_dropdown" method="GET" action="">
+                                                <button type="submit" name="visualizar" value="<?= htmlspecialchars($comissao['id']) ?>" class="jv_dropdown-item">
+                                                    <i class="fas fa-eye"></i> Visualizar
+                                                </button>
+                                                <div class="jv_dropdown-separator"></div>
+                                                <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($comissao['id'])?>','Remover Comissão')" class="jv_dropdown-item jv_danger">
+                                                    <i class="fa-solid fa-ban"></i> Remover
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
-                                <?php else: ?>
-                                    <?php foreach ($usuarios as $vend): ?>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= htmlspecialchars($vendedor['id']) ?>">
-                                            </td>
-                                            <td>
-                                                <div class="jv_customer-info">
-                                                    <div class="jv_avatar">
-                                                        <?= strtoupper(substr($vendedor['nome'], 0, 2)) ?>
-                                                    </div>
-                                                    <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars($vendedor['nome']) ?></h4>
-                                                        <p><?= htmlspecialchars($vendedor['email']) ?></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td><?= htmlspecialchars($vendedor['telefone']) ?></td>
-                                            <td><?= date("d/m/Y", strtotime($vendedor['data_nasc'])) ?></td>
-                                            <td><?= htmlspecialchars($vendedor['status']) ?></td>
-                                            <td class="jv_table-action">
-                                                <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <form class="jv_dropdown" method="GET" action="">
-                                                    <button type="submit" name="visualizar" value="<?= htmlspecialchars($vend['id']) ?>" class="jv_dropdown-item">
-                                                        <i class="fas fa-eye"></i> Visualizar
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($vendedor['id'])?>','Cadastro de Vendedores')" class="jv_dropdown-item jv_danger">
-                                                        <i class="fa-solid fa-ban"></i> Desativar
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </tbody>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
+                            <?php endif; ?>
+                        </tbody>
                         </table>
                     </div>
                 </div>
@@ -414,7 +417,7 @@ $total_vendas = count($vendas);
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Gasto com Comissões</h3>
-                    <div class="ym_areaselect">
+                    <div class="ym_areaselect_com">
                         <div class="ym_select" onclick="mostrar_categorias(3)">
                             <p class="ym_categoria-select">Último mês</p>
                             <p class="ym_seta-categoria">></p>
