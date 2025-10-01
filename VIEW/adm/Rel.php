@@ -151,9 +151,6 @@ $total_vendas = count($vendas);
                 <table class="jv_table">
                     <thead>
                         <tr class="jv_table-header">
-                            <th class="jv_checkbox-col">
-                                <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                            </th>
                             <th class="jv_date">Data</th>
                             <th class="jv_name"><p>Vendedor</p></th>
                             <th class="jv_name_cli">Cliente</th>
@@ -169,9 +166,6 @@ $total_vendas = count($vendas);
                                 
                             ?>
                                 <tr>
-                                    <td>
-                                        <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>">
-                                    </td>
                                     <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
                                     <td>
                                         <div class="jv_customer-info">
@@ -322,9 +316,6 @@ $total_vendas = count($vendas);
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
-                                        <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
                                     <th class="jv_name">Data</th>
                                     <th class="jv_banguela">Vendedor</th>
                                     <th class="jv_data">Cliente</th>
@@ -342,9 +333,6 @@ $total_vendas = count($vendas);
                                         $cliente  = $cliente_control->mostrar($venda['id_cliente']);
                                     ?>
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= htmlspecialchars($comissao['id']) ?>">
-                                        </td>
                                         <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
                                         <td>
                                             <div class="jv_customer-info">
