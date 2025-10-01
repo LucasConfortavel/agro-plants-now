@@ -69,7 +69,8 @@ $total_vendas = count($vendas);
  
     $total_paginas = ($total_vendas > 0) ? ceil($total_vendas / $limite) : 1;
  
-    $usuarios = array_slice($vendas, $offset, $limite);
+    // $usuarios = array_slice($vendas, $offset, $limite);
+    $vendas_paginadas = array_slice($vendas, $offset, $limite);
 ?>
  
  
@@ -160,7 +161,7 @@ $total_vendas = count($vendas);
                     </thead>
                     <tbody id="jv_customerTableBody">
                         <?php if ($total_vendas > 0): ?>
-                            <?php foreach ($vendas as $venda):    
+                            <?php foreach ($vendas_paginadas as $venda):   
                                 $vendedor = $usuario_control->mostrar($venda["id_vendedor"]);  
                                 $cliente = $cliente_control->mostrar($venda["id_cliente"]);
                                 
@@ -201,34 +202,36 @@ $total_vendas = count($vendas);
                         <?php endif; ?>
                     </tbody>
                 </table>
+
+                <!-- Paginação -->
+                <div class="jv_page-navigation">
+                    <?php if($pagina_atual > 1): ?>
+                        <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    <?php endif; ?>
+                
+                    <?php
+                    $inicio = max(1, $pagina_atual - 2);
+                    $fim = min($total_paginas, $pagina_atual + 2);
+                    for ($i = $inicio; $i <= $fim; $i++): ?>
+                        <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                            <?= $i ?>
+                        </a>
+                    <?php endfor; ?>
+                
+                    <?php if($pagina_atual < $total_paginas): ?>
+                        <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
 </div>
  
-<!-- Paginação -->
-<div class="jv_page-navigation">
-    <?php if($pagina_atual > 1): ?>
-        <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-            <i class="fas fa-arrow-left"></i>
-        </a>
-    <?php endif; ?>
- 
-    <?php
-    $inicio = max(1, $pagina_atual - 2);
-    $fim = min($total_paginas, $pagina_atual + 2);
-    for ($i = $inicio; $i <= $fim; $i++): ?>
-        <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-            <?= $i ?>
-        </a>
-    <?php endfor; ?>
- 
-    <?php if($pagina_atual < $total_paginas): ?>
-        <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-            <i class="fas fa-arrow-right"></i>
-        </a>
-    <?php endif; ?>
-</div>
+
  
             </div>
             <div class="po-charts-grid">
