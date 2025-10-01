@@ -339,48 +339,48 @@ $total_vendas = count($vendas);
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
-                        <tbody id="jv_customerTableBody">
-                            <?php if ($total_vendas > 0): ?>
-                                <?php foreach ($comissoes_paginadas as $comissao): ?>
-                                    <?php 
-                                        $vendedor = $usuario_control->mostrar($venda['id_vendedor']);
-                                        $cliente  = $cliente_control->mostrar($venda['id_cliente']);
-                                    ?>
-                                    <tr>
-                                        <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
-                                        <td>
-                                            <div class="jv_customer-info">
-                                                <div class="jv_avatar"> <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?> </div>
-                                                <div class="jv_customer-details">
-                                                    <h4><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></h4>
-                                                    <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
+                            <tbody id="jv_customerTableBody">
+                                <?php if ($total_vendas > 0): ?>
+                                    <?php foreach ($comissoes_paginadas as $comissao): ?>
+                                        <?php 
+                                            $vendedor = $usuario_control->mostrar($venda['id_vendedor']);
+                                            $cliente  = $cliente_control->mostrar($venda['id_cliente']);
+                                        ?>
+                                        <tr>
+                                            <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
+                                            <td>
+                                                <div class="jv_customer-info">
+                                                    <div class="jv_avatar"> <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?> </div>
+                                                    <div class="jv_customer-details">
+                                                        <h4><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></h4>
+                                                        <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td> 
-                                        <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
-                                        <td><?= 'R$ ' . number_format($comissao['valor_venda'] ?? 0, 2, ',', '.') ?></td>
-                                        <td><?= htmlspecialchars($comissao['percentual'] ?? 0) . '%' ?></td>
-                                        <td><?= 'R$ ' . number_format($comissao['valor_comissao'] ?? 0, 2, ',', '.') ?></td>
-                                        <td class="jv_table-action">
-                                            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </button>
-                                            <form class="jv_dropdown" method="GET" action="">
-                                                <button type="submit" name="visualizar" value="<?= htmlspecialchars($comissao['id']) ?>" class="jv_dropdown-item">
-                                                    <i class="fas fa-eye"></i> Visualizar
+                                            </td> 
+                                            <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
+                                            <td><?= 'R$ ' . number_format($comissao['valor_venda'] ?? 0, 2, ',', '.') ?></td>
+                                            <td><?= htmlspecialchars($comissao['percentual'] ?? 0) . '%' ?></td>
+                                            <td><?= 'R$ ' . number_format($comissao['valor_comissao'] ?? 0, 2, ',', '.') ?></td>
+                                            <td class="jv_table-action">
+                                                <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                                    <i class="fas fa-ellipsis-h"></i>
                                                 </button>
-                                                <div class="jv_dropdown-separator"></div>
-                                                <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($comissao['id'])?>','Remover Comissão')" class="jv_dropdown-item jv_danger">
-                                                    <i class="fa-solid fa-ban"></i> Remover
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
-                            <?php endif; ?>
-                        </tbody>
+                                                <form class="jv_dropdown" method="GET" action="">
+                                                    <button type="submit" name="visualizar" value="<?= htmlspecialchars($comissao['id']) ?>" class="jv_dropdown-item">
+                                                        <i class="fas fa-eye"></i> Visualizar
+                                                    </button>
+                                                    <div class="jv_dropdown-separator"></div>
+                                                    <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($comissao['id'])?>','Remover Comissão')" class="jv_dropdown-item jv_danger">
+                                                        <i class="fa-solid fa-ban"></i> Remover
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
+                                <?php endif; ?>
+                            </tbody>
                         </table>
                     </div>
                 </div>
