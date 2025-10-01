@@ -193,7 +193,7 @@ body {
 }
 
 .jv_table-header .jv_valor_gast{
-  color: #45734b;
+  color: rgb(73, 117, 79);
 }
 
 .badge-comissao {
@@ -203,7 +203,7 @@ body {
     font-weight: bold;
     color: #fff;
     border-radius: 12px;
-    background-color: rgba(117, 249, 135, 0.1) ; /* verde padrão mais transparente */
+    background-color:rgb(73, 117, 75,0.85) ; /* verde padrão mais transparente */
 }
 
 /* opcional: cores diferentes por faixa */
