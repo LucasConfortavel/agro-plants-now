@@ -359,7 +359,12 @@ $total_vendas = count($vendas);
                                             </td> 
                                             <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
                                             <td><?= 'R$ ' . number_format($comissao['valor_venda'] ?? 0, 2, ',', '.') ?></td>
-                                            <td><?= htmlspecialchars($comissao['percentual'] ?? 0) . '%' ?></td>
+                                            <td>
+                                                <span class="badge-comissao">
+                                                    <?= htmlspecialchars($comissao['percentual'] ?? 0) . '%' ?>
+                                                </span>
+                                            </td>
+
                                             <td><?= 'R$ ' . number_format($comissao['valor_comissao'] ?? 0, 2, ',', '.') ?></td>
                                             <td class="jv_table-action">
                                                 <button class="jv_menu-btn" onclick="toggleDropdown(this)">
