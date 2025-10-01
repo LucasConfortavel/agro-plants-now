@@ -356,7 +356,7 @@ $total_vendas = count($vendas);
                                                     <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
                                                 </div>
                                             </div>
-                                        </td>
+                                        </td> 
                                         <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
                                         <td><?= 'R$ ' . number_format($comissao['valor_venda'] ?? 0, 2, ',', '.') ?></td>
                                         <td><?= htmlspecialchars($comissao['percentual'] ?? 0) . '%' ?></td>
