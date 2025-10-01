@@ -69,8 +69,18 @@ $total_vendas = count($vendas);
  
     $total_paginas = ($total_vendas > 0) ? ceil($total_vendas / $limite) : 1;
  
-    // $usuarios = array_slice($vendas, $offset, $limite);
     $vendas_paginadas = array_slice($vendas, $offset, $limite);
+
+
+    $total_comissoes = count($comissoes);
+    $limite_comissoes = 4;
+    $pagina_atual_comissoes = isset($_GET['pagina_comissoes']) ? (int)$_GET['pagina_comissoes'] : 1;
+    if ($pagina_atual_comissoes < 1) $pagina_atual_comissoes = 1;
+    $offset_comissoes = ($pagina_atual_comissoes - 1) * $limite_comissoes;
+
+    $total_paginas_comissoes = ($total_comissoes > 0) ? ceil($total_comissoes / $limite_comissoes) : 1;
+
+    $comissoes_paginadas = array_slice($comissoes, $offset_comissoes, $limite_comissoes);
 ?>
  
  
@@ -330,7 +340,7 @@ $total_vendas = count($vendas);
                             </thead>
                         <tbody id="jv_customerTableBody">
                             <?php if ($total_vendas > 0): ?>
-                                <?php foreach ($comissoes as $comissao): ?>
+                                <?php foreach ($comissoes_paginadas as $comissao): ?>
                                     <?php 
                                         $vendedor = $usuario_control->mostrar($venda['id_vendedor']);
                                         $cliente  = $cliente_control->mostrar($venda['id_cliente']);
@@ -374,32 +384,28 @@ $total_vendas = count($vendas);
                     </div>
                 </div>
                            
-                        <div class="jv_page-navigation">
-                            <?php if ($pagina_atual > 1): ?>
-                                <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                                    <i class="fas fa-arrow-left"></i>
-                                </a>
-                            <?php endif; ?>
- 
-                            <?php
-                            $inicio = max(1, $pagina_atual - 2);
-                            $fim = min($total_paginas, $pagina_atual + 2);
-                            for ($i = $inicio; $i <= $fim; $i++): ?>
-                                <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                                    <?= $i ?>
-                                </a>
-                            <?php endfor; ?>
- 
-                            <?php if ($pagina_atual < $total_paginas): ?>
-                                <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-                            <?php endif; ?>
-                        </div>
- 
-                        <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
-                            <i class="fa-solid fa-circle-info"></i>
+                <div class="jv_page-navigation">
+                    <?php if ($pagina_atual_comissoes > 1): ?>
+                        <a href="?pagina_comissoes=<?= $pagina_atual_comissoes - 1 ?>" class="jv_page-arrow">
+                            <i class="fas fa-arrow-left"></i>
                         </a>
+                    <?php endif; ?>
+
+                    <?php
+                    $inicio = max(1, $pagina_atual_comissoes - 2);
+                    $fim = min($total_paginas_comissoes, $pagina_atual_comissoes + 2);
+                    for ($i = $inicio; $i <= $fim; $i++): ?>
+                        <a href="?pagina_comissoes=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual_comissoes ? 'active' : '' ?>">
+                            <?= $i ?>
+                        </a>
+                    <?php endfor; ?>
+
+                    <?php if ($pagina_atual_comissoes < $total_paginas_comissoes): ?>
+                        <a href="?pagina_comissoes=<?= $pagina_atual_comissoes + 1 ?>" class="jv_page-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    <?php endif; ?>
+                </div>
             </div>
             </div>
  
