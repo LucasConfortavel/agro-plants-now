@@ -137,12 +137,6 @@ body {
   
 }
 
-.ym_area-select_com{
-  min-width: 11.5vw;
-  max-width: 11.5vw;
-  height: 5vh;
-  margin-left: 214px;
-}
 
 .ym_areaselect{
   min-width: 11.5vw;
@@ -207,16 +201,16 @@ body {
 .ym_select{
   height: 100%;
   width: 90%;
-    display: flex;  
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid rgb(224, 224, 224);
-    background-color: white;
-    border-radius: 5px;
-    padding: 0px 3px;
-    cursor: pointer;
-    transition: all ease 1s;
-    margin-top: -40px;
+  display: flex;  
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(224, 224, 224);
+  background-color: white;
+  border-radius: 5px;
+  padding: 0px 3px;
+  cursor: pointer;
+  transition: all ease 1s;
+  margin-top: -40px;
     
 }
   
@@ -265,6 +259,7 @@ body {
     }
 
 }
+
 
 .ym_options{
     display: none;
@@ -354,6 +349,17 @@ body {
   font-size: 0.875rem;
   color: #64748b;
   white-space: nowrap;
+}
+
+
+.po-tab-btn:hover {
+  background: #f1f5f9;
+  color: #45734b;
+}
+
+.po-tab-btn.po-active {
+  background: #45734b;
+  color: white;
 }
 
 .po-tab-btn:hover {

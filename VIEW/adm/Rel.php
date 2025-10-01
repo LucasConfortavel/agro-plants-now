@@ -295,27 +295,28 @@ $total_vendas = count($vendas);
                         </form>
  
                         <div class="jv_actions">
-                            <div>
-                                <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                    <span><i class="fa-regular fa-file"></i></span>
-                                    Exportar CSV
-                                </button>
-                            </div>
- 
-                            <div class="ym_area-select_com">
-                                <div class="ym_select" onclick="mostrar_categorias(2)">
-                                    <p class="ym_categoria-select">Último mês</p>
-                                    <p class="ym_seta-categoria">></p>
+                            <div>    
+                                <div>
+                                    <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                        <span><i class="fa-regular fa-file"></i></span>
+                                        Exportar CSV
+                                    </button>
                                 </div>
-                                   
-                                   
-                                <div class="ym_options">
-                                    <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
-                                    <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+        
+                                <div class="ym_area-select">
+                                    <div class="ym_select" onclick="mostrar_categorias(2)">
+                                        <p class="ym_categoria-select">Último mês</p>
+                                        <p class="ym_seta-categoria">></p>
+                                    </div>
+                                        
+                                        
+                                    <div class="ym_options">
+                                        <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                                        <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                    </div>
+                                        
                                 </div>
-                                   
-                            </div>
-                           
+                            </div>    
                         </div>
                     </div>
  
