@@ -330,10 +330,10 @@ $total_vendas = count($vendas);
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_name">Data</th>
+                                    <th class="jv_date">Data</th>
                                     <th class="jv_banguela">Vendedor</th>
-                                    <th class="jv_data">Cliente</th>
-                                    <th class="jv_data">Valor de Venda</th>
+                                    <th class="jv_name_cli">Cliente</th>
+                                    <th class="jv_valor_venda">Valor de Venda</th>
                                     <th class="jv_comissao">Comissao</th>
                                     <th class="jv_banguela">Valor da Comissao</th>
                                     <th class="jv_actions-col"></th>

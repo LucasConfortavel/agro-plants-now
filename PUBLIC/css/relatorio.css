@@ -192,9 +192,11 @@ body {
   color: #45734b;
 }
 
-.jv_table-header .jv_valor_gast{
+.jv_table-header .jv_valor_venda{
   color: rgb(73, 117, 79);
 }
+
+
 
 .badge-comissao {
     display: inline-block;
