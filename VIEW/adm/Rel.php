@@ -334,7 +334,7 @@ $total_vendas = count($vendas);
                                     <th class="jv_banguela">Vendedor</th>
                                     <th class="jv_name_cli">Cliente</th>
                                     <th class="jv_valor_venda">Valor de Venda</th>
-                                    <th class="jv_comissao">Comissao</th>
+                                    <th class="jv_comissao"><p>Comissao</p></th>
                                     <th class="jv_banguela">Valor da Comissao</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
