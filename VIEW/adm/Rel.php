@@ -358,7 +358,7 @@ $total_vendas = count($vendas);
                                                 </div>
                                             </td> 
                                             <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
-                                            <td><?= 'R$ ' . number_format($comissao['valor_venda'] ?? 0, 2, ',', '.') ?></td>
+                                            <td><?= 'R$ ' . number_format($venda['total'] ?? 0, 2, ',', '.') ?></td>
                                             <td>
                                                 <span class="badge-comissao">
                                                     <?= htmlspecialchars($comissao['percentual'] ?? 0) . '%' ?>
