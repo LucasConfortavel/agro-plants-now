@@ -121,7 +121,7 @@ $total_vendas = count($vendas);
                         <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                             <i class="fas fa-search search-icon"></i>
                         </button>
-                        <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou cliente..." class="jv_search-input">
+                        <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
                     </div>
                 </form>
  
