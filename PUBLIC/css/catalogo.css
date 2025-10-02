@@ -81,7 +81,7 @@
   background-color: white;
   border: 1px solid rgb(224, 224, 224);
   width: 3.3%;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: all ease 0.3s;
   font-size: 18px;
 }
@@ -125,6 +125,12 @@
   border-radius: 12px; 
   padding: 16px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
+  transition: all 0.5s ease;
+
+}
+.ym_cardProduto:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); 
+  transform: translateY(-10px);
 }
 
 @media screen and (min-width: 768px) {
@@ -221,6 +227,10 @@
   text-decoration: none;
   transition: background-color 0.2s, color 0.2s;
 }
+.ym_linkProduto:hover {
+  background-color: #35a551; 
+  border: none;
+  }
 
 
 .ym_linkCategoria{
