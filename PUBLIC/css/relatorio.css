@@ -137,6 +137,17 @@ body {
   
 }
 
+.ym_categoria-select{
+  color: #111827;
+}
+
+.ym_seta-categoria{
+  color: #111827;
+}
+
+h3{
+  color: #111827;
+}
 
 .ym_areaselect{
   min-width: 11.5vw;
