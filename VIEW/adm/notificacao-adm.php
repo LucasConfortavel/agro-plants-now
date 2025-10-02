@@ -54,20 +54,20 @@ try {
                         <form method="POST" action="#" class="jv_search-section">
                             <div class="jv_search-container">
                                 <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
-                                    <i class="fas fa-search search-icon"></i>
+                                    <!-- <i class="fas fa-search search-icon"></i> -->
                                 </button>
-                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome..." class="jv_search-input">
+                                <!-- <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome..." class="jv_search-input"> -->
                             </div>
                         </form>
 
-                        <div class="jv_actions">
+                        <!-- <div class="jv_actions">
                             <div>
                                 <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Remover (<span id="jv_selectedCount">0</span>)
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -76,9 +76,6 @@ try {
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
-                                        <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
                                     <th class="jv_date">Título</th>
                                     <th class="jv_total_comp">Setor</th>
                                     <th class="jv_valor_gast">Data</th>
@@ -88,11 +85,9 @@ try {
                             </thead>
                             <tbody id="jv_customerTableBody">
                             <?php if ($total_notificacoes > 0): ?>
-                                <?php foreach ($notificacoes as $index => $notif): ?>
+                                <?php foreach ($notificacoes as $index => $notif): ?>   
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $index ?>">
-                                        </td>
+
                                         <td>
                                             <div class="jv_customer-info">
                                                 <div class="jv_avatar">⚠</div>
