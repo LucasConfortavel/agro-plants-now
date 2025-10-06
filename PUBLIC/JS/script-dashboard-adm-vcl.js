@@ -44,29 +44,6 @@ function setupPagination() {
   const paginationItems = document.querySelectorAll(".jp_pagination-item")
   const paginationArrow = document.querySelector(".jp_pagination-arrow")
 
-  // Dados de exemplo para cada página
-  const pageData = [
-    [
-      { code: "#XXXX", seller: "Rafael", client: "Bioest/ Líq/", date: "02/08", value: "R$7500", commission: "R$750 (10%)" },
-      { code: "#XXXX", seller: "Rafael", client: "Bioest/ Líq/", date: "02/08", value: "R$7500", commission: "R$750 (10%)" },
-      { code: "#XXXX", seller: "Rafael", client: "Bioest/ Líq/", date: "02/08", value: "R$7500", commission: "R$750 (10%)" },
-      { code: "#XXXX", seller: "Rafael", client: "Bioest/ Líq/", date: "02/08", value: "R$7500", commission: "R$750 (10%)" },
-    ],
-    [
-      { code: "#YYYY", seller: "João", client: "Bioest/ Líq/", date: "03/08", value: "R$5200", commission: "R$520 (10%)" },
-      { code: "#YYYY", seller: "João", client: "Bioest/ Líq/", date: "03/08", value: "R$5200", commission: "R$520 (10%)" },
-      { code: "#YYYY", seller: "João", client: "Bioest/ Líq/", date: "03/08", value: "R$5200", commission: "R$520 (10%)" },
-      { code: "#YYYY", seller: "João", client: "Bioest/ Líq/", date: "03/08", value: "R$5200", commission: "R$520 (10%)" },
-    ],
-    [
-      { code: "#ZZZZ", seller: "Maria", client: "Bioest/ Líq/", date: "04/08", value: "R$8300", commission: "R$830 (10%)" },
-      { code: "#ZZZZ", seller: "Maria", client: "Bioest/ Líq/", date: "04/08", value: "R$8300", commission: "R$830 (10%)" },
-      { code: "#ZZZZ", seller: "Maria", client: "Bioest/ Líq/", date: "04/08", value: "R$8300", commission: "R$830 (10%)" },
-      { code: "#ZZZZ", seller: "Maria", client: "Bioest/ Líq/", date: "04/08", value: "R$8300", commission: "R$830 (10%)" },
-    ],
-  ]
-
-  let currentPage = 0
 
   // Função para atualizar a tabela com os dados da página atual
   function updateTable(pageIndex) {

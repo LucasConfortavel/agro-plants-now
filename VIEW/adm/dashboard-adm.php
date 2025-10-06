@@ -114,47 +114,64 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Rafael</td>
-                        <td>Bioest/ Líq/</td>
-                        <td>02/08</td>
-                        <td class="jp_value-column">R$7500</td>
-                        <td class="jp_commission-column">R$750 (10%)</td>
-                    </tr>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Rafael</td>
-                        <td>Bioest/ Líq/</td>
-                        <td>02/08</td>
-                        <td class="jp_value-column">R$7500</td>
-                        <td class="jp_commission-column">R$750 (10%)</td>
-                    </tr>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Rafael</td>
-                        <td>Bioest/ Líq/</td>
-                        <td>02/08</td>
-                        <td class="jp_value-column">R$7500</td>
-                        <td class="jp_commission-column">R$750 (10%)</td>
-                    </tr>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Rafael</td>
-                        <td>Bioest/ Líq/</td>
-                        <td>02/08</td>
-                        <td class="jp_value-column">R$7500</td>
-                        <td class="jp_commission-column">R$750 (10%)</td>
-                    </tr>
-                </tbody>
+                    <?php
+                        // Quantidade de itens por página
+                        $limite = 5;
+
+                        // Página atual (pega da URL, se não tiver assume 1)
+                        $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+
+                        // Calcula o offset
+                        $offset = ($pagina - 1) * $limite;
+
+                        // Fatia apenas as vendas da página atual
+                        $vendas_pagina = array_slice($vendas_totais, $offset, $limite);
+
+                        $total_vendas = count($vendas_totais);
+
+                        // Exibe vendas da página
+                        foreach ($vendas_pagina as $venda) {
+                            // Busca cliente e vendedor
+                            $cliente = $cliente_control->mostrar($venda['id_cliente']);
+                            $vendedor = $vendedores_control->mostrar($venda['id_vendedor']);
+
+                            // Calcula comissão (exemplo: 5%)
+                            $comissao = $venda['total'] * 0.05;
+
+                            echo '
+                            <tr>
+                                <td>'.$venda['id'].'</td>
+                                <td>'.$vendedor['nome'].'</td>
+                                <td>'.$cliente['nome'].'</td>
+                                <td>'.date('d/m/Y', strtotime($venda['data_venda'])).'</td>
+                                <td class="jp_sales-value">R$ '.number_format($venda['total'], 2, ',', '.').'</td>
+                                <td class="jp_sales-value">R$ '.number_format($comissao, 2, ',', '.').'</td>
+                            </tr>';
+                        }
+                    ?>  
+                    </tbody>
+
             </table>
             <div class="jp_pagination">
-                <div class="jp_pagination-item active">1</div>
-                <div class="jp_pagination-item">2</div>
-                <div class="jp_pagination-item">3</div>
-                <div class="jp_pagination-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
+                <?php
+                    $total_paginas = ceil($total_vendas / $limite);
+
+                    // Botão Anterior (seta esquerda)
+                    if ($pagina > 1) {
+                        echo '<a class="jp_arrow" href="?pagina='.($pagina - 1).'"><i class="fas fa-arrow-left"></i></a>';
+                    }
+
+                    // Números das páginas
+                    for ($i = 1; $i <= $total_paginas; $i++) {
+                        $classe = ($i == $pagina) ? 'style="font-weight:bold;"' : '';
+                        echo '<a '.$classe.' href="?pagina='.$i.'">'.$i.'</a>';
+                    }
+
+                    // Botão Próximo (seta direita)
+                    if ($pagina < $total_paginas) {
+                        echo '<a class="jp_arrow" href="?pagina='.($pagina + 1).'"><i class="fas fa-arrow-right"></i></a>';
+                    }
+                ?>
             </div>
         </div>
 
