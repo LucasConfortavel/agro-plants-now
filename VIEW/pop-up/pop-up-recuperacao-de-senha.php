@@ -10,10 +10,10 @@
     <main class="jp_main-content">
         <div class="jc_center-box">
             <p>Insira o código enviado</p>
-            <p>Insira o código que enviamos para o e-mail XXXXXXXX. Se você não receber o e-mail, verifique a pasta de spam ou tente novamente.</p>
-            <form action="recuperacao-de-senha.php" method="POST"> 
+            <p>Insira o código que enviamos para o seu e-mail. Se você não receber o e-mail, verifique a pasta de spam ou tente novamente.</p>
+            <form action="#" method="POST"> 
                 <input type="text" class="ym_input-form" name="codigo" placeholder="Código" required> 
-                <a type="submit"onclick="abrirPopup('../pop-up/pop-up-criar-senha.php','Redefinição de senha')" class="ym_btn-padrao">Avançar</a>
+                <button type="submit" class="ym_btn-padrao">Avançar</button>
             </form>
         </div>
     </main>
