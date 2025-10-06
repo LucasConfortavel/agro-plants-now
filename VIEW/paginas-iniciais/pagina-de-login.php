@@ -71,6 +71,7 @@ include "../../INCLUDE/vlibras.php";
                     <div class="lc_area-links">
                         <a onclick="abrirPopup('../pop-up/pop-up-email-recuperar-senha.php')" class="jc_forgot-password">Esqueceu sua senha?</a>
                     </div>
+                    <?php include "../../INCLUDE/reCaptcha.php"; ?>
                     <input type="submit" class="jc_login-btn" value="Iniciar Sessão">
                 </form>
             </div>
