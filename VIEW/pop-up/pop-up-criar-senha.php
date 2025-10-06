@@ -9,9 +9,10 @@
 </head>
 <body>            
     <form method="POST" class="jc_form">
-        <input type="password" class="ym_input-form" placeholder="Nova Senha" required>
-        <input type="password" class="ym_input-form" placeholder="Confirme sua Senha" required>
-        <a onclick="abrirPopup('../pop-up/pop-up-senha-alterada-sucesso.php','Senha alterada com sucesso!')" class="ym_btn-padrao">Confirmar</a>
+        <h1 class="ym_titulo-pop-up">Defina sua nova senha</h1>
+        <input type="password" name="nova_senha" class="ym_input-form" placeholder="Nova Senha" required>
+        <input type="password" name="conf_senha" class="ym_input-form" placeholder="Confirme sua Senha" required>
+        <button type="submit" class="ym_btn-padrao">Confirmar</button>
     </form>
 </body>
 </html>

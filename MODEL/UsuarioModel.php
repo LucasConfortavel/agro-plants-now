@@ -82,6 +82,17 @@ class UsuarioModel {
         return $row;
     }
 
+    public function lerUm_email() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE email = ? LIMIT 0,1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->email);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row;
+    }
+
     public function lerTodos() {
         $query = "SELECT id, nome, email, tipo, telefone, CPF, cep, data_nasc, foto,status
                   FROM " . $this->table_name . " ORDER BY nome";
@@ -156,6 +167,26 @@ class UsuarioModel {
                 }
             }
             
+            throw new Exception("Erro ao atualizar usuário: " . $e->getMessage());
+        }
+    }
+
+    public function atualizar_senha() {
+        $query = "UPDATE " . $this->table_name . " 
+                    SET senha=:senha WHERE id=:id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->senha = htmlspecialchars(strip_tags($this->senha));
+
+        $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":senha", $this->senha);
+
+        try {
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Erro ao atualizar usuário: " . $e->getMessage());
             throw new Exception("Erro ao atualizar usuário: " . $e->getMessage());
         }
     }
