@@ -63,6 +63,21 @@ class UsuarioController {
         }
     }
 
+    public function mostrar_email($email) {
+        try {
+            $this->user->email = $email;
+            $user = $this->user->lerUm_email();
+            
+            if ($user) {
+                return $user;
+            } else {
+                throw new Exception("Usuário não encontrado");
+            }
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
     // Atualizar um usuário
     public function atualizar($id) {
         try {
@@ -175,21 +190,17 @@ class UsuarioController {
         return ['redirect' => '../VIEW/paginas-iniciais/landing_page.php'];
     }
 
-    // Verificar se email já existe
-    public function checarEmail($email) {
+    public function alterar_senha(){
         try {
-            $exists = $this->user->emailExiste($email);
-            return ['exists' => $exists];
-        } catch (Exception $e) {
-            return ['error' => $e->getMessage()];
-        }
-    }
+            $this->user->id = $_SESSION['user_id'];
+            
+            $this->user->senha = $_POST['nova_senha'];
 
-    // Verificar se CPF já existe
-    public function checarCPF($cpf) {
-        try {
-            $exists = $this->user->cpfExiste($cpf);
-            return ['exists' => $exists];
+            if ($this->user->atualizar_senha()) {
+                return true;
+            } else {
+                throw new Exception("Erro ao atualizar usuário");
+            }
         } catch (Exception $e) {
             return ['error' => $e->getMessage()];
         }

@@ -1,4 +1,9 @@
 <?php
+include "../../CONTROLLER/UsuarioController.php";
+
+$controler_user = new UsuarioController();
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -14,8 +19,8 @@ if (isset($_SESSION['id'], $_SESSION['email'], $_SESSION['tipo'])) {
 }
 
 include "../../INCLUDE/Menu_superior.php";
+include "../../INCLUDE/phpmailer.php";
 include "../../INCLUDE/vlibras.php";
-
 
 ?>
 
@@ -64,7 +69,7 @@ include "../../INCLUDE/vlibras.php";
                         <input type="password" class="jc_input-field" name="senha" placeholder="Senha" required>
                     </div>
                     <div class="lc_area-links">
-                        <a onclick="abrirPopup('../pop-up/pop-up-email-recuperar-senha.php','Informe seu e-mail para a recuperação de senha')" class="jc_forgot-password">Esqueceu sua senha?</a>
+                        <a onclick="abrirPopup('../pop-up/pop-up-email-recuperar-senha.php')" class="jc_forgot-password">Esqueceu sua senha?</a>
                     </div>
                     <input type="submit" class="jc_login-btn" value="Iniciar Sessão">
                 </form>
@@ -80,6 +85,53 @@ include "../../INCLUDE/vlibras.php";
 <script src="../../PUBLIC/JS/script-alertas.js"></script>
 
 <?php
+
+    if(isset($_GET['email_enviado'])){
+        echo"<script>abrirPopup('../pop-up/pop-up-recuperacao-de-senha.php')</script>";
+    }
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(isset($_POST['email'])){
+            $email = $_POST['email'];
+            $usuario = $controler_user->mostrar_email($email);
+            $codigo = random_int(100000, 999999);
+            $_SESSION['codigo'] = $codigo;
+            $_SESSION['user_id'] = $usuario['id'];
+            
+            if(isset($usuario['error'])){
+                echo '<script>exibirAlerta("Não existe um usuário com este email","error")</script>';
+            }else{
+                $nome = $usuario['nome'];
+                enviar_email($email,$codigo,$nome);
+                header("Location: " . $_SERVER['PHP_SELF'] . "?email_enviado");
+            }
+        }
+
+        if(isset($_POST['codigo'])){
+            print_r($_POST['codigo'] . '<br>' . $_SESSION['codigo']);
+            if($_POST['codigo'] == $_SESSION['codigo']){
+                echo"<script>abrirPopup('../pop-up/pop-up-criar-senha.php')</script>";
+            }else{
+                echo '<script>exibirAlerta("O código está errado","error")</script>';
+            }
+        }
+
+        if(isset($_POST['nova_senha'])){
+            if($_POST['nova_senha'] == $_POST['conf_senha']){
+                $alterar_senha = $controler_user->alterar_senha();
+                print_r($alterar_senha);
+                if($alterar_senha == 1 ){
+                    echo '<script> exibirAlerta("Senha alterada com sucesso","sucesso"); </script>';
+                    header("Location: " . $_SERVER['PHP_SELF']);
+                }
+            }
+            else{
+                echo '<script>exibirAlerta("As senhas não são iguais","error")</script>';
+            }
+        }
+ 
+    }
+
     if(isset($_GET['error'])){
         echo '<script>exibirAlerta("Não foi possível iniciar a sessão","error")</script>';
     }
