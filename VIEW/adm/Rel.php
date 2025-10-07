@@ -121,7 +121,7 @@ $total_vendas = count($vendas);
                         <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                             <i class="fas fa-search search-icon"></i>
                         </button>
-                        <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou cliente..." class="jv_search-input">
+                        <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
                     </div>
                 </form>
  
@@ -330,11 +330,11 @@ $total_vendas = count($vendas);
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_name">Data</th>
+                                    <th class="jv_date">Data</th>
                                     <th class="jv_banguela">Vendedor</th>
-                                    <th class="jv_data">Cliente</th>
-                                    <th class="jv_data">Valor de Venda</th>
-                                    <th class="jv_comissao">Comissao</th>
+                                    <th class="jv_name_cli">Cliente</th>
+                                    <th class="jv_valor_venda">Valor de Venda</th>
+                                    <th class="jv_comissao"><p>Comissao</p></th>
                                     <th class="jv_banguela">Valor da Comissao</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
@@ -358,7 +358,7 @@ $total_vendas = count($vendas);
                                                 </div>
                                             </td> 
                                             <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
-                                            <td><?= 'R$ ' . number_format($comissao['valor_venda'] ?? 0, 2, ',', '.') ?></td>
+                                            <td><?= 'R$ ' . number_format($venda['total'] ?? 0, 2, ',', '.') ?></td>
                                             <td>
                                                 <span class="badge-comissao">
                                                     <?= htmlspecialchars($comissao['percentual'] ?? 0) . '%' ?>
