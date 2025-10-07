@@ -4,7 +4,7 @@ function abrirPopup(link, fixar = false) {
     const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
     const area_superior = document.getElementsByClassName('ym_area-superior-popup')[0];
 
-    if (fixar) {
+    if (fixar){
         fixarTela();
     }
 
@@ -98,6 +98,7 @@ function loadScript(src) {
 function fecharPopup() {
     const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
     popup_overlay.style.display = 'none';
+<<<<<<< HEAD
     liberarTela(); // volta rolagem normal
 }
 
@@ -108,3 +109,12 @@ function fixarTela() {
 function liberarTela() {
     document.body.style.overflow = ""; // libera rolagem
 }
+=======
+    document.body.style.overflow = 'auto';
+    window.location.href = window.location.pathname;
+}
+
+function fixarTela() {
+    document.body.style.overflow = 'hidden';
+}
+>>>>>>> Arquitetura-MVC

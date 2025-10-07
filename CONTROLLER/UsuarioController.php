@@ -29,7 +29,7 @@ class UsuarioController {
         try {
             $this->user->nome = $_POST['nome'];
             $this->user->email = $_POST['email'];
-            $this->user->senha = $_POST['senha'];
+            $this->user->senha = password_hash($_POST['senha'],PASSWORD_DEFAULT);
             $this->user->tipo = $tipo;
             $this->user->telefone = $_POST['telefone'] ?? null;
             $this->user->CPF = $_POST['CPF'];
@@ -52,6 +52,21 @@ class UsuarioController {
         try {
             $this->user->id = $id;
             $user = $this->user->lerUm();
+            
+            if ($user) {
+                return $user;
+            } else {
+                throw new Exception("Usuário não encontrado");
+            }
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
+    public function mostrar_email($email) {
+        try {
+            $this->user->email = $email;
+            $user = $this->user->lerUm_email();
             
             if ($user) {
                 return $user;
@@ -175,21 +190,17 @@ class UsuarioController {
         return ['redirect' => '../VIEW/paginas-iniciais/landing_page.php'];
     }
 
-    // Verificar se email já existe
-    public function checarEmail($email) {
+    public function alterar_senha(){
         try {
-            $exists = $this->user->emailExiste($email);
-            return ['exists' => $exists];
-        } catch (Exception $e) {
-            return ['error' => $e->getMessage()];
-        }
-    }
+            $this->user->id = $_SESSION['user_id'];
+            
+            $this->user->senha = password_hash($_POST['nova_senha'],PASSWORD_DEFAULT);
 
-    // Verificar se CPF já existe
-    public function checarCPF($cpf) {
-        try {
-            $exists = $this->user->cpfExiste($cpf);
-            return ['exists' => $exists];
+            if ($this->user->atualizar_senha()) {
+                return true;
+            } else {
+                throw new Exception("Erro ao atualizar usuário");
+            }
         } catch (Exception $e) {
             return ['error' => $e->getMessage()];
         }
