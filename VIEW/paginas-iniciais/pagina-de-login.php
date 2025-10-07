@@ -87,6 +87,13 @@ include "../../INCLUDE/vlibras.php";
 
 <?php
 
+    if(isset($_SESSION['senha_alterada'])){
+        if($_SESSION['senha_alterada']){
+            echo '<script> exibirAlerta("Senha alterada com sucesso","sucesso"); </script>';
+            unset($_SESSION['senha_alterada']);
+        }
+    }
+
     if(isset($_GET['email_enviado'])){
         echo"<script>abrirPopup('../pop-up/pop-up-recuperacao-de-senha.php')</script>";
     }
@@ -109,20 +116,25 @@ include "../../INCLUDE/vlibras.php";
         }
 
         if(isset($_POST['codigo'])){
-            print_r($_POST['codigo'] . '<br>' . $_SESSION['codigo']);
             if($_POST['codigo'] == $_SESSION['codigo']){
-                echo"<script>abrirPopup('../pop-up/pop-up-criar-senha.php')</script>";
+                $_POST["alter_senha"]="";
+                unset($_POST['codigo']);
             }else{
                 echo '<script>exibirAlerta("O código está errado","error")</script>';
             }
         }
+
+        if(isset($_POST['alter_senha'])){
+            echo"<script>abrirPopup('../pop-up/pop-up-criar-senha.php')</script>";
+        }
+
 
         if(isset($_POST['nova_senha'])){
             if($_POST['nova_senha'] == $_POST['conf_senha']){
                 $alterar_senha = $controler_user->alterar_senha();
                 print_r($alterar_senha);
                 if($alterar_senha == 1 ){
-                    echo '<script> exibirAlerta("Senha alterada com sucesso","sucesso"); </script>';
+                    $_SESSION['senha_alterada'] = true;
                     header("Location: " . $_SERVER['PHP_SELF']);
                 }
             }

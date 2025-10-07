@@ -7,12 +7,10 @@ function exibirAlerta(mensagem, tipo = "info") {
  
   area_alerta.appendChild(alerta)
  
-  // Trigger animation
   setTimeout(() => {
     alerta.classList.add("show")
   }, 100)
  
-  // Remove alerta after 5 seconds
   setTimeout(() => {
     alerta.classList.remove("show")
     setTimeout(() => {

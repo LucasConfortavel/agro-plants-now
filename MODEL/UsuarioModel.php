@@ -216,16 +216,17 @@ class UsuarioModel {
     
         if ($stmt->rowCount() == 1) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if ($senha === $row['senha']) {
+
+            if(password_verify($senha,$row['senha'])){
                 $this->id = $row['id'];
                 $this->nome = $row['nome'];
                 $this->email = $row['email'];
                 $this->tipo = $row['tipo'];
-                
+
                 return true;
             }
         }
+        
         
         return false;
     }
