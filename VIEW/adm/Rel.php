@@ -444,30 +444,87 @@ $total_vendas = count($vendas);
     </div>
  
 </main>
- 
 <?php
-$vendas_mensais = [1200, 1900, 2100, 500, 2000, 3000, 1200, 1900, 2100, 500, 5000, 4000];
-$status_pedidos = ["Concluído" => 45, "Pendente" => 10, "Cancelado" => 5];
-$comissoes_vendedor = [0, 0, 0, 0, 0, 0, 0, 3000, 0, 0, 00, 0];
-$comissoes_dist = ["Fixas" => 40, "Variáveis" => 60];
- 
-$max_venda = max($vendas_mensais);
-$colors_vendas = [];
-foreach ($vendas_mensais as $v) {
-    $colors_vendas[] = $v == $max_venda ? "#45734b" : "rgba(36, 146, 51, 0.5)";
+// Inicializa arrays de 12 meses com zeros
+$vendas_mensais = array_fill(0, 12, 0);
+$comissoes_vendedor = array_fill(0, 12, 0);
+
+// Inicializa status de pedidos
+$status_pedidos = [
+    "Aprovado"  => 0,
+    "Pendente"  => 0,
+    "Cancelado" => 0
+];
+
+// Inicializa distribuição de comissões
+$comissoes_dist = [
+    "Fixas"     => 0,
+    "Variáveis" => 0
+];
+
+// ====== Processa vendas ======
+foreach ($vendas as $venda) {
+    $data = $venda['data'] ?? $venda['data_venda'] ?? null;
+    $total = isset($venda['total']) ? (float)$venda['total'] : 0;
+
+    if ($data) {
+        $mes = (int) date("n", strtotime($data)) - 1;
+        $vendas_mensais[$mes] += $total;
+    }
+
+    $status = ucfirst(strtolower($venda['status'] ?? ''));
+    if (isset($status_pedidos[$status])) {
+        $status_pedidos[$status]++;
+    }
 }
- 
+
+// ====== Processa comissões ======
+foreach ($comissoes as $comissao) {
+    $data = $comissao['data'] ?? $comissao['data_comissao'] ?? null;
+    $valor = ($comissao['valor_venda'] ?? 0) * (($comissao['percentual'] ?? 0) / 100);
+    $tipo = $comissao['tipo'] ?? 'Fixas';
+
+    if ($data) {
+        $mes = (int) date("n", strtotime($data)) - 1;
+        $comissoes_vendedor[$mes] += $valor;
+    }
+
+    if (isset($comissoes_dist[$tipo])) {
+        $comissoes_dist[$tipo] += $valor;
+    }
+}
+
+// ====== Cores ======
+$max_venda = max($vendas_mensais);
+$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#45734b" : "rgba(36, 146, 51, 0.5)", $vendas_mensais);
+
+// Ajuste de cores para status de pedidos
 $colors_status = ["#45734b", "rgba(69,115,75,0.7)", "rgba(69,115,75,0.4)"];
+
+// Evita array vazio para o gráfico de pizza
+foreach ($status_pedidos as $key => $value) {
+    if ($value == 0) $status_pedidos[$key] = 0.001; // valor mínimo para renderizar
+}
 ?>
- 
- 
+
+<?php
+foreach ($comissoes_dist as $key => $value) {
+    if ($value == 0) $comissoes_dist[$key] = 0.001;
+}
+?>
+
+<canvas id="sales-bar-chart" style="height:300px;"></canvas>
+<canvas id="sales-pie-chart" style="height:300px;"></canvas>
+<canvas id="comm-line-chart" style="height:300px;"></canvas>
+<canvas id="comm-doughnut-chart" style="height:300px;"></canvas>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
- 
+    // ===== Gráfico de Vendas por Mês (Bar) =====
     new Chart(document.getElementById("sales-bar-chart"), {
         type: "bar",
         data: {
-            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Agos","Set","Oct","Nov","Dec"],
+            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
             datasets: [{
                 label: "Vendas (R$)",
                 data: <?= json_encode($vendas_mensais) ?>,
@@ -487,7 +544,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
- 
+
+    // ===== Gráfico de Status dos Pedidos (Pie) =====
+    <?php
+    // garante valores mínimos para não sumir
+    foreach ($status_pedidos as $key => $value) {
+        if ($value == 0) $status_pedidos[$key] = 0.001;
+    }
+    ?>
     new Chart(document.getElementById("sales-pie-chart"), {
         type: "pie",
         data: {
@@ -504,15 +568,16 @@ document.addEventListener("DOMContentLoaded", () => {
             responsive: true,
             plugins: {
                 legend: { position: "bottom", labels: { font: { size: 13 } } },
-                tooltip: { callbacks: { label: ctx => ctx.label + ": " + ctx.raw + "%" } }
+                tooltip: { callbacks: { label: ctx => ctx.label + ": " + ctx.raw } }
             }
         }
     });
- 
+
+    // ===== Gráfico Gasto com Comissões (Line) =====
     new Chart(document.getElementById("comm-line-chart"), {
         type: "line",
         data: {
-            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Agos","Set","Oct","Nov","Dec"],
+            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
             datasets: [{
                 label: "Gasto com Comissões (R$)",
                 data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
@@ -528,11 +593,7 @@ document.addEventListener("DOMContentLoaded", () => {
         options: {
             plugins: {
                 legend: { labels: { font: { size: 14 } } },
-                tooltip: {
-                    callbacks: {
-                        label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR")
-                    }
-                }
+                tooltip: { callbacks: { label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR") } }
             },
             scales: {
                 y: { beginAtZero: true, ticks: { callback: v => "R$ " + v }, grid: { color: "rgba(0,0,0,0.05)" } },
@@ -540,37 +601,37 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
- 
-        new Chart(document.getElementById("comm-doughnut-chart"), {
-        type: "doughnut",
-        data: {
-            labels: <?= json_encode(array_keys($comissoes_dist)) ?>,
-            datasets: [{
-                data: <?= json_encode(array_values($comissoes_dist)) ?>,
-                backgroundColor: ["#45734b","#17e33293"],
-                borderColor: "#fff",
-                borderWidth: 2,
-                hoverOffset: 12
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: "bottom", labels: { font: { size: 13 } } },
-                tooltip: { callbacks: { label: ctx => ctx.label + ": " + ctx.raw + "%" } }
-            }
+
+    new Chart(document.getElementById("comm-doughnut-chart"), {
+    type: "doughnut",
+    data: {
+        labels: <?= json_encode(array_keys($comissoes_dist)) ?>,
+        datasets: [{
+            data: <?= json_encode(array_values($comissoes_dist)) ?>,
+            backgroundColor: ["#45734b","#17e33293"],
+            borderColor: "#fff",
+            borderWidth: 2,
+            hoverOffset: 12
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: "bottom", labels: { font: { size: 13 } } },
+            tooltip: { callbacks: { label: ctx => ctx.label + ": R$ " + ctx.raw.toLocaleString("pt-BR") } }
         }
-    });
- 
+    }
 });
- 
- 
-</script>
- 
+    });
+
+
 <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
 <script src="../../PUBLIC/JS/script-tabs.js"></script>
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-relatorio.js"></script>
 <script src="../../PUBLIC/JS/script-tema.js"></script>
+
+</script>
+
 </body>
 </html>
