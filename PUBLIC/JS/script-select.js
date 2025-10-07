@@ -19,11 +19,6 @@
     }
 }
 
-// function trocar_categoria(id){ 
-//     let option = document.getElementsByClassName("ym_options")[id];
-
-// }
-
 function trocar_categoria(id=0,id_op=0) {
     let categoria = document.getElementsByClassName("ym_categoria-select")[id];
     let option = document.getElementsByClassName("ym_options")[id];
