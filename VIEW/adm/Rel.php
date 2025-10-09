@@ -340,7 +340,7 @@ $total_vendas = count($vendas);
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
-                                <?php if ($total_vendas > 0 && ): ?>
+                                <?php if ($total_vendas > 0  ): ?>
                                     <?php foreach ($comissoes_paginadas as $comissao): ?>
                                         <?php 
                                             $vendedor = $usuario_control->mostrar($venda['id_vendedor']);
