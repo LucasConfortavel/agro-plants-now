@@ -3,7 +3,6 @@ include "../../INCLUDE/Menu_adm.php";
 require_once "../../CONTROLLER/ProdutoController.php";
 include "../../INCLUDE/vlibras.php";
 
-
 try {
     $produtoController = new ProdutoController();
     $produtos = $produtoController->index();
@@ -15,9 +14,10 @@ try {
         foreach ($produtos as $produto) {
             if ($produto['quantidade'] <= $limite) {
                 $notificacoes[] = [
-                    'titulo' => "Estoque baixo para o produto: {$produto['nome']}",
-                    'setor' => "Produtos",
-                    'data' => date("d/m/Y")
+                    'titulo' => "Estoque baixo: {$produto['nome']}",
+                    'setor'  => "Produtos",
+                    'data'   => date("d/m/Y"),
+                    'quantidade' => $produto['quantidade']
                 ];
             }
         }
@@ -49,80 +49,76 @@ try {
 
         <div class="jv_container">
             <div class="jv_card">
-            <div class="jv_card-header">
-                <div class="jv_header-content">
-                    <form method="POST" action="#" class="jv_search-section">
-                        <div class="jv_search-container">
-                            <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
-                                <i class="fas fa-search search-icon"></i>
-                            </button>
-                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome..." class="jv_search-input">
-                        </div>
-                    </form>
+                <div class="jv_card-header">
+                    <div class="jv_header-content">
+                        <form method="POST" action="#" class="jv_search-section">
+                            <div class="jv_search-container">
+                                <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
+                                    <!-- <i class="fas fa-search search-icon"></i> -->
+                                </button>
+                                <!-- <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome..." class="jv_search-input"> -->
+                            </div>
+                        </form>
 
-                    <div class="jv_actions">
-                        <div>
-                            <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
-                                <i class="fa-solid fa-trash-can"></i>
-                                Remover (<span id="jv_selectedCount">0</span>)
-                            </button>
-                        </div>
+                        <!-- <div class="jv_actions">
+                            <div>
+                                <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                    Remover (<span id="jv_selectedCount">0</span>)
+                                </button>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
-            </div>
+
                 <div class="jv_card-content">
                     <div class="jv_table-container">
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
-                                        <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
                                     <th class="jv_date">Título</th>
                                     <th class="jv_total_comp">Setor</th>
                                     <th class="jv_valor_gast">Data</th>
+                                    <th class="jv_valor_gast">Qtd.</th>
                                     <th class="jv_actions-col"></th> 
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
                             <?php if ($total_notificacoes > 0): ?>
-                                <?php foreach ($notificacoes as $index => $notif): ?>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $index ?>">
-                                            </td>
-                                            <td>
-                                                <div class="jv_customer-info">
-                                                    <div class="jv_avatar">
-                                                        ⚠
-                                                    </div>
-                                                    <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars($notif['titulo']) ?></h4>
-                                                        <p>Produto com estoque baixo</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td><?= htmlspecialchars($notif['setor']) ?></td>
-                                            <td><?= $notif['data'] ?></td>
-                                            <td class="jv_table-action">
-                                                <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <div class="jv_dropdown">
-                                                    <button class="jv_dropdown-item jv_danger">
-                                                        <i class="fas fa-trash"></i> Remover
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
+                                <?php foreach ($notificacoes as $index => $notif): ?>   
                                     <tr>
-                                        <td colspan="5" style="text-align: center; height: 49.7vh;">
-                                            Nenhuma notificação encontrada
+
+                                        <td>
+                                            <div class="jv_customer-info">
+                                                <div class="jv_avatar">⚠</div>
+                                                <div class="jv_customer-details">
+                                                    <h4><?= htmlspecialchars($notif['titulo']) ?></h4>
+                                                    <p>Quantidade atual: <?= $notif['quantidade'] ?></p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><?= htmlspecialchars($notif['setor']) ?></td>
+                                        <td><?= $notif['data'] ?></td>
+                                        <td><?= $notif['quantidade'] ?></td>
+                                        <td class="jv_table-action">
+                                            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </button>
+                                            <div class="jv_dropdown">
+                                                <button class="jv_dropdown-item jv_danger">
+                                                    <i class="fas fa-trash"></i> Remover
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
-                                <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="6" style="text-align: center; height: 49.7vh;">
+                                        Nenhuma notificação encontrada
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -136,3 +132,4 @@ try {
     <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
 </body>
 </html>
+                                

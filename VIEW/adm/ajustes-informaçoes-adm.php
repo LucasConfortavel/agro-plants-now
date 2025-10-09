@@ -1,9 +1,9 @@
 <?php
+include "../../INCLUDE/Menu_adm.php";
 require_once "../../DB/Database.php"; 
 require_once "../../INCLUDE/verificarLogin.php"; 
 include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/alertas.php";
-include "../../INCLUDE/Menu_adm.php";
 
 $user_id = $_SESSION['id'] ?? null;
 
@@ -91,9 +91,7 @@ if(isset($_SESSION['alerta'])){
 
 <body>
     <main class="jp_main-content">
-        <div class="page-header">
-            <h1 class="page-title ym_titulo">Configurações do Perfil</h1>
-        </div>
+        <h1 class="page-title ym_titulo">Configurações do Perfil</h1>
 
         <header class="profile-header">
             <div class="profile-info">

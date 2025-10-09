@@ -37,26 +37,28 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Função de pesquisa
   function handleSearch() {
-      const searchTerm = this.value.toLowerCase();
-      const rows = document.querySelectorAll('#jv_customerTableBody tr');
-      
-      rows.forEach(row => {
-          const name = row.querySelector('h4').textContent.toLowerCase();
-          const email = row.querySelector('p').textContent.toLowerCase();
-          
-          if (name.includes(searchTerm) || email.includes(searchTerm)) {
-              row.style.display = '';
-          } else {
-              row.style.display = 'none';
-              // Desselecionar se estiver oculto
-              const checkbox = row.querySelector('.customer-checkbox');
-              if (checkbox && checkbox.checked) {
-                  checkbox.checked = false;
-                  handleCustomerSelect(checkbox.dataset.customerId, false);
-              }
-          }
-      });
-  }
+    const searchTerm = this.value.toLowerCase();
+    const rows = document.querySelectorAll('#jv_customerTableBody tr');
+
+    rows.forEach(row => {
+        // Obtém a célula da coluna "Código" (segundo <td>)
+        const codeCell = row.querySelectorAll('td')[1]; // índice 1 = 2ª coluna
+
+        if (codeCell && codeCell.textContent.toLowerCase().includes(searchTerm)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+
+            // Se o cupom estiver oculto, desmarca a checkbox
+            const checkbox = row.querySelector('.customer-checkbox');
+            if (checkbox && checkbox.checked) {
+                checkbox.checked = false;
+                handleCustomerSelect(checkbox.dataset.customerId, false);
+            }
+        }
+    });
+}
+
   
   // Selecionar todos os clientes
   function handleSelectAll() {

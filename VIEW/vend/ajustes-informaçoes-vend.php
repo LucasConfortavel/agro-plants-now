@@ -1,7 +1,9 @@
 <?php
+include "../../INCLUDE/Menu_vend.php";
 require_once "../../DB/Database.php"; 
 require_once "../../INCLUDE/verificarLogin.php"; 
 include "../../INCLUDE/vlibras.php";
+include "../../INCLUDE/alertas.php";
 
 
 $user_id = $_SESSION['id'] ?? null;
@@ -15,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_info'])) {
         SET nome = ?, email = ?, telefone = ?, cpf = ?, cep = ?, data_nasc = ?
         WHERE id = ?
     ');
-    $stmt->execute([
+    $atualizar = $stmt->execute([
         $_POST['nome'],
         $_POST['email'],
         $_POST['telefone'],
@@ -24,6 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_info'])) {
         $_POST['data_nasc'],
         $user_id
     ]);
+
+    if($atualizar == 1){
+        $_SESSION['alerta'] = '<script> exibirAlerta("Informações atualizadas com sucesso","sucesso"); </script>';
+    }else{
+        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível atualizadar as informações","sucesso"); </script>';
+    }
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
@@ -45,7 +54,10 @@ $stmt = $conn->prepare('
 $stmt->execute([$user_id]);
 $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-include "../../INCLUDE/Menu_vend.php";
+if(isset($_SESSION['alerta'])){
+    echo($_SESSION['alerta']);
+    unset($_SESSION['alerta']);
+}
 ?>
 
 
