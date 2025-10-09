@@ -1,5 +1,5 @@
 <?php
-include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/Menu_adm.php";
 include "../../INCLUDE/alertas.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../INCLUDE/vlibras.php";
@@ -9,23 +9,25 @@ $cliente_control = new ClienteController();
 $clientes = $cliente_control->indexComPedidos();
 $total_clientes = count($clientes);
 
-$pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2", "turma143p2", "sucesso@143");
+// Conexão PDO para atualizar pedidos
+$pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2", "sucesso@143");
 
+// Paginação
 $limite = 4;
 $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_clientes / $limite);
-
 $clientes = array_slice($clientes, $offset, $limite);
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+// Cadastrar cliente
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome'])) {
     $criar_cliente = $cliente_control->criarCliente();
 
-    if($criar_cliente == 1){
+    if ($criar_cliente == 1) {
         $_SESSION['alerta'] =  '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
-    }elseif($criar_cliente == "Já existe um usuário cadastrado com este email.") {
+    } elseif ($criar_cliente == "Já existe um usuário cadastrado com este email.") {
         $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um usuário cadastrado com este email"); </script>';
-    }else{
+    } else {
         $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
     }
 
@@ -33,20 +35,32 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     exit;
 }
 
-$status_filtro = isset($_GET['status']) ? $_GET['status'] : '';
+// **Finalizar pedido**
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
+    $id_pedido = $_POST['finalizar_pedido'];
+    $stmt = $pdo->prepare("UPDATE pedidos SET status = 'FINALIZADO' WHERE id = ?");
+    if ($stmt->execute([$id_pedido])) {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Pedido finalizado com sucesso!","sucesso"); </script>';
+    } else {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Erro ao finalizar pedido","error"); </script>';
+    }
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
 
+// Filtro por status
+$status_filtro = isset($_GET['status']) ? $_GET['status'] : '';
 if ($status_filtro) {
     $clientes = array_filter($clientes, function($cliente) use ($pdo, $status_filtro) {
         $stmt = $pdo->prepare("SELECT status FROM pedidos WHERE id_cliente = ? ORDER BY data_pedido DESC LIMIT 1");
         $stmt->execute([$cliente['id']]);
         $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
-
         return $pedido && $pedido['status'] === $status_filtro;
     });
     $total_clientes = count($clientes);
 }
 
-
+// Visualizar ou remover cliente
 if(!empty($_GET)){
     if (isset($_GET['visualizar'])){
         $id = $_GET['visualizar'];
@@ -57,10 +71,9 @@ if(!empty($_GET)){
         $cliente = $cliente_control->deletar($id);
         if($cliente == 1){
             $_SESSION['alerta'] = '<script> exibirAlerta("Cliente deletado com sucesso","sucesso"); </script>';
-        }else{
+        } else {
             $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível deletar o cliente","error"); </script>';
         }
-
         header("Location: clientes-adm.php");
         exit;
     }
@@ -70,8 +83,8 @@ if(isset($_SESSION['alerta'])){
     echo($_SESSION['alerta']);
     unset($_SESSION['alerta']);
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -221,11 +234,14 @@ if(isset($_SESSION['alerta'])){
                                 </td>
                                 <td>
                                     <div class="td">
-                                    <?php if ($status !== 'SEM PEDIDOS' && $status !== 'FINALIZADO'): ?>
-                                        <button type="button" class="ym_btn-padrao3">Finalizar Pedido</button>
-                                    <?php else: ?>
-                                        <p></p>
-                                    <?php endif; ?>
+                                        <?php if ($status !== 'SEM PEDIDOS' && $status !== 'FINALIZADO'): ?>
+                                            <form method="POST" style="display:inline;">
+                                                <input type="hidden" name="finalizar_pedido" value="<?= $id_pedido ?>">
+                                                <button type="submit" class="ym_btn-padrao3">Finalizar Pedido</button>
+                                            </form>
+                                        <?php else: ?>
+                                            <p></p>
+                                        <?php endif; ?>
                                     </div>
                                 </td>
                                 <td>
@@ -369,10 +385,11 @@ if(isset($_SESSION['alerta'])){
 
         
     </script>
-    <script src="../../PUBLIC/JS/script-tema.js"></script>
-    <script src="../../PUBLIC/JS/lista_clientes.js"></script>
+
+    <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 
 </main>
 </body>
