@@ -513,10 +513,6 @@ foreach ($comissoes_dist as $key => $value) {
 }
 ?>
 
-<canvas id="sales-bar-chart" style="height:300px;"></canvas>
-<canvas id="sales-pie-chart" style="height:300px;"></canvas>
-<canvas id="comm-line-chart" style="height:300px;"></canvas>
-<canvas id="comm-doughnut-chart" style="height:300px;"></canvas>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -625,13 +621,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+</script>
+
 <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
 <script src="../../PUBLIC/JS/script-tabs.js"></script>
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-relatorio.js"></script>
 <script src="../../PUBLIC/JS/script-tema.js"></script>
 
-</script>
+
 
 </body>
 </html>
