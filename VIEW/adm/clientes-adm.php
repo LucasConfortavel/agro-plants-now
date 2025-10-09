@@ -114,14 +114,14 @@ if(isset($_SESSION['alerta'])){
         <div class="jv_card">
             <div class="jv_card-header">
                 <div class="jv_header-content">
-                    <form method="POST" action="#" class="jv_search-section">
+                    <div class="jv_search-section">
                         <div class="jv_search-container">
-                            <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
+                            <button class="ym_area-icon-pesquisa">
                                 <i class="fas fa-search search-icon"></i>
                             </button>
-                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
+                            <input type="text" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
                         </div>
-                    </form>
+                    </div>
 
                     <div class="jv_actions">
                         <div>
@@ -327,6 +327,7 @@ if(isset($_SESSION['alerta'])){
         <?php endif; ?>
     </div>
 
+<<<<<<< HEAD
 <script>
     const customSelect = document.getElementById('customSelect');
     const selectTrigger = customSelect.querySelector('.select-trigger');
@@ -387,6 +388,9 @@ if(isset($_SESSION['alerta'])){
     </script>
 
     <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
+=======
+    <script src="../../PUBLIC/JS/script-clientes.js"></script>
+>>>>>>> Arquitetura-MVC
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
     <script src="../../PUBLIC/JS/script-tema.js"></script>
