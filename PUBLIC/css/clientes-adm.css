@@ -171,12 +171,16 @@
 .jv_progress.enviado {
   background: #ffc107;
 }
-.jv_progress.entregue {
-  background: #17a2b8;
+.fa-truck {
+  color: #ffc107;
 }
-.jv_progress.cancelado {
-  background: #dc3545;
+.fa-check-circle {
+  color: #28a745;
 }
+.fa-dollar-sign {
+  color: #007bff;
+}
+
 
 .jv_status-label {
   font-size: 13px;

@@ -531,7 +531,11 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         options: {
             plugins: {
-                legend: { display: false },
+                legend: { display: false,                position: "bottom",
+                labels: {
+                    font: { size: 13 },
+                    color: "#ffffff" // ← COR BRANCA NA LEGENDA
+                } },
                 tooltip: { callbacks: { label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR") } }
             },
             scales: {

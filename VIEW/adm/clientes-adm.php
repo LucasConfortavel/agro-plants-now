@@ -255,8 +255,6 @@ if(isset($_SESSION['alerta'])){
                                                 <?php if ($status == 'FINALIZADO') echo '<i class="fas fa-check-circle"></i>'; ?>
                                                 <?php if ($status == 'PAGO') echo '<i class="fas fa-dollar-sign"></i>'; ?>
                                                 <?php if ($status == 'ENVIADO') echo '<i class="fas fa-truck"></i>'; ?>
-                                                <?php if ($status == 'ENTREGUE') echo '<i class="fas fa-box-open"></i>'; ?>
-                                                <?php if ($status == 'CANCELADO') echo '<i class="fas fa-times-circle"></i>'; ?>
                                                 <?= $status ?>
                                             </span>
                                         </div>
