@@ -3,6 +3,14 @@
   margin: 0;
 }
 
+
+.body.dark-theme .jp_main-content{
+  background-color: #2d6dd5;
+}
+
+
+
+
 .ym_area-select{
   max-width: 13%;
 }

@@ -148,9 +148,12 @@ if(isset($_SESSION['alerta'])){
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <form class="jv_dropdown">
-                                                <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value=<?= $cupom['id'] ?>>
+                                                <button type="button" 
+                                                    class="jv_dropdown-item jv_danger" 
+                                                    onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($cupom['id']) ?>', 'Confirmação de Remoção')">
                                                     <i class="fas fa-trash"></i> Remover
                                                 </button>
+
                                             </form>
                                         </td>
                                     </tr>
