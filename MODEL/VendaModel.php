@@ -51,7 +51,7 @@ class VendaModel {
     }
 
     public function lerTodos() {
-        $query = "SELECT id, data_venda, id_pedido, id_vendedor, id_cliente, total FROM " . $this->table_name;
+        $query = "SELECT id, data_venda, id_pedido, id_vendedor, id_cliente, total, tipo FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
 
