@@ -10,7 +10,7 @@
     $produtoController = new ProdutoController();
     $produtos = $produtoController->index();
     
-    $limite = 5;
+    $limite = 4;
     $alertas = [];
     
     if (!isset($produtos['error'])) {
@@ -28,13 +28,30 @@
 
     $data_grafico = [0,0,0,0,0,0,0,0,0,0,0,0];
 
+    if(!isset($_POST['categoria'])){
+        $categoria = "Produtos";
+        $opcao = "Serviços";
+    }
+    else{    
+        $opcao = $_POST['opcao'];
+        $categoria = $_POST['categoria'];
+    }
+
+    if($categoria == "Produtos"){
+        $filtro="produto";
+    }else{
+        $filtro="servico";
+    }
+
     foreach ($vendas_totais as $venda) {
         $total_vendido += $venda['total'];
         $numero_vendas += 1;
-        $data_venda = new DateTime($venda['data_venda']);
-        for ($i=0; $i <= 12; $i++) { 
-            if($data_venda->format("m") == $i){
-                $data_grafico[$i-1] = $data_grafico[$i-1] + 1;
+        if($venda['tipo'] == $filtro){
+            $data_venda = new DateTime($venda['data_venda']);
+            for ($i=0; $i <= 12; $i++) { 
+                if($data_venda->format("m") == $i){
+                    $data_grafico[$i-1] = $data_grafico[$i-1] + 1;
+                }
             }
         }
     } 
@@ -47,8 +64,6 @@
     $vendedores_control = new UsuarioController();
     $vendedores_totais = $vendedores_control->index('vendedor');
     $TotalVendedor = count($vendedores_totais);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +94,7 @@
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
-                    <div class="jp_card-title">Total de Pedidos</div>
+                    <div class="jp_card-title">Total de Vendas</div>
                     <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value"><?= $numero_vendas;?></div>
@@ -167,18 +182,19 @@
 
                 <div class="jp_chart-filters">
 
-                    <div class="ym_area-select">
+                    <form method="POST" class="ym_area-select">
                         <div class="ym_select" onclick="mostrar_categorias()">
-                            <p class="ym_categoria-select">Produtos </p>
+                            <p class="ym_categoria-select"><?=$categoria?> </p>
                             <p class="ym_seta-categoria">></p>
                         </div>
                         
+                        <input type="hidden" name="opcao" value="<?=$categoria?>">
                         
-                        <div class="ym_options">
-                            <a class="ym_link-option" onclick="trocar_categoria()"></i> Serviços</a>
-                        </div>
+                        <button class="ym_options" type="submit" name="categoria" value="<?=$opcao?>">
+                            <a class="ym_link-option" onclick="trocar_categoria()"><?=$opcao?></a>
+                        </button>
                         
-                    </div>
+                    </form>
                     
 
                 </div>

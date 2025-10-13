@@ -3,14 +3,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Vendedor</title>
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/pop-up-add-produto.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/pop-up-cadastrar_vendedor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
     <div class="eze-container">
         <div class="eze-tab-header">
             <button class="eze-tab-button eze-active" id="cliente-tab">Cadastrar Vendedor</button>
-            <button class="eze-tab-button" id="documento-tab">Foto de Perfil</button>
+            <!-- <button class="eze-tab-button" id="documento-tab">Foto de Perfil</button> -->
         </div>
 
         <form action="#" method="post" class="ym_form-pop-up">
@@ -38,7 +39,7 @@
                             <label class="eze-label-text">Senha</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="text" class="ym_input-padrao" name="senha" placeholder="Senha" required>
+                        <input type="password" class="ym_input-padrao" name="senha" placeholder="Senha" required>
                     </div>
                 </div>
 
@@ -48,7 +49,7 @@
                             <label class="eze-label-text">Data de nascimento</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="date" class="ym_input-padrao" name="data" required>
+                        <input type="date" class="ym_input-padrao" name="data_nasc" required>
                     </div>
 
                     <div class="eze-form-group">
@@ -72,7 +73,7 @@
                 </div>
 
                 <div class="eze-button-container">
-                    <button type="submit" class="eze-add-button" name="adicionar">Cadastrar Vendedor</button>
+                    <button  class="eze-add-button" name="adicionar" onclick="prosseguir()">Prosseguir</button>
                     <p class="eze-help-text"><span class="eze-required">*</span>Campos obrigatórios</p>
                 </div>
             </div>
@@ -104,60 +105,54 @@
                 </div>
 
                 <div class="eze-button-container">
-                    <button type="button" class="eze-add-button eze-add-button2 eze-add-documento">Adicionar Foto</button>
+                    <button type="submit" name="adicionar" class="eze-add-button eze-add-button2 eze-add-documento">Cadastrar vendedor</button>
+                </div>
+                <div class="eze-button-container">
+                    <button class="eze-add-button" onclick="retornar()" style="gap: 5px;"><i class="fa-solid fa-arrow-left"></i>Voltar</button>
                 </div>
             </div>
         </form>
     </div>
 
     <script>
-        function switchTab(activeTabId, activeContentId) {
-            document.querySelectorAll('.eze-tab-button').forEach(btn => {
-                btn.classList.remove('eze-active');
-            });
-            
-            document.querySelectorAll('.eze-form-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            document.getElementById(activeTabId).classList.add('eze-active');
-            document.getElementById(activeContentId).classList.add('active');
+        area2 = document.getElementById("documento-content");
+        area2.style.display = "none";
+
+        btn = document.getElementsByClassName("eze-add-button")[0];
+
+        function prosseguir(){
+            area1 = document.getElementById("cliente-content");
+            area2 = document.getElementById("documento-content");
+
+            area1.style.animation = "sumir 0.5s ease";
+
+            setTimeout(() => {
+                area1.style.display = "none";
+            }, 500);
+
+            area2.style.animation = "aparecer 0.5s ease";
+
+            setTimeout(() => {
+                area2.style.display = "block";
+            }, 500);
         }
 
-        document.getElementById('cliente-tab').addEventListener('click', () => {
-            switchTab('cliente-tab', 'cliente-content');
-        });
+        function retornar(){
+            area1 = document.getElementById("cliente-content");
+            area2 = document.getElementById("documento-content");
 
-        document.getElementById('documento-tab').addEventListener('click', () => {
-            switchTab('documento-tab', 'documento-content');
-        });
+            area2.style.animation = "sumir 0.5s ease";
 
-        const imageInput = document.getElementById('imageInput');
-        const imagePreview = document.getElementById('imagePreview');
-        const addImageBtn = document.querySelector('.eze-add-documento');
+            setTimeout(() => {
+                area2.style.display = "none";
+            }, 500);
 
-        imagePreview.addEventListener('click', () => {
-            imageInput.click();
-        });
+            area1.style.animation = "aparecer 0.5s ease";
 
-        addImageBtn.addEventListener('click', () => {
-            imageInput.click();
-        });
-
-        imageInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.innerHTML = `
-                        <img src="${e.target.result}" alt="Preview" style="max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 8px;">
-                        <span style="margin-top: 10px; display: block;">Clique para trocar a imagem</span>
-                    `;
-                    imagePreview.style.cursor = 'pointer';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+            setTimeout(() => {
+                area1.style.display = "block";
+            }, 500);
+        }
     </script>
 </body>
 </html>

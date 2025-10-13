@@ -230,7 +230,7 @@
 
 .ym_btn-padrao{
     gap: 12px;
-    width: 231px;
+    min-width: 231px;
 }
 
 .ym_btn-remover{

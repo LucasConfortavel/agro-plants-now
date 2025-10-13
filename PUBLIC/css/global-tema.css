@@ -83,8 +83,10 @@ body.dark-theme .jv_dropdown-item{
 }
 
 body.dark-theme .jv_name,
+body.dark-theme .jv_name_cli,
 body.dark-theme .jv_date,
-body.dark-theme .jv_valor_gast{
+body.dark-theme .jv_valor_gast
+body.dark-theme .jv_comissao{
 color: #45734b;
 }
 

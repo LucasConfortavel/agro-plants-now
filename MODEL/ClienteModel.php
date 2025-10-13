@@ -179,6 +179,23 @@ class ClienteModel {
             throw new Exception("Erro ao deletar usuário: " . $e->getMessage());
         }
     }
+    public function lerTodosComUltimoPedido() {
+        $query = "
+            SELECT c.id, c.nome, c.email, c.telefone, c.CPF, c.CNPJ, c.data_nasc,
+                (SELECT p.status 
+                    FROM pedidos p 
+                    WHERE p.id_cliente = c.id 
+                    ORDER BY p.data_pedido DESC 
+                    LIMIT 1) AS status
+            FROM cliente c
+            ORDER BY c.nome
+        ";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
     // public function login($email, $senha) {
     //     $query = "SELECT id, nome, email, senha, tipo FROM " . $this->table_name . " 

@@ -5,28 +5,29 @@ include "../../CONTROLLER/ClienteController.php";
 include "../../INCLUDE/vlibras.php";
 require_once "../../INCLUDE/verificarLogin.php"; 
 
-
 $cliente_control = new ClienteController();
-$clientes = $cliente_control->index();
+$clientes = $cliente_control->indexComPedidos();
 $total_clientes = count($clientes);
+
+// Conexão PDO para atualizar pedidos
+$pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2", "sucesso@143");
 
 // Paginação
 $limite = 4;
 $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_clientes / $limite);
-
-// Slice para limitar os clientes exibidos
 $clientes = array_slice($clientes, $offset, $limite);
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+// Cadastrar cliente
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome'])) {
     $criar_cliente = $cliente_control->criarCliente();
 
-    if($criar_cliente == 1){
+    if ($criar_cliente == 1) {
         $_SESSION['alerta'] =  '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
-    }elseif($criar_cliente == "Já existe um usuário cadastrado com este email."){
+    } elseif ($criar_cliente == "Já existe um usuário cadastrado com este email.") {
         $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um usuário cadastrado com este email"); </script>';
-    }else{
+    } else {
         $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
     }
 
@@ -34,22 +35,45 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     exit;
 }
 
+// **Finalizar pedido**
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
+    $id_pedido = $_POST['finalizar_pedido'];
+    $stmt = $pdo->prepare("UPDATE pedidos SET status = 'FINALIZADO' WHERE id = ?");
+    if ($stmt->execute([$id_pedido])) {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Pedido finalizado com sucesso!","sucesso"); </script>';
+    } else {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Erro ao finalizar pedido","error"); </script>';
+    }
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Filtro por status
+$status_filtro = isset($_GET['status']) ? $_GET['status'] : '';
+if ($status_filtro) {
+    $clientes = array_filter($clientes, function($cliente) use ($pdo, $status_filtro) {
+        $stmt = $pdo->prepare("SELECT status FROM pedidos WHERE id_cliente = ? ORDER BY data_pedido DESC LIMIT 1");
+        $stmt->execute([$cliente['id']]);
+        $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $pedido && $pedido['status'] === $status_filtro;
+    });
+    $total_clientes = count($clientes);
+}
+
+// Visualizar ou remover cliente
 if(!empty($_GET)){
     if (isset($_GET['visualizar'])){
         $id = $_GET['visualizar'];
-        $cliente = $cliente_control->mostrar($id);
         header('Location: info-edit-adm.php?id=' . $id . '&usuario=cliente');
         exit;
-
     } elseif (isset($_GET['remover'])){
         $id = $_GET['remover'];
         $cliente = $cliente_control->deletar($id);
         if($cliente == 1){
             $_SESSION['alerta'] = '<script> exibirAlerta("Cliente deletado com sucesso","sucesso"); </script>';
-        }else{
+        } else {
             $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível deletar o cliente","error"); </script>';
         }
-
         header("Location: clientes-adm.php");
         exit;
     }
@@ -59,8 +83,8 @@ if(isset($_SESSION['alerta'])){
     echo($_SESSION['alerta']);
     unset($_SESSION['alerta']);
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -72,7 +96,6 @@ if(isset($_SESSION['alerta'])){
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 </head>
 <body>
 
@@ -84,14 +107,11 @@ if(isset($_SESSION['alerta'])){
     </div>
 </div>
 
-
-
 <main class="jp_main-content">
     <h1 class="ym_titulo">Clientes</h1>
 
     <div class="jv_container">
         <div class="jv_card">
-            <!-- Header -->
             <div class="jv_card-header">
                 <div class="jv_header-content">
                     <div class="jv_search-section">
@@ -119,12 +139,38 @@ if(isset($_SESSION['alerta'])){
                     </div>
                 </div>
 
+                <div class="separar">
+
                 <p class="jv_subtitle" id="jv_customerCount">
                     <?= $total_clientes ?> clientes encontrados
                 </p>
+
+                <div class="select-wrapper">            
+                <div class="custom-select" id="customSelect">
+                    <div class="select-trigger">
+                        <span class="select-value"><?= $status_filtro ?: 'Todos' ?></span>
+                        <div class="select-arrow"></div>
+                    </div>
+                    
+                    <div class="select-options">
+                        <div class="select-option <?= $status_filtro === '' ? 'selected' : '' ?>" data-value="">Todos</div>
+                        <div class="select-option <?= $status_filtro === 'PAGO' ? 'selected' : '' ?>" data-value="PAGO">Pago</div>
+                        <div class="select-option <?= $status_filtro === 'ENVIADO' ? 'selected' : '' ?>" data-value="ENVIADO">Enviado</div>
+                        <div class="select-option <?= $status_filtro === 'FINALIZADO' ? 'selected' : '' ?>" data-value="FINALIZADO">Finalizado</div>
+                    </div>
+                </div>
+
+                <select name="status" class="native-select" id="nativeSelect">
+                    <option value="">Todos</option>
+                    <option value="PAGO" <?= $status_filtro === 'PAGO' ? 'selected' : '' ?>>Pago</option>
+                    <option value="ENVIADO" <?= $status_filtro === 'ENVIADO' ? 'selected' : '' ?>>Enviado</option>
+                    <option value="FINALIZADO" <?= $status_filtro === 'FINALIZADO' ? 'selected' : '' ?>>Finalizado</option>
+                </select>
+                </div>
             </div>
 
-            <!-- Table -->
+
+
             <div class="jv_card-content">
                 <div class="jv_table-container">
                     <table class="jv_table">
@@ -134,48 +180,118 @@ if(isset($_SESSION['alerta'])){
                                     <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                 </th>
                                 <th class="jv_name">Nome</th>
-                                <th class="jv_date">Data de Nascimento</th>
-                                <th class="jv_total_comp">Telefone</th>
-                                <th class="jv_valor_gast">CPF/CNPJ</th>
+                                <th class="jv_date"></th>
+                                <th class="jv_total_comp">Status do Pedido </th>
+                                <th class="jv_valor_gast">Carrinho</th>
                                 <th class="jv_actions-col"></th>
                             </tr>
                         </thead>
                         <tbody id="jv_customerTableBody">
                             <?php if ($total_clientes > 0): ?>
                                 <?php foreach ($clientes as $cliente): ?>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
-                                        </td>
-                                        <td>
-                                            <div class="jv_customer-info">
-                                                <div class="jv_avatar">
-                                                    <?= strtoupper(substr($cliente['nome'], 0, 2)) ?>
-                                                </div>
-                                                <div class="jv_customer-details">
-                                                    <h4><?= htmlspecialchars($cliente['nome']) ?></h4>
-                                                    <p><?= htmlspecialchars($cliente['email']) ?></p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
-                                        <td><?= htmlspecialchars($cliente['telefone']) ?></td>
-                                        <td><?= htmlspecialchars($cliente['CPF'] ?? $cliente['CNPJ']) ?></td>
-                                        <td class="jv_table-action">
-                                            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </button>
-                                            <form class="jv_dropdown">
-                                                <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($cliente['id'])?>">
-                                                    <i class="fas fa-eye"></i> Visualizar
-                                                </button>
-                                                <div class="jv_dropdown-separator"></div>
-                                                <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($cliente['id'])?>">
-                                                    <i class="fas fa-trash"></i> Remover
-                                                </button>
+                                    <?php
+                                       $stmt = $pdo->prepare("SELECT id, status FROM pedidos WHERE id_cliente = ? ORDER BY data_pedido DESC LIMIT 1");
+                            $stmt->execute([$cliente['id']]);
+                            $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                            $status = $pedido['status'] ?? 'SEM PEDIDOS';
+                            $id_pedido = $pedido['id'] ?? null;
+
+                            switch ($status) {
+                                case 'FINALIZADO':
+                                    $progress = 100;
+                                    break;
+                                case 'PAGO':
+                                    $progress = 25;
+                                    break;
+                                case 'ENVIADO':
+                                    $progress = 50;
+                                    break;
+                                case 'ENTREGUE':
+                                    $progress = 75;
+                                    break;
+                                case 'CANCELADO':
+                                    $progress = 100;
+                                    break;
+                                default:
+                                    $progress = 0;
+                            }
+                            ?>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
+                                </td>
+                                <td>
+                                    <div class="jv_customer-info">
+                                        <div class="jv_avatar">
+                                            <?= strtoupper(substr($cliente['nome'], 0, 2)) ?>
+                                        </div>
+                                        <div class="jv_customer-details">
+                                            <h4><?= htmlspecialchars($cliente['nome']) ?></h4>
+                                            <p><?= htmlspecialchars($cliente['email']) ?></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="td">
+                                        <?php if ($status !== 'SEM PEDIDOS' && $status !== 'FINALIZADO'): ?>
+                                            <form method="POST" style="display:inline;">
+                                                <input type="hidden" name="finalizar_pedido" value="<?= $id_pedido ?>">
+                                                <button type="submit" class="ym_btn-padrao3">Finalizar Pedido</button>
                                             </form>
-                                        </td>
-                                    </tr>
+                                        <?php else: ?>
+                                            <p></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <?php if ($status !== 'SEM PEDIDOS'): ?>
+                                        <div class="jv_status-wrapper">
+                                            <div class="jv_progress-bar">
+                                                <div class="jv_progress <?= strtolower($status) ?>" 
+                                                    style="width: <?= $progress ?>%;"></div>
+                                            </div>
+                                            <span class="jv_status-label">
+                                                <?php if ($status == 'FINALIZADO') echo '<i class="fas fa-check-circle"></i>'; ?>
+                                                <?php if ($status == 'PAGO') echo '<i class="fas fa-dollar-sign"></i>'; ?>
+                                                <?php if ($status == 'ENVIADO') echo '<i class="fas fa-truck"></i>'; ?>
+                                                <?php if ($status == 'ENTREGUE') echo '<i class="fas fa-box-open"></i>'; ?>
+                                                <?php if ($status == 'CANCELADO') echo '<i class="fas fa-times-circle"></i>'; ?>
+                                                <?= $status ?>
+                                            </span>
+                                        </div>
+                                    <?php else: ?>
+                                        <small style="color:#888">Nenhum pedido</small>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <div class="td">
+                                    <?php if ($id_pedido): ?>
+                                        <a href="venda-info-adm.php?id=<?= $id_pedido ?>" class="ym_btn-padrao2" title="Ver carrinho">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                    <?php else: ?>
+                                        <span class="ym_btn-disabled" title="Sem pedido">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </span>
+                                    <?php endif; ?>
+                                    </div>
+                                </td>
+                                <td class="jv_table-action">
+                                    <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                    <form class="jv_dropdown" method="GET" action="">
+                                        <button type="submit" name="visualizar" value="<?= htmlspecialchars($cliente['id']) ?>" class="jv_dropdown-item">
+                                            <i class="fas fa-eye"></i> Visualizar
+                                        </button>
+                                        <div class="jv_dropdown-separator"></div>
+                                        <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($cliente['id'])?>">
+                                            <i class="fas fa-trash"></i> Remover
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <tr><td colspan="6" style="text-align: center; height: 49.7vh;">Nenhum cliente encontrado</td></tr>
@@ -211,7 +327,70 @@ if(isset($_SESSION['alerta'])){
         <?php endif; ?>
     </div>
 
+<<<<<<< HEAD
+<script>
+    const customSelect = document.getElementById('customSelect');
+    const selectTrigger = customSelect.querySelector('.select-trigger');
+    const selectOptions = customSelect.querySelector('.select-options');
+    const selectValue = customSelect.querySelector('.select-value');
+    const options = customSelect.querySelectorAll('.select-option');
+    const nativeSelect = document.getElementById('nativeSelect');
+
+    selectTrigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        selectTrigger.classList.toggle('active');
+        selectOptions.classList.toggle('active');
+    });
+
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            options.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            const value = this.getAttribute('data-value');
+            const text = this.textContent;
+            selectValue.textContent = text;
+            nativeSelect.value = value;
+            selectTrigger.classList.remove('active');
+            selectOptions.classList.remove('active');
+            nativeSelect.dispatchEvent(new Event('change'));
+        });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!customSelect.contains(e.target)) {
+            selectTrigger.classList.remove('active');
+            selectOptions.classList.remove('active');
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            selectTrigger.classList.remove('active');
+            selectOptions.classList.remove('active');
+        }
+    });
+
+    nativeSelect.addEventListener('change', function() {
+        const value = this.value;
+        const url = new URL(window.location.href);
+
+        if (value && value !== "TODOS") {
+            url.searchParams.set('status', value);
+        } else {
+            url.searchParams.delete('status');
+        }
+
+        window.location.href = url.toString();
+    });
+</script>
+
+        
+    </script>
+
+    <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
+=======
     <script src="../../PUBLIC/JS/script-clientes.js"></script>
+>>>>>>> Arquitetura-MVC
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
     <script src="../../PUBLIC/JS/script-tema.js"></script>

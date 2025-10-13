@@ -65,6 +65,12 @@ class ClienteController {
             return $error;
         }
     }
+    public function indexComPedidos() {
+        return $this->cliente->lerTodosComUltimoPedido();
+    }
+
+
+
 
     // public function editar($id) {
     //     try {
