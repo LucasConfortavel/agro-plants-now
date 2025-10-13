@@ -8,7 +8,6 @@
 
     $controler_user = new UsuarioController();
 
-    // POST: criar vendedor
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['adicionar'])){
             $usuario = $controler_user->criar("vendedor");

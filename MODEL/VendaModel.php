@@ -59,9 +59,12 @@ class VendaModel {
     }
 
     public function lerEspecifico($filtro) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE id_vendedor = :filtro";
+        $query = "select " . $this->table_name . ".*,
+                usuario.nome AS nome_vendedor, usuario.email AS email_vendedor, usuario.telefone AS telefone_vendedor, usuario.CPF AS CPF_vendedor, usuario.data_nasc AS data_nasc_vendedor,
+                cliente.nome AS nome_cliente, cliente.email AS email_cliente, cliente.telefone AS telefone_cliente, cliente.CPF AS CPF_cliente, cliente.CNPJ AS CNPJ_cliente, cliente.data_nasc AS data_nasc_cliente  from venda
+                inner join usuario on venda.id_vendedor = usuario.id 
+                inner join cliente on venda.id_cliente = cliente.id" . " WHERE venda.id_vendedor = " .$filtro;        
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":filtro", $filtro);
         $stmt->execute();
 
         return $stmt;
