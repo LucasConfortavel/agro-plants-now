@@ -24,6 +24,11 @@
     transition: none;
 }
 
+.ym_form-pop-up{
+    display: flex;
+    width: 35vw;
+    gap: 50px;
+}
 
 .eze-tab-button {
     flex: 1;
@@ -47,12 +52,13 @@
 }
 
 .eze-form-section {
-    display: none;
-}
-
-.eze-form-section.active {
+    min-width: 100%;
     display: block;
 }
+/* 
+.eze-form-section.active {
+    display: block;
+} */
 
 .eze-form-row {
     display: flex;
@@ -142,7 +148,7 @@
 
 .eze-image-placeholder {
     border: 2px dashed #36a551;
-    width: 479px;
+    width: 100%;
     height: 260px;
     border-radius: 8px;
     padding: 40px;

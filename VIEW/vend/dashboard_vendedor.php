@@ -138,7 +138,7 @@ foreach ($vendas_usuario as $venda) {
 
                 // Números das páginas
                 for ($i = 1; $i <= $total_paginas; $i++) {
-                    $classe = ($i == $pagina) ? 'style="font-weight:bold;"' : '';
+                    $classe = ($i == $pagina) ? 'class="jp_pagination-item active"' : 'class=jp_pagination-item';
                     echo '<a '.$classe.' href="?pagina='.$i.'">'.$i.'</a>';
                 }
 

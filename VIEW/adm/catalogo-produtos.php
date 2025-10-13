@@ -17,7 +17,7 @@ if (isset($dados['postResult']) && isset($dados['postResult']['success'])) {
 
 if (isset($dados['remocaoResult']) && isset($dados['remocaoResult']['success'])) {
     header("Location: catalogo-produtos.php?success=" . urlencode($dados['remocaoResult']['success']));
-    exit;
+    exit;   
 } elseif (isset($dados['remocaoResult']) && isset($dados['remocaoResult']['error'])) {
     header("Location: catalogo-produtos.php?error=" . urlencode($dados['remocaoResult']['error']));
     exit;
