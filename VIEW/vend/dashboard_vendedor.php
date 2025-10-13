@@ -13,10 +13,34 @@ $vendas_usuario = $venda_control->index($user_id);
 $total_vendido = 0;
 $numero_vendas = 0;
 
+$data_grafico = [0,0,0,0,0,0,0,0,0,0,0,0];
+
+if(!isset($_POST['categoria'])){
+    $categoria = "Produtos";
+    $opcao = "Serviços";
+}
+else{    
+    $opcao = $_POST['opcao'];
+    $categoria = $_POST['categoria'];
+}
+
+if($categoria == "Produtos"){
+    $filtro="produto";
+}else{
+    $filtro="servico";
+}
 
 foreach ($vendas_usuario as $venda) {
     $total_vendido += $venda['total'];
     $numero_vendas += 1;
+    if($venda['tipo'] == $filtro){
+        $data_venda = new DateTime($venda['data_venda']);
+        for ($i=0; $i <= 12; $i++) { 
+            if($data_venda->format("m") == $i){
+                $data_grafico[$i-1] = $data_grafico[$i-1] + 1;
+            }
+        }
+    }
 } 
 
 $total_vendas = count($vendas_usuario);
@@ -42,6 +66,7 @@ $vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
     <link rel="stylesheet" href="../../PUBLIC/css/dashboard-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <main class="jp_main-content">
@@ -96,61 +121,37 @@ $vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
                 </tbody>
             </table>
             
-               <div class="jv_page-navigation">
-                     <?php if ($pagina_atual > 1): ?>
-                         <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                              <i class="fas fa-arrow-left"></i>
-                         </a>
-                     <?php endif; ?>
+            <div class="jv_page-navigation">
+                    <?php if ($pagina_atual > 1): ?>
+                        <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    <?php endif; ?>
 
-                        <?php
-                            $inicio = max(1, $pagina_atual - 2);
-                            $fim = min($total_paginas, $pagina_atual + 2);
-                            for ($i = $inicio; $i <= $fim; $i++): ?>
-                                <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                                    <?= $i ?>
-                                </a>
-                        <?php endfor; ?>
+                    <?php
+                        $inicio = max(1, $pagina_atual - 2);
+                        $fim = min($total_paginas, $pagina_atual + 2);
+                        for ($i = $inicio; $i <= $fim; $i++): ?>
+                            <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                                <?= $i ?>
+                            </a>
+                    <?php endfor; ?>
 
-                        <?php if ($pagina_atual < $total_paginas): ?>
-                          <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                              <i class="fas fa-arrow-right"></i>
-                          </a>
-                        <?php endif; ?>
-                    </div>
-
-                    <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
-                        <i class="fa-solid fa-circle-info"></i>
-                    </a>
+                    <?php if ($pagina_atual < $total_paginas): ?>
+                        <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    <?php endif; ?>
                 </div>
+
+                <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
+            </div>
           
          </div>
 
         <div class="jp_bottom-section">
-            <!-- <div class="jp_clients-panel">
-                <div class="jp_clients-header">Clientes fixados</div>
-                <div class="jp_clients-list">
-                    <div class="jp_client-item">
-                        <div class="jp_client-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="jp_client-name">Rafael Germinari</div>
-                    </div>
-                    <div class="jp_client-item">
-                        <div class="jp_client-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="jp_client-name">Rafael Germinari</div>
-                    </div>
-                    <div class="jp_client-item">
-                        <div class="jp_client-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="jp_client-name">Rafael Germinari</div>
-                    </div>
-                </div>
-            </div> -->
-
             <div class="jp_chart-panel">
                 <div class="jp_chart-header">
                     <div class="jp_chart-title-area">
@@ -159,41 +160,30 @@ $vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
                     </div>
                     <div class="jp_chart-filters">
                         
-                        <div class="ym_area-select">
+                        <form method="POST" class="ym_area-select">
                             <div class="ym_select" onclick="mostrar_categorias()">
-                                <p class="ym_categoria-select">Produtos </p>
+                                <p class="ym_categoria-select"><?=$categoria?> </p>
                                 <p class="ym_seta-categoria">></p>
                             </div>
                             
+                            <input type="hidden" name="opcao" value="<?=$categoria?>">
                             
-                            <div class="ym_options">
-                                <a class="ym_link-option" onclick="trocar_categoria()"></i> Serviços</a>
-                            </div>
+                            <button class="ym_options" type="submit" name="categoria" value="<?=$opcao?>">
+                                <a class="ym_link-option" onclick="trocar_categoria()"><?=$opcao?></a>
+                            </button>
                             
-                        </div>
-                        
-                        <div class="ym_area-select">
-                            <div class="ym_select" onclick="mostrar_categorias(1)">
-                                <p class="ym_categoria-select" >Último mês</p>
-                                <p class="ym_seta-categoria">></p>
-                            </div>
-                            
-                            
-                            <div class="ym_options">
-                                <a class="ym_link-option" onclick="trocar_categoria(1,1)" > Últimos anos</a>
-                            </div>
-                            
-                        </div>
+                        </form>
 
                     </div>
                 </div>
-                <div class="jp_chart-area">
-                    <canvas id="vendorSalesChart" class="jp_chart"></canvas>
-                </div>
+                <canvas id="grafico_vend" width="700" height="250"></canvas>
             </div>
         </div>
     </main>
-    <script src="../../PUBLIC/JS/script-dashboard-vend.js"></script>
     <script src="../../PUBLIC/JS/script-select.js"></script>
+    <script>
+        window.data_grafico = <?php echo json_encode($data_grafico); ?>;
+    </script>
+    <script src="../../PUBLIC/JS/script-dashboard-vend.js"></script>
 </body>
 </html>

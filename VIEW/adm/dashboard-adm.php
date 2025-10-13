@@ -10,7 +10,7 @@
     $produtoController = new ProdutoController();
     $produtos = $produtoController->index();
     
-    $limite = 4;
+    $limite = 5;
     $alertas = [];
     
     if (!isset($produtos['error'])) {
@@ -64,6 +64,18 @@
     $vendedores_control = new UsuarioController();
     $vendedores_totais = $vendedores_control->index('vendedor');
     $TotalVendedor = count($vendedores_totais);
+
+    $total_vendas = count($vendas_totais);
+    
+    $limite = 4;
+    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    if ($pagina_atual < 1) $pagina_atual = 1;
+
+    $offset = ($pagina_atual - 1) * $limite;
+
+    $total_paginas = ($total_vendas > 0) ? ceil($total_vendas / $limite) : 1;
+
+    $vendas_paginadas = array_slice($vendas_totais, $offset, $limite);
 ?>
 
 <!DOCTYPE html>
@@ -122,54 +134,56 @@
                     <tr class="vc_header-planilha">
                         <th>Código</th>
                         <th>Vendedor</th>
-                        <th>Produtos</th>
+                        <th>Tipo</th>
                         <th>Data</th>
                         <th>Valor</th>
                         <th>Comissão</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Rafael</td>
-                        <td>Bioest/ Líq/</td>
-                        <td>02/08</td>
-                        <td class="jp_value-column">R$7500</td>
-                        <td class="jp_commission-column">R$750 (10%)</td>
-                    </tr>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Rafael</td>
-                        <td>Bioest/ Líq/</td>
-                        <td>02/08</td>
-                        <td class="jp_value-column">R$7500</td>
-                        <td class="jp_commission-column">R$750 (10%)</td>
-                    </tr>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Rafael</td>
-                        <td>Bioest/ Líq/</td>
-                        <td>02/08</td>
-                        <td class="jp_value-column">R$7500</td>
-                        <td class="jp_commission-column">R$750 (10%)</td>
-                    </tr>
-                    <tr>
-                        <td>#XXXX</td>
-                        <td>Rafael</td>
-                        <td>Bioest/ Líq/</td>
-                        <td>02/08</td>
-                        <td class="jp_value-column">R$7500</td>
-                        <td class="jp_commission-column">R$750 (10%)</td>
-                    </tr>
+                    <?php
+                        foreach ($vendas_paginadas as $venda) {
+                        echo '
+                            <tr>
+                                <td>'.$cliente_control->mostrar($venda['id_cliente'])['nome'].'</td>
+                                <td>'.$vendedores_control->mostrar($venda['id_vendedor'])['nome'].'</td>
+                                <td>'.$venda['tipo'].'</td>
+                                <td>'.date('d/m/Y', strtotime($venda['data_venda'])).'</td>
+                                <td class="jp_sales-value">R$ '. number_format($venda['total'], 2, ',', '.') .'</td>
+                                <td class="jp_sales-value">R$ '. number_format($venda['total']/100 * 5, 2, ',', '.')  .'</td>
+                            </tr>';
+                        }
+                    
+                    ?>  
                 </tbody>
             </table>
+
             <div class="jp_pagination">
-                <div class="jp_pagination-item active">1</div>
-                <div class="jp_pagination-item">2</div>
-                <div class="jp_pagination-item">3</div>
-                <div class="jp_pagination-arrow">
-                    <i class="fas fa-arrow-right"></i>
+                    <?php if ($pagina_atual > 1): ?>
+                        <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    <?php endif; ?>
+
+                    <?php
+                        $inicio = max(1, $pagina_atual - 2);
+                        $fim = min($total_paginas, $pagina_atual + 2);
+                        for ($i = $inicio; $i <= $fim; $i++): ?>
+                            <a href="?pagina=<?= $i ?>" class="jp_pagination-item <?= $i == $pagina_atual ? 'active' : '' ?>">
+                                <?= $i ?>
+                            </a>
+                    <?php endfor; ?>
+
+                    <?php if ($pagina_atual < $total_paginas): ?>
+                        <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jp_pagination-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    <?php endif; ?>
                 </div>
+
+                <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
             </div>
         </div>
 
@@ -208,6 +222,5 @@
         window.data_grafico = <?php echo json_encode($data_grafico); ?>;
     </script>
     <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
-
 </body>
 </html>
