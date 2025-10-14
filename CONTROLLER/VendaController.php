@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../MODEL/VendaModel.php';
-require_once __DIR__ . '/../MODEL/PedidoModel.php';
+require_once __DIR__ . '/../MODEL/PedidosModel.php';
 require_once __DIR__ . '/../MODEL/PedidoItensModel.php';
 
 class VendaController {
