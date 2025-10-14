@@ -592,42 +592,42 @@ document.addEventListener("DOMContentLoaded", () => {
     // ===== Gráfico Gasto com Comissões (Line) =====
 
     new Chart(document.getElementById("comm-line-chart"), {
-    type: "line",
-    data: {
-        labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
-        datasets: [{
-            label: "Gasto com Comissões (R$)",
-            data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
-            backgroundColor: "rgba(69,115,75,0.2)",
-            borderColor: "#45734b",
-            borderWidth: 3,
-            fill: true,
-            tension: 0.3,
-            pointBackgroundColor: "#45734b",
-            pointRadius: 6
-        }]
-    },
-    options: {
-        plugins: {
-            legend: { labels: { font: { size: 14 } } },
-            tooltip: { 
-                callbacks: { 
-                    label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR", {minimumFractionDigits: 2}) 
-                } 
-            }
+        type: "line",
+        data: {
+            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+            datasets: [{
+                label: "Gasto com Comissões (R$)",
+                data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
+                backgroundColor: "rgba(69,115,75,0.2)",
+                borderColor: "#45734b",
+                borderWidth: 3,
+                fill: true,
+                tension: 0.3,
+                pointBackgroundColor: "#45734b",
+                pointRadius: 6
+            }]
         },
-        scales: {
-            y: { 
-                beginAtZero: true, 
-                ticks: { 
-                    callback: v => "R$ " + v.toLocaleString("pt-BR", {minimumFractionDigits: 2}) 
-                }, 
-                grid: { color: "rgba(0,0,0,0.05)" } 
+        options: {
+            plugins: {
+                legend: { labels: { font: { size: 14 } } },
+                tooltip: { 
+                    callbacks: { 
+                        label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR", {minimumFractionDigits: 2}) 
+                    } 
+                }
             },
-            x: { grid: { display: false } }
+            scales: {
+                y: { 
+                    beginAtZero: true, 
+                    ticks: { 
+                        callback: v => "R$ " + v.toLocaleString("pt-BR", {minimumFractionDigits: 2}) 
+                    }, 
+                    grid: { color: "rgba(0,0,0,0.05)" } 
+                },
+                x: { grid: { display: false } }
+            }
         }
-    }
-});
+    });
 
     new Chart(document.getElementById("comm-doughnut-chart"), {
     type: "doughnut",
