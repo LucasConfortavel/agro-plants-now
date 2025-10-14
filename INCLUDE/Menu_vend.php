@@ -34,7 +34,7 @@
             </nav>
             <div class="jp_bottom-menu">
                 <ul>
-                    <button onclick= "window.location.href='../../VIEW/vend/ajustes-informacoes-vend.php'"><li id="ajustes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></button>
+                    <button onclick= "window.location.href='../../VIEW/vend/ajustes-informaçoes-vend.php'"><li id="ajustes"><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/settings.svg" alt=""> Ajustes</li></button>
                     <button onclick= "window.location.href='../../CONTROLLER/logout.php'"><li><img src="https://raw.githubusercontent.com/feathericons/feather/master/icons/log-out.svg" alt=""> Sair</li></button>
                 </ul>
             </div>
