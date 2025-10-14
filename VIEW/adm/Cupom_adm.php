@@ -122,37 +122,23 @@ if(isset($_SESSION['alerta'])){
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
-                                <th class="jv_checkbox-col">
-                                    <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                </th>
+                                
                                 <th class="jv_codigo">Código</th>
                                 <th class="jv_desconto">Desconto</th>
                                 <th class="jv_cadastro">Data de Cadastro</th>
                                 <th class="jv_validade">Validade</th>
-                                <th class="jv_actions-col"></th>
+                           
                             </tr>
                         </thead>
                         <tbody id="jv_customerTableBody">
                             <?php if ($total_cupons > 0): ?>
                                 <?php foreach ($cupons as $cupom): ?>
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cupom['id'] ?? '' ?>">
-                                        </td>
+                                       
                                         <td ><?= htmlspecialchars($cupom['codigo'] ?? '-') ?></td>
                                         <td ><?= htmlspecialchars($cupom['valor'] ?? $cupom['desconto'] ?? '0') ?>%</td>
                                         <td ><?= isset($cupom['data_emissao']) ? date("d/m/Y", strtotime($cupom['data_emissao'])) : (isset($cupom['data_criacao']) ? date("d/m/Y", strtotime($cupom['data_criacao'])) : '-') ?></td>
                                         <td ><?= isset($cupom['data_validade']) ? date("d/m/Y", strtotime($cupom['data_validade'])) : (isset($cupom['validade']) ? date("d/m/Y", strtotime($cupom['validade'])) : '-') ?></td>
-                                        <td class="jv_table-action">
-                                            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </button>
-                                            <form class="jv_dropdown">
-                                                <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value=<?= $cupom['id'] ?>>
-                                                    <i class="fas fa-trash"></i> Remover
-                                                </button>
-                                            </form>
-                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>

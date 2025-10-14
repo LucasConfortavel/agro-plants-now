@@ -9,14 +9,35 @@ $controler_venda = new VendaController();
 $controler_cliente = new ClienteController();
 $controler_usuario = new UsuarioController();
 
-if(isset($_GET['id'])){
-        $id=$_GET["id"];
-        $venda = $controler_venda->mostrar($id);
+$venda = $cliente = $usuario = null;
+$itens = [];
+
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $id = $_GET['id'];
+    $venda = $controler_venda->mostrar($id);
+    $itens_venda = $controler_venda->listarItensDaVenda($id);
+
+
+    if ($venda) {
         $cliente = $controler_cliente->mostrar($venda['id_cliente']);
         $usuario = $controler_usuario->mostrar($venda['id_vendedor']);
-
+        $itens = $controler_venda->listarItensDaVenda($id); // Você precisa ter este método no controller
+    } else {
+        echo "<script>alert('Venda não encontrada.'); window.location.href='vendas-adm.php';</script>";
+        exit;
+    }
+} else {
+    echo "<script>alert('ID inválido.'); window.location.href='vendas-adm.php';</script>";
+    exit;
 }
 
+// Cálculo do subtotal
+$subtotal = array_reduce($itens, function($carry, $item) {
+    return $carry + ($item['preco_unitario'] * $item['quantidade']);
+}, 0);
+
+$desconto = 0; // Pode ser dinâmico se houver
+$total = $venda['total'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -27,13 +48,11 @@ if(isset($_GET['id'])){
     <link rel="stylesheet" href="../../PUBLIC/css/venda-info-administrador.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>     
 <body>
     <!-- pop-up -->
-    <div class="ym_popup-overlay" >
+    <div class="ym_popup-overlay">
         <div class="ym_popup-content">
             <div class="ym_area-superior-popup"></div>
             <div class="ym_conteudo-popup"></div>
@@ -47,21 +66,11 @@ if(isset($_GET['id'])){
         <div class="P_customer-info">
             <div class="P_customer-details">
                 <div class="P_customer-label">Cliente</div>
-                <div class="P_customer-name">
-                    <?= $cliente['nome']?>
-                </div>
+                <div class="P_customer-name"><?= htmlspecialchars($cliente['nome']) ?></div>
                 <div class="P_customer-date">
                     <div>Data de criação</div>
-                    <div><?= $venda['data_venda']?></div>
+                    <div><?= htmlspecialchars($venda['data_venda']) ?></div>
                 </div>
-            </div>
-            
-            <div class="P_action-buttons">
-
-                <!-- <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up-link.php','O link foi criado')">
-
-                    Gerar link de venda
-                </a> -->
             </div>
         </div>
 
@@ -74,70 +83,50 @@ if(isset($_GET['id'])){
                 <div class="P_header-total">Total</div>
             </div>
 
-            <div class="P_cart-item">
-                <div class="P_item-id">
-                    <span><?= $venda["id"];?></span>
+            <?php foreach ($itens_venda as $item): ?>
+                <div class="P_cart-item">
+                    <div class="P_item-id"><?= htmlspecialchars($item['id_produto']) ?></div>
+                    <div class="P_item-produto">
+                        <div class="P_product-image"></div>
+                        <span><?= htmlspecialchars($item['nome_produto']) ?></span>
+                    </div>
+                    <div class="P_item-preco">R$<?= number_format($item['preco_unitario'], 2, ',', '.') ?></div>
+                    <div class="P_item-quantidade">
+                        <span class="P_quantity-value"><?= $item['quantidade'] ?></span>
+                    </div>
+                    <div class="P_item-total">
+                        R$<?= number_format($item['preco_unitario'] * $item['quantidade'], 2, ',', '.') ?>
+                    </div>
                 </div>
-                <!-- <div class="P_item-remove">
-                    <button class="P_remove-button">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div> -->
-                <div class="P_item-produto">
-                    <div class="P_product-image"></div>
-                    <span>Produto</span>
-                </div>
-                <div class="P_item-preco">R$1000</div>
-                <div class="P_item-quantidade">
-                    <!-- <button class="P_quantity-button" id="menos">−</button> -->
-                    <span class="P_quantity-value" id="valor">1</span>
-                    <!-- <button class="P_quantity-button" id="mais">+</button> -->
-                </div>
-                <div class="P_item-total"><?= $venda['total']?></div>
-            </div>
+            <?php endforeach; ?>
         </div>
         
         <div class="P_cart-summary">
-            <!-- <div class="P_coupon-section">
-                <div class="P_coupon-icon">
-                    <i class="fa-solid fa-ticket"></i>
-                </div>
-                <input type="text" placeholder="Cupom" class="ym_input-padrao">
-                <a class="ym_btn-padrao" onclick="abrirPopup('../pop-up/pop-up_cupom_Adicionado.php','Cupom aplicado <i class=\'fa-solid fa-ticket\'></i>')">Aplicar</a>
-
-            </div> -->
-
             <div class="P_details-section">
                 <h3>Detalhes</h3>
-                
                 <div class="P_detail-row">
                     <span>Subtotal</span>
-                    <span class="P_price">R$1000</span>
+                    <span class="P_price">R$<?= number_format($subtotal, 2, ',', '.'); ?></span>
                 </div>
-                
                 <div class="P_detail-row">
                     <span>Desconto</span>
-                    <span class="P_price discount">R$0</span>
+                    <span class="P_price discount">R$<?= number_format($desconto, 2, ',', '.'); ?></span>
                 </div>
-                
                 <div class="P_divider"></div>
-                
                 <div class="P_detail-row total-row">
                     <span>Total</span>
-                    <span class="P_price total"><?= $venda['total']?></span>
+                    <span class="P_price total">R$<?= number_format($total, 2, ',', '.'); ?></span>
                 </div>
                 <div class="P_detail-row status-row">
                     <span>Status da Compra</span>  
-                    <span class="P_price total">Pago</span>
+                    <span class="P_price total"><?= htmlspecialchars($venda['status']); ?></span>
                 </div>
             </div>
-
         </div>
 
         <div class="back-button-mobile">
             <a href="vendas-adm.php" class="ym_link-volta2"> <i class="fa-solid fa-arrow-left"></i> </a>
         </div>
-
     </main>
 
     <script src="../../PUBLIC/JS/script-info_vendas.js"></script>

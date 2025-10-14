@@ -16,9 +16,10 @@ try {
         foreach ($produtos as $produto) {
             if ($produto['quantidade'] <= $limite) {
                 $notificacoes[] = [
-                    'titulo' => "Estoque baixo para o produto: {$produto['nome']}",
-                    'setor' => "Produtos",
-                    'data' => date("d/m/Y")
+                    'titulo' => "Estoque baixo: {$produto['nome']}",
+                    'setor'  => "Produtos",
+                    'data'   => date("d/m/Y"),
+                    'quantidade' => $produto['quantidade']
                 ];
             }
         }
@@ -226,12 +227,10 @@ try {
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
-                                        <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
                                     <th class="jv_date">Título</th>
                                     <th class="jv_total_comp">Setor</th>
                                     <th class="jv_valor_gast">Data</th>
+                                    <th class="jv_valor_gast">Qtd.</th>
                                     <th class="jv_actions-col"></th> 
                                 </tr>
                             </thead>

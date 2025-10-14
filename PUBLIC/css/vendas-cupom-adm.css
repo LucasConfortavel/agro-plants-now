@@ -251,7 +251,6 @@
     
 }
 
-
 .jv_table-header .jv_name {
     padding: 12px 16px;
     display: flex;
@@ -297,7 +296,7 @@
 .jv_table-header .jv_codigo {
     padding: 12px 16px;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b;
     font-size: 1rem;
 }
 
@@ -305,7 +304,7 @@
     padding: 12px 16px;
     text-align: center;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b;
     font-size: 1rem;
 }
 
@@ -313,7 +312,7 @@
     padding: 12px 16px;
     text-align: center;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b;
     font-size: 1rem;
 }
 
@@ -321,7 +320,7 @@
     padding: 12px 16px;
     text-align: center;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b;
     font-size: 1rem;
 }
 
@@ -558,7 +557,7 @@
 /* ===================================== */
 /* Responsividade para telas 1024px–1399px */
 /* ===================================== */
-@media (max-width: 1399px) {
+@media (max-width: 1035px) {
     .jv_header-content {
         flex-direction: row;
         flex-wrap: wrap;
@@ -581,6 +580,15 @@
     .jv_table-header #jv_banguela {
         font-size: 0.95rem;
         padding: 10px 12px;
+    }
+
+    .jv_name{
+        margin-top: 24px;
+        height: 100%;
+    }
+
+    .jv_name p{
+        margin-bottom: 24px;
     }
 }
 
@@ -638,5 +646,14 @@
 
     .jv_customer-details p {
         font-size: 12px;
+    }
+
+    .jv_name{
+        margin-top: 34px;
+        height: 100%;
+    }
+
+    .jv_name p{
+        margin-bottom: 24px;
     }
 }

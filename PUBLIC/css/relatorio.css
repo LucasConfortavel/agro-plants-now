@@ -133,7 +133,20 @@ body {
   min-width: 11.5vw;
   max-width: 11.5vw;
   height: 5vh;
+  margin-left: 214px;
   
+}
+
+.ym_categoria-select{
+  color: #111827;
+}
+
+.ym_seta-categoria{
+  color: #111827;
+}
+
+h3{
+  color: #111827;
 }
 
 .ym_areaselect{
@@ -144,18 +157,91 @@ body {
   margin-top: -4%;
 }
 
+.ym_areaselect_com{
+  min-width: 11.5vw;
+  max-width: 11.5vw;
+  height: 5vh;
+  margin-left: 74%;
+  margin-top: -4%;
+}
+
+.jv_table-header .jv_name p {
+    padding: 12px 16px;
+    display: flex;
+    font-weight: 600;
+    color: #45734b;
+    font-size: 1rem;
+    margin-left: 75px;
+   
+}
+
+.jv_table-header .jv_comissao p{
+    padding: 12px 16px;
+    display: flex;
+    font-weight: 600;
+    color: #45734b;
+    font-size: 1rem;
+    margin-left: 23px;
+}
+
+.jv_table-header .jv_name{
+  color: #45734b;
+}
+
+.jv_table-header .jv_name_cli{
+  color: #45734b;
+}
+
+.jv_table-header .jv_valor_gast{
+  color: #45734b;
+}
+
+.jv_table-header .jv_data{
+  color: #45734b;
+}
+
+.jv_table-header .jv_banguela{
+  color: #45734b;
+}
+
+.jv_table-header .jv_valor_venda{
+  color: rgb(73, 117, 79);
+}
+
+
+
+.badge-comissao {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 12px;
+    background-color:rgb(73, 117, 75,0.85) ; /* verde padrão mais transparente */
+}
+
+/* opcional: cores diferentes por faixa */
+.badge-comissao.baixa { background-color: rgba(205, 210, 214, 0.8); }   /* cinza */
+.badge-comissao.media { background-color: rgba(255, 193, 7, 0.85); }    /* amarelo */
+.badge-comissao.alta  { background-color: rgba(40, 167, 69, 0.7); }     /* verde mais claro */
+.badge-comissao.muito-alta { background-color: rgba(220, 53, 69, 0.8); } /* vermelho */
+
+
+
 .ym_select{
-    height: 100%;
-    width: 90%;
-    display: flex;  
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid rgb(224, 224, 224);
-    background-color: white;
-    border-radius: 5px;
-    padding: 0px 3px;
-    cursor: pointer;
-    transition: all ease 1s;
+  height: 100%;
+  width: 90%;
+  display: flex;  
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(224, 224, 224);
+  background-color: white;
+  border-radius: 5px;
+  padding: 0px 3px;
+  cursor: pointer;
+  transition: all ease 1s;
+  margin-top: -40px;
+    
 }
   
   
@@ -204,6 +290,7 @@ body {
 
 }
 
+
 .ym_options{
     display: none;
     background-color: white;
@@ -215,6 +302,7 @@ body {
     margin-top: 10px;
     border: 1px solid rgb(224, 224, 224);
     width: auto;
+    
 }
 
 .ym_link-option{
@@ -293,6 +381,17 @@ body {
   white-space: nowrap;
 }
 
+
+.po-tab-btn:hover {
+  background: #f1f5f9;
+  color: #45734b;
+}
+
+.po-tab-btn.po-active {
+  background: #45734b;
+  color: white;
+}
+
 .po-tab-btn:hover {
   background: #f1f5f9;
   color: #45734b;
@@ -330,7 +429,7 @@ body {
   padding: 0.5rem 1rem;
   border: 1px solid #d1d5db;
   border-radius: 0.375rem;
-  width: 180px;
+  width: 170px;
   background: #45734b;
   cursor: pointer;
   font-size: 0.875rem;
@@ -342,6 +441,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: -1px;
+  margin-right: 204px;
 }
 
 .jv_search-input{
