@@ -22,11 +22,9 @@ class UsuarioModel {
     }
 
     public function criar() {
-        // Adicione status com valor padrão
         $query = "INSERT INTO " . $this->table_name . " 
                  SET nome=:nome, email=:email, senha=:senha, tipo=:tipo, 
-                     telefone=:telefone, CPF=:CPF, CEP=:CEP, data_nasc=:data_nasc, 
-                     foto=:foto, status='ATIVADO'";
+                     telefone=:telefone, CPF=:CPF, CEP=:CEP, data_nasc=:data_nasc, foto=:foto";
 
         $stmt = $this->conn->prepare($query);
 
@@ -77,6 +75,17 @@ class UsuarioModel {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = ? LIMIT 0,1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row;
+    }
+
+    public function lerUm_email() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE email = ? LIMIT 0,1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->email);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -162,6 +171,26 @@ class UsuarioModel {
         }
     }
 
+    public function atualizar_senha() {
+        $query = "UPDATE " . $this->table_name . " 
+                    SET senha=:senha WHERE id=:id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->senha = htmlspecialchars(strip_tags($this->senha));
+
+        $stmt->bindParam(":id", $this->id);
+        $stmt->bindParam(":senha", $this->senha);
+
+        try {
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Erro ao atualizar usuário: " . $e->getMessage());
+            throw new Exception("Erro ao atualizar usuário: " . $e->getMessage());
+        }
+    }
+
     public function deletar() {
         try {
             $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
@@ -178,7 +207,7 @@ class UsuarioModel {
     }
 
     public function login($email, $senha) {
-        $query = "SELECT id, nome, email, senha, tipo, status FROM " . $this->table_name . " 
+        $query = "SELECT id, nome, email, senha, tipo FROM " . $this->table_name . " 
                   WHERE email = ? LIMIT 0,1";
         
         $stmt = $this->conn->prepare($query);
@@ -187,23 +216,19 @@ class UsuarioModel {
     
         if ($stmt->rowCount() == 1) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            // Verificar se usuário está ativo
-            if ($row['status'] != 'ATIVADO') {
-                return 'DESATIVADO';
-            }
-            
-            if ($senha === $row['senha']) {
+
+            if(password_verify($senha,$row['senha'])){
                 $this->id = $row['id'];
                 $this->nome = $row['nome'];
                 $this->email = $row['email'];
                 $this->tipo = $row['tipo'];
-                
-                return 'SUCESSO';
+
+                return true;
             }
         }
         
-        return 'FALHOU';
+        
+        return false;
     }
 
     public function emailExiste($email) {

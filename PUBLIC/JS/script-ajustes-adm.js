@@ -63,30 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const passwordForm = document.getElementById("passwordForm");
-    if (passwordForm) {
-        passwordForm.addEventListener("submit", (e) => {
-            const newPassword = document.getElementById("newPassword").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
-            const errorElement = document.getElementById("newPasswordError");
-
-            if (newPassword !== confirmPassword) {
-                e.preventDefault();
-                errorElement.textContent = "As senhas não coincidem";
-                return false;
-            }
-
-            if (newPassword.length < 6) {
-                e.preventDefault();
-                errorElement.textContent = "A senha deve ter pelo menos 6 caracteres";
-                return false;
-            }
-
-            errorElement.textContent = "";
-            return true;
-        });
-    }
-
   const newPassword = document.getElementById("newPassword");
   const strengthBar = document.querySelector(".strength-fill");
   const strengthText = document.querySelector(".strength-text");
