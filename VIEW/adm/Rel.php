@@ -415,8 +415,6 @@ $total_vendas = count($vendas);
             </div>
             </div>
  
-           <!-- banana -->
- 
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Gasto com Comissões</h3>
@@ -445,24 +443,13 @@ $total_vendas = count($vendas);
  
 </main>
 <?php
-// Inicializa arrays de 12 meses com zeros
 $vendas_mensais = array_fill(0, 12, 0);
-$comissoes_vendedor = array_fill(0, 12, 0);
-
-// Inicializa status de pedidos
 $status_pedidos = [
     "Aprovado"  => 0,
     "Pendente"  => 0,
     "Cancelado" => 0
 ];
 
-// Inicializa distribuição de comissões
-$comissoes_dist = [
-    "Fixas"     => 0,
-    "Variáveis" => 0
-];
-
-// ====== Processa vendas ======
 foreach ($vendas as $venda) {
     $data = $venda['data'] ?? $venda['data_venda'] ?? null;
     $total = isset($venda['total']) ? (float)$venda['total'] : 0;
@@ -478,61 +465,35 @@ foreach ($vendas as $venda) {
     }
 }
 
+$comissoes_vendedor = array_fill(0, 12, 0);
+$comissoes_dist = ["Fixas" => 0, "Variáveis" => 0];
 
-// ====== Processa comissões ======
 foreach ($comissoes as $comissao) {
-    // tenta detectar o campo de data
-    $data = $comissao['data'] ?? $comissao['data_comissao'] ?? null;
+    $data = $comissao['data'] ?? $comissao['data_comissao'] ?? $comissao['created_at'] ?? null;
+    $mes = ($data && strtotime($data) !== false) ? ((int)date("n", strtotime($data)) - 1) : (int)date("n") - 1;
 
-    // tenta detectar o valor da comissão
-    if (isset($comissao['valor_comissao'])) {
-        $valor = (float)$comissao['valor_comissao'];
-    } elseif (isset($comissao['valor'])) {
-        $valor = (float)$comissao['valor'];
-    } elseif (isset($comissao['valor_venda']) && isset($comissao['percentual'])) {
+
+    $valor = 0;
+    if (isset($comissao['valor'])) $valor = (float)$comissao['valor'];
+    elseif (isset($comissao['valor_comissao'])) $valor = (float)$comissao['valor_comissao'];
+    elseif (isset($comissao['valor_venda'], $comissao['percentual']))
         $valor = (float)$comissao['valor_venda'] * ((float)$comissao['percentual'] / 100);
-    } else {
-        $valor = 0;
-    }
 
-    // tipo de comissão
+    $comissoes_vendedor[$mes] += $valor > 0 ? $valor : 0.001;
+
     $tipo = $comissao['tipo'] ?? 'Fixas';
-
-    // soma por mês
-    if ($data) {
-        $mes = (int) date("n", strtotime($data)) - 1;
-        $comissoes_vendedor[$mes] += $valor;
-    }
-
-    // soma por tipo
-    if (isset($comissoes_dist[$tipo])) {
-        $comissoes_dist[$tipo] += $valor;
-    }
+    if (isset($comissoes_dist[$tipo])) $comissoes_dist[$tipo] += $valor > 0 ? $valor : 0.001;
 }
 
-// ====== Cores ======
 $max_venda = max($vendas_mensais);
-$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#45734b" : "rgba(36, 146, 51, 0.5)", $vendas_mensais);
+$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#45734b" : "rgba(36,146,51,0.5)", $vendas_mensais);
+$colors_status = ["#45734b","rgba(69,115,75,0.7)","rgba(69,115,75,0.4)"];
 
-// Ajuste de cores para status de pedidos
-$colors_status = ["#45734b", "rgba(69,115,75,0.7)", "rgba(69,115,75,0.4)"];
-
-// Evita array vazio para o gráfico de pizza
-foreach ($status_pedidos as $key => $value) {
-    if ($value == 0) $status_pedidos[$key] = 0.001; // valor mínimo para renderizar
-}
+foreach ($status_pedidos as $key => $value) if ($value==0) $status_pedidos[$key]=0.001;
+foreach ($comissoes_dist as $key => $value) if ($value==0) $comissoes_dist[$key]=0.001;
 ?>
-
-<?php
-foreach ($comissoes_dist as $key => $value) {
-    if ($value == 0) $comissoes_dist[$key] = 0.001;
-}
-?>
-
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    // ===== Gráfico de Vendas por Mês (Bar) =====
     new Chart(document.getElementById("sales-bar-chart"), {
         type: "bar",
         data: {
@@ -547,27 +508,16 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         options: {
             plugins: {
-                legend: { display: false,                position: "bottom",
-                labels: {
-                    font: { size: 13 },
-                    color: "#ffffff" // ← COR BRANCA NA LEGENDA
-                } },
-                tooltip: { callbacks: { label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR") } }
+                legend: { display: false },
+                tooltip: { callbacks: { label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR", {minimumFractionDigits: 2}) } }
             },
             scales: {
-                y: { beginAtZero: true, ticks: { callback: v => "R$ " + v }, grid: { color: "rgba(0,0,0,0.05)" } },
+                y: { beginAtZero: true, ticks: { callback: v => "R$ " + v.toLocaleString("pt-BR") }, grid: { color: "rgba(0,0,0,0.05)" } },
                 x: { grid: { display: false } }
             }
         }
     });
 
-    // ===== Gráfico de Status dos Pedidos (Pie) =====
-    <?php
-    // garante valores mínimos para não sumir
-    foreach ($status_pedidos as $key => $value) {
-        if ($value == 0) $status_pedidos[$key] = 0.001;
-    }
-    ?>
     new Chart(document.getElementById("sales-pie-chart"), {
         type: "pie",
         data: {
@@ -581,7 +531,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }]
         },
         options: {
-            responsive: true,
             plugins: {
                 legend: { position: "bottom", labels: { font: { size: 13 } } },
                 tooltip: { callbacks: { label: ctx => ctx.label + ": " + ctx.raw } }
@@ -589,9 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ===== Gráfico Gasto com Comissões (Line) =====
-
-    new Chart(document.getElementById("comm-line-chart"), {
+new Chart(document.getElementById("comm-line-chart"), {
     type: "line",
     data: {
         labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
@@ -610,26 +557,16 @@ document.addEventListener("DOMContentLoaded", () => {
     options: {
         plugins: {
             legend: { labels: { font: { size: 14 } } },
-            tooltip: { 
-                callbacks: { 
-                    label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR", {minimumFractionDigits: 2}) 
-                } 
-            }
+            tooltip: { callbacks: { label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR",{minimumFractionDigits:2}) } }
         },
         scales: {
-            y: { 
-                beginAtZero: true, 
-                ticks: { 
-                    callback: v => "R$ " + v.toLocaleString("pt-BR", {minimumFractionDigits: 2}) 
-                }, 
-                grid: { color: "rgba(0,0,0,0.05)" } 
-            },
+            y: { beginAtZero: true, ticks: { callback: v => "R$ " + v.toLocaleString("pt-BR",{minimumFractionDigits:2}) }, grid: { color: "rgba(0,0,0,0.05)" } },
             x: { grid: { display: false } }
         }
     }
 });
 
-    new Chart(document.getElementById("comm-doughnut-chart"), {
+new Chart(document.getElementById("comm-doughnut-chart"), {
     type: "doughnut",
     data: {
         labels: <?= json_encode(array_keys($comissoes_dist)) ?>,
@@ -642,17 +579,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }]
     },
     options: {
-        responsive: true,
         plugins: {
             legend: { position: "bottom", labels: { font: { size: 13 } } },
             tooltip: { callbacks: { label: ctx => ctx.label + ": R$ " + ctx.raw.toLocaleString("pt-BR") } }
         }
     }
 });
-    });
 
-
+});
 </script>
+
 
 <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
 <script src="../../PUBLIC/JS/script-tabs.js"></script>

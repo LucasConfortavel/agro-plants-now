@@ -264,15 +264,9 @@ if(isset($_SESSION['alerta'])){
                                 </td>
                                 <td>
                                     <div class="td">
-                                    <?php if ($id_pedido): ?>
-                                        <a href="venda-info-adm.php?id=<?= $id_pedido ?>" class="ym_btn-padrao2" title="Ver carrinho">
+                                        <a href="carrinho.php?id_cliente=<?= $cliente['id'] ?>" class="ym_btn-padrao2" title="Ver carrinho">
                                             <i class="fas fa-shopping-cart"></i>
                                         </a>
-                                    <?php else: ?>
-                                        <span class="ym_btn-disabled" title="Sem pedido">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </span>
-                                    <?php endif; ?>
                                     </div>
                                 </td>
                                 <td class="jv_table-action">
