@@ -76,6 +76,7 @@
     <link rel="stylesheet" href="../../PUBLIC/css/dashboard-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -208,6 +209,7 @@
         window.data_grafico = <?php echo json_encode($data_grafico); ?>;
     </script>
     <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 
 </body>
 </html>
