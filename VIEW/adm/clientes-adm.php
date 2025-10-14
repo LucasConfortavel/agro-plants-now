@@ -325,7 +325,6 @@ if(isset($_SESSION['alerta'])){
         <?php endif; ?>
     </div>
 
-<<<<<<< HEAD
 <script>
     const customSelect = document.getElementById('customSelect');
     const selectTrigger = customSelect.querySelector('.select-trigger');
@@ -386,9 +385,6 @@ if(isset($_SESSION['alerta'])){
     </script>
 
     <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
-=======
-    <script src="../../PUBLIC/JS/script-clientes.js"></script>
->>>>>>> Arquitetura-MVC
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
     <script src="../../PUBLIC/JS/script-tema.js"></script>
