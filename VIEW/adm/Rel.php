@@ -365,7 +365,7 @@ $total_vendas = count($vendas);
                                                 </span>
                                             </td>
 
-                                            <td><?= 'R$ ' . number_format($comissao['valor_comissao'] ?? 0, 2, ',', '.') ?></td>
+                                            <td><?= 'R$ ' . number_format($comissao['valor'] ?? 0, 2, ',', '.') ?></td>
                                             <td class="jv_table-action">
                                                 <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                     <i class="fas fa-ellipsis-h"></i>
@@ -478,17 +478,33 @@ foreach ($vendas as $venda) {
     }
 }
 
+
 // ====== Processa comissões ======
 foreach ($comissoes as $comissao) {
+    // tenta detectar o campo de data
     $data = $comissao['data'] ?? $comissao['data_comissao'] ?? null;
-    $valor = ($comissao['valor_venda'] ?? 0) * (($comissao['percentual'] ?? 0) / 100);
+
+    // tenta detectar o valor da comissão
+    if (isset($comissao['valor_comissao'])) {
+        $valor = (float)$comissao['valor_comissao'];
+    } elseif (isset($comissao['valor'])) {
+        $valor = (float)$comissao['valor'];
+    } elseif (isset($comissao['valor_venda']) && isset($comissao['percentual'])) {
+        $valor = (float)$comissao['valor_venda'] * ((float)$comissao['percentual'] / 100);
+    } else {
+        $valor = 0;
+    }
+
+    // tipo de comissão
     $tipo = $comissao['tipo'] ?? 'Fixas';
 
+    // soma por mês
     if ($data) {
         $mes = (int) date("n", strtotime($data)) - 1;
         $comissoes_vendedor[$mes] += $valor;
     }
 
+    // soma por tipo
     if (isset($comissoes_dist[$tipo])) {
         $comissoes_dist[$tipo] += $valor;
     }
@@ -574,33 +590,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ===== Gráfico Gasto com Comissões (Line) =====
+
     new Chart(document.getElementById("comm-line-chart"), {
-        type: "line",
-        data: {
-            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
-            datasets: [{
-                label: "Gasto com Comissões (R$)",
-                data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
-                backgroundColor: "rgba(69,115,75,0.2)",
-                borderColor: "#45734b",
-                borderWidth: 3,
-                fill: true,
-                tension: 0.3,
-                pointBackgroundColor: "#45734b",
-                pointRadius: 6
-            }]
-        },
-        options: {
-            plugins: {
-                legend: { labels: { font: { size: 14 } } },
-                tooltip: { callbacks: { label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR") } }
-            },
-            scales: {
-                y: { beginAtZero: true, ticks: { callback: v => "R$ " + v }, grid: { color: "rgba(0,0,0,0.05)" } },
-                x: { grid: { display: false } }
+    type: "line",
+    data: {
+        labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+        datasets: [{
+            label: "Gasto com Comissões (R$)",
+            data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
+            backgroundColor: "rgba(69,115,75,0.2)",
+            borderColor: "#45734b",
+            borderWidth: 3,
+            fill: true,
+            tension: 0.3,
+            pointBackgroundColor: "#45734b",
+            pointRadius: 6
+        }]
+    },
+    options: {
+        plugins: {
+            legend: { labels: { font: { size: 14 } } },
+            tooltip: { 
+                callbacks: { 
+                    label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR", {minimumFractionDigits: 2}) 
+                } 
             }
+        },
+        scales: {
+            y: { 
+                beginAtZero: true, 
+                ticks: { 
+                    callback: v => "R$ " + v.toLocaleString("pt-BR", {minimumFractionDigits: 2}) 
+                }, 
+                grid: { color: "rgba(0,0,0,0.05)" } 
+            },
+            x: { grid: { display: false } }
         }
-    });
+    }
+});
 
     new Chart(document.getElementById("comm-doughnut-chart"), {
     type: "doughnut",
