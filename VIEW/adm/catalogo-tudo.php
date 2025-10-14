@@ -82,7 +82,6 @@ $errorMessage = $_GET['error'] ?? '';
                     </div>
                     
                 </div>
-                
                 <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')">+</a>
             </div>
             
