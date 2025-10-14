@@ -16,36 +16,35 @@ try {
         foreach ($produtos as $produto) {
             if ($produto['quantidade'] <= $limite) {
                 $notificacoes[] = [
-                    'titulo' => "Estoque baixo: {$produto['nome']}",
-                    'setor'  => "Produtos",
-                    'data'   => date("d/m/Y"),
-                    'quantidade' => $produto['quantidade']
+                    'titulo' => "Estoque baixo para o produto: {$produto['nome']}",
+                    'setor' => "Produtos",
+                    'data' => date("d/m/Y")
                 ];
             }
         }
     }
 
-    // Mensagens simuladas com email
+   
     $mensagens = [
         [
-            'nome' => 'Maria Santos',
-            'telefone' => '6799191-9191',
             'titulo' => "fazenda.esperanca@gmail.com",
             'setor' => "Vendas", 
             'data' => date("d/m/Y"),
-            'mensagem' => "Bom dia! precisamos renovar nosso estoque de fertilizantes para a safra de soja. att"
+            'mensagem' => "Bom dia! precisamos renovar nosso estoque de fertilizantes para a safra de soja. att",
+            'nome' => "Luiz Inácio",
+            'telefone' => "(11) 99999-9999"
         ],
         [
-            'nome' => 'Luiz inácio',
-            'telefone' => '6799191-1919',
             'titulo' => "cooperativa.verde@hotmail.com", 
             'setor' => "Comercial",
             'data' => date("d/m/Y"),
-            'mensagem' => "Prezados, Nossa cooperativa esta com problemas de pragas nas lavouras de milho, precisamos urgentemente de defensivos agrícolas."
+            'mensagem' => "Prezados, Nossa cooperativa esta com problemas de pragas nas lavouras de milho, precisamos urgentemente de defensivos agrícolas.",
+            'nome' => "Maria Santos",
+            'telefone' => "(11) 98888-8888"
         ]
     ];
 
-    // Escolher qual mostrar
+ 
     $dados = ($filtro === 'mensagens') ? $mensagens : $notificacoes;
     $total_itens = count($dados);
 
@@ -66,6 +65,7 @@ try {
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .jv_filter-select {
             padding: 8px 12px;
@@ -83,7 +83,7 @@ try {
             box-shadow: 0 0 0 2px rgba(58, 98, 64, 0.1);
         }
         
-        /* Estilo simplificado para mensagem */
+        
         .mensagem-completa {
             background: transparent;
             border: none;
@@ -109,37 +109,33 @@ try {
             margin-bottom: 5px;
         }
         
-        /* CORREÇÃO: Apenas o ícone de email fica redondo */
         .jv_avatar.email-avatar {
             width: 40px;
             height: 40px;
-            border-radius: 50%; /* Isso garante que seja perfeitamente redondo */
+            border-radius: 50%; 
             display: flex;
             align-items: center;
             justify-content: center;
             background: #45734B;
             font-size: 16px;
-            flex-shrink: 0; /* Impede que distorça */
+            flex-shrink: 0; 
         }
         
-        /* O ícone de atenção (estoque) mantém o formato original */
         .jv_avatar:not(.email-avatar) {
-            /* Mantém o estilo original do arquivo CSS */
+            
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 16px;
-            /* Não aplica border-radius, width e height fixos */
+            
         }
-        
-        /* Garantir que o container mantenha a proporção */
+      
         .jv_customer-info {
             display: flex;
             align-items: flex-start;
             gap: 12px;
         }
 
-        /* POPUP MÍNIMO */
         .popup-email {
             position: fixed;
             top: 0;
@@ -151,41 +147,134 @@ try {
             align-items: center;
             justify-content: center;
             z-index: 1000;
+            font-family: 'Poppins', sans-serif;
         }
 
         .popup-email-content {
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             width: 90%;
-            max-width: 500px;
-            padding: 20px;
+            max-width: 700px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .popup-email-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            padding: 20px 25px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #f8f9fa;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .popup-email-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
         }
 
         .popup-email-close {
             background: none;
             border: none;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             color: #666;
+            padding: 5px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
         }
 
-        .email-detalhes {
-            line-height: 1.5;
+        .popup-email-close:hover {
+            background: #f0f0f0;
+            color: #333;
         }
 
-        .email-detalhes div {
-            margin-bottom: 10px;
+        .popup-email-body {
+            padding: 25px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .email-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .mensagem-container {
+            margin-top: 20px;
+        }
+
+        .mensagem-label {
+            font-weight: 500;
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .mensagem-conteudo {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3a6240;
+            max-height: 300px;
+            overflow-y: auto;
+            line-height: 1.6;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         .mensagem-clicavel {
             cursor: pointer;
+        }
+
+        
+        .mensagem-conteudo::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .mensagem-conteudo::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .mensagem-conteudo::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        .mensagem-conteudo::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
         }
     </style>
 </head>
@@ -227,10 +316,12 @@ try {
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
+                                    <th class="jv_checkbox-col">
+                                        <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
+                                    </th>
                                     <th class="jv_date">Título</th>
                                     <th class="jv_total_comp">Setor</th>
                                     <th class="jv_valor_gast">Data</th>
-                                    <th class="jv_valor_gast">Qtd.</th>
                                     <th class="jv_actions-col"></th> 
                                 </tr>
                             </thead>
@@ -249,7 +340,14 @@ try {
                                                 <div class="jv_customer-details">
                                                     <?php if ($filtro === 'mensagens'): ?>
                                                         <div class="mensagem-completa mensagem-clicavel" 
-                                                             onclick="abrirPopupEmail('<?= htmlspecialchars($item['titulo']) ?>', '<?= htmlspecialchars($item['setor']) ?>', '<?= $item['data'] ?>', `<?= htmlspecialchars($item['mensagem']) ?>`)">
+                                                             onclick="abrirPopupEmail(
+                                                                '<?= htmlspecialchars($item['titulo']) ?>', 
+                                                                '<?= htmlspecialchars($item['setor']) ?>', 
+                                                                '<?= $item['data'] ?>', 
+                                                                `<?= htmlspecialchars($item['mensagem']) ?>`,
+                                                                '<?= htmlspecialchars($item['nome']) ?>',
+                                                                '<?= htmlspecialchars($item['telefone']) ?>'
+                                                             )">
                                                             <h4><?= htmlspecialchars($item['titulo']) ?></h4>
                                                             <div class="conteudo-mensagem">
                                                                 <?= nl2br(htmlspecialchars($item['mensagem'])) ?>
@@ -291,7 +389,7 @@ try {
         </div>
     </main>
 
-    <!-- POPUP MÍNIMO -->
+   
     <div id="popupEmail" class="popup-email">
         <div class="popup-email-content">
             <div class="popup-email-header">
@@ -300,12 +398,34 @@ try {
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="email-detalhes">
-                <div><strong>De:</strong> <span id="popupRemetente"></span></div>
-                <div><strong>Setor:</strong> <span id="popupSetor"></span></div>
-                <div><strong>Data:</strong> <span id="popupData"></span></div>
-                <div><strong>Mensagem:</strong></div>
-                <div id="popupMensagem" style="background: #f5f5f5; padding: 10px; border-radius: 4px; margin-top: 5px;"></div>
+            <div class="popup-email-body">
+                <div class="email-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">De:</span>
+                        <span class="info-value" id="popupRemetente"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Nome:</span>
+                        <span class="info-value" id="popupNome"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Telefone:</span>
+                        <span class="info-value" id="popupTelefone"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Setor:</span>
+                        <span class="info-value" id="popupSetor"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Data:</span>
+                        <span class="info-value" id="popupData"></span>
+                    </div>
+                </div>
+                
+                <div class="mensagem-container">
+                    <span class="mensagem-label">Mensagem:</span>
+                    <div class="mensagem-conteudo" id="popupMensagem"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -315,9 +435,11 @@ try {
     <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
     
     <script>
-        // Funções do popup de email
-        function abrirPopupEmail(titulo, setor, data, mensagem) {
+        
+        function abrirPopupEmail(titulo, setor, data, mensagem, nome, telefone) {
             document.getElementById('popupRemetente').textContent = titulo;
+            document.getElementById('popupNome').textContent = nome;
+            document.getElementById('popupTelefone').textContent = telefone;
             document.getElementById('popupSetor').textContent = setor;
             document.getElementById('popupData').textContent = data;
             document.getElementById('popupMensagem').textContent = mensagem;
@@ -328,7 +450,7 @@ try {
             document.getElementById('popupEmail').style.display = 'none';
         }
 
-        // Fechar clicando fora
+        
         document.getElementById('popupEmail').addEventListener('click', function(e) {
             if (e.target === this) fecharPopupEmail();
         });
