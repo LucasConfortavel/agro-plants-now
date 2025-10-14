@@ -98,23 +98,13 @@ function loadScript(src) {
 function fecharPopup() {
     const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
     popup_overlay.style.display = 'none';
-<<<<<<< HEAD
-    liberarTela(); // volta rolagem normal
+    liberarTela(); 
 }
 
 function fixarTela() {
-    document.body.style.overflow = "hidden"; // trava rolagem sem quebrar layout
+    document.body.style.overflow = "hidden"; 
 }
 
 function liberarTela() {
-    document.body.style.overflow = ""; // libera rolagem
+    document.body.style.overflow = ""; 
 }
-=======
-    document.body.style.overflow = 'auto';
-    window.location.href = window.location.pathname;
-}
-
-function fixarTela() {
-    document.body.style.overflow = 'hidden';
-}
->>>>>>> Arquitetura-MVC
