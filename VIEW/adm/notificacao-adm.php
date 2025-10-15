@@ -28,19 +28,15 @@ try {
     $mensagens = [
         [
             'titulo' => "fazenda.esperanca@gmail.com",
-            'setor' => "Vendas", 
             'data' => date("d/m/Y"),
             'mensagem' => "Bom dia! precisamos renovar nosso estoque de fertilizantes para a safra de soja. att",
-            'nome' => "Luiz Inácio",
-            'telefone' => "(11) 99999-9999"
+            'nome' => "Luiz Inácio"
         ],
         [
             'titulo' => "cooperativa.verde@hotmail.com", 
-            'setor' => "Comercial",
             'data' => date("d/m/Y"),
             'mensagem' => "Prezados, Nossa cooperativa esta com problemas de pragas nas lavouras de milho, precisamos urgentemente de defensivos agrícolas.",
-            'nome' => "Maria Santos",
-            'telefone' => "(11) 98888-8888"
+            'nome' => "Maria Santos"
         ]
     ];
 
@@ -276,6 +272,17 @@ try {
         .mensagem-conteudo::-webkit-scrollbar-thumb:hover {
             background: #a8a8a8;
         }
+
+        
+        .setor-col {
+            display: table-cell;
+        }
+        
+        <?php if ($filtro === 'mensagens'): ?>
+        .setor-col {
+            display: none;
+        }
+        <?php endif; ?>
     </style>
 </head>
 <body>
@@ -320,7 +327,9 @@ try {
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                     </th>
                                     <th class="jv_date">Título</th>
-                                    <th class="jv_total_comp">Setor</th>
+                                    <?php if ($filtro === 'estoque'): ?>
+                                        <th class="jv_total_comp setor-col">Setor</th>
+                                    <?php endif; ?>
                                     <th class="jv_valor_gast">Data</th>
                                     <th class="jv_actions-col"></th> 
                                 </tr>
@@ -342,11 +351,9 @@ try {
                                                         <div class="mensagem-completa mensagem-clicavel" 
                                                              onclick="abrirPopupEmail(
                                                                 '<?= htmlspecialchars($item['titulo']) ?>', 
-                                                                '<?= htmlspecialchars($item['setor']) ?>', 
                                                                 '<?= $item['data'] ?>', 
                                                                 `<?= htmlspecialchars($item['mensagem']) ?>`,
-                                                                '<?= htmlspecialchars($item['nome']) ?>',
-                                                                '<?= htmlspecialchars($item['telefone']) ?>'
+                                                                '<?= htmlspecialchars($item['nome']) ?>'
                                                              )">
                                                             <h4><?= htmlspecialchars($item['titulo']) ?></h4>
                                                             <div class="conteudo-mensagem">
@@ -360,7 +367,9 @@ try {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><?= htmlspecialchars($item['setor']) ?></td>
+                                        <?php if ($filtro === 'estoque'): ?>
+                                            <td class="setor-col"><?= htmlspecialchars($item['setor']) ?></td>
+                                        <?php endif; ?>
                                         <td><?= $item['data'] ?></td>
                                         <td class="jv_table-action">
                                             <button class="jv_menu-btn" onclick="toggleDropdown(this)">
@@ -376,7 +385,7 @@ try {
                                 <?php endforeach; ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="5" style="text-align: center; height: 49.7vh;">
+                                    <td colspan="<?= $filtro === 'estoque' ? '5' : '4' ?>" style="text-align: center; height: 49.7vh;">
                                         Nenhum item encontrado
                                     </td>
                                 </tr>
@@ -409,14 +418,6 @@ try {
                         <span class="info-value" id="popupNome"></span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">Telefone:</span>
-                        <span class="info-value" id="popupTelefone"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Setor:</span>
-                        <span class="info-value" id="popupSetor"></span>
-                    </div>
-                    <div class="info-item">
                         <span class="info-label">Data:</span>
                         <span class="info-value" id="popupData"></span>
                     </div>
@@ -436,11 +437,9 @@ try {
     
     <script>
         
-        function abrirPopupEmail(titulo, setor, data, mensagem, nome, telefone) {
+        function abrirPopupEmail(titulo, data, mensagem, nome) {
             document.getElementById('popupRemetente').textContent = titulo;
             document.getElementById('popupNome').textContent = nome;
-            document.getElementById('popupTelefone').textContent = telefone;
-            document.getElementById('popupSetor').textContent = setor;
             document.getElementById('popupData').textContent = data;
             document.getElementById('popupMensagem').textContent = mensagem;
             document.getElementById('popupEmail').style.display = 'flex';
