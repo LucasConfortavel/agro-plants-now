@@ -9,19 +9,15 @@ $cupom_control = new CupomController();
 $cupons = $cupom_control->index();
 $total_cupons = count($cupons);
 
-// Paginação
 $limite = 4;
 $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 if ($pagina_atual < 1) $pagina_atual = 1;
 
 $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_cupons / $limite);
-
-// Slice para limitar os cupons exibidos na página
 $cupons = array_slice($cupons, $offset, $limite);
 
-// Criação de cupom via POST
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['criar_cupom'])) {
     $criar_cupom = $cupom_control->criarCupom();
 
     if($criar_cupom == 1){
@@ -50,11 +46,20 @@ if(!empty($_GET)){
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['remover_selecionados'])) {
+    $ids = $_POST['selecionados'] ?? [];
+    foreach($ids as $id){
+        $cupom_control->deletar($id);
+    }
+    $_SESSION['alerta'] = '<script> exibirAlerta("Cupons selecionados removidos com sucesso","sucesso"); </script>';
+    header('Location: ' . $_SERVER['PHP_SELF']);
+    exit;
+}
+
 if(isset($_SESSION['alerta'])){
     echo($_SESSION['alerta']);
     unset($_SESSION['alerta']);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -96,12 +101,15 @@ if(isset($_SESSION['alerta'])){
                     </form>
 
                     <div class="jv_actions">
-                        <div>
-                            <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
+                        <!-- BOTÃO REMOVER SELECIONADOS -->
+                        <form method="POST" id="formRemoverSelecionados">
+                            <input type="hidden" name="remover_selecionados" value="1">
+                            <button type="submit" class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
                                 <i class="fa-solid fa-trash-can"></i>
                                 Remover (<span id="jv_selectedCount">0</span>)
                             </button>
-                        </div>
+                        </form>
+
                         <div>
                             <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php','Cadastro de Cupom')">
                                 <i class="fas fa-plus"></i>
@@ -122,23 +130,26 @@ if(isset($_SESSION['alerta'])){
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
-                                
+                                <th class="jv_checkbox-col">
+                                    <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
+                                </th>
                                 <th class="jv_codigo">Código</th>
                                 <th class="jv_desconto">Desconto</th>
                                 <th class="jv_cadastro">Data de Cadastro</th>
                                 <th class="jv_validade">Validade</th>
-                           
                             </tr>
                         </thead>
                         <tbody id="jv_customerTableBody">
                             <?php if ($total_cupons > 0): ?>
                                 <?php foreach ($cupons as $cupom): ?>
                                     <tr>
-                                       
-                                        <td ><?= htmlspecialchars($cupom['codigo'] ?? '-') ?></td>
-                                        <td ><?= htmlspecialchars($cupom['valor'] ?? $cupom['desconto'] ?? '0') ?>%</td>
-                                        <td ><?= isset($cupom['data_emissao']) ? date("d/m/Y", strtotime($cupom['data_emissao'])) : (isset($cupom['data_criacao']) ? date("d/m/Y", strtotime($cupom['data_criacao'])) : '-') ?></td>
-                                        <td ><?= isset($cupom['data_validade']) ? date("d/m/Y", strtotime($cupom['data_validade'])) : (isset($cupom['validade']) ? date("d/m/Y", strtotime($cupom['validade'])) : '-') ?></td>
+                                        <td>
+                                            <input type="checkbox" name="selecionados[]" form="formRemoverSelecionados" class="jv_checkbox customer-checkbox" value="<?= htmlspecialchars($cupom['id']) ?>">
+                                        </td>
+                                        <td><?= htmlspecialchars($cupom['codigo'] ?? '-') ?></td>
+                                        <td><?= htmlspecialchars($cupom['valor'] ?? $cupom['desconto'] ?? '0') ?>%</td>
+                                        <td><?= isset($cupom['data_emissao']) ? date("d/m/Y", strtotime($cupom['data_emissao'])) : (isset($cupom['data_criacao']) ? date("d/m/Y", strtotime($cupom['data_criacao'])) : '-') ?></td>
+                                        <td><?= isset($cupom['data_validade']) ? date("d/m/Y", strtotime($cupom['data_validade'])) : (isset($cupom['validade']) ? date("d/m/Y", strtotime($cupom['validade'])) : '-') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
@@ -175,11 +186,39 @@ if(isset($_SESSION['alerta'])){
         <?php endif; ?>
     </div>
 
+    <script>
+        const selectAllCheckbox = document.getElementById('jv_selectAll');
+        const checkboxes = document.querySelectorAll('.customer-checkbox');
+        const removeButton = document.getElementById('jv_removeSelected');
+        const selectedCount = document.getElementById('jv_selectedCount');
 
-        <script src="../../PUBLIC/JS/script-cupom.js"></script>
-        <script src="../../PUBLIC/JS/script.js"></script>
-        <script src="../../PUBLIC/JS/script-pop-up.js"></script>
-        <script src="../../PUBLIC/JS/script-tema.js"></script>
+        function updateSelectedCount() {
+            const checkedBoxes = document.querySelectorAll('.customer-checkbox:checked');
+            const totalSelected = checkedBoxes.length;
+            selectedCount.textContent = totalSelected;
+            removeButton.style.display = totalSelected > 0 ? 'inline-flex' : 'none';
+        }
+
+        selectAllCheckbox.addEventListener('change', function () {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+            updateSelectedCount();
+        });
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                const allChecked = document.querySelectorAll('.customer-checkbox:checked').length === checkboxes.length;
+                selectAllCheckbox.checked = allChecked;
+                updateSelectedCount();
+            });
+        });
+    </script>
+
+    <script src="../../PUBLIC/JS/script-cupom.js"></script>
+    <script src="../../PUBLIC/JS/script.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 </main>
 </body>
 </html>
