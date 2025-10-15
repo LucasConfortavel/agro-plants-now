@@ -5,7 +5,7 @@ class MessageController {
     private $mensagem;
 
     public function __construct() {
-        $this->mensagem = new MessageModel();
+        $this->mensagem = new MensagemeModel();
     }
 
     // Listar todas as mensagens enviadas ao admin
@@ -23,23 +23,23 @@ class MessageController {
     }
 
     // Criar uma nova mensagem
-    public function criar() {
-        try {
-            $this->mensagem->nome = $_POST['nome'];
-            $this->mensagem->email = $_POST['email'];
-            $this->mensagem->mensagem = $_POST['mensagem'];
 
-            if ($this->mensagem->criar()) {
-                header("Location: /contato?success=Mensagem enviada com sucesso!");
-                exit();
-            } else {
-                throw new Exception("Erro ao enviar mensagem.");
-            }
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            include_once __DIR__ . '/../views/error.php';
-        }
+    public function criar() {
+        $this->mensagem->nome = trim($_POST['name']);
+        $this->mensagem->email = trim($_POST['email']);
+        $this->mensagem->mensagem = trim($_POST['mensagem']);
+
+        return $this->mensagem->criar();
     }
+
+    // public function criar($nome, $email, $mensagem) {
+    //     $sql = "INSERT INTO mensagens (nome, email, mensagem, data_msg) VALUES (:nome, :email, :mensagem, NOW())";
+    //     $stmt = $this->conn->prepare($sql);
+    //     $stmt->bindParam(':nome', $nome);
+    //     $stmt->bindParam(':email', $email);
+    //     $stmt->bindParam(':mensagem', $mensagem);
+    //     $stmt->execute();
+    // }
 
     // Mostrar uma mensagem específica
     public function mostrar($id) {

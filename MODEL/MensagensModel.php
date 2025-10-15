@@ -10,7 +10,7 @@ class MensagemeModel {
 
     public function __construct() {
         $db = new Database();
-        $this->conn = $db->conn;
+        $this->conn = $db->getConexao();
     }
 
     // Criar nova mensagem
@@ -24,7 +24,7 @@ class MensagemeModel {
             $stmt->bindParam(':mensagem', $this->mensagem);
             return $stmt->execute();
         } catch (Exception $e) {
-            throw new Exception("Erro ao salvar mensagem: " . $e->getMensagem());
+            throw new Exception("Erro ao salvar mensagem: " . $e->getMessage());
         }
     }
 
@@ -36,7 +36,7 @@ class MensagemeModel {
             $stmt->execute();
             return $stmt;
         } catch (Exception $e) {
-            throw new Exception("Erro ao buscar mensagens: " . $e->getMensagem());
+            throw new Exception("Erro ao buscar mensagens: " . $e->getMessage());
         }
     }
 

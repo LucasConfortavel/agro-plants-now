@@ -19,6 +19,20 @@ foreach ($produtosBaixoEstoque as $prod) {
 }
 
 $alertasVisiveis = array_slice($alertas, 0, 5);
+
+$sqlMensagem = "SELECT nome FROM mensagens";
+$stmtMensagem = $conn->prepare($sqlMensagem);
+$stmtMensagem->execute();
+$NovaMensagem = $stmtMensagem->fetchAll(PDO::FETCH_ASSOC);
+
+foreach($NovaMensagem as $mens) {
+    $alertas[] = [
+        "mensagem" => "<b>Mensagem:</b>" . htmlspecialchars($mens['nome']),
+        "hora" => date("H:i")
+    ];
+}
+
+$alertasVisiveis = array_slice($alertas, 0, 5);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
