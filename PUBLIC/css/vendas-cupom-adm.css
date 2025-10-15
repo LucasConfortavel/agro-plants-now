@@ -154,7 +154,7 @@
 .jv_title-bar {
     width: 4px;
     height: 32px;
-    background: #059669;
+    background: #45734b;
     border-radius: 2px;
 }
 
@@ -227,7 +227,7 @@
 
 .jv_search-input:focus {
     outline: none;
-    border-color: #059669;
+    border-color: #45734b;
     box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
 }
 
@@ -255,7 +255,7 @@
     padding: 12px 16px;
     display: flex;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b; 
     font-size: 1rem;
 }
 
@@ -265,7 +265,7 @@
     padding: 12px 16px;
     text-align: center;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b; 
     font-size: 1rem;
 }
 
@@ -273,7 +273,7 @@
     padding: 12px 16px;
     text-align: center;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b; 
     font-size: 1rem;
 }
 
@@ -281,7 +281,7 @@
     padding: 12px 16px;
     text-align: center;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b; 
     font-size: 1rem;
 }
 
@@ -289,7 +289,7 @@
     padding: 12px 16px;
     text-align: center;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b; 
     font-size: 1rem;
 }
 
@@ -328,7 +328,7 @@
     padding: 12px 16px;
     text-align: center;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b;
     font-size: 1rem;
 }
 

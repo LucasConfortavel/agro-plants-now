@@ -19,11 +19,12 @@
         }
 
         .footer {
-            background: linear-gradient(135deg, #1e4d2b 0%, #2d6b3d 50%, #1a3d24 100%);
+            background: linear-gradient(135deg, #2c4934ff 0%, #2b723dff 50%, #2b4532ff 100%);
             color: white;
             padding: 1.5rem 0 0.4rem;
             position: relative;
             overflow: hidden;
+    
         }
 
         .footer::before {
