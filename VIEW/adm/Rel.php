@@ -177,7 +177,7 @@ $total_vendas = count($vendas);
                                 
                             ?>
                                 <tr>
-                                    <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
+                                    <td><?= date("d/m/Y", strtotime($venda['data_venda'])) ?></td>
                                     <td>
                                         <div class="jv_customer-info">
                                             <div class="jv_avatar">
@@ -347,7 +347,7 @@ $total_vendas = count($vendas);
                                             $cliente  = $cliente_control->mostrar($venda['id_cliente']);
                                         ?>
                                         <tr>
-                                            <td><?= date("d/m/Y", strtotime($cliente['data_nasc'])) ?></td>
+                                            <td><?= date("d/m/Y", strtotime($venda['data_venda'])) ?></td>
                                             <td>
                                                 <div class="jv_customer-info">
                                                     <div class="jv_avatar"> <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?> </div>
