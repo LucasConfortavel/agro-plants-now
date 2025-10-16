@@ -10,15 +10,18 @@ $carrinhoCtrl = new CarrinhoController();
 $catalogoCtrl = new CatalogoController();
 $produtoCtrl  = new ProdutoController();
 
-if (!isset($_GET['id_cliente'])) {
+if (!isset($_GET['id_cliente']) && !isset($_GET['nome'])) {
     die("Cliente não informado");
 }
 
 $id_cliente = $_GET['id_cliente'];
+$nome_cliente = $_GET['nome'];
 
 // Busca ou cria carrinho
 $carrinho = $carrinhoCtrl->obterCarrinho($id_cliente);
 $id_carrinho = $carrinho['id'] ?? null;
+$carrinhoItens = new CarrinhoItensModel();
+$carrinhoItens->removerDuplicatas($id_carrinho);
 
 if (!$id_carrinho) {
     die("Erro ao obter carrinho");
@@ -32,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produto'])) {
     $produto = $produtoCtrl->mostrar($id_produto);
     $preco_unitario = $produto['preco'] ?? 0;
 
-    $resultado = $carrinhoCtrl->adicionarItem($id_carrinho, $id_produto, $quantidade, $preco_unitario);
+    $resultado = $carrinhoCtrl->adicionarItem($id_carrinho, $id_produto, $quantidade);
 
     if (isset($resultado['success'])) {
         echo '<script>exibirAlerta("Produto adicionado ao carrinho!","sucesso");</script>';
@@ -52,18 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remover_item'])) {
 $itens = $carrinhoCtrl->listarItens($id_carrinho);
 $catalogo = $catalogoCtrl->carregarCatalogoProdutos();
 $produtos = $catalogo['produtos'] ?? [];
-
-// Unificar produtos duplicados (mesmo id_produto)
-$itensUnificados = [];
-foreach ($itens as $item) {
-    $idProd = $item['id_produto'];
-    if (!isset($itensUnificados[$idProd])) {
-        $itensUnificados[$idProd] = $item;
-    } else {
-        $itensUnificados[$idProd]['quantidade'] += $item['quantidade'];
-    }
-}
-$itens = array_values($itensUnificados);
 
 // Calcular totais
 $subtotal = 0;
@@ -136,11 +127,7 @@ $total = $subtotal;
     <div class="P_customer-info">
         <div class="P_customer-details">
             <div class="P_customer-label">Cliente</div>
-            <div class="P_customer-name">#<?= htmlspecialchars($id_cliente) ?></div>
-            <div class="P_customer-date">
-                <div>Data de atualização</div>
-                <div><?= date('d/m/Y H:i') ?></div>
-            </div>
+            <div class="P_customer-name"><?= htmlspecialchars($nome_cliente) ?></div>
         </div>
     </div>
 
@@ -154,10 +141,15 @@ $total = $subtotal;
         </div>
 
         <?php if (!empty($itens)): ?>
+            <?php
+                $produtosIndexados = [];
+                foreach ($produtos as $p) {
+                $produtosIndexados[$p['id']] = $p;
+                }
+            ?>
             <?php foreach ($itens as $item): ?>
                 <?php
-                    $produto = array_filter($produtos, fn($p) => $p['id'] == $item['id_produto']);
-                    $produto = array_values($produto)[0] ?? null;
+                    $produto = $produtosIndexados[$item['id_produto']] ?? null;
                     $nomeProduto = $produto['nome'] ?? 'Produto';
                     $fotoProduto = !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp';
                     $caminhoImagem = "../../PUBLIC/img/" . htmlspecialchars($fotoProduto);

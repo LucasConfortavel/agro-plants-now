@@ -264,7 +264,7 @@ if(isset($_SESSION['alerta'])){
                                 </td>
                                 <td>
                                     <div class="td">
-                                        <a href="carrinho.php?id_cliente=<?= $cliente['id'] ?>" class="ym_btn-padrao2" title="Ver carrinho">
+                                        <a href="carrinho.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" class="ym_btn-padrao2" title="Ver carrinho">
                                             <i class="fas fa-shopping-cart"></i>
                                         </a>
                                     </div>
