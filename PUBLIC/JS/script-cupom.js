@@ -25,58 +25,50 @@ function Pesquisar(){
     html="";
     dados_filtrado=[];
 
-    for (let i = 1; i <= totalPaginas; i++) {
-        html += `<a href="#" class="jv_page-number ${i === pagina ? 'active' : ''}" data-pag="${i}">${i}</a>`;
+function GerarTabela(){
+    tabela = document.getElementById("jv_customerTableBody");
+    html="";
+    
+    limite = 4;
+    
+    const url = new URLSearchParams(window.location.search);
+    if (url.has('pagina')) {
+        pagina = url.get('pagina');;
+    } else {
+        pagina = 1;
+    }
+    
+    total_pag = Math.ceil(dados.length/limite);
+    area_pags = document.getElementsByClassName('jv_page-navigation')[0];
+    
+    if(pagina != 1){
+        html+=` <a href="?pagina=${pagina-1}" class="jv_page-arrow"><i class="fas fa-arrow-left"></i></a>`;
     }
 
-    if (pagina < totalPaginas) {
-        html += `<a href="#" class="jv_page-arrow" data-pag="${pagina + 1}"><i class="fas fa-arrow-right"></i></a>`;
+    for (let i = 1; i <= total_pag; i++) {    
+       
+        if(i == pagina){
+            html+=`<a href='?pagina=${i}' class='jv_page-number active'>${i}</a>`;            
+        }else{
+            html+=`<a href='?pagina=${i}' class='jv_page-number'>${i}</a>`;
+        }
     }
 
-    areaPags.innerHTML = html;
-
-    // adicionar eventos nos links de paginação
-    areaPags.querySelectorAll('a[data-pag]').forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            pagina = parseInt(link.getAttribute('data-pag'));
-            gerarTabela();
-        });
-    });
-}
-
-function gerarTabela() {
-    const tabela = document.getElementById("jv_customerTableBody");
-    tabela.innerHTML = "";
-
-    const totalPaginas = Math.ceil(dadosFiltrados.length / limite);
-    gerarPaginacao(totalPaginas);
-
-    const inicio = (pagina - 1) * limite;
-    const fim = inicio + limite;
-    const cupons = dadosFiltrados.slice(inicio, fim);
-
-    if (cupons.length === 0) {
-        tabela.innerHTML = `<tr><td colspan="6" style="text-align: center; height: 49.7vh;">Nenhum cupom encontrado</td></tr>`;
-        return;
+    if(pagina != total_pag){
+        html+=` <a href="?pagina=${parseInt(pagina, 10)+1}" class="jv_page-arrow"><i class="fas fa-arrow-right"></i></a>`;
     }
+    
+
+    area_pags.innerHTML=html;
+    html="";
+
+    cupons = dados.slice(((pagina-1)*4), (pagina*limite));
 
     cupons.forEach(cupom => {
-        tabela.innerHTML += `
-            <tr>
-                <td>
-                    <input type="checkbox" name="selecionados[]" form="formRemoverSelecionados"
-                           class="jv_checkbox customer-checkbox"
-                           data-customer-id="${cupom.id}"
-                           value="${cupom.id}">
-                </td>
-                <td>${cupom.codigo}</td>
-                <td>${cupom.valor}%</td>
-                <td>${formatarData(cupom.data_emissao)}</td>
-                <td>${formatarData(cupom.data_validade)}</td>
-            </tr>
-        `;
-    });
+        html += `<tr><td>${cupom['codigo']}</td>`;
+        html += `<td>${cupom['valor']}%</td>`;
+        html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
+        html += `<td>${formatarData(cupom['data_validade'])}</td></tr>`;
 
 
     area_pags = document.getElementsByClassName('jv_page-navigation')[0];
@@ -96,46 +88,23 @@ function gerarTabela() {
     
 }
 
-
-let selectedCustomers = [];
-
-function atualizarSelecao() {
-    const selectAllCheckbox = document.getElementById('jv_selectAll');
-    const checkboxes = document.querySelectorAll('.customer-checkbox');
-    const removeButton = document.getElementById('jv_removeSelected');
-    const selectedCount = document.getElementById('jv_selectedCount');
-
-    function updateSelectedCount() {
-        const checkedBoxes = document.querySelectorAll('.customer-checkbox:checked');
-        selectedCustomers = Array.from(checkedBoxes).map(cb => cb.dataset.customerId);
-        const totalSelected = selectedCustomers.length;
-        selectedCount.textContent = totalSelected;
-        removeButton.style.display = totalSelected > 0 ? 'inline-flex' : 'none';
-    }
-
-    selectAllCheckbox.onchange = () => {
-        checkboxes.forEach(cb => cb.checked = selectAllCheckbox.checked);
-        updateSelectedCount();
-    };
-
-    checkboxes.forEach(cb => {
-        cb.onchange = () => {
-            const allChecked = document.querySelectorAll('.customer-checkbox:checked').length === checkboxes.length;
-            selectAllCheckbox.checked = allChecked;
-            updateSelectedCount();
-        };
+    cupons = dados_filtrado.slice(((pagina-1)*4), (pagina*limite));
+    
+    cupons.forEach(cupom => {
+        data_emissao = new Date(cupom['data_emissao']);
+        data_validade = new Date(cupom['data_validade']);
+        if (cupom["codigo"].toLowerCase().includes(pesquisa.toLowerCase())) {
+           html += `<tr><td>${cupom['codigo']}</td>`;
+           html += `<td>${cupom['valor']}%</td>`;
+           html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
+           html += `<td>${formatarData(cupom['data_validade'])}</td></tr>`;
+           
+        }
     });
 
-    updateSelectedCount();
+    info_tabela.innerHTML = html;
+    
 }
 
-function atualizarContagem() {
-    const customerCountElement = document.getElementById('jv_customerCount');
-    const total = dadosFiltrados.length;
-    customerCountElement.textContent = `${total} ${total === 1 ? 'cupom encontrado' : 'cupons encontrados'}`;
-}
+GerarTabela();
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    gerarTabela();
-});
