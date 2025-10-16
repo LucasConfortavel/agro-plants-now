@@ -56,15 +56,21 @@ $itens = $carrinhoCtrl->listarItens($id_carrinho);
 $catalogo = $catalogoCtrl->carregarCatalogoProdutos();
 $produtos = $catalogo['produtos'] ?? [];
 
-// Calcular totais
+// Criar índice de produtos para melhor performance
+$produtosIndexados = [];
+foreach ($produtos as $p) {
+    $produtosIndexados[$p['id']] = $p;
+}
+
+// Calcular totais - CORRIGIDO: inicializar $subtotal antes do loop
 $subtotal = 0;
 foreach ($itens as &$item) {
-    $produto = array_filter($produtos, fn($p) => $p['id'] == $item['id_produto']);
-    $produto = array_values($produto)[0] ?? null;
-
+    $produto = $produtosIndexados[$item['id_produto']] ?? null;
+    
     $item['preco_unitario'] = $item['preco_unitario'] ?? ($produto['preco'] ?? 0);
     $subtotal += $item['preco_unitario'] * $item['quantidade'];
 }
+unset($item);
 
 $desconto = 0;
 $total = $subtotal;
@@ -141,12 +147,6 @@ $total = $subtotal;
         </div>
 
         <?php if (!empty($itens)): ?>
-            <?php
-                $produtosIndexados = [];
-                foreach ($produtos as $p) {
-                $produtosIndexados[$p['id']] = $p;
-                }
-            ?>
             <?php foreach ($itens as $item): ?>
                 <?php
                     $produto = $produtosIndexados[$item['id_produto']] ?? null;
@@ -205,7 +205,7 @@ $total = $subtotal;
                 <option value="">Selecione um produto</option>
                 <?php foreach ($produtos as $p): ?>
                     <option value="<?= $p['id'] ?>">
-                        <?= htmlspecialchars($p['nome']) ?> — R$ <?= number_format($p['preco'], 2, ',', '.') ?>
+                        <?= htmlspecialchars($p['nome']) ?> – R$ <?= number_format($p['preco'], 2, ',', '.') ?>
                     </option>
                 <?php endforeach; ?>
             </select>
