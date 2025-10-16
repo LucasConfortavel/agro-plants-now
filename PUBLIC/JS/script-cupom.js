@@ -57,10 +57,6 @@ function GerarTabela(){
 function Pesquisar(){
     inputPesquisa = document.getElementById("jv_searchInput");
     pesquisa = inputPesquisa.value;
-    if(pesquisa == ""){
-        GerarTabela();
-        return none;
-    }
     info_tabela = document.getElementById("jv_customerTableBody");
     info_tabela.innerHTML = '';
     html="";
@@ -72,11 +68,14 @@ function Pesquisar(){
         }
     });
 
+    limite = 4;
+    pagina = 1;
 
-    area_pags = document.getElementsByClassName('jv_page-navigation')[0];
-    area_pags.innerHTML="";
+    cupons = dados_filtrado.slice(((pagina-1)*4), (pagina*limite));
     
-    dados_filtrado.forEach(cupom => {
+    cupons.forEach(cupom => {
+        data_emissao = new Date(cupom['data_emissao']);
+        data_validade = new Date(cupom['data_validade']);
         if (cupom["codigo"].toLowerCase().includes(pesquisa.toLowerCase())) {
            html += `<tr><td>${cupom['codigo']}</td>`;
            html += `<td>${cupom['valor']}%</td>`;
