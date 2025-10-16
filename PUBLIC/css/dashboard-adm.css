@@ -63,13 +63,19 @@ body.dark-theme .jp_commission-column {
 }
 
 body.dark-theme .jp_pagination-item.active {
-  background-color: #45734B;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: white;
 }
 
-body.dark-theme .jp_pagination-item:hover {
-  background-color: #3a6240;
-  color: #fff;
+
+body.dark-theme .jp_pagination-item {
+  color: #e0e0e0;
+  background-color: transparent;
+  border: 1px solid #555;
+}
+
+body.ym_area-notificacao {
+  background-color: #45734B;
 }
 
 body.dark-theme .jp_filter-select {
@@ -88,10 +94,6 @@ body.dark-theme canvas {
 
 body.dark-theme .ym_options {
   color: #e0e0e0;
-}
-
-body.dark-theme .ym_area-notificacao{
-  background-color:#2e2e2e
 }
 
 
