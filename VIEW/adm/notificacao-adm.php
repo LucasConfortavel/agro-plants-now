@@ -37,8 +37,16 @@ try {
             'data' => date("d/m/Y"),
             'mensagem' => "Prezados, Nossa cooperativa esta com problemas de pragas nas lavouras de milho, precisamos urgentemente de defensivos agrícolas.",
             'nome' => "Maria Santos"
-        ]
-    ];
+        ],
+        [
+        'titulo' => "agroforte@outlook.com",
+        'data' => date("d/m/Y"),
+        'mensagem' => "Olá equipe, tudo bem? Gostaria de solicitar um orçamento detalhado para sementes de algodão destinadas à próxima safra. Nossa necessidade é de aproximadamente 500 kg para o plantio em uma área de 50 hectares. Também gostaria de saber sobre os prazos de entrega, disponibilidade do produto, formas e condições de pagamento, além de possíveis descontos para compra em maior volume. Agradeço desde já pela atenção e aguardo o retorno para alinharmos o pedido.",
+        'nome' => "Carlos Eduardo"
+    ]
+];
+
+    
 
  
     $dados = ($filtro === 'mensagens') ? $mensagens : $notificacoes;
@@ -62,228 +70,264 @@ try {
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        .jv_filter-select {
-            padding: 8px 12px;
-            border: 1px solid rgba(58, 98, 64, 0.5); 
-            border-radius: 4px;
-            margin-left: 10px;
-            background-color: white;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-        }
-        
-        .jv_filter-select:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(58, 98, 64, 0.1);
-        }
-        
-        
-        .mensagem-completa {
-            background: transparent;
-            border: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .conteudo-mensagem {
-            background: transparent;
-            padding: 0;
-            border: none;
-            margin-top: 8px;
-            max-height: 120px;
-            overflow-y: auto;
-            line-height: 1.4;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .jv_customer-details h4 {
-            font-weight: 600;
-            color: #666; 
-            margin-bottom: 5px;
-        }
-        
-        .jv_avatar.email-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #45734B;
-            font-size: 16px;
-            flex-shrink: 0; 
-        }
-        
-        .jv_avatar:not(.email-avatar) {
-            
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            
-        }
-      
-        .jv_customer-info {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
+    .jv_filter-select {
+        padding: 8px 12px;
+        border: 1px solid rgba(58, 98, 64, 0.5); 
+        border-radius: 4px;
+        margin-left: 10px;
+        background-color: white;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    
+    .jv_filter-select:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(58, 98, 64, 0.1);
+    }
+    
+    .mensagem-completa {
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        cursor: pointer;
+    }
+    
+    .conteudo-mensagem {
+        background: transparent;
+        padding: 0;
+        border: none;
+        margin-top: 8px;
+        max-height: 120px;
+        overflow-y: auto;
+        line-height: 1.4;
+        font-size: 14px;
+        color: #666;
+        word-wrap: break-word;
+    }
+    
+    .jv_customer-details h4 {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 5px;
+        font-size: 15px;
+        line-height: 1.3;
+    }
+    
+    .jv_avatar.email-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #45734B;
+        color: white;
+        font-size: 16px;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+    
+    .jv_avatar:not(.email-avatar) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+  
+    .jv_customer-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        width: 100%;
+    }
 
-        .popup-email {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            font-family: 'Poppins', sans-serif;
-        }
+    .jv_customer-details {
+        flex: 1;
+        min-width: 0;
+    }
 
-        .popup-email-content {
-            background: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 700px;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
+    
+    .jv_table tbody tr {
+        height: 80px;
+    }
 
-        .popup-email-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 25px;
-            border-bottom: 1px solid #e0e0e0;
-            background: #f8f9fa;
-            border-radius: 12px 12px 0 0;
-        }
+    .jv_table tbody td {
+        vertical-align: top;
+        padding: 12px 8px;
+    }
 
-        .popup-email-header h3 {
-            margin: 0;
-            color: #333;
-            font-size: 18px;
-            font-weight: 600;
-        }
+    .jv_checkbox-col {
+        vertical-align: middle;
+    }
 
-        .popup-email-close {
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            color: #666;
-            padding: 5px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
+    .setor-col {
+        vertical-align: middle;
+        color: #666;
+        font-size: 15px; 
+        font-weight: 500;
+    }
 
-        .popup-email-close:hover {
-            background: #f0f0f0;
-            color: #333;
-        }
+    .jv_table td:nth-child(4) {
+        vertical-align: middle;
+        color: #666;
+        font-size: 13px;
+    }
 
-        .popup-email-body {
-            padding: 25px;
-            flex: 1;
-            overflow-y: auto;
-        }
+    .popup-email {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .email-info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
+    .popup-email-content {
+        background: white;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 700px;
+        max-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
 
-        .info-item {
-            display: flex;
-            flex-direction: column;
-        }
+    .popup-email-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 25px;
+        border-bottom: 1px solid #e0e0e0;
+        background: #f8f9fa;
+        border-radius: 12px 12px 0 0;
+    }
 
-        .info-label {
-            font-weight: 500;
-            color: #555;
-            font-size: 13px;
-            margin-bottom: 4px;
-        }
+    .popup-email-header h3 {
+        margin: 0;
+        color: #333;
+        font-size: 18px;
+        font-weight: 600;
+    }
 
-        .info-value {
-            color: #333;
-            font-size: 14px;
-            font-weight: 400;
-        }
+    .popup-email-close {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #666;
+        padding: 5px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
 
-        .mensagem-container {
-            margin-top: 20px;
-        }
+    .popup-email-close:hover {
+        background: #f0f0f0;
+        color: #333;
+    }
 
-        .mensagem-label {
-            font-weight: 500;
-            color: #555;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
+    .popup-email-body {
+        padding: 25px;
+        flex: 1;
+        overflow-y: auto;
+    }
 
-        .mensagem-conteudo {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #3a6240;
-            max-height: 300px;
-            overflow-y: auto;
-            line-height: 1.6;
-            font-size: 14px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
+    .email-info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
 
-        .mensagem-clicavel {
-            cursor: pointer;
-        }
+    .info-item {
+        display: flex;
+        flex-direction: column;
+    }
 
-        
-        .mensagem-conteudo::-webkit-scrollbar {
-            width: 6px;
-        }
+    .info-label {
+        font-weight: 500;
+        color: #555;
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
 
-        .mensagem-conteudo::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 3px;
-        }
+    .info-value {
+        color: #333;
+        font-size: 14px;
+        font-weight: 400;
+    }
 
-        .mensagem-conteudo::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 3px;
-        }
+    .mensagem-container {
+        margin-top: 20px;
+    }
 
-        .mensagem-conteudo::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
+    .mensagem-label {
+        font-weight: 500;
+        color: #555;
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
 
-        
-        .setor-col {
-            display: table-cell;
-        }
-        
-        <?php if ($filtro === 'mensagens'): ?>
-        .setor-col {
-            display: none;
-        }
-        <?php endif; ?>
-    </style>
+    .mensagem-conteudo {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #3a6240;
+        max-height: 300px;
+        overflow-y: auto;
+        line-height: 1.6;
+        font-size: 14px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .mensagem-clicavel {
+        cursor: pointer;
+    }
+
+    .mensagem-conteudo::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .mensagem-conteudo::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+
+    .mensagem-conteudo::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 3px;
+    }
+
+    .mensagem-conteudo::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
+
+    .setor-col {
+        display: table-cell;
+    }
+    
+    <?php if ($filtro === 'mensagens'): ?>
+    .setor-col {
+        display: none;
+    }
+    <?php endif; ?>
+</style>
 </head>
 <body>
     <main class="jp_main-content">
