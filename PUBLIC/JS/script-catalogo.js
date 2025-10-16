@@ -86,7 +86,6 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Função de pesquisa em tempo real
 function inicializarPesquisa() {
     const inputPesquisa = document.getElementById('inputPesquisa');
     
@@ -94,14 +93,13 @@ function inicializarPesquisa() {
         inputPesquisa.addEventListener('input', function() {
             const termo = this.value.toLowerCase();
             
-            // Filtrar produtos
             const produtos = document.querySelectorAll('#produtos-container .ym_cardProduto');
             produtos.forEach(produto => {
                 const nome = produto.querySelector('.ym_nomeProduto').textContent.toLowerCase();
                 const descricao = produto.querySelector('.ym_descricao').textContent.toLowerCase();
                 
                 if (nome.includes(termo) || descricao.includes(termo)) {
-                    produto.style.display = 'block';
+                    produto.style.display = 'flex';
                 } else {
                     produto.style.display = 'none';
                 }
@@ -114,7 +112,7 @@ function inicializarPesquisa() {
                 const descricao = servico.querySelector('.ym_descricao').textContent.toLowerCase();
                 
                 if (nome.includes(termo) || descricao.includes(termo)) {
-                    servico.style.display = 'block';
+                    servico.style.display = 'flex';
                 } else {
                     servico.style.display = 'none';
                 }
