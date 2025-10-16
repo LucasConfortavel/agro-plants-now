@@ -75,14 +75,13 @@ if(isset($_SESSION['alerta'])){
             <!-- Header -->
             <div class="jv_card-header">
                 <div class="jv_header-content">
-                    <form method="POST" action="#" class="jv_search-section">
-                        <div class="jv_search-container">
-                            <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
-                                <i class="fas fa-search search-icon"></i>
-                            </button>
-                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por código..." class="jv_search-input" oninput="Pesquisar()">
-                        </div>
-                    </form>
+                    <div class="jv_search-container">
+                        <button class="ym_area-icon-pesquisa" name="pesquisar">
+                            <i class="fas fa-search search-icon"></i>
+                        </button>
+                        <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por código..." class="jv_search-input" oninput="Pesquisar()">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
 
                     <div class="jv_actions">
                         <div>
