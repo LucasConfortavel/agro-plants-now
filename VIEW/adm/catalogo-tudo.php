@@ -64,12 +64,10 @@ $errorMessage = $_GET['error'] ?? '';
             <div class="ym_categorias">
                 
                 <div class="ym_area-input-pesquisa">
-                <a href="" class="ym_lupa">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </a>
-                <input id="inputPesquisa" type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
-                </div>
-                                
+                    <a href="" class="ym_lupa"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <input id="inputPesquisa" type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
+                </div>  
+                
                 
                 <div class="ym_area-select">
                     <div class="ym_select" onclick="mostrar_categorias()">
@@ -84,6 +82,7 @@ $errorMessage = $_GET['error'] ?? '';
                     </div>
                     
                 </div>
+                
                 <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')">+</a>
             </div>
             
