@@ -15,26 +15,46 @@
   max-width: 13%;
 }
 
-.ym_area-input-pesquisa{
+.ym_area-input-pesquisa {
   display: flex;
   align-items: center;
   height: 100%;
   width: 80%;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 5px;                 
+  background-color: white;
 }
 
-.ym_lupa{
+.ym_lupa {
   color: rgba(0, 0, 0, 0.401);
-  border-top: 1px solid rgb(224, 224, 224);
-  border-left: 1px solid rgb(224, 224, 224);
-  border-bottom: 1px solid rgb(224, 224, 224);
-  background-color: white;
+  background-color: transparent;
   height: 100%;
   align-items: center;
   justify-content: center;
   display: flex;
   padding: 0px 6px;
-  border-radius: 5px 0px 0px 5px;
+  text-decoration: none;
 }
+
+.ym_produtoPesquisa {
+  height: 100%;
+  width: 100%;
+  padding: 0px 10px;
+  border: none;             
+  outline: none;            
+  background-color: white;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.ym_produtoPesquisa:focus {
+  outline: none;
+}
+
+.ym_area-input-pesquisa:focus-within {
+    outline: none;
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+} 
 
 .ym_sectionProdutos{
   width: 100%;
@@ -253,16 +273,7 @@
   text-decoration: none;
 }
 
-.ym_produtoPesquisa{
-  height: 100%;
-  width: 100%;
-  padding: 0px 10px;
-  border: none;
-  border-top: 1px solid rgb(224, 224, 224);
-  border-bottom: 1px solid rgb(224, 224, 224);
-  border-right: 1px solid rgb(224, 224, 224);
-  border-radius: 0px 5px 5px 0px;
-}
+
 
 .ym_titulo-produtos{
   display: flex;
