@@ -51,10 +51,10 @@
 }
 
 .ym_area-input-pesquisa:focus-within {
-  border-color: black;
-  box-shadow: none;
+    outline: none;
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
 }
-
 
 .ym_sectionProdutos{
   width: 100%;
