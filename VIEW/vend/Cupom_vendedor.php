@@ -8,17 +8,6 @@ $cupom_control = new CupomController();
 $cupons = $cupom_control->index();
 $total_cupons = count($cupons);
 
-// Paginação
-$limite = 4;
-$pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-if ($pagina_atual < 1) $pagina_atual = 1;
-
-$offset = ($pagina_atual - 1) * $limite;
-$total_paginas = ceil($total_cupons / $limite);
-
-// Slice para limitar os cupons exibidos na página
-$cupons = array_slice($cupons, $offset, $limite);
-
 // Criação de cupom via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cupom_control->criarCupom(); // atenção ao método com C maiúsculo
@@ -51,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                                 <i class="fas fa-search search-icon"></i>
                             </button>
-                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por código..." class="jv_search-input">
+                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por código..." class="jv_search-input"  oninput="Pesquisar()">
                         </div>
                     </form>
                 </div>
@@ -67,8 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
-                                <th class="jv_checkbox-col">
-                                </th>
                                 <th class="jv_codigo">Código</th>
                                 <th class="jv_desconto">Desconto</th>
                                 <th class="jv_cadastro">Data de Cadastro</th>
@@ -77,25 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </tr>
                         </thead>
                         <tbody id="jv_customerTableBody">
-                            <?php if ($total_cupons > 0): ?>
-                                <?php foreach ($cupons as $cupom): ?>
-                                    <tr>
-                                        <td>
-                                            
-                                        </td>
-                                        <td ><?= htmlspecialchars($cupom['codigo'] ?? '-') ?></td>
-                                        <td ><?= htmlspecialchars($cupom['valor'] ?? $cupom['desconto'] ?? '0') ?>%</td>
-                                        <td ><?= isset($cupom['data_emissao']) ? date("d/m/Y", strtotime($cupom['data_emissao'])) : (isset($cupom['data_criacao']) ? date("d/m/Y", strtotime($cupom['data_criacao'])) : '-') ?></td>
-                                        <td ><?= isset($cupom['data_validade']) ? date("d/m/Y", strtotime($cupom['data_validade'])) : (isset($cupom['validade']) ? date("d/m/Y", strtotime($cupom['validade'])) : '-') ?></td>
-                                        <td class="">
-                                        
-                                            
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr><td colspan="6" style="text-align: center; height: 49.7vh;">Nenhum cupom encontrado</td></tr>
-                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -105,29 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Paginação -->
     <div class="jv_page-navigation">
-        <?php if($pagina_atual > 1): ?>
-            <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-        <?php endif; ?>
-
-        <?php
-        $inicio = max(1, $pagina_atual - 2);
-        $fim = min($total_paginas, $pagina_atual + 2);
-        for ($i = $inicio; $i <= $fim; $i++): ?>
-            <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                <?= $i ?>
-            </a>
-        <?php endfor; ?>
-
-        <?php if($pagina_atual < $total_paginas): ?>
-            <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        <?php endif; ?>
     </div>
 
-
+        <script>
+            const dados = <?php echo json_encode($cupons); ?>;
+        </script>
         <script src="../../PUBLIC/JS/script-cupom.js"></script>
         <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
