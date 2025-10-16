@@ -23,6 +23,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../../PUBLIC/css/sobre_prod.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
 </head>
 <body>
 
@@ -38,11 +39,7 @@ if (isset($_GET['id'])) {
 
             <div class="gs_area-img">
                 <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="gs_product-image">
-                <div class="gs_area-img-select">
-                    <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="gs_product-image-select">
-                    <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="gs_product-image-select">
-                    <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="gs_product-image-select">
-                </div>
+            
             </div>
 
             <div class="gs_product-info">
@@ -80,5 +77,6 @@ if (isset($_GET['id'])) {
     </main>
 
     <script src="../../PUBLIC/JS/script-sobre-prod.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../../PUBLIC/css/sobre_prod.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
 </head>
 <body>
 
@@ -75,5 +76,6 @@ if (isset($_GET['id'])) {
     </main>
 
     <script src="../../PUBLIC/JS/script-sobre-prod.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 </body>
 </html>
