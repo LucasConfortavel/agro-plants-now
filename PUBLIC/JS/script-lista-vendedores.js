@@ -1,229 +1,180 @@
-// Aguardar o carregamento completo do DOM
-document.addEventListener('DOMContentLoaded', function() {
-    // Elementos DOM
-    const searchInput = document.querySelector('.jv_search-input');
-    const selectAllCheckbox = document.getElementById('jv_selectAll');
-    const customerCheckboxes = document.querySelectorAll('.customer-checkbox');
-    const removeSelectedBtn = document.getElementById('jv_removeSelected');
-    const selectedCountSpan = document.getElementById('jv_selectedCount');
-    
-    // Inicializar array de clientes selecionados
-    let selectedCustomers = [];
-    
-    // Adicionar event listeners
-    function setupEventListeners() {
-        // Pesquisa
-        if (searchInput) {
-            searchInput.addEventListener('input', handleSearch);
-        }
-        
-        // Selecionar todos
-        if (selectAllCheckbox) {
-            selectAllCheckbox.addEventListener('change', handleSelectAll);
-        }
-        
-        // Checkboxes individuais
-        customerCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                handleCustomerSelect(this.dataset.customerId, this.checked);
-            });
-        });
-        
-        // Botão remover selecionados
-        if (removeSelectedBtn) {
-            removeSelectedBtn.addEventListener('click', handleRemoveSelected);
-        }
-    }
-    
-    // Função de pesquisa
-    function handleSearch() {
-        const searchTerm = this.value.toLowerCase();
-        const rows = document.querySelectorAll('#jv_customerTableBody tr');
-        
-        rows.forEach(row => {
-            const name = row.querySelector('h4').textContent.toLowerCase();
-            const email = row.querySelector('p').textContent.toLowerCase();
-            
-            if (name.includes(searchTerm) || email.includes(searchTerm)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-                // Desselecionar se estiver oculto
-                const checkbox = row.querySelector('.customer-checkbox');
-                if (checkbox && checkbox.checked) {
-                    checkbox.checked = false;
-                    handleCustomerSelect(checkbox.dataset.customerId, false);
-                }
-            }
-        });
-    }
-    
-    // Selecionar todos os clientes
-    function handleSelectAll() {
-        const isChecked = this.checked;
-        const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])');
-        
-        visibleRows.forEach(row => {
-            const checkbox = row.querySelector('.customer-checkbox');
-            if (checkbox) {
-                checkbox.checked = isChecked;
-                handleCustomerSelect(checkbox.dataset.customerId, isChecked);
-            }
-        });
-    }
-    
-    // Manipular seleção individual de clientes
-    function handleCustomerSelect(customerId, isChecked) {
-        if (isChecked) {
-            // Adicionar ao array se não existir
-            if (!selectedCustomers.includes(customerId)) {
-                selectedCustomers.push(customerId);
-            }
-        } else {
-            // Remover do array
-            selectedCustomers = selectedCustomers.filter(id => id !== customerId);
-            // Desselecionar checkbox "Selecionar todos"
-            if (selectAllCheckbox) {
-                selectAllCheckbox.checked = false;
-            }
-        }
-        
-        // Atualizar UI
-        updateSelectedUI();
-    }
-    
-    // Atualizar interface com base nos selecionados
-    function updateSelectedUI() {
-        if (removeSelectedBtn && selectedCountSpan) {
-            const hasSelected = selectedCustomers.length > 0;
-            
-            // Mostrar/ocultar botão de remover
-            removeSelectedBtn.style.display = hasSelected ? 'flex' : 'none';
-            
-            // Atualizar contador
-            selectedCountSpan.textContent = selectedCustomers.length;
-        }
-    }
-    
-    // Remover clientes selecionados
-    function handleRemoveSelected() {
-        if (selectedCustomers.length > 0) {
-            if (confirm(`Tem certeza que deseja remover ${selectedCustomers.length} cliente(s)?`)) {
-                // Simular remoção (substituir por chamada AJAX em produção)
-                selectedCustomers.forEach(id => {
-                    const checkbox = document.querySelector(`.customer-checkbox[data-customer-id="${id}"]`);
-                    if (checkbox) {
-                        const row = checkbox.closest('tr');
-                        if (row) {
-                            row.remove();
-                        }
-                    }
-                });
-                
-                // Limpar seleção
-                selectedCustomers = [];
-                updateSelectedUI();
-                
-                // Atualizar contador total de clientes
-                updateCustomerCount();
-            }
-        }
-    }
-    
-    // Atualizar contador total de clientes
-    function updateCustomerCount() {
-        const customerCountElement = document.getElementById('jv_customerCount');
-        if (customerCountElement) {
-            const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])').length;
-            customerCountElement.textContent = `${visibleRows} clientes encontrados`;
-        }
-    }
-    
-    // Inicializar
-    setupEventListeners();
-  });
-  
-  // Funções do dropdown (mantidas do código original)
-//   function showDropdown(event, customerId) {
-//     event.stopPropagation();
-    
-//     // Esconder qualquer dropdown aberto
-//     hideDropdown();
-    
-//     const rect = event.target.closest('.jv_menu-btn').getBoundingClientRect();
-//     const dropdownMenu = document.getElementById('jv_dropdownMenu');
-    
-//     if (dropdownMenu) {
-//         dropdownMenu.style.display = 'block';
-//         dropdownMenu.style.left = (rect.left - 150) + 'px';
-//         dropdownMenu.style.top = (rect.bottom + 5) + 'px';
-        
-//         // Add click handlers to dropdown items
-//         dropdownMenu.querySelectorAll('.jv_dropdown-item').forEach(item => {
-//             item.onclick = function() {
-//                 handleDropdownAction(item.dataset.action, customerId);
-//                 hideDropdown();
-//             };
-//         });
-//     }
-//   }
-  
-//   function hideDropdown() {
-//     const dropdownMenu = document.getElementById('jv_dropdownMenu');
-//     if (dropdownMenu) {
-//         dropdownMenu.style.display = 'none';
-//     }
-//   }
-  
-//   function handleDropdownAction(action, customerId) {
-//     const checkbox = document.querySelector(`.customer-checkbox[data-customer-id="${customerId}"]`);
-//     if (!checkbox) return;
-    
-//     const row = checkbox.closest('tr');
-//     const customerName = row.querySelector('h4').textContent;
-    
-//     switch(action) {
-//         case 'view':
-//             alert(`Visualizando detalhes de ${customerName}`);
-//             break;
-//         case 'edit':
-//             alert(`Editando ${customerName}`);
-//             break;
-//         case 'delete':
-//             if (confirm(`Tem certeza que deseja remover ${customerName}?`)) {
-//                 row.remove();
-//                 updateCustomerCount();
-//                 alert(`${customerName} foi removido`);
-//             }
-//             break;
-//     }
-//   }
-  
-//   // Função para atualizar contador de clientes (também usada pelo dropdown)
-//   function updateCustomerCount() {
-//     const customerCountElement = document.getElementById('jv_customerCount');
-//     if (customerCountElement) {
-//         const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])').length;
-//         customerCountElement.textContent = `${visibleRows} clientes encontrados`;
-//     }
-//   }
-  // Variável global para saber se o menu está aberto
-  function toggleDropdown(btn) {
+
+function toggleDropdown(btn) {
     const dropdown = btn.nextElementSibling;
     const isVisible = dropdown.style.display === "block";
-  
-    // Fecha todos os outros
+
     document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
-  
-    // Abre apenas o clicado
+
     if (!isVisible) {
-      dropdown.style.display = "block";
+        dropdown.style.display = "block";
     }
-  }
-  
-  // Fecha ao clicar fora
-  document.addEventListener("click", e => {
-    if (!e.target.closest(".jv_menu-btn") && !e.target.closest(".jv_dropdown")) {
-      document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
+}
+
+document.addEventListener("click", e => {
+if (!e.target.closest(".jv_menu-btn") && !e.target.closest(".jv_dropdown")) {
+    document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
+}
+});
+
+
+//PESQUISA
+
+formatarData = (dataStr) => {
+        const [ano, mes, dia] = dataStr.split('-');
+        return `${dia.padStart(2,'0')}/${mes.padStart(2,'0')}/${ano}`;
     }
-  });
+
+function GerarTabela(){
+    tabela = document.getElementById("jv_customerTableBody");
+    html="";
+    
+    limite = 4;
+    
+    const url = new URLSearchParams(window.location.search);
+    if (url.has('pagina')) {
+        pagina = url.get('pagina');;
+    } else {
+        pagina = 1;
+    }
+    
+    total_pag = Math.ceil(dados.length/limite);
+    area_pags = document.getElementsByClassName('jv_page-navigation')[0];
+    
+    if(pagina != 1){
+        html+=` <a href="?pagina=${pagina-1}" class="jv_page-arrow"><i class="fas fa-arrow-left"></i></a>`;
+    }
+
+    for (let i = 1; i <= total_pag; i++) {    
+       
+        if(i == pagina){
+            html+=`<a href='?pagina=${i}' class='jv_page-number active'>${i}</a>`;            
+        }else{
+            html+=`<a href='?pagina=${i}' class='jv_page-number'>${i}</a>`;
+        }
+    }
+
+    if(pagina != total_pag){
+        html+=` <a href="?pagina=${parseInt(pagina, 10)+1}" class="jv_page-arrow"><i class="fas fa-arrow-right"></i></a>`;
+    }
+    
+
+    area_pags.innerHTML=html;
+    html="";
+
+    usuarios = dados.slice(((pagina-1)*4), (pagina*limite));
+
+    usuarios.forEach(usuario => {
+
+        html += `<tr><td>
+        <div class="jv_customer-info">
+            <div class="jv_avatar">
+                ${usuario['nome'].substring(0, 2).toUpperCase()}
+            </div>
+            <div class="jv_customer-details">
+                <h4>${usuario['nome']}</h4>
+                <p>${usuario['email']}</p>
+            </div>
+        </div>
+        </td>`;
+        html += `<td>${usuario['telefone']}</td>`;
+        html += `<td>${formatarData(usuario['data_nasc'])}</td>`;
+        html += `<td>${usuario['status']}</td>`;
+        html += `<td class="jv_table-action">
+                    <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <form class="jv_dropdown" method="GET" action="">
+                        <button type="submit" name="visualizar" value="${usuario['id']}" class="jv_dropdown-item">
+                            <i class="fas fa-eye"></i> Visualizar
+                        </button>
+                        <div class="jv_dropdown-separator"></div>`
+        if(usuario['status'] == "ATIVADO"){
+            html += `<button type="button" onclick="abrirPopup(\'../../VIEW/pop-up/pop-up_remover.php?id='${usuario['id']},Cadastro de Vendedores)" class="jv_dropdown-item jv_danger">
+                <i class="fa-solid fa-ban"></i> Desativar
+            </button>
+            </form>
+        </td>
+    </tr>`
+            
+        }else{html += `<button type="button" onclick="abrirPopup(../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']},Cadastro de Vendedores)" class="jv_dropdown-item jv_acess">
+                <i class="fa-solid fa-power-off"></i> Ativar
+            </button>
+            </form>
+        </td>
+    </tr>`
+        }
+    });
+    tabela.innerHTML = html;
+}
+
+
+
+function Pesquisar(){
+    inputPesquisa = document.getElementById("jv_searchInput");
+    pesquisa = inputPesquisa.value;
+    if(pesquisa == ""){
+        GerarTabela();
+        return none;
+    }
+    info_tabela = document.getElementById("jv_customerTableBody");
+    info_tabela.innerHTML = '';
+    html="";
+    dados_filtrado=[];
+
+    dados.forEach(dado => {
+        if (dado["nome"].toLowerCase().includes(pesquisa.toLowerCase()) || dado["email"].toLowerCase().includes(pesquisa.toLowerCase())) {
+            dados_filtrado.push(dado);
+        }
+    });
+
+
+    area_pags = document.getElementsByClassName('jv_page-navigation')[0];
+    area_pags.innerHTML="";
+    
+    dados_filtrado.forEach(usuario => {
+        html += `<tr><td>
+        <div class="jv_customer-info">
+            <div class="jv_avatar">
+                ${usuario['nome'].substring(0, 2).toUpperCase()}
+            </div>
+            <div class="jv_customer-details">
+                <h4>${usuario['nome']}</h4>
+                <p>${usuario['email']}</p>
+            </div>
+        </div>
+        </td>`;
+        html += `<td>${usuario['telefone']}</td>`;
+        html += `<td>${formatarData(usuario['data_nasc'])}</td>`;
+        html += `<td>${usuario['status']}</td>`;
+        html += `<td class="jv_table-action">
+                    <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <form class="jv_dropdown" method="GET" action="">
+                        <button type="submit" name="visualizar" value="${usuario['id']}" class="jv_dropdown-item">
+                            <i class="fas fa-eye"></i> Visualizar
+                        </button>
+                        <div class="jv_dropdown-separator"></div>`
+        if(usuario['status'] == "ATIVADO"){
+            html += `<button type="button" onclick="abrirPopup(\'../../VIEW/pop-up/pop-up_remover.php?id='${usuario['id']},Cadastro de Vendedores)" class="jv_dropdown-item jv_danger">
+                <i class="fa-solid fa-ban"></i> Desativar
+            </button>
+            </form>
+        </td>
+    </tr>`
+            
+        }else{html += `<button type="button" onclick="abrirPopup(../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']},Cadastro de Vendedores)" class="jv_dropdown-item jv_acess">
+                <i class="fa-solid fa-power-off"></i> Ativar
+            </button>
+            </form>
+        </td>
+    </tr>`
+        }
+    });
+
+    info_tabela.innerHTML = html;
+    
+}
+
+GerarTabela();
+
