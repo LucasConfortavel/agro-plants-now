@@ -600,11 +600,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 label: "Gasto com Comissões (R$)",
                 data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
                 backgroundColor: "rgba(69,115,75,0.2)",
-                borderColor: "#45734b",
+                borderColor: "rgba(39, 219, 54, 1)",
                 borderWidth: 3,
                 fill: true,
-                tension: 0.3,
-                pointBackgroundColor: "#45734b",
+                tension: 0.1,
+                pointBackgroundColor: "rgba(39, 219, 54, 1)",
                 pointRadius: 6
             }]
         },
