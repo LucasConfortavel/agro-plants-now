@@ -23,7 +23,7 @@ $errorMessage = $_GET['error'] ?? '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informações do Produto</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/sobre_prod_vend.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/sobre_prod.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
 </head>
@@ -46,51 +46,51 @@ $errorMessage = $_GET['error'] ?? '';
             $categoria_nome = $dados['categoria_nome'];
             $imagemPrincipal = !empty($produto['foto']) ? '../../PUBLIC/img/' . $produto['foto'] : '../../PUBLIC/img/img_produto.webp';
         ?>
-        <section class="gs_v_product-container">
+        <section class="gs_product-container">
 
-            <div class="gs_v_area-img">
-                <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="gs_v_product-image">
-                <div class="gs_v_area-img-select">
-                    <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?> - Vista 1" class="gs_v_product-image-select">
-                    <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?> - Vista 2" class="gs_v_product-image-select">
-                    <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?> - Vista 3" class="gs_v_product-image-select">
+            <div class="gs_area-img">
+                <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="gs_product-image">
+                <div class="gs_area-img-select">
+                    <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?> - Vista 1" class="gs_product-image-select">
+                    <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?> - Vista 2" class="gs_product-image-select">
+                    <img src="<?php echo $imagemPrincipal; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?> - Vista 3" class="gs_product-image-select">
                 </div>
             </div>
 
-            <div class="gs_v_product-info">
-                <div class="gs_v_names">
-                    <p class="gs_v_label">Nome</p>
-                    <p class="gs_v_value"><?php echo htmlspecialchars($produto['nome']); ?></p>
+            <div class="gs_product-info">
+                <div class="gs_names">
+                    <p class="gs_label">Nome</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($produto['nome']); ?></p>
                 </div>
 
-                <div class="gs_v_names">
-                    <p class="gs_v_label">Categoria</p>
-                    <p class="gs_v_value"><?php echo htmlspecialchars($categoria_nome); ?></p>
+                <div class="gs_names">
+                    <p class="gs_label">Categoria</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($categoria_nome); ?></p>
                 </div>
 
-                <div class="gs_v_names">
-                    <p class="gs_v_label">Preço</p>
-                    <p class="gs_v_value">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                <div class="gs_names">
+                    <p class="gs_label">Preço</p>
+                    <p class="gs_value">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
                 </div>
 
-                <div class="gs_v_names">
-                    <p class="gs_v_label">Estoque Disponível</p>
-                    <p class="gs_v_value"><?php echo htmlspecialchars($produto['quantidade']); ?> unidades</p>
+                <div class="gs_names">
+                    <p class="gs_label">Estoque Disponível</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($produto['quantidade']); ?> unidades</p>
                 </div>
                 
-                <div class="gs_v_names">
-                    <p class="gs_v_label">Reservado</p>
-                    <p class="gs_v_value"><?php echo htmlspecialchars($produto['reservado']); ?> unidades</p>
+                <div class="gs_names">
+                    <p class="gs_label">Reservado</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($produto['reservado']); ?> unidades</p>
                 </div>
 
-                <div class="gs_v_names">
-                    <p class="gs_v_label">Disponível para Venda</p>
-                    <p class="gs_v_value"><?php echo htmlspecialchars($produto['quantidade'] - $produto['reservado']); ?> unidades</p>
+                <div class="gs_names">
+                    <p class="gs_label">Disponível para Venda</p>
+                    <p class="gs_value"><?php echo htmlspecialchars($produto['quantidade'] - $produto['reservado']); ?> unidades</p>
                 </div>
                 
-                <div class="gs_v_names gs_v_desc">
-                    <p class="gs_v_label">Descrição</p>
-                    <p class="gs_v_value gs_v_desc"><?php echo htmlspecialchars($produto['descricao'] ?? 'Sem descrição disponível.'); ?></p>
+                <div class="gs_names gs_desc">
+                    <p class="gs_label">Descrição</p>
+                    <p class="gs_value gs_desc"><?php echo htmlspecialchars($produto['descricao'] ?? 'Sem descrição disponível.'); ?></p>
                 </div>
 
                 <div class="ym_area-btn">

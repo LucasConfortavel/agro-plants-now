@@ -4,8 +4,7 @@ require '../../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// EMAIL = agroplantsnow@gmail.com
-// SENHA = agroplantsnow123
+
 
 function enviar_email($email,$codigo,$nome){
     $mail = new PHPMailer(true);
