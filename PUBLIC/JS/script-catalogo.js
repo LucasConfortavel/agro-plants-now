@@ -86,7 +86,6 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Função de pesquisa em tempo real
 function inicializarPesquisa() {
     const inputPesquisa = document.getElementById('inputPesquisa');
     
@@ -94,7 +93,6 @@ function inicializarPesquisa() {
         inputPesquisa.addEventListener('input', function() {
             const termo = this.value.toLowerCase();
             
-            // Filtrar produtos
             const produtos = document.querySelectorAll('#produtos-container .ym_cardProduto');
             produtos.forEach(produto => {
                 const nome = produto.querySelector('.ym_nomeProduto').textContent.toLowerCase();
@@ -152,44 +150,3 @@ document.addEventListener('DOMContentLoaded', function() {
         options.style.display = 'none';
     }
 });
-
-//Função de busca genérica com ocultação de títulos
-// ==============================
-const inputPesquisa = document.getElementById('inputPesquisa');
-
-if (inputPesquisa) {
-  inputPesquisa.addEventListener('input', function () {
-    const termo = this.value.toLowerCase();
-    const cards = document.querySelectorAll('.ym_cardProduto');
-
-    cards.forEach(card => {
-      const nome = card.querySelector('.ym_nomeProduto').textContent.toLowerCase();
-      const descricao = card.querySelector('.ym_descricao').textContent.toLowerCase();
-
-      if (nome.includes(termo) || descricao.includes(termo)) {
-        card.style.display = 'flex';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-
-    const categorias = document.querySelectorAll('.ym_areaProdutos');
-
-    categorias.forEach(cat => {
-      const visibleCards = cat.querySelectorAll('.ym_cardProduto[style*="display: flex"]').length;
-      const titulo = cat.previousElementSibling; 
-
-      if (visibleCards > 0) {
-        cat.style.display = 'block';
-        if (titulo && titulo.classList.contains('ym_titulo-produtos')) {
-          titulo.style.display = 'block';
-        }
-      } else {
-        cat.style.display = 'none';
-        if (titulo && titulo.classList.contains('ym_titulo-produtos')) {
-          titulo.style.display = 'none';
-        }
-      }
-    });
-  });
-}

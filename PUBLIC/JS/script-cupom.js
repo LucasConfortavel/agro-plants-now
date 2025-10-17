@@ -1,167 +1,94 @@
-// Aguardar o carregamento completo do DOM
-document.addEventListener('DOMContentLoaded', function() {
-  // Elementos DOM
-  const searchInput = document.querySelector('.jv_search-input');
-  const selectAllCheckbox = document.getElementById('jv_selectAll');
-  const customerCheckboxes = document.querySelectorAll('.jv_customer-checkbox');
-  const removeSelectedBtn = document.getElementById('jv_removeSelected');
-  const selectedCountSpan = document.getElementById('jv_selectedCount');
-  
-  // Inicializar array de clientes selecionados
-  let selectedCustomers = [];
-  
-  // Adicionar event listeners
-  function setupEventListeners() {
-      // Pesquisa
-      if (searchInput) {
-          searchInput.addEventListener('input', handleSearch);
-      }
-      
-      // Selecionar todos
-      if (selectAllCheckbox) {
-          selectAllCheckbox.addEventListener('change', handleSelectAll);
-      }
-      
-      // Checkboxes individuais
-      customerCheckboxes.forEach(checkbox => {
-          checkbox.addEventListener('change', function() {
-              handleCustomerSelect(this.dataset.customerId, this.checked);
-          });
-      });
-      
-      // Botão remover selecionados
-      if (removeSelectedBtn) {
-          removeSelectedBtn.addEventListener('click', handleRemoveSelected);
-      }
-  }
-  
-  // Função de pesquisa
-  function handleSearch() {
-    const searchTerm = this.value.toLowerCase();
-    const rows = document.querySelectorAll('#jv_customerTableBody tr');
+formatarData = (dataStr) => {
+        const [ano, mes, dia] = dataStr.split('-');
+        return `${dia.padStart(2,'0')}/${mes.padStart(2,'0')}/${ano}`;
+    }
 
-    rows.forEach(row => {
-        // Obtém a célula da coluna "Código" (segundo <td>)
-        const codeCell = row.querySelectorAll('td')[1]; // índice 1 = 2ª coluna
+function GerarTabela(){
+    tabela = document.getElementById("jv_customerTableBody");
+    html="";
+    
+    limite = 4;
+    
+    const url = new URLSearchParams(window.location.search);
+    if (url.has('pagina')) {
+        pagina = url.get('pagina');;
+    } else {
+        pagina = 1;
+    }
+    
+    total_pag = Math.ceil(dados.length/limite);
+    area_pags = document.getElementsByClassName('jv_page-navigation')[0];
+    
+    if(pagina != 1){
+        html+=` <a href="?pagina=${pagina-1}" class="jv_page-arrow"><i class="fas fa-arrow-left"></i></a>`;
+    }
 
-        if (codeCell && codeCell.textContent.toLowerCase().includes(searchTerm)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
+    for (let i = 1; i <= total_pag; i++) {    
+       
+        if(i == pagina){
+            html+=`<a href='?pagina=${i}' class='jv_page-number active'>${i}</a>`;            
+        }else{
+            html+=`<a href='?pagina=${i}' class='jv_page-number'>${i}</a>`;
+        }
+    }
 
-            // Se o cupom estiver oculto, desmarca a checkbox
-            const checkbox = row.querySelector('.customer-checkbox');
-            if (checkbox && checkbox.checked) {
-                checkbox.checked = false;
-                handleCustomerSelect(checkbox.dataset.customerId, false);
-            }
+    if(pagina != total_pag){
+        html+=` <a href="?pagina=${parseInt(pagina, 10)+1}" class="jv_page-arrow"><i class="fas fa-arrow-right"></i></a>`;
+    }
+    
+
+    area_pags.innerHTML=html;
+    html="";
+
+    cupons = dados.slice(((pagina-1)*4), (pagina*limite));
+
+    cupons.forEach(cupom => {
+        html += `<tr><td>${cupom['codigo']}</td>`;
+        html += `<td>${cupom['valor']}%</td>`;
+        html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
+        html += `<td>${formatarData(cupom['data_validade'])}</td></tr>`;
+
+    });
+    tabela.innerHTML = html;
+}
+
+
+
+function Pesquisar(){
+    inputPesquisa = document.getElementById("jv_searchInput");
+    pesquisa = inputPesquisa.value;
+    if(pesquisa == ""){
+        GerarTabela();
+        return none;
+    }
+    info_tabela = document.getElementById("jv_customerTableBody");
+    info_tabela.innerHTML = '';
+    html="";
+    dados_filtrado=[];
+
+    dados.forEach(dado => {
+        if (dado["codigo"].toLowerCase().includes(pesquisa.toLowerCase())) {
+            dados_filtrado.push(dado);
         }
     });
+
+
+    area_pags = document.getElementsByClassName('jv_page-navigation')[0];
+    area_pags.innerHTML="";
+    
+    dados_filtrado.forEach(cupom => {
+        if (cupom["codigo"].toLowerCase().includes(pesquisa.toLowerCase())) {
+           html += `<tr><td>${cupom['codigo']}</td>`;
+           html += `<td>${cupom['valor']}%</td>`;
+           html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
+           html += `<td>${formatarData(cupom['data_validade'])}</td></tr>`;
+           
+        }
+    });
+
+    info_tabela.innerHTML = html;
+    
 }
 
-  
-  // Selecionar todos os clientes
-  function handleSelectAll() {
-      const isChecked = this.checked;
-      const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])');
-      
-      visibleRows.forEach(row => {
-          const checkbox = row.querySelector('.customer-checkbox');
-          if (checkbox) {
-              checkbox.checked = isChecked;
-              handleCustomerSelect(checkbox.dataset.customerId, isChecked);
-          }
-      });
-  }
-  
-  // Manipular seleção individual de clientes
-  function handleCustomerSelect(customerId, isChecked) {
-      if (isChecked) {
-          // Adicionar ao array se não existir
-          if (!selectedCustomers.includes(customerId)) {
-              selectedCustomers.push(customerId);
-          }
-      } else {
-          // Remover do array
-          selectedCustomers = selectedCustomers.filter(id => id !== customerId);
-          // Desselecionar checkbox "Selecionar todos"
-          if (selectAllCheckbox) {
-              selectAllCheckbox.checked = false;
-          }
-      }
-      
-      // Atualizar UI
-      updateSelectedUI();
-  }
-  
-  // Atualizar interface com base nos selecionados
-  function updateSelectedUI() {
-      if (removeSelectedBtn && selectedCountSpan) {
-          const hasSelected = selectedCustomers.length > 0;
-          
-          // Mostrar/ocultar botão de remover
-          removeSelectedBtn.style.display = hasSelected ? 'flex' : 'none';
-          
-          // Atualizar contador
-          selectedCountSpan.textContent = selectedCustomers.length;
-      }
-  }
-  
-  // Remover clientes selecionados
-  function handleRemoveSelected() {
-      if (selectedCustomers.length > 0) {
-          if (confirm(`Tem certeza que deseja remover ${selectedCustomers.length} cliente(s)?`)) {
-              // Simular remoção (substituir por chamada AJAX em produção)
-              selectedCustomers.forEach(id => {
-                  const checkbox = document.querySelector(`.customer-checkbox[data-customer-id="${id}"]`);
-                  if (checkbox) {
-                      const row = checkbox.closest('tr');
-                      if (row) {
-                          row.remove();
-                      }
-                  }
-              });
-              
-              // Limpar seleção
-              selectedCustomers = [];
-              updateSelectedUI();
-              
-              // Atualizar contador total de clientes
-              updateCustomerCount();
-          }
-      }
-  }
-  
-  // Atualizar contador total de clientes
-  function updateCustomerCount() {
-      const customerCountElement = document.getElementById('jv_customerCount');
-      if (customerCountElement) {
-          const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])').length;
-          customerCountElement.textContent = `${visibleRows} clientes encontrados`;
-      }
-  }
-  
-  // Inicializar
-  setupEventListeners();
-});
+GerarTabela();
 
-// Variável global para saber se o menu está aberto
-function toggleDropdown(btn) {
-const dropdown = btn.nextElementSibling;
-const isVisible = dropdown.style.display === "block";
-
-// Fecha todos os outros
-document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
-
-// Abre apenas o clicado
-if (!isVisible) {
-    dropdown.style.display = "block";
-}
-}
-
-// Fecha ao clicar fora
-document.addEventListener("click", e => {
-if (!e.target.closest(".jv_menu-btn") && !e.target.closest(".jv_dropdown")) {
-    document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
-}
-});
