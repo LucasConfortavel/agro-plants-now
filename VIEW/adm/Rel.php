@@ -513,13 +513,13 @@ foreach ($vendas as $comissao) {
 
     $valor = 0;
     if (isset($comissao['valor'])) $valor = (float)$comissao['valor'];
-    elseif (isset($comissao['valor_comissao'])) $valor = (float)$comissao['valor_comissao'];
-    elseif (isset($comissao['valor_venda'], $comissao['percentual']))
-        $valor = (float)$comissao['valor_venda'] * ((float)$comissao['percentual'] / 100);
+    elseif (isset($comissao['valor'])) $valor = (float)$comissao['valor'];
+    elseif (isset($comissao['valor'], $comissao['percentual']))
+        $valor = (float)$comissao['valor'] * ((float)$comissao['percentual'] / 100);
 
     $comissoes_vendedor[$mes] += $valor > 0 ? $valor : 0.001;
 
-    $tipo = $comissao['tipo'] ?? 'Fixas';
+    $tipo = $comissao['valor'] ?? 'Fixas';
     if (isset($comissoes_dist[$tipo])) $comissoes_dist[$tipo] += $valor > 0 ? $valor : 0.001;
 }
 
