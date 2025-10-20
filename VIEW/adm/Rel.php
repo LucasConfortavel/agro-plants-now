@@ -479,7 +479,7 @@ $colors_status = [];
 $status_colors_map = [
     "PAGO" => "#107a10ff",
     "ENVIADO" => "#125d12ff",
-    "FINALIZADO" => "#00c800",
+    "FINALIZADO" => "#27db36ff",
 ];
 
 foreach (array_keys($status_pedidos) as $status) {
@@ -499,7 +499,7 @@ foreach ($vendas as $venda) {
 }
 
 $max_venda = max($vendas_mensais);
-$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#00c800" : "#107a10ff", $vendas_mensais);
+$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#27db36ff" : "#107a10ff", $vendas_mensais);
 
 $comissoes_vendedor = array_fill(0, 12, 0);
 $comissoes_dist = ["Fixas" => 0, "Variáveis" => 0];
@@ -598,11 +598,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 label: "Gasto com Comissões (R$)",
                 data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
                 backgroundColor: "rgba(44, 171, 54, 0.23)",
-                borderColor: "#00c800",
+                borderColor: "rgba(39, 219, 54, 1)",
                 borderWidth: 3,
                 fill: true,
                 tension: 0.1,
-                pointBackgroundColor: "#00c800",
+                pointBackgroundColor: "rgba(39, 219, 54, 1)",
                 pointRadius: 6
             }]
         },
