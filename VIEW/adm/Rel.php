@@ -282,10 +282,10 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="po-container">
             <h1 class="ym_titulo">Relatório de Comissões</h1>
  
-                            <nav class="tabs-nav">
-                                <button class="po-tab-btn" data-tab="sales">Vendas</button>
-                                <button class="po-tab-btn" data-tab="commissions">Comissões</button>
-                            </nav>
+            <nav class="tabs-nav">
+                <button class="po-tab-btn" data-tab="sales">Vendas</button>
+                <button class="po-tab-btn" data-tab="commissions">Comissões</button>
+            </nav>
            
             <div class="po-card">
                 <div class="jv_card">
@@ -480,9 +480,9 @@ if ($total_pedidos == 0) {
 
 $colors_status = [];
 $status_colors_map = [
-    "PAGO" => "#45734b",
-    "ENVIADO" => "rgba(69,115,75,0.8)",
-    "FINALIZADO" => "rgba(69,115,75,0.4)",
+    "PAGO" => "#107a10ff",
+    "ENVIADO" => "#125d12ff",
+    "FINALIZADO" => "#00c800",
 ];
 
 foreach (array_keys($status_pedidos) as $status) {
@@ -502,13 +502,13 @@ foreach ($vendas as $venda) {
 }
 
 $max_venda = max($vendas_mensais);
-$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#45734b" : "rgba(36,146,51,0.5)", $vendas_mensais);
+$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#00c800" : "#107a10ff", $vendas_mensais);
 
 $comissoes_vendedor = array_fill(0, 12, 0);
 $comissoes_dist = ["Fixas" => 0, "Variáveis" => 0];
 
-foreach ($comissoes as $comissao) {
-    $data = $comissao['data'] ?? $comissao['data_comissao'] ?? $comissao['created_at'] ?? null;
+foreach ($vendas as $comissao) {
+    $data = $comissao['data'] ?? $comissao['data_venda']  ?? null;
     $mes = ($data && strtotime($data) !== false) ? ((int)date("n", strtotime($data)) - 1) : (int)date("n") - 1;
 
     $valor = 0;
@@ -537,7 +537,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 data: <?= json_encode($vendas_mensais) ?>,
                 backgroundColor: <?= json_encode($colors_vendas) ?>,
                 borderRadius: 8,
-                borderWidth: 1
+                borderWidth: 1,
+                
             }]
         },
         options: {
@@ -600,11 +601,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 label: "Gasto com Comissões (R$)",
                 data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
                 backgroundColor: "rgba(69,115,75,0.2)",
-                borderColor: "#45734b",
+                borderColor: "#00c800",
                 borderWidth: 3,
                 fill: true,
-                tension: 0.3,
-                pointBackgroundColor: "#45734b",
+                tension: 0.1,
+                pointBackgroundColor: "#00c800",
                 pointRadius: 6
             }]
         },
@@ -634,7 +635,7 @@ document.addEventListener("DOMContentLoaded", () => {
             labels: <?= json_encode(array_keys($comissoes_dist)) ?>,
             datasets: [{
                 data: <?= json_encode(array_values($comissoes_dist)) ?>,
-                backgroundColor: ["#45734b","#17e33293"],
+                backgroundColor: ["#107a10ff","#00c800"],
                 borderColor: "#fff",
                 borderWidth: 2,
                 hoverOffset: 12
