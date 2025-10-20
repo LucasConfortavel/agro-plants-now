@@ -61,6 +61,10 @@ function GerarTabela(){
     usuarios.forEach(usuario => {
 
         html += `<tr><td>
+                    <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
+                </td>`
+                
+        html += `<td>
         <div class="jv_customer-info">
             <div class="jv_avatar">
                 ${usuario['nome'].substring(0, 2).toUpperCase()}
@@ -84,12 +88,13 @@ function GerarTabela(){
                         </button>
                         <div class="jv_dropdown-separator"></div>`
         if(usuario['status'] == "ATIVADO"){
-            html += `<button type="button" onclick="abrirPopup(\'../../VIEW/pop-up/pop-up_remover.php?id='${usuario['id']},Cadastro de Vendedores)" class="jv_dropdown-item jv_danger">
+            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_danger">
                 <i class="fa-solid fa-ban"></i> Desativar
             </button>
             </form>
         </td>
-    </tr>`}else{html += `<button type="button" onclick="abrirPopup(../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']},Cadastro de Vendedores)" class="jv_dropdown-item jv_acess">
+    </tr>`}
+    else{html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
                 <i class="fa-solid fa-power-off"></i> Ativar
             </button>
             </form>
@@ -149,14 +154,14 @@ function Pesquisar(){
                         </button>
                         <div class="jv_dropdown-separator"></div>`
         if(usuario['status'] == "ATIVADO"){
-            html += `<button type="button" onclick="abrirPopup(\'../../VIEW/pop-up/pop-up_remover.php?id='${usuario['id']},Cadastro de Vendedores)" class="jv_dropdown-item jv_danger">
+            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id='${usuario['id']}')" class="jv_dropdown-item jv_danger">
                 <i class="fa-solid fa-ban"></i> Desativar
             </button>
             </form>
         </td>
     </tr>`
             
-        }else{html += `<button type="button" onclick="abrirPopup(../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']},Cadastro de Vendedores)" class="jv_dropdown-item jv_acess">
+        }else{html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
                 <i class="fa-solid fa-power-off"></i> Ativar
             </button>
             </form>
