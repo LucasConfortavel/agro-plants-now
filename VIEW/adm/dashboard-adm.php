@@ -162,7 +162,7 @@
             <div class="jp_pagination">
                     <?php if ($pagina_atual > 1): ?>
                         <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                            <i class="fas fa-arrow-left"></i>
+                           <i class="fas fa-arrow-left"></i>
                         </a>
                     <?php endif; ?>
 
@@ -224,10 +224,5 @@
     </script>
     <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
     <script src="../../PUBLIC/JS/script-tema.js"></script>
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 </body>
 </html>
