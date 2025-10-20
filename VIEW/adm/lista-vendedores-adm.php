@@ -9,6 +9,7 @@
     $controler_user = new UsuarioController();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
         if (isset($_POST['adicionar'])){
             $usuario = $controler_user->criar("vendedor");
 
@@ -29,7 +30,7 @@
             $vendedor = $controler_user->mostrar($id);
             $senha = $_POST['alter_status'];
 
-            if($usuario["senha"] == $senha){
+            if($controler_user->verificar_senha($usuario,$senha)){
                 if($vendedor['status'] == "ATIVADO"){
                     $vendedor = $controler_user->desativar($id);
                     if($vendedor == 1){

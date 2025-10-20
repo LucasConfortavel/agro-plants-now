@@ -1,4 +1,4 @@
-// Aguardar o carregamento completo do DOM
+z// Aguardar o carregamento completo do DOM
 document.addEventListener('DOMContentLoaded', function() {
   // Elementos DOM
   const searchInput = document.querySelector('.jv_search-input');
