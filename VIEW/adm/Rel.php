@@ -597,7 +597,7 @@ document.addEventListener("DOMContentLoaded", () => {
             datasets: [{
                 label: "Gasto com Comissões (R$)",
                 data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
-                backgroundColor: "rgba(69,115,75,0.2)",
+                backgroundColor: "rgba(44, 171, 54, 0.23)",
                 borderColor: "#00c800",
                 borderWidth: 3,
                 fill: true,
