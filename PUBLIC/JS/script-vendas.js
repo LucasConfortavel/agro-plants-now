@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.querySelector('.jv_search-input');
     const selectAllCheckbox = document.getElementById('jv_selectAll');
@@ -285,4 +284,3 @@ function Pesquisar(){
 }
 
 GerarTabela();
-
