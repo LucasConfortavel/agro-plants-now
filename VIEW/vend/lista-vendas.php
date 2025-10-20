@@ -138,7 +138,7 @@ $vendas = array_slice($vendas, $offset, $limite);
             <?php endif; ?>
         </div>
 
-        <script src="../../PUBLIC/JS/vendas-adm.js"></script>
+        <script src="../../PUBLIC/JS/script-vendas.js"></script>
         <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
     </main>

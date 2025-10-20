@@ -264,15 +264,9 @@ if(isset($_SESSION['alerta'])){
                                 </td>
                                 <td>
                                     <div class="td">
-                                    <?php if ($id_pedido): ?>
-                                        <a href="venda-info-adm.php?id=<?= $id_pedido ?>" class="ym_btn-padrao2" title="Ver carrinho">
+                                        <a href="carrinho.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" class="ym_btn-padrao2" title="Ver carrinho">
                                             <i class="fas fa-shopping-cart"></i>
                                         </a>
-                                    <?php else: ?>
-                                        <span class="ym_btn-disabled" title="Sem pedido">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </span>
-                                    <?php endif; ?>
                                     </div>
                                 </td>
                                 <td class="jv_table-action">
@@ -325,7 +319,6 @@ if(isset($_SESSION['alerta'])){
         <?php endif; ?>
     </div>
 
-<<<<<<< HEAD
 <script>
     const customSelect = document.getElementById('customSelect');
     const selectTrigger = customSelect.querySelector('.select-trigger');
@@ -386,9 +379,6 @@ if(isset($_SESSION['alerta'])){
     </script>
 
     <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
-=======
-    <script src="../../PUBLIC/JS/script-clientes.js"></script>
->>>>>>> Arquitetura-MVC
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
     <script src="../../PUBLIC/JS/script-tema.js"></script>

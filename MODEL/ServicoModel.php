@@ -126,27 +126,20 @@ class ServicoModel {
     public function deletar() {
         try {
             $this->lerUm();
-            $foto = $this->foto;
             
-            $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+            $query = "UPDATE " . $this->table_name . " SET status = 'DESATIVADO' WHERE id = ?";
             $stmt = $this->conn->prepare($query);
 
             $this->id = htmlspecialchars(strip_tags($this->id));
             $stmt->bindParam(1, $this->id);
 
             if ($stmt->execute()) {
-                if (!empty($foto) && $foto !== 'img_produto.webp') {
-                    $imagePath = __DIR__ . '/../../PUBLIC/img/' . $foto;
-                    if (file_exists($imagePath)) {
-                        unlink($imagePath);
-                    }
-                }
                 return true;
             }
             return false;
         } catch (PDOException $e) {
-            error_log("Erro ao deletar: " . $e->getMessage());
-            throw new Exception("Erro ao deletar: " . $e->getMessage());
+            error_log("Erro ao desativar: " . $e->getMessage());
+            throw new Exception("Erro ao desativar: " . $e->getMessage());
         }
     }
 
