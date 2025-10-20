@@ -1,14 +1,20 @@
 <?php
 require_once __DIR__ . '/../MODEL/CarrinhoModel.php';
 require_once __DIR__ . '/../MODEL/CarrinhoItensModel.php';
+require_once __DIR__ . '/../MODEL/PedidoModel.php';
+require_once __DIR__ . '/../MODEL/PedidoItensModel.php';
 
 class CarrinhoController {
     private $carrinho;
     private $carrinhoItens;
+    private $pedido;        // ← ADICIONAR
+    private $pedidoItens;   // ← ADICIONAR
 
     public function __construct() {
         $this->carrinho = new CarrinhoModel();
         $this->carrinhoItens = new CarrinhoItensModel();
+        $this->pedido = new PedidoModel();           // ← ADICIONAR
+        $this->pedidoItens = new PedidoItensModel(); // ← ADICIONAR
     }
 
     public function criarCarrinho($id_cliente) {
@@ -164,6 +170,102 @@ class CarrinhoController {
             }
         } catch (Exception $e) {
             return ['error' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * Cria um pedido a partir dos itens do carrinho
+     * @param int $id_cliente ID do cliente
+     * @param int $id_vendedor ID do vendedor que está criando o pedido
+     * @param string $status Status inicial do pedido (padrão: 'PAGO')
+     * @return array Resultado da operação
+     */
+    public function criarPedidoDoCarrinho($id_cliente, $id_vendedor, $status = 'PAGO') {
+        try {
+            // Buscar carrinho do cliente
+            $carrinho = $this->obterCarrinho($id_cliente);
+            
+            if (!$carrinho || isset($carrinho['error'])) {
+                throw new Exception("Carrinho não encontrado");
+            }
+
+            $id_carrinho = $carrinho['id'];
+            
+            // Buscar itens do carrinho
+            $itens = $this->listarItens($id_carrinho);
+            
+            if (empty($itens) || isset($itens['error'])) {
+                throw new Exception("Carrinho vazio. Adicione produtos antes de criar o pedido.");
+            }
+
+            // Calcular total
+            $total = $carrinho['valor_total'];
+
+            // Criar pedido - Status dinâmico
+            $this->pedido->data_pedido = date('Y-m-d H:i:s');
+            $this->pedido->id_cliente = $id_cliente;
+            $this->pedido->id_vendedor = $id_vendedor;
+            $this->pedido->id_cupom = null;
+            $this->pedido->status = $status; // Status agora é dinâmico
+            $this->pedido->total = $total;
+
+            // Tenta criar com método sem cupom primeiro
+            if (method_exists($this->pedido, 'criarSemCupom')) {
+                $criado = $this->pedido->criarSemCupom();
+            } else {
+                // Fallback: usar método normal mas garantir id_cupom é null
+                $this->pedido->id_cupom = null;
+                $criado = $this->pedido->criar();
+            }
+
+            if (!$criado) {
+                throw new Exception("Erro ao criar pedido");
+            }
+
+            $id_pedido = $this->pedido->id;
+
+            // Adicionar itens ao pedido
+            foreach ($itens as $item) {
+                $this->pedidoItens->id_pedido = $id_pedido;
+                $this->pedidoItens->id_produto = $item['id_produto'];
+                $this->pedidoItens->quantidade = $item['quantidade'];
+                $this->pedidoItens->preco_unitario = $item['preco_unitario'];
+                $this->pedidoItens->total_item = $item['preco_unitario'] * $item['quantidade'];
+
+                if (!$this->pedidoItens->criar()) {
+                    throw new Exception("Erro ao adicionar item ao pedido");
+                }
+            }
+
+            // Limpar carrinho após criar pedido
+            $this->limparCarrinho($id_carrinho);
+
+            return [
+                'success' => 'Pedido criado com sucesso!',
+                'id_pedido' => $id_pedido,
+                'total' => $total,
+                'status' => $status
+            ];
+
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * Verifica se o carrinho tem itens
+     */
+    public function carrinhoTemItens($id_cliente) {
+        try {
+            $carrinho = $this->obterCarrinho($id_cliente);
+            if (!$carrinho || isset($carrinho['error'])) {
+                return false;
+            }
+
+            $itens = $this->listarItens($carrinho['id']);
+            return !empty($itens) && !isset($itens['error']);
+        } catch (Exception $e) {
+            return false;
         }
     }
 }

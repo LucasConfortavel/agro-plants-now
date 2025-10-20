@@ -1,11 +1,14 @@
 <?php
 require_once __DIR__ . '/../MODEL/ClienteModel.php';
+require_once __DIR__ . '/../MODEL/PedidoModel.php';
 
 class ClienteController {
     private $cliente;
+    private $pedido;
 
     public function __construct() {
         $this->cliente = new ClienteModel();
+        $this->pedido = new PedidoModel();
     }
 
     public function index() {
@@ -64,26 +67,77 @@ class ClienteController {
             return $error;
         }
     }
+    
     public function indexComPedidos() {
         return $this->cliente->lerTodosComUltimoPedido();
     }
 
-    // public function editar($id) {
-    //     try {
-    //         $this->cliente->id = $id;
+    /**
+     * Busca clientes com informações do último pedido
+     * Inclui status do pedido e ID
+     */
+    public function indexComStatusPedidos() {
+        try {
+            $stmt = $this->cliente->lerTodos();
+            $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
-    //         if ($this->cliente->lerUm()) {
-    //             include_once __DIR__ . '/../views/clientes/edit.php';
-    //         } else {
-    //             throw new Exception("Usuário não encontrado");
-    //         }
-    //     } catch (Exception $e) {
-    //         $error = $e->getMessage();
-    //         include_once __DIR__ . '/../views/error.php';
-    //     }
-    // }
+            // Para cada cliente, buscar o último pedido
+            foreach ($clientes as &$cliente) {
+                $pedidoStmt = $this->pedido->lerPorCliente($cliente['id']);
+                $pedidos = $pedidoStmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                if (!empty($pedidos)) {
+                    $ultimoPedido = $pedidos[0]; // Já vem ordenado por data DESC
+                    $cliente['ultimo_pedido'] = [
+                        'id' => $ultimoPedido['id'],
+                        'status' => $ultimoPedido['status'],
+                        'data' => $ultimoPedido['data_pedido'],
+                        'total' => $ultimoPedido['total']
+                    ];
+                } else {
+                    $cliente['ultimo_pedido'] = null;
+                }
+            }
+            
+            return $clientes;
+        } catch (Exception $e) {
+            error_log("Erro ao buscar clientes com pedidos: " . $e->getMessage());
+            return [];
+        }
+    }
 
-    // processar atualização de usuario
+    public function indexPorCliente($id_cliente) {
+        try {
+            $stmt = $this->pedido->lerPorCliente($id_cliente);
+            $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $pedidos;
+        } catch (Exception $e) {
+            error_log("Erro ao buscar pedidos do cliente: " . $e->getMessage());
+            return ['error' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * Filtra clientes por status do último pedido
+     */
+    public function filtrarPorStatusPedido($status) {
+        try {
+            $clientes = $this->indexComStatusPedidos();
+            
+            if (empty($status)) {
+                return $clientes;
+            }
+            
+            return array_filter($clientes, function($cliente) use ($status) {
+                return $cliente['ultimo_pedido'] !== null && 
+                       $cliente['ultimo_pedido']['status'] === $status;
+            });
+        } catch (Exception $e) {
+            error_log("Erro ao filtrar clientes: " . $e->getMessage());
+            return [];
+        }
+    }
+
     public function atualizar($id) {
         try {
             $this->cliente->id = $id;
@@ -109,7 +163,6 @@ class ClienteController {
         } catch (Exception $e) {
             $error = $e->getMessage();
             return $error;
-            // $this->editar($id); // voltar para o formulario de edição com erro
         }
     }
 
@@ -128,11 +181,6 @@ class ClienteController {
             include_once __DIR__ . '/../views/error.php';
         }
     }
-
-    // // mostrar formulario de login
-    // public function formularioLogin() {
-    //     include_once __DIR__ . '/../views/clientes/login.php';
-    // }
 
     public function login() {
         try {
@@ -166,7 +214,6 @@ class ClienteController {
         }
     }
 
-    // processar logout
     public function logout() {
         session_start();
         session_unset();
@@ -175,7 +222,6 @@ class ClienteController {
         exit();
     }
 
-    // verificar se email ja existe (para AJAX)
     public function checarEmail() {
         $email = $_GET['email'];
         $exists = $this->cliente->emailExiste($email);
@@ -184,7 +230,6 @@ class ClienteController {
         echo json_encode(['exists' => $exists]);
     }
 
-    // verificar se CPF ja existe (para AJAX)
     public function checarCPF() {
         $cpf = $_GET['cpf'];
         $exists = $this->cliente->cpfExiste($cpf);
@@ -193,3 +238,4 @@ class ClienteController {
         echo json_encode(['exists' => $exists]);
     }
 }
+?>
