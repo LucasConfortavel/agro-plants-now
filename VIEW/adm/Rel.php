@@ -17,6 +17,12 @@ $comissao_control = new ComissaoController();
 $comissoes = $comissao_control->index(); 
 $vendas = $venda_control->index();
 $total_vendas = count($vendas);
+
+$pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2", "sucesso@143");
+
+$stmt = $pdo->query("SELECT status, COUNT(*) as total FROM pedidos GROUP BY status");
+$status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
  
     // POST: criar vendedor
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -443,12 +449,47 @@ $total_vendas = count($vendas);
  
 </main>
 <?php
-$vendas_mensais = array_fill(0, 12, 0);
 $status_pedidos = [
-    "Aprovado"  => 0,
-    "Pendente"  => 0,
-    "Cancelado" => 0
+    "PAGO" => 0,
+    "ENVIADO" => 0,
+    "FINALIZADO" => 0
 ];
+
+$total_pedidos = 0;
+foreach ($status_pedidos_raw as $status) {
+    $status_nome = strtoupper(trim($status['status']));
+    $quantidade = (int)$status['total'];
+    
+    if (isset($status_pedidos[$status_nome])) {
+        $status_pedidos[$status_nome] = $quantidade;
+    }
+    $total_pedidos += $quantidade;
+}
+
+if ($total_pedidos == 0) {
+    $status_pedidos = [
+        "PAGO" => 0.001,
+        "ENVIADO" => 0.001,
+        "FINALIZADO" => 0.001
+    ];
+} else {
+    $status_pedidos = array_filter($status_pedidos, function($value) {
+        return $value > 0;
+    });
+}
+
+$colors_status = [];
+$status_colors_map = [
+    "PAGO" => "#45734b",
+    "ENVIADO" => "rgba(69,115,75,0.8)",
+    "FINALIZADO" => "rgba(69,115,75,0.4)",
+];
+
+foreach (array_keys($status_pedidos) as $status) {
+    $colors_status[] = $status_colors_map[$status] ?? "rgba(69,115,75,0.5)";
+}
+
+$vendas_mensais = array_fill(0, 12, 0);
 
 foreach ($vendas as $venda) {
     $data = $venda['data'] ?? $venda['data_venda'] ?? null;
@@ -458,12 +499,10 @@ foreach ($vendas as $venda) {
         $mes = (int) date("n", strtotime($data)) - 1;
         $vendas_mensais[$mes] += $total;
     }
-
-    $status = ucfirst(strtolower($venda['status'] ?? ''));
-    if (isset($status_pedidos[$status])) {
-        $status_pedidos[$status]++;
-    }
 }
+
+$max_venda = max($vendas_mensais);
+$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#45734b" : "rgba(36,146,51,0.5)", $vendas_mensais);
 
 $comissoes_vendedor = array_fill(0, 12, 0);
 $comissoes_dist = ["Fixas" => 0, "Variáveis" => 0];
@@ -471,7 +510,6 @@ $comissoes_dist = ["Fixas" => 0, "Variáveis" => 0];
 foreach ($comissoes as $comissao) {
     $data = $comissao['data'] ?? $comissao['data_comissao'] ?? $comissao['created_at'] ?? null;
     $mes = ($data && strtotime($data) !== false) ? ((int)date("n", strtotime($data)) - 1) : (int)date("n") - 1;
-
 
     $valor = 0;
     if (isset($comissao['valor'])) $valor = (float)$comissao['valor'];
@@ -485,13 +523,9 @@ foreach ($comissoes as $comissao) {
     if (isset($comissoes_dist[$tipo])) $comissoes_dist[$tipo] += $valor > 0 ? $valor : 0.001;
 }
 
-$max_venda = max($vendas_mensais);
-$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#45734b" : "rgba(36,146,51,0.5)", $vendas_mensais);
-$colors_status = ["#45734b","rgba(69,115,75,0.7)","rgba(69,115,75,0.4)"];
-
-foreach ($status_pedidos as $key => $value) if ($value==0) $status_pedidos[$key]=0.001;
 foreach ($comissoes_dist as $key => $value) if ($value==0) $comissoes_dist[$key]=0.001;
 ?>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     new Chart(document.getElementById("sales-bar-chart"), {
@@ -509,10 +543,18 @@ document.addEventListener("DOMContentLoaded", () => {
         options: {
             plugins: {
                 legend: { display: false },
-                tooltip: { callbacks: { label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR", {minimumFractionDigits: 2}) } }
+                tooltip: { 
+                    callbacks: { 
+                        label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR", {minimumFractionDigits: 2}) 
+                    } 
+                }
             },
             scales: {
-                y: { beginAtZero: true, ticks: { callback: v => "R$ " + v.toLocaleString("pt-BR") }, grid: { color: "rgba(0,0,0,0.05)" } },
+                y: { 
+                    beginAtZero: true, 
+                    ticks: { callback: v => "R$ " + v.toLocaleString("pt-BR") }, 
+                    grid: { color: "rgba(0,0,0,0.05)" } 
+                },
                 x: { grid: { display: false } }
             }
         }
@@ -532,60 +574,86 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         options: {
             plugins: {
-                legend: { position: "bottom", labels: { font: { size: 13 } } },
-                tooltip: { callbacks: { label: ctx => ctx.label + ": " + ctx.raw } }
+                legend: { 
+                    position: "bottom", 
+                    labels: { font: { size: 13 } } 
+                },
+                tooltip: { 
+                    callbacks: { 
+                        label: function(ctx) {
+                            const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                            const value = ctx.raw;
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return ctx.label + ": " + value + " (" + percentage + "%)";
+                        }
+                    } 
+                }
             }
         }
     });
 
-new Chart(document.getElementById("comm-line-chart"), {
-    type: "line",
-    data: {
-        labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
-        datasets: [{
-            label: "Gasto com Comissões (R$)",
-            data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
-            backgroundColor: "rgba(69,115,75,0.2)",
-            borderColor: "#45734b",
-            borderWidth: 3,
-            fill: true,
-            tension: 0.3,
-            pointBackgroundColor: "#45734b",
-            pointRadius: 6
-        }]
-    },
-    options: {
-        plugins: {
-            legend: { labels: { font: { size: 14 } } },
-            tooltip: { callbacks: { label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR",{minimumFractionDigits:2}) } }
+    new Chart(document.getElementById("comm-line-chart"), {
+        type: "line",
+        data: {
+            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+            datasets: [{
+                label: "Gasto com Comissões (R$)",
+                data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
+                backgroundColor: "rgba(69,115,75,0.2)",
+                borderColor: "rgba(39, 219, 54, 1)",
+                borderWidth: 3,
+                fill: true,
+                tension: 0.1,
+                pointBackgroundColor: "rgba(39, 219, 54, 1)",
+                pointRadius: 6
+            }]
         },
-        scales: {
-            y: { beginAtZero: true, ticks: { callback: v => "R$ " + v.toLocaleString("pt-BR",{minimumFractionDigits:2}) }, grid: { color: "rgba(0,0,0,0.05)" } },
-            x: { grid: { display: false } }
+        options: {
+            plugins: {
+                legend: { labels: { font: { size: 14 } } },
+                tooltip: { 
+                    callbacks: { 
+                        label: ctx => "R$ " + ctx.raw.toLocaleString("pt-BR",{minimumFractionDigits:2}) 
+                    } 
+                }
+            },
+            scales: {
+                y: { 
+                    beginAtZero: true, 
+                    ticks: { callback: v => "R$ " + v.toLocaleString("pt-BR",{minimumFractionDigits:2}) }, 
+                    grid: { color: "rgba(0,0,0,0.05)" } 
+                },
+                x: { grid: { display: false } }
+            }
         }
-    }
-});
+    });
 
-new Chart(document.getElementById("comm-doughnut-chart"), {
-    type: "doughnut",
-    data: {
-        labels: <?= json_encode(array_keys($comissoes_dist)) ?>,
-        datasets: [{
-            data: <?= json_encode(array_values($comissoes_dist)) ?>,
-            backgroundColor: ["#45734b","#17e33293"],
-            borderColor: "#fff",
-            borderWidth: 2,
-            hoverOffset: 12
-        }]
-    },
-    options: {
-        plugins: {
-            legend: { position: "bottom", labels: { font: { size: 13 } } },
-            tooltip: { callbacks: { label: ctx => ctx.label + ": R$ " + ctx.raw.toLocaleString("pt-BR") } }
+    new Chart(document.getElementById("comm-doughnut-chart"), {
+        type: "doughnut",
+        data: {
+            labels: <?= json_encode(array_keys($comissoes_dist)) ?>,
+            datasets: [{
+                data: <?= json_encode(array_values($comissoes_dist)) ?>,
+                backgroundColor: ["#45734b","#17e33293"],
+                borderColor: "#fff",
+                borderWidth: 2,
+                hoverOffset: 12
+            }]
+        },
+        options: {
+            plugins: {
+                legend: { 
+                    position: "bottom", 
+                    labels: { font: { size: 13 } } 
+                },
+                tooltip: { 
+                    callbacks: { 
+                        label: ctx => ctx.label + ": R$ " + ctx.raw.toLocaleString("pt-BR") 
+                    } 
+                }
+            }
         }
-    }
-});
-
+    });
 });
 </script>
 
