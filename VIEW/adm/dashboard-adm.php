@@ -224,5 +224,10 @@
     </script>
     <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
     <script src="../../PUBLIC/JS/script-tema.js"></script>
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 </body>
 </html>
