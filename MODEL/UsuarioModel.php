@@ -35,7 +35,7 @@ class UsuarioModel {
         $this->telefone = htmlspecialchars(strip_tags($this->telefone));
         $this->CPF = htmlspecialchars(strip_tags($this->CPF));
         $this->CEP = htmlspecialchars(strip_tags($this->CEP));
-        $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
+        $this-> _nasc = htmlspecialchars(strip_tags($this->data_nasc));
         $this->foto = htmlspecialchars(strip_tags($this->foto));
 
         $stmt->bindParam(":nome", $this->nome);
