@@ -113,8 +113,8 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h1 class="ym_titulo">Relatório de Vendas</h1>
  
                 <nav class="tabs-nav">
-                    <button class="po-tab-btn po-active" data-tab="sales">Vendas</button>
-                    <button class="po-tab-btn" data-tab="commissions">Comissões</button>
+                    <button class="po-tab-btn po-active" data-tab="sales"> <p>Vendas</p></button>
+                    <button class="po-tab-btn" data-tab="commissions"><p>Comissões</p></button>
                 </nav>
            
  
@@ -281,8 +281,8 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h1 class="ym_titulo">Relatório de Comissões</h1>
  
             <nav class="tabs-nav">
-                <button class="po-tab-btn" data-tab="sales">Vendas</button>
-                <button class="po-tab-btn" data-tab="commissions">Comissões</button>
+                <button class="po-tab-btn" data-tab="sales"><p>Vendas</p></button>
+                <button class="po-tab-btn" data-tab="commissions"><p>Comissões</p></button>
             </nav>
            
             <div class="po-card">

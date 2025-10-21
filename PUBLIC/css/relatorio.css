@@ -381,15 +381,8 @@ h3{
   white-space: nowrap;
 }
 
-
-.po-tab-btn:hover {
-  background: #f1f5f9;
-  color: #45734b;
-}
-
-.po-tab-btn.po-active {
-  background: #45734b;
-  color: white;
+.tabs-nav p{
+  color: black;
 }
 
 .po-tab-btn:hover {
@@ -397,10 +390,18 @@ h3{
   color: #45734b;
 }
 
+
+
 .po-tab-btn.po-active {
   background: #45734b;
   color: white;
 }
+
+.po-tab-btn .po-active:hover {
+  background: #f1f5f9;
+  color: #45734b;
+}
+
 
 .po-card-content {
   padding: 1.5rem;
