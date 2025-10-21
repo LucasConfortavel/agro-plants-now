@@ -599,11 +599,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 label: "Gasto com Comissões (R$)",
                 data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
                 backgroundColor: "rgba(44, 171, 54, 0.23)",
-                borderColor: "rgba(39, 219, 54, 1)",
+                borderColor: "#27db36ff",
                 borderWidth: 3,
                 fill: true,
                 tension: 0.1,
-                pointBackgroundColor: "rgba(39, 219, 54, 1)",
+                pointBackgroundColor: "#27db36ff",
                 pointRadius: 6
             }]
         },
@@ -633,7 +633,7 @@ document.addEventListener("DOMContentLoaded", () => {
             labels: <?= json_encode(array_keys($comissoes_dist)) ?>,
             datasets: [{
                 data: <?= json_encode(array_values($comissoes_dist)) ?>,
-                backgroundColor: ["#107a10ff","#00c800"],
+                backgroundColor: ["#107a10ff","#27db36ff"],
                 borderColor: "#fff",
                 borderWidth: 2,
                 hoverOffset: 12

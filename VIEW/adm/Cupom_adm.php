@@ -9,6 +9,7 @@ $cupom_control = new CupomController();
 $cupons = $cupom_control->index();
 $total_cupons = count($cupons);
 
+
 // Criação de cupom via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $criar_cupom = $cupom_control->criarCupom();
@@ -80,7 +81,7 @@ if(isset($_SESSION['alerta'])){
                             <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                                 <i class="fas fa-search search-icon"></i>
                             </button>
-                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por código..." class="jv_search-input" oninput="Pesquisar()">
+                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por código..." class="jv_search-input"  oninput="Pesquisar()">
                         </div>
                     </form>
 
@@ -130,7 +131,6 @@ if(isset($_SESSION['alerta'])){
     <!-- Paginação -->
     <div class="jv_page-navigation">
     </div>
-
 
         <script>
             const dados = <?php echo json_encode($cupons); ?>;

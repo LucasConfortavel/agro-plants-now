@@ -87,7 +87,6 @@ function Pesquisar(){
 
     info_tabela.innerHTML = html;
     
-}
+};
 
 GerarTabela();
-
