@@ -8,15 +8,15 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email']) || !isset($_SESSION['t
     exit();
 }
 
-$paginaAtual = basename($_SERVER['PHP_SELF']);
+$paginaAtual = $_SERVER['PHP_SELF'];
 
 if (strpos($paginaAtual, 'adm/') !== false && $_SESSION['tipo'] !== 'admin') {
-    header("Location: acesso_nao_autorizado.php");
+    header("Location: ../vend/dashboard_vendedor.php");
     exit();
 }
 
 if (strpos($paginaAtual, 'vend/') !== false && $_SESSION['tipo'] !== 'vendedor') {
-    header("Location: acesso_nao_autorizado.php");
+    header("Location: ../adm/dashboard-adm.php");
     exit();
 }
 
