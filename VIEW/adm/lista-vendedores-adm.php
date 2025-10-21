@@ -110,7 +110,7 @@
                                 <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                                     <i class="fas fa-search search-icon"></i>
                                 </button>
-                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input"  oninput="Pesquisar()">
+                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input" oninput="Pesquisar()">
                             </div>
                         </form>
 
@@ -162,17 +162,10 @@
 
         <!-- Paginação -->
         <div class="jv_page-navigation">
-        </div>
-
-        <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
-            <i class="fa-solid fa-circle-info"></i>
-        </a>
-
         <script>
             const dados = <?php echo json_encode($usuarios); ?>;
         </script>
         <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
-        <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
 </main>
