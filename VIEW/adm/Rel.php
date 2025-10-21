@@ -134,11 +134,12 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="jv_actions">
                                     <div>    
                                         <div>
-                                            <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                            <button type="button" class="po-btn" id="exportarCsvBtn">
                                                 <span><i class="fa-regular fa-file"></i></span>
                                                 Exportar CSV
                                             </button>
                                         </div>
+                                            
                 
                                         <div class="ym_area-select">
                                             <div class="ym_select" onclick="mostrar_categorias()">
@@ -300,7 +301,7 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <div class="jv_actions">
                                 <div>    
                                     <div>
-                                        <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
+                                        <button type="button" class="po-btn" id="exportarCsvComissoesBtn">
                                             <span><i class="fa-regular fa-file"></i></span>
                                             Exportar CSV
                                         </button>
@@ -653,6 +654,57 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // --- EXPORTAR CSV DE VENDAS ---
+    const botaoVendas = document.getElementById("exportarCsvBtn");
+    if (botaoVendas) {
+        botaoVendas.addEventListener("click", function() {
+            exportarTabelaCsv(".tab-content#sales-tab-content .jv_table", "relatorio_vendas.csv");
+        });
+    }
+
+    // --- EXPORTAR CSV DE COMISSÕES ---
+    const botaoComissoes = document.getElementById("exportarCsvComissoesBtn");
+    if (botaoComissoes) {
+        botaoComissoes.addEventListener("click", function() {
+            exportarTabelaCsv(".tab-content#commissions-tab-content .jv_table", "relatorio_comissoes.csv");
+        });
+    }
+
+    // --- FUNÇÃO GENÉRICA ---
+    function exportarTabelaCsv(seletorTabela, nomeArquivo) {
+        const tabela = document.querySelector(seletorTabela);
+        if (!tabela) {
+            alert("Tabela não encontrada!");
+            return;
+        }
+
+        let linhas = tabela.querySelectorAll("tr");
+        let csv = [];
+
+        linhas.forEach(linha => {
+            let colunas = linha.querySelectorAll("th, td");
+            let linhaCsv = [];
+
+            colunas.forEach(celula => {
+                let texto = celula.innerText.replace(/\n/g, " ").replace(/,/g, "");
+                linhaCsv.push('"' + texto.trim() + '"');
+            });
+
+            csv.push(linhaCsv.join(","));
+        });
+
+        let csvString = csv.join("\n");
+        let blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+        let link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = nomeArquivo;
+        link.click();
+    }
+});
+
 </script>
 
 meowl
