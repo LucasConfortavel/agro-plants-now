@@ -205,4 +205,16 @@ class UsuarioController {
             return ['error' => $e->getMessage()];
         }
     }
+
+    public function verificar_senha($usuario,$senha){
+        $email = $usuario['email'];
+        $senha = $senha;
+
+        if($this->user->login($email, $senha)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
