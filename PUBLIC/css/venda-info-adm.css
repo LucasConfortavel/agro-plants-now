@@ -135,7 +135,7 @@ body {
 }
 
 .P_cart-table {
-  max-height: 120px;
+  max-height: 200px;
   margin-bottom: 32px;
   overflow-y: scroll;
 }
@@ -171,7 +171,13 @@ body {
 .P_cart-item:hover {
   border-color: rgba(0, 143, 159, 0.3);
   box-shadow: 0 4px 12px rgba(0, 143, 159, 0.08);
-  transform: translateY(-2px);
+}
+
+.atualizar_status{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 17px;
 }
 
 .P_item-id {
@@ -388,6 +394,10 @@ body {
   margin-bottom: 24px;
 }
 
+.P_coupon-section select{
+  margin-bottom: 5px;
+}
+
 .P_coupon-section label {
   display: block;
   font-size: 13px;
@@ -395,7 +405,7 @@ body {
   color: rgba(0, 0, 0, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 12px;
+  margin-bottom: 7px;
 }
 
 .P_coupon-input-group {

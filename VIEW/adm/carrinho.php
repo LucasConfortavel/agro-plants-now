@@ -28,6 +28,74 @@ if (!$id_carrinho) {
     die("Erro ao obter carrinho");
 }
 
+// Conexão PDO para gerenciar pedidos
+$pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2", "sucesso@143");
+
+// Criar novo pedido (quando o anterior foi finalizado)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['novo_pedido'])) {
+    // Calcular total atual do carrinho
+    $itens_temp = $carrinhoCtrl->listarItens($id_carrinho);
+    $catalogo_temp = $catalogoCtrl->carregarCatalogoProdutos();
+    $produtos_temp = $catalogo_temp['produtos'] ?? [];
+    
+    $produtosIndexados_temp = [];
+    foreach ($produtos_temp as $p) {
+        $produtosIndexados_temp[$p['id']] = $p;
+    }
+    
+    $total_pedido = 0;
+    foreach ($itens_temp as $item_temp) {
+        $produto_temp = $produtosIndexados_temp[$item_temp['id_produto']] ?? null;
+        $preco = $item_temp['preco_unitario'] ?? ($produto_temp['preco'] ?? 0);
+        $total_pedido += $preco * $item_temp['quantidade'];
+    }
+    
+    // Criar novo pedido
+    $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, status, data_pedido, total) VALUES (?, 'PENDENTE', NOW(), ?)");
+    if ($stmt->execute([$id_cliente, $total_pedido])) {
+        $_SESSION['alerta'] = '<script>exibirAlerta("Novo pedido criado com sucesso!","sucesso");</script>';
+        header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+        exit;
+    }
+}
+
+// Buscar pedido do cliente
+$stmt = $pdo->prepare("SELECT id, status FROM pedidos WHERE id_cliente = ? ORDER BY data_pedido DESC LIMIT 1");
+$stmt->execute([$id_cliente]);
+$pedido = $stmt->fetch(PDO::FETCH_ASSOC);
+$status_pedido = $pedido['status'] ?? 'PENDENTE';
+$id_pedido = $pedido['id'] ?? null;
+
+// Atualizar status do pedido
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['atualizar_status'])) {
+    $novo_status = $_POST['atualizar_status'];
+    
+    if ($id_pedido) {
+        $stmt = $pdo->prepare("UPDATE pedidos SET status = ? WHERE id = ?");
+        if ($stmt->execute([$novo_status, $id_pedido])) {
+            $_SESSION['alerta'] = '<script>exibirAlerta("Status atualizado para ' . $novo_status . '!","sucesso");</script>';
+            header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+            exit;
+        }
+    }
+}
+
+// Gerar link de pagamento
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_link'])) {
+    // Criar ou atualizar pedido
+    if (!$id_pedido) {
+        $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, status, data_pedido, valor_total) VALUES (?, 'PENDENTE', NOW(), ?)");
+        $stmt->execute([$id_cliente, $total ?? 0]);
+        $id_pedido = $pdo->lastInsertId();
+    }
+    
+    // Gerar link de pagamento (você pode customizar este link)
+    $link_pagamento = "https://seusite.com/pagamento?pedido=" . $id_pedido . "&cliente=" . $id_cliente;
+    
+    $_SESSION['link_pagamento'] = $link_pagamento;
+    $_SESSION['mostrar_qrcode'] = true;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_quantity') {
     header('Content-Type: application/json');
     
@@ -165,6 +233,12 @@ if (!empty($cupom_valor)) {
 $total = $subtotal - $desconto;
 if ($total < 0) $total = 0;
 
+// Exibir alertas
+if(isset($_SESSION['alerta'])){
+    echo($_SESSION['alerta']);
+    unset($_SESSION['alerta']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -179,8 +253,103 @@ if ($total < 0) $total = 0;
     <link rel="stylesheet" href="../../PUBLIC/css/venda-info-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .qrcode-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .qrcode-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .qrcode-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .qrcode-content h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .qrcode-content canvas {
+            margin: 20px 0;
+        }
+        
+        .qrcode-link {
+            word-break: break-all;
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        
+        .qrcode-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .qrcode-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-copiar {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-fechar {
+            background-color: #666;
+            color: white;
+        }
+        
+        .btn-nova-venda {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        }
+    </style>
 </head>
 <body>
+
+<!-- Modal QR Code -->
+<div id="qrcodeModal" class="qrcode-modal <?= isset($_SESSION['mostrar_qrcode']) ? 'active' : '' ?>">
+    <div class="qrcode-content">
+        <h3>Link de Pagamento</h3>
+        <div id="qrcode"></div>
+        <?php if (isset($_SESSION['link_pagamento'])): ?>
+            <div class="qrcode-link">
+                <?= htmlspecialchars($_SESSION['link_pagamento']) ?>
+            </div>
+        <?php endif; ?>
+        <div class="qrcode-buttons">
+            <button class="btn-copiar" onclick="copiarLink()">
+                <i class="fa-solid fa-copy"></i> Copiar Link
+            </button>
+            <button class="btn-fechar" onclick="fecharModal()">
+                <i class="fa-solid fa-times"></i> Fechar
+            </button>
+        </div>
+    </div>
+</div>
 
 <main class="jp_main-content">
         <div class="back-button">
@@ -309,30 +478,6 @@ if ($total < 0) $total = 0;
                         </form>
                     </div>
 
-                    <script>
-                            function aplicarCupom() {
-                            var cupom = document.getElementById('cupom').value;
-                            var xhr = new XMLHttpRequest();
-                            xhr.open("POST", "processar_cupom.php", true); // Rota para processar o cupom
-                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                            xhr.onload = function() {
-                                if (xhr.status == 200) {
-                                    var resposta = JSON.parse(xhr.responseText);
-                                    if (resposta.success) {
-                                        // Atualiza o subtotal e o total com o desconto
-                                        document.getElementById('summary-discount').textContent = '- R$ ' + resposta.desconto;
-                                        document.getElementById('summary-total').textContent = 'R$ ' + resposta.total;
-                                    } else {
-                                        alert('Erro ao aplicar cupom: ' + resposta.error);
-                                    }
-                                } else {
-                                    alert('Erro de conexão');
-                                }
-                            };
-                            xhr.send("cupom=" + encodeURIComponent(cupom));
-                        }
-                    </script>
-
                     <div class="P_divider"></div>
 
                     <div class="P_summary-details">
@@ -351,15 +496,101 @@ if ($total < 0) $total = 0;
                         </div>
                     </div>
 
-                    <button class="P_checkout-button">
-                        <i class="fa-solid fa-link"></i>
-                        Gerar Link de Pagamento
-                    </button>
+                    <div class="atualizar_status">
+                        <form method="POST" style="width: 100%;">
+                            <button type="submit" name="gerar_link" class="P_checkout-button">
+                                <i class="fa-solid fa-qrcode"></i>
+                                Gerar Link de Pagamento
+                            </button>
+                        </form>
+                        
+                        <form method="POST" style="width: 100%;">
+                            <?php 
+                            if ($status_pedido === 'FINALIZADO') {
+                                // Pedido finalizado - permitir criar novo
+                                echo '<button type="submit" name="novo_pedido" class="P_checkout-button btn-nova-venda">';
+                                echo '<i class="fa-solid fa-plus-circle"></i>';
+                                echo ' Criar Nova Venda';
+                                echo '</button>';
+                            } else {
+                                // Pedido em andamento - botões de progressão
+                                $proximo_status = '';
+                                $texto_botao = '';
+                                $icone_botao = '';
+                                
+                                switch($status_pedido) {
+                                    case 'PENDENTE':
+                                        $proximo_status = 'PAGO';
+                                        $texto_botao = 'Confirmar Pagamento';
+                                        $icone_botao = 'fa-dollar-sign';
+                                        break;
+                                    case 'PAGO':
+                                        $proximo_status = 'ENVIADO';
+                                        $texto_botao = 'Marcar como Enviado';
+                                        $icone_botao = 'fa-truck';
+                                        break;
+                                    case 'ENVIADO':
+                                        $proximo_status = 'FINALIZADO';
+                                        $texto_botao = 'Finalizar Venda';
+                                        $icone_botao = 'fa-check-circle';
+                                        break;
+                                    default:
+                                        $proximo_status = 'PAGO';
+                                        $texto_botao = 'Atualizar Pedido';
+                                        $icone_botao = 'fa-sync';
+                                }
+                                
+                                echo '<button type="submit" name="atualizar_status" value="' . $proximo_status . '" class="P_checkout-button">';
+                                echo '<i class="fa-solid ' . $icone_botao . '"></i>';
+                                echo ' ' . $texto_botao;
+                                echo '</button>';
+                            }
+                            ?>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Gerar QR Code se o modal estiver ativo
+        <?php if (isset($_SESSION['mostrar_qrcode']) && isset($_SESSION['link_pagamento'])): ?>
+        document.addEventListener('DOMContentLoaded', function() {
+            new QRCode(document.getElementById("qrcode"), {
+                text: "<?= $_SESSION['link_pagamento'] ?>",
+                width: 256,
+                height: 256,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        <?php 
+            unset($_SESSION['mostrar_qrcode']);
+            unset($_SESSION['link_pagamento']);
+        endif; 
+        ?>
+        
+        function copiarLink() {
+            const link = document.querySelector('.qrcode-link').textContent.trim();
+            navigator.clipboard.writeText(link).then(function() {
+                alert('Link copiado para a área de transferência!');
+            });
+        }
+        
+        function fecharModal() {
+            document.getElementById('qrcodeModal').classList.remove('active');
+        }
+        
+        // Fechar modal ao clicar fora
+        document.getElementById('qrcodeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                fecharModal();
+            }
+        });
+    </script>
     <script src="../../PUBLIC/JS/script-info_vendas.js"></script>
     <script src="../../PUBLIC/JS/script-tema.js"></script>
 
