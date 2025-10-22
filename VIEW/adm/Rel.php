@@ -113,142 +113,140 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h1 class="ym_titulo">Relatório de Vendas</h1>
  
                 <nav class="tabs-nav">
-                    <button class="po-tab-btn po-active" data-tab="sales">Vendas</button>
-                    <button class="po-tab-btn" data-tab="commissions">Comissões</button>
+                    <button class="po-tab-btn po-active" data-tab="sales"> <p>Vendas</p></button>
+                    <button class="po-tab-btn" data-tab="commissions"><p>Comissões</p></button>
                 </nav>
            
  
-<div class="po-card">
-    <div class="jv_card">
-        <div class="jv_card-header">
-            <div class="jv_header-content">
-                <form method="POST" action="#" class="jv_search-section">
-                    <div class="jv_search-container">
-                        <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
-                            <i class="fas fa-search search-icon"></i>
-                        </button>
-                        <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
-                    </div>
-                </form>
- 
-                <div class="jv_actions">
-                    <div>    
-                        <div>
-                            <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                <span><i class="fa-regular fa-file"></i></span>
-                                Exportar CSV
-                            </button>
-                        </div>
- 
-                        <div class="ym_area-select">
-                            <div class="ym_select" onclick="mostrar_categorias()">
-                                <p class="ym_categoria-select">Último mês</p>
-                                <p class="ym_seta-categoria">></p>
-                            </div>
-                                   
-                                   
-                            <div class="ym_options">
-                                <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
-                                <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
-                            </div>
-                                   
-                        </div>
-                    </div>    
-                </div>
-            </div>
- 
-            <p class="jv_subtitle" id="jv_customerCount">
-                <?= $total_vendas ?> <?= $total_vendas == 1 ? 'venda encontrada' : 'vendas encontradas' ?>
-            </p>
-        </div>
- 
-        <!-- Tabela de Vendas -->
-        <div class="jv_card-content">
-            <div class="jv_table-container">
-                <table class="jv_table">
-                    <thead>
-                        <tr class="jv_table-header">
-                            <th class="jv_date">Data</th>
-                            <th class="jv_name"><p>Vendedor</p></th>
-                            <th class="jv_name_cli">Cliente</th>
-                            <th class="jv_valor_gast">Valor Gasto</th>
-                            <th class="jv_actions-col"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="jv_customerTableBody">
-                        <?php if ($total_vendas > 0): ?>
-                            <?php foreach ($vendas_paginadas as $venda):   
-                                $vendedor = $usuario_control->mostrar($venda["id_vendedor"]);  
-                                $cliente = $cliente_control->mostrar($venda["id_cliente"]);
-                                
-                            ?>
-                                <tr>
-                                    <td><?= date("d/m/Y", strtotime($venda['data_venda'])) ?></td>
-                                    <td>
-                                        <div class="jv_customer-info">
-                                            <div class="jv_avatar">
-                                                <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?>
-                                            </div>
-                                            <div class="jv_customer-details">
-                                                <h4><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></h4>
-                                                <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
-                                    <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
-                                    <td class="jv_table-action">
-                                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                            <i class="fas fa-ellipsis-h"></i>
+                <div class="po-card">
+                    <div class="jv_card">
+                        <div class="jv_card-header">
+                            <div class="jv_header-content">
+                                <form method="POST" action="#" class="jv_search-section">
+                                    <div class="jv_search-container">
+                                        <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
+                                            <i class="fas fa-search search-icon"></i>
                                         </button>
-                                        <form class="jv_dropdown">
-                                            <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
-                                                <i class="fas fa-eye"></i> Visualizar
+                                        <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
+                                    </div>
+                                </form>
+                
+                                <div class="jv_actions">
+                                    <div>    
+                                        <div>
+                                            <button type="button" class="po-btn" id="exportarCsvBtn">
+                                                <span><i class="fa-regular fa-file"></i></span>
+                                                Exportar CSV
                                             </button>
-                                            <div class="jv_dropdown-separator"></div>
-                                            <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($venda['id'])?>">
-                                                <i class="fas fa-trash"></i> Remover
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
+                                        </div>
+                                            
+                
+                                        <div class="ym_area-select">
+                                            <div class="ym_select" onclick="mostrar_categorias()">
+                                                <p class="ym_categoria-select">Último mês</p>
+                                                <p class="ym_seta-categoria">></p>
+                                            </div>
+                                                
+                                                
+                                            <div class="ym_options">
+                                                <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                                                <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                            </div>
+                                                
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                
+                            <p class="jv_subtitle" id="jv_customerCount">
+                                <?= $total_vendas ?> <?= $total_vendas == 1 ? 'venda encontrada' : 'vendas encontradas' ?>
+                            </p>
+                        </div>
+                
+                        <!-- Tabela de Vendas -->
+                        <div class="jv_card-content">
+                            <div class="jv_table-container">
+                                <table class="jv_table">
+                                    <thead>
+                                        <tr class="jv_table-header">
+                                            <th class="jv_date">Data</th>
+                                            <th class="jv_name"><p>Vendedor</p></th>
+                                            <th class="jv_name_cli">Cliente</th>
+                                            <th class="jv_valor_gast">Valor Gasto</th>
+                                            <th class="jv_actions-col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="jv_customerTableBody">
+                                        <?php if ($total_vendas > 0): ?>
+                                            <?php foreach ($vendas_paginadas as $venda):   
+                                                $vendedor = $usuario_control->mostrar($venda["id_vendedor"]);  
+                                                $cliente = $cliente_control->mostrar($venda["id_cliente"]);
+                                                
+                                            ?>
+                                                <tr>
+                                                    <td><?= date("d/m/Y", strtotime($venda['data_venda'])) ?></td>
+                                                    <td>
+                                                        <div class="jv_customer-info">
+                                                            <div class="jv_avatar">
+                                                                <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?>
+                                                            </div>
+                                                            <div class="jv_customer-details">
+                                                                <h4><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></h4>
+                                                                <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
+                                                    <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
+                                                    <td class="jv_table-action">
+                                                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                                            <i class="fas fa-ellipsis-h"></i>
+                                                        </button>
+                                                        <form class="jv_dropdown">
+                                                            <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
+                                                                <i class="fas fa-eye"></i> Visualizar
+                                                            </button>
+                                                            <div class="jv_dropdown-separator"></div>
+                                                            <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($venda['id'])?>">
+                                                                <i class="fas fa-trash"></i> Remover
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
 
-                <!-- Paginação -->
-                <div class="jv_page-navigation">
-                    <?php if($pagina_atual > 1): ?>
-                        <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
-                    <?php endif; ?>
-                
-                    <?php
-                    $inicio = max(1, $pagina_atual - 2);
-                    $fim = min($total_paginas, $pagina_atual + 2);
-                    for ($i = $inicio; $i <= $fim; $i++): ?>
-                        <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                            <?= $i ?>
-                        </a>
-                    <?php endfor; ?>
-                
-                    <?php if($pagina_atual < $total_paginas): ?>
-                        <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    <?php endif; ?>
+                                <!-- Paginação -->
+                                <div class="jv_page-navigation">
+                                    <?php if($pagina_atual > 1): ?>
+                                        <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </a>
+                                    <?php endif; ?>
+                                
+                                    <?php
+                                    $inicio = max(1, $pagina_atual - 2);
+                                    $fim = min($total_paginas, $pagina_atual + 2);
+                                    for ($i = $inicio; $i <= $fim; $i++): ?>
+                                        <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                                            <?= $i ?>
+                                        </a>
+                                    <?php endfor; ?>
+                                
+                                    <?php if($pagina_atual < $total_paginas): ?>
+                                        <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
- 
-
- 
             </div>
             <div class="po-charts-grid">
                 <div class="po-card">
@@ -282,53 +280,53 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="po-container">
             <h1 class="ym_titulo">Relatório de Comissões</h1>
  
-                            <nav class="tabs-nav">
-                                <button class="po-tab-btn" data-tab="sales">Vendas</button>
-                                <button class="po-tab-btn" data-tab="commissions">Comissões</button>
-                            </nav>
+            <nav class="tabs-nav">
+                <button class="po-tab-btn" data-tab="sales"><p>Vendas</p></button>
+                <button class="po-tab-btn" data-tab="commissions"><p>Comissões</p></button>
+            </nav>
            
             <div class="po-card">
                 <div class="jv_card">
-                <div class="jv_card-header">
-                    <div class="jv_header-content">
-                        <form method="POST" action="#" class="jv_search-section">
-                            <div class="jv_search-container">
-                                <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
-                                    <i class="fas fa-search search-icon"></i>
-                                </button>
-                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
-                            </div>
-                        </form>
- 
-                        <div class="jv_actions">
-                            <div>    
-                                <div>
-                                    <button type="button" class="po-btn" onclick="abrirPopup('../../VIEW/pop-up/cadastrar_vendedor.php','Cadastro de Vendedores')">
-                                        <span><i class="fa-regular fa-file"></i></span>
-                                        Exportar CSV
+                    <div class="jv_card-header">
+                        <div class="jv_header-content">
+                            <form method="POST" action="#" class="jv_search-section">
+                                <div class="jv_search-container">
+                                    <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
+                                        <i class="fas fa-search search-icon"></i>
                                     </button>
+                                    <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
                                 </div>
-        
-                                <div class="ym_area-select">
-                                    <div class="ym_select" onclick="mostrar_categorias(2)">
-                                        <p class="ym_categoria-select">Último mês</p>
-                                        <p class="ym_seta-categoria">></p>
+                            </form>
+    
+                            <div class="jv_actions">
+                                <div>    
+                                    <div>
+                                        <button type="button" class="po-btn" id="exportarCsvComissoesBtn">
+                                            <span><i class="fa-regular fa-file"></i></span>
+                                            Exportar CSV
+                                        </button>
                                     </div>
-                                        
-                                        
-                                    <div class="ym_options">
-                                        <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
-                                        <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+            
+                                    <div class="ym_area-select">
+                                        <div class="ym_select" onclick="mostrar_categorias(2)">
+                                            <p class="ym_categoria-select">Último mês</p>
+                                            <p class="ym_seta-categoria">></p>
+                                        </div>
+                                            
+                                            
+                                        <div class="ym_options">
+                                            <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
+                                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                        </div>
+                                            
                                     </div>
-                                        
-                                </div>
-                            </div>    
+                                </div>    
+                            </div>
                         </div>
-                    </div>
  
-                    <p class="jv_subtitle" id="jv_customerCount">
-                        <?= $total_vendas ?> vendedores encontrados
-                    </p>
+                        <p class="jv_subtitle" id="jv_customerCount">
+                            <?= $total_vendas ?> vendedores encontrados
+                        </p>
                 </div>
  
                 <div class="jv_card-content">
@@ -480,9 +478,9 @@ if ($total_pedidos == 0) {
 
 $colors_status = [];
 $status_colors_map = [
-    "PAGO" => "#45734b",
-    "ENVIADO" => "rgba(69,115,75,0.8)",
-    "FINALIZADO" => "rgba(69,115,75,0.4)",
+    "PAGO" => "#107a10ff",
+    "ENVIADO" => "#125d12ff",
+    "FINALIZADO" => "#27db36ff",
 ];
 
 foreach (array_keys($status_pedidos) as $status) {
@@ -502,24 +500,24 @@ foreach ($vendas as $venda) {
 }
 
 $max_venda = max($vendas_mensais);
-$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#45734b" : "rgba(36,146,51,0.5)", $vendas_mensais);
+$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#27db36ff" : "#107a10ff", $vendas_mensais);
 
 $comissoes_vendedor = array_fill(0, 12, 0);
 $comissoes_dist = ["Fixas" => 0, "Variáveis" => 0];
 
-foreach ($comissoes as $comissao) {
-    $data = $comissao['data'] ?? $comissao['data_comissao'] ?? $comissao['created_at'] ?? null;
+foreach ($vendas as $comissao) {
+    $data = $comissao['data'] ?? $comissao['data_venda']  ?? null;
     $mes = ($data && strtotime($data) !== false) ? ((int)date("n", strtotime($data)) - 1) : (int)date("n") - 1;
 
     $valor = 0;
     if (isset($comissao['valor'])) $valor = (float)$comissao['valor'];
-    elseif (isset($comissao['valor_comissao'])) $valor = (float)$comissao['valor_comissao'];
-    elseif (isset($comissao['valor_venda'], $comissao['percentual']))
-        $valor = (float)$comissao['valor_venda'] * ((float)$comissao['percentual'] / 100);
+    elseif (isset($comissao['valor'])) $valor = (float)$comissao['valor'];
+    elseif (isset($comissao['valor'], $comissao['percentual']))
+        $valor = (float)$comissao['valor'] * ((float)$comissao['percentual'] / 100);
 
     $comissoes_vendedor[$mes] += $valor > 0 ? $valor : 0.001;
 
-    $tipo = $comissao['tipo'] ?? 'Fixas';
+    $tipo = $comissao['valor'] ?? 'Fixas';
     if (isset($comissoes_dist[$tipo])) $comissoes_dist[$tipo] += $valor > 0 ? $valor : 0.001;
 }
 
@@ -537,7 +535,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 data: <?= json_encode($vendas_mensais) ?>,
                 backgroundColor: <?= json_encode($colors_vendas) ?>,
                 borderRadius: 8,
-                borderWidth: 1
+                borderWidth: 1,
+                
             }]
         },
         options: {
@@ -599,12 +598,12 @@ document.addEventListener("DOMContentLoaded", () => {
             datasets: [{
                 label: "Gasto com Comissões (R$)",
                 data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
-                backgroundColor: "rgba(69,115,75,0.2)",
-                borderColor: "rgba(39, 219, 54, 1)",
+                backgroundColor: "rgba(44, 171, 54, 0.23)",
+                borderColor: "#27db36ff",
                 borderWidth: 3,
                 fill: true,
                 tension: 0.1,
-                pointBackgroundColor: "rgba(39, 219, 54, 1)",
+                pointBackgroundColor: "#27db36ff",
                 pointRadius: 6
             }]
         },
@@ -634,7 +633,7 @@ document.addEventListener("DOMContentLoaded", () => {
             labels: <?= json_encode(array_keys($comissoes_dist)) ?>,
             datasets: [{
                 data: <?= json_encode(array_values($comissoes_dist)) ?>,
-                backgroundColor: ["#45734b","#17e33293"],
+                backgroundColor: ["#107a10ff","#27db36ff"],
                 borderColor: "#fff",
                 borderWidth: 2,
                 hoverOffset: 12
@@ -655,6 +654,57 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // --- EXPORTAR CSV DE VENDAS ---
+    const botaoVendas = document.getElementById("exportarCsvBtn");
+    if (botaoVendas) {
+        botaoVendas.addEventListener("click", function() {
+            exportarTabelaCsv(".tab-content#sales-tab-content .jv_table", "relatorio_vendas.csv");
+        });
+    }
+
+    // --- EXPORTAR CSV DE COMISSÕES ---
+    const botaoComissoes = document.getElementById("exportarCsvComissoesBtn");
+    if (botaoComissoes) {
+        botaoComissoes.addEventListener("click", function() {
+            exportarTabelaCsv(".tab-content#commissions-tab-content .jv_table", "relatorio_comissoes.csv");
+        });
+    }
+
+    // --- FUNÇÃO GENÉRICA ---
+    function exportarTabelaCsv(seletorTabela, nomeArquivo) {
+        const tabela = document.querySelector(seletorTabela);
+        if (!tabela) {
+            alert("Tabela não encontrada!");
+            return;
+        }
+
+        let linhas = tabela.querySelectorAll("tr");
+        let csv = [];
+
+        linhas.forEach(linha => {
+            let colunas = linha.querySelectorAll("th, td");
+            let linhaCsv = [];
+
+            colunas.forEach(celula => {
+                let texto = celula.innerText.replace(/\n/g, " ").replace(/,/g, "");
+                linhaCsv.push('"' + texto.trim() + '"');
+            });
+
+            csv.push(linhaCsv.join(","));
+        });
+
+        let csvString = csv.join("\n");
+        let blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+        let link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = nomeArquivo;
+        link.click();
+    }
+});
+
 </script>
 
 meowl

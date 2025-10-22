@@ -25,28 +25,41 @@ class UsuarioController {
     }
 
     // Criar um novo usuário
-    public function criar($tipo) {
-        try {
-            $this->user->nome = $_POST['nome'];
-            $this->user->email = $_POST['email'];
-            $this->user->senha = password_hash($_POST['senha'],PASSWORD_DEFAULT);
-            $this->user->tipo = $tipo;
-            $this->user->telefone = $_POST['telefone'] ?? null;
-            $this->user->CPF = $_POST['CPF'];
-            $this->user->data_nasc = $_POST['data_nasc'] ?? null;
-            $this->user->foto = $_POST['foto'] ?? null;
-            $this->user->CEP = $_POST['cep'] ?? null;
+   public function criar($tipo) {
+    try {
+        $this->user->nome = $_POST['nome'];
+        $this->user->email = $_POST['email'];
+        $this->user->senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        $this->user->tipo = $tipo;
+        $this->user->telefone = $_POST['telefone'] ?? null;
+        $this->user->CPF = $_POST['CPF'];
+        $this->user->data_nasc = $_POST['data_nasc'] ?? null;
+        $this->user->foto = $_POST['foto'] ?? null;
+        $this->user->CEP = $_POST['cep'] ?? null;
 
-            if ($this->user->criar()) {
-                return true;
-            } else {
-                throw new Exception("Erro ao criar usuário");
+        if ($this->user->data_nasc) {
+            $dataNascimento = new DateTime($this->user->data_nasc);
+            $hoje = new DateTime();
+            $idade = $dataNascimento->diff($hoje)->y;
+
+            if ($idade < 18) {
+                throw new Exception("Você precisa ter pelo menos 18 anos para se cadastrar.");
             }
-        } catch (Exception $e) {
-            return ['error' => $e->getMessage()];
+        } else {
+            throw new Exception("Data de nascimento é obrigatória.");
         }
-    }
 
+        // Criação do usuário
+        if ($this->user->criar()) {
+            return true;
+        } else {
+            throw new Exception("Erro ao criar usuário.");
+        }
+
+    } catch (Exception $e) {
+        return ['error' => $e->getMessage()];
+    }
+}
     // Mostrar detalhes de um usuário
     public function mostrar($id) {
         try {
