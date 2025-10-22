@@ -62,13 +62,7 @@
                         </div>
                         <input type="number" class="ym_input-padrao" name="quantidade" placeholder="Quantidade em estoque" required min="0">
                     </div>
-                    
-                    <div class="eze-form-group">
-                        <div class="eze-form-label-group">
-                            <label class="eze-label-text">Quantidade Reservada</label>
-                        </div>
-                        <input type="number" class="ym_input-padrao" name="reservado" placeholder="Quantidade reservada" value="0" min="0">
-                    </div>
+
                 </div>
 
                 <div class="eze-form-group">
