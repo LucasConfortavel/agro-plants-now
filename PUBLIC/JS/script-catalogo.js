@@ -4,67 +4,50 @@ let clicks_2 = 1;
 function slideGo(qntProduto, indexArea) {
     let btn_go = document.getElementsByClassName("ym_slideGo")[indexArea];
     let btn_back = document.getElementsByClassName("ym_slideBack")[indexArea];
-    
-    if (indexArea == 0) {
-        var clicks = clicks_1;
-    } else if (indexArea == 1) {
-        var clicks = clicks_2;
+    let produtos = document.getElementsByClassName("ym_todos-produtos")[indexArea];
+
+    let max_clicks = Math.ceil(qntProduto / 3);
+    let clicks = (indexArea == 0) ? clicks_1 : clicks_2;
+
+    if (clicks < max_clicks) {
+        clicks++;
+        let slides = 66 * (clicks - 1);
+        produtos.style.transform = `translateX(-${slides}%)`;
+
+        if (indexArea == 0) clicks_1 = clicks;
+        else clicks_2 = clicks;
+
+        btn_back.style.opacity = "1";
     }
 
-    let produtos = document.getElementsByClassName("ym_todos-produtos")[indexArea];
-    let slides = 66 * clicks;
-    let max_clicks = qntProduto / 3;
-    
-    produtos.style.transform = `translatex(-${slides}%)`;
-    
-    if (clicks < Math.floor(max_clicks)) {
-        if (indexArea == 0) {
-            clicks_1++;
-        } else if (indexArea == 1) {
-            clicks_2++;
-        }
-    } else {
+    if (clicks >= max_clicks) {
         btn_go.style.opacity = "0";
-    }
-    
-    if (clicks_1 > 1 || clicks_2 > 1) {
-        btn_back.style.opacity = "1";
     }
 }
 
 function slideBack(qntProduto, indexArea) {
     let btn_go = document.getElementsByClassName("ym_slideGo")[indexArea];
     let btn_back = document.getElementsByClassName("ym_slideBack")[indexArea];
-    
-    if (indexArea == 0) {
-        var clicks = clicks_1;
-    } else if (indexArea == 1) {
-        var clicks = clicks_2;
-    }
-
     let produtos = document.getElementsByClassName("ym_todos-produtos")[indexArea];
-    let slides = 66 * clicks;
-    slides = slides - 66;
-    
-    if (indexArea == 0) {
-        clicks_1 = clicks_1 - 1;
-    } else if (indexArea == 1) {
-        clicks_2 = clicks_2 - 1;
+
+    let clicks = (indexArea == 0) ? clicks_1 : clicks_2;
+
+    if (clicks > 1) {
+        clicks--;
+        let slides = 66 * (clicks - 1);
+        produtos.style.transform = `translateX(-${slides}%)`;
+
+        if (indexArea == 0) clicks_1 = clicks;
+        else clicks_2 = clicks;
+
+        btn_go.style.opacity = "1"; 
     }
 
-    if (clicks_1 <= 0 || clicks_2 <= 0) {
-        if (indexArea == 0) {
-            clicks_1 = 1;
-        } else if (indexArea == 1) {
-            clicks_2 = 1;
-        }
-        produtos.style.transform = `translatex(0)`;
+    if (clicks <= 1) {
         btn_back.style.opacity = "0";
     }
-    
-    produtos.style.transform = `translatex(-${slides}%)`;
-    btn_go.style.opacity = "1";
 }
+
 
 // Função para mostrar/ocultar categorias
 function mostrar_categorias() {
