@@ -234,7 +234,7 @@
 
             <?php
             $inicio = max(1, $pagina_atual - 2);
-            $fim = min($total_paginas, $pagina_atual + 2);
+            $fim = min($total_paginas, $pagina_atual);
             for ($i = $inicio; $i <= $fim; $i++): ?>
                 <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
                     <?= $i ?>
@@ -253,7 +253,6 @@
         </a>
 
         <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
-        <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
 </main>

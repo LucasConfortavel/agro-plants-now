@@ -1,6 +1,7 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
-    include "../../INCLUDE/btn-notificacao.php";
+    // include "../../INCLUDE/btn-notificacao.php";
+    include "../../INCLUDE/verificarLogin.php";
     include "../../CONTROLLER/ProdutoController.php";
     include "../../INCLUDE/vlibras.php";
     include "../../CONTROLLER/VendaController.php";
