@@ -11,6 +11,100 @@ body {
 }
 
 
+/* ==============================
+   🌙 MODO ESCURO PADRONIZADO
+   ============================== */
+body.dark-teme {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+/* Container principal */
+body.dark-teme .jp_main-content {
+  background-color: #232222;
+  color: #f1f1f1;
+}
+
+/* Header do perfil */
+body.dark-teme .jp_profile-header {
+  background-color: #2a2a2a;
+  color: #eaeaea;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-teme .jp_profile-text h2 {
+  color: #ffffff;
+}
+
+body.dark-teme .jp_profile-text p {
+  color: #c9c9c9;
+}
+
+body.dark-teme .jp_role {
+  background-color: #3a3a3a;
+  color: #e0e0e0;
+}
+
+/* Conteúdo */
+body.dark-teme .jp_content {
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-teme .jp_tabs {
+  border-bottom: 1px solid #3d3d3d;
+}
+
+body.dark-teme .jp_tab {
+  color: #c9c9c9;
+}
+
+body.dark-teme .jp_tab.jp_active {
+  color: #45734B;
+}
+
+/* Inputs e textos */
+body.dark-teme .ym_input-info {
+  background-color: #3a3a3a;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+/* Botões padrão */
+body.dark-teme .ym_btn-padrao {
+  background-color: #45734B;
+  color: #fff;
+}
+
+body.dark-teme .ym_btn-padrao:hover {
+  background-color: #3a6240;
+}
+
+/* Botão remover */
+body.dark-teme .ym_btn-remover {
+  background-color: #a94442;
+}
+
+body.dark-teme .ym_btn-remover:hover {
+  background-color: #922f2c;
+}
+
+/* Área de info */
+body.dark-teme .ym_area-info {
+  background-color: #232222;
+}
+
+/* Sombras e bordas suaves */
+body.dark-teme .jp_content,
+body.dark-teme .jp_profile-header {
+  border: 1px solid #333;
+}
+
+
+
+
+
 .jp_main-content {
     flex: 1;
     padding: 30px;
