@@ -7,6 +7,93 @@ body {
   background-color: #f5f5f5;
 }
 
+
+/* ======== MODO ESCURO PADRONIZADO ======== */
+body.dark-theme {
+  background-color: #232222;
+  color: #e0e0e0;
+}
+
+body.dark-theme .jp_card,
+body.dark-theme .jp_sales-section,
+body.dark-theme .jp_chart-section {
+  background-color: #2e2e2e;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .jp_card-title,
+body.dark-theme .jp_sales-title,
+body.dark-theme .jp_chart-title {
+  color: #e0e0e0;
+}
+
+body.dark-theme .jp_card-indicator {
+  background-color: rgba(69, 115, 75, 0.15);
+  color: #45734B;
+}
+
+body.dark-theme .jp_card-value {
+  color: #fff;
+}
+
+body.dark-theme .jp_card:hover .jp_card-value {
+  color: #45734B;
+}
+
+body.dark-theme .jp_sales-table th {
+  color: #e0e0e0;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+body.dark-theme .jp_sales-table td {
+  border-bottom: 1px solid #3a3a3a;
+  color: #ccc;
+}
+
+body.dark-theme .jp_sales-table tr:hover td {
+  background-color: #3a3a3a;
+}
+
+body.dark-theme .jp_value-column {
+  color: #5a8a62;
+}
+
+body.dark-theme .jp_commission-column {
+  color: #6fcf97;
+}
+
+body.dark-theme .jp_pagination-item.active {
+  background-color: #45734B;
+  color: #fff;
+}
+
+body.dark-theme .jp_pagination-item:hover {
+  background-color: #3a6240;
+  color: #fff;
+}
+
+body.dark-theme .jp_filter-select {
+  background-color: #2e2e2e;
+  color: #e0e0e0;
+  border: 1px solid #3a3a3a;
+}
+
+body.dark-theme .jp_filter-select:hover {
+  border-color: #45734B;
+}
+
+body.dark-theme canvas {
+  background-color: #2e2e2e;
+}
+
+body.dark-theme .ym_options {
+  color: #e0e0e0;
+}
+
+
+
+
+
 .ym_options{
   color: black;
   max-width: 9%;
@@ -163,35 +250,55 @@ body {
 }
 
 .jp_pagination-item {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
   transition: all 0.3s ease;
   user-select: none;
+  font-weight: 500;
+  color: #45734b;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  text-decoration: none;
 }
 
 .jp_pagination-item:hover {
   background-color: #f0f0f0;
+  transform: translateY(-1px);
 }
 
 .jp_pagination-item.active {
-  background-color: #fff;
-  font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #45734b;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
 
 .jp_pagination-arrow {
   cursor: pointer;
-  margin-left: 10px;
-  transition: transform 0.3s ease;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  color: #45734b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
 }
 
 .jp_pagination-arrow:hover {
+  background-color: #f0f0f0;
   transform: translateX(3px);
+  border-color: #d1d5db;
+}
+
+.jp_pagination-arrow.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .jp_chart-section {

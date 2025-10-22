@@ -8,15 +8,17 @@
 
     $controler_user = new UsuarioController();
 
-    // POST: criar vendedor
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['adicionar'])){
             $usuario = $controler_user->criar("vendedor");
+            print_r($usuario);
 
             if($usuario == 1){
                 $_SESSION['alerta'] =  '<script> exibirAlerta("Vendedor cadastrado com sucesso","sucesso"); </script>';
             }elseif($usuario == "Já existe um usuário cadastrado com este email."){
                 $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um vendedor cadastrado com este email"); </script>';
+            }elseif($usuario['error'] == "Você precisa ter pelo menos 18 anos para se cadastrar."){
+                $_SESSION['alerta'] = '<script> exibirAlerta("Você precisa ter pelo menos 18 anos para se cadastrar"); </script>';
             }else{
                 $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o vendedor","error"); </script>';
             }
@@ -232,7 +234,7 @@
 
             <?php
             $inicio = max(1, $pagina_atual - 2);
-            $fim = min($total_paginas, $pagina_atual + 2);
+            $fim = min($total_paginas, $pagina_atual);
             for ($i = $inicio; $i <= $fim; $i++): ?>
                 <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
                     <?= $i ?>
@@ -251,7 +253,6 @@
         </a>
 
         <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
-        <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
 </main>

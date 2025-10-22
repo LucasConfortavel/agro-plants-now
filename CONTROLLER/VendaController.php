@@ -5,62 +5,61 @@ class VendaController {
     private $venda;
 
     public function __construct() {
-        $this->venda = new vendaModel();
+        $this->venda = new VendaModel();
     }
 
     public function index($filtro = null) {
-
-        if ($filtro == null) {
+        if ($filtro === null) {
             $stmt = $this->venda->lerTodos();
-            $vendas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $vendas;
-        } else{
+        } else {
             $stmt = $this->venda->lerEspecifico($filtro);
-            $vendas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $vendas;
         }
 
-    }
-
-    public function criarvenda() {
-        try {
-            if(strlen($_POST['CPF/CNPJ']) == 14){
-                $_POST['CNPJ'] = $_POST['CPF/CNPJ'];
-            } elseif (strlen($_POST['CPF/CNPJ']) == 11){
-                $_POST['CPF'] = $_POST['CPF/CNPJ'];
-            }
-            else{
-                die();
-            }
-            $this->venda->nome = $_POST['nome'];
-            $this->venda->email = $_POST['email'];
-            $this->venda->telefone = !empty($_POST['telefone']) ? $_POST['telefone'] : null;
-            $this->venda->CPF = !empty($_POST['CPF']) ? $_POST['CPF'] : null;
-            $this->venda->CNPJ = !empty($_POST['CNPJ']) ? $_POST['CNPJ'] : null;
-            $this->venda->data_nasc = $_POST['data_nasc'] ?? null;
-
-            $stmt = $this->venda->criar();
-            return true;
-
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            return $error;
-        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function mostrar($id) {
         try {
             $this->venda->id = $id;
-            
-            if ($this->venda->lerUm()) {
-                return $this->venda->lerUm();
+            $venda = $this->venda->lerUm();
+
+            if ($venda) {
+                return $venda;
             } else {
-                throw new Exception("Venda não encontrada");
+                throw new Exception("Venda não encontrada.");
             }
         } catch (Exception $e) {
-            $error = $e->getMessage();
-           return $error;
+            return ["erro" => $e->getMessage()];
         }
     }
 
+    public function criarVenda($dados) {
+        try {
+            $this->venda->data_venda = $dados['data_venda'];
+            $this->venda->id_pedido = $dados['id_pedido'];
+            $this->venda->id_vendedor = $dados['id_vendedor'];
+            $this->venda->id_cliente = $dados['id_cliente'];
+            $this->venda->total = $dados['total'];
+
+            return $this->venda->criar();
+        } catch (Exception $e) {
+            return ["erro" => $e->getMessage()];
+        }
+    }
+
+    public function deletar($id) {
+        try {
+            $this->venda->id = $id;
+            return $this->venda->deletar();
+        } catch (Exception $e) {
+            return ["erro" => $e->getMessage()];
+        }
+    }
+
+    /**
+     * 🔁 Itens da venda
+     */
+    public function listarItensDaVenda($id_venda) {
+        return $this->venda->getItensVenda($id_venda);
+    }
 }

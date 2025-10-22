@@ -8,7 +8,6 @@ class ClienteController {
         $this->cliente = new ClienteModel();
     }
 
-    // listar todos os usuarios
     public function index() {
         try {
             $stmt = $this->cliente->lerTodos();
@@ -64,6 +63,9 @@ class ClienteController {
             $error = $e->getMessage();
             return $error;
         }
+    }
+    public function indexComPedidos() {
+        return $this->cliente->lerTodosComUltimoPedido();
     }
 
     // public function editar($id) {

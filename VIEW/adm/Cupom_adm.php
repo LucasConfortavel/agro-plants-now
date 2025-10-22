@@ -9,16 +9,6 @@ $cupom_control = new CupomController();
 $cupons = $cupom_control->index();
 $total_cupons = count($cupons);
 
-// Paginação
-$limite = 4;
-$pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-if ($pagina_atual < 1) $pagina_atual = 1;
-
-$offset = ($pagina_atual - 1) * $limite;
-$total_paginas = ceil($total_cupons / $limite);
-
-// Slice para limitar os cupons exibidos na página
-$cupons = array_slice($cupons, $offset, $limite);
 
 // Criação de cupom via POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -91,7 +81,7 @@ if(isset($_SESSION['alerta'])){
                             <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                                 <i class="fas fa-search search-icon"></i>
                             </button>
-                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por código..." class="jv_search-input">
+                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por código..." class="jv_search-input"  oninput="Pesquisar()">
                         </div>
                     </form>
 
@@ -122,42 +112,15 @@ if(isset($_SESSION['alerta'])){
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
-                                <th class="jv_checkbox-col">
-                                    <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                </th>
+                                
                                 <th class="jv_codigo">Código</th>
                                 <th class="jv_desconto">Desconto</th>
                                 <th class="jv_cadastro">Data de Cadastro</th>
                                 <th class="jv_validade">Validade</th>
-                                <th class="jv_actions-col"></th>
+                           
                             </tr>
                         </thead>
                         <tbody id="jv_customerTableBody">
-                            <?php if ($total_cupons > 0): ?>
-                                <?php foreach ($cupons as $cupom): ?>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cupom['id'] ?? '' ?>">
-                                        </td>
-                                        <td ><?= htmlspecialchars($cupom['codigo'] ?? '-') ?></td>
-                                        <td ><?= htmlspecialchars($cupom['valor'] ?? $cupom['desconto'] ?? '0') ?>%</td>
-                                        <td ><?= isset($cupom['data_emissao']) ? date("d/m/Y", strtotime($cupom['data_emissao'])) : (isset($cupom['data_criacao']) ? date("d/m/Y", strtotime($cupom['data_criacao'])) : '-') ?></td>
-                                        <td ><?= isset($cupom['data_validade']) ? date("d/m/Y", strtotime($cupom['data_validade'])) : (isset($cupom['validade']) ? date("d/m/Y", strtotime($cupom['validade'])) : '-') ?></td>
-                                        <td class="jv_table-action">
-                                            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </button>
-                                            <form class="jv_dropdown">
-                                                <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value=<?= $cupom['id'] ?>>
-                                                    <i class="fas fa-trash"></i> Remover
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr><td colspan="6" style="text-align: center; height: 49.7vh;">Nenhum cupom encontrado</td></tr>
-                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -167,29 +130,11 @@ if(isset($_SESSION['alerta'])){
 
     <!-- Paginação -->
     <div class="jv_page-navigation">
-        <?php if($pagina_atual > 1): ?>
-            <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-        <?php endif; ?>
-
-        <?php
-        $inicio = max(1, $pagina_atual - 2);
-        $fim = min($total_paginas, $pagina_atual + 2);
-        for ($i = $inicio; $i <= $fim; $i++): ?>
-            <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                <?= $i ?>
-            </a>
-        <?php endfor; ?>
-
-        <?php if($pagina_atual < $total_paginas): ?>
-            <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        <?php endif; ?>
     </div>
 
-
+        <script>
+            const dados = <?php echo json_encode($cupons); ?>;
+        </script>
         <script src="../../PUBLIC/JS/script-cupom.js"></script>
         <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>

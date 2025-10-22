@@ -35,7 +35,7 @@ class UsuarioModel {
         $this->telefone = htmlspecialchars(strip_tags($this->telefone));
         $this->CPF = htmlspecialchars(strip_tags($this->CPF));
         $this->CEP = htmlspecialchars(strip_tags($this->CEP));
-        $this->data_nasc = htmlspecialchars(strip_tags($this->data_nasc));
+        $this-> _nasc = htmlspecialchars(strip_tags($this->data_nasc));
         $this->foto = htmlspecialchars(strip_tags($this->foto));
 
         $stmt->bindParam(":nome", $this->nome);
@@ -216,16 +216,17 @@ class UsuarioModel {
     
         if ($stmt->rowCount() == 1) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if ($senha === $row['senha']) {
+
+            if(password_verify($senha,$row['senha'])){
                 $this->id = $row['id'];
                 $this->nome = $row['nome'];
                 $this->email = $row['email'];
                 $this->tipo = $row['tipo'];
-                
+
                 return true;
             }
         }
+        
         
         return false;
     }

@@ -1,6 +1,7 @@
 <?php
     include "../../INCLUDE/Menu_adm.php";
-    include "../../INCLUDE/btn-notificacao.php";
+    // include "../../INCLUDE/btn-notificacao.php";
+    include "../../INCLUDE/verificarLogin.php";
     include "../../CONTROLLER/ProdutoController.php";
     include "../../INCLUDE/vlibras.php";
     include "../../CONTROLLER/VendaController.php";
@@ -28,13 +29,30 @@
 
     $data_grafico = [0,0,0,0,0,0,0,0,0,0,0,0];
 
+    if(!isset($_POST['categoria'])){
+        $categoria = "Produtos";
+        $opcao = "Serviços";
+    }
+    else{    
+        $opcao = $_POST['opcao'];
+        $categoria = $_POST['categoria'];
+    }
+
+    if($categoria == "Produtos"){
+        $filtro="produto";
+    }else{
+        $filtro="servico";
+    }
+
     foreach ($vendas_totais as $venda) {
         $total_vendido += $venda['total'];
         $numero_vendas += 1;
-        $data_venda = new DateTime($venda['data_venda']);
-        for ($i=0; $i <= 12; $i++) { 
-            if($data_venda->format("m") == $i){
-                $data_grafico[$i-1] = $data_grafico[$i-1] + 1;
+        if($venda['tipo'] == $filtro){
+            $data_venda = new DateTime($venda['data_venda']);
+            for ($i=0; $i <= 12; $i++) { 
+                if($data_venda->format("m") == $i){
+                    $data_grafico[$i-1] = $data_grafico[$i-1] + 1;
+                }
             }
         }
     } 
@@ -48,7 +66,17 @@
     $vendedores_totais = $vendedores_control->index('vendedor');
     $TotalVendedor = count($vendedores_totais);
 
+    $total_vendas = count($vendas_totais);
+    
+    $limite = 4;
+    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    if ($pagina_atual < 1) $pagina_atual = 1;
 
+    $offset = ($pagina_atual - 1) * $limite;
+
+    $total_paginas = ($total_vendas > 0) ? ceil($total_vendas / $limite) : 1;
+
+    $vendas_paginadas = array_slice($vendas_totais, $offset, $limite);
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +89,7 @@
     <link rel="stylesheet" href="../../PUBLIC/css/dashboard-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -79,7 +108,7 @@
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
-                    <div class="jp_card-title">Total de Pedidos</div>
+                    <div class="jp_card-title">Total de Vendas</div>
                     <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value"><?= $numero_vendas;?></div>
@@ -107,7 +136,7 @@
                     <tr class="vc_header-planilha">
                         <th>Código</th>
                         <th>Vendedor</th>
-                        <th>Produtos</th>
+                        <th>Tipo</th>
                         <th>Data</th>
                         <th>Valor</th>
                         <th>Comissão</th>
@@ -115,63 +144,48 @@
                 </thead>
                 <tbody>
                     <?php
-                        // Quantidade de itens por página
-                        $limite = 5;
-
-                        // Página atual (pega da URL, se não tiver assume 1)
-                        $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-
-                        // Calcula o offset
-                        $offset = ($pagina - 1) * $limite;
-
-                        // Fatia apenas as vendas da página atual
-                        $vendas_pagina = array_slice($vendas_totais, $offset, $limite);
-
-                        $total_vendas = count($vendas_totais);
-
-                        // Exibe vendas da página
-                        foreach ($vendas_pagina as $venda) {
-                            // Busca cliente e vendedor
-                            $cliente = $cliente_control->mostrar($venda['id_cliente']);
-                            $vendedor = $vendedores_control->mostrar($venda['id_vendedor']);
-
-                            // Calcula comissão (exemplo: 5%)
-                            $comissao = $venda['total'] * 0.05;
-
-                            echo '
+                        foreach ($vendas_paginadas as $venda) {
+                        echo '
                             <tr>
-                                <td>'.$venda['id'].'</td>
-                                <td>'.$vendedor['nome'].'</td>
-                                <td>'.$cliente['nome'].'</td>
+                                <td>'.$cliente_control->mostrar($venda['id_cliente'])['nome'].'</td>
+                                <td>'.$vendedores_control->mostrar($venda['id_vendedor'])['nome'].'</td>
+                                <td>'.$venda['tipo'].'</td>
                                 <td>'.date('d/m/Y', strtotime($venda['data_venda'])).'</td>
-                                <td class="jp_sales-value">R$ '.number_format($venda['total'], 2, ',', '.').'</td>
-                                <td class="jp_sales-value">R$ '.number_format($comissao, 2, ',', '.').'</td>
+                                <td class="jp_sales-value">R$ '. number_format($venda['total'], 2, ',', '.') .'</td>
+                                <td class="jp_sales-value">R$ '. number_format($venda['total']/100 * 5, 2, ',', '.')  .'</td>
                             </tr>';
                         }
+                    
                     ?>  
-                    </tbody>
-
+                </tbody>
             </table>
+
             <div class="jp_pagination">
-                <?php
-                    $total_paginas = ceil($total_vendas / $limite);
+                    <?php if ($pagina_atual > 1): ?>
+                        <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    <?php endif; ?>
 
-                    // Botão Anterior (seta esquerda)
-                    if ($pagina > 1) {
-                        echo '<a class="jp_arrow" href="?pagina='.($pagina - 1).'"><i class="fas fa-arrow-left"></i></a>';
-                    }
+                    <?php
+                        $inicio = max(1, $pagina_atual - 2);
+                        $fim = min($total_paginas, $pagina_atual + 2);
+                        for ($i = $inicio; $i <= $fim; $i++): ?>
+                            <a href="?pagina=<?= $i ?>" class="jp_pagination-item <?= $i == $pagina_atual ? 'active' : '' ?>">
+                                <?= $i ?>
+                            </a>
+                    <?php endfor; ?>
 
-                    // Números das páginas
-                    for ($i = 1; $i <= $total_paginas; $i++) {
-                        $classe = ($i == $pagina) ? 'style="font-weight:bold;"' : '';
-                        echo '<a '.$classe.' href="?pagina='.$i.'">'.$i.'</a>';
-                    }
+                    <?php if ($pagina_atual < $total_paginas): ?>
+                        <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jp_pagination-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    <?php endif; ?>
+                </div>
 
-                    // Botão Próximo (seta direita)
-                    if ($pagina < $total_paginas) {
-                        echo '<a class="jp_arrow" href="?pagina='.($pagina + 1).'"><i class="fas fa-arrow-right"></i></a>';
-                    }
-                ?>
+                <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
             </div>
         </div>
 
@@ -184,18 +198,19 @@
 
                 <div class="jp_chart-filters">
 
-                    <div class="ym_area-select">
+                    <form method="POST" class="ym_area-select">
                         <div class="ym_select" onclick="mostrar_categorias()">
-                            <p class="ym_categoria-select">Produtos </p>
+                            <p class="ym_categoria-select"><?=$categoria?> </p>
                             <p class="ym_seta-categoria">></p>
                         </div>
                         
+                        <input type="hidden" name="opcao" value="<?=$categoria?>">
                         
-                        <div class="ym_options">
-                            <a class="ym_link-option" onclick="trocar_categoria()"></i> Serviços</a>
-                        </div>
+                        <button class="ym_options" type="submit" name="categoria" value="<?=$opcao?>">
+                            <a class="ym_link-option" onclick="trocar_categoria()"><?=$opcao?></a>
+                        </button>
                         
-                    </div>
+                    </form>
                     
 
                 </div>
@@ -209,6 +224,6 @@
         window.data_grafico = <?php echo json_encode($data_grafico); ?>;
     </script>
     <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
-
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 </body>
 </html>

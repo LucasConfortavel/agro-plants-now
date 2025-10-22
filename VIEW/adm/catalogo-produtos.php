@@ -17,7 +17,7 @@ if (isset($dados['postResult']) && isset($dados['postResult']['success'])) {
 
 if (isset($dados['remocaoResult']) && isset($dados['remocaoResult']['success'])) {
     header("Location: catalogo-produtos.php?success=" . urlencode($dados['remocaoResult']['success']));
-    exit;
+    exit;   
 } elseif (isset($dados['remocaoResult']) && isset($dados['remocaoResult']['error'])) {
     header("Location: catalogo-produtos.php?error=" . urlencode($dados['remocaoResult']['error']));
     exit;
@@ -36,6 +36,7 @@ $errorMessage = $_GET['error'] ?? '';
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/catalogo.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
@@ -152,3 +153,4 @@ $errorMessage = $_GET['error'] ?? '';
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 <script src="../../PUBLIC/JS/script-catalogo.js"></script>
+<script src="../../PUBLIC/JS/script-tema.js"></script>

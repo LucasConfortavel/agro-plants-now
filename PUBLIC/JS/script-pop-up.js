@@ -1,4 +1,4 @@
-function abrirPopup(link, fixar=false) {
+function abrirPopup(link, fixar = false) {
     const popup = document.getElementsByClassName('ym_popup-content')[0];
     const cont_popup = document.getElementsByClassName('ym_conteudo-popup')[0];
     const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
@@ -18,7 +18,7 @@ function abrirPopup(link, fixar=false) {
         .then(html => {
             // Limpar conteúdo anterior
             cont_popup.innerHTML = html;
-            area_superior.innerHTML = ` <p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>`;
+            area_superior.innerHTML = `<p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>`;
 
             // Processar scripts do conteúdo carregado
             processarScripts(cont_popup);
@@ -53,7 +53,7 @@ function abrirPopup(link, fixar=false) {
         .catch(error => {
             console.error('Erro ao carregar pop-up:', error);
             cont_popup.innerHTML = `<div class="ym-alert ym-alert-error">Erro ao carregar: ${error.message}</div>`;
-            area_superior.innerHTML = ` <p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>`;
+            area_superior.innerHTML = `<p class="ym_icon-fechar" onclick="fecharPopup()">✖</p>`;
             popup_overlay.style.display = 'flex';
             popup.style.display = 'block';
         });
@@ -63,7 +63,7 @@ function processarScripts(container) {
     const scripts = container.querySelectorAll('script');
     scripts.forEach(script => {
         const newScript = document.createElement('script');
-        
+
         if (script.src) {
             // Script externo
             newScript.src = script.src;
@@ -73,14 +73,14 @@ function processarScripts(container) {
             // Script inline
             newScript.textContent = script.textContent;
         }
-        
+
         // Copiar outros atributos
         Array.from(script.attributes).forEach(attr => {
             if (attr.name !== 'src' && attr.name !== 'textContent') {
                 newScript.setAttribute(attr.name, attr.value);
             }
         });
-        
+
         document.head.appendChild(newScript);
     });
 }
@@ -98,10 +98,13 @@ function loadScript(src) {
 function fecharPopup() {
     const popup_overlay = document.getElementsByClassName('ym_popup-overlay')[0];
     popup_overlay.style.display = 'none';
-    document.body.style.overflow = 'auto';
-    window.location.href = window.location.pathname;
+    liberarTela(); 
 }
 
 function fixarTela() {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden"; 
+}
+
+function liberarTela() {
+    document.body.style.overflow = ""; 
 }
