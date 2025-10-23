@@ -33,6 +33,17 @@ $pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2"
 
 // Criar novo pedido (quando o anterior foi finalizado)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['novo_pedido'])) {
+    // Obter ID do vendedor logado - verificar diferentes variáveis de sessão possíveis
+    $id_vendedor = $_SESSION['id'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id_usuario'] ?? null;
+    
+    // Se não encontrar o ID na sessão, tentar buscar do último pedido
+    if (!$id_vendedor) {
+        $stmt_vendedor = $pdo->prepare("SELECT id_vendedor FROM pedidos WHERE id_cliente = ? ORDER BY data_pedido DESC LIMIT 1");
+        $stmt_vendedor->execute([$id_cliente]);
+        $pedido_anterior = $stmt_vendedor->fetch(PDO::FETCH_ASSOC);
+        $id_vendedor = $pedido_anterior['id_vendedor'] ?? 1; // Usar 1 como fallback
+    }
+    
     // Calcular total atual do carrinho
     $itens_temp = $carrinhoCtrl->listarItens($id_carrinho);
     $catalogo_temp = $catalogoCtrl->carregarCatalogoProdutos();
@@ -51,8 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['novo_pedido'])) {
     }
     
     // Criar novo pedido
-    $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, status, data_pedido, total) VALUES (?, 'PENDENTE', NOW(), ?)");
-    if ($stmt->execute([$id_cliente, $total_pedido])) {
+    $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, id_vendedor, status, data_pedido, total) VALUES (?, ?, 'PENDENTE', NOW(), ?)");
+    if ($stmt->execute([$id_cliente, $id_vendedor, $total_pedido])) {
         $_SESSION['alerta'] = '<script>exibirAlerta("Novo pedido criado com sucesso!","sucesso");</script>';
         header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
         exit;
@@ -82,10 +93,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['atualizar_status'])) 
 
 // Gerar link de pagamento
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_link'])) {
+    // Obter ID do vendedor logado
+    $id_vendedor = $_SESSION['id'] ?? null;
+    
     // Criar ou atualizar pedido
     if (!$id_pedido) {
-        $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, status, data_pedido, valor_total) VALUES (?, 'PENDENTE', NOW(), ?)");
-        $stmt->execute([$id_cliente, $total ?? 0]);
+        $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, id_vendedor, status, data_pedido, valor_total) VALUES (?, ?, 'PENDENTE', NOW(), ?)");
+        $stmt->execute([$id_cliente, $id_vendedor, $total ?? 0]);
         $id_pedido = $pdo->lastInsertId();
     }
     
@@ -279,10 +293,19 @@ if(isset($_SESSION['alerta'])){
             max-width: 400px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+
+        #qrcode{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+
+        }
         
         .qrcode-content h3 {
             margin-bottom: 20px;
             color: #333;
+
         }
         
         .qrcode-content canvas {
@@ -291,17 +314,18 @@ if(isset($_SESSION['alerta'])){
         
         .qrcode-link {
             word-break: break-all;
-            background: #f5f5f5;
+            background: #d0cfcfff;
             padding: 10px;
             border-radius: 5px;
-            margin: 15px 0;
             font-size: 12px;
+            color: black;
         }
         
         .qrcode-buttons {
             display: flex;
             gap: 10px;
             justify-content: center;
+            align-items: center;
             margin-top: 20px;
         }
         
@@ -316,11 +340,13 @@ if(isset($_SESSION['alerta'])){
         .btn-copiar {
             background-color: #4CAF50;
             color: white;
+            gap: 5px;
         }
         
         .btn-fechar {
-            background-color: #666;
+            background-color: #c62525ff;
             color: white;
+            gap: 5px;
         }
         
         .btn-nova-venda {
@@ -506,20 +532,12 @@ if(isset($_SESSION['alerta'])){
                         
                         <form method="POST" style="width: 100%;">
                             <?php 
-                            if ($status_pedido === 'FINALIZADO') {
-                                // Pedido finalizado - permitir criar novo
-                                echo '<button type="submit" name="novo_pedido" class="P_checkout-button btn-nova-venda">';
-                                echo '<i class="fa-solid fa-plus-circle"></i>';
-                                echo ' Criar Nova Venda';
-                                echo '</button>';
-                            } else {
-                                // Pedido em andamento - botões de progressão
                                 $proximo_status = '';
                                 $texto_botao = '';
                                 $icone_botao = '';
                                 
                                 switch($status_pedido) {
-                                    case 'PENDENTE':
+                                    case 'FINALIZADO':
                                         $proximo_status = 'PAGO';
                                         $texto_botao = 'Confirmar Pagamento';
                                         $icone_botao = 'fa-dollar-sign';
@@ -533,18 +551,13 @@ if(isset($_SESSION['alerta'])){
                                         $proximo_status = 'FINALIZADO';
                                         $texto_botao = 'Finalizar Venda';
                                         $icone_botao = 'fa-check-circle';
-                                        break;
-                                    default:
-                                        $proximo_status = 'PAGO';
-                                        $texto_botao = 'Atualizar Pedido';
-                                        $icone_botao = 'fa-sync';
+                                        
                                 }
                                 
                                 echo '<button type="submit" name="atualizar_status" value="' . $proximo_status . '" class="P_checkout-button">';
                                 echo '<i class="fa-solid ' . $icone_botao . '"></i>';
                                 echo ' ' . $texto_botao;
                                 echo '</button>';
-                            }
                             ?>
                         </form>
                     </div>
@@ -555,7 +568,6 @@ if(isset($_SESSION['alerta'])){
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
-        // Gerar QR Code se o modal estiver ativo
         <?php if (isset($_SESSION['mostrar_qrcode']) && isset($_SESSION['link_pagamento'])): ?>
         document.addEventListener('DOMContentLoaded', function() {
             new QRCode(document.getElementById("qrcode"), {
@@ -584,7 +596,6 @@ if(isset($_SESSION['alerta'])){
             document.getElementById('qrcodeModal').classList.remove('active');
         }
         
-        // Fechar modal ao clicar fora
         document.getElementById('qrcodeModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 fecharModal();
