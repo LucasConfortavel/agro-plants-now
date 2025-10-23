@@ -11,10 +11,8 @@ $cliente_control = new ClienteController();
 $carrinho_control = new CarrinhoController();
 $pedido_control = new PedidoController();
 
-// Filtro por status
 $status_filtro = isset($_GET['status']) ? $_GET['status'] : '';
 
-// Buscar clientes com informações de pedidos
 if ($status_filtro) {
     $clientes = $cliente_control->filtrarPorStatusPedido($status_filtro);
 } else {
@@ -23,14 +21,12 @@ if ($status_filtro) {
 
 $total_clientes = count($clientes);
 
-// Paginação
 $limite = 4;
 $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_clientes / $limite);
 $clientes_paginados = array_slice($clientes, $offset, $limite);
 
-// Cadastrar cliente
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && !isset($_POST['finalizar_pedido']) && !isset($_POST['criar_pedido'])) {
     $criar_cliente = $cliente_control->criarCliente();
 
@@ -46,13 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && !isset($_PO
     exit;
 }
 
-// Criar pedido do carrinho - CORREÇÃO: adicionar status dinâmico
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['criar_pedido'])) {
     $id_cliente = $_POST['criar_pedido'];
     $id_vendedor = $_SESSION['id'];
     
-    // Definir status inicial baseado na sua lógica de negócio
-    // Por exemplo: 'PAGO' para novos pedidos
     $status_inicial = 'PAGO';
     
     $resultado = $carrinho_control->criarPedidoDoCarrinho($id_cliente, $id_vendedor, $status_inicial);
@@ -60,17 +53,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['criar_pedido'])) {
     if (isset($resultado['success'])) {
         $_SESSION['alerta'] = '<script> exibirAlerta("' . $resultado['success'] . '","sucesso"); </script>';
     } else {
-        $_SESSION['alerta'] = '<script> exibirAlerta("' . $resultado['error'] . '","error"); </script>';
+        $mensagem_erro = $resultado['error'];
+        if (strpos($mensagem_erro, 'Estoque insuficiente') !== false) {
+            $mensagem_erro = "Erro: Estoque insuficiente para alguns produtos. Verifique as quantidades disponíveis.";
+        }
+        $_SESSION['alerta'] = '<script> exibirAlerta("' . $mensagem_erro . '","error"); </script>';
     }
     
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
-// Finalizar pedido - CORREÇÃO: Verificar se existe antes de finalizar
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
     $id_pedido = $_POST['finalizar_pedido'];
     
-    // Verificar se o pedido existe
     $pedido_info = $pedido_control->mostrar($id_pedido);
     
     if (isset($pedido_info['error'])) {
@@ -89,7 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
     exit;
 }
 
-// Visualizar ou remover cliente
 if(!empty($_GET)){
     if (isset($_GET['visualizar'])){
         $id = $_GET['visualizar'];
@@ -158,7 +152,6 @@ if(isset($_SESSION['alerta'])){
 </head>
 <body>
 
-<!-- Pop-up -->
 <div class="ym_popup-overlay">
     <div class="ym_popup-content">
         <div class="ym_area-superior-popup"></div>
@@ -247,13 +240,11 @@ if(isset($_SESSION['alerta'])){
                             <?php if ($total_clientes > 0): ?>
                                 <?php foreach ($clientes_paginados as $cliente): ?>
                                     <?php
-                                        // CORREÇÃO: Buscar informações atualizadas do pedido
                                         $ultimoPedido = null;
                                         $pedidoStmt = $pedido_control->indexPorCliente($cliente['id']);
                                         $pedidos = is_array($pedidoStmt) ? $pedidoStmt : [];
                                         
                                         if (!empty($pedidos) && !isset($pedidos['error'])) {
-                                            // Ordenar por data mais recente e pegar o último
                                             usort($pedidos, function($a, $b) {
                                                 return strtotime($b['data_pedido']) - strtotime($a['data_pedido']);
                                             });
@@ -263,10 +254,8 @@ if(isset($_SESSION['alerta'])){
                                         $status = $ultimoPedido ? $ultimoPedido['status'] : 'SEM PEDIDOS';
                                         $id_pedido = $ultimoPedido ? $ultimoPedido['id'] : null;
                                         
-                                        // Verificar se carrinho tem itens
                                         $carrinhoTemItens = $carrinho_control->carrinhoTemItens($cliente['id']);
 
-                                        // CORREÇÃO: Lógica de progresso melhorada
                                         switch ($status) {
                                             case 'PAGO':
                                                 $progress = 25;
@@ -388,7 +377,6 @@ if(isset($_SESSION['alerta'])){
         </div>
     </div>
 
-    <!-- Paginação -->
     <?php if ($total_paginas > 1): ?>
         <div class="jv_page-navigation">
             <?php if($pagina_atual > 1): ?>
@@ -418,7 +406,6 @@ if(isset($_SESSION['alerta'])){
 </main>
 
 <script>
-    // Custom Select functionality
     const customSelect = document.getElementById('customSelect');
     const selectTrigger = customSelect.querySelector('.select-trigger');
     const selectOptions = customSelect.querySelector('.select-options');
@@ -443,14 +430,13 @@ if(isset($_SESSION['alerta'])){
             selectTrigger.classList.remove('active');
             selectOptions.classList.remove('active');
             
-            // Redirecionar com filtro
             const url = new URL(window.location.href);
             if (value && value !== "") {
                 url.searchParams.set('status', value);
             } else {
                 url.searchParams.delete('status');
             }
-            url.searchParams.delete('pagina'); // Reset para página 1
+            url.searchParams.delete('pagina');
             window.location.href = url.toString();
         });
     });

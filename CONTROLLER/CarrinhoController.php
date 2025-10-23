@@ -1,20 +1,23 @@
 <?php
 require_once __DIR__ . '/../MODEL/CarrinhoModel.php';
 require_once __DIR__ . '/../MODEL/CarrinhoItensModel.php';
+require_once __DIR__ . '/../MODEL/ProdutoModel.php';
 require_once __DIR__ . '/../MODEL/PedidoModel.php';
 require_once __DIR__ . '/../MODEL/PedidoItensModel.php';
 
 class CarrinhoController {
     private $carrinho;
     private $carrinhoItens;
-    private $pedido;        // ← ADICIONAR
-    private $pedidoItens;   // ← ADICIONAR
+    private $pedido;        
+    private $pedidoItens;   
+    private $produto;      
 
     public function __construct() {
         $this->carrinho = new CarrinhoModel();
         $this->carrinhoItens = new CarrinhoItensModel();
-        $this->pedido = new PedidoModel();           // ← ADICIONAR
-        $this->pedidoItens = new PedidoItensModel(); // ← ADICIONAR
+        $this->pedido = new PedidoModel();
+        $this->pedidoItens = new PedidoItensModel();
+        $this->produto = new ProdutoModel(); 
     }
 
     public function criarCarrinho($id_cliente) {
@@ -40,7 +43,6 @@ class CarrinhoController {
             if ($carrinho) {
                 return $carrinho;
             } else {
-                // Cria novo carrinho e retorna os dados completos dele
                 $novoCarrinho = $this->criarCarrinho($id_cliente);
                 if (isset($novoCarrinho['id'])) {
                     $stmt = $this->carrinho->lerUmPorId($novoCarrinho['id']);
@@ -57,16 +59,13 @@ class CarrinhoController {
     public function adicionarItem($id_carrinho, $id_produto, $quantidade) {
         try {
             if ($this->carrinhoItens->itemExiste($id_carrinho, $id_produto)) {
-                // Pega o item atual para conferir quantidade
                 $itemAtual = $this->carrinhoItens->lerPorCarrinhoEProduto($id_carrinho, $id_produto);
                 $novaQuantidade = $itemAtual['quantidade'] + $quantidade;
 
-                // Atualiza para a nova quantidade somada
                 $this->carrinhoItens->id_carrinho = $id_carrinho;
                 $this->carrinhoItens->id_produto = $id_produto;
                 $this->carrinhoItens->quantidade = $novaQuantidade;
 
-                // Atualiza quantidade diretamente no item, não somar mais no query
                 if ($this->carrinhoItens->atualizarQuantidadeExata($id_carrinho, $id_produto, $novaQuantidade)) {
                     $this->carrinho->atualizarValorTotal($id_carrinho);
                     return ['success' => 'Quantidade atualizada no carrinho'];
@@ -74,7 +73,6 @@ class CarrinhoController {
                     throw new Exception("Erro ao atualizar quantidade no carrinho");
                 }
             } else {
-                // Cria novo item normalmente
                 $this->carrinhoItens->id_carrinho = $id_carrinho;
                 $this->carrinhoItens->id_produto = $id_produto;
                 $this->carrinhoItens->quantidade = $quantidade;
@@ -173,13 +171,6 @@ class CarrinhoController {
         }
     }
 
-    /**
-     * Cria um pedido a partir dos itens do carrinho
-     * @param int $id_cliente ID do cliente
-     * @param int $id_vendedor ID do vendedor que está criando o pedido
-     * @param string $status Status inicial do pedido (padrão: 'PAGO')
-     * @return array Resultado da operação
-     */
     public function criarPedidoDoCarrinho($id_cliente, $id_vendedor, $status = 'PAGO') {
         try {
             // Buscar carrinho do cliente
@@ -191,29 +182,24 @@ class CarrinhoController {
 
             $id_carrinho = $carrinho['id'];
             
-            // Buscar itens do carrinho
             $itens = $this->listarItens($id_carrinho);
             
             if (empty($itens) || isset($itens['error'])) {
                 throw new Exception("Carrinho vazio. Adicione produtos antes de criar o pedido.");
             }
 
-            // Calcular total
             $total = $carrinho['valor_total'];
 
-            // Criar pedido - Status dinâmico
             $this->pedido->data_pedido = date('Y-m-d H:i:s');
             $this->pedido->id_cliente = $id_cliente;
             $this->pedido->id_vendedor = $id_vendedor;
             $this->pedido->id_cupom = null;
-            $this->pedido->status = $status; // Status agora é dinâmico
+            $this->pedido->status = $status; 
             $this->pedido->total = $total;
 
-            // Tenta criar com método sem cupom primeiro
             if (method_exists($this->pedido, 'criarSemCupom')) {
                 $criado = $this->pedido->criarSemCupom();
             } else {
-                // Fallback: usar método normal mas garantir id_cupom é null
                 $this->pedido->id_cupom = null;
                 $criado = $this->pedido->criar();
             }
@@ -224,8 +210,7 @@ class CarrinhoController {
 
             $id_pedido = $this->pedido->id;
 
-            // Adicionar itens ao pedido
-            foreach ($itens as $item) {
+             foreach ($itens as $item) {
                 $this->pedidoItens->id_pedido = $id_pedido;
                 $this->pedidoItens->id_produto = $item['id_produto'];
                 $this->pedidoItens->quantidade = $item['quantidade'];
@@ -235,9 +220,10 @@ class CarrinhoController {
                 if (!$this->pedidoItens->criar()) {
                     throw new Exception("Erro ao adicionar item ao pedido");
                 }
+
+                $this->atualizarEstoqueProduto($item['id_produto'], $item['quantidade']);
             }
 
-            // Limpar carrinho após criar pedido
             $this->limparCarrinho($id_carrinho);
 
             return [
@@ -252,9 +238,6 @@ class CarrinhoController {
         }
     }
 
-    /**
-     * Verifica se o carrinho tem itens
-     */
     public function carrinhoTemItens($id_cliente) {
         try {
             $carrinho = $this->obterCarrinho($id_cliente);
@@ -266,6 +249,32 @@ class CarrinhoController {
             return !empty($itens) && !isset($itens['error']);
         } catch (Exception $e) {
             return false;
+        }
+    }
+
+    private function atualizarEstoqueProduto($id_produto, $quantidade_vendida) {
+        try {
+            $this->produto->id = $id_produto;
+            $produto = $this->produto->lerUm();
+            
+            if ($produto) {
+                $nova_quantidade = $produto['quantidade'] - $quantidade_vendida;
+                
+                if ($nova_quantidade < 0) {
+                    throw new Exception("Estoque insuficiente para o produto ID: " . $id_produto);
+                }
+                
+                if (!$this->produto->atualizarEstoque($id_produto, $nova_quantidade)) {
+                    throw new Exception("Erro ao atualizar estoque do produto ID: " . $id_produto);
+                }
+                
+                return true;
+            } else {
+                throw new Exception("Produto não encontrado ID: " . $id_produto);
+            }
+        } catch (Exception $e) {
+            error_log("Erro ao atualizar estoque: " . $e->getMessage());
+            throw $e;
         }
     }
 }
