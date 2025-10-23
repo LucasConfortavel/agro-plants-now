@@ -11,7 +11,8 @@ if (isset($_GET['id'])) {
     $dados = $sobreProdutoController->carregarProduto($_GET['id']);
 } else {
     $dados = ['success' => false, 'error' => 'Nenhum produto selecionado.'];
-}?>
+}
+?>
 
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 <script>
@@ -34,17 +35,26 @@ if (isset($_GET['id'])) {
 <body>
 
     <main class="jp_main-content">
+        <?php if (!$dados['success']): ?>
+            <div class="ym-alert ym-alert-error"><?php echo $dados['error']; ?></div>
+            <a href="catalogo-tudo.php" class="ym_btn-padrao">Voltar</a>
+        <?php else: 
+            $produto = $dados['produto'];
+            $categoria_nome = $dados['categoria_nome'];
+        ?>
         <section class="gs_product-container">
 
             <div class="gs_area-img">
                 <div class="gs_main-image-wrapper">
-                    <img src="../../PUBLIC/img/img_produto.webp" alt="Herbicida Glifosato" class="gs_product-image" id="mainImage">
+                    <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? htmlspecialchars($produto['foto']) : 'img_produto.webp'; ?>" 
+                         alt="<?php echo htmlspecialchars($produto['nome']); ?>" 
+                         class="gs_product-image" id="mainImage">
                     <div class="gs_image-badge">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
                             <line x1="7" y1="7" x2="7.01" y2="7"></line>
                         </svg>
-                        <span>Em Estoque</span>
+                        <span><?php echo ($produto['status'] > 0) ? 'Em Estoque' : 'Fora de Estoque'; ?></span>
                     </div>
                 </div>
             </div>
@@ -56,9 +66,9 @@ if (isset($_GET['id'])) {
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
-                        <span>Pesticidas</span>
+                        <span><?php echo htmlspecialchars($categoria_nome); ?></span>
                     </div>
-                    <h1 class="gs_product-title">Herbicida Glifosato</h1>
+                    <h1 class="gs_product-title"><?php echo htmlspecialchars($produto['nome']); ?></h1>
                 </div>
 
                 <div class="gs_info-grid">
@@ -71,7 +81,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="gs_info-content">
                             <p class="gs_label">Categoria</p>
-                            <p class="gs_value">Pesticidas</p>
+                            <p class="gs_value"><?php echo htmlspecialchars($categoria_nome); ?></p>
                         </div>
                     </div>
 
@@ -84,7 +94,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="gs_info-content">
                             <p class="gs_label">Preço</p>
-                            <p class="gs_value gs_price">R$ 42,80</p>
+                            <p class="gs_value gs_price">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
                         </div>
                     </div>
 
@@ -98,7 +108,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="gs_info-content">
                             <p class="gs_label">Estoque</p>
-                            <p class="gs_value">300 unidades</p>
+                            <p class="gs_value"><?php echo (int)$produto['quantidade']; ?> unidades</p>
                         </div>
                     </div>
                 </div>
@@ -114,7 +124,9 @@ if (isset($_GET['id'])) {
                         </svg>
                         <h2>Descrição do Produto</h2>
                     </div>
-                    <p class="gs_description-text">Herbicida de amplo espectro, eficaz no controle de plantas daninhas em diversas culturas. Produto de alta qualidade com ação sistêmica e resultados comprovados.</p>
+                    <p class="gs_description-text">
+                        <?php echo nl2br(htmlspecialchars($produto['descricao'])); ?>
+                    </p>
                 </div>
 
                 <div class="ym_area-btn">
@@ -128,6 +140,7 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
         </section>
+        <?php endif; ?>
     </main>
 
     <script src="../../PUBLIC/JS/script-sobre-prod.js"></script>
