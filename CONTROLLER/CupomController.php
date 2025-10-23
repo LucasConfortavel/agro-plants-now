@@ -55,6 +55,28 @@ class CupomController {
         }
     }
 
+    public function validarCupom($codigo) {
+    try {
+        $stmt = $this->cupom->lerPorCodigo($codigo); // Método que busca o cupom pelo código
+        $cupom = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($cupom) {
+            // Verificar se o cupom ainda é válido (data de validade)
+            $dataHoje = date('Y-m-d');
+            if ($cupom['data_validade'] >= $dataHoje) {
+                return $cupom; // Retorna os dados do cupom
+            } else {
+                throw new Exception("O cupom está expirado.");
+            }
+        } else {
+            throw new Exception("Cupom não encontrado.");
+        }
+    } catch (Exception $e) {
+        return false; // Caso ocorra algum erro
+    }
+    }
+
+
     // public function editar($id) {
     //     try {
     //         $this->cupom->id = $id;

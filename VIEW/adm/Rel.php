@@ -530,7 +530,7 @@ document.addEventListener("DOMContentLoaded", () => {
             datasets: [{
                 label: "Vendas (R$)",
                 data: <?= json_encode($vendas_mensais) ?>,
-                backgroundColor: <?= json_encode($colors_vendas) ?>,
+                backgroundColor: <?= json_encode(value: $colors_vendas) ?>,
                 borderRadius: 8,
                 borderWidth: 1,
                 
