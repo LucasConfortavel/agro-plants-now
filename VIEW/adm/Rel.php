@@ -199,9 +199,6 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
                                                     <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
                                                     <td class="jv_table-action">
-                                                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                            <i class="fas fa-ellipsis-h"></i>
-                                                        </button>
                                                         <form class="jv_dropdown">
                                                             <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
                                                                 <i class="fas fa-eye"></i> Visualizar
