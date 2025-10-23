@@ -142,8 +142,6 @@ if (isset($_GET['id'])) {
         </section>
         <?php endif; ?>
     </main>
-
     <script src="../../PUBLIC/JS/script-sobre-prod.js"></script>
 </body>
 </html>
-meowl
