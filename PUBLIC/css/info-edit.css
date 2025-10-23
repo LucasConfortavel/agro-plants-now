@@ -10,96 +10,183 @@ body {
     background-color: #f5f5f5;
 }
 
-
 /* ==============================
    🌙 MODO ESCURO PADRONIZADO
    ============================== */
 body.dark-teme {
-  background-color: #1e1e1e;
+  background-color: #232222;
   color: #e0e0e0;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Container principal */
+/* ===== CONTAINERS ===== */
 body.dark-teme .jp_main-content {
   background-color: #232222;
-  color: #f1f1f1;
 }
 
-/* Header do perfil */
-body.dark-teme .jp_profile-header {
-  background-color: #2a2a2a;
-  color: #eaeaea;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+body.dark-teme .jp_cards-container,
+body.dark-teme .jp_sales-section,
+body.dark-teme .jp_chart-section {
+  background: none;
 }
 
-body.dark-teme .jp_profile-text h2 {
-  color: #ffffff;
+/* ===== CARDS ===== */
+body.dark-teme .jp_card {
+  background-color: #2e2e2e;
+  border: 1px solid #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  color: #e0e0e0;
+  transition: all 0.3s ease;
 }
 
-body.dark-teme .jp_profile-text p {
-  color: #c9c9c9;
+body.dark-teme .jp_card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
-body.dark-teme .jp_role {
-  background-color: #3a3a3a;
+body.dark-teme .jp_card-title {
+  color: #d0d0d0;
+}
+
+body.dark-teme .jp_card-value {
+  color: #fff;
+}
+
+/* ===== TABELAS ===== */
+body.dark-teme .jp_sales-table {
+  background-color: #2e2e2e;
+  border-collapse: collapse;
+  border: 1px solid #333;
+  color: #e0e0e0;
+  width: 100%;
+}
+
+body.dark-teme .jp_sales-table th {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-teme .jp_sales-table td {
+  border-top: 1px solid #3a3a3a;
+  color: #ddd;
+}
+
+body.dark-teme .jp_sales-table tr:hover {
+  background-color: #383838;
+}
+
+/* ===== PAGINAÇÃO ===== */
+body.dark-teme .jp_pagination-item {
+  background-color: #2e2e2e;
+  color: #e0e0e0;
+  border: 1px solid #3a3a3a;
+}
+
+body.dark-teme .jp_pagination-item.active {
+  background-color: #45734B;
+  color: #fff;
+}
+
+body.dark-teme .jp_pagination-item:hover {
+  background-color: #3a6240;
+}
+
+/* ===== GRÁFICOS ===== */
+body.dark-teme .jp_chart-section {
+  background-color: #2e2e2e;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+body.dark-teme .jp_chart-title {
   color: #e0e0e0;
 }
 
-/* Conteúdo */
-body.dark-teme .jp_content {
-  background-color: #2a2a2a;
-  color: #f1f1f1;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+/* ===== FILTROS / SELECTS ===== */
+body.dark-teme .ym_area-select {
+  background-color: #2e2e2e;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
 }
 
-body.dark-teme .jp_tabs {
-  border-bottom: 1px solid #3d3d3d;
+body.dark-teme .ym_select p,
+body.dark-teme .ym_link-option {
+  color: #e0e0e0;
 }
 
-body.dark-teme .jp_tab {
-  color: #c9c9c9;
+body.dark-teme .ym_select:hover {
+  background-color: #3a3a3a;
 }
 
-body.dark-teme .jp_tab.jp_active {
-  color: #45734B;
+body.dark-teme .ym_options {
+  background-color: #3a3a3a;
+  color: #fff;
 }
 
-/* Inputs e textos */
-body.dark-teme .ym_input-info {
+/* ===== INPUTS / CAMPOS ===== */
+body.dark-teme input,
+body.dark-teme select,
+body.dark-teme textarea {
   background-color: #3a3a3a;
   color: #fff;
   border: 1px solid #555;
 }
 
-/* Botões padrão */
+body.dark-teme input:focus,
+body.dark-teme select:focus,
+body.dark-teme textarea:focus {
+  border-color: #45734B;
+  outline: none;
+}
+
+/* ===== BOTÕES ===== */
 body.dark-teme .ym_btn-padrao {
   background-color: #45734B;
   color: #fff;
+  border: none;
+  transition: 0.3s;
 }
 
 body.dark-teme .ym_btn-padrao:hover {
   background-color: #3a6240;
 }
 
-/* Botão remover */
 body.dark-teme .ym_btn-remover {
   background-color: #a94442;
+  color: #fff;
 }
 
 body.dark-teme .ym_btn-remover:hover {
   background-color: #922f2c;
 }
 
-/* Área de info */
-body.dark-teme .ym_area-info {
-  background-color: #232222;
+/* ===== TEXTO E TÍTULOS ===== */
+body.dark-teme .ym_titulo,
+body.dark-teme .jp_sales-title,
+body.dark-teme .jp_chart-title {
+  color: #fff;
 }
 
-/* Sombras e bordas suaves */
-body.dark-teme .jp_content,
-body.dark-teme .jp_profile-header {
-  border: 1px solid #333;
+/* ===== BORDAS E DIVISORES ===== */
+body.dark-teme .divider,
+body.dark-teme hr {
+  border-color: #3a3a3a;
 }
+
+/* ===== ÍCONES / ELEMENTOS ===== */
+body.dark-teme i,
+body.dark-teme .fa {
+  color: #e0e0e0;
+}
+
+/* ===== SUAVIDADE ===== */
+body.dark-teme .jp_card,
+body.dark-teme .jp_sales-table,
+body.dark-teme .ym_btn-padrao {
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
 
 
 
