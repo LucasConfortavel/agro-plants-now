@@ -181,7 +181,7 @@ function GerarTabela(){
     vendas = dados.slice(((pagina-1)*4), (pagina*limite));    
 
     vendas.forEach(venda => {
-        html += `<tr><td><input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>"></td>`
+        // html += `<tr><td><input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>"></td>`
         html +=`
         <td>
             <div class="jv_customer-info">

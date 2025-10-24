@@ -102,28 +102,24 @@
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Total Vendido</div>
-                    <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value">R$<?= $total_vendido?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Total de Vendas</div>
-                    <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value"><?= $numero_vendas;?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Vendedores</div>
-                    <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value"><?=$TotalVendedor?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Cliente Cadastrado</div>
-                    <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value"><?=$total_de_clientes?></div>
             </div>

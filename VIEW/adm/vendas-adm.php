@@ -84,9 +84,9 @@ if(!empty($_GET)){
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
+                                    <!-- <th class="jv_checkbox-col">
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
+                                    </th> -->
                                     <th class="jv_name"><p>Vendedor</p></th>
                                     <th class="jv_date">Cliente</th>
                                     <th class="jv_valor_gast">Valor Gasto</th>
