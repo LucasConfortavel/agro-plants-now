@@ -649,7 +649,21 @@ h3{
 }
 
    
+@media (min-width: 375px) {
+  .ym_area-select {
+      margin-top: 49px;
+      margin-left: 5px;
+      max-width: 197px;
+      
+  }
 
+  .po-btn{
+    max-width: 50%;
+  }
+
+  
+
+}
 
 
 
@@ -657,6 +671,8 @@ h3{
   .po-charts-grid {
       grid-template-columns: 1fr 1fr;
   }
+
+
 
 }
 
