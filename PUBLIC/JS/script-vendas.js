@@ -181,7 +181,7 @@ function GerarTabela(){
     vendas = dados.slice(((pagina-1)*4), (pagina*limite));    
 
     vendas.forEach(venda => {
-        html += `<tr><td><input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>"></td>`
+        // html += `<tr><td><input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>"></td>`
         html +=`
         <td>
             <div class="jv_customer-info">
@@ -206,11 +206,6 @@ function GerarTabela(){
                             <i class="fas fa-eye"></i> Visualizar
                         </button>
                         <div class="jv_dropdown-separator"></div>
-                        <button type="button" 
-                            class="jv_dropdown-item jv_danger" 
-                            onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($cliente['id']) ?>', 'Confirmação de Remoção')">
-                            <i class="fas fa-trash"></i> Remover
-                        </button>
                     </form>
                 </td>
             </tr>`;
