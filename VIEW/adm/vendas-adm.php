@@ -77,7 +77,6 @@ if(!empty($_GET)){
                         <?= $total_vendas ?> <?= $total_vendas == 1 ? 'venda encontrada' : 'vendas encontradas' ?>
                     </p>
                 </div>
-
                 <!-- Table -->
                 <div class="jv_card-content">
                     <div class="jv_table-container">
