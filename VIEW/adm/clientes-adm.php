@@ -376,32 +376,47 @@ if(isset($_SESSION['alerta'])){
             </div>
         </div>
     </div>
+<?php if ($total_paginas > 1): ?>
+    <div class="jv_page-navigation">
+        <?php if ($pagina_atual > 1): ?>
+            <a href="?pagina=<?= $pagina_atual - 1 ?><?= $status_filtro ? '&status=' . $status_filtro : '' ?>" class="jv_page-arrow">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        <?php endif; ?>
 
-    <?php if ($total_paginas > 1): ?>
-        <div class="jv_page-navigation">
-            <?php if($pagina_atual > 1): ?>
-                <a href="?pagina=<?= $pagina_atual - 1 ?><?= $status_filtro ? '&status=' . $status_filtro : '' ?>" class="jv_page-arrow">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-            <?php endif; ?>
+        <?php
+        // Lógica para mostrar no máximo 3 números na paginação
+        if ($total_paginas <= 3) {
+            $inicio = 1;
+            $fim = $total_paginas;
+        } else {
+            if ($pagina_atual <= 2) {
+                $inicio = 1;
+                $fim = 3;
+            } elseif ($pagina_atual >= $total_paginas - 1) {
+                $inicio = $total_paginas - 2;
+                $fim = $total_paginas;
+            } else {
+                $inicio = $pagina_atual - 1;
+                $fim = $pagina_atual + 1;
+            }
+        }
 
-            <?php
-            $inicio = max(1, $pagina_atual - 2);
-            $fim = min($total_paginas, $pagina_atual + 2);
-            for ($i = $inicio; $i <= $fim; $i++): ?>
-                <a href="?pagina=<?= $i ?><?= $status_filtro ? '&status=' . $status_filtro : '' ?>" 
-                   class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                    <?= $i ?>
-                </a>
-            <?php endfor; ?>
+        for ($i = $inicio; $i <= $fim; $i++): ?>
+            <a href="?pagina=<?= $i ?><?= $status_filtro ? '&status=' . $status_filtro : '' ?>" 
+               class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                <?= $i ?>
+            </a>
+        <?php endfor; ?>
 
-            <?php if($pagina_atual < $total_paginas): ?>
-                <a href="?pagina=<?= $pagina_atual + 1 ?><?= $status_filtro ? '&status=' . $status_filtro : '' ?>" class="jv_page-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            <?php endif; ?>
-        </div>
-    <?php endif; ?>
+        <?php if ($pagina_atual < $total_paginas): ?>
+            <a href="?pagina=<?= $pagina_atual + 1 ?><?= $status_filtro ? '&status=' . $status_filtro : '' ?>" class="jv_page-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+
 
 </main>
 
