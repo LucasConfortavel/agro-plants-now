@@ -138,7 +138,7 @@ body.dark-theme .ym_delete-link {
 
 .ym_sectionProdutos{
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 45px;
@@ -638,4 +638,5 @@ body.dark-theme .ym_delete-link {
   .ym_img-placeholder {
     height: 140px;
   }
+
 }
