@@ -29,7 +29,7 @@ body.dark-theme .ym_descricao {
 body.dark-theme .ym_lupa {
   background-color: #232222;
   color: #e0e0e0;
-  border-color: #555;
+
 
 }
 
@@ -73,9 +73,23 @@ body.dark-theme .ym_options {
   border: 1px solid #444;
 }
 
+body.dark-theme .ym_area-input-pesquisa {
+  background-color: #3a3a3a;
+}
+
+body.dark-theme .ym_area-input-pesquisa:focus-within {
+  border-color: #45734b;
+  box-shadow: 0 0 0 3px rgba(69, 115, 75, 0.1);
+}
+
+body.dark-theme .ym_area-select {
+  background-color: #3a3a3a;
+  border: 1px solid #555;
+}
+
 body.dark-theme .ym_link-option {
   color: #e0e0e0;
-}
+} 
 
 body.dark-theme .ym_link-option:hover {
   background-color: var(--primary-color);
