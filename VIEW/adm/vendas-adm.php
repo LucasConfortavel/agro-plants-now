@@ -16,10 +16,10 @@ if(!empty($_GET)){
         $id = $_GET['visualizar'];
         header('Location: venda-info-adm.php?id=' . $id);
 
-    } elseif (isset($_GET['remover'])){
-        $id = $_GET['remover'];
-        $venda = $venda_control->deletar($id);
-        header('Location: ' . $_SERVER['PHP_SELF']);
+    // } elseif (isset($_GET['remover'])){
+    //     $id = $_GET['remover'];
+    //     $venda = $venda_control->deletar($id);
+    //     header('Location: ' . $_SERVER['PHP_SELF']);
     }
 }
 
@@ -63,14 +63,14 @@ if(!empty($_GET)){
                             </div>
                         </form>
                         
-                        <div class="jv_actions">
+                        <!-- <div class="jv_actions">
                             <div>
                                 <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Remover (<span id="jv_selectedCount">0</span>)
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     
                     <p class="jv_subtitle" id="jv_customerCount">
