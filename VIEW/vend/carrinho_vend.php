@@ -6,7 +6,7 @@ require_once "../../CONTROLLER/CupomController.php";
 require_once "../../CONTROLLER/VendaController.php"; // ADICIONAR
 require_once "../../INCLUDE/alertas.php";
 include "../../INCLUDE/vlibras.php";
-include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/Menu_vend.php";
 
 $carrinhoCtrl = new CarrinhoController();
 $catalogoCtrl = new CatalogoController();
@@ -549,7 +549,7 @@ if(isset($_SESSION['alerta'])){
 
 <main class="jp_main-content">
         <div class="back-button">
-            <a href="clientes-adm.php" class="ym_link-volta"> 
+            <a href="lista-clientes.php" class="ym_link-volta"> 
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>Voltar</span>
             </a>
