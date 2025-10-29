@@ -434,7 +434,7 @@ if(isset($_SESSION['alerta'])){
     <title>Carrinho - <?= htmlspecialchars($nome_cliente) ?></title>
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/venda-info-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/venda-info.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -520,7 +520,72 @@ if(isset($_SESSION['alerta'])){
         }
         
         .btn-nova-venda {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            background: #3e704c;
+        }
+
+        .P_status-badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-left: 90vh;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .P_status-badge.pendente {
+            background: rgba(251, 191, 36, 0.1);
+            color: #d97706;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .P_status-badge.pago {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+            border: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .P_status-badge.enviado {
+            background: rgba(59, 130, 246, 0.1);
+            color: #2563eb;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .P_status-badge.finalizado {
+            background: rgba(139, 92, 246, 0.1);
+            color: #7c3aed;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .P_disabled-section {
+            opacity: 0.5;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .P_disabled-section::after {
+            content: "🔒 Bloqueado após pagamento confirmado";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .P_disabled-section:hover::after {
+            opacity: 1;
         }
     </style>
 </head>
@@ -557,13 +622,29 @@ if(isset($_SESSION['alerta'])){
 
         <div class="P_customer-info">
             <div class="P_customer-card">
-                <div class="P_customer-icon">
-                    <i class="fa-solid fa-user"></i>
+            <div class="P_customer-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="P_customer-details">
+                <div class="P_customer-label">Cliente</div>
+                <div class="P_customer-name"><?= htmlspecialchars($nome_cliente) ?></div>
+
+            </div>
+               <?php if ($id_pedido): 
+                    $status_class = strtolower($status_pedido);
+                    $status_icons = [
+                        'PENDENTE' => 'fa-clock',
+                        'PAGO' => 'fa-check-circle',
+                        'ENVIADO' => 'fa-truck',
+                        'FINALIZADO' => 'fa-flag-checkered'
+                    ];
+                    $status_icon = $status_icons[$status_pedido] ?? 'fa-info-circle';
+                ?>
+                <div class="P_status-badge <?= $status_class ?>">
+                    <i class="fa-solid <?= $status_icon ?>"></i>
+                    Status: <?= htmlspecialchars($status_pedido) ?>
                 </div>
-                <div class="P_customer-details">
-                    <div class="P_customer-label">Cliente</div>
-                    <div class="P_customer-name"><?= htmlspecialchars($nome_cliente) ?></div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -628,13 +709,17 @@ if(isset($_SESSION['alerta'])){
                 <?php endforeach; ?>
                 </div>
 
-                <div class="P_add-product-section">
+                <?php 
+                $pedido_bloqueado = in_array($status_pedido, ['PAGO', 'ENVIADO']);
+                ?>
+
+                <div class="P_add-product-section <?= $pedido_bloqueado ? 'P_disabled-section' : '' ?>">
                     <h3 style="color: #3e704c;">Adicionar Produto</h3>
-                    <form class="P_add-product-form" method="post">
+                    <form class="P_add-product-form" method="post" <?= $pedido_bloqueado ? 'onsubmit="return false;"' : '' ?>>
                         <input type="hidden" name="id_cliente" value="<?= htmlspecialchars($id_cliente) ?>">
                         <div class="P_form-group">
                             <label for="produto">Produto</label>
-                            <select id="produto" name="id_produto" required class="P_select-input">
+                            <select id="produto" name="id_produto" required class="P_select-input" <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                                 <option value="">Selecione um produto</option>
                                 <?php foreach ($produtos as $produto): ?>
                                     <option value="<?= $produto['id'] ?>">
@@ -645,9 +730,9 @@ if(isset($_SESSION['alerta'])){
                         </div>
                         <div class="P_form-group">
                             <label for="quantidade">Quantidade</label>
-                            <input type="number" id="quantidade" name="quantidade" value="1" min="1" class="P_number-input" required>
+                            <input type="number" id="quantidade" name="quantidade" value="1" min="1" class="P_number-input" required <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                         </div>
-                        <button type="submit" class="P_add-button">
+                        <button type="submit" class="P_add-button" <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                             <i class="fa-solid fa-plus"></i>
                             Adicionar ao Carrinho
                         </button>
@@ -693,12 +778,14 @@ if(isset($_SESSION['alerta'])){
                     </div>
 
                     <div class="atualizar_status">
+                        <?php if ($status_pedido === 'PENDENTE'): ?>
                         <form method="POST" style="width: 100%;">
                             <button type="submit" name="gerar_link" class="P_checkout-button">
                                 <i class="fa-solid fa-qrcode"></i>
                                 Gerar Link de Pagamento
                             </button>
                         </form>
+                        <?php endif; ?>
                         
                         <form method="POST" style="width: 100%;">
                             <?php 
@@ -723,7 +810,6 @@ if(isset($_SESSION['alerta'])){
                                         $icone_botao = 'fa-check-circle';
                                         break;
                                     case 'FINALIZADO':
-                                        // Venda já foi finalizada, mostrar botão de nova venda
                                         $proximo_status = '';
                                         $texto_botao = '';
                                         $icone_botao = '';
@@ -788,9 +874,44 @@ if(isset($_SESSION['alerta'])){
                 fecharModal();
             }
         });
+
+        const pedidoBloqueado = <?= json_encode($pedido_bloqueado) ?>;
+
+if (pedidoBloqueado) {
+    // Bloquear funções de atualização de quantidade
+    window.increaseQty = function(button) {
+        alert('Não é possível alterar quantidades após o pagamento ser confirmado!');
+        return false;
+    };
+    
+    window.decreaseQty = function(button) {
+        alert('Não é possível alterar quantidades após o pagamento ser confirmado!');
+        return false;
+    };
+    
+    // Bloquear remoção de itens
+    document.querySelectorAll('.P_trash-button').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Não é possível remover itens após o pagamento ser confirmado!');
+        });
+    });
+    
+    // Bloquear aplicação de cupom
+    const applyCouponBtn = document.querySelector('.P_apply-coupon-btn');
+    if (applyCouponBtn) {
+        applyCouponBtn.disabled = true;
+    }
+    
+    const couponSelect = document.querySelector('#cupom_id');
+    if (couponSelect) {
+        couponSelect.disabled = true;
+    }
+}
     </script>
     <script src="../../PUBLIC/JS/script-info_vendas.js"></script>
     <script src="../../PUBLIC/JS/script-tema.js"></script>
 
 </body>
 </html>
+
