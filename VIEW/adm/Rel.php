@@ -1,5 +1,5 @@
 <?php
-// include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/Menu_adm.php";
 include "../../CONTROLLER/UsuarioController.php";
 include "../../CONTROLLER/ProdutoController.php";
 include "../../CONTROLLER/VendaController.php";  
@@ -356,10 +356,10 @@ $total_vendas = count($vendas_filtradas);
         <div class="po-container">
             <h1 class="ym_titulo">Relatório de Comissões</h1>
  
-            <nav class="tabs-nav">
+            <form method="GET" class="tabs-nav">
                 <button class="po-tab-btn" name="area" type="submit" value="sales"><p>Vendas</p></button>
-                <button class="po-tab-btn" name="area" type="submit" value="commissions"><p>Comissões</p></button>
-            </nav>
+                <button class="po-tab-btn po-active" name="area" type="submit" value="commissions"><p>Comissões</p></button>
+            </form>
            
             <div class="po-card">
                 <div class="jv_card">
