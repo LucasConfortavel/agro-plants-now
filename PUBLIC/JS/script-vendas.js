@@ -260,11 +260,15 @@ function GerarTabela(){
 
 
 function Pesquisar(){
-    inputPesquisa = document.getElementById("jv_searchInput");
+    if(document.getElementsByClassName("jv_search-input") != null){
+        inputPesquisa = document.getElementsByClassName("jv_search-input")[0];
+    }else{
+        inputPesquisa = document.getElementById("jv_searchInput");
+    }
     pesquisa = inputPesquisa.value;
     if(pesquisa == ""){
         GerarTabela();
-        return none;
+        return null;
     }
     info_tabela = document.getElementById("jv_customerTableBody");
     info_tabela.innerHTML = '';
