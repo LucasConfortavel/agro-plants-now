@@ -6,6 +6,173 @@
   box-sizing: border-box;
 }
 
+
+/* ======== MODO ESCURO PADRONIZADO — venda-info-adm.php ======== */
+body.dark-theme {
+  background-color: #232222;
+  color: #e0e0e0;
+}
+
+/* ===== Containers principais ===== */
+body.dark-theme .P_customer-info,
+body.dark-theme .P_summary-card,
+body.dark-theme .readonly-message,
+body.dark-theme .P_coupon-section,
+body.dark-theme .P_customer-card {
+  background-color: #2e2e2e;
+  border: 1px solid #444;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  color: #e0e0e0;
+  border-radius: 10px;
+}
+
+/* ===== Header do cliente e vendedor ===== */
+body.dark-theme .P_customer-card,
+body.dark-theme .vendedor-info,
+body.dark-theme .p_cart-section {
+  background-color: #2e2e2e;
+  border: 1px solid #444;
+}
+
+body.dark-theme .vendedor-info {
+  border-left: 4px solid #45734b;
+  padding: 8px 12px;
+}
+
+body.dark-theme .vendedor-info i {
+  color: #6fc77e;
+}
+
+body.dark-theme .vendedor-info div {
+  color: #fff;
+}
+
+/* ===== Mensagem de leitura ===== */
+body.dark-theme .readonly-message {
+  background-color: #3a3a3a;
+  border-left: 4px solid #45734b;
+  color: #d5d5d5;
+}
+
+/* ===== Textos, labels e títulos ===== */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme label,
+body.dark-theme p,
+body.dark-theme span {
+  color: #e0e0e0;
+}
+
+/* ===== Itens do carrinho ===== */
+body.dark-theme .P_cart-item {
+  background-color: #3a3a3a;
+  border: 1px solid #444;
+}
+
+body.dark-theme .P_cart-item:hover {
+  background-color: #404040;
+  border-color: #45734b;
+}
+
+body.dark-theme .P_product-name {
+  color: #ffffff;
+}
+
+/* ===== Badges e ícones ===== */
+body.dark-theme .info-badge {
+  background-color: #45734b;
+  color: #fff;
+}
+
+body.dark-theme i {
+  color: #6fc77e;
+}
+
+/* ===== Cupom aplicado ===== */
+body.dark-theme .P_coupon-section {
+  background-color: #333;
+  border: 1px solid #45734b;
+}
+
+body.dark-theme .P_coupon-section label {
+  color: #6fc77e;
+}
+
+/* ===== Resumo da venda ===== */
+body.dark-theme .P_summary-section {
+  background-color: #2a2a2a;
+}
+
+body.dark-theme .P_summary-card {
+  background-color: #333;
+  border: 1px solid #444;
+}
+
+body.dark-theme .P_detail-row {
+  color: #d5d5d5;
+}
+
+body.dark-theme .P_total-row {
+  color: #fff;
+}
+
+/* ===== Caixa de ID e status final ===== */
+body.dark-theme .P_summary-card > div:last-child {
+  background-color: #3a3a3a;
+  border: 1px solid #444;
+}
+
+body.dark-theme .P_summary-card > div:last-child span {
+  color: #fff;
+}
+
+body.dark-theme .P_summary-card > div:last-child .fa-check-circle {
+  color: #6fc77e;
+}
+
+/* ===== Botões (padrão do sistema) ===== */
+body.dark-theme .ym_btn-primary {
+  background-color: #45734b;
+  border-color: #45734b;
+  color: #fff;
+}
+
+body.dark-theme .ym_btn-primary:hover {
+  background-color: #3b6142;
+  border-color: #3b6142;
+}
+
+body.dark-theme .ym_btn-secondary {
+  background-color: transparent;
+  color: #6fc77e;
+  border: 2px solid #45734b;
+}
+
+body.dark-theme .ym_btn-secondary:hover {
+  background-color: #45734b;
+  color: #fff;
+}
+
+/* ===== Scrollbar ===== */
+body.dark-theme ::-webkit-scrollbar {
+  width: 8px;
+}
+body.dark-theme ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+body.dark-theme ::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+
+
+
+
 body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
