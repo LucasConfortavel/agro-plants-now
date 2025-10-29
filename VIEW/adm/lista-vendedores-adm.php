@@ -225,28 +225,47 @@
 
 
         <!-- Paginação -->
-        <div class="jv_page-navigation">
-            <?php if ($pagina_atual > 1): ?>
-                <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-            <?php endif; ?>
+        <?php if ($total_paginas > 1): ?>
+            <div class="jv_page-navigation">
+                <?php if ($pagina_atual > 1): ?>
+                    <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                <?php endif; ?>
 
-            <?php
-            $inicio = max(1, $pagina_atual - 2);
-            $fim = min($total_paginas, $pagina_atual);
-            for ($i = $inicio; $i <= $fim; $i++): ?>
-                <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                    <?= $i ?>
-                </a>
-            <?php endfor; ?>
+                <?php
+                if ($total_paginas <= 3) {
+                    $inicio = 1;
+                    $fim = $total_paginas;
+                } else {
+                    if ($pagina_atual <= 2) {
+                        $inicio = 1;
+                        $fim = 3;
+                    } elseif ($pagina_atual >= $total_paginas - 1) {
+                        $inicio = $total_paginas - 2;
+                        $fim = $total_paginas;
+                    } else {
+                        $inicio = $pagina_atual - 1;
+                        $fim = $pagina_atual + 1;
+                    }
+                }
 
-            <?php if ($pagina_atual < $total_paginas): ?>
-                <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            <?php endif; ?>
-        </div>
+                for ($i = $inicio; $i <= $fim; $i++): ?>
+                    <a href="?pagina=<?= $i ?>" 
+                    class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($pagina_atual < $total_paginas): ?>
+                    <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+
+
 
         <!-- <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
             <i class="fa-solid fa-circle-info"></i>
