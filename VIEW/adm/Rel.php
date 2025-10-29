@@ -6,7 +6,26 @@ include "../../CONTROLLER/VendaController.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../CONTROLLER/ComissaoController.php";
 include "../../INCLUDE/vlibras.php";
- 
+include "../../INCLUDE/verificarLogin.php";
+
+if(!isset($_POST["categoria_graf-col"]) & !isset($_POST['categoria_tab-vend']) & !isset($_POST['categoria_graf-linha']) & !isset($_POST['categoria_tab-comis']) ){
+    if(isset($_SESSION["categoria_graf-col"])){
+        $_POST['categoria_graf-col'] = $_SESSION["categoria_graf-col"];
+    }
+    
+    if(isset($_SESSION['categoria_tab-vend'])){
+        $_POST['categoria_tab-vend'] = $_SESSION['categoria_tab-vend'];
+    }
+
+    if(isset($_SESSION['categoria_graf-linha'])){
+        $_POST['categoria_graf-linha'] = $_SESSION['categoria_graf-linha'];
+    }
+
+    if(isset($_SESSION['categoria_tab-comis'])){
+        $_POST['categoria_tab-comis'] = $_SESSION['categoria_tab-comis'];
+    }
+}
+
 $controler_user = new UsuarioController();
 $produto_item   = new ProdutoController();
 $usuario_control = new UsuarioController();
@@ -16,77 +35,198 @@ $comissao_control = new ComissaoController();
 
 $comissoes = $comissao_control->index(); 
 $vendas = $venda_control->index();
+
+$vendas_filtradas = [];
+$vendas_comissao = [];
+
+
 $total_vendas = count($vendas);
+$total_comissoes = count($comissoes);
 
 $pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2", "sucesso@143");
 
 $stmt = $pdo->query("SELECT status, COUNT(*) as total FROM pedidos GROUP BY status");
 $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
  
-    // POST: criar vendedor
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $teste = $controler_user->criar();
-        print_r($teste);
-        // header('Location: ' . $_SERVER['PHP_SELF']);
-        exit;
-    }
- 
-    $action_handled = false;
- 
-    if(!empty($_GET)){
-        if (isset($_GET['visualizar'])){
-            $id = $_GET['visualizar'];
-            $usuario = $controler_user->mostrar($id);
-            $action_handled = true;
-            header('Location: info-edit-adm.php?id=' . $id . "&usuario=" . $usuario['tipo']);
- 
-        } elseif (isset($_GET['remover'])){
-            $id = $_GET['remover'];
-            $usuario = $controler_user->deletar($id);
-            $action_handled = true;
-            header('Location: ' . $_SERVER['PHP_SELF']);
+if(!isset($_POST['categoria_tab-vend'])){
+    $categoria_tab_vend = "Todos";
+    $opcao1_tab_vend = "Este mês";
+    $opcao2_tab_vend = "Este ano";
+}
+
+else{    
+    if($_POST['categoria_tab-vend'] != $_SESSION['categoria_tab-vend']){
+        if(isset($_GET['pagina'])){
+            header('Location: Rel.php');
         }
     }
-   
-    $usuarios = $controler_user->index();
- 
-    $produto_item = new ProdutoController();
- 
-    // POST: criar vendedor
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $teste_prod = $produto_item->criar();
-        print_r($teste_prod);
-        // header('Location: ' . $_SERVER['PHP_SELF']);
-        exit;
+
+    if($_POST['categoria_tab-vend'] == "Este mês"){
+        $categoria_tab_vend = $_POST['categoria_tab-vend'];
+        $opcao1_tab_vend = "Todos";
+        $opcao2_tab_vend = "Este ano";
+        
+    }elseif($_POST['categoria_tab-vend'] == "Este ano"){
+        $categoria_tab_vend = $_POST['categoria_tab-vend'];
+        $opcao1_tab_vend = "Este mês";
+        $opcao2_tab_vend = "Todos";
+
+    }else{
+        $categoria_tab_vend = $_POST['categoria_tab-vend'];
+        $opcao1_tab_vend = "Este mês";
+        $opcao2_tab_vend = "Este ano";
     }
- 
-    $action_handled = false;
- 
-   
-    $produtos = $produto_item->index();
- 
-    $total_vendas = count($vendas);
- 
-    $limite = 4;
-    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-    if ($pagina_atual < 1) $pagina_atual = 1;
-    $offset = ($pagina_atual - 1) * $limite;
- 
-    $total_paginas = ($total_vendas > 0) ? ceil($total_vendas / $limite) : 1;
- 
-    $vendas_paginadas = array_slice($vendas, $offset, $limite);
+    $_SESSION['categoria_tab-vend'] = $_POST['categoria_tab-vend'];
+}
+
+if(!isset($_POST['categoria_tab-comis'])){
+    $categoria_tab_comis = "Todos";
+    $opcao1_tab_comis = "Este mês";
+    $opcao2_tab_comis = "Este ano";
+
+} else{    
+    if($_POST['categoria_tab-comis'] != $_SESSION['categoria_tab-comis']){
+        if(isset($_GET['pagina'])){
+            header('Location: Rel.php');
+        }
+    }
+
+    if($_POST['categoria_tab-comis'] == "Este mês"){
+        $categoria_tab_comis = $_POST['categoria_tab-comis'];
+        $opcao1_tab_comis = "Todos";
+        $opcao2_tab_comis = "Este ano";
+        
+    }elseif($_POST['categoria_tab-comis'] == "Este ano"){
+        $categoria_tab_comis = $_POST['categoria_tab-comis'];
+        $opcao1_tab_comis = "Este mês";
+        $opcao2_tab_comis = "Todos";
+
+    }else{
+        $categoria_tab_comis = $_POST['categoria_tab-comis'];
+        $opcao1_tab_comis = "Este mês";
+        $opcao2_tab_comis = "Este ano";
+    }
+
+    $_SESSION['categoria_tab-comis'] = $_POST['categoria_tab-comis'];
+}
+
+if(!isset($_POST['categoria_graf-col'])){
+    $categoria_col = "Este ano";
+    $opcao_col = "Últimos anos";
+}
+else{    
+    if($_POST['categoria_graf-col'] == "Últimos anos"){
+        $categoria_col = $_POST['categoria_graf-col'];
+        $opcao_col = "Este ano";
+
+    }else{
+        $categoria_col = $_POST['categoria_graf-col'];
+        $opcao_col = "Últimos anos";
+    }
+    $_SESSION["categoria_graf-col"] = $_POST['categoria_graf-col'];
+}
 
 
-    $total_comissoes = count($comissoes);
-    $limite_comissoes = 4;
-    $pagina_atual_comissoes = isset($_GET['pagina_comissoes']) ? (int)$_GET['pagina_comissoes'] : 1;
-    if ($pagina_atual_comissoes < 1) $pagina_atual_comissoes = 1;
-    $offset_comissoes = ($pagina_atual_comissoes - 1) * $limite_comissoes;
+if(!isset($_POST['categoria_graf-linha'])){
+    $categoria_linha = "Este ano";
+    $opcao_linha = "Últimos anos";
+}
+else{    
+    if($_POST['categoria_graf-linha'] == "Últimos anos"){
+        $categoria_linha = $_POST['categoria_graf-linha'];
+        $opcao_linha = "Este ano";
 
-    $total_paginas_comissoes = ($total_comissoes > 0) ? ceil($total_comissoes / $limite_comissoes) : 1;
+    }else{
+        $categoria_linha = $_POST['categoria_graf-linha'];
+        $opcao_linha = "Últimos anos";
+    }
+    $_SESSION["categoria_graf-linha"] = $_POST['categoria_graf-linha'];
+}
 
-    $comissoes_paginadas = array_slice($comissoes, $offset_comissoes, $limite_comissoes);
+
+
+if($categoria_tab_vend == "Este ano"){
+    foreach($vendas as $venda){
+        $ano_venda = date("Y",strtotime($venda['data_venda']));
+
+        $total = isset($venda['total']) ? (float)$venda['total'] : 0;
+
+        if($ano_venda == date("Y")){
+            array_push($vendas_filtradas,$venda);
+        }
+    }
+
+}elseif($categoria_tab_vend == "Este mês"){
+    foreach($vendas as $venda){
+        $ano_venda = date("m",strtotime($venda['data_venda']));
+
+        $total = isset($venda['total']) ? (float)$venda['total'] : 0;
+
+        if($ano_venda == date("m")){
+            array_push($vendas_filtradas,$venda);
+        }
+    }
+}else{
+    $vendas_filtradas = $vendas;
+}
+
+
+if($categoria_tab_comis == "Este ano"){
+    foreach($vendas as $venda){
+        $ano_venda = date("Y",strtotime($venda['data_venda']));
+
+        $total = isset($venda['total']) ? (float)$venda['total'] : 0;
+
+        if($ano_venda == date("Y")){
+            array_push($vendas_comissao,$venda);
+        }
+    }
+
+}elseif($categoria_tab_comis == "Este mês"){
+    foreach($vendas as $venda){
+        $ano_venda = date("m",strtotime($venda['data_venda']));
+
+        $total = isset($venda['total']) ? (float)$venda['total'] : 0;
+
+        if($ano_venda == date("m")){
+            array_push($vendas_comissao,$venda);
+        }
+    }
+}else{
+    $vendas_comissao = $vendas;
+}
+
+
+
+$action_handled = false;
+
+if(!empty($_GET)){
+    if (isset($_GET['visualizar'])){
+        $id = $_GET['visualizar'];
+        $usuario = $controler_user->mostrar($id);
+        $action_handled = true;
+        header('Location: info-edit-adm.php?id=' . $id . "&usuario=" . $usuario['tipo']);
+
+    } elseif (isset($_GET['remover'])){
+        $id = $_GET['remover'];
+        $usuario = $controler_user->deletar($id);
+        $action_handled = true;
+        header('Location: ' . $_SERVER['PHP_SELF']);
+    }
+}
+
+$usuarios = $controler_user->index();
+
+$produto_item = new ProdutoController(); 
+
+$action_handled = false;
+
+
+$produtos = $produto_item->index();
+
+$total_vendas = count($vendas_filtradas);
 ?>
  
  
@@ -112,10 +252,10 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="po-container">
             <h1 class="ym_titulo">Relatório de Vendas</h1>
  
-                <nav class="tabs-nav">
-                    <button class="po-tab-btn po-active" data-tab="sales"> <p>Vendas</p></button>
-                    <button class="po-tab-btn" data-tab="commissions"><p>Comissões</p></button>
-                </nav>
+                <form method="GET" class="tabs-nav">
+                    <button class="po-tab-btn po-active" name="area" type="submit" value="sales"> <p>Vendas</p></button>
+                    <button class="po-tab-btn" name="area" type="submit" value="commissions"><p>Comissões</p></button>
+                </form>
            
  
                 <div class="po-card">
@@ -127,7 +267,7 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                                             <i class="fas fa-search search-icon"></i>
                                         </button>
-                                        <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
+                                        <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input" oninput="Pesquisar()">
                                     </div>
                                 </form>
                 
@@ -141,19 +281,19 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </div>
                                             
                 
-                                        <div class="ym_area-select">
+                                        <form method="POST" class="ym_area-select">
                                             <div class="ym_select" onclick="mostrar_categorias()">
-                                                <p class="ym_categoria-select">Último mês</p>
+                                                <p class="ym_categoria-select"><?= $categoria_tab_vend?></p>
                                                 <p class="ym_seta-categoria">></p>
                                             </div>
                                                 
                                                 
                                             <div class="ym_options">
-                                                <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
-                                                <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                                                <button class="ym_link-option" onclick="trocar_categoria()" type="submit" name="categoria_tab-vend" value="<?=$opcao1_tab_vend?>"><?= $opcao1_tab_vend?></button>
+                                                <button class="ym_link-option" onclick="trocar_categoria()" type="submit" name="categoria_tab-vend" value="<?=$opcao2_tab_vend?>"><?= $opcao2_tab_vend?></button>
                                             </div>
                                                 
-                                        </div>
+                                        </form>
                                     </div>    
                                 </div>
                             </div>
@@ -177,71 +317,11 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </tr>
                                     </thead>
                                     <tbody id="jv_customerTableBody">
-                                        <?php if ($total_vendas > 0): ?>
-                                            <?php foreach ($vendas_paginadas as $venda):   
-                                                $vendedor = $usuario_control->mostrar($venda["id_vendedor"]);  
-                                                $cliente = $cliente_control->mostrar($venda["id_cliente"]);
-                                                
-                                            ?>
-                                                <tr>
-                                                    <td><?= date("d/m/Y", strtotime($venda['data_venda'])) ?></td>
-                                                    <td>
-                                                        <div class="jv_customer-info">
-                                                            <div class="jv_avatar">
-                                                                <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?>
-                                                            </div>
-                                                            <div class="jv_customer-details">
-                                                                <h4><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></h4>
-                                                                <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
-                                                    <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
-                                                    <td class="jv_table-action">
-                                                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                            <i class="fas fa-ellipsis-h"></i>
-                                                        </button>
-                                                        <form class="jv_dropdown">
-                                                            <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
-                                                                <i class="fas fa-eye"></i> Visualizar
-                                                            </button>
-                                                            <div class="jv_dropdown-separator"></div>
-                                                            <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($venda['id'])?>">
-                                                                <i class="fas fa-trash"></i> Remover
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
-                                            <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
-                                        <?php endif; ?>
                                     </tbody>
                                 </table>
 
                                 <!-- Paginação -->
                                 <div class="jv_page-navigation">
-                                    <?php if($pagina_atual > 1): ?>
-                                        <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                                            <i class="fas fa-arrow-left"></i>
-                                        </a>
-                                    <?php endif; ?>
-                                
-                                    <?php
-                                    $inicio = max(1, $pagina_atual - 2);
-                                    $fim = min($total_paginas, $pagina_atual + 2);
-                                    for ($i = $inicio; $i <= $fim; $i++): ?>
-                                        <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                                            <?= $i ?>
-                                        </a>
-                                    <?php endfor; ?>
-                                
-                                    <?php if($pagina_atual < $total_paginas): ?>
-                                        <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </a>
-                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -251,20 +331,16 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Vendas por mês</h3>
-                    <div class="ym_areaselect">
+                    <form method="POST" class="ym_areaselect">
                         <div class="ym_select" onclick="mostrar_categorias(1)">
-                            <p class="ym_categoria-select">Último mês</p>
+                            <p class="ym_categoria-select"><?=$categoria_col?></p>
                             <p class="ym_seta-categoria">></p>
                         </div>
-                                   
-                        <!-- comissao -->
-
-                        
+                                                           
                         <div class="ym_options">
-                            <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
-                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                            <button class="ym_link-option" onclick="trocar_categoria(0)" type="submit" name="categoria_graf-col" value="<?=$opcao_col?>"><?=$opcao_col?></button>
                         </div>
-                    </div>
+                    </form>
                    
                     <canvas id="sales-bar-chart"></canvas>
                 </div>
@@ -307,25 +383,27 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </button>
                                     </div>
             
-                                    <div class="ym_area-select">
+                                    <form method="POST" action="#" class="ym_area-select">
                                         <div class="ym_select" onclick="mostrar_categorias(2)">
-                                            <p class="ym_categoria-select">Último mês</p>
+                                            <p class="ym_categoria-select"> <?= $categoria_tab_comis?> </p>
                                             <p class="ym_seta-categoria">></p>
                                         </div>
                                             
-                                            
                                         <div class="ym_options">
-                                            <a class="ym_link-option" onclick="trocar_categoria()"> Último trimestre</a>
-                                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+
+                                            <button type="submit" name="categoria_tab-comis" class="ym_link-option" onclick="trocar_categoria()" value="<?= $opcao1_tab_comis?>" > <?= $opcao1_tab_comis?> </button>
+                                            
+                                            <button type="submit" name="categoria_tab-comis" class="ym_link-option" onclick="trocar_categoria(0,1)" value="<?= $opcao2_tab_comis?>" > <?= $opcao2_tab_comis?> </button>
+                                        
                                         </div>
                                             
-                                    </div>
+                                    </form>
                                 </div>    
                             </div>
                         </div>
  
                         <p class="jv_subtitle" id="jv_customerCount">
-                            <?= $total_vendas ?> vendedores encontrados
+                            <?= $total_comissoes ?> vendas encontrados
                         </p>
                 </div>
  
@@ -343,78 +421,13 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
-                            <tbody id="jv_customerTableBody">
-                                <?php if ($total_vendas > 0  ): ?>
-                                    <?php foreach ($comissoes_paginadas as $comissao): ?>
-                                        <?php 
-                                            $vendedor = $usuario_control->mostrar($venda['id_vendedor']);
-                                            $cliente  = $cliente_control->mostrar($venda['id_cliente']);
-                                        ?>
-                                        <tr>
-                                            <td><?= date("d/m/Y", strtotime($venda['data_venda'])) ?></td>
-                                            <td>
-                                                <div class="jv_customer-info">
-                                                    <div class="jv_avatar"> <?= strtoupper(substr($vendedor['nome'] ?? '', 0, 2)) ?> </div>
-                                                    <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars($vendedor['nome'] ?? '-') ?></h4>
-                                                        <p><?= htmlspecialchars($vendedor['email'] ?? '-') ?></p>
-                                                    </div>
-                                                </div>
-                                            </td> 
-                                            <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
-                                            <td><?= 'R$ ' . number_format($venda['total'] ?? 0, 2, ',', '.') ?></td>
-                                            <td>
-                                                <span class="badge-comissao">
-                                                    <?= htmlspecialchars($comissao['percentual'] ?? 0) . '%' ?>
-                                                </span>
-                                            </td>
-
-                                            <td><?= 'R$ ' . number_format($comissao['valor'] ?? 0, 2, ',', '.') ?></td>
-                                            <td class="jv_table-action">
-                                                <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <form class="jv_dropdown" method="GET" action="">
-                                                    <button type="submit" name="visualizar" value="<?= htmlspecialchars($comissao['id']) ?>" class="jv_dropdown-item">
-                                                        <i class="fas fa-eye"></i> Visualizar
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($comissao['id'])?>','Remover Comissão')" class="jv_dropdown-item jv_danger">
-                                                        <i class="fa-solid fa-ban"></i> Remover
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
-                                <?php endif; ?>
+                            <tbody class="ym_tabela-comissao" id="jv_customerTableBody">
                             </tbody>
                         </table>
                     </div>
                 </div>
                            
                 <div class="jv_page-navigation">
-                    <?php if ($pagina_atual_comissoes > 1): ?>
-                        <a href="?pagina_comissoes=<?= $pagina_atual_comissoes - 1 ?>" class="jv_page-arrow">
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
-                    <?php endif; ?>
-
-                    <?php
-                    $inicio = max(1, $pagina_atual_comissoes - 2);
-                    $fim = min($total_paginas_comissoes, $pagina_atual_comissoes + 2);
-                    for ($i = $inicio; $i <= $fim; $i++): ?>
-                        <a href="?pagina_comissoes=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual_comissoes ? 'active' : '' ?>">
-                            <?= $i ?>
-                        </a>
-                    <?php endfor; ?>
-
-                    <?php if ($pagina_atual_comissoes < $total_paginas_comissoes): ?>
-                        <a href="?pagina_comissoes=<?= $pagina_atual_comissoes + 1 ?>" class="jv_page-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    <?php endif; ?>
                 </div>
             </div>
             </div>
@@ -422,18 +435,19 @@ $status_pedidos_raw = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="po-charts-grid">
                 <div class="po-card">
                     <h3>Gasto com Comissões</h3>
-                    <div class="ym_areaselect_com">
+
+                    <form class="ym_areaselect_com" method="POST" action="#">
                         <div class="ym_select" onclick="mostrar_categorias(3)">
-                            <p class="ym_categoria-select">Último mês</p>
+                            <p class="ym_categoria-select"><?=$categoria_linha?></p>
                             <p class="ym_seta-categoria">></p>
                         </div>
                                    
                                    
                         <div class="ym_options">
-                            <a class="ym_link-option" onclick="trocar_categoria(0)"> Último trimestre</a>
-                            <a class="ym_link-option" onclick="trocar_categoria(0,1)"> Último ano</a>
+                            <button type="submit" class="ym_link-option" onclick="trocar_categoria(0)" name="categoria_graf-linha" value="<?=$opcao_linha?>"> <?=$opcao_linha?> </button>
+
                         </div>
-                    </div>
+                    </form>
                     <canvas id="comm-line-chart"></canvas>
                 </div>
  
@@ -487,38 +501,125 @@ foreach (array_keys($status_pedidos) as $status) {
     $colors_status[] = $status_colors_map[$status] ?? "rgba(69,115,75,0.5)";
 }
 
-$vendas_mensais = array_fill(0, 12, 0);
 
-foreach ($vendas as $venda) {
-    $data = $venda['data'] ?? $venda['data_venda'] ?? null;
-    $total = isset($venda['total']) ? (float)$venda['total'] : 0;
 
-    if ($data) {
-        $mes = (int) date("n", strtotime($data)) - 1;
-        $vendas_mensais[$mes] += $total;
+if($categoria_col == "Este ano"){
+    $graf_col = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+    $vendas_total = array_fill(0, 12, 0);
+    
+    foreach ($vendas as $venda) {
+            $data = $venda['data_venda'];
+            $total = isset($venda['total']) ? (float)$venda['total'] : 0;
+    
+            if ($data) {
+                $mes = (int) date("n", strtotime($data)) - 1;
+                $vendas_total[$mes] += $total;
+            }
+    }
+
+}elseif($categoria_col == "Últimos anos"){
+    $ano = date("Y");
+    $graf_col = [];
+
+    for ($i=0; $i < 10; $i++) { 
+        array_push($graf_col,intval($ano) -$i);
+    }
+
+    $vendas_total = array_fill(0, 10, 0);
+    $graf_col = array_reverse($graf_col);
+
+    foreach ($vendas as $venda) {
+            $ano_venda = date("Y",strtotime($venda['data_venda']));
+
+            $total = isset($venda['total']) ? (float)$venda['total'] : 0;
+    
+            foreach($graf_col as $ano){
+                if($ano_venda == $ano){
+                    $vendas_total[$ano_venda - $graf_col[0]] += $total;
+                }
+            }
     }
 }
 
-$max_venda = max($vendas_mensais);
-$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#27db36ff" : "#107a10ff", $vendas_mensais);
+if($categoria_linha == "Este ano"){
+    $graf_linha = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+    $gastos_total = array_fill(0, 12, 0);
+    
+    foreach ($vendas as $venda) {
+        foreach($comissoes as $comissao){
+            
+            if($venda['id'] == $comissao['id_venda']){
+                $data = $venda['data_venda'];
+                $total = $comissao['valor'];
+        
+                if ($data) {
+                    $mes = (int) date("n", strtotime($data)) - 1;
+                    $gastos_total[$mes] += $total;
+                }
+            }
+
+        }
+    }
+
+}elseif($categoria_linha == "Últimos anos"){
+    $ano = date("Y");
+    $graf_linha = [];
+
+    for ($i=0; $i < 10; $i++) { 
+        array_push($graf_linha,intval($ano) -$i);
+    }
+
+    $gastos_total = array_fill(0, 10, 0);
+    $graf_linha = array_reverse($graf_linha);
+
+    foreach ($vendas as $venda) {
+        foreach($comissoes as $comissao){
+            if($venda['id'] == $comissao['id_venda']){
+                $ano_venda = date("Y",strtotime($venda['data_venda']));
+
+                $total = $comissao['valor'];
+        
+                foreach($graf_linha as $ano){
+                    if($ano_venda == $ano){
+                        $gastos_total[$ano_venda - $graf_linha[0]] += $total;
+                    }
+                }
+            }
+        }
+    }
+}
+
+$max_venda = max($vendas_total);
+$colors_vendas = array_map(fn($v) => $v == $max_venda ? "#27db36ff" : "#107a10ff", $vendas_total);
 
 $comissoes_vendedor = array_fill(0, 12, 0);
 $comissoes_dist = ["Fixas" => 0, "Variáveis" => 0];
 
-foreach ($vendas as $comissao) {
-    $data = $comissao['data'] ?? $comissao['data_venda']  ?? null;
-    $mes = ($data && strtotime($data) !== false) ? ((int)date("n", strtotime($data)) - 1) : (int)date("n") - 1;
+foreach ($comissoes as $comissao) {
+    foreach ($vendas as $venda){
+        if($comissao["id_venda"] == $venda['id']){
 
-    $valor = 0;
-    if (isset($comissao['valor'])) $valor = (float)$comissao['valor'];
-    elseif (isset($comissao['valor'])) $valor = (float)$comissao['valor'];
-    elseif (isset($comissao['valor'], $comissao['percentual']))
-        $valor = (float)$comissao['valor'] * ((float)$comissao['percentual'] / 100);
+            $data = $venda['data_venda'];
+            $mes = ($data && strtotime($data) !== false) ? ((int)date("n", strtotime($data)) - 1) : (int)date("n") - 1;
+        
+            $valor = 0;
+            if(isset($comissao['valor'])){
+                $valor = (float)$comissao['valor'];
+            }elseif (isset($comissao['valor'], $comissao['percentual'])){
+                $valor = (float)$comissao['valor'] * ((float)$comissao['percentual'] / 100);
 
-    $comissoes_vendedor[$mes] += $valor > 0 ? $valor : 0.001;
+            }
+        
+            $comissoes_vendedor[$mes] += $valor > 0 ? $valor : 0.001;
+        
+            $tipo = $venda['valor'] ?? 'Fixas';
 
-    $tipo = $comissao['valor'] ?? 'Fixas';
-    if (isset($comissoes_dist[$tipo])) $comissoes_dist[$tipo] += $valor > 0 ? $valor : 0.001;
+            if (isset($comissoes_dist[$tipo])){
+                $comissoes_dist[$tipo] += $valor > 0 ? $valor : 0.001;
+            }
+
+        }
+    }
 }
 
 foreach ($comissoes_dist as $key => $value) if ($value==0) $comissoes_dist[$key]=0.001;
@@ -529,10 +630,10 @@ document.addEventListener("DOMContentLoaded", () => {
     new Chart(document.getElementById("sales-bar-chart"), {
         type: "bar",
         data: {
-            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+            labels: <?= json_encode($graf_col)?>,
             datasets: [{
                 label: "Vendas (R$)",
-                data: <?= json_encode($vendas_mensais) ?>,
+                data: <?= json_encode($vendas_total) ?>,
                 backgroundColor: <?= json_encode($colors_vendas) ?>,
                 borderRadius: 8,
                 borderWidth: 1,
@@ -594,10 +695,10 @@ document.addEventListener("DOMContentLoaded", () => {
     new Chart(document.getElementById("comm-line-chart"), {
         type: "line",
         data: {
-            labels: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+            labels: <?= json_encode($graf_linha) ?>,
             datasets: [{
                 label: "Gasto com Comissões (R$)",
-                data: <?= json_encode(array_values($comissoes_vendedor)) ?>,
+                data: <?= json_encode(array_values($gastos_total)) ?>,
                 backgroundColor: "rgba(44, 171, 54, 0.23)",
                 borderColor: "#27db36ff",
                 borderWidth: 3,
@@ -707,8 +808,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </script>
 
-meowl
-<script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
+<script>
+    const dados_vendas= <?php echo json_encode($vendas_comissao); ?>;
+    const dados = <?php echo json_encode($vendas_filtradas); ?>;
+    const dados_comissoes = <?php echo json_encode($comissoes); ?>;
+</script>
+<script src="../../PUBLIC/JS/script-vendas.js"></script>
 <script src="../../PUBLIC/JS/script-tabs.js"></script>
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-relatorio.js"></script>
