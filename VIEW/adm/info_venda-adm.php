@@ -5,12 +5,12 @@ require_once "../../CONTROLLER/UsuarioController.php";
 require_once "../../CONTROLLER/ProdutoController.php";
 require_once "../../INCLUDE/alertas.php";
 include "../../INCLUDE/vlibras.php";
-include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/Menu_adm.php";
 require_once "../../INCLUDE/verificarLogin.php";
 
 if (!isset($_GET['id'])) {
     $_SESSION['alerta'] = '<script>exibirAlerta("Venda não encontrada!","error");</script>';
-    header("Location: lista-vendas.php");
+    header("Location: vendas-adm.php");
     exit;
 }
 
@@ -24,7 +24,7 @@ $venda = $vendaCtrl->mostrar($id_venda);
 
 if (!$venda || isset($venda['erro'])) {
     $_SESSION['alerta'] = '<script>exibirAlerta("Venda não encontrada!","error");</script>';
-    header("Location: lista-vendas.php");
+    header("Location: vendas-adm.php");
     exit;
 }
 
@@ -178,7 +178,7 @@ if(isset($_SESSION['alerta'])){
 
 <main class="jp_main-content">
     <div class="back-button">
-        <a href="lista-vendas.php" class="ym_link-volta"> 
+        <a href="vendas-adm.php" class="ym_link-volta"> 
             <i class="fa-solid fa-arrow-left"></i>
             <span>Voltar</span>
         </a>

@@ -103,9 +103,6 @@ if(isset($_SESSION['alerta'])){
             <button class="tab-btn active" data-tab="personal">
                 <i class="fas fa-user"></i> Informações Pessoais
             </button>
-            <button class="tab-btn" data-tab="notifications">
-                <i class="fas fa-bell"></i> Notificações
-            </button>
             <button class="tab-btn" data-tab="preferences">
                 <i class="fas fa-palette"></i> Preferências
             </button>
