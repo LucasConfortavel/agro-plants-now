@@ -70,7 +70,8 @@
                         <label class="eze-label-text">Descrição</label>
                         <span class="eze-required">*</span>
                     </div>
-                    <textarea class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" required></textarea>
+                    <textarea type="text" id="descricaoProduto" class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" required maxlength="256"></textarea>
+                    <span id="contadorDescricao" class="contador-texto">0/256</span>
                 </div>
             </div>
 
@@ -110,6 +111,13 @@
 
         inputNome.addEventListener('input', () => {
             contador.textContent = `${inputNome.value.length}/256`;
+        });
+
+        const textareaDescricao = document.getElementById('descricaoProduto');
+        const contador2 = document.getElementById('contadorDescricao');
+
+        textareaDescricao.addEventListener('input', () => {
+            contador2.textContent = `${textareaDescricao.value.length}/256`;
         });
     </script>
 </body>
