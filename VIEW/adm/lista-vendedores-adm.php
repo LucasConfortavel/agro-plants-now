@@ -181,7 +181,7 @@
                                                         <?= strtoupper(substr($vend['nome'], 0, 2)) ?>
                                                     </div>
                                                     <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars($vend['nome']) ?></h4>
+                                                        <h4 class="jv-nome-vendedor"><?= htmlspecialchars($vend['nome']) ?></h4>
                                                         <p><?= htmlspecialchars($vend['email']) ?></p>
                                                     </div>
                                                 </div>
@@ -224,7 +224,7 @@
         </div>
 
 
-        <!-- Paginação -->
+        
         <?php if ($total_paginas > 1): ?>
             <div class="jv_page-navigation">
                 <?php if ($pagina_atual > 1): ?>
@@ -274,6 +274,30 @@
         <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
+
+        <script>
+        
+
+
+        function abreviarNome(nomeCompleto) {
+            const partes = nomeCompleto.split(' ');
+            if (partes.length <= 6) {
+                return nomeCompleto;
+            }
+            return partes.slice(0, 6).join(' ') + '...';
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const elementosNome = document.querySelectorAll('.jv-nome-vendedor');
+            
+            elementosNome.forEach(elemento => {
+                const nomeCompleto = elemento.textContent.trim();
+                const nomeAbreviado = abreviarNome(nomeCompleto);
+                elemento.textContent = nomeAbreviado;
+            });
+        });
+        </script>
 </main>
 </body>
 </html>
