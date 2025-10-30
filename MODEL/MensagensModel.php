@@ -30,11 +30,11 @@ class MensagemeModel {
 
     // Listar todas as mensagens
     public function lerTodas() {
-        try {
-            $sql = "SELECT * FROM mensagens ORDER BY data_envio DESC";
+         try {
+            $sql = "SELECT * FROM mensagens ORDER BY data_msg DESC"; // ajuste o nome da coluna
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
-            return $stmt;
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             throw new Exception("Erro ao buscar mensagens: " . $e->getMessage());
         }

@@ -78,16 +78,31 @@ class ProdutoModel {
         return $row;
     }
 
+    public function listarBaixoEstoque($limite = 5) {
+        try {
+            $query = "SELECT id, nome, quantidade 
+                    FROM " . $this->table_name . " 
+                    WHERE quantidade < :limite AND status = 'ATIVADO'
+                    ORDER BY quantidade ASC";
+            
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erro ao listar produtos com baixo estoque: " . $e->getMessage());
+            return [];
+        }
+    }
     public function lerTodos() {
-        $query = "SELECT p.*, c.nome as categoria_nome FROM " . $this->table_name . " p 
-                LEFT JOIN categoria c ON p.id_cat = c.id 
-                WHERE p.status = 'ATIVADO'
-                ORDER BY p.nome";
-        
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-
-        return $stmt;
+        try {
+            $stmt = $this->conn->query("SELECT id, nome, quantidade FROM {$this->table_name}");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Erro ao listar produtos: " . $e->getMessage());
+            return [];
+        }
     }
 
     public function lerPorCategoria($id_categoria) {

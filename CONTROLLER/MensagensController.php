@@ -10,16 +10,9 @@ class MessageController {
 
     // Listar todas as mensagens enviadas ao admin
     public function index() {
-        try {
-            $stmt = $this->mensagem->lerTodas();
-            $mensagens = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            // Passa para a view
-            include_once __DIR__ . '#';
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            include_once __DIR__ . '/../views/error.php';
-        }
+        $result = $this->mensagem->lerTodas();
+        // garante que sempre retorna array
+        return is_array($result) ? $result : [];
     }
 
     // Criar uma nova mensagem
@@ -32,16 +25,6 @@ class MessageController {
         return $this->mensagem->criar();
     }
 
-    // public function criar($nome, $email, $mensagem) {
-    //     $sql = "INSERT INTO mensagens (nome, email, mensagem, data_msg) VALUES (:nome, :email, :mensagem, NOW())";
-    //     $stmt = $this->conn->prepare($sql);
-    //     $stmt->bindParam(':nome', $nome);
-    //     $stmt->bindParam(':email', $email);
-    //     $stmt->bindParam(':mensagem', $mensagem);
-    //     $stmt->execute();
-    // }
-
-    // Mostrar uma mensagem específica
     public function mostrar($id) {
         try {
             $this->message->id = $id;
@@ -54,7 +37,7 @@ class MessageController {
             }
         } catch (Exception $e) {
             $error = $e->getMensagem();
-            include_once __DIR__ . '/../views/error.php';
+            // include_once __DIR__ . '/../views/error.php';
         }
     }
 
@@ -70,7 +53,7 @@ class MessageController {
             }
         } catch (Exception $e) {
             $error = $e->getMensagem();
-            include_once __DIR__ . '/../views/error.php';
+            // include_once __DIR__ . '/../views/error.php';
         }
     }
 }
