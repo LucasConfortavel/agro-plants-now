@@ -76,21 +76,21 @@ $vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
             <div class="jp_metric-box jp_metric-green">
                 <div class="jp_metric-header">
                     <div class="jp_metric-title">Total Vendido</div>
-                    <div class="jp_metric-badge">22.0%</div>
+                   
                 </div>
                 <div class="jp_metric-value">R$<?= $total_vendido?></div>
             </div>
             <div class="jp_metric-box jp_metric-blue">
                 <div class="jp_metric-header">
                     <div class="jp_metric-title">Número de Vendas</div>
-                    <div class="jp_metric-badge">22.0%</div>
+                  
                 </div>
                 <div class="jp_metric-value"><?= $numero_vendas;?></div>
             </div>
             <div class="jp_metric-box jp_metric-orange">
                 <div class="jp_metric-header">
                     <div class="jp_metric-title">Total de Comissões</div>
-                    <div class="jp_metric-badge">22.0%</div>
+             
                 </div>
                 <div class="jp_metric-value">R$<?php echo number_format(($total_vendido/10),2,',','.');?></div>
             </div>
@@ -156,7 +156,7 @@ $vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
                 <div class="jp_chart-header">
                     <div class="jp_chart-title-area">
                         <div class="jp_chart-title">Vendas por Mês</div>
-                        <div class="jp_chart-subtitle">-2% por mês</div>
+                 
                     </div>
                     <div class="jp_chart-filters">
                         

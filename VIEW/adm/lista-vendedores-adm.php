@@ -167,9 +167,9 @@
         <div class="jv_page-navigation">
         </div>
 
-        <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
+        <!-- <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
             <i class="fa-solid fa-circle-info"></i>
-        </a>
+        </a> -->
 
         <script>
             const dados= <?php echo json_encode($usuarios); ?>;

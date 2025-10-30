@@ -3,14 +3,16 @@ require_once "../../CONTROLLER/CarrinhoController.php";
 require_once "../../CONTROLLER/CatalogoController.php";
 require_once "../../CONTROLLER/ProdutoController.php";
 require_once "../../CONTROLLER/CupomController.php";
+require_once "../../CONTROLLER/VendaController.php";
 require_once "../../INCLUDE/alertas.php";
 include "../../INCLUDE/vlibras.php";
-include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/Menu_vend.php";
 
 $carrinhoCtrl = new CarrinhoController();
 $catalogoCtrl = new CatalogoController();
 $produtoCtrl  = new ProdutoController();
 $cupom  = new CupomController();
+$vendaCtrl = new VendaController();
 
 if (!isset($_GET['id_cliente']) && !isset($_GET['nome'])) {
     die("Cliente não informado");
@@ -33,19 +35,31 @@ $pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2"
 
 // Criar novo pedido (quando o anterior foi finalizado)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['novo_pedido'])) {
-    // Obter ID do vendedor logado - verificar diferentes variáveis de sessão possíveis
-    $id_vendedor = $_SESSION['id'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id_usuario'] ?? null;
+    error_log("=== INICIANDO CRIAÇÃO DE NOVO PEDIDO ===");
     
-    // Se não encontrar o ID na sessão, tentar buscar do último pedido
+    $id_vendedor = $_SESSION['id'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id_usuario'] ?? null;
+    error_log("ID Vendedor da sessão: " . ($id_vendedor ?? 'NULL'));
+    
     if (!$id_vendedor) {
         $stmt_vendedor = $pdo->prepare("SELECT id_vendedor FROM pedidos WHERE id_cliente = ? ORDER BY data_pedido DESC LIMIT 1");
         $stmt_vendedor->execute([$id_cliente]);
         $pedido_anterior = $stmt_vendedor->fetch(PDO::FETCH_ASSOC);
-        $id_vendedor = $pedido_anterior['id_vendedor'] ?? 1; // Usar 1 como fallback
+        $id_vendedor = $pedido_anterior['id_vendedor'] ?? 1;
+        error_log("ID Vendedor do pedido anterior: " . $id_vendedor);
     }
     
     // Calcular total atual do carrinho
     $itens_temp = $carrinhoCtrl->listarItens($id_carrinho);
+    error_log("Quantidade de itens no carrinho: " . count($itens_temp));
+    
+    // Verificar se há itens no carrinho
+    if (empty($itens_temp)) {
+        error_log("ERRO: Carrinho vazio!");
+        $_SESSION['alerta'] = '<script>exibirAlerta("Adicione produtos ao carrinho antes de criar um pedido!","error");</script>';
+        header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+        exit;
+    }
+    
     $catalogo_temp = $catalogoCtrl->carregarCatalogoProdutos();
     $produtos_temp = $catalogo_temp['produtos'] ?? [];
     
@@ -59,15 +73,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['novo_pedido'])) {
         $produto_temp = $produtosIndexados_temp[$item_temp['id_produto']] ?? null;
         $preco = $item_temp['preco_unitario'] ?? ($produto_temp['preco'] ?? 0);
         $total_pedido += $preco * $item_temp['quantidade'];
+        error_log("Item: " . $item_temp['id_produto'] . " - Preço: " . $preco . " - Qtd: " . $item_temp['quantidade']);
     }
     
-    // Criar novo pedido
-    $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, id_vendedor, status, data_pedido, total) VALUES (?, ?, 'PENDENTE', NOW(), ?)");
-    if ($stmt->execute([$id_cliente, $id_vendedor, $total_pedido])) {
-        $_SESSION['alerta'] = '<script>exibirAlerta("Novo pedido criado com sucesso!","sucesso");</script>';
-        header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
-        exit;
+    error_log("Total calculado: " . $total_pedido);
+    
+    // Garantir que o total seja no mínimo 0.01 se houver constraint
+    if ($total_pedido <= 0) {
+        $total_pedido = 0.01;
+        error_log("Total ajustado para: " . $total_pedido);
     }
+    
+    try {
+        // Criar novo pedido
+        $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, id_vendedor, status, data_pedido, total) VALUES (?, ?, 'PENDENTE', NOW(), ?)");
+        if ($stmt->execute([$id_cliente, $id_vendedor, $total_pedido])) {
+            $novo_id_pedido = $pdo->lastInsertId();
+            error_log("Novo pedido criado com ID: " . $novo_id_pedido);
+            $_SESSION['alerta'] = '<script>exibirAlerta("Novo pedido criado com sucesso!","sucesso");</script>';
+            header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+            exit;
+        } else {
+            error_log("ERRO: Falha ao executar INSERT do pedido");
+            $_SESSION['alerta'] = '<script>exibirAlerta("Erro ao criar pedido!","error");</script>';
+        }
+    } catch (Exception $e) {
+        error_log("EXCEÇÃO ao criar pedido: " . $e->getMessage());
+        $_SESSION['alerta'] = '<script>exibirAlerta("Erro ao criar pedido: ' . addslashes($e->getMessage()) . '","error");</script>';
+    }
+    
+    header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+    exit;
 }
 
 // Buscar pedido do cliente
@@ -77,14 +113,84 @@ $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
 $status_pedido = $pedido['status'] ?? 'PENDENTE';
 $id_pedido = $pedido['id'] ?? null;
 
-// Atualizar status do pedido
+// Atualizar status do pedido E CRIAR VENDA QUANDO FINALIZADO
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['atualizar_status'])) {
     $novo_status = $_POST['atualizar_status'];
     
     if ($id_pedido) {
         $stmt = $pdo->prepare("UPDATE pedidos SET status = ? WHERE id = ?");
         if ($stmt->execute([$novo_status, $id_pedido])) {
-            $_SESSION['alerta'] = '<script>exibirAlerta("Status atualizado para ' . $novo_status . '!","sucesso");</script>';
+            
+            // SE O STATUS FOR "FINALIZADO", CRIAR A VENDA
+            if ($novo_status === 'FINALIZADO') {
+                // Obter ID do vendedor
+                $id_vendedor = $_SESSION['id'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id_usuario'] ?? null;
+                
+                if (!$id_vendedor) {
+                    $stmt_vendedor = $pdo->prepare("SELECT id_vendedor FROM pedidos WHERE id = ?");
+                    $stmt_vendedor->execute([$id_pedido]);
+                    $pedido_info = $stmt_vendedor->fetch(PDO::FETCH_ASSOC);
+                    $id_vendedor = $pedido_info['id_vendedor'] ?? 1;
+                }
+                
+                // Calcular total do carrinho (com desconto se houver)
+                $itens_venda = $carrinhoCtrl->listarItens($id_carrinho);
+                $catalogo_venda = $catalogoCtrl->carregarCatalogoProdutos();
+                $produtos_venda = $catalogo_venda['produtos'] ?? [];
+                
+                $produtosIndexados_venda = [];
+                foreach ($produtos_venda as $p) {
+                    $produtosIndexados_venda[$p['id']] = $p;
+                }
+                
+                $subtotal_venda = 0;
+                foreach ($itens_venda as $item_venda) {
+                    $preco = $item_venda['preco_unitario'] ?? ($produtosIndexados_venda[$item_venda['id_produto']]['preco'] ?? 0);
+                    $subtotal_venda += $preco * $item_venda['quantidade'];
+                }
+                
+                // Aplicar desconto se houver cupom na sessão
+                $desconto_venda = 0;
+                if (isset($_SESSION['cupom_aplicado']) && isset($_SESSION['cupom_valor'])) {
+                    $desconto_venda = $subtotal_venda * ($_SESSION['cupom_valor'] / 100);
+                }
+                
+                $total_venda = $subtotal_venda - $desconto_venda;
+                if ($total_venda < 0) $total_venda = 0;
+                
+                // Criar a venda
+                $dados_venda = [
+                    'data_venda' => date('Y-m-d H:i:s'),
+                    'id_pedido' => $id_pedido,
+                    'id_vendedor' => $id_vendedor,
+                    'id_cliente' => $id_cliente,
+                    'total' => $total_venda
+                ];
+                
+                $resultado_venda = $vendaCtrl->criarVenda($dados_venda);
+                
+                if (!isset($resultado_venda['erro'])) {
+                    // LIMPAR O CARRINHO DO CLIENTE
+                    // Remover todos os itens do carrinho
+                    $stmt_limpar = $pdo->prepare("DELETE FROM carrinho_itens WHERE id_carrinho = ?");
+                    $stmt_limpar->execute([$id_carrinho]);
+                    
+                    // Resetar valores do carrinho
+                    $stmt_reset = $pdo->prepare("UPDATE carrinho SET valor_total = 0 WHERE id = ?");
+                    $stmt_reset->execute([$id_carrinho]);
+                    
+                    // Limpar cupom da sessão
+                    unset($_SESSION['cupom_aplicado']);
+                    unset($_SESSION['cupom_valor']);
+                    
+                    $_SESSION['alerta'] = '<script>exibirAlerta("Venda finalizada com sucesso! Carrinho limpo.","sucesso");</script>';
+                } else {
+                    $_SESSION['alerta'] = '<script>exibirAlerta("Erro ao criar venda: ' . $resultado_venda['erro'] . '","error");</script>';
+                }
+            } else {
+                $_SESSION['alerta'] = '<script>exibirAlerta("Status atualizado para ' . $novo_status . '!","sucesso");</script>';
+            }
+            
             header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
             exit;
         }
@@ -93,18 +199,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['atualizar_status'])) 
 
 // Gerar link de pagamento
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gerar_link'])) {
-    // Obter ID do vendedor logado
-    $id_vendedor = $_SESSION['id'] ?? null;
+    error_log("=== GERANDO LINK DE PAGAMENTO ===");
     
-    // Criar ou atualizar pedido
+    $id_vendedor = $_SESSION['id'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id_usuario'] ?? null;
+    error_log("ID Vendedor: " . ($id_vendedor ?? 'NULL'));
+    
     if (!$id_pedido) {
-        $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, id_vendedor, status, data_pedido, valor_total) VALUES (?, ?, 'PENDENTE', NOW(), ?)");
-        $stmt->execute([$id_cliente, $id_vendedor, $total ?? 0]);
-        $id_pedido = $pdo->lastInsertId();
+        error_log("Pedido não existe, criando novo...");
+        
+        // Calcular o total antes de criar o pedido
+        $itens_link = $carrinhoCtrl->listarItens($id_carrinho);
+        error_log("Itens no carrinho: " . count($itens_link));
+        
+        if (empty($itens_link)) {
+            error_log("ERRO: Carrinho vazio ao gerar link");
+            $_SESSION['alerta'] = '<script>exibirAlerta("Adicione produtos ao carrinho antes de gerar o link!","error");</script>';
+            header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+            exit;
+        }
+        
+        $total_link = 0;
+        
+        foreach ($itens_link as $item_link) {
+            $produto_link = $produtosIndexados[$item_link['id_produto']] ?? null;
+            $preco_link = $item_link['preco_unitario'] ?? ($produto_link['preco'] ?? 0);
+            $total_link += $preco_link * $item_link['quantidade'];
+        }
+        
+        error_log("Total calculado: " . $total_link);
+        
+        // Aplicar desconto se houver
+        if (isset($_SESSION['cupom_valor'])) {
+            $desconto_link = $total_link * ($_SESSION['cupom_valor'] / 100);
+            $total_link -= $desconto_link;
+            error_log("Desconto aplicado: " . $desconto_link . ", Total final: " . $total_link);
+        }
+        
+        // Garantir valor mínimo
+        if ($total_link <= 0) {
+            $total_link = 0.01;
+            error_log("Total ajustado para mínimo: " . $total_link);
+        }
+        
+        try {
+            $stmt = $pdo->prepare("INSERT INTO pedidos (id_cliente, id_vendedor, status, data_pedido, total) VALUES (?, ?, 'PENDENTE', NOW(), ?)");
+            $stmt->execute([$id_cliente, $id_vendedor, $total_link]);
+            $id_pedido = $pdo->lastInsertId();
+            error_log("Pedido criado com ID: " . $id_pedido);
+        } catch (Exception $e) {
+            error_log("ERRO ao criar pedido: " . $e->getMessage());
+            $_SESSION['alerta'] = '<script>exibirAlerta("Erro ao criar pedido: ' . addslashes($e->getMessage()) . '","error");</script>';
+            header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+            exit;
+        }
     }
     
-    // Gerar link de pagamento (você pode customizar este link)
     $link_pagamento = "https://seusite.com/pagamento?pedido=" . $id_pedido . "&cliente=" . $id_cliente;
+    error_log("Link gerado: " . $link_pagamento);
     
     $_SESSION['link_pagamento'] = $link_pagamento;
     $_SESSION['mostrar_qrcode'] = true;
@@ -233,6 +384,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cupom_id'])) {
             break;
         }
     }
+    
+    // Salvar cupom na sessão para usar ao finalizar
+    if ($cupom_selecionado) {
+        $_SESSION['cupom_aplicado'] = $cupom_selecionado['id'];
+        $_SESSION['cupom_valor'] = $cupom_selecionado['valor'];
+    } else {
+        unset($_SESSION['cupom_aplicado']);
+        unset($_SESSION['cupom_valor']);
+    }
+}
+
+// Recuperar cupom da sessão se existir
+if (!$cupom_selecionado && isset($_SESSION['cupom_aplicado'])) {
+    foreach ($cupons as $c) {
+        if ($c['id'] == $_SESSION['cupom_aplicado']) {
+            $cupom_selecionado = $c;
+            break;
+        }
+    }
 }
 
 if ($cupom_selecionado) {
@@ -264,7 +434,7 @@ if(isset($_SESSION['alerta'])){
     <title>Carrinho - <?= htmlspecialchars($nome_cliente) ?></title>
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/venda-info-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/venda-info.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -350,7 +520,72 @@ if(isset($_SESSION['alerta'])){
         }
         
         .btn-nova-venda {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            background: #3e704c;
+        }
+
+        .P_status-badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-left: 90vh;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .P_status-badge.pendente {
+            background: rgba(251, 191, 36, 0.1);
+            color: #d97706;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .P_status-badge.pago {
+            background: rgba(34, 197, 94, 0.1);
+            color: #16a34a;
+            border: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .P_status-badge.enviado {
+            background: rgba(59, 130, 246, 0.1);
+            color: #2563eb;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .P_status-badge.finalizado {
+            background: rgba(139, 92, 246, 0.1);
+            color: #7c3aed;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .P_disabled-section {
+            opacity: 0.5;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .P_disabled-section::after {
+            content: "🔒 Bloqueado após pagamento confirmado";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .P_disabled-section:hover::after {
+            opacity: 1;
         }
     </style>
 </head>
@@ -379,7 +614,7 @@ if(isset($_SESSION['alerta'])){
 
 <main class="jp_main-content">
         <div class="back-button">
-            <a href="clientes-adm.php" class="ym_link-volta"> 
+            <a href="lista-clientes.php" class="ym_link-volta"> 
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>Voltar</span>
             </a>
@@ -387,13 +622,29 @@ if(isset($_SESSION['alerta'])){
 
         <div class="P_customer-info">
             <div class="P_customer-card">
-                <div class="P_customer-icon">
-                    <i class="fa-solid fa-user"></i>
+            <div class="P_customer-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="P_customer-details">
+                <div class="P_customer-label">Cliente</div>
+                <div class="P_customer-name"><?= htmlspecialchars($nome_cliente) ?></div>
+
+            </div>
+               <?php if ($id_pedido): 
+                    $status_class = strtolower($status_pedido);
+                    $status_icons = [
+                        'PENDENTE' => 'fa-clock',
+                        'PAGO' => 'fa-check-circle',
+                        'ENVIADO' => 'fa-truck',
+                        'FINALIZADO' => 'fa-flag-checkered'
+                    ];
+                    $status_icon = $status_icons[$status_pedido] ?? 'fa-info-circle';
+                ?>
+                <div class="P_status-badge <?= $status_class ?>">
+                    <i class="fa-solid <?= $status_icon ?>"></i>
+                    Status: <?= htmlspecialchars($status_pedido) ?>
                 </div>
-                <div class="P_customer-details">
-                    <div class="P_customer-label">Cliente</div>
-                    <div class="P_customer-name"><?= htmlspecialchars($nome_cliente) ?></div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -458,13 +709,17 @@ if(isset($_SESSION['alerta'])){
                 <?php endforeach; ?>
                 </div>
 
-                <div class="P_add-product-section">
-                    <h3>Adicionar Produto</h3>
-                    <form class="P_add-product-form" method="post">
+                <?php 
+                $pedido_bloqueado = in_array($status_pedido, ['PAGO', 'ENVIADO']);
+                ?>
+
+                <div class="P_add-product-section <?= $pedido_bloqueado ? 'P_disabled-section' : '' ?>">
+                    <h3 style="color: #3e704c;">Adicionar Produto</h3>
+                    <form class="P_add-product-form" method="post" <?= $pedido_bloqueado ? 'onsubmit="return false;"' : '' ?>>
                         <input type="hidden" name="id_cliente" value="<?= htmlspecialchars($id_cliente) ?>">
                         <div class="P_form-group">
                             <label for="produto">Produto</label>
-                            <select id="produto" name="id_produto" required class="P_select-input">
+                            <select id="produto" name="id_produto" required class="P_select-input" <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                                 <option value="">Selecione um produto</option>
                                 <?php foreach ($produtos as $produto): ?>
                                     <option value="<?= $produto['id'] ?>">
@@ -475,9 +730,9 @@ if(isset($_SESSION['alerta'])){
                         </div>
                         <div class="P_form-group">
                             <label for="quantidade">Quantidade</label>
-                            <input type="number" id="quantidade" name="quantidade" value="1" min="1" class="P_number-input" required>
+                            <input type="number" id="quantidade" name="quantidade" value="1" min="1" class="P_number-input" required <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                         </div>
-                        <button type="submit" class="P_add-button">
+                        <button type="submit" class="P_add-button" <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                             <i class="fa-solid fa-plus"></i>
                             Adicionar ao Carrinho
                         </button>
@@ -487,7 +742,7 @@ if(isset($_SESSION['alerta'])){
 
             <div class="P_summary-section">
                 <div class="P_summary-card">
-                    <h3>Resumo do Pedido</h3>
+                    <h3 style="color: #3e704c;">Resumo do Pedido</h3>
                     
                     <div class="P_coupon-section">
                         <form method="post">
@@ -523,12 +778,14 @@ if(isset($_SESSION['alerta'])){
                     </div>
 
                     <div class="atualizar_status">
+                        <?php if ($status_pedido === 'PENDENTE'): ?>
                         <form method="POST" style="width: 100%;">
                             <button type="submit" name="gerar_link" class="P_checkout-button">
                                 <i class="fa-solid fa-qrcode"></i>
                                 Gerar Link de Pagamento
                             </button>
                         </form>
+                        <?php endif; ?>
                         
                         <form method="POST" style="width: 100%;">
                             <?php 
@@ -537,7 +794,7 @@ if(isset($_SESSION['alerta'])){
                                 $icone_botao = '';
                                 
                                 switch($status_pedido) {
-                                    case 'FINALIZADO':
+                                    case 'PENDENTE':
                                         $proximo_status = 'PAGO';
                                         $texto_botao = 'Confirmar Pagamento';
                                         $icone_botao = 'fa-dollar-sign';
@@ -551,15 +808,31 @@ if(isset($_SESSION['alerta'])){
                                         $proximo_status = 'FINALIZADO';
                                         $texto_botao = 'Finalizar Venda';
                                         $icone_botao = 'fa-check-circle';
-                                        
+                                        break;
+                                    case 'FINALIZADO':
+                                        $proximo_status = '';
+                                        $texto_botao = '';
+                                        $icone_botao = '';
+                                        break;
                                 }
                                 
-                                echo '<button type="submit" name="atualizar_status" value="' . $proximo_status . '" class="P_checkout-button">';
-                                echo '<i class="fa-solid ' . $icone_botao . '"></i>';
-                                echo ' ' . $texto_botao;
-                                echo '</button>';
+                                if ($proximo_status !== '') {
+                                    echo '<button type="submit" name="atualizar_status" value="' . $proximo_status . '" class="P_checkout-button">';
+                                    echo '<i class="fa-solid ' . $icone_botao . '"></i>';
+                                    echo ' ' . $texto_botao;
+                                    echo '</button>';
+                                }
                             ?>
                         </form>
+                        
+                        <?php if ($status_pedido === 'FINALIZADO'): ?>
+                        <form method="POST" style="width: 100%;">
+                            <button type="submit" name="novo_pedido" class="P_checkout-button btn-nova-venda">
+                                <i class="fa-solid fa-plus-circle"></i>
+                                Nova Venda
+                            </button>
+                        </form>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -601,9 +874,44 @@ if(isset($_SESSION['alerta'])){
                 fecharModal();
             }
         });
+
+        const pedidoBloqueado = <?= json_encode($pedido_bloqueado) ?>;
+
+if (pedidoBloqueado) {
+    // Bloquear funções de atualização de quantidade
+    window.increaseQty = function(button) {
+        alert('Não é possível alterar quantidades após o pagamento ser confirmado!');
+        return false;
+    };
+    
+    window.decreaseQty = function(button) {
+        alert('Não é possível alterar quantidades após o pagamento ser confirmado!');
+        return false;
+    };
+    
+    // Bloquear remoção de itens
+    document.querySelectorAll('.P_trash-button').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Não é possível remover itens após o pagamento ser confirmado!');
+        });
+    });
+    
+    // Bloquear aplicação de cupom
+    const applyCouponBtn = document.querySelector('.P_apply-coupon-btn');
+    if (applyCouponBtn) {
+        applyCouponBtn.disabled = true;
+    }
+    
+    const couponSelect = document.querySelector('#cupom_id');
+    if (couponSelect) {
+        couponSelect.disabled = true;
+    }
+}
     </script>
     <script src="../../PUBLIC/JS/script-info_vendas.js"></script>
     <script src="../../PUBLIC/JS/script-tema.js"></script>
 
 </body>
 </html>
+
