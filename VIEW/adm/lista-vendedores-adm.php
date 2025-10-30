@@ -177,6 +177,30 @@
         <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
+
+        <script>
+        
+
+
+        function abreviarNome(nomeCompleto) {
+            const partes = nomeCompleto.split(' ');
+            if (partes.length <= 6) {
+                return nomeCompleto;
+            }
+            return partes.slice(0, 6).join(' ') + '...';
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const elementosNome = document.querySelectorAll('.jv-nome-vendedor');
+            
+            elementosNome.forEach(elemento => {
+                const nomeCompleto = elemento.textContent.trim();
+                const nomeAbreviado = abreviarNome(nomeCompleto);
+                elemento.textContent = nomeAbreviado;
+            });
+        });
+        </script>
 </main>
 </body>
 </html>
