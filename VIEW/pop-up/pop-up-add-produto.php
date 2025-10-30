@@ -20,7 +20,8 @@
                             <label class="eze-label-text">Nome</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="text" class="ym_input-padrao" name="nome" placeholder="Nome do produto" required>
+                        <input type="text" id="nomeProduto" class="ym_input-padrao" name="nome" placeholder="Nome do produto" required maxlength="256">
+                        <span id="contadorNome" class="contador-texto">0/256</span>
                     </div>
                 </div>
 
@@ -62,7 +63,6 @@
                         </div>
                         <input type="number" class="ym_input-padrao" name="quantidade" placeholder="Quantidade em estoque" required min="0">
                     </div>
-
                 </div>
 
                 <div class="eze-form-group">
@@ -70,7 +70,8 @@
                         <label class="eze-label-text">Descrição</label>
                         <span class="eze-required">*</span>
                     </div>
-                    <textarea class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" required></textarea>
+                    <textarea type="text" id="descricaoProduto" class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" required maxlength="256"></textarea>
+                    <span id="contadorDescricao" class="contador-texto">0/256</span>
                 </div>
             </div>
 
@@ -104,5 +105,20 @@
     
     <script src="../../PUBLIC/JS/script-select.js"></script>
     <script src="../../PUBLIC/JS/pop-up-add-produto.js"></script>
+    <script>
+        const inputNome = document.getElementById('nomeProduto');
+        const contador = document.getElementById('contadorNome');
+
+        inputNome.addEventListener('input', () => {
+            contador.textContent = `${inputNome.value.length}/256`;
+        });
+
+        const textareaDescricao = document.getElementById('descricaoProduto');
+        const contador2 = document.getElementById('contadorDescricao');
+
+        textareaDescricao.addEventListener('input', () => {
+            contador2.textContent = `${textareaDescricao.value.length}/256`;
+        });
+    </script>
 </body>
 </html>

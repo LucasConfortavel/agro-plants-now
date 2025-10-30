@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['criar_pedido'])) {
     $id_cliente = $_POST['criar_pedido'];
     $id_vendedor = $_SESSION['id'];
     
-    $status_inicial = 'PAGO';
+    $status_inicial = 'PENDENTE';
     
     $resultado = $carrinho_control->criarPedidoDoCarrinho($id_cliente, $id_vendedor, $status_inicial);
     
@@ -208,6 +208,7 @@ if(isset($_SESSION['alerta'])){
                                 <div class="select-option <?= $status_filtro === 'PAGO' ? 'selected' : '' ?>" data-value="PAGO">Pago</div>
                                 <div class="select-option <?= $status_filtro === 'ENVIADO' ? 'selected' : '' ?>" data-value="ENVIADO">Enviado</div>
                                 <div class="select-option <?= $status_filtro === 'FINALIZADO' ? 'selected' : '' ?>" data-value="FINALIZADO">Finalizado</div>
+                                <div class="select-option <?= $status_filtro === 'PENDENTE' ? 'selected' : '' ?>" data-value="PENDENTE">Pendente</div>
                             </div>
                         </div>
 
@@ -216,6 +217,7 @@ if(isset($_SESSION['alerta'])){
                             <option value="PAGO" <?= $status_filtro === 'PAGO' ? 'selected' : '' ?>>Pago</option>
                             <option value="ENVIADO" <?= $status_filtro === 'ENVIADO' ? 'selected' : '' ?>>Enviado</option>
                             <option value="FINALIZADO" <?= $status_filtro === 'FINALIZADO' ? 'selected' : '' ?>>Finalizado</option>
+                            <option value="PENDENTE" <?= $status_filtro === 'PENDENTE' ? 'selected' : '' ?>>Pendente</option>
                         </select>
                     </div>
                 </div>
@@ -258,7 +260,7 @@ if(isset($_SESSION['alerta'])){
 
                                         switch ($status) {
                                             case 'PAGO':
-                                                $progress = 25;
+                                                $progress = 40;
                                                 $icone = '<i class="fas fa-dollar-sign"></i>';
                                                 break;
                                             case 'ENVIADO':
@@ -273,13 +275,9 @@ if(isset($_SESSION['alerta'])){
                                                 $progress = 100;
                                                 $icone = '<i class="fas fa-check-circle"></i>';
                                                 break;
-                                            case 'CANCELADO':
-                                                $progress = 100;
-                                                $icone = '<i class="fas fa-times-circle"></i>';
-                                                break;
-                                            default:
-                                                $progress = 0;
-                                                $icone = '';
+                                            case 'PENDENTE':
+                                                $progress = 25;
+                                                $icone = '<i class="fas fa-clock"></i>';
                                         }
                                     ?>
                                     <tr>
@@ -345,9 +343,6 @@ if(isset($_SESSION['alerta'])){
                                                 <a href="carrinho.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" 
                                                 class="ym_btn-padrao2" title="Ver carrinho">
                                                     <i class="fas fa-shopping-cart"></i>
-                                                    <?php if ($carrinhoTemItens): ?>
-                                                        <span style="position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border-radius: 50%; width: 16px; height: 16px; font-size: 10px; display: flex; align-items: center; justify-content: center;">●</span>
-                                                    <?php endif; ?>
                                                 </a>
                                             </div>
                                         </td>

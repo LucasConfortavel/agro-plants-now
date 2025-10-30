@@ -15,6 +15,20 @@ $cliente_control = new ClienteController();
 
 $total_vendas = count($vendas);
 
+// Verificar ações GET
+if(!empty($_GET)){
+    if (isset($_GET['visualizar'])){
+        $id = $_GET['visualizar'];
+        header('Location: info_venda-vend.php?id=' . $id);
+        exit;
+    } elseif (isset($_GET['remover'])){
+        $id = $_GET['remover'];
+        $venda_control->deletar($id);
+        header('Location: ' . $_SERVER['PHP_SELF']);
+        exit;
+    }
+}
+
 // Paginação
 $limite = 4; // quantidade de registros por página
 $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
@@ -24,7 +38,7 @@ $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_vendas / $limite);
 
 // Fatiar o array para exibir apenas os registros da página atual
-$vendas = array_slice($vendas, $offset, $limite);
+$vendas_paginadas = array_slice($vendas, $offset, $limite);
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +50,7 @@ $vendas = array_slice($vendas, $offset, $limite);
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendas-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
@@ -60,7 +75,7 @@ $vendas = array_slice($vendas, $offset, $limite);
                                 <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                                     <i class="fas fa-search search-icon"></i>
                                 </button>
-                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou cliente..." class="jv_search-input">
+                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por venda ou cliente..." class="jv_search-input" oninput="Pesquisar()">
                             </div>
                         </form>
                     </div>
@@ -77,14 +92,15 @@ $vendas = array_slice($vendas, $offset, $limite);
                             <thead>
                                 <tr class="jv_table-header">
                                     <th><p class="jv_name">Venda</p></th>
-                                    <th class="jv_valor_gast">Data</th>
+                                    <th class="jv_date">Data</th>
                                     <th class="jv_date">Cliente</th>
                                     <th class="jv_valor_gast">Valor</th>
+                                    <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
                                 <?php if ($total_vendas > 0): ?>
-                                    <?php foreach ($vendas as $venda):     
+                                    <?php foreach ($vendas_paginadas as $venda):     
                                         $cliente = $cliente_control->mostrar($venda["id_cliente"]);
                                     ?>
                                         <tr>
@@ -101,13 +117,28 @@ $vendas = array_slice($vendas, $offset, $limite);
                                             <td><?= htmlspecialchars($venda['data_venda'] ?? '-') ?></td>
                                             <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
                                             <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
+                                            <td class="jv_table-action">
+                                                <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </button>
+                                                <div class="jv_dropdown">
+                                                    <a href="venda-info-vend.php?id=<?= $venda['id'] ?>" class="jv_dropdown-item">
+                                                        <i class="fas fa-eye"></i> Visualizar
+                                                    </a>
+                                                    <div class="jv_dropdown-separator"></div>
+                                                    <button type="button" 
+                                                        class="jv_dropdown-item jv_danger" 
+                                                        onclick="confirmarRemocao(<?= $venda['id'] ?>)">
+                                                        <i class="fas fa-trash"></i> Remover
+                                                    </button>
+                                                </div>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else: ?>
-                                    <tr><td colspan="4" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
+                                    <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
                                 <?php endif; ?>
                             </tbody>
-
                         </table>
                     </div>
                 </div>
@@ -138,9 +169,13 @@ $vendas = array_slice($vendas, $offset, $limite);
             <?php endif; ?>
         </div>
 
-        <script src="../../PUBLIC/JS/script-vendas.js"></script>
+        <script>
+            const dados = <?php echo json_encode($vendas); ?>;
+        </script>
+        <script src="../../PUBLIC/JS/script-vendas-vend.js"></script>
         <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+        <script src="../../PUBLIC/JS/script-tema.js"></script>
     </main>
 </body>
 </html>

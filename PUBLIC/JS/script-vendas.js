@@ -132,11 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-
-
-
-
-const formatarData = (dataStr) => {
+  const formatarData = (dataStr) => {
   const [ano, mes, diaHora] = dataStr.split('-');
   const dia = diaHora.split(' ')[0]; // pega só o dia antes do espaço
   return `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
@@ -170,7 +166,6 @@ function GerarTabela(){
             html+=`<a href='?pagina=${i}' class='jv_page-number'>${i}</a>`;
         }
     }
-
     if(pagina != total_pag & total_pag > 1){
         html+=` <a href="?pagina=${parseInt(pagina, 10)+1}" class="jv_page-arrow"><i class="fas fa-arrow-right"></i></a>`;
     }
@@ -184,9 +179,9 @@ function GerarTabela(){
     vendas.forEach(venda => {
         if (window.location.href.includes("vendas")) {
             
-            html += `<tr><td><input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>"></td>`
             html +=`
-            <td>
+            <tr>
+                <td>
                 <div class="jv_customer-info">
                     <div class="jv_avatar">
                         ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
@@ -196,14 +191,13 @@ function GerarTabela(){
                         <p>${venda['email_vendedor']}</p>
                     </div>
                 </div>
-            
-            </td>`;
+                   </td>`;
             html += `<td>${venda['nome_cliente']}</td>`;
             html += `<td>R$ ${venda['total']}</td>`;
             html += `<td class="jv_table-action">
                         <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                             <i class="fas fa-ellipsis-h"></i>
-                        </button>
+                        </button>   
                         <form class="jv_dropdown">
                             <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
                                 <i class="fas fa-eye"></i> Visualizar
@@ -233,24 +227,7 @@ function GerarTabela(){
             
             </td>`;
             html += `<td>${venda['nome_cliente']}</td>`;
-            html += `<td>R$ ${venda['total']}</td>`;
-            html += `<td class="jv_table-action">
-                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                            <i class="fas fa-ellipsis-h"></i>
-                        </button>
-                        <form class="jv_dropdown">
-                            <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
-                                <i class="fas fa-eye"></i> Visualizar
-                            </button>
-                            <div class="jv_dropdown-separator"></div>
-                            <button type="button" 
-                                class="jv_dropdown-item jv_danger" 
-                                onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($cliente['id']) ?>', 'Confirmação de Remoção')">
-                                <i class="fas fa-trash"></i> Remover
-                            </button>
-                        </form>
-                    </td>
-                </tr>`;
+            html += `<td>R$ ${venda['total']}</td></tr>`;
         }
 
     });
@@ -260,15 +237,11 @@ function GerarTabela(){
 
 
 function Pesquisar(){
-    if(document.getElementsByClassName("jv_search-input") != null){
-        inputPesquisa = document.getElementsByClassName("jv_search-input")[0];
-    }else{
-        inputPesquisa = document.getElementById("jv_searchInput");
-    }
+    inputPesquisa = document.getElementById("jv_searchInput");
     pesquisa = inputPesquisa.value;
     if(pesquisa == ""){
         GerarTabela();
-        return null;
+        return none;
     }
     info_tabela = document.getElementById("jv_customerTableBody");
     info_tabela.innerHTML = '';
@@ -286,7 +259,7 @@ function Pesquisar(){
     area_pags.innerHTML="";
     
     dados_filtrado.forEach(venda => {
-           if (window.location.href.includes("vendas")) {
+        if (window.location.href.includes("vendas")) {
             
             html += `<tr><td><input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $venda['id'] ?>"></td>`
             html +=`
@@ -300,8 +273,7 @@ function Pesquisar(){
                         <p>${venda['email_vendedor']}</p>
                     </div>
                 </div>
-            
-            </td>`;
+                            </td>`;
             html += `<td>${venda['nome_cliente']}</td>`;
             html += `<td>R$ ${venda['total']}</td>`;
             html += `<td class="jv_table-action">
@@ -342,7 +314,7 @@ function Pesquisar(){
                         <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                             <i class="fas fa-ellipsis-h"></i>
                         </button>
-                        <form class="jv_dropdown">
+                         <form class="jv_dropdown">
                             <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
                                 <i class="fas fa-eye"></i> Visualizar
                             </button>

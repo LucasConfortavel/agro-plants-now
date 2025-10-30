@@ -5,12 +5,12 @@ require_once "../../CONTROLLER/UsuarioController.php";
 require_once "../../CONTROLLER/ProdutoController.php";
 require_once "../../INCLUDE/alertas.php";
 include "../../INCLUDE/vlibras.php";
-include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/Menu_adm.php";
 require_once "../../INCLUDE/verificarLogin.php";
 
 if (!isset($_GET['id'])) {
     $_SESSION['alerta'] = '<script>exibirAlerta("Venda não encontrada!","error");</script>';
-    header("Location: lista-vendas.php");
+    header("Location: vendas-adm.php");
     exit;
 }
 
@@ -24,7 +24,7 @@ $venda = $vendaCtrl->mostrar($id_venda);
 
 if (!$venda || isset($venda['erro'])) {
     $_SESSION['alerta'] = '<script>exibirAlerta("Venda não encontrada!","error");</script>';
-    header("Location: lista-vendas.php");
+    header("Location: vendas-adm.php");
     exit;
 }
 
@@ -104,7 +104,7 @@ if(isset($_SESSION['alerta'])){
     <title>Detalhes da Venda #<?= htmlspecialchars($id_venda) ?></title>
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/venda-info.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/venda-info-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -178,7 +178,7 @@ if(isset($_SESSION['alerta'])){
 
 <main class="jp_main-content">
     <div class="back-button">
-        <a href="lista-vendas.php" class="ym_link-volta"> 
+        <a href="vendas-adm.php" class="ym_link-volta"> 
             <i class="fa-solid fa-arrow-left"></i>
             <span>Voltar</span>
         </a>

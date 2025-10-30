@@ -512,83 +512,104 @@
     background: #e5e7eb;
 }
 
- 
+/* ===================================== */
+/* AJUSTES DE BASE */
+/* ===================================== */
 
+.jv_search-input {
+    width: 100%;
+    padding: 10px 12px 10px 40px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    margin-top: 0;
+}
+
+.jv_page-navigation {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.jv_btn {
+    flex-shrink: 0;
+    min-width: 140px;
+}
 
 /* ===================================== */
-/* Responsividade para telas >= 1400px  */
+/* Responsividade 1400px */
 /* ===================================== */
 @media (max-width: 1400px) {
     .jv_container {
-        max-width: 1700px;
+        max-width: 1200px;
+        padding: 0 20px;
     }
 }
 
 /* ===================================== */
-/* Responsividade para telas 1024px–1399px */
+/* Responsividade 1024px */
 /* ===================================== */
-@media (max-width: 1399px) {
+@media (max-width: 1035px) {
     .jv_header-content {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
     }
 
     .jv_title {
         font-size: 22px;
     }
 
-    .jv_btn {
-        font-size: 13px;
-        padding: 12px 8px;
+    .jv_actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
     .jv_search-container {
-        max-width: 100%;
+        width: 100%;
     }
 
-    .jv_table-header .jv_name,
-    .jv_table-header .jv_status,
-    .jv_table-header .jv_date,
-    .jv_table-header .jv_total_comp,
-    .jv_table-header .jv_valor_gast {
-        font-size: 0.95rem;
+    .jv_btn {
+        width: auto;
+        font-size: 13px;
         padding: 10px 12px;
     }
 }
 
 /* ===================================== */
-/* Responsividade para tablets (768px–1023px) */
+/* Responsividade tablets 768px */
 /* ===================================== */
 @media (max-width: 768px) {
-
-    .jv_container{
-        margin-top: 10%;
+    .jv_container {
+        padding: 0 12px;
+        margin-top: 8%;
     }
+
     .jv_header-content {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
+        text-align: center;
     }
 
     .jv_actions {
+        width: 100%;
+        justify-content: center;
         flex-wrap: wrap;
-        justify-content: flex-start;
+        gap: 10px;
     }
 
     .jv_btn {
         width: 100%;
+        max-width: 280px;
         justify-content: center;
-        padding: 12px 8px;
-        font-size: 14px;
     }
 
     .jv_search-container {
-        width: 80%;
-        max-width: 100%;
-    }
-
-    .ym_btn-padrao{
-        margin-left: -10px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
     }
 
     .jv_table-container {
@@ -596,21 +617,49 @@
     }
 
     .jv_table {
-        min-width: 768px;
-    }
-
-    .jv_table td, .table-header td {
-        padding: 12px 10px;
-        font-size: 14px;
-    }
-
-    .jv_customer-details h4 {
-        font-size: 14px;
-    }
-
-    .jv_customer-details p {
-        font-size: 12px;
+        min-width: 700px;
     }
 }
 
+/* ===================================== */
+/* Responsividade 375px (celulares pequenos) */
+/* ===================================== */
+@media (max-width: 375px) {
 
+    .jv_header-content {
+        gap: 12px;
+        text-align: center;
+    }
+
+    .jv_title {
+        font-size: 18px;
+        justify-content: center;
+    }
+
+    .jv_subtitle {
+        font-size: 12px;
+        text-align: center;
+        margin: 0;
+    }
+
+    .jv_btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .jv_search-container {
+        width: 100%;
+    }
+
+    .jv_table {
+        min-width: 600px;
+    }
+
+    .jv_page-navigation {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 15px;
+    }
+}
