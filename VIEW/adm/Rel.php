@@ -313,7 +313,6 @@ $total_vendas = count($vendas_filtradas);
                                             <th class="jv_name"><p>Vendedor</p></th>
                                             <th class="jv_name_cli">Cliente</th>
                                             <th class="jv_valor_gast">Valor Gasto</th>
-                                            <th class="jv_actions-col"></th>
                                         </tr>
                                     </thead>
                                     <tbody id="jv_customerTableBody">
