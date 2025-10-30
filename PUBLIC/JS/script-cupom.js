@@ -1,3 +1,17 @@
+function toggleDropdown(btn) {
+    const dropdown = btn.nextElementSibling;
+    const isVisible = dropdown.style.display === "block";
+  
+    // Fecha todos os outros
+    document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
+  
+    // Abre apenas o clicado
+    if (!isVisible) {
+      dropdown.style.display = "block";
+    }
+  }
+
+
 formatarData = (dataStr) => {
         const [ano, mes, dia] = dataStr.split('-');
         return `${dia.padStart(2,'0')}/${mes.padStart(2,'0')}/${ano}`;
@@ -46,8 +60,21 @@ function GerarTabela(){
         html += `<tr><td>${cupom['codigo']}</td>`;
         html += `<td>${cupom['valor']}%</td>`;
         html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
-        html += `<td>${formatarData(cupom['data_validade'])}</td></tr>`;
-
+        html += `<td>${formatarData(cupom['data_validade'])}</td>`;
+        if(window.location.href.includes("adm")){
+            html += `<td class="jv_table-action">
+                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button> 
+                        <form class="jv_dropdown">
+                            <button type="button" 
+                                class="jv_dropdown-item jv_danger" 
+                                onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php')">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                        </form>
+                        </tr>`
+        }
     });
     tabela.innerHTML = html;
 }
@@ -57,6 +84,10 @@ function GerarTabela(){
 function Pesquisar(){
     inputPesquisa = document.getElementById("jv_searchInput");
     pesquisa = inputPesquisa.value;
+    if(pesquisa == ""){
+        GerarTabela();
+        return none;
+    }
     info_tabela = document.getElementById("jv_customerTableBody");
     info_tabela.innerHTML = '';
     html="";
@@ -71,6 +102,9 @@ function Pesquisar(){
     limite = 4;
     pagina = 1;
 
+    area_pags = document.getElementsByClassName('jv_page-navigation')[0];
+    area_pags.innerHTML="";
+
     cupons = dados_filtrado.slice(((pagina-1)*4), (pagina*limite));
     
     cupons.forEach(cupom => {
@@ -80,7 +114,21 @@ function Pesquisar(){
            html += `<tr><td>${cupom['codigo']}</td>`;
            html += `<td>${cupom['valor']}%</td>`;
            html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
-           html += `<td>${formatarData(cupom['data_validade'])}</td></tr>`;
+           html += `<td>${formatarData(cupom['data_validade'])}</td>`;
+           if(window.location.href.includes("adm")){
+               html += `<td class="jv_table-action">
+                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button> 
+                        <form class="jv_dropdown">
+                            <button type="button" 
+                                class="jv_dropdown-item jv_danger" 
+                                onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php')">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                        </form>
+                        </tr>`;
+           }
            
         }
     });
