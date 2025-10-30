@@ -16,10 +16,10 @@ if(!empty($_GET)){
         $id = $_GET['visualizar'];
         header('Location: venda-info-adm.php?id=' . $id);
 
-    } elseif (isset($_GET['remover'])){
-        $id = $_GET['remover'];
-        $venda = $venda_control->deletar($id);
-        header('Location: ' . $_SERVER['PHP_SELF']);
+    // } elseif (isset($_GET['remover'])){
+    //     $id = $_GET['remover'];
+    //     $venda = $venda_control->deletar($id);
+    //     header('Location: ' . $_SERVER['PHP_SELF']);
     }
 }
 
@@ -63,30 +63,29 @@ if(!empty($_GET)){
                             </div>
                         </form>
                         
-                        <div class="jv_actions">
+                        <!-- <div class="jv_actions">
                             <div>
                                 <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Remover (<span id="jv_selectedCount">0</span>)
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     
                     <p class="jv_subtitle" id="jv_customerCount">
                         <?= $total_vendas ?> <?= $total_vendas == 1 ? 'venda encontrada' : 'vendas encontradas' ?>
                     </p>
                 </div>
-
                 <!-- Table -->
                 <div class="jv_card-content">
                     <div class="jv_table-container">
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
+                                    <!-- <th class="jv_checkbox-col">
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
+                                    </th> -->
                                     <th class="jv_name"><p>Vendedor</p></th>
                                     <th class="jv_date">Cliente</th>
                                     <th class="jv_valor_gast">Valor Gasto</th>

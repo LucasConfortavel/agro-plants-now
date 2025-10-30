@@ -105,7 +105,6 @@ if(isset($_SESSION['alerta'])){
                 <div class="profile-text">
                     <h2><?php echo htmlspecialchars($user_data['nome']); ?></h2>
                     <p><?php echo htmlspecialchars($user_data['email']); ?></p>
-                    <span class="last-login">Último acesso: Hoje às 14:30</span>
                 </div>
             </div>
             <div class="profile-badges">

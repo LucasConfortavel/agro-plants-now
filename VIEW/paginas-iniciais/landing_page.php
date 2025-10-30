@@ -37,7 +37,7 @@ include "../../INCLUDE/vlibras.php";
                     <div class="carousel-content" id="carouselContent">
                         <div class="product-card">
                             <div class="product-image-wrapper">
-                                <img src="../../PUBLIC/img/baitola.webp" alt="Fertilizantes" class="product-image">
+                              <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="product-image">
                             </div>
                             <div class="product-info">
                                 <h3>Fertilizantes</h3>
@@ -46,7 +46,7 @@ include "../../INCLUDE/vlibras.php";
                         </div>
                         <div class="product-card">
                             <div class="product-image-wrapper">
-                                <img src="../../PUBLIC/img/baitola2.jpg" alt="Defensivos" class="product-image">
+                                <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="product-image">
                             </div>
                             <div class="product-info">
                                 <h3>Defensivos</h3>
@@ -55,7 +55,7 @@ include "../../INCLUDE/vlibras.php";
                         </div>
                         <div class="product-card">
                             <div class="product-image-wrapper">
-                                <img src="../../PUBLIC/img/baitola3.jpg" alt="Sementes" class="product-image">
+                               <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="product-image">
                             </div>
                             <div class="product-info">
                                 <h3>Sementes</h3>
@@ -64,7 +64,7 @@ include "../../INCLUDE/vlibras.php";
                         </div>
                         <div class="product-card">
                             <div class="product-image-wrapper">
-                                <img src="../../PUBLIC/img/baitola4.webp" alt="Equipamentos" class="product-image">
+                                 <img src="../../PUBLIC/img/<?php echo !empty($servico['foto']) ? $servico['foto'] : 'img_servico.webp'; ?>"alt="<?php echo htmlspecialchars($servico['nome']); ?>" class="product-image">
                             </div>
                             <div class="product-info">
                                 <h3>Equipamentos</h3>
@@ -73,7 +73,7 @@ include "../../INCLUDE/vlibras.php";
                         </div>
                         <div class="product-card">
                             <div class="product-image-wrapper">
-                                <img src="../../PUBLIC/img/irrigacao.jpg" alt="Irrigação" class="product-image">
+                                <img src="../../PUBLIC/img/<?php echo !empty($servico['foto']) ? $servico['foto'] : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($servico['nome']); ?>" class="product-image">
                             </div>
                             <div class="product-info">
                                 <h3>Irrigação</h3>
