@@ -87,23 +87,6 @@ function GerarTabela_comissao(){
                       </span>
                   </td>`;
           html += `<td>R$ ${comissao['valor']}</td>`;
-          html += `<td class="jv_table-action">
-                      <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                          <i class="fas fa-ellipsis-h"></i>
-                      </button>
-                      <form class="jv_dropdown">
-                          <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
-                              <i class="fas fa-eye"></i> Visualizar
-                          </button>
-                          <div class="jv_dropdown-separator"></div>
-                          <button type="button" 
-                              class="jv_dropdown-item jv_danger" 
-                              onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($cliente['id']) ?>', 'Confirmação de Remoção')">
-                              <i class="fas fa-trash"></i> Remover
-                          </button>
-                      </form>
-                  </td>
-              </tr>`;
         }
     })});
     tabela.innerHTML = html;
@@ -157,23 +140,6 @@ function Pesquisar_comissao(){
                       </span>
                   </td>`;
           html += `<td>R$ ${comissao['valor']}</td>`;
-          html += `<td class="jv_table-action">
-                      <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                          <i class="fas fa-ellipsis-h"></i>
-                      </button>
-                      <form class="jv_dropdown">
-                          <button class="jv_dropdown-item" type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id'])?>">
-                              <i class="fas fa-eye"></i> Visualizar
-                          </button>
-                          <div class="jv_dropdown-separator"></div>
-                          <button type="button" 
-                              class="jv_dropdown-item jv_danger" 
-                              onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=<?= htmlspecialchars($cliente['id']) ?>', 'Confirmação de Remoção')">
-                              <i class="fas fa-trash"></i> Remover
-                          </button>
-                      </form>
-                  </td>
-              </tr>`;
         }
     })});
 
