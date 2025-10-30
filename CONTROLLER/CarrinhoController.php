@@ -108,6 +108,23 @@ class CarrinhoController {
         }
     }
 
+    // No arquivo CONTROLLER/CarrinhoController.php
+    public function atualizarQuantidade($id_item, $quantidade) {
+        try {
+            $pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2", "sucesso@143");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            $sql = "UPDATE carrinho_itens SET quantidade = ? WHERE id = ?";
+            $stmt = $pdo->prepare($sql);
+            $resultado = $stmt->execute([$quantidade, $id_item]);
+            
+            return $resultado;
+        } catch (Exception $e) {
+            error_log("Erro ao atualizar quantidade: " . $e->getMessage());
+            return false;
+        }
+    }
+    
     public function atualizarQuantidadeItem($id_item, $quantidade) {
         try {
             $this->carrinhoItens->id = $id_item;

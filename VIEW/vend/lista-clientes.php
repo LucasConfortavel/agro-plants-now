@@ -4,12 +4,15 @@ include "../../INCLUDE/alertas.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../CONTROLLER/CarrinhoController.php";
 include "../../CONTROLLER/PedidoController.php";
+include "../../CONTROLLER/VendaController.php";
 include "../../INCLUDE/vlibras.php";
+require_once "../../CONTROLLER/PedidoController.php";
 require_once "../../INCLUDE/verificarLogin.php"; 
 
 $cliente_control = new ClienteController();
 $carrinho_control = new CarrinhoController();
 $pedido_control = new PedidoController();
+$venda_control = new VendaController(); // Adicione esta linha
 
 $status_filtro = isset($_GET['status']) ? $_GET['status'] : '';
 
@@ -27,17 +30,37 @@ $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_clientes / $limite);
 $clientes_paginados = array_slice($clientes, $offset, $limite);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && !isset($_POST['finalizar_pedido']) && !isset($_POST['criar_pedido'])) {
-    $criar_cliente = $cliente_control->criarCliente();
-
-    if ($criar_cliente == 1) {
-        $_SESSION['alerta'] = '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
-    } elseif ($criar_cliente == "Já existe um usuário cadastrado com este email.") {
-        $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um usuário cadastrado com este email"); </script>';
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
+    $id_pedido = $_POST['finalizar_pedido'];
+    
+    $pedido_info = $pedido_control->mostrar($id_pedido);
+    
+    if (isset($pedido_info['error'])) {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Pedido não encontrado","error"); </script>';
     } else {
-        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
+        $resultado = $pedido_control->atualizarStatus($id_pedido, 'FINALIZADO');
+        
+        if (isset($resultado['success'])) {
+            $dados_venda = [
+                'data_venda' => date('Y-m-d H:i:s'),
+                'id_pedido' => $id_pedido,
+                'id_vendedor' => $_SESSION['id'],
+                'id_cliente' => $pedido_info['id_cliente'],
+                'total' => $pedido_info['total']
+            ];
+            
+            $resultado_venda = $venda_control->criarVenda($dados_venda);
+            
+            if ($resultado_venda) {
+                $_SESSION['alerta'] = '<script> exibirAlerta("Pedido finalizado e venda registrada com sucesso!","sucesso"); </script>';
+            } else {
+                $_SESSION['alerta'] = '<script> exibirAlerta("Pedido finalizado, mas erro ao registrar venda","error"); </script>';
+            }
+        } else {
+            $_SESSION['alerta'] = '<script> exibirAlerta("Erro ao finalizar pedido","error"); </script>';
+        }
     }
-
+    
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
