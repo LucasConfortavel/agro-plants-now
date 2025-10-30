@@ -105,20 +105,36 @@
     
     <script src="../../PUBLIC/JS/script-select.js"></script>
     <script src="../../PUBLIC/JS/pop-up-add-produto.js"></script>
+
     <script>
-        const inputNome = document.getElementById('nomeProduto');
-        const contador = document.getElementById('contadorNome');
+    const inputNome = document.getElementById('nomeProduto');
+    const contador = document.getElementById('contadorNome');
+    const textareaDescricao = document.getElementById('descricaoProduto');
+    const contador2 = document.getElementById('contadorDescricao');
+    const form = document.querySelector('.ym_form-pop-up');
 
-        inputNome.addEventListener('input', () => {
-            contador.textContent = `${inputNome.value.length}/256`;
-        });
 
-        const textareaDescricao = document.getElementById('descricaoProduto');
-        const contador2 = document.getElementById('contadorDescricao');
+    inputNome.addEventListener('input', () => {
+        const semEspacos = inputNome.value.replace(/\s/g, '');
+        contador.textContent = `${semEspacos.length}/256`;
+    });
 
-        textareaDescricao.addEventListener('input', () => {
-            contador2.textContent = `${textareaDescricao.value.length}/256`;
-        });
+
+    textareaDescricao.addEventListener('input', () => {
+        const semEspacosDesc = textareaDescricao.value.replace(/\s/g, '');
+        contador2.textContent = `${semEspacosDesc.length}/256`;
+    });
+
+
+    form.addEventListener('submit', (e) => {
+        const nomeValido = inputNome.value.trim().length > 0;
+        const descricaoValida = textareaDescricao.value.trim().length > 0;
+
+        if (!nomeValido || !descricaoValida) {
+            e.preventDefault();
+            alert('Os campos "Nome" e "Descrição" não podem conter apenas espaços.');
+        }
+    });
     </script>
 </body>
 </html>
