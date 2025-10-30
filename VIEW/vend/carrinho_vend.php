@@ -3,7 +3,7 @@ require_once "../../CONTROLLER/CarrinhoController.php";
 require_once "../../CONTROLLER/CatalogoController.php";
 require_once "../../CONTROLLER/ProdutoController.php";
 require_once "../../CONTROLLER/CupomController.php";
-require_once "../../CONTROLLER/VendaController.php"; // ADICIONAR
+require_once "../../CONTROLLER/VendaController.php";
 require_once "../../INCLUDE/alertas.php";
 include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/Menu_vend.php";
@@ -12,7 +12,7 @@ $carrinhoCtrl = new CarrinhoController();
 $catalogoCtrl = new CatalogoController();
 $produtoCtrl  = new ProdutoController();
 $cupom  = new CupomController();
-$vendaCtrl = new VendaController(); // ADICIONAR
+$vendaCtrl = new VendaController();
 
 if (!isset($_GET['id_cliente']) && !isset($_GET['nome'])) {
     die("Cliente não informado");
