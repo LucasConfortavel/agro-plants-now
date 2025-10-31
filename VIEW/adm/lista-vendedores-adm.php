@@ -69,16 +69,16 @@
     
     $usuarios = $controler_user->index("vendedor");
 
+    // Adicionar foto padrão para vendedores sem foto
+    foreach ($usuarios as &$usuario) {
+        if (empty($usuario['foto'])) {
+            $usuario['foto'] = ''; // Deixa vazio para usar fallback de iniciais
+        }
+    }
+    unset($usuario); // Limpar referência
+
     $total_vendedores = count($usuarios);
 
-    $limite = 4;
-    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-    if ($pagina_atual < 1) $pagina_atual = 1;
-    $offset = ($pagina_atual - 1) * $limite;
-
-    $total_paginas = ($total_vendedores > 0) ? ceil($total_vendedores / $limite) : 1;
-
-    $usuarios = array_slice($usuarios, $offset, $limite);
 
     if(isset($_SESSION['alerta'])){
         echo($_SESSION['alerta']);
@@ -121,7 +121,7 @@
                                 <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                                     <i class="fas fa-search search-icon"></i>
                                 </button>
-                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
+                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input" oninput="Pesquisar()" >
                             </div>
                         </form>
 
@@ -158,64 +158,11 @@
                                     <th class="jv_name">Nome</th>
                                     <th class="jv_banguela">Telefone</th>
                                     <th class="jv_data">Data de Nascimento</th>
-                                    <th class="jv_data">Status</th>
+                                    <th class="jv_status">Status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
-                                <?php if (count($usuarios) === 0): ?>
-                                    <tr>
-                                        <td colspan="5" style="text-align:center; padding: 2rem;">
-                                            Nenhum vendedor nesta página.
-                                        </td>
-                                    </tr>
-                                <?php else: ?>
-                                    <?php foreach ($usuarios as $vend): ?>
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= htmlspecialchars($vend['id']) ?>">
-                                            </td>
-                                            <td>
-                                                <div class="jv_customer-info">
-                                                    <div class="jv_avatar">
-                                                        <?= strtoupper(substr($vend['nome'], 0, 2)) ?>
-                                                    </div>
-                                                    <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars($vend['nome']) ?></h4>
-                                                        <p><?= htmlspecialchars($vend['email']) ?></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td><?= htmlspecialchars($vend['telefone']) ?></td>
-                                            <td><?= date("d/m/Y", strtotime($vend['data_nasc'])) ?></td>
-                                            <td><?= htmlspecialchars($vend['status']) ?></td>
-                                            <td class="jv_table-action">
-                                                <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <form class="jv_dropdown" method="GET" action="">
-                                                    <button type="submit" name="visualizar" value="<?= htmlspecialchars($vend['id']) ?>" class="jv_dropdown-item">
-                                                        <i class="fas fa-eye"></i> Visualizar
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <?php
-                                                        if($vend['status'] == "ATIVADO"){
-                                                            echo'
-                                                            <button type="button" onclick="abrirPopup(\'../../VIEW/pop-up/pop-up_remover.php?id=' . htmlspecialchars($vend['id']) . '\', \'Cadastro de Vendedores\')" class="jv_dropdown-item jv_danger">
-                                                                <i class="fa-solid fa-ban"></i> Desativar
-                                                            </button>';
-                                                        }else{
-                                                            echo'
-                                                            <button type="button" onclick="abrirPopup(\'../../VIEW/pop-up/pop-up_remover.php?id=' . htmlspecialchars($vend['id']) . '\', \'Cadastro de Vendedores\')" class="jv_dropdown-item jv_acess">
-                                                                <i class="fa-solid fa-power-off"></i> Ativar
-                                                            </button>';
-                                                        }
-                                                    ?>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -225,55 +172,35 @@
 
 
         <!-- Paginação -->
-        <?php if ($total_paginas > 1): ?>
-            <div class="jv_page-navigation">
-                <?php if ($pagina_atual > 1): ?>
-                    <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                <?php endif; ?>
+        <div class="jv_page-navigation">
+        </div>
 
-                <?php
-                if ($total_paginas <= 3) {
-                    $inicio = 1;
-                    $fim = $total_paginas;
-                } else {
-                    if ($pagina_atual <= 2) {
-                        $inicio = 1;
-                        $fim = 3;
-                    } elseif ($pagina_atual >= $total_paginas - 1) {
-                        $inicio = $total_paginas - 2;
-                        $fim = $total_paginas;
-                    } else {
-                        $inicio = $pagina_atual - 1;
-                        $fim = $pagina_atual + 1;
-                    }
-                }
-
-                for ($i = $inicio; $i <= $fim; $i++): ?>
-                    <a href="?pagina=<?= $i ?>" 
-                    class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                        <?= $i ?>
-                    </a>
-                <?php endfor; ?>
-
-                <?php if ($pagina_atual < $total_paginas): ?>
-                    <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
-
-
-
-        <!-- <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
-            <i class="fa-solid fa-circle-info"></i>
-        </a> -->
-
+        <script>
+            const dados= <?php echo json_encode($usuarios); ?>;
+        </script>
         <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
+
+        <script>
+        function abreviarNome(nomeCompleto) {
+            const partes = nomeCompleto.split(' ');
+            if (partes.length <= 6) {
+                return nomeCompleto;
+            }
+            return partes.slice(0, 6).join(' ') + '...';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const elementosNome = document.querySelectorAll('.jv-nome-vendedor');
+            
+            elementosNome.forEach(elemento => {
+                const nomeCompleto = elemento.textContent.trim();
+                const nomeAbreviado = abreviarNome(nomeCompleto);
+                elemento.textContent = nomeAbreviado;
+            });
+        });
+        </script>
 </main>
 </body>
 </html>

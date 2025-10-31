@@ -370,10 +370,6 @@ h3{
   white-space: nowrap;
 }
 
-.tabs-nav p{
-  color: black;
-}
-
 .po-tab-btn:hover {
   background: #f1f5f9;
   color: #45734b;
@@ -945,10 +941,6 @@ h3 {
   font-size: 0.875rem;
   color: #64748b;
   white-space: nowrap;
-}
-
-.tabs-nav p {
-  color: black;
 }
 
 .po-tab-btn:hover {
