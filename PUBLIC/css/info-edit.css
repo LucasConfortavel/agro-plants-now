@@ -34,7 +34,6 @@ body {
     gap: 25px;
 }
 
-/* Botões */
 .ym_btn-padrao, .ym_btn-remover, .ym_btn-salvar {
     display: flex;
     align-items: center;
@@ -57,9 +56,7 @@ body {
 }
 
 .ym_btn-padrao:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    background-color: rgb(90, 143, 93);
 }
 
 .ym_btn-remover {
@@ -102,7 +99,6 @@ body {
     }
 }
 
-/* Inputs */
 .ym_input-info {
     border: 2px solid #ddd;
     padding: 12px 16px;
@@ -121,22 +117,20 @@ body {
     box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
 }
 
-/* Header do Perfil com fundo verde e bolhas */
 .jp_profile-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px;
-    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    background:  #45734b;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap;
-    width: 97%;
+    width: 100%;
     position: relative;
     overflow: hidden;
 }
 
-/* Bolhas decorativas */
 .jp_profile-header::before {
     content: '';
     position: absolute;
@@ -226,7 +220,6 @@ body {
     z-index: 1;
 }
 
-/* Conteúdo */
 .jp_content {
     width: 100%;
     background: white;
@@ -275,7 +268,7 @@ body {
 }
 
 .jp_info-item:hover {
-    border-color: #4CAF50;
+    border-color: #45734b;
     box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
     transform: translateY(-2px);
 }
@@ -305,10 +298,9 @@ body {
     color: #4CAF50;
     text-transform: capitalize;
     width: fit-content;
-    border: 1px solid #c8e6c9;
+    border: 2px solid #c8e6c9;
 }
 
-/* Responsividade */
 @media screen and (max-width: 1024px) {
     .jp_main-content {
         padding: 20px;

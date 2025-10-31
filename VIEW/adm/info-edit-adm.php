@@ -97,7 +97,7 @@
             <h1 class="ym_titulo">Informações</h1>
             
             <div class="ym_area-info">
-                <header class="jp_profile-header" style=" width: 97%;">
+                <header class="jp_profile-header">
                     <div class="jp_profile-info">
                         <div class="jp_avatar-container">
                             <?php if (!empty($usuario['foto'])): ?>
