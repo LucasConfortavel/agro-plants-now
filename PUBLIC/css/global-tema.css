@@ -256,3 +256,39 @@ body.dark-theme .jv_customer-info:hover .jv_customer-details h4 {
 body.dark-theme .jv_customer-details p {
     color: #94a3b8;
 }
+
+body.dark-theme .jp_tabs,
+body.dark-theme .jp_info-section {
+    background-color: #343434;;
+}
+
+body.dark-theme .jp_info-item {
+    background: #3a3a3a;
+    border: 1px solid #555555;
+}
+
+body.dark-theme .jp_info-item label{
+    color: #ffffff;
+}
+
+body.dark-theme .jp_info-item p{
+    color: #45734b;
+}
+
+body.dark-theme .jp_info-item span{
+    color: #45734b;
+}
+
+body.dark-theme .jp_info-item #ym_tipo{
+    background-color: #45734b;
+    color: #ffffff;
+    border-color: #45734b;
+}
+
+body.dark-theme .ym_input-padrao{
+    background-color: #ffffff;
+}
+
+body.dark-theme .ym_area-input-pesquisa{
+    border-color:#555555;
+}
