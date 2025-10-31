@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-add-produto.css">
+
 </head>
 <body>
     <div class="eze-container">
@@ -71,7 +72,7 @@
                         <span class="eze-required">*</span>
                     </div>
                     <textarea type="text" id="descricaoProduto" class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" required maxlength="256"></textarea>
-                    <span id="contadorDescricao" class="contador-texto">0/256</span>
+                    <span id="contadorDescricao" class="contador-texto2">0/256</span>
                 </div>
             </div>
 
