@@ -336,17 +336,81 @@
     gap: 12px;
 }
 
-.jv_avatar {
+.jv_avatar-container {
+    position: relative;
     width: 40px;
     height: 40px;
+    min-width: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #45734b);
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid #45734b;
+    box-shadow: 0 2px 8px rgba(69, 115, 75, 0.15);
+    transition: all 0.3s ease;
+}
+
+.jv_avatar-container:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(69, 115, 75, 0.25);
+}
+
+.jv_avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+}
+
+.jv_avatar-img:hover {
+    opacity: 0.95;
+}
+
+.jv_avatar-fallback {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #45734b;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-weight: 600;
     font-size: 14px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.jv_customer-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.jv_customer-details h4 {
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 2px;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.jv_customer-info:hover .jv_customer-details h4 {
+    color: #45734b;
+}
+
+.jv_customer-details p {
+    font-size: 13px;
+    color: #6b7280;
+    margin: 0;
 }
 
 .jv_customer-details h4 {
@@ -658,5 +722,42 @@
         flex-wrap: wrap;
         gap: 4px;
         margin-top: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .jv_avatar-container {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+    
+    .jv_avatar-fallback {
+        font-size: 12px;
+    }
+    
+    .jv_customer-details h4 {
+        font-size: 13px;
+    }
+    
+    .jv_customer-details p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .jv_avatar-container {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        border-width: 1.5px;
+    }
+    
+    .jv_avatar-fallback {
+        font-size: 11px;
+    }
+    
+    .jv_customer-info {
+        gap: 8px;
     }
 }
