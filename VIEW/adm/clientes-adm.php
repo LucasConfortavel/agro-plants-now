@@ -119,36 +119,6 @@ if(isset($_SESSION['alerta'])){
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <style>
-        .ym_btn-criar-pedido {
-            background-color: #10b981;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .ym_btn-criar-pedido:hover {
-            background-color: #059669;
-            transform: translateY(-1px);
-        }
-        
-        .ym_btn-criar-pedido:disabled {
-            background-color: #d1d5db;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .ym_btn-criar-pedido i {
-            font-size: 12px;
-        }
-    </style>
 </head>
 <body>
 
@@ -177,7 +147,7 @@ if(isset($_SESSION['alerta'])){
 
                     <div class="jv_actions">
                         <div>
-                            <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
+                            <button class="ym_btn-remover" id="jv_removeSelected">
                                 <i class="fa-solid fa-trash-can"></i>
                                 Remover (<span id="jv_selectedCount">0</span>)
                             </button>
@@ -232,9 +202,9 @@ if(isset($_SESSION['alerta'])){
                                     <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                 </th>
                                 <th class="jv_name">Nome</th>
-                                <th class="jv_date">Criar Pedido</th>
+                                <th class="jv_date">Data</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
-                                <th class="jv_valor_gast">Carrinho</th>
+                                <th class="jv_valor_gast"></th>
                                 <th class="jv_actions-col"></th>
                             </tr>
                         </thead>
@@ -296,22 +266,7 @@ if(isset($_SESSION['alerta'])){
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td">
-                                                <?php if ($carrinhoTemItens): ?>
-                                                    <form method="POST" style="display:inline;">
-                                                        <input type="hidden" name="criar_pedido" value="<?= $cliente['id'] ?>">
-                                                        <button type="submit" class="ym_btn-criar-pedido" title="Criar pedido do carrinho">
-                                                            <i class="fas fa-file-invoice"></i>
-                                                            Criar Pedido
-                                                        </button>
-                                                    </form>
-                                                <?php else: ?>
-                                                    <button class="ym_btn-criar-pedido" disabled title="Carrinho vazio">
-                                                        <i class="fas fa-file-invoice"></i>
-                                                        Criar Pedido
-                                                    </button>
-                                                <?php endif; ?>
-                                            </div>
+                                            <p><?= htmlspecialchars($cliente['data_nasc']) ?></p>
                                         </td>
                                         <td>
                                             <?php if ($status !== 'SEM PEDIDOS'): ?>
@@ -324,27 +279,14 @@ if(isset($_SESSION['alerta'])){
                                                         <?= $icone ?>
                                                         <?= $status ?>
                                                     </span>
-                                                    
-                                                    <?php if ($status !== 'FINALIZADO' && $status !== 'CANCELADO'): ?>
-                                                        <form method="POST" style="display:inline; margin-left: 10px;">
-                                                            <input type="hidden" name="finalizar_pedido" value="<?= $id_pedido ?>">
-                                                            <button type="submit" class="ym_btn-padrao3" style="font-size: 11px; padding: 4px 8px;">
-                                                                <i class="fas fa-check"></i> Finalizar
-                                                            </button>
-                                                        </form>
-                                                    <?php endif; ?>
+                                                
                                                 </div>
                                             <?php else: ?>
-                                                <small style="color:#888">Nenhum pedido</small>
+                                                <small class="ym_small">Nenhum pedido</small>
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <div class="td">
-                                                <a href="carrinho.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" 
-                                                class="ym_btn-padrao2" title="Ver carrinho">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </a>
-                                            </div>
+                               
                                         </td>
                                         <td class="jv_table-action">
                                             <button class="jv_menu-btn" onclick="toggleDropdown(this)">
@@ -363,7 +305,7 @@ if(isset($_SESSION['alerta'])){
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
-                                <tr><td colspan="6" style="text-align: center; height: 49.7vh;">Nenhum cliente encontrado</td></tr>
+                                <tr><td class="ym_td" colspan="6">Nenhum cliente encontrado</td></tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
