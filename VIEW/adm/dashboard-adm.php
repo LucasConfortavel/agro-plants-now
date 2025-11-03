@@ -1,26 +1,14 @@
 <?php
-    include "../../INCLUDE/Menu_adm.php";
-    // include "../../INCLUDE/btn-notificacao.php";
-    include "../../INCLUDE/verificarLogin.php";
-    include "../../CONTROLLER/ProdutoController.php";
-    include "../../INCLUDE/vlibras.php";
-    include "../../CONTROLLER/VendaController.php";
-    include "../../CONTROLLER/ClienteController.php";
-    include "../../CONTROLLER/UsuarioController.php";
+include "../../INCLUDE/verificarLogin.php";
+include "../../INCLUDE/Menu_adm.php";
+include "../../INCLUDE/btn-notificacao.php";
+include "../../INCLUDE/vlibras.php";
+include "../../CONTROLLER/VendaController.php";
+include "../../CONTROLLER/ClienteController.php";
+include "../../CONTROLLER/UsuarioController.php";
 
-    $produtoController = new ProdutoController();
-    $produtos = $produtoController->index();
-    
-    $limite = 5;
-    $alertas = [];
-    
-    if (!isset($produtos['error'])) {
-        foreach ($produtos as $produto) {
-            if ($produto['quantidade'] <= $limite) {
-                $alertas[] = "O produto <b>{$produto['nome']}</b> está com apenas <b>{$produto['quantidade']}</b> unidades restantes!";
-            }
-        }
-    }
+
+// print_r($alertasVisiveis);    
 
     $venda_control = new VendaController();
     $vendas_totais = $venda_control->index();
@@ -102,24 +90,28 @@
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Total Vendido</div>
+                    <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value">R$<?= $total_vendido?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Total de Vendas</div>
+                    <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value"><?= $numero_vendas;?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Vendedores</div>
+                    <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value"><?=$TotalVendedor?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">
                     <div class="jp_card-title">Cliente Cadastrado</div>
+                    <div class="jp_card-indicator">22.0%</div>
                 </div>
                 <div class="jp_card-value"><?=$total_de_clientes?></div>
             </div>

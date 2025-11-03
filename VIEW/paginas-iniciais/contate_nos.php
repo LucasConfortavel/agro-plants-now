@@ -1,6 +1,20 @@
 <?php
 include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/Menu_superior.php";
+include "../../CONTROLLER/MensagensController.php";
+
+
+$mensagemController = new MessageController(); // nome da classe deve bater com o controller
+
+$mensagemEnviada = false;
+$erroEnvio = false;
+
+// Se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $criar = $mensagemController->criar();
+    $mensagemEnviada = true;
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -48,8 +62,15 @@ include "../../INCLUDE/Menu_superior.php";
 
         <div class="form-container">
             <h3 class="form-title">Contate-nos</h3>
-            <p id="form-message" class="form-status-message"></p>
-            <form id="contact-form">
+
+            <!-- Mensagens de status -->
+            <?php if ($mensagemEnviada): ?>
+                <p class="form-status-message success">Mensagem enviada com sucesso!</p>
+            <?php elseif ($erroEnvio): ?>
+                <p class="form-status-message error">Erro ao enviar a mensagem. Tente novamente.</p>
+            <?php endif; ?>
+
+            <form id="contact-form" method="POST">
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Nome" class="form-input" required>
                 </div>
@@ -57,7 +78,7 @@ include "../../INCLUDE/Menu_superior.php";
                     <input type="email" name="email" placeholder="E-mail" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="message" placeholder="Sua Mensagem" rows="6" class="form-textarea" required></textarea>
+                    <textarea name="mensagem" placeholder="Sua Mensagem" rows="6" class="form-textarea" required></textarea>
                 </div>
                 <button type="submit" class="submit-button">Enviar Mensagem</button>
             </form>
@@ -69,7 +90,7 @@ include "../../INCLUDE/Menu_superior.php";
         <?php include "../../INCLUDE/footer.php"; ?>
     </footer>
 
-    <script src="../../PUBLIC/JS/contate-nos.js"></script>
+    <!-- <script src="../../PUBLIC/JS/contate-nos.js"></script> -->
 
 
     <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
