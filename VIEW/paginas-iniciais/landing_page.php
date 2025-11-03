@@ -136,7 +136,7 @@ include "../../INCLUDE/vlibras.php";
     
     <script src="../../PUBLIC/JS/landing_page.js"></script>
     
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
                 initializeMenuFix();
@@ -220,6 +220,6 @@ include "../../INCLUDE/vlibras.php";
                 body.classList.remove("menu-open");
             }
         }
-    </script>
+    </script> -->
 </body>
 </html>

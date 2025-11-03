@@ -485,6 +485,36 @@
   height: 16px;
   accent-color: #059669;
 }
+
+.ym_btn-criar-pedido {
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ym_btn-criar-pedido:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+}
+
+.ym_btn-criar-pedido:disabled {
+    background-color: #d1d5db;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.ym_btn-criar-pedido i {
+    font-size: 12px;
+}
+
 /* ========================== */
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
