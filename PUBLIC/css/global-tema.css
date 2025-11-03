@@ -292,3 +292,8 @@ body.dark-theme .ym_input-padrao{
 body.dark-theme .ym_area-input-pesquisa{
     border-color:#555555;
 }
+
+body.dark-theme .jp_info-item .ym_input-info{
+  color: #45734b;
+  border:  1px solid #45734b;
+}
