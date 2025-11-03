@@ -5,26 +5,43 @@ class MessageController {
     private $mensagem;
 
     public function __construct() {
-        $this->mensagem = new MensagemeModel();
+        $this->mensagem = new MessageModel();
     }
 
     // Listar todas as mensagens enviadas ao admin
     public function index() {
-        $result = $this->mensagem->lerTodas();
-        // garante que sempre retorna array
-        return is_array($result) ? $result : [];
+        try {
+            $stmt = $this->mensagem->lerTodas();
+            $mensagens = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Passa para a view
+            include_once __DIR__ . '#';
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            include_once __DIR__ . '/../views/error.php';
+        }
     }
 
     // Criar uma nova mensagem
-
     public function criar() {
-        $this->mensagem->nome = trim($_POST['name']);
-        $this->mensagem->email = trim($_POST['email']);
-        $this->mensagem->mensagem = trim($_POST['mensagem']);
+        try {
+            $this->mensagem->nome = $_POST['nome'];
+            $this->mensagem->email = $_POST['email'];
+            $this->mensagem->mensagem = $_POST['mensagem'];
 
-        return $this->mensagem->criar();
+            if ($this->mensagem->criar()) {
+                header("Location: /contato?success=Mensagem enviada com sucesso!");
+                exit();
+            } else {
+                throw new Exception("Erro ao enviar mensagem.");
+            }
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            include_once __DIR__ . '/../views/error.php';
+        }
     }
 
+    // Mostrar uma mensagem específica
     public function mostrar($id) {
         try {
             $this->message->id = $id;
@@ -37,7 +54,7 @@ class MessageController {
             }
         } catch (Exception $e) {
             $error = $e->getMensagem();
-            // include_once __DIR__ . '/../views/error.php';
+            include_once __DIR__ . '/../views/error.php';
         }
     }
 
@@ -53,7 +70,7 @@ class MessageController {
             }
         } catch (Exception $e) {
             $error = $e->getMensagem();
-            // include_once __DIR__ . '/../views/error.php';
+            include_once __DIR__ . '/../views/error.php';
         }
     }
 }

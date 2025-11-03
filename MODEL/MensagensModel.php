@@ -10,7 +10,7 @@ class MensagemeModel {
 
     public function __construct() {
         $db = new Database();
-        $this->conn = $db->getConexao();
+        $this->conn = $db->conn;
     }
 
     // Criar nova mensagem
@@ -24,19 +24,19 @@ class MensagemeModel {
             $stmt->bindParam(':mensagem', $this->mensagem);
             return $stmt->execute();
         } catch (Exception $e) {
-            throw new Exception("Erro ao salvar mensagem: " . $e->getMessage());
+            throw new Exception("Erro ao salvar mensagem: " . $e->getMensagem());
         }
     }
 
     // Listar todas as mensagens
     public function lerTodas() {
-         try {
-            $sql = "SELECT * FROM mensagens ORDER BY data_msg DESC"; // ajuste o nome da coluna
+        try {
+            $sql = "SELECT * FROM mensagens ORDER BY data_envio DESC";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt;
         } catch (Exception $e) {
-            throw new Exception("Erro ao buscar mensagens: " . $e->getMessage());
+            throw new Exception("Erro ao buscar mensagens: " . $e->getMensagem());
         }
     }
 

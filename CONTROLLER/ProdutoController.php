@@ -75,18 +75,6 @@ class ProdutoController {
         }
     }
 
-    public function produtoNotificacoes($limite = 5) {
-        try {
-            return $this->produto->listarBaixoEstoque($limite);
-        } catch (Exception $e) {
-            error_log("Erro ao buscar notificações de produtos: " . $e->getMessage());
-            return [];
-        }
-    }
-
-
-
-
     public function mostrar($id) {
         try {
             $this->produto->id = $id;
@@ -120,7 +108,7 @@ class ProdutoController {
             $this->produto->reservado = $_POST['reservado'];
             $this->produto->id_cat = $_POST['id_cat'];
 
-            // Processar nova imagem se enviada,
+            // Processar nova imagem se enviada
             if (!empty($_FILES['foto']['name'])) {
                 $uploadResult = $imageController->upload($_FILES['foto'], 'prod_');
                 if ($uploadResult['success']) {
