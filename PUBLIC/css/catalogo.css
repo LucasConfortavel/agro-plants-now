@@ -461,6 +461,10 @@ body.dark-theme .ym_delete-link {
     transform: scale(1.1);
 }
 
+.ym_popup-content{
+  overflow: hidden;
+}
+
 /* ============================= */
 /* MELHORIAS DE RESPONSIVIDADE  */
 /* ============================= */
