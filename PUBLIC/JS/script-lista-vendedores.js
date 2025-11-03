@@ -112,7 +112,7 @@ function Pesquisar(){
     pesquisa = inputPesquisa.value;
     if(pesquisa == ""){
         GerarTabela();
-        return none;
+        return null;
     }
 
     info_tabela = document.getElementById("jv_customerTableBody");

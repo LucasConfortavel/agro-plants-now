@@ -117,7 +117,7 @@ if(isset($_SESSION['alerta'])){
                                 <th class="jv_desconto">Desconto</th>
                                 <th class="jv_cadastro">Data de Cadastro</th>
                                 <th class="jv_validade">Validade</th>
-                           
+                                <th class="jv_actions-col"></th>
                             </tr>
                         </thead>
                         <tbody id="jv_customerTableBody">
