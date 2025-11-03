@@ -10,19 +10,16 @@ function toggleDropdown(btn) {
 }
 
 document.addEventListener("click", e => {
-if (!e.target.closest(".jv_menu-btn") && !e.target.closest(".jv_dropdown")) {
-    document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
-}
+    if (!e.target.closest(".jv_menu-btn") && !e.target.closest(".jv_dropdown")) {
+        document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
+    }
 });
 
-
-
-//PESQUISA
-
+// PESQUISA
 formatarData = (dataStr) => {
-        const [ano, mes, dia] = dataStr.split('-');
-        return `${dia.padStart(2,'0')}/${mes.padStart(2,'0')}/${ano}`;
-    }
+    const [ano, mes, dia] = dataStr.split('-');
+    return `${dia.padStart(2,'0')}/${mes.padStart(2,'0')}/${ano}`;
+}
 
 function GerarTabela(){
     tabela = document.getElementById("jv_customerTableBody");
@@ -30,7 +27,7 @@ function GerarTabela(){
     limite = 4;
     const url = new URLSearchParams(window.location.search);
     if (url.has('pagina')) {
-        pagina = url.get('pagina');;
+        pagina = url.get('pagina');
     } else {
         pagina = 1;
     }
@@ -41,7 +38,6 @@ function GerarTabela(){
     }
 
     for (let i = 1; i <= total_pag; i++) {    
-       
         if(i == pagina){
             html+=`<a href='?pagina=${i}' class='jv_page-number active'>${i}</a>`;            
         }else{
@@ -59,21 +55,31 @@ function GerarTabela(){
     usuarios = dados.slice(((pagina-1)*4), (pagina*limite));
 
     usuarios.forEach(usuario => {
+        // Definir foto de perfil
+        const fotoPath = usuario['foto'] && usuario['foto'] !== '' ? 
+            `../../PUBLIC/img/${usuario['foto']}` : 
+            '../../PUBLIC/img/default_user.jpg';
+        
+        const iniciais = usuario['nome'].substring(0, 2).toUpperCase();
 
         html += `<tr><td>
-                    <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
-                </td>`
+                    <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="${usuario['id']}">
+                </td>`;
                 
         html += `<td>
-        <div class="jv_customer-info">
-            <div class="jv_avatar">
-                ${usuario['nome'].substring(0, 2).toUpperCase()}
+            <div class="jv_customer-info">
+                <div class="jv_avatar-container">
+                    ${usuario['foto'] && usuario['foto'] !== '' ? 
+                        `<img src="${fotoPath}" alt="${usuario['nome']}" class="jv_avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                         <div class="jv_avatar-fallback" style="display:none;">${iniciais}</div>` :
+                        `<div class="jv_avatar-fallback">${iniciais}</div>`
+                    }
+                </div>
+                <div class="jv_customer-details">
+                    <h4>${usuario['nome']}</h4>
+                    <p>${usuario['email']}</p>
+                </div>
             </div>
-            <div class="jv_customer-details">
-                <h4>${usuario['nome']}</h4>
-                <p>${usuario['email']}</p>
-            </div>
-        </div>
         </td>`;
         html += `<td>${usuario['telefone']}</td>`;
         html += `<td>${formatarData(usuario['data_nasc'])}</td>`;
@@ -86,26 +92,26 @@ function GerarTabela(){
                         <button type="submit" name="visualizar" value="${usuario['id']}" class="jv_dropdown-item">
                             <i class="fas fa-eye"></i> Visualizar
                         </button>
-                        <div class="jv_dropdown-separator"></div>`
+                        <div class="jv_dropdown-separator"></div>`;
+        
         if(usuario['status'] == "ATIVADO"){
             html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_danger">
                 <i class="fa-solid fa-ban"></i> Desativar
             </button>
             </form>
         </td>
-    </tr>`}
-    else{html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
+    </tr>`;
+        } else {
+            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
                 <i class="fa-solid fa-power-off"></i> Ativar
             </button>
             </form>
         </td>
-    </tr>`
-}
+    </tr>`;
+        }
     });
     tabela.innerHTML = html;
 }
-
-
 
 function Pesquisar(){
     inputPesquisa = document.getElementById("jv_searchInput");
@@ -121,25 +127,40 @@ function Pesquisar(){
     dados_filtrado=[];
 
     dados.forEach(dado => {
-        if (dado["nome"].toLowerCase().includes(pesquisa.toLowerCase()) || dado["email"].toLowerCase().includes(pesquisa.toLowerCase())) {
+        if (dado["nome"].toLowerCase().includes(pesquisa.toLowerCase()) || 
+            dado["email"].toLowerCase().includes(pesquisa.toLowerCase())) {
             dados_filtrado.push(dado);
         }
     });
 
-
     area_pags = document.getElementsByClassName('jv_page-navigation')[0];
     area_pags.innerHTML="";
+    
     dados_filtrado.forEach(usuario => {
+        const fotoPath = usuario['foto'] && usuario['foto'] !== '' ? 
+            `../../PUBLIC/img/${usuario['foto']}` : 
+            '../../PUBLIC/img/default_user.jpg';
+        
+        const iniciais = usuario['nome'].substring(0, 2).toUpperCase();
+
         html += `<tr><td>
-        <div class="jv_customer-info">
-            <div class="jv_avatar">
-                ${usuario['nome'].substring(0, 2).toUpperCase()}
+            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="${usuario['id']}">
+        </td>`;
+        
+        html += `<td>
+            <div class="jv_customer-info">
+                <div class="jv_avatar-container">
+                    ${usuario['foto'] && usuario['foto'] !== '' ? 
+                        `<img src="${fotoPath}" alt="${usuario['nome']}" class="jv_avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                         <div class="jv_avatar-fallback" style="display:none;">${iniciais}</div>` :
+                        `<div class="jv_avatar-fallback">${iniciais}</div>`
+                    }
+                </div>
+                <div class="jv_customer-details">
+                    <h4>${usuario['nome']}</h4>
+                    <p>${usuario['email']}</p>
+                </div>
             </div>
-            <div class="jv_customer-details">
-                <h4>${usuario['nome']}</h4>
-                <p>${usuario['email']}</p>
-            </div>
-        </div>
         </td>`;
         html += `<td>${usuario['telefone']}</td>`;
         html += `<td>${formatarData(usuario['data_nasc'])}</td>`;
@@ -152,25 +173,26 @@ function Pesquisar(){
                         <button type="submit" name="visualizar" value="${usuario['id']}" class="jv_dropdown-item">
                             <i class="fas fa-eye"></i> Visualizar
                         </button>
-                        <div class="jv_dropdown-separator"></div>`
+                        <div class="jv_dropdown-separator"></div>`;
+        
         if(usuario['status'] == "ATIVADO"){
-            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id='${usuario['id']}')" class="jv_dropdown-item jv_danger">
+            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_danger">
                 <i class="fa-solid fa-ban"></i> Desativar
             </button>
             </form>
         </td>
-    </tr>`
-            
-        }else{html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
+    </tr>`;
+        } else {
+            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
                 <i class="fa-solid fa-power-off"></i> Ativar
             </button>
             </form>
         </td>
-    </tr>`
+    </tr>`;
         }
-            });
+    });
 
     info_tabela.innerHTML = html;
-    }
+}
 
 GerarTabela();
