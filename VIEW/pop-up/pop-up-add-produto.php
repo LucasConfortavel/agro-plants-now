@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -63,6 +64,7 @@
                             <span class="eze-required">*</span>
                         </div>
                         <input type="number" class="ym_input-padrao" name="quantidade" placeholder="Quantidade em estoque" required min="0">
+
                     </div>
                 </div>
 
