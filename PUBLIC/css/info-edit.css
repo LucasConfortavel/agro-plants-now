@@ -75,18 +75,19 @@ body {
 }
 
 .ym_btn-salvar {
-    background-color: #2196F3;
+    background-color: #45734b;
     color: white;
     height: auto;
     max-width: 200px;
     display: none;
     grid-column-start: 3;
     grid-column-end: 4;
-    margin-top: 20px;
+    margin-top: 50px;
+    margin-left: 50px;
 }
 
 .ym_btn-salvar:hover {
-    background-color: #0b7dda;
+    background-color: rgb(90, 143, 93);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
 }
@@ -246,7 +247,6 @@ body {
     color: #333;
 }
 
-/* Seção de Informações */
 .jp_info-section {
     padding: 40px 30px;
 }
@@ -258,7 +258,6 @@ body {
     align-items: start;
 }
 
-/* Cards de informação com efeito de botão */
 .jp_info-item {
     display: flex;
     flex-direction: column;

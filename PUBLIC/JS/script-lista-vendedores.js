@@ -1,3 +1,12 @@
+function abreviarNome(nomeCompleto) {
+    const partes = nomeCompleto.split(' ');
+    if (partes.length <= 3) {
+        return nomeCompleto;
+    }
+    // Mantém os 3 primeiros nomes e adiciona "..."
+    return partes.slice(0, 3).join(' ') + '...';
+}
+
 function toggleDropdown(btn) {
     const dropdown = btn.nextElementSibling;
     const isVisible = dropdown.style.display === "block";
@@ -76,7 +85,7 @@ function GerarTabela(){
                     }
                 </div>
                 <div class="jv_customer-details">
-                    <h4>${usuario['nome']}</h4>
+                    <h4>${abreviarNome(usuario['nome'])}</h4>
                     <p>${usuario['email']}</p>
                 </div>
             </div>
@@ -157,7 +166,7 @@ function Pesquisar(){
                     }
                 </div>
                 <div class="jv_customer-details">
-                    <h4>${usuario['nome']}</h4>
+                    <h4>${abreviarNome(usuario['nome'])}</h4>
                     <p>${usuario['email']}</p>
                 </div>
             </div>

@@ -69,14 +69,6 @@
     
     $usuarios = $controler_user->index("vendedor");
 
-    // Adicionar foto padrão para vendedores sem foto
-    foreach ($usuarios as &$usuario) {
-        if (empty($usuario['foto'])) {
-            $usuario['foto'] = ''; // Deixa vazio para usar fallback de iniciais
-        }
-    }
-    unset($usuario); // Limpar referência
-
     $total_vendedores = count($usuarios);
 
 
@@ -158,7 +150,7 @@
                                     <th class="jv_name">Nome</th>
                                     <th class="jv_banguela">Telefone</th>
                                     <th class="jv_data">Data de Nascimento</th>
-                                    <th class="jv_status">Status</th>
+                                    <th class="jv_data">Status</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
@@ -181,26 +173,6 @@
         <script src="../../PUBLIC/JS/script-lista-vendedores.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
-
-        <script>
-        function abreviarNome(nomeCompleto) {
-            const partes = nomeCompleto.split(' ');
-            if (partes.length <= 6) {
-                return nomeCompleto;
-            }
-            return partes.slice(0, 6).join(' ') + '...';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const elementosNome = document.querySelectorAll('.jv-nome-vendedor');
-            
-            elementosNome.forEach(elemento => {
-                const nomeCompleto = elemento.textContent.trim();
-                const nomeAbreviado = abreviarNome(nomeCompleto);
-                elemento.textContent = nomeAbreviado;
-            });
-        });
-        </script>
 </main>
 </body>
 </html>
