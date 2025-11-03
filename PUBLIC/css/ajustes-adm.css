@@ -459,8 +459,8 @@ body.dark-theme .form-group input.error {
 }
 
 .form-actions {
+  display: none;
   width: 300px;
-  display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -1307,7 +1307,22 @@ body.dark-theme .btn-upload:disabled {
     background: var(--primary-dark);
 }
 
+.page-header {
+  margin-top: 50px; 
+}
+
+.profile-header {
+  margin-top: 20px; 
+}
+
+
 /* Responsivo para seção de foto */
+@media (max-width: 768px) {
+  .page-header {
+      margin-top: 40px;
+  }
+}
+
 @media (max-width: 992px) {
     .photo-container {
         grid-template-columns: 280px 1fr;

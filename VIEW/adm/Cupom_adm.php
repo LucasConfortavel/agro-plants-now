@@ -87,7 +87,7 @@ if(isset($_SESSION['alerta'])){
 
                     <div class="jv_actions">
                         <div>
-                            <button class="ym_btn-remover" id="jv_removeSelected" style="display: none;">
+                            <button class="ym_btn-remover" id="jv_removeSelected">
                                 <i class="fa-solid fa-trash-can"></i>
                                 Remover (<span id="jv_selectedCount">0</span>)
                             </button>

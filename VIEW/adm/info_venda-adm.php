@@ -107,72 +107,6 @@ if(isset($_SESSION['alerta'])){
     <link rel="stylesheet" href="../../PUBLIC/css/venda-info-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .info-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #3e704c;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-top: 10px;
-        }
-        
-        .P_customer-card {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .vendedor-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-left: auto;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        
-        .vendedor-info i {
-            font-size: 20px;
-            color: #3e704c;
-        }
-
-        .vendedor-info {
-            border: solid 2px #3e704c;
-        }
-        
-        .readonly-message {
-            background: #ffffffff;
-            border-left: 4px solid #3e704c;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .readonly-message i {
-            color: #3e704c;
-            font-size: 20px;
-        }
-        
-        .readonly-message p {
-            margin: 0;
-            color: #3e704c;
-            font-weight: 500;
-        }
-        
-        .item-disabled {
-            opacity: 0.9;
-            pointer-events: none;
-        }
-    </style>
 </head>
 <body>
 
@@ -200,8 +134,8 @@ if(isset($_SESSION['alerta'])){
             <div class="vendedor-info">
                 <i class="fa-solid fa-user-tie"></i>
                 <div>
-                    <div style="font-size: 12px; color: black;">Vendedor</div>
-                    <div style="font-weight: 600; color: black;"><?= htmlspecialchars($nome_vendedor) ?></div>
+                    <h1 class="ym_" style="font-size: 12px; color: black;">Vendedor</h1>
+                    <p style="font-weight: 600; color: black;"><?= htmlspecialchars($nome_vendedor) ?></p>
                 </div>
             </div>
         </div>
