@@ -34,6 +34,14 @@
             $limite  = 11;
         }
         
+        // Definir foto de perfil
+        $fotoPath = '../../PUBLIC/img/default_user.jpg'; // Foto padrão
+        if (!empty($usuario['foto'])) {
+            $fotoPath = "../../PUBLIC/img/{$usuario['foto']}";
+        }
+        
+        // Pegar iniciais para fallback
+        $iniciais = strtoupper(substr($usuario['nome'], 0, 2));
 
         $hoje = new DateTime();
         
@@ -89,9 +97,17 @@
             <h1 class="ym_titulo">Informações</h1>
             
             <div class="ym_area-info">
-                <header class="jp_profile-header" style=" width: 97%;">
+                <header class="jp_profile-header">
                     <div class="jp_profile-info">
-                        <img src="../../PUBLIC/img/img_user.png" alt="Profile" class="jp_profile-pic">
+                        <div class="jp_avatar-container">
+                            <?php if (!empty($usuario['foto'])): ?>
+                                <img src="<?= $fotoPath ?>" alt="<?= $usuario['nome'] ?>" class="jp_profile-pic" 
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="jp_avatar-fallback" style="display:none;"><?= $iniciais ?></div>
+                            <?php else: ?>
+                                <div class="jp_avatar-fallback"><?= $iniciais ?></div>
+                            <?php endif; ?>
+                        </div>
                         
                         <div class="profile-text">
                             <h2><?= $usuario['nome']?></h2>
@@ -115,7 +131,7 @@
                             <div class="jp_info-item">
                                 <label>Nome</label>
                                 <p><?= $usuario['nome']?></p>
-                                <input class="ym_input-info" name="nome" type="text" value=<?= $usuario['nome']?>>
+                                <input class="ym_input-info" name="nome" type="text" value="<?= $usuario['nome']?>">
                             </div>
                             <div class="jp_info-item">
                                 <label>Idade</label>
@@ -124,17 +140,17 @@
                             <div class="jp_info-item">
                                 <label>Data de nascimento</label>
                                 <p><?= $dataNascimento->format('d/m/Y')?></p>
-                                <input class="ym_input-info" name="data_nasc" type="date" value=<?=$usuario['data_nasc']?>>
+                                <input class="ym_input-info" name="data_nasc" type="date" value="<?=$usuario['data_nasc']?>">
                             </div>
                             <div class="jp_info-item">
                                 <label>E-mail</label>
                                 <p><?= $usuario['email']?></p>
-                                <input class="ym_input-info" name="email" type="text" value=<?= $usuario['email']?>>
+                                <input class="ym_input-info" name="email" type="text" value="<?= $usuario['email']?>">
                             </div>
                             <div class="jp_info-item">
                                 <label>Número de telefone</label>
                                 <p><?= $usuario['telefone']?></p>
-                                <input class="ym_input-info" name="telefone" type="text" value=<?= $usuario['telefone']?>>
+                                <input class="ym_input-info" name="telefone" type="text" value="<?= $usuario['telefone']?>">
                             </div>
                             <div class="jp_info-item">
                                 <label>Posição</label>
@@ -143,7 +159,7 @@
                             <div class="jp_info-item">
                                 <label><?= $CPF_CNPJ?></label>
                                 <p><?= $usuario[$CPF_CNPJ]?></p>
-                                <input class="ym_input-info" name=<?= $CPF_CNPJ?>  maxlength=<?= $limite ?> type="text" value=<?= $usuario[$CPF_CNPJ]?>>
+                                <input class="ym_input-info" name="<?= $CPF_CNPJ?>" maxlength="<?= $limite ?>" type="text" value="<?= $usuario[$CPF_CNPJ]?>">
                             </div>
                             <?php
                             if($tipo_user=="vendedor"){
@@ -151,7 +167,7 @@
                                 <div class="jp_info-item">
                                     <label>CEP</label>
                                     <p>' . $usuario['cep'] . '</p>
-                                    <input class="ym_input-info" name="cep" type="text"  maxlength="8" value=' . $usuario['cep'] . '>
+                                    <input class="ym_input-info" name="cep" type="text"  maxlength="8" value="' . $usuario['cep'] . '">
                                 </div>';
                             }
                             
