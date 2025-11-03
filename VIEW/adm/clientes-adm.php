@@ -202,9 +202,9 @@ if(isset($_SESSION['alerta'])){
                                     <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                 </th>
                                 <th class="jv_name">Nome</th>
-                                <th class="jv_date">Criar Pedido</th>
+                                <th class="jv_date">Data</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
-                                <th class="jv_valor_gast">Carrinho</th>
+                                <th class="jv_valor_gast"></th>
                                 <th class="jv_actions-col"></th>
                             </tr>
                         </thead>
@@ -266,22 +266,7 @@ if(isset($_SESSION['alerta'])){
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="td">
-                                                <?php if ($carrinhoTemItens): ?>
-                                                    <form method="POST">
-                                                        <input type="hidden" name="criar_pedido" value="<?= $cliente['id'] ?>">
-                                                        <button type="submit" class="ym_btn-criar-pedido" title="Criar pedido do carrinho">
-                                                            <i class="fas fa-file-invoice"></i>
-                                                            Criar Pedido
-                                                        </button>
-                                                    </form>
-                                                <?php else: ?>
-                                                    <button class="ym_btn-criar-pedido" disabled title="Carrinho vazio">
-                                                        <i class="fas fa-file-invoice"></i>
-                                                        Criar Pedido
-                                                    </button>
-                                                <?php endif; ?>
-                                            </div>
+                                            <p><?= htmlspecialchars($cliente['data_nasc']) ?></p>
                                         </td>
                                         <td>
                                             <?php if ($status !== 'SEM PEDIDOS'): ?>
@@ -294,27 +279,14 @@ if(isset($_SESSION['alerta'])){
                                                         <?= $icone ?>
                                                         <?= $status ?>
                                                     </span>
-                                                    
-                                                    <?php if ($status !== 'FINALIZADO' && $status !== 'CANCELADO'): ?>
-                                                        <form method="POST">
-                                                            <input type="hidden" name="finalizar_pedido" value="<?= $id_pedido ?>">
-                                                            <button type="submit" class="ym_btn-padrao3">
-                                                                <i class="fas fa-check"></i> Finalizar
-                                                            </button>
-                                                        </form>
-                                                    <?php endif; ?>
+                                                
                                                 </div>
                                             <?php else: ?>
                                                 <small class="ym_small">Nenhum pedido</small>
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <div class="td">
-                                                <a href="carrinho.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" 
-                                                class="ym_btn-padrao2" title="Ver carrinho">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </a>
-                                            </div>
+                               
                                         </td>
                                         <td class="jv_table-action">
                                             <button class="jv_menu-btn" onclick="toggleDropdown(this)">

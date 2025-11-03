@@ -233,3 +233,27 @@ body.dark-theme .po-tab-btn {
 body.dark-theme canvas {
   color: #fff;
 }
+
+body.dark-theme .jv_avatar-container {
+    background: #2c2c2c;
+    border-color: #45734b;
+    box-shadow: 0 2px 8px rgba(69, 115, 75, 0.25);
+}
+
+body.dark-theme .jv_avatar-container:hover {
+    box-shadow: 0 4px 12px rgba(69, 115, 75, 0.35);
+    border-color: #5a8f62;
+}
+
+body.dark-theme .jv_customer-details h4 {
+    color: #e0e0e0;
+}
+
+body.dark-theme .jv_customer-info:hover .jv_customer-details h4 {
+    color: #5a8f62;
+}
+
+body.dark-theme .jv_customer-details p {
+    color: #94a3b8;
+}
+

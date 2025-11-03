@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-add-produto.css">
+
 </head>
 <body>
     <div class="eze-container">
@@ -71,7 +72,7 @@
                         <span class="eze-required">*</span>
                     </div>
                     <textarea type="text" id="descricaoProduto" class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" required maxlength="256"></textarea>
-                    <span id="contadorDescricao" class="contador-texto">0/256</span>
+                    <span id="contadorDescricao" class="contador-texto2">0/256</span>
                 </div>
             </div>
 
@@ -105,20 +106,36 @@
     
     <script src="../../PUBLIC/JS/script-select.js"></script>
     <script src="../../PUBLIC/JS/pop-up-add-produto.js"></script>
+
     <script>
-        const inputNome = document.getElementById('nomeProduto');
-        const contador = document.getElementById('contadorNome');
+    const inputNome = document.getElementById('nomeProduto');
+    const contador = document.getElementById('contadorNome');
+    const textareaDescricao = document.getElementById('descricaoProduto');
+    const contador2 = document.getElementById('contadorDescricao');
+    const form = document.querySelector('.ym_form-pop-up');
 
-        inputNome.addEventListener('input', () => {
-            contador.textContent = `${inputNome.value.length}/256`;
-        });
 
-        const textareaDescricao = document.getElementById('descricaoProduto');
-        const contador2 = document.getElementById('contadorDescricao');
+    inputNome.addEventListener('input', () => {
+        const semEspacos = inputNome.value.replace(/\s/g, '');
+        contador.textContent = `${semEspacos.length}/256`;
+    });
 
-        textareaDescricao.addEventListener('input', () => {
-            contador2.textContent = `${textareaDescricao.value.length}/256`;
-        });
+
+    textareaDescricao.addEventListener('input', () => {
+        const semEspacosDesc = textareaDescricao.value.replace(/\s/g, '');
+        contador2.textContent = `${semEspacosDesc.length}/256`;
+    });
+
+
+    form.addEventListener('submit', (e) => {
+        const nomeValido = inputNome.value.trim().length > 0;
+        const descricaoValida = textareaDescricao.value.trim().length > 0;
+
+        if (!nomeValido || !descricaoValida) {
+            e.preventDefault();
+            alert('Os campos "Nome" e "Descrição" não podem conter apenas espaços.');
+        }
+    });
     </script>
 </body>
 </html>
