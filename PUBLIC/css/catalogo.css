@@ -478,7 +478,10 @@ body.dark-theme .ym_delete-link {
 
 .ym_popup-content{
   overflow: hidden;
+  height: 100%;
+  width: 40%;
 }
+
 
 /* ============================= */
 /* MELHORIAS DE RESPONSIVIDADE  */

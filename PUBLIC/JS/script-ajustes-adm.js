@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
-
-  // -------------------------
-  // Alternar Abas
-  // -------------------------
   const tabButtons = document.querySelectorAll(".tab-btn");
   const tabContents = document.querySelectorAll(".tab-content");
 
@@ -138,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (confirmation === "EXCLUIR") {
       showToast("Conta excluída com sucesso!", "success");
       modal.classList.remove("open");
-      // Aqui você faria uma chamada para excluir a conta no back-end
     } else {
       showToast("Digite EXCLUIR para confirmar", "error");
     }

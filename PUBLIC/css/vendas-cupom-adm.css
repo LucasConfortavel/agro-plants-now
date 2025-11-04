@@ -192,6 +192,7 @@
 }
 
 .ym_btn-remover{
+    display: none;
     gap: 12px;
     width: 231px;
 }
