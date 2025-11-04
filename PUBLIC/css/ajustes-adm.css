@@ -399,7 +399,7 @@ body.dark-theme .form-group input.error {
   cursor: pointer;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.3s;
+  /* transition: all 0.3s; */
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -411,9 +411,9 @@ body.dark-theme .form-group input.error {
   width: 100px;
 }
 
-.btn-edit:hover {
+/* .btn-edit:hover {
   background: var(--primary-hover);
-}
+} */
 
 .btn-save {
   background: var(--primary-color);
