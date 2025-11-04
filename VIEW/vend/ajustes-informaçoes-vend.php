@@ -237,7 +237,7 @@ if(isset($_SESSION['alerta'])){
                             <div class="preview-area" id="previewArea" style="display: none;">
                                 <div class="preview-header">
                                     <h4><i class="fas fa-eye"></i> Pré-visualização</h4>
-                                    <button type="button" class="btn-remove-preview" onclick="removePreview()">
+                                    <button type="button" class="btn-remove-preview" onclick="removePreview()" style="width: 30px; align-items: center; justify-content: center;">
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
@@ -357,7 +357,6 @@ if(isset($_SESSION['alerta'])){
             }
         }
         
-        // Função para mudar para aba de foto
         function switchToPhotoTab() {
             const photoTab = document.querySelector('.tab-btn[data-tab="photo"]');
             if (photoTab) {
@@ -383,7 +382,6 @@ if(isset($_SESSION['alerta'])){
     <script src="../../PUBLIC/JS/script-ajustes-adm.js"></script>
     
     <script>
-        // Funcionalidade de upload de foto com drag-and-drop e preview
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('foto');
         const previewArea = document.getElementById('previewArea');
@@ -391,7 +389,6 @@ if(isset($_SESSION['alerta'])){
         const fileInfo = document.getElementById('fileInfo');
         const btnUpload = document.getElementById('btnUpload');
 
-        // Prevenir comportamento padrão
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             uploadArea.addEventListener(eventName, preventDefaults, false);
         });
@@ -401,7 +398,6 @@ if(isset($_SESSION['alerta'])){
             e.stopPropagation();
         }
 
-        // Highlight ao arrastar
         ['dragenter', 'dragover'].forEach(eventName => {
             uploadArea.addEventListener(eventName, () => {
                 uploadArea.classList.add('drag-over');
@@ -414,12 +410,10 @@ if(isset($_SESSION['alerta'])){
             }, false);
         });
 
-        // Handle drop
         uploadArea.addEventListener('drop', (e) => {
             const dt = e.dataTransfer;
             const files = dt.files;
             
-            // Transferir arquivo para o input
             const dataTransfer = new DataTransfer();
             for (let i = 0; i < files.length; i++) {
                 dataTransfer.items.add(files[i]);
@@ -429,7 +423,6 @@ if(isset($_SESSION['alerta'])){
             handleFiles(files);
         }, false);
 
-        // Handle file input change
         fileInput.addEventListener('change', (e) => {
             handleFiles(e.target.files);
         });
@@ -439,26 +432,22 @@ if(isset($_SESSION['alerta'])){
             
             const file = files[0];
             
-            // Validar tipo de arquivo
             if (!file.type.startsWith('image/')) {
                 showToast('Por favor, selecione apenas arquivos de imagem', 'error');
                 return;
             }
             
-            // Validar tamanho (5MB)
             if (file.size > 5 * 1024 * 1024) {
                 showToast('A imagem deve ter no máximo 5MB', 'error');
                 return;
             }
             
-            // Mostrar preview
             const reader = new FileReader();
             reader.onload = (e) => {
                 previewImg.src = e.target.result;
                 uploadArea.style.display = 'none';
                 previewArea.style.display = 'block';
                 
-                // Mostrar informações do arquivo
                 const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
                 fileInfo.innerHTML = `
                     <strong>${file.name}</strong><br>
