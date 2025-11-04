@@ -303,6 +303,7 @@ if(isset($_SESSION['alerta'])){
     </main>
 
     <div id="toast-container"></div>
+<<<<<<< HEAD
 
     <script>
         const themeOptions = document.querySelectorAll('.theme-option');
@@ -466,5 +467,8 @@ if(isset($_SESSION['alerta'])){
             btnUpload.disabled = true;
         }
     </script>
+=======
+    <script src="../../PUBLIC/JS/script-ajustes-adm.js"></script>
+>>>>>>> e3a499432867584cd5c84a8183c5ae0170b33cc6
 </body>
-</html>
+</html> 
