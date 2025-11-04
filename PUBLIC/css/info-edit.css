@@ -77,10 +77,6 @@ body {
     height: auto;
     max-width: 200px;
     display: none;
-    grid-column-start: 3;
-    grid-column-end: 4;
-    margin-top: 50px;
-    margin-left: 50px;
 }
 
 .ym_btn-salvar:hover {
@@ -235,6 +231,14 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 15px;
+}
+
+.jp_tabs-sc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
     gap: 15px;
 }
 
