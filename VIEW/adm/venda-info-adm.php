@@ -5,7 +5,7 @@ require_once "../../CONTROLLER/UsuarioController.php";
 require_once "../../CONTROLLER/ProdutoController.php";
 require_once "../../INCLUDE/alertas.php";
 include "../../INCLUDE/vlibras.php";
-include "../../INCLUDE/Menu_vend.php";
+include "../../INCLUDE/Menu_adm.php";
 require_once "../../INCLUDE/verificarLogin.php";
 
 if (!isset($_GET['id'])) {
