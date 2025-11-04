@@ -180,9 +180,6 @@ function GerarTabela(){
             <tr>
                 <td>
                     <div class="jv_customer-info">
-                        <div class="jv_avatar">
-                            ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
-                        </div>
                         <div class="jv_customer-details">
                             <h4>${venda['nome_vendedor']}</h4>
                             <p>${venda['email_vendedor']}</p>
@@ -213,9 +210,6 @@ function GerarTabela(){
             html +=`
             <td>
                 <div class="jv_customer-info">
-                    <div class="jv_avatar">
-                        ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
-                    </div>
                     <div class="jv_customer-details">
                         <h4>${venda['nome_vendedor']}</h4>
                         <p>${venda['email_vendedor']}</p>

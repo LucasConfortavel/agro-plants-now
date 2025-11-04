@@ -25,8 +25,7 @@ body.dark-theme .jv_card-header {
 }
 
 /* Botões */
-body.dark-theme .ym_btn-padrao,
-body.dark-theme .ym_btn-remover {
+body.dark-theme .ym_btn-padrao {
   background: var(--primary-color);
   color: #fff;
   border: none;
@@ -296,4 +295,8 @@ body.dark-theme .ym_area-input-pesquisa{
 body.dark-theme .jp_info-item .ym_input-info{
   color: #45734b;
   border:  1px solid #45734b;
+}
+
+body.dark-theme .ym_img-placeholder span{
+  color: #ffffff;
 }
