@@ -86,12 +86,12 @@ if(isset($_SESSION['alerta'])){
                     </form>
 
                     <div class="jv_actions">
-                        <div>
+                        <!-- <div>
                             <button class="ym_btn-remover" id="jv_removeSelected">
                                 <i class="fa-solid fa-trash-can"></i>
                                 Remover (<span id="jv_selectedCount">0</span>)
                             </button>
-                        </div>
+                        </div> -->
                         <div>
                             <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php','Cadastro de Cupom')">
                                 <i class="fas fa-plus"></i>

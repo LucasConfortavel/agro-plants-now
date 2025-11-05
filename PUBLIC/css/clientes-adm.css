@@ -439,6 +439,15 @@
   color: white;
   font-weight: 600;
   font-size: 14px;
+  border: 2px solid #45734b;
+  box-shadow: 0 2px 8px rgba(69, 115, 75, 0.15);
+  transition: all 0.3s ease;
+}
+
+.jv_avatar:hover{
+  border: 2px solid #1a962a;
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(69, 115, 75, 0.25);
 }
 
 .jv_customer-details h4 {
