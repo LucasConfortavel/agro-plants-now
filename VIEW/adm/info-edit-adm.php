@@ -156,8 +156,7 @@
                             </div>
                             <div class="jp_info-item">
                                 <label><?= $CPF_CNPJ?></label>
-                                <p><?= $usuario[$CPF_CNPJ]?></p>
-                                <input class="ym_input-info" name="<?= $CPF_CNPJ?>" maxlength="<?= $limite ?>" type="text" value="<?= $usuario[$CPF_CNPJ]?>">
+                                <span><?= $usuario[$CPF_CNPJ]?></span>
                             </div>
                             <?php
                             if($tipo_user=="vendedor"){
