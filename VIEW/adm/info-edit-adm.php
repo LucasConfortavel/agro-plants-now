@@ -122,11 +122,6 @@
                     <nav class="jp_tabs">
                         <h3>Informações pessoais</h3>
                         <button class="ym_btn-editar ym_btn-padrao" onclick="edit()">Editar <i class="fa-solid fa-pen-to-square"></i> </button>
-                        <div class="jp_tabs-sc">
-                            <button class="ym_btn-salvar ym_btn-padrao">Salvar <i class="fa-solid fa-floppy-disk"></i> </button>
-                            <button class="ym_btn-remover" onclick="location.reload();">Cancelar <i class="fa-solid fa-ban"></i> </button>
-                        </div>
-
                     </nav>
 
                     <div class="jp_info-section">
@@ -175,6 +170,11 @@
                             }
                             
                             ?>
+
+                            <div class="jp_tabs-sc">
+                                <button class="ym_btn-salvar ym_btn-padrao">Salvar <i class="fa-solid fa-floppy-disk"></i> </button>
+                                <button class="ym_btn-remover" onclick="location.reload();">Cancelar <i class="fa-solid fa-ban"></i> </button>
+                            </div>
 
                         </form>
                     </div>
