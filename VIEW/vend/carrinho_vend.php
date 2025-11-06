@@ -331,18 +331,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produto'])) {
-    $id_produto = $_POST['id_produto'];
-    $quantidade = $_POST['quantidade'] ?? 1;
+    $id_produto = (int) $_POST['id_produto'];
+    $quantidade = (int) ($_POST['quantidade'] ?? 1);
 
     $produto = $produtoCtrl->mostrar($id_produto);
     $preco_unitario = $produto['preco'] ?? 0;
+    $estoque_disponivel = $produto['quantidade'] ?? 0; // campo de estoque do produto
 
-    $resultado = $carrinhoCtrl->adicionarItem($id_carrinho, $id_produto, $quantidade);
-
-    if (isset($resultado['success'])) {
-        echo '<script>exibirAlerta("Produto adicionado ao carrinho!","sucesso");</script>';
+    // Verifica se a quantidade ultrapassa o estoque
+    if ($quantidade > $estoque_disponivel) {
+        echo '<script>exibirAlerta("A quantidade solicitada ultrapassa o estoque disponível (estoque: '.$estoque_disponivel.').","error");</script>';
     } else {
-        echo '<script>exibirAlerta("Erro: '.$resultado['error'].'","error");</script>';
+        // Adiciona o produto normalmente
+        $resultado = $carrinhoCtrl->adicionarItem($id_carrinho, $id_produto, $quantidade);
+
+        if (isset($resultado['success'])) {
+            echo '<script>exibirAlerta("Produto adicionado ao carrinho!","sucesso");</script>';
+        } else {
+            echo '<script>exibirAlerta("Erro: '.$resultado['error'].'","error");</script>';
+        }
     }
 }
 
@@ -735,40 +742,7 @@ if(isset($_SESSION['alerta'])){
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                           <?php
-                             
-            
-                                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produto'], $_POST['quantidade'])) {
-                                    $id_produto = (int) $_POST['id_produto'];
-                                    $quantidade = (int) $_POST['quantidade'];
-
-                                  
-                                    $produto = $produtoCtrl->Mostrar($id_produto);
-
-                                    if ($produto) {
-                                        $estoque_disponivel = (int) $produto['quantidade'];
-
-                                        if ($quantidade > $estoque_disponivel) {
-                                          
-                                            echo "<script>
-                                                    exibirAlerta('A quantidade solicitada excede o estoque disponível (estoque : {$estoque_disponivel}).', 'erro');
-                                                </script>"; 
-                                         
-                                        } else {
-                                         
-                                            $carrinhoCtrl->adicionarItem($id_carrinho, $id_produto, $quantidade);
-                                            echo "<script>
-                                                    exibirAlerta('Produto adicionado ao carrinho com sucesso!', 'sucesso');
-                                                </script>";
-                                        }
-                                    } else {
-                                        echo "<script>
-                                                exibirAlerta('Produto não encontrado.', 'erro');
-                                            </script>";
-                                    }
-                                }
-
-                            ?>
+                 
                             <div class="P_form-group">
                             <label for="quantidade">Quantidade</label>
                             <input type="number" id="quantidade" name="quantidade" value="1" min="1" class="P_number-input" required <?= $pedido_bloqueado ? 'disabled' : '' ?>>
