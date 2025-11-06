@@ -300,3 +300,8 @@ body.dark-theme .jp_info-item .ym_input-info{
 body.dark-theme .ym_img-placeholder span{
   color: #ffffff;
 }
+
+body.dark-theme .po-tab-btn hover{
+    background-color: #555555;;
+    border-color: #45734b;
+}

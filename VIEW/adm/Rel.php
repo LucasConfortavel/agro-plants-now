@@ -243,7 +243,20 @@ $total_vendas = count($vendas_filtradas);
     <link rel="stylesheet" href="../../PUBLIC/css/relatorio.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
+
+    <style>
+    .po-tab-btn.po-active:hover {
+      background: #52945bff;
+      color: white; 
+    }
+
+    .po-tab-btn:hover {
+      background: #555555;
+      color: white;
+    }
+    </style>
+
+</head>
 <body>
  
    
