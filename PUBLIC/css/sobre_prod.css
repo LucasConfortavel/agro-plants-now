@@ -255,6 +255,8 @@ body.dark-theme .ym-alert-error {
   padding: 20px;
   gap: 10px;
   position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
 .gs_main-image-wrapper {
