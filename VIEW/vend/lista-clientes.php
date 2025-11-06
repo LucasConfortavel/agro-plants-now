@@ -308,14 +308,14 @@ if(isset($_SESSION['alerta'])){
                                                 <small style="color:#888">Nenhum pedido</small>
                                             <?php endif; ?>
                                         </td>
-                                        <td>
-                                            <div class="td">
-                                                <a href="carrinho_vend.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" 
-                                                class="ym_btn-padrao2" title="Ver carrinho">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </a>
-                                            </div>
-                                        </td>
+                                            <td>
+                                                <div class="td">
+                                                    <a href="selecao_tipo_venda.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" 
+                                                    class="ym_btn-padrao2" title="Selecionar tipo de venda">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
                                         <td class="jv_table-action">
                                             <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                 <i class="fas fa-ellipsis-h"></i>
