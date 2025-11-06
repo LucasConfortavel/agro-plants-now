@@ -71,9 +71,9 @@ function GerarTabela(){
         
         const iniciais = usuario['nome'].substring(0, 2).toUpperCase();
 
-        html += `<tr><td>
-                    <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="${usuario['id']}">
-                </td>`;
+        // html += `<tr><td>
+        //             <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="${usuario['id']}">
+        //         </td>`;
                 
         html += `<td>
             <div class="jv_customer-info">
