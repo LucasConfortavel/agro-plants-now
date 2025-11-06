@@ -67,6 +67,23 @@ class ClienteController {
             return $error;
         }
     }
+
+    public function pesquisar() {
+        try {
+            $pesquisa = "%" . $_GET["pesquisa"] . "%";
+            $this->cliente->nome = $pesquisa;
+            $this->cliente->email = $pesquisa;
+            $resultado = $this->cliente->Pesquisar();
+            if ($this->cliente->Pesquisar()) {
+                return $resultado;
+            } else {
+                throw new Exception("Usuário não encontrado");
+            }
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            return $error;
+        }
+    }
     
     public function indexComPedidos() {
         return $this->cliente->lerTodosComUltimoPedido();
