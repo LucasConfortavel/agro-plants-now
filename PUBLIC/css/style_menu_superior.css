@@ -116,8 +116,7 @@ body {
 }
 
 .jp_login-btn:hover {
-  background: #2f5a3c;
-  transform: translateY(-2px);
+  
   box-shadow: 0 4px 8px rgba(63, 112, 77, 0.2);
 }
 
