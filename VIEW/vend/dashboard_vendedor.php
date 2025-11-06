@@ -66,9 +66,13 @@ $vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
     <link rel="stylesheet" href="../../PUBLIC/css/dashboard-vend.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
+
 <body>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
     <main class="jp_main-content">
         <h1 class="ym_titulo">Dashboard</h1> 
 

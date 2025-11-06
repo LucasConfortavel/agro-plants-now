@@ -4,6 +4,103 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 
+
+/* ======== MODO ESCURO PADRONIZADO (Vendedor) ======== */
+body.dark-theme {
+  background-color: #232222;
+  color: #e0e0e0;
+}
+
+/* Blocos principais */
+body.dark-theme .jp_metric-box,
+body.dark-theme .jp_sales-container,
+body.dark-theme .jp_chart-panel {
+  background-color: #2e2e2e;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Títulos */
+body.dark-theme .jp_metric-title,
+body.dark-theme .jp_sales-header,
+body.dark-theme .jp_chart-title {
+  color: #e0e0e0;
+}
+
+/* Valores */
+body.dark-theme .jp_metric-value {
+  color: #fff;
+}
+
+body.dark-theme .jp_metric-box:hover .jp_metric-value {
+  color: #45734B;
+}
+
+/* Tabelas */
+body.dark-theme .jp_sales-list th {
+  color: #e0e0e0;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+body.dark-theme .jp_sales-list td {
+  border-bottom: 1px solid #3a3a3a;
+  color: #ccc;
+}
+
+body.dark-theme .jp_sales-list tr:hover td {
+  background-color: #3a3a3a;
+}
+
+/* Paginação */
+body.dark-theme .jv_page-number.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+body.dark-theme .jv_page-number {
+  color: #e0e0e0;
+  background-color: transparent;
+  border: 1px solid #555;
+}
+
+body.dark-theme .jv_page-arrow {
+  color: #e0e0e0;
+}
+
+/* Filtros */
+body.dark-theme .ym_area-select,
+body.dark-theme .ym_select,
+body.dark-theme .ym_options {
+  background-color: #2e2e2e;
+  color: #e0e0e0;
+  border: 1px solid #3a3a3a;
+}
+
+body.dark-theme .ym_select:hover,
+body.dark-theme .ym_options:hover {
+  border-color: #45734B;
+}
+
+/* Gráfico */
+body.dark-theme canvas {
+  background-color: #2e2e2e;
+}
+
+/* Notificações */
+body.dark-theme .ym_area-notificacao {
+  background-color: #2e2e2e;
+}
+
+/* Ícones e elementos secundários */
+body.dark-theme i {
+  color: #e0e0e0;
+}
+
+
+
+
+
+
 .jv_page-navigation {
   display: flex;
   justify-content: center;
