@@ -129,7 +129,9 @@
 
 .ym_btn-padrao{
     gap: 12px;
-    width: 231px;
+    width: 200px;
+    transition: background-color 0.3s ease;
+    align-self: center;
 }
 
 .ym_btn-remover{
@@ -328,6 +330,9 @@
         transform: scale(0.1);
     }
 }
+
+
+
 
 .jv_dropdown-item {
     display: block;

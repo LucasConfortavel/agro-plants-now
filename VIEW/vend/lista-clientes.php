@@ -117,38 +117,8 @@ if(isset($_SESSION['alerta'])){
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/pagina-de-login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <style>
-        .ym_btn-criar-pedido {
-            background-color: #10b981;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .ym_btn-criar-pedido:hover {
-            background-color: #059669;
-            transform: translateY(-1px);
-        }
-        
-        .ym_btn-criar-pedido:disabled {
-            background-color: #d1d5db;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .ym_btn-criar-pedido i {
-            font-size: 12px;
-        }
-    </style>
 </head>
 <body>
 
@@ -400,70 +370,6 @@ if(isset($_SESSION['alerta'])){
 
 </main>
 
-<script>
-    const customSelect = document.getElementById('customSelect');
-    const selectTrigger = customSelect.querySelector('.select-trigger');
-    const selectOptions = customSelect.querySelector('.select-options');
-    const selectValue = customSelect.querySelector('.select-value');
-    const options = customSelect.querySelectorAll('.select-option');
-    const nativeSelect = document.getElementById('nativeSelect');
-
-    selectTrigger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        selectTrigger.classList.toggle('active');
-        selectOptions.classList.toggle('active');
-    });
-
-    options.forEach(option => {
-        option.addEventListener('click', function() {
-            options.forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-            const value = this.getAttribute('data-value');
-            const text = this.textContent;
-            selectValue.textContent = text;
-            nativeSelect.value = value;
-            selectTrigger.classList.remove('active');
-            selectOptions.classList.remove('active');
-            
-            const url = new URL(window.location.href);
-            if (value && value !== "") {
-                url.searchParams.set('status', value);
-            } else {
-                url.searchParams.delete('status');
-            }
-            url.searchParams.delete('pagina');
-            window.location.href = url.toString();
-        });
-    });
-
-    document.addEventListener('click', function(e) {
-        if (!customSelect.contains(e.target)) {
-            selectTrigger.classList.remove('active');
-            selectOptions.classList.remove('active');
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            selectTrigger.classList.remove('active');
-            selectOptions.classList.remove('active');
-        }
-    });
-
-    // Native select change (mobile)
-    nativeSelect.addEventListener('change', function() {
-        const value = this.value;
-        const url = new URL(window.location.href);
-
-        if (value && value !== "") {
-            url.searchParams.set('status', value);
-        } else {
-            url.searchParams.delete('status');
-        }
-        url.searchParams.delete('pagina');
-        window.location.href = url.toString();
-    });
-</script>
 
 <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
 <script src="../../PUBLIC/JS/script.js"></script>

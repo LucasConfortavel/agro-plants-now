@@ -134,7 +134,7 @@
                     </div>
 
                     <p class="jv_subtitle" id="jv_customerCount">
-                        <?= $total_vendedores ?> vendedores encontrados
+                        <?= $total_vendedores ?> vendedores ecnontrados
                     </p>
                 </div>
 
@@ -144,9 +144,9 @@
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
+                                    <!-- <th class="jv_checkbox-col">
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
+                                    </th> -->
                                     <th class="jv_name">Nome</th>
                                     <th class="jv_banguela">Telefone</th>
                                     <th class="jv_data">Data de Nascimento</th>

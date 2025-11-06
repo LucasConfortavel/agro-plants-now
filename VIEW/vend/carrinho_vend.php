@@ -728,14 +728,50 @@ if(isset($_SESSION['alerta'])){
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="P_form-group">
+                           <?php
+                             
+            
+                                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produto'], $_POST['quantidade'])) {
+                                    $id_produto = (int) $_POST['id_produto'];
+                                    $quantidade = (int) $_POST['quantidade'];
+
+                                  
+                                    $produto = $produtoCtrl->Mostrar($id_produto);
+
+                                    if ($produto) {
+                                        $estoque_disponivel = (int) $produto['quantidade'];
+
+                                        if ($quantidade > $estoque_disponivel) {
+                                          
+                                            echo "<script>
+                                                    exibirAlerta('A quantidade solicitada excede o estoque disponível (estoque : {$estoque_disponivel}).', 'erro');
+                                                </script>"; 
+                                         
+                                        } else {
+                                         
+                                            $carrinhoCtrl->adicionarItem($id_carrinho, $id_produto, $quantidade);
+                                            echo "<script>
+                                                    exibirAlerta('Produto adicionado ao carrinho com sucesso!', 'sucesso');
+                                                </script>";
+                                        }
+                                    } else {
+                                        echo "<script>
+                                                exibirAlerta('Produto não encontrado.', 'erro');
+                                            </script>";
+                                    }
+                                }
+
+                            ?>
+                            <div class="P_form-group">
                             <label for="quantidade">Quantidade</label>
                             <input type="number" id="quantidade" name="quantidade" value="1" min="1" class="P_number-input" required <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                         </div>
+                        
                         <button type="submit" class="P_add-button" <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                             <i class="fa-solid fa-plus"></i>
                             Adicionar ao Carrinho
                         </button>
+
                     </form>
                 </div>
             </div>

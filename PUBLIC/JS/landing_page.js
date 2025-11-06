@@ -226,3 +226,86 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 })
+ document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                initializeMenuFix();
+            }, 100);
+        });
+
+function initializeMenuFix() {
+  const hamburgerMenu = document.querySelector(".jp_hamburger-menu");
+  const sidebar = document.querySelector(".jp_sidebar");
+  const overlay = document.querySelector(".jp_overlay");
+  const body = document.body;
+
+  if (!hamburgerMenu || !sidebar || !overlay) {
+      console.log("Elementos do menu não encontrados, tentando novamente...");
+      setTimeout(initializeMenuFix, 200);
+      return;
+  }
+
+  console.log("Menu elements found, initializing...");
+
+  hamburgerMenu.replaceWith(hamburgerMenu.cloneNode(true));
+  const newHamburgerMenu = document.querySelector(".jp_hamburger-menu");
+
+  newHamburgerMenu.addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log("Hamburger clicked");
+      toggleMenuFix();
+  });
+
+  overlay.addEventListener("click", function() {
+      console.log("Overlay clicked");
+      closeMenuFix();
+  });
+
+  const navLinks = sidebar.querySelectorAll(".jp_nav-links a");
+  navLinks.forEach(function(link) {
+      link.addEventListener("click", function() {
+          closeMenuFix();
+      });
+  });
+
+  document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape" && sidebar.classList.contains("active")) {
+          closeMenuFix();
+      }
+  });
+
+  window.addEventListener("resize", function() {
+      if (window.innerWidth > 992 && sidebar.classList.contains("active")) {
+          closeMenuFix();
+      }
+  });
+
+  function toggleMenuFix() {
+      const isActive = sidebar.classList.contains("active");
+      console.log("Menu is active:", isActive);
+      
+      if (isActive) {
+          closeMenuFix();
+      } else {
+          openMenuFix();
+      }
+  }
+
+  function openMenuFix() {
+      console.log("Opening menu");
+      newHamburgerMenu.classList.add("active");
+      sidebar.classList.add("active");
+      overlay.classList.add("active");
+      body.classList.add("menu-open");
+      
+      sidebar.offsetHeight;
+  }
+
+  function closeMenuFix() {
+      console.log("Closing menu");
+      newHamburgerMenu.classList.remove("active");
+      sidebar.classList.remove("active");
+      overlay.classList.remove("active");
+      body.classList.remove("menu-open");
+  }
+}

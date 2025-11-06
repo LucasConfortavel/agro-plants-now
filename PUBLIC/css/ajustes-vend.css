@@ -172,7 +172,6 @@ body {
     padding: 8px 16px;
     border: none;
     background: none;
-    color: #0066ff;
     cursor: pointer;
     text-decoration: none;
 }
@@ -194,6 +193,11 @@ body {
 
 .ym_input-padrao {
     width: 90%;
+}
+
+.btn-remove-preview{
+    width: 20px;
+
 }
 
 /* Responsividade */
