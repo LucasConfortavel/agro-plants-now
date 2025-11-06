@@ -147,10 +147,10 @@ if(isset($_SESSION['alerta'])){
 
                     <div class="jv_actions">
                         <div>
-                            <button class="ym_btn-remover" id="jv_removeSelected">
+                            <!-- <button class="ym_btn-remover" id="jv_removeSelected">
                                 <i class="fa-solid fa-trash-can"></i>
                                 Remover (<span id="jv_selectedCount">0</span>)
-                            </button>
+                            </button> -->
                         </div>
                         <div>
                             <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de Pessoas')">
@@ -198,9 +198,9 @@ if(isset($_SESSION['alerta'])){
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
-                                <th class="jv_checkbox-col">
+                                <!-- <th class="jv_checkbox-col">
                                     <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                </th>
+                                </th> -->
                                 <th class="jv_name">Nome</th>
                                 <th class="jv_date">Data</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
@@ -251,9 +251,9 @@ if(isset($_SESSION['alerta'])){
                                         }
                                     ?>
                                     <tr>
-                                        <td>
+                                        <!-- <td>
                                             <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
-                                        </td>
+                                        </td> -->
                                         <td>
                                             <div class="jv_customer-info">
                                                 <div class="jv_avatar">
