@@ -10,9 +10,10 @@
     justify-content: space-between;
     align-items: center;
     border: 1px solid rgb(224, 224, 224);
-    background-color: white;
+    background-color: #45734b;
     border-radius: 5px;
     padding: 0px 3px;
+    color: white;
     cursor: pointer;
     transition: all ease 1s;
 }
@@ -65,7 +66,7 @@
 
 .ym_options{
     display: none;
-    background-color: white;
+    background-color: #45734b;
     flex-direction: column;
     z-index: 1;
     position: absolute;
@@ -83,12 +84,12 @@
     align-items: center;
     display: flex;
     gap: 5px;
-    color: black;
+    color: white;
 }
 
 .ym_link-option:hover{
-    background-color: #45734B;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 @media (max-width: 1000px) {

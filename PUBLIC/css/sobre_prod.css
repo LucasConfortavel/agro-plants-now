@@ -284,25 +284,19 @@ body {
   border: 2px solid #45734b;
 }
 
-.ym_btn-primary:hover {
+/* .ym_btn-primary:hover {
   background-color: #3a5f40;
   border-color: #3a5f40;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(69, 115, 75, 0.3);
-}
+} */
 
 .ym_btn-secondary {
-  background-color: white;
-  color: #45734b;
+  background-color: #45734b;
+  color: white;
   border: 2px solid #45734b;
 }
 
-.ym_btn-secondary:hover {
-  background-color: #45734b;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(69, 115, 75, 0.2);
-}
 
 /* Specifications Area */
 .gs_specifications-area {
