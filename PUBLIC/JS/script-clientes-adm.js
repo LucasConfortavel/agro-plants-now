@@ -1,5 +1,5 @@
 
-  function toggleDropdown(btn) {
+function toggleDropdown(btn) {
     const dropdown = btn.nextElementSibling;
     const isVisible = dropdown.style.display === "block";
   
@@ -10,7 +10,7 @@
     if (!isVisible) {
       dropdown.style.display = "block";
     }
-  }
+
   
   // Fecha ao clicar fora
   document.addEventListener("click", e => {
@@ -66,7 +66,7 @@
             selectOptions.classList.remove('active');
         }
     });
-
+}
     // Native select change (mobile)
     nativeSelect.addEventListener('change', function() {
         const value = this.value;
