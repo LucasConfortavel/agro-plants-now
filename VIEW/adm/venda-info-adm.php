@@ -200,8 +200,8 @@ if(isset($_SESSION['alerta'])){
             <div class="vendedor-info">
                 <i class="fa-solid fa-user-tie"></i>
                 <div>
-                    <div style="font-size: 12px; color: black;">Vendedor</div>
-                    <div style="font-weight: 600; color: black;"><?= htmlspecialchars($nome_vendedor) ?></div>
+                    <div class="nomezinho1">Vendedor</div>
+                    <div class="nomezinho2"><?= htmlspecialchars($nome_vendedor) ?></div>
                 </div>
             </div>
         </div>
