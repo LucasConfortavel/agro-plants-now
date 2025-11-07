@@ -108,7 +108,6 @@ class CarrinhoController {
         }
     }
 
-    // No arquivo CONTROLLER/CarrinhoController.php
     public function atualizarQuantidade($id_item, $quantidade) {
         try {
             $pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2", "sucesso@143");
@@ -190,7 +189,6 @@ class CarrinhoController {
 
     public function criarPedidoDoCarrinho($id_cliente, $id_vendedor, $status = 'PAGO') {
         try {
-            // Buscar carrinho do cliente
             $carrinho = $this->obterCarrinho($id_cliente);
             
             if (!$carrinho || isset($carrinho['error'])) {
@@ -285,6 +283,10 @@ class CarrinhoController {
                     throw new Exception("Erro ao atualizar estoque do produto ID: " . $id_produto);
                 }
                 
+                if ($nova_quantidade <= 5) {
+                    $this->criarNotificacaoEstoqueBaixo($produto['nome'], $nova_quantidade);
+                }
+                
                 return true;
             } else {
                 throw new Exception("Produto não encontrado ID: " . $id_produto);
@@ -292,6 +294,16 @@ class CarrinhoController {
         } catch (Exception $e) {
             error_log("Erro ao atualizar estoque: " . $e->getMessage());
             throw $e;
+        }
+    }
+
+    private function criarNotificacaoEstoqueBaixo($produtoNome, $quantidadeAtual) {
+        try {
+            require_once __DIR__ . '/NotificacaoController.php';
+            $notificacaoCtrl = new NotificacaoController();
+            $notificacaoCtrl->criarNotificacaoEstoque($produtoNome, $quantidadeAtual);
+        } catch (Exception $e) {
+            error_log("Erro ao criar notificação de estoque: " . $e->getMessage());
         }
     }
 }

@@ -15,43 +15,51 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = formData.get("name")
       const email = formData.get("email")
       const message = formData.get("message")
-  
-      // Simulate an API call
-      try {
-        // In a real application, you would send this data to a server endpoint
-        // using fetch() or XMLHttpRequest.
-        // Example:
-        // const response = await fetch('/api/contact', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ name, email, message }),
-        // });
-        // const result = await response.json();
-  
-        // For this example, we'll just simulate a delay and success
-        await new Promise((resolve) => setTimeout(resolve, 1500))
-  
-        // Simulate success
-        const result = { success: true }
-  
-        if (result.success) {
-          formMessage.textContent = "Mensagem enviada com sucesso!"
-          formMessage.classList.add("success")
-          contactForm.reset()
-        } else {
-          formMessage.textContent = "Ocorreu um erro ao enviar a mensagem. Tente novamente."
-          formMessage.classList.add("error")
-        }
-      } catch (error) {
-        console.error("Erro ao enviar formulário:", error)
-        formMessage.textContent = "Ocorreu um erro de rede. Por favor, tente novamente mais tarde."
+
+      if (!name || !email || !message) {
+        formMessage.textContent = "Por favor, preencha todos os campos."
         formMessage.classList.add("error")
-      } finally {
         submitButton.disabled = false
         submitButton.textContent = "Enviar Mensagem"
+        return
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(email)) {
+        formMessage.textContent = "Por favor, insira um email válido."
+        formMessage.classList.add("error")
+        submitButton.disabled = false
+        submitButton.textContent = "Enviar Mensagem"
+        return
+      }
+  
+      try {
+        const response = await fetch('', {
+            method: 'POST',
+            body: formData
+        })
+
+        if (response.ok) {
+          window.location.reload()
+        } else {
+          throw new Error('Erro na resposta do servidor')
+        }
+
+      } catch (error) {
+        console.error("Erro ao enviar formulário:", error)
+        
+        contactForm.removeEventListener('submit', arguments.callee)
+        contactForm.submit()
       }
     })
+
+    const inputs = contactForm.querySelectorAll('input, textarea')
+    inputs.forEach(input => {
+      input.addEventListener('input', () => {
+        if (formMessage.textContent && formMessage.classList.contains('error')) {
+          formMessage.textContent = ''
+          formMessage.className = 'form-status-message'
+        }
+      })
+    })
   })
-  
