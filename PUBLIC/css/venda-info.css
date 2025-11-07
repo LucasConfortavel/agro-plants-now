@@ -35,8 +35,8 @@ body {
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: white;
-  color: #3e704c;
+  background: #45734B;
+  color: white;
   text-decoration: none;
   border-radius: 10px;
   font-weight: 500;
@@ -44,12 +44,6 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.ym_link-volta:hover {
-  background: #3e704c;
-  color: white;
-  transform: translateX(-5px);
-  box-shadow: 0 4px 12px rgba(62, 112, 76, 0.2);
-}
 
 .P_customer-info {
   margin-bottom: 32px;
