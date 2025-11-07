@@ -1244,11 +1244,6 @@ body.dark-theme .info-item i {
     box-shadow: 0 2px 8px rgba(69, 115, 75, 0.2);
 }
 
-.btn-upload:hover:not(:disabled) {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(69, 115, 75, 0.3);
-}
 
 .btn-upload:active:not(:disabled) {
     transform: translateY(0);

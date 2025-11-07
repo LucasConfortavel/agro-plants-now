@@ -35,14 +35,20 @@ class VendaController {
 
     public function criarVenda($dados) {
         try {
+            error_log("Tentando criar venda com dados: " . print_r($dados, true));
+            
             $this->venda->data_venda = $dados['data_venda'];
             $this->venda->id_pedido = $dados['id_pedido'];
             $this->venda->id_vendedor = $dados['id_vendedor'];
             $this->venda->id_cliente = $dados['id_cliente'];
             $this->venda->total = $dados['total'];
 
-            return $this->venda->criar();
+            $resultado = $this->venda->criar();
+            error_log("Resultado da criação da venda: " . ($resultado ? 'true' : 'false'));
+            
+            return $resultado;
         } catch (Exception $e) {
+            error_log("ERRO em criarVenda: " . $e->getMessage());
             return ["erro" => $e->getMessage()];
         }
     }
