@@ -113,7 +113,7 @@ include "../../INCLUDE/vlibras.php";
                         <p>Milhares de agricultores confiam em nossos produtos</p>
                     </div>
                 </div>
-                <button class="cta-button" onclick="window.location.href='pagina-de-login.php'">COMECE SUA PARCERIA</button>
+                <button class="cta-button" onclick="window.location.href='contate_nos.php'">COMECE SUA PARCERIA</button>
             </div>
                         
             <div class="final-section">
@@ -136,7 +136,7 @@ include "../../INCLUDE/vlibras.php";
     
     <script src="../../PUBLIC/JS/landing_page.js"></script>
     
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
                 initializeMenuFix();
@@ -220,6 +220,6 @@ include "../../INCLUDE/vlibras.php";
                 body.classList.remove("menu-open");
             }
         }
-    </script>
+    </script> -->
 </body>
 </html>

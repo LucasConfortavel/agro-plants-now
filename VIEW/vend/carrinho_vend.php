@@ -331,18 +331,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_produto'])) {
-    $id_produto = $_POST['id_produto'];
-    $quantidade = $_POST['quantidade'] ?? 1;
+    $id_produto = (int) $_POST['id_produto'];
+    $quantidade = (int) ($_POST['quantidade'] ?? 1);
 
     $produto = $produtoCtrl->mostrar($id_produto);
     $preco_unitario = $produto['preco'] ?? 0;
+    $estoque_disponivel = $produto['quantidade'] ?? 0; // campo de estoque do produto
 
-    $resultado = $carrinhoCtrl->adicionarItem($id_carrinho, $id_produto, $quantidade);
-
-    if (isset($resultado['success'])) {
-        echo '<script>exibirAlerta("Produto adicionado ao carrinho!","sucesso");</script>';
+    // Verifica se a quantidade ultrapassa o estoque
+    if ($quantidade > $estoque_disponivel) {
+        echo '<script>exibirAlerta("A quantidade solicitada ultrapassa o estoque disponível (estoque: '.$estoque_disponivel.').","error");</script>';
     } else {
-        echo '<script>exibirAlerta("Erro: '.$resultado['error'].'","error");</script>';
+        // Adiciona o produto normalmente
+        $resultado = $carrinhoCtrl->adicionarItem($id_carrinho, $id_produto, $quantidade);
+
+        if (isset($resultado['success'])) {
+            echo '<script>exibirAlerta("Produto adicionado ao carrinho!","sucesso");</script>';
+        } else {
+            echo '<script>exibirAlerta("Erro: '.$resultado['error'].'","error");</script>';
+        }
     }
 }
 
@@ -665,6 +672,13 @@ if(isset($_SESSION['alerta'])){
 
                 <div class="P_cart-table">
 
+                    <?php if (empty($itens)): ?>
+                        <div style="text-align: center; padding: 40px; color: #888;">
+                            <i class="fa-solid fa-box" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
+                            <p>Nenhum produto adicionado ainda</p>
+                        </div>
+                    <?php endif ?>
+
                     <?php foreach ($itens as $item): 
                         $produto = $produtosIndexados[$item['id_produto']] ?? null;
                         $nomeProduto = $produto['nome'] ?? 'Produto';
@@ -728,14 +742,17 @@ if(isset($_SESSION['alerta'])){
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="P_form-group">
+                 
+                            <div class="P_form-group">
                             <label for="quantidade">Quantidade</label>
                             <input type="number" id="quantidade" name="quantidade" value="1" min="1" class="P_number-input" required <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                         </div>
+                        
                         <button type="submit" class="P_add-button" <?= $pedido_bloqueado ? 'disabled' : '' ?>>
                             <i class="fa-solid fa-plus"></i>
                             Adicionar ao Carrinho
                         </button>
+
                     </form>
                 </div>
             </div>
@@ -909,9 +926,8 @@ if (pedidoBloqueado) {
     }
 }
     </script>
-    <script src="../../PUBLIC/JS/script-info_vendas.js"></script>
+
     <script src="../../PUBLIC/JS/script-tema.js"></script>
 
 </body>
 </html>
-

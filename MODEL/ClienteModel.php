@@ -102,6 +102,17 @@ class ClienteModel {
         // return false;
     }
 
+    public function Pesquisar() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE nome LIKE :nome OR email LIKE :email ;";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":nome", $this->nome);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
     public function lerTodos() {
         $query = "SELECT id, nome, email, telefone, CPF, CNPJ, data_nasc 
                   FROM " . $this->table_name . " ORDER BY nome";

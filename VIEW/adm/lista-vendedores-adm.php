@@ -4,8 +4,7 @@
     include "../../INCLUDE/vlibras.php";
     require_once "../../INCLUDE/verificarLogin.php"; 
     include "../../INCLUDE/alertas.php";
-
-
+    
     $controler_user = new UsuarioController();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -32,7 +31,7 @@
             $vendedor = $controler_user->mostrar($id);
             $senha = $_POST['alter_status'];
 
-            if($usuario["senha"] == $senha){
+            if($controler_user->verificar_senha($_SESSION,$senha)){
                 if($vendedor['status'] == "ATIVADO"){
                     $vendedor = $controler_user->desativar($id);
                     if($vendedor == 1){
@@ -144,9 +143,9 @@
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
+                                    <!-- <th class="jv_checkbox-col">
                                         <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
+                                    </th> -->
                                     <th class="jv_name">Nome</th>
                                     <th class="jv_banguela">Telefone</th>
                                     <th class="jv_data">Data de Nascimento</th>

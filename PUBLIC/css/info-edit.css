@@ -63,6 +63,8 @@ body {
     background-color: #f44336;
     color: white;
     max-width: 150px;
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
 
 .ym_btn-remover:hover {
@@ -79,8 +81,6 @@ body {
     display: none;
     grid-column-start: 3;
     grid-column-end: 4;
-    margin-top: 50px;
-    margin-left: 50px;
 }
 
 .ym_btn-salvar:hover {
@@ -235,6 +235,15 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 15px;
+}
+
+.jp_tabs-sc {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
     gap: 15px;
 }
 

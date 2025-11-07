@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -21,8 +22,8 @@
                             <label class="eze-label-text">Nome</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="text" id="nomeProduto" class="ym_input-padrao" name="nome" placeholder="Nome do produto" required maxlength="256">
-                        <span id="contadorNome" class="contador-texto">0/256</span>
+                        <input type="text" id="nomeProduto" class="ym_input-padrao" name="nome" placeholder="Nome do produto">
+                   
                     </div>
                 </div>
 
@@ -63,6 +64,7 @@
                             <span class="eze-required">*</span>
                         </div>
                         <input type="number" class="ym_input-padrao" name="quantidade" placeholder="Quantidade em estoque" required min="0">
+
                     </div>
                 </div>
 
@@ -109,7 +111,6 @@
 
     <script>
     const inputNome = document.getElementById('nomeProduto');
-    const contador = document.getElementById('contadorNome');
     const textareaDescricao = document.getElementById('descricaoProduto');
     const contador2 = document.getElementById('contadorDescricao');
     const form = document.querySelector('.ym_form-pop-up');
