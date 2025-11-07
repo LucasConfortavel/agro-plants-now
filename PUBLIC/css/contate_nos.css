@@ -195,9 +195,6 @@ body {
   transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
-.submit-button:hover {
-  background-color: var(--primary-color);
-}
 
 .submit-button:disabled {
   opacity: 0.7;
