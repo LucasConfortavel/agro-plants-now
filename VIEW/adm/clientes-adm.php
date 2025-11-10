@@ -19,6 +19,16 @@ if ($status_filtro) {
     $clientes = $cliente_control->indexComStatusPedidos();
 }
 
+if(isset($_GET['pesquisa'])){
+    $clientes = [];
+    $clientes[] = $cliente_control->pesquisar();    
+    if(is_array($clientes)){
+        $total_clientes = count($clientes);
+    }else{
+        $total_clientes = 0;
+    }
+}
+
 $total_clientes = count($clientes);
 
 $limite = 4;
@@ -137,21 +147,15 @@ if(isset($_SESSION['alerta'])){
             <div class="jv_card-header">
                 <div class="jv_header-content">
                     <div class="jv_search-section">
-                        <div class="jv_search-container">
-                            <button class="ym_area-icon-pesquisa">
+                        <form class="jv_search-container" method="GET">
+                            <button class="ym_area-icon-pesquisa" type="submit">
                                 <i class="fas fa-search search-icon"></i>
                             </button>
-                            <input type="text" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
-                        </div>
+                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
+                        </form>
                     </div>
 
                     <div class="jv_actions">
-                        <div>
-                            <button class="ym_btn-remover" id="jv_removeSelected">
-                                <i class="fa-solid fa-trash-can"></i>
-                                Remover (<span id="jv_selectedCount">0</span>)
-                            </button>
-                        </div>
                         <div>
                             <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/cadastroPessoas.php','Cadastro de Pessoas')">
                                 <i class="fas fa-plus"></i>
@@ -198,9 +202,6 @@ if(isset($_SESSION['alerta'])){
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
-                                <th class="jv_checkbox-col">
-                                    <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                </th>
                                 <th class="jv_name">Nome</th>
                                 <th class="jv_date">Data</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
@@ -251,9 +252,6 @@ if(isset($_SESSION['alerta'])){
                                         }
                                     ?>
                                     <tr>
-                                        <td>
-                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
-                                        </td>
                                         <td>
                                             <div class="jv_customer-info">
                                                 <div class="jv_avatar">
@@ -422,15 +420,9 @@ if(isset($_SESSION['alerta'])){
     });
 </script>
 
-<script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
-<script src="../../PUBLIC/JS/script.js"></script>
+<script src="../../PUBLIC/JS/script-clientes.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>
 <script src="../../PUBLIC/JS/script-tema.js"></script>
-
-    <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
-    <script src="../../PUBLIC/JS/script.js"></script>
-    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
-    <script src="../../PUBLIC/JS/script-tema.js"></script>
 
 </main>
 </body>

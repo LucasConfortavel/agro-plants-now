@@ -341,6 +341,7 @@
     position: relative;
     width: 40px;
     height: 40px;
+    background: linear-gradient(135deg, #45734b);
     min-width: 40px;
     border-radius: 50%;
     overflow: hidden;
@@ -351,6 +352,7 @@
 }
 
 .jv_avatar-container:hover {
+    border: 2px solid #1a962a;
     transform: scale(1.08);
     box-shadow: 0 4px 12px rgba(69, 115, 75, 0.25);
 }

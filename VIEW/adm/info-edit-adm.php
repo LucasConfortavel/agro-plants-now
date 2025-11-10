@@ -122,11 +122,6 @@
                     <nav class="jp_tabs">
                         <h3>Informações pessoais</h3>
                         <button class="ym_btn-editar ym_btn-padrao" onclick="edit()">Editar <i class="fa-solid fa-pen-to-square"></i> </button>
-                        <div class="jp_tabs-sc">
-                            <button class="ym_btn-salvar ym_btn-padrao">Salvar <i class="fa-solid fa-floppy-disk"></i> </button>
-                            <button class="ym_btn-remover" onclick="location.reload();">Cancelar <i class="fa-solid fa-ban"></i> </button>
-                        </div>
-
                     </nav>
 
                     <div class="jp_info-section">
@@ -161,8 +156,7 @@
                             </div>
                             <div class="jp_info-item">
                                 <label><?= $CPF_CNPJ?></label>
-                                <p><?= $usuario[$CPF_CNPJ]?></p>
-                                <input class="ym_input-info" name="<?= $CPF_CNPJ?>" maxlength="<?= $limite ?>" type="text" value="<?= $usuario[$CPF_CNPJ]?>">
+                                <span><?= $usuario[$CPF_CNPJ]?></span>
                             </div>
                             <?php
                             if($tipo_user=="vendedor"){
@@ -175,6 +169,11 @@
                             }
                             
                             ?>
+
+                            <div class="jp_tabs-sc">
+                                <button class="ym_btn-salvar ym_btn-padrao">Salvar <i class="fa-solid fa-floppy-disk"></i> </button>
+                                <button class="ym_btn-remover" onclick="location.reload();">Cancelar <i class="fa-solid fa-ban"></i> </button>
+                            </div>
 
                         </form>
                     </div>

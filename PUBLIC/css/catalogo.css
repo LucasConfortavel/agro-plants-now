@@ -279,7 +279,6 @@ body.dark-theme .ym_delete-link {
 }
 
 .ym_delete-icon {
-  position: absolute;
   right: 8px; 
   top: 8px; 
   font-size: 20px; 
@@ -329,12 +328,12 @@ body.dark-theme .ym_delete-link {
   font-weight: 500; 
   color: #45734b;  
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
+  /* transition: background-color 0.2s, color 0.2s; */
 }
-.ym_linkProduto:hover {
+/* .ym_linkProduto:hover {
   background-color: #35a551; 
   border: none;
-  }
+  } */
 
 
 .ym_linkCategoria{
