@@ -224,7 +224,7 @@ if(isset($_SESSION['alerta'])){
                                     <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                 </th> -->
                                 <th class="jv_name">Nome</th>
-                                <th class="jv_date">Criar Pedido</th>
+                                <th class="jv_date">Data</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
                                 <th class="jv_valor_gast">Carrinho</th>
                                 <th class="jv_actions-col"></th>
@@ -287,24 +287,7 @@ if(isset($_SESSION['alerta'])){
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <div class="td">
-                                                <?php if ($carrinhoTemItens): ?>
-                                                    <form method="POST" style="display:inline;">
-                                                        <input type="hidden" name="criar_pedido" value="<?= $cliente['id'] ?>">
-                                                        <button type="submit" class="ym_btn-criar-pedido" title="Criar pedido do carrinho">
-                                                            <i class="fas fa-file-invoice"></i>
-                                                            Criar Pedido
-                                                        </button>
-                                                    </form>
-                                                <?php else: ?>
-                                                    <button class="ym_btn-criar-pedido" disabled title="Carrinho vazio">
-                                                        <i class="fas fa-file-invoice"></i>
-                                                        Criar Pedido
-                                                    </button>
-                                                <?php endif; ?>
-                                            </div>
-                                        </td>
+                                        <td><?= htmlspecialchars($cliente['data_nasc'] ?? '-') ?></td>
                                         <td>
                                             <?php if ($status !== 'SEM PEDIDOS'): ?>
                                                 <div class="jv_status-wrapper">

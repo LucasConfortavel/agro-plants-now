@@ -345,7 +345,7 @@ body {
 
 .P_add-button {
   padding: 12px 24px;
-  background: #3e704c;
+  background: #45734B;
   color: white;
   border: none;
   border-radius: 10px;
@@ -359,11 +359,6 @@ body {
   white-space: nowrap;
 }
 
-.P_add-button:hover {
-  background: #2d5438;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(62, 112, 76, 0.3);
-}
 
 .P_summary-section {
   position: sticky;
@@ -425,7 +420,7 @@ body {
 
 .P_apply-coupon-btn {
   padding: 12px 20px;
-  background: #3e704c;
+  background: #45734B;
   color: white;
   border: none;
   border-radius: 10px;
@@ -436,10 +431,6 @@ body {
   white-space: nowrap;
 }
 
-.P_apply-coupon-btn:hover {
-  background: #2d5438;
-  transform: scale(1.05);
-}
 
 .P_divider {
   height: 2px;
@@ -500,7 +491,7 @@ body {
 .P_checkout-button {
   width: 100%;
   padding: 16px;
-  background: linear-gradient(135deg, #3e704c 0%, #2d5438 100%);
+  background: #45734B;
   color: white;
   border: none;
   border-radius: 12px;
@@ -515,10 +506,6 @@ body {
   box-shadow: 0 4px 12px rgba(62, 112, 76, 0.3);
 }
 
-.P_checkout-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(62, 112, 76, 0.4);
-}
 
 .P_checkout-button:active {
   transform: translateY(0);
