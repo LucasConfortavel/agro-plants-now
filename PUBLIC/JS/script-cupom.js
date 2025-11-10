@@ -61,20 +61,7 @@ function GerarTabela(){
         html += `<td>${cupom['valor']}%</td>`;
         html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
         html += `<td>${formatarData(cupom['data_validade'])}</td>`;
-        if(window.location.href.includes("adm")){
-            html += `<td class="jv_table-action">
-                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                            <i class="fas fa-ellipsis-h"></i>
-                        </button> 
-                        <form class="jv_dropdown">
-                            <button type="button" 
-                                class="jv_dropdown-item jv_danger" 
-                                onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php')">
-                                <i class="fas fa-trash"></i> Remover
-                            </button>
-                        </form>
-                        </tr>`
-        }
+       
     });
     tabela.innerHTML = html;
 }
@@ -115,21 +102,7 @@ function Pesquisar(){
            html += `<td>${cupom['valor']}%</td>`;
            html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
            html += `<td>${formatarData(cupom['data_validade'])}</td>`;
-           if(window.location.href.includes("adm")){
-               html += `<td class="jv_table-action">
-                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                            <i class="fas fa-ellipsis-h"></i>
-                        </button> 
-                        <form class="jv_dropdown">
-                            <button type="button" 
-                                class="jv_dropdown-item jv_danger" 
-                                onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php')">
-                                <i class="fas fa-trash"></i> Remover
-                            </button>
-                        </form>
-                        </tr>`;
-           }
-           
+        
         }
     });
 
