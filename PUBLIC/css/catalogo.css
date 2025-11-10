@@ -316,19 +316,12 @@ body.dark-theme .ym_delete-link {
   text-overflow: ellipsis;
 }
 
-.ym_linkProduto {
-  margin-top: 16px;
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid #45734b;
-  background-color: white; 
-  padding: 8px 0; 
-  text-align: center;
-  font-size: 16px;
-  font-weight: 500; 
-  color: #45734b;  
-  text-decoration: none;
-  /* transition: background-color 0.2s, color 0.2s; */
+/* REMOVER HOVER DO BOTÃO VEJA MAIS */
+.ym_linkProduto:hover {
+    background-color: #45734B !important;
+    color: white !important;
+    border: 1px solid #45734B !important;
+    transform: none !important;
 }
 /* .ym_linkProduto:hover {
   background-color: #35a551; 
