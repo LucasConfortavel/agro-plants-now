@@ -84,7 +84,6 @@ body.dark-theme .nomezinho1, .nomezinho2 {
 
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
 }
 
 .jp_main-content {
@@ -139,6 +138,25 @@ body {
 .P_customer-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.vendedor-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.vendedor-info i {
+    font-size: 20px;
+    color: #3e704c;
+}
+
+.vendedor-info {
+    border: solid 2px #3e704c;
 }
 
 .P_customer-icon {
@@ -248,6 +266,28 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 17px;
+}
+
+.readonly-message {
+    background: #ffffffff;
+    border-left: 4px solid #3e704c;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.readonly-message i {
+    color: #3e704c;
+    font-size: 20px;
+}
+
+.readonly-message p {
+    margin: 0;
+    color: #3e704c;
+    font-weight: 500;
 }
 
 .P_item-id {
