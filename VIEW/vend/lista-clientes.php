@@ -4,12 +4,15 @@ include "../../INCLUDE/alertas.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../CONTROLLER/CarrinhoController.php";
 include "../../CONTROLLER/PedidoController.php";
+include "../../CONTROLLER/VendaController.php";
 include "../../INCLUDE/vlibras.php";
+require_once "../../CONTROLLER/PedidoController.php";
 require_once "../../INCLUDE/verificarLogin.php"; 
 
 $cliente_control = new ClienteController();
 $carrinho_control = new CarrinhoController();
 $pedido_control = new PedidoController();
+$venda_control = new VendaController(); // Adicione esta linha
 
 $status_filtro = isset($_GET['status']) ? $_GET['status'] : '';
 
@@ -27,17 +30,37 @@ $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_clientes / $limite);
 $clientes_paginados = array_slice($clientes, $offset, $limite);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && !isset($_POST['finalizar_pedido']) && !isset($_POST['criar_pedido'])) {
-    $criar_cliente = $cliente_control->criarCliente();
-
-    if ($criar_cliente == 1) {
-        $_SESSION['alerta'] = '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
-    } elseif ($criar_cliente == "Já existe um usuário cadastrado com este email.") {
-        $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um usuário cadastrado com este email"); </script>';
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
+    $id_pedido = $_POST['finalizar_pedido'];
+    
+    $pedido_info = $pedido_control->mostrar($id_pedido);
+    
+    if (isset($pedido_info['error'])) {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Pedido não encontrado","error"); </script>';
     } else {
-        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
+        $resultado = $pedido_control->atualizarStatus($id_pedido, 'FINALIZADO');
+        
+        if (isset($resultado['success'])) {
+            $dados_venda = [
+                'data_venda' => date('Y-m-d H:i:s'),
+                'id_pedido' => $id_pedido,
+                'id_vendedor' => $_SESSION['id'],
+                'id_cliente' => $pedido_info['id_cliente'],
+                'total' => $pedido_info['total']
+            ];
+            
+            $resultado_venda = $venda_control->criarVenda($dados_venda);
+            
+            if ($resultado_venda) {
+                $_SESSION['alerta'] = '<script> exibirAlerta("Pedido finalizado e venda registrada com sucesso!","sucesso"); </script>';
+            } else {
+                $_SESSION['alerta'] = '<script> exibirAlerta("Pedido finalizado, mas erro ao registrar venda","error"); </script>';
+            }
+        } else {
+            $_SESSION['alerta'] = '<script> exibirAlerta("Erro ao finalizar pedido","error"); </script>';
+        }
     }
-
+    
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
@@ -117,7 +140,6 @@ if(isset($_SESSION['alerta'])){
     <link rel="stylesheet" href="../../PUBLIC/css/clientes-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/pagina-de-login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
@@ -198,9 +220,9 @@ if(isset($_SESSION['alerta'])){
                     <table class="jv_table">
                         <thead>
                             <tr class="jv_table-header">
-                                <th class="jv_checkbox-col">
+                                <!-- <th class="jv_checkbox-col">
                                     <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                </th>
+                                </th> -->
                                 <th class="jv_name">Nome</th>
                                 <th class="jv_date">Criar Pedido</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
@@ -251,9 +273,9 @@ if(isset($_SESSION['alerta'])){
                                         }
                                     ?>
                                     <tr>
-                                        <td>
+                                        <!-- <td>
                                             <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $cliente['id'] ?>">
-                                        </td>
+                                        </td> -->
                                         <td>
                                             <div class="jv_customer-info">
                                                 <div class="jv_avatar">
@@ -308,14 +330,14 @@ if(isset($_SESSION['alerta'])){
                                                 <small style="color:#888">Nenhum pedido</small>
                                             <?php endif; ?>
                                         </td>
-                                        <td>
-                                            <div class="td">
-                                                <a href="carrinho_vend.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" 
-                                                class="ym_btn-padrao2" title="Ver carrinho">
-                                                    <i class="fas fa-shopping-cart"></i>
-                                                </a>
-                                            </div>
-                                        </td>
+                                            <td>
+                                                <div class="td">
+                                                    <a href="selecao_tipo_venda.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" 
+                                                    class="ym_btn-padrao2" title="Selecionar tipo de venda">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
                                         <td class="jv_table-action">
                                             <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                 <i class="fas fa-ellipsis-h"></i>

@@ -42,7 +42,7 @@
                             <label class="eze-label-text">Data de nascimento</label>
                             <span class="eze-required">*</span>
                         </div>
-                        <input type="date" class="ym_input-padrao" name="data" required>
+                        <input type="date" class="ym_input-padrao" name="data_nasc" required>
                     </div>
 
                     <div class="eze-form-group">

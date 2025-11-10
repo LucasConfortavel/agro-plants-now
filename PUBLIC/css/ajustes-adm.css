@@ -420,18 +420,13 @@ body.dark-theme .form-group input.error {
   color: white;
 }
 
-.btn-save:hover {
-  background: var(--primary-hover);
-}
 
 .btn-cancel {
   background: #dc2626;
   color: white;
 }
 
-.btn-cancel:hover {
-  background: #ef4444;
-}
+
 
 .btn-danger {
   background: #ef4444;
@@ -1060,11 +1055,7 @@ body.dark-theme .upload-area p {
     gap: 0.5rem;
 }
 
-.btn-select-file:hover {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(69, 115, 75, 0.3);
-}
+
 
 .preview-area {
     border: 2px solid var(--primary-color);
@@ -1253,11 +1244,6 @@ body.dark-theme .info-item i {
     box-shadow: 0 2px 8px rgba(69, 115, 75, 0.2);
 }
 
-.btn-upload:hover:not(:disabled) {
-    background: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(69, 115, 75, 0.3);
-}
 
 .btn-upload:active:not(:disabled) {
     transform: translateY(0);

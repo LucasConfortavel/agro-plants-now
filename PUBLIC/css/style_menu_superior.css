@@ -115,10 +115,10 @@ body {
   cursor: pointer;
 }
 
-.jp_login-btn:hover {
+/* .jp_login-btn:hover {
   
   box-shadow: 0 4px 8px rgba(63, 112, 77, 0.2);
-}
+} */
 
 .jp_hamburger-menu {
   display: none;

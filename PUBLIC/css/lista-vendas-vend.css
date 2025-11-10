@@ -255,7 +255,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-        border: 2px solid #45734b;
+    border: 2px solid #45734b;
     font-weight: 600;
     font-size: 14px;
 }
@@ -297,7 +297,7 @@
 
 .jv_dropdown {
     position: absolute;
-    background: #fff;
+    background: #45734b;
     border: 1px solid #ddd;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
@@ -318,21 +318,21 @@
     }
 }
 
+
+
+
 .jv_dropdown-item {
     display: block;
-    width: 100%;
+    width: 50%;
     padding: 8px 12px;
     border: none;
-    background: transparent;
+    border-radius: 10px;
+    background-color: transparent;
     text-align: left;
     cursor: pointer;
-    color: black;
+    color: white;
 }
 
-.jv_dropdown-item:hover {
-    background: #f0f0f0;
-}
-  
 
 .jv_dropdown-item.danger {
     color: #dc2626;
