@@ -23,7 +23,7 @@
 body{
     font-family: "Poppins";
     background-color: var(--color-primary-2);
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 h2{

@@ -1,5 +1,5 @@
 <?php
-ob_start(); // inicia buffer de saída
+ob_start();
 include "../../CONTROLLER/UsuarioController.php";
 
 $controler_user = new UsuarioController();
@@ -161,5 +161,5 @@ if(isset($_GET['error'])){
     echo '<script>exibirAlerta("Não foi possível iniciar a sessão","error")</script>';
 }
 
-ob_end_flush(); // envia saída acumulada
+ob_end_flush();
 ?>
