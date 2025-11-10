@@ -320,7 +320,7 @@ body.dark-theme .ym_delete-link {
 .ym_linkProduto:hover {
     background-color: #45734B !important;
     color: white !important;
-    border: 1px solid #45734B !important;
+  
     transform: none !important;
 }
 /* .ym_linkProduto:hover {
