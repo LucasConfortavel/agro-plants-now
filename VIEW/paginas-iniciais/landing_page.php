@@ -113,7 +113,7 @@ include "../../INCLUDE/vlibras.php";
                         <p>Milhares de agricultores confiam em nossos produtos</p>
                     </div>
                 </div>
-                <button class="cta-button" onclick="window.location.href='pagina-de-login.php'">COMECE SUA PARCERIA</button>
+                <button class="cta-button" onclick="window.location.href='contate_nos.php'">COMECE SUA PARCERIA</button>
             </div>
                         
             <div class="final-section">

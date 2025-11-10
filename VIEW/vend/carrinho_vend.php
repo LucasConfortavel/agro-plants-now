@@ -672,6 +672,13 @@ if(isset($_SESSION['alerta'])){
 
                 <div class="P_cart-table">
 
+                    <?php if (empty($itens)): ?>
+                        <div style="text-align: center; padding: 40px; color: #888;">
+                            <i class="fa-solid fa-box" style="font-size: 48px; margin-bottom: 15px; opacity: 0.3;"></i>
+                            <p>Nenhum produto adicionado ainda</p>
+                        </div>
+                    <?php endif ?>
+
                     <?php foreach ($itens as $item): 
                         $produto = $produtosIndexados[$item['id_produto']] ?? null;
                         $nomeProduto = $produto['nome'] ?? 'Produto';
@@ -919,9 +926,8 @@ if (pedidoBloqueado) {
     }
 }
     </script>
-    <script src="../../PUBLIC/JS/script-info_vendas.js"></script>
+
     <script src="../../PUBLIC/JS/script-tema.js"></script>
 
 </body>
 </html>
-

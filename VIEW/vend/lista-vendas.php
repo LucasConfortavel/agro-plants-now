@@ -117,21 +117,20 @@ $vendas_paginadas = array_slice($vendas, $offset, $limite);
                                             <td><?= htmlspecialchars($venda['data_venda'] ?? '-') ?></td>
                                             <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
                                             <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
+
                                             <td class="jv_table-action">
                                                 <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                     <i class="fas fa-ellipsis-h"></i>
                                                 </button>
-                                                <div class="jv_dropdown">
-                                                    <a href="venda-info-vend.php?id=<?= $venda['id'] ?>" class="jv_dropdown-item">
+                                                <form class="jv_dropdown" method="GET" action="">
+                                                    <button type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id']) ?>" class="jv_dropdown-item">
                                                         <i class="fas fa-eye"></i> Visualizar
-                                                    </a>
+                                                    </button>
                                                     <div class="jv_dropdown-separator"></div>
-                                                    <button type="button" 
-                                                        class="jv_dropdown-item jv_danger" 
-                                                        onclick="confirmarRemocao(<?= $venda['id'] ?>)">
+                                                    <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($venda['id'])?>">
                                                         <i class="fas fa-trash"></i> Remover
                                                     </button>
-                                                </div>
+                                                </form>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
