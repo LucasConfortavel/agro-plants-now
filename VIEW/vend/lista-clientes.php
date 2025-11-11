@@ -107,10 +107,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
     exit;
 }
 
+
 if(!empty($_GET)){
     if (isset($_GET['visualizar'])){
         $id = $_GET['visualizar'];
-        header('Location: info-edit-adm.php?id=' . $id . '&usuario=cliente');
+        header('Location: info-edit-vend.php?id=' . $id . '&usuario=cliente');
         exit;
     } elseif (isset($_GET['remover'])){
         $id = $_GET['remover'];
@@ -120,7 +121,7 @@ if(!empty($_GET)){
         } else {
             $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível deletar o cliente","error"); </script>';
         }
-        header("Location: clientes-adm.php");
+        header("Location: lista-clientes.php");
         exit;
     }
 }
@@ -374,8 +375,6 @@ if(isset($_SESSION['alerta'])){
     <?php endif; ?>
 
 </main>
-
-
 <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
 <script src="../../PUBLIC/JS/script.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>
