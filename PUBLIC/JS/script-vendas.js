@@ -1,118 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.querySelector('.jv_search-input');
-    const selectAllCheckbox = document.getElementById('jv_selectAll');
-    const customerCheckboxes = document.querySelectorAll('.customer-checkbox');
-    const removeSelectedBtn = document.getElementById('jv_removeSelected');
-    const selectedCountSpan = document.getElementById('jv_selectedCount');
-    
-    let selectedCustomers = [];
-    
-    function setupEventListeners() {
-        
-        // Selecionar todos
-        if (selectAllCheckbox) {
-            selectAllCheckbox.addEventListener('change', handleSelectAll);
-        }
-        
-        // Checkboxes individuais
-        customerCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                handleCustomerSelect(this.dataset.customerId, this.checked);
-            });
-        });
-        
-        // Botão remover selecionados
-        if (removeSelectedBtn) {
-            removeSelectedBtn.addEventListener('click', handleRemoveSelected);
-        }
-    }
-    
-    // Selecionar todos os clientes
-    function handleSelectAll() {
-        const isChecked = this.checked;
-        const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])');
-        
-        visibleRows.forEach(row => {
-            const checkbox = row.querySelector('.customer-checkbox');
-            if (checkbox) {
-                checkbox.checked = isChecked;
-                handleCustomerSelect(checkbox.dataset.customerId, isChecked);
-            }
-        });
-    }
-    
-    // Manipular seleção individual de clientes
-    function handleCustomerSelect(customerId, isChecked) {
-        if (isChecked) {
-            // Adicionar ao array se não existir
-            if (!selectedCustomers.includes(customerId)) {
-                selectedCustomers.push(customerId);
-            }
-        } else {
-            // Remover do array
-            selectedCustomers = selectedCustomers.filter(id => id !== customerId);
-            // Desselecionar checkbox "Selecionar todos"
-            if (selectAllCheckbox) {
-                selectAllCheckbox.checked = false;
-            }
-        }
-        
-        // Atualizar UI
-        updateSelectedUI();
-    }
-    
-    // Atualizar interface com base nos selecionados
-    function updateSelectedUI() {
-        if (removeSelectedBtn && selectedCountSpan) {
-            const hasSelected = selectedCustomers.length > 0;
-            
-            // Mostrar/ocultar botão de remover
-            removeSelectedBtn.style.display = hasSelected ? 'flex' : 'none';
-            
-            // Atualizar contador
-            selectedCountSpan.textContent = selectedCustomers.length;
-        }
-    }
-    
-    // Remover clientes selecionados
-    function handleRemoveSelected() {
-        if (selectedCustomers.length > 0) {
-            if (confirm(`Tem certeza que deseja remover ${selectedCustomers.length} cliente(s)?`)) {
-                // Simular remoção (substituir por chamada AJAX em produção)
-                selectedCustomers.forEach(id => {
-                    const checkbox = document.querySelector(`.customer-checkbox[data-customer-id="${id}"]`);
-                    if (checkbox) {
-                        const row = checkbox.closest('tr');
-                        if (row) {
-                            row.remove();
-                        }
-                    }
-                });
-                
-                // Limpar seleção
-                selectedCustomers = [];
-                updateSelectedUI();
-                
-                // Atualizar contador total de clientes
-                updateCustomerCount();
-            }
-        }
-    }
-    
-    // Atualizar contador total de clientes
-    function updateCustomerCount() {
-        const customerCountElement = document.getElementById('jv_customerCount');
-        if (customerCountElement) {
-            const visibleRows = document.querySelectorAll('#jv_customerTableBody tr:not([style*="display: none"])').length;
-            customerCountElement.textContent = `${visibleRows} clientes encontrados`;
-        }
-    }
-    
-    // Inicializar
-    setupEventListeners();
-  });
-  
-  function toggleDropdown(btn) {
+function toggleDropdown(btn) {
     const dropdown = btn.nextElementSibling;
     const isVisible = dropdown.style.display === "block";
   
@@ -180,9 +66,6 @@ function GerarTabela(){
             <tr>
                 <td>
                     <div class="jv_customer-info">
-                        <div class="jv_avatar">
-                            ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
-                        </div>
                         <div class="jv_customer-details">
                             <h4>${venda['nome_vendedor']}</h4>
                             <p>${venda['email_vendedor']}</p>
@@ -214,7 +97,6 @@ function GerarTabela(){
             <td>
                 <div class="jv_customer-info">
                     <div class="jv_avatar">
-                        ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
                     </div>
                     <div class="jv_customer-details">
                         <h4>${venda['nome_vendedor']}</h4>
@@ -227,6 +109,8 @@ function GerarTabela(){
         }
     });
     tabela.innerHTML = html;
+    let contador = document.getElementById("jv_customerCount");
+    contador.textContent= `vendas encontradas ${vendas.length}`;
 }
 
 function Pesquisar(){
@@ -256,9 +140,6 @@ function Pesquisar(){
             html += `<tr>
                 <td>
                     <div class="jv_customer-info">
-                        <div class="jv_avatar">
-                            ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
-                        </div>
                         <div class="jv_customer-details">
                             <h4>${venda['nome_vendedor']}</h4>
                             <p>${venda['email_vendedor']}</p>
@@ -290,7 +171,6 @@ function Pesquisar(){
             <td>
                 <div class="jv_customer-info">
                     <div class="jv_avatar">
-                        ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
                     </div>
                     <div class="jv_customer-details">
                         <h4>${venda['nome_vendedor']}</h4>
@@ -321,6 +201,8 @@ function Pesquisar(){
     });
 
     info_tabela.innerHTML = html;
+    let contador = document.getElementById("jv_customerCount");
+    contador.textContent= `vendas encontradas ${dados_filtrado.length}`;
 }
 
 GerarTabela();

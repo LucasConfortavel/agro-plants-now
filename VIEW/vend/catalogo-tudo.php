@@ -55,8 +55,8 @@ $errorMessage = $_GET['error'] ?? '';
                     </div>
                     
                     <div class="ym_options">
-                        <a href="catalogo-produtos.php" class="ym_link-option"><i class="fa-solid fa-building-wheat"></i> produto</a>
-                        <a href="catalogo-servicos.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> serviço</a>
+                        <a href="catalogo-produtos.php" class="ym_link-option"><i class="fa-solid fa-building-wheat"></i> Produto</a>
+                        <a href="catalogo-servicos.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> Serviço</a>
                     </div>
                 </div>
             </div>

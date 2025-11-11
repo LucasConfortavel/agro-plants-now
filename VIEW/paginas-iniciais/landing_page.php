@@ -123,7 +123,7 @@ include "../../INCLUDE/vlibras.php";
                         <p>Um método mais prático e acessível para sua organização de vendas e clientes</p>
                     </div>
                     <div class="final-image">
-                        <img src="../../PUBLIC/img/dashboard-print.png" alt="Dashboard da fazenda" class="dashboard-image">
+                        <img src="../../PUBLIC/img/dashboard-vend2.png" alt="Dashboard da fazenda" class="dashboard-image">
                     </div>
                 </div>
             </div>
