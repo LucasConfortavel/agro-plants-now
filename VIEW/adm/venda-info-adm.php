@@ -266,7 +266,7 @@ if(isset($_SESSION['alerta'])){
 
         <div class="P_summary-section">
             <div class="P_summary-card">
-                <h3 style="color: #3e704c;">Resumo da Venda</h3>
+                <h3>Resumo da Venda</h3>
                 
                 <?php if ($desconto > 0): ?>
                 <div class="P_coupon-section" style="background: #f0fdf4; border: 2px solid #86efac; pointer-events: none; border-radius: 10px;">
@@ -305,7 +305,7 @@ if(isset($_SESSION['alerta'])){
                 <div style="margin-top: 20px; padding: 15px; background: #f9fafb; border-radius: 8px;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                         <span style="color: #6b7280;"><i class="fa-solid fa-hashtag"></i> ID do Pedido:</span>
-                        <span style="font-weight: 600;">#<?= htmlspecialchars($venda['id_pedido']) ?></span>
+                        <span style="color: #6b7280; font-weight: 600;">#<?= htmlspecialchars($venda['id_pedido']) ?></span>
                     </div>
                     <div style="display: flex; justify-content: space-between;">
                         <span style="color: #6b7280;"><i class="fa-solid fa-check-circle"></i> Status:</span>

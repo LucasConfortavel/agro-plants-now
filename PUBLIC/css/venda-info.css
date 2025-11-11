@@ -47,6 +47,21 @@ body.dark-theme .P_summary-card h3 {
   color: #e0e0e0;
 }
 
+body.dark-theme .P_detail-label{
+  color: #e0e0e0;
+}
+
+body.dark-theme .P_item-id,
+body.dark-theme .P_item-produto,
+body.dark-theme .P_item-preco,
+body.dark-theme .P_item-total {
+  color: #e0e0e0;
+}
+
+.P_summary-card h3 {
+  color: #3e704c;
+}
+
 /* ===== Cabeçalho da tabela ===== */
 body.dark-theme .P_table-header {
   background-color: #3a3a3a;
@@ -55,9 +70,16 @@ body.dark-theme .P_table-header {
 body.dark-theme .P_header-id,
 body.dark-theme .P_header-produto,
 body.dark-theme .P_header-preco,
-body.dark-theme .P_header-quantidade,
 body.dark-theme .P_header-total {
   color: #e0e0e0;
+}
+
+body.dark-theme .P_header-quantidade{
+  color: #e0e0e0;
+}
+
+body.dark-theme .P_quantity-control{
+  background-color: #3e704c;
 }
 
 /* ===== Vendedor info ===== */
@@ -120,6 +142,11 @@ body.dark-theme .ym_link-volta {
 body.dark-theme .P_divider,
 body.dark-theme .P_divider-thin {
   background-color: #444;
+}
+
+body.dark-theme .P_items-count {
+  background-color: #2f2f2f; 
+  border: 1px solid #444;
 }
 
 
