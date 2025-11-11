@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -68,7 +68,15 @@ if (isset($_GET['id'])) {
                         </svg>
                         <span><?php echo htmlspecialchars($categoria_nome); ?></span>
                     </div>
-                    <h1 class="gs_product-title"><?php echo htmlspecialchars($produto['nome']); ?></h1>
+                    <div class="ym_area-titulo-edit-btn">
+                        <h1 class="gs_product-title"><?php echo htmlspecialchars($produto['nome']); ?></h1>
+                        <div method="POST" class="ym_area-btns">
+                            <button class="ym_edit-button" onclick="editar()"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <form method="POST" class="ym_area-btn-save">
+                                <button id="ym_save-button" class="ym_edit-button" onclick="editar()"><i class="fa-solid fa-floppy-disk" type="submit"></i></button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="gs_info-grid">
@@ -94,7 +102,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="gs_info-content">
                             <p class="gs_label">Preço</p>
-                            <p class="gs_value gs_price">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                            <p class="gs_value">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
                         </div>
                     </div>
 
@@ -108,7 +116,10 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="gs_info-content">
                             <p class="gs_label">Estoque</p>
-                            <p class="gs_value"><?php echo (int)$produto['quantidade']; ?> unidades</p>
+                            <div class="ym_info-qtd">
+                                <p class="gs_value"><?php echo (int)$produto['quantidade']; ?></p>
+                                <p>unidades</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -145,3 +156,59 @@ if (isset($_GET['id'])) {
     <script src="../../PUBLIC/JS/script-sobre-prod.js"></script>
 </body>
 </html>
+
+
+<script>
+
+    valores = []
+
+    function editar(){
+        button = document.getElementsByClassName("ym_edit-button")[0];
+        icon = button.children[0];
+        values = document.getElementsByClassName("gs_value");
+
+        if(icon.className.includes("fa-pen-to-square")){
+            icon.classList.remove("fa-pen-to-square")
+            icon.classList.add("fa-xmark")
+
+            document.getElementById("ym_save-button").style.display = "flex";
+            
+            for (index = 1; index < values.length; index++) {
+                valor = values[index];
+                valores.push(valor.textContent);
+                input = document.createElement("input");
+                
+                if(index == 1){
+                    string_formatada = valor.textContent.slice(3).replaceAll(",", "");
+                    input.value = string_formatada.replaceAll(".", "");
+                }else{
+                    input.value = valor.textContent;
+                }
+                input.type = 'number';
+                input.classList.add("gs_value", "ym_input-edit");
+    
+                valor.parentNode.replaceChild(input, valor);
+            }
+
+        }else{
+            icon.classList.remove("fa-xmark")
+            icon.classList.add("fa-pen-to-square")
+
+            document.getElementById("ym_save-button").style.display = "none";
+
+            for (index = 1; index < values.length; index++) {
+                valor = values[index];
+                p = document.createElement("p");
+                p.textContent = valores[index-1];
+                p.classList.add("gs_value");
+    
+                valor.parentNode.replaceChild(p, valor);
+            }
+
+
+        }
+
+        
+
+    }
+</script>
