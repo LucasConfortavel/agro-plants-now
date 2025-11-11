@@ -1,3 +1,9 @@
+function formatarData(dataStr) {
+    const [ano, mes, diaHora] = dataStr.split('-');
+    const dia = diaHora.split(' ')[0];
+    return `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
+}
+
 function toggleDropdown(btn) {
     const dropdown = btn.nextElementSibling;
     const isVisible = dropdown.style.display === "block";
