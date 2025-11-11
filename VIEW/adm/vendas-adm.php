@@ -15,11 +15,6 @@ if(!empty($_GET)){
     if (isset($_GET['visualizar'])){
         $id = $_GET['visualizar'];
         header('Location: venda-info-adm.php?id=' . $id);
-
-    // } elseif (isset($_GET['remover'])){
-    //     $id = $_GET['remover'];
-    //     $venda = $venda_control->deletar($id);
-    //     header('Location: ' . $_SERVER['PHP_SELF']);
     }
 }
 
@@ -73,9 +68,7 @@ if(!empty($_GET)){
                         </div> -->
                     </div>
                     
-                    <p class="jv_subtitle" id="jv_customerCount">
-                        <?= $total_vendas ?> <?= $total_vendas == 1 ? 'venda encontrada' : 'vendas encontradas' ?>
-                    </p>
+                    <p class="jv_subtitle" id="jv_customerCount"></p>
                 </div>
                 <!-- Table -->
                 <div class="jv_card-content">
@@ -83,9 +76,6 @@ if(!empty($_GET)){
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <!-- <th class="jv_checkbox-col">
-                                        <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th> -->
                                     <th class="jv_name"><p>Vendedor</p></th>
                                     <th class="jv_date">Cliente</th>
                                     <th class="jv_valor_gast">Valor Gasto</th>

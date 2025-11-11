@@ -4,8 +4,6 @@ require '../../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-
-
 function enviar_email($email,$codigo,$nome){
     $mail = new PHPMailer(true);
     try{
@@ -14,7 +12,7 @@ function enviar_email($email,$codigo,$nome){
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = "agroplantsnow@gmail.com";
-        $mail->Password = "gsbu gfem vvjk rypw";
+        $mail->Password = "vmlx xuhy qxbs darh";
         $mail->SMTPSecure = "tls";
         $mail->Port = 587;
     
@@ -35,3 +33,7 @@ function enviar_email($email,$codigo,$nome){
 }
 
 ?>
+
+<!-- CONTA GOOGLE DO PI -->
+<!-- Email: agroplantsnow@gmail.com -->
+<!-- Senha: agroplantsnow123 -->
