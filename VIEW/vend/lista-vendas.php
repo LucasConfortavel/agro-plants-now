@@ -170,7 +170,7 @@ $vendas_paginadas = array_slice($vendas, $offset, $limite);
 
         <script>
             const dados = <?php echo json_encode($vendas); ?>;
-        </script>
+        </script>   
         <script src="../../PUBLIC/JS/script-vendas-vend.js"></script>
         <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
