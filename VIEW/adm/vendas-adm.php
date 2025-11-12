@@ -54,7 +54,7 @@ if(!empty($_GET)){
                                 <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                                     <i class="fas fa-search search-icon"></i>
                                 </button>
-                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar pelo nome do vendedor ou do cliente" class="jv_search-input" oninput="Pesquisar()">
+                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome..." class="jv_search-input" oninput="Pesquisar()">
                             </div>
                         </form>
                         
