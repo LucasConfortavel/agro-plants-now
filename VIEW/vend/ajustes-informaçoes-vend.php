@@ -262,11 +262,9 @@ if(isset($_SESSION['alerta'])){
                                 </div>
                             </div>
                             
-                            <div class="form-actions">
                                 <button type="submit" class="btn-upload" id="btnUpload" disabled>
                                     <i class="fas fa-upload"></i> Fazer Upload
                                 </button>
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -303,7 +301,6 @@ if(isset($_SESSION['alerta'])){
     </main>
 
     <div id="toast-container"></div>
-<<<<<<< HEAD
 
     <script>
         const themeOptions = document.querySelectorAll('.theme-option');

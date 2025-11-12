@@ -86,9 +86,9 @@
     box-sizing: border-box;
 }
 
-#btnGerarCodigo:hover {
+/* #btnGerarCodigo:hover {
     background-color: #36a551; 
-}
+} */
 
 .eze-button-container {
     text-align: center;
@@ -111,9 +111,9 @@
     justify-content: center;
 }
 
-.eze-add-button:hover {
+/* .eze-add-button:hover {
     background: #36a551;
-}
+} */
 
 .eze-help-text {
     color: #666;

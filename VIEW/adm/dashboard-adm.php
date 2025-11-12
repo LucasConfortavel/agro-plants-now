@@ -179,9 +179,6 @@
                     <?php endif; ?>
                 </div>
 
-                <a class="ym_mobile-td" onclick="abrirPopup('../pop-up/informacoes_vendedor.php','Informações do vendedor')">
-                    <i class="fa-solid fa-circle-info"></i>
-                </a>
             </div>
         </div>
 
