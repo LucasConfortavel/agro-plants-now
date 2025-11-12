@@ -257,7 +257,7 @@ if(isset($_SESSION['alerta'])){
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div style="text-align: center; padding: 40px; color: black;">
-                        <i class="fa-solid fa-box-open" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <i class="fa-solid fa-box-open" style="font-size: 48px; margin-bottom: 15px; color: #9ca3af;"></i>
                         <p>Nenhum item encontrado para esta venda</p>
                     </div>
                 <?php endif; ?>
@@ -269,7 +269,7 @@ if(isset($_SESSION['alerta'])){
                 <h3>Resumo da Venda</h3>
                 
                 <?php if ($desconto > 0): ?>
-                <div class="P_coupon-section" style="background: #f0fdf4; border: 2px solid #86efac; pointer-events: none; border-radius: 10px;">
+                <div class="P_coupon-section">  
                     <label style="color: #166534; font-weight: 600;">
                         <i class="fa-solid fa-ticket" style="margin-left: 5px;"></i> Cupom Aplicado
                     </label>

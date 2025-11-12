@@ -149,7 +149,23 @@ body.dark-theme .P_items-count {
   border: 1px solid #444;
 }
 
+body.dark-theme .P_coupon-section {
+  background-color: #3a3a3a;
+  border-color: #555;
+  opacity: 0.9;
+}
 
+body.dark-theme .fa-solid fa-box-open{
+  color: #e0e0e0;
+}
+
+
+.P_coupon-section{
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  pointer-events: none;
+  border-radius: 10px
+}
 
 
 .nomezinho2{
