@@ -164,8 +164,8 @@ if (isset($_GET['remover'])) {
         padding: 0;
         border: none;
         margin-top: 8px;
-        max-height: 120px;
-        overflow-y: auto;
+        max-height: 60px;
+        overflow-y: hidden;
         line-height: 1.4;
         font-size: 14px;
         color: #666;
@@ -463,7 +463,13 @@ if (isset($_GET['remover'])) {
                                                              )">
                                                             <h4><?= htmlspecialchars($item['titulo']) ?></h4>
                                                             <div class="conteudo-mensagem">
-                                                                <?= nl2br(htmlspecialchars($item['mensagem'])) ?>
+                                                                <?php
+                                                                $mensagem_abreviada = $item['mensagem'];
+                                                                if (strlen($mensagem_abreviada) > 100) {
+                                                                    $mensagem_abreviada = substr($mensagem_abreviada, 0, 100) . '...';
+                                                                }
+                                                                echo nl2br(htmlspecialchars($mensagem_abreviada));
+                                                                ?>
                                                             </div>
                                                         </div>
                                                     <?php else: ?>
