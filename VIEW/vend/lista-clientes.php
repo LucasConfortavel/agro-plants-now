@@ -4,12 +4,15 @@ include "../../INCLUDE/alertas.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../CONTROLLER/CarrinhoController.php";
 include "../../CONTROLLER/PedidoController.php";
+include "../../CONTROLLER/VendaController.php";
 include "../../INCLUDE/vlibras.php";
+require_once "../../CONTROLLER/PedidoController.php";
 require_once "../../INCLUDE/verificarLogin.php"; 
 
 $cliente_control = new ClienteController();
 $carrinho_control = new CarrinhoController();
 $pedido_control = new PedidoController();
+$venda_control = new VendaController(); // Adicione esta linha
 
 $status_filtro = isset($_GET['status']) ? $_GET['status'] : '';
 
@@ -27,17 +30,37 @@ $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_clientes / $limite);
 $clientes_paginados = array_slice($clientes, $offset, $limite);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && !isset($_POST['finalizar_pedido']) && !isset($_POST['criar_pedido'])) {
-    $criar_cliente = $cliente_control->criarCliente();
-
-    if ($criar_cliente == 1) {
-        $_SESSION['alerta'] = '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
-    } elseif ($criar_cliente == "Já existe um usuário cadastrado com este email.") {
-        $_SESSION['alerta'] = '<script> exibirAlerta("Já existe um usuário cadastrado com este email"); </script>';
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
+    $id_pedido = $_POST['finalizar_pedido'];
+    
+    $pedido_info = $pedido_control->mostrar($id_pedido);
+    
+    if (isset($pedido_info['error'])) {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Pedido não encontrado","error"); </script>';
     } else {
-        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
+        $resultado = $pedido_control->atualizarStatus($id_pedido, 'FINALIZADO');
+        
+        if (isset($resultado['success'])) {
+            $dados_venda = [
+                'data_venda' => date('Y-m-d H:i:s'),
+                'id_pedido' => $id_pedido,
+                'id_vendedor' => $_SESSION['id'],
+                'id_cliente' => $pedido_info['id_cliente'],
+                'total' => $pedido_info['total']
+            ];
+            
+            $resultado_venda = $venda_control->criarVenda($dados_venda);
+            
+            if ($resultado_venda) {
+                $_SESSION['alerta'] = '<script> exibirAlerta("Pedido finalizado e venda registrada com sucesso!","sucesso"); </script>';
+            } else {
+                $_SESSION['alerta'] = '<script> exibirAlerta("Pedido finalizado, mas erro ao registrar venda","error"); </script>';
+            }
+        } else {
+            $_SESSION['alerta'] = '<script> exibirAlerta("Erro ao finalizar pedido","error"); </script>';
+        }
     }
-
+    
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
@@ -84,10 +107,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
     exit;
 }
 
+
 if(!empty($_GET)){
     if (isset($_GET['visualizar'])){
         $id = $_GET['visualizar'];
-        header('Location: info-edit-adm.php?id=' . $id . '&usuario=cliente');
+        header('Location: info-edit-vend.php?id=' . $id . '&usuario=cliente');
         exit;
     } elseif (isset($_GET['remover'])){
         $id = $_GET['remover'];
@@ -97,7 +121,7 @@ if(!empty($_GET)){
         } else {
             $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível deletar o cliente","error"); </script>';
         }
-        header("Location: clientes-adm.php");
+        header("Location: lista-clientes.php");
         exit;
     }
 }
@@ -201,7 +225,7 @@ if(isset($_SESSION['alerta'])){
                                     <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
                                 </th> -->
                                 <th class="jv_name">Nome</th>
-                                <th class="jv_date">Criar Pedido</th>
+                                <th class="jv_date">Data</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
                                 <th class="jv_valor_gast">Carrinho</th>
                                 <th class="jv_actions-col"></th>
@@ -264,24 +288,7 @@ if(isset($_SESSION['alerta'])){
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <div class="td">
-                                                <?php if ($carrinhoTemItens): ?>
-                                                    <form method="POST" style="display:inline;">
-                                                        <input type="hidden" name="criar_pedido" value="<?= $cliente['id'] ?>">
-                                                        <button type="submit" class="ym_btn-criar-pedido" title="Criar pedido do carrinho">
-                                                            <i class="fas fa-file-invoice"></i>
-                                                            Criar Pedido
-                                                        </button>
-                                                    </form>
-                                                <?php else: ?>
-                                                    <button class="ym_btn-criar-pedido" disabled title="Carrinho vazio">
-                                                        <i class="fas fa-file-invoice"></i>
-                                                        Criar Pedido
-                                                    </button>
-                                                <?php endif; ?>
-                                            </div>
-                                        </td>
+                                        <td><?= htmlspecialchars($cliente['data_nasc'] ?? '-') ?></td>
                                         <td>
                                             <?php if ($status !== 'SEM PEDIDOS'): ?>
                                                 <div class="jv_status-wrapper">
@@ -368,8 +375,6 @@ if(isset($_SESSION['alerta'])){
     <?php endif; ?>
 
 </main>
-
-
 <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
 <script src="../../PUBLIC/JS/script.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>

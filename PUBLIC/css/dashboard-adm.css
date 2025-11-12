@@ -407,77 +407,179 @@ body.dark-theme .ym_options {
   font-size: 12px;
 }
 
+@media (max-width: 992px) {
+  .jp_main-content {
+    padding: 24px;
+  }
+
+  .ym_titulo {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .jp_cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .jp_card {
+    padding: 24px;
+  }
+
+  .jp_card-value {
+    font-size: 32px;
+  }
+
+  .jp_sales-section,
+  .jp_chart-section {
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+
+  .jp_chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .jp_chart-filters {
+    width: 100%;
+  }
+
+  .ym_area-select {
+    width: 100%;
+  }
+
+  .ym_select,
+  .ym_options {
+    flex: 1;
+  }
+
+  #grafico_adm {
+    height: 320px !important;
+  }
+}
+
+/* ======== RESPONSIVIDADE MOBILE (768px) ======== */
 @media (max-width: 768px) {
+  .jp_main-content {
+    padding: 16px;
+  }
+
+  .ym_titulo {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
   .jp_cards-container {
     grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .jp_card {
+    padding: 20px;
+  }
+
+  .jp_card-title {
+    font-size: 12px;
+  }
+
+  .jp_card-value {
+    font-size: 28px;
+  }
+
+  .jp_sales-section,
+  .jp_chart-section {
+    padding: 20px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+  }
+
+  .jp_sales-title,
+  .jp_chart-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  /* Tabela responsiva com scroll */
+  .jp_sales-section {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .jp_sales-table {
+    min-width: 700px;
+  }
+
+  .jp_sales-table th {
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  .jp_sales-table td {
+    padding: 16px 12px;
+    font-size: 13px;
+  }
+
+  .jp_pagination {
+    gap: 6px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .jp_pagination-item,
+  .jp_pagination-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
   }
 
   .jp_chart-filters {
     flex-direction: column;
+    gap: 12px;
   }
 
-  .jp_sales-table {
-    font-size: 14px;
+  .ym_area-select {
+    flex-direction: column;
+    width: 100%;
   }
 
-  .jp_card-value {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 1400px) {
-  .jp_main-content {
-    padding: 18px;
-  }
-
-  .jp_cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
-  }
-
-  .jp_card {
-    padding: 18px;
-  }
-
-  .jp_card-title {
+  .ym_select,
+  .ym_options {
+    width: 100%;
+    padding: 14px 16px;
     font-size: 15px;
   }
 
-  .jp_card-value {
-    font-size: 26px;
-  }
-
-  .jp_sales-section,
-  .jp_chart-section {
-    padding: 18px;
-  }
-
-  .jp_chart-container {
-    height: 220px;
+  #grafico_adm {
+    height: 280px !important;
   }
 }
 
-@media (max-width: 1024px) {
+/* ======== RESPONSIVIDADE MOBILE PEQUENO (480px) ======== */
+@media (max-width: 480px) {
   .jp_main-content {
-    padding: 16px;
+    padding: 12px;
   }
 
-  .jp_header {
-    justify-content: space-between;
+  .ym_titulo {
+    font-size: 22px;
     margin-bottom: 16px;
   }
 
   .jp_cards-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
+    margin-bottom: 20px;
   }
 
   .jp_card {
     padding: 16px;
+    border-radius: 12px;
   }
 
   .jp_card-title {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .jp_card-value {
@@ -487,113 +589,103 @@ body.dark-theme .ym_options {
   .jp_sales-section,
   .jp_chart-section {
     padding: 16px;
+    margin-bottom: 20px;
   }
 
   .jp_sales-title,
   .jp_chart-title {
     font-size: 16px;
+    margin-bottom: 16px;
   }
 
-  .jp_sales-table th,
-  .jp_sales-table td {
+  .jp_sales-table {
+    min-width: 600px;
+    font-size: 12px;
+  }
+
+  .jp_sales-table th {
     padding: 10px 8px;
+    font-size: 10px;
   }
 
-  .jp_chart-filters {
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .jp_filter-select {
-    min-width: 140px;
-    padding: 8px 12px;
-  }
-
-  .jp_chart-container {
-    height: 200px;
-    padding-right: 6px;
-  }
-
-  .jp_chart-x-label,
-  .jp_chart-y-label {
-    font-size: 11px;
+  .jp_sales-table td {
+    padding: 14px 8px;
+    font-size: 12px;
   }
 
   .jp_pagination {
-    gap: 8px;
+    gap: 4px;
+    margin-top: 20px;
   }
 
-  .jp_pagination-item {
-    width: 28px;
-    height: 28px;
+  .jp_pagination-item,
+  .jp_pagination-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .ym_select,
+  .ym_options {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  #grafico_adm {
+    height: 240px !important;
   }
 }
 
-@media (max-width: 480px) {
-  .jp_main-content { padding: 12px; }
-  .jp_header { margin-bottom: 12px; }
+/* ======== LANDSCAPE MOBILE ======== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .jp_cards-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
+  .jp_card {
+    padding: 16px;
+  }
 
-  .jp_cards-container { grid-template-columns: 1fr; gap: 10px; }
-  .jp_card { padding: 14px; border-radius: 8px; }
-  .jp_card-title { font-size: 13px; }
-  .jp_card-indicator { font-size: 11px; padding: 2px 6px; }
-  .jp_card-value { font-size: 22px; }
+  .jp_card-value {
+    font-size: 24px;
+  }
 
-  
+  #grafico_adm {
+    height: 200px !important;
+  }
+}
+
+/* ======== EXTRA LARGE SCREENS ======== */
+@media (min-width: 1600px) {
+  .jp_main-content {
+    padding: 40px;
+  }
+
+  .ym_titulo {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .jp_cards-container {
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+
+  .jp_card {
+    padding: 32px;
+  }
+
+  .jp_card-value {
+    font-size: 40px;
+  }
+
   .jp_sales-section,
   .jp_chart-section {
-    padding: 14px;
-    margin-bottom: 20px;
-    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 48px;
   }
 
-  .jp_sales-title,
-  .jp_chart-title { font-size: 15px; }
-
- 
-  .jp_sales-section { overflow-x: auto; }                
-  .jp_sales-table { table-layout: fixed; width: 100%; min-width: 560px; }
-
-
-  .jp_sales-table th:nth-child(2),
-  .jp_sales-table td:nth-child(2),   
-  .jp_sales-table th:nth-child(3),
-  .jp_sales-table td:nth-child(3) {  
-    display: none;
+  #grafico_adm {
+    height: 400px !important;
   }
-
-  .jp_sales-table th,
-  .jp_sales-table td { padding: 8px 6px; font-size: 13px; }
-
-  
-  .jp_sales-table td:nth-child(5),
-  .jp_sales-table td:nth-child(6) { white-space: nowrap; }
-
-  
-  .jp_chart-filters { flex-direction: column; gap: 8px; }
-
- 
-  .jp_filter-select {
-    width: 100%;
-    min-width: 0;
-    padding: 6px 4px;      
-    font-size: 13px;       
-    border-radius: 6px;    
-  }
-  .jp_filter-select i {
-    margin-left: 6px;      
-    font-size: 14px;       
-  }
-
-
-  .jp_chart-container { height: 160px; margin-top: 14px; padding-right: 4px; }
-  .jp_chart-x-axis { margin-left: 24px; margin-top: 8px; }
-  .jp_chart-x-label,
-  .jp_chart-y-label { font-size: 10px; }
-
-  
-  .jp_pagination { gap: 6px; margin-top: 16px; }
-  .jp_pagination-item { width: 26px; height: 26px; border-radius: 6px; }
-  .jp_pagination-arrow { margin-left: 6px; }
 }

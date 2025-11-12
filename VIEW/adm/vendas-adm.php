@@ -26,7 +26,7 @@ if(!empty($_GET)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Vendas</title>
-    <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/vendas-cupom-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">

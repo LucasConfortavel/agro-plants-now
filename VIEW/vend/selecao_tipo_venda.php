@@ -153,18 +153,12 @@ $nome_cliente = $_GET['nome'];
             align-items: center;
             gap: 10px;
             padding: 12px 30px;
-            background: #e9ecef;
-            color: #495057;
+            background: #45734b;
+            color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
-        }
-
-        .btn-voltar:hover {
-            background: #45734b;
-            color: azure;
-            transform: translateX(-5px);
         }
 
         @media (max-width: 768px) {
