@@ -238,6 +238,7 @@ $total_vendas = count($vendas_filtradas);
     <title>Relatório de Vendas</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/select.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/lista-vendedores-adm.css">
     <link rel="stylesheet" href="../../PUBLIC/css/relatorio.css">

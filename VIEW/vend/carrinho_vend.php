@@ -827,7 +827,7 @@ if(isset($_SESSION['alerta'])){
                                         $icone_botao = 'fa-check-circle';
                                         break;
                                     case 'FINALIZADO':
-                                        $proximo_status = '';
+                                        $proximo_status = 'PENDENTE';
                                         $texto_botao = '';
                                         $icone_botao = '';
                                         break;

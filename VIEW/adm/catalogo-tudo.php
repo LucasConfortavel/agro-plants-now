@@ -152,9 +152,15 @@ $errorMessage = $_GET['error'] ?? '';
                                         <i class="fa-solid fa-trash-can ym_delete-icon"></i>
                                     </a>
                                 </div>
-                                <p class="ym_nomeProduto"><?php echo htmlspecialchars($servico['nome']); ?></p>
+                                <p class="ym_nomeProduto" title="<?php echo htmlspecialchars($produto['nome']); ?>">
+                                <?php echo htmlspecialchars($produto['nome']); ?>
+                                </p>
+                                ...
+
                                 <p class="ym_preco">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></p>
-                                <p class="ym_descricao"><?php echo htmlspecialchars($servico['descricao']); ?></p>
+                                <p class="ym_descricao" title="<?php echo htmlspecialchars($produto['descricao']); ?>">
+                                <?php echo htmlspecialchars($produto['descricao']); ?>
+                                </p>
                                 <a href="sobre_serv_adm.php?id=<?php echo $servico['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
                             </div>
                         <?php endforeach; ?>

@@ -128,17 +128,17 @@
     justify-content: center;
 }
 
-.eze-add-button:hover {
+/* .eze-add-button:hover {
     background: #36a551;
-}
+} */
 
 .eze-add-button2 {
     background: #45734B;
 }
 
-.eze-add-button2:hover {
+/* .eze-add-button2:hover {
     background: #36a551;
-}
+} */
 
 .eze-help-text {
     color: #666;
