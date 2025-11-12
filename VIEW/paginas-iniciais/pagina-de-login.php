@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include "../../CONTROLLER/UsuarioController.php";
 
 $controler_user = new UsuarioController();
@@ -20,6 +21,7 @@ if (isset($_SESSION['id'], $_SESSION['email'], $_SESSION['tipo'])) {
 include "../../INCLUDE/Menu_superior.php";
 include "../../INCLUDE/phpmailer.php";
 include "../../INCLUDE/vlibras.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +103,7 @@ include "../../INCLUDE/vlibras.php";
 <?php
 if(isset($_SESSION['senha_alterada'])){
     if($_SESSION['senha_alterada']){
-        echo '<script> exibirAlerta("Senha alterada com sucesso","sucesso"); </script>';
+        echo '<script>  ; </script>';
         unset($_SESSION['senha_alterada']);
     }
 }
@@ -158,4 +160,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 if(isset($_GET['error'])){
     echo '<script>exibirAlerta("Não foi possível iniciar a sessão","error")</script>';
 }
+
+ob_end_flush();
 ?>

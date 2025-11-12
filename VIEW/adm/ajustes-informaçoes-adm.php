@@ -103,9 +103,6 @@ if(isset($_SESSION['alerta'])){
             <button class="tab-btn" data-tab="security">
                 <i class="fas fa-shield-alt"></i> Segurança
             </button>
-            <button class="tab-btn" data-tab="notifications">
-                <i class="fas fa-bell"></i> Notificações
-            </button>
             <button class="tab-btn" data-tab="preferences">
                 <i class="fas fa-palette"></i> Preferências
             </button>
@@ -209,47 +206,6 @@ if(isset($_SESSION['alerta'])){
 </div>
 
 
-        <div class="tab-content" id="notifications">
-            <div class="content-card">
-                <div class="card-header">
-                    <h3><i class="fas fa-bell"></i> Configurações de Notificação</h3>
-                </div>
-                
-                <div class="notification-section">
-                    <h4>Notificações por E-mail</h4>
-                    <div class="notification-item">
-                        <div class="notification-info">
-                            <label>Atualizações do Sistema</label>
-                            <span>Receba notificações sobre atualizações importantes</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    <div class="notification-item">
-                        <div class="notification-info">
-                            <label>Relatórios Semanais</label>
-                            <span>Resumo semanal das atividades</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    <div class="notification-item">
-                        <div class="notification-info">
-                            <label>Alertas de Segurança</label>
-                            <span>Notificações sobre atividades suspeitas</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" checked>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="tab-content" id="preferences">
             <div class="content-card">
