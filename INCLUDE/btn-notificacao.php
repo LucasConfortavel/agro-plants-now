@@ -16,7 +16,7 @@ if (!isset($notificacoes['error']) && is_array($notificacoes)) {
     }
 }
 
-$alertasVisiveis = array_slice($alertas, 0, 5);
+$alertasVisiveis = array_slice($alertas, 0, 2);
 $totalNotificacoes = $notificacaoCtrl->contarNotificacoes();
 ?>
 
