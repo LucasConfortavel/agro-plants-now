@@ -55,143 +55,161 @@ $errorMessage = $_GET['error'] ?? '';
             <h1 class="ym_titulo">Catálogo - Geral</h1>
 
             <?php if ($successMessage): ?>
-                <div class="ym-alert ym-alert-success"><?php echo htmlspecialchars($successMessage); ?></div>
+                <div class="ym-alert ym-alert-success">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span><?php echo htmlspecialchars($successMessage); ?></span>
+                </div>
             <?php endif; ?>
             
             <?php if ($errorMessage): ?>
-                <div class="ym-alert ym-alert-error"><?php echo htmlspecialchars($errorMessage); ?></div>
+                <div class="ym-alert ym-alert-error">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span><?php echo htmlspecialchars($errorMessage); ?></span>
+                </div>
             <?php endif; ?>
 
             <div class="ym_categorias">
                 
                 <div class="ym_area-input-pesquisa">
-                <a href="" class="ym_lupa">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </a>
-                <input id="inputPesquisa" type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
+                    <button class="ym_lupa" aria-label="Pesquisar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <input id="inputPesquisa" type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
                 </div>
                                 
-                
                 <div class="ym_area-select">
-                    <div class="ym_select" onclick="mostrar_categorias()">
+                    <div class="ym_select" onclick="mostrar_categorias()" role="button" tabindex="0">
                         <p class="ym_categoria-select">Todos</p>
-                        <p class="ym_seta-categoria">></p>
+                        <i class="fa-solid fa-chevron-down ym_seta-categoria"></i>
                     </div>
                     
-                    
-                    <div class="ym_options">
-                        <a href="catalogo-produtos.php" class="ym_link-option"><i class="fa-solid fa-building-wheat"></i> Produto</a>
-                        <a href="catalogo-servicos.php" class="ym_link-option"><i class="fa-solid fa-users-gear"></i> Serviço</a>
+                    <div class="ym_options" role="menu">
+                        <a href="catalogo-produtos.php" class="ym_link-option" role="menuitem">
+                            <i class="fa-solid fa-building-wheat"></i> Produto
+                        </a>
+                        <a href="catalogo-servicos.php" class="ym_link-option" role="menuitem">
+                            <i class="fa-solid fa-users-gear"></i> Serviço
+                        </a>
                     </div>
-                    
                 </div>
-                <a class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')">+</a>
+                
+                <button class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')" aria-label="Adicionar produto">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
             
-            <p class="ym_textoArea">Principais produtos</p>
+            <div class="ym_categoria-section">
+                <h2 class="ym_textoArea">Principais produtos</h2>
                 
-            <div class="ym_areaProdutos">
-                <div class="ym_todos-produtos" id="produtos-container">
-                    <?php if (!$dados['errorProdutos'] && is_array($dados['produtos']) && count($dados['produtos']) > 0): ?>
-                        <?php foreach ($dados['produtos'] as $produto):
-                            $categoriaNome = $produto['categoria_nome'] ?? 'Categoria não encontrada';
-                        ?>
-                            <div class="ym_cardProduto">
-                                <div class="ym_img-placeholder">
-                                    <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="ym_img">
-                                    <div class="ym_img-label">
-                                        <span><?php echo htmlspecialchars($categoriaNome); ?></span>
-                                    </div>
-                                    <a href="catalogo-tudo.php?remover=<?php echo $produto['id']; ?>&tipo=produto" class="ym_delete-link" onclick="return confirm('Tem certeza que deseja excluir este produto?')">
-                                        <i class="fa-solid fa-trash-can ym_delete-icon"></i>
-                                    </a>
-                                </div>
-
-                                <p class="ym_nomeProduto"><?php echo htmlspecialchars($produto['nome']); ?></p>
-                                <p class="ym_preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
-                                <p class="ym_descricao"><?php echo htmlspecialchars($produto['descricao']); ?></p>
-                                <a href="sobre_prod_adm.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p class="ym-sem-registros">
-                            <?php 
-                            if ($dados['errorProdutos']) {
-                                echo "Erro ao carregar produtos: " . htmlspecialchars($dados['produtos']['error']);
-                            } else {
-                                echo "Nenhum produto cadastrado ou ativado.";
-                            }
+                <div class="ym_areaProdutos">
+                    <div class="ym_todos-produtos" id="produtos-container">
+                        <?php if (!$dados['errorProdutos'] && is_array($dados['produtos']) && count($dados['produtos']) > 0): ?>
+                            <?php foreach ($dados['produtos'] as $produto):
+                                $categoriaNome = $produto['categoria_nome'] ?? 'Categoria não encontrada';
                             ?>
-                        </p>
-                    <?php endif; ?>
+                                <div class="ym_cardProduto">
+                                    <div class="ym_img-placeholder">
+                                        <img src="../../PUBLIC/img/<?php echo !empty($produto['foto']) ? $produto['foto'] : 'img_produto.webp'; ?>" 
+                                             alt="<?php echo htmlspecialchars($produto['nome']); ?>" 
+                                             class="ym_img">
+                                        <div class="ym_img-label">
+                                            <span><?php echo htmlspecialchars($categoriaNome); ?></span>
+                                        </div>
+                                        <a href="catalogo-tudo.php?remover=<?php echo $produto['id']; ?>&tipo=produto" 
+                                           class="ym_delete-link" 
+                                           onclick="return confirm('Tem certeza que deseja excluir este produto?')"
+                                           aria-label="Excluir produto">
+                                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="ym_card-content">
+                                        <p class="ym_nomeProduto"><?php echo htmlspecialchars($produto['nome']); ?></p>
+                                        <p class="ym_preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                                        <p class="ym_descricao"><?php echo htmlspecialchars($produto['descricao']); ?></p>
+                                        <a href="sobre_prod_adm.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">
+                                            Veja mais <i class="fa-solid fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="ym-sem-registros">
+                                <i class="fa-solid fa-box-open"></i>
+                                <p>
+                                    <?php 
+                                    if ($dados['errorProdutos']) {
+                                        echo "Erro ao carregar produtos: " . htmlspecialchars($dados['produtos']['error']);
+                                    } else {
+                                        echo "Nenhum produto cadastrado ou ativado.";
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                
-                <?php if (!$dados['errorProdutos'] && is_array($dados['produtos']) && count($dados['produtos']) > 3): ?>
-                <div class="ym_btn-slide-area">
-                    <button class="ym_btn-slide ym_slideBack" onclick="slideBack(<?php echo count($dados['produtos']); ?>,0)"> < </button>
-                    <button class="ym_btn-slide ym_slideGo" onclick="slideGo(<?php echo count($dados['produtos']); ?>,0)"> > </button>
-                </div>
-                <?php endif; ?>
             </div>
             
-            <p class="ym_textoArea">Principais serviços</p>
-            
-            <div class="ym_areaProdutos">
-                <div class="ym_todos-produtos" id="servicos-container">
-                    <?php if (!$dados['errorServicos'] && is_array($dados['servicos']) && count($dados['servicos']) > 0): ?>
-                        <?php foreach ($dados['servicos'] as $servico): 
-                            $categoriaNome = $servico['categoria_nome'] ?? 'Categoria não encontrada';
-                        ?>
-                            <div class="ym_cardProduto">
-                                <div class="ym_img-placeholder">
-                                    <img src="../../PUBLIC/img/<?php echo !empty($servico['foto']) ? $servico['foto'] : 'img_servico.webp'; ?>" alt="<?php echo htmlspecialchars($servico['nome']); ?>" class="ym_img">
-                                    <div class="ym_img-label">
-                                        <span><?php echo htmlspecialchars($categoriaNome); ?></span>
-                                    </div>
-                                    <a href="catalogo-tudo.php?remover=<?php echo $servico['id']; ?>&tipo=servico" class="ym_delete-link" onclick="return confirm('Tem certeza que deseja excluir este serviço?')">
-                                        <i class="fa-solid fa-trash-can ym_delete-icon"></i>
-                                    </a>
-                                </div>
-                                <p class="ym_nomeProduto" title="<?php echo htmlspecialchars($produto['nome']); ?>">
-                                <?php echo htmlspecialchars($produto['nome']); ?>
-                                </p>
-                                ...
-
-                                <p class="ym_preco">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></p>
-                                <p class="ym_descricao" title="<?php echo htmlspecialchars($produto['descricao']); ?>">
-                                <?php echo htmlspecialchars($produto['descricao']); ?>
-                                </p>
-                                <a href="sobre_serv_adm.php?id=<?php echo $servico['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p class="ym-sem-registros">
-                            <?php 
-                            if ($dados['errorServicos']) {
-                                echo "Erro ao carregar serviços: " . htmlspecialchars($dados['servicos']['error']);
-                            } else {
-                                echo "Nenhum serviço cadastrado ou ativado.";
-                            }
-                            ?>
-                        </p>
-                    <?php endif; ?>
-                </div>
+            <div class="ym_categoria-section">
+                <h2 class="ym_textoArea">Principais serviços</h2>
                 
-                <?php if (!$dados['errorServicos'] && is_array($dados['servicos']) && count($dados['servicos']) > 3): ?>
-                <div class="ym_btn-slide-area">
-                    <button class="ym_btn-slide ym_slideBack" onclick="slideBack(<?php echo count($dados['servicos']); ?>,1)"> < </button>
-                    <button class="ym_btn-slide ym_slideGo" onclick="slideGo(<?php echo count($dados['servicos']); ?>,1)"> > </button>
+                <div class="ym_areaProdutos">
+                    <div class="ym_todos-produtos" id="servicos-container">
+                        <?php if (!$dados['errorServicos'] && is_array($dados['servicos']) && count($dados['servicos']) > 0): ?>
+                            <?php foreach ($dados['servicos'] as $servico): 
+                                $categoriaNome = $servico['categoria_nome'] ?? 'Categoria não encontrada';
+                            ?>
+                                <div class="ym_cardProduto">
+                                    <div class="ym_img-placeholder">
+                                        <img src="../../PUBLIC/img/<?php echo !empty($servico['foto']) ? $servico['foto'] : 'img_servico.webp'; ?>" 
+                                             alt="<?php echo htmlspecialchars($servico['nome']); ?>" 
+                                             class="ym_img">
+                                        <div class="ym_img-label">
+                                            <span><?php echo htmlspecialchars($categoriaNome); ?></span>
+                                        </div>
+                                        <a href="catalogo-tudo.php?remover=<?php echo $servico['id']; ?>&tipo=servico" 
+                                           class="ym_delete-link" 
+                                           onclick="return confirm('Tem certeza que deseja excluir este serviço?')"
+                                           aria-label="Excluir serviço">
+                                            <i class="fa-solid fa-trash-can ym_delete-icon"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="ym_card-content">
+                                        <p class="ym_nomeProduto"><?php echo htmlspecialchars($servico['nome']); ?></p>
+                                        <p class="ym_preco">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></p>
+                                        <p class="ym_descricao"><?php echo htmlspecialchars($servico['descricao']); ?></p>
+                                        <a href="sobre_serv_adm.php?id=<?php echo $servico['id']; ?>" class="ym_linkProduto ym_btn-padrao">
+                                            Veja mais <i class="fa-solid fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="ym-sem-registros">
+                                <i class="fa-solid fa-box-open"></i>
+                                <p>
+                                    <?php 
+                                    if ($dados['errorServicos']) {
+                                        echo "Erro ao carregar serviços: " . htmlspecialchars($dados['servicos']['error']);
+                                    } else {
+                                        echo "Nenhum serviço cadastrado ou ativado.";
+                                    }
+                                    ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <?php endif; ?>
             </div>
 
         </section>
     </main>
 
+    <script src="../../PUBLIC/JS/script-select.js"></script>
+    <script src="../../PUBLIC/JS/script-pop-up.js"></script>
+    <script src="../../PUBLIC/JS/script-catalogo.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 </body>
 </html>
-
-<script src="../../PUBLIC/JS/script-select.js"></script>
-<script src="../../PUBLIC/JS/script-pop-up.js"></script>
-<script src="../../PUBLIC/JS/script-catalogo.js"></script>
-<script src="../../PUBLIC/JS/script-tema.js"></script>
