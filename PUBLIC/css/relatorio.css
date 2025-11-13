@@ -1200,6 +1200,15 @@ h3 {
   margin-top: 40px;
 }
 
+
+
+/* REMOVER HOVER DO BOTÃO EXPORTAR CSV */
+.po-btn:hover {
+    background-color: #45734b !important;
+    transform: none !important;
+    border-color: #d1d5db !important;
+}
+
 /* ========== RESPONSIVE: 480px ========== */
 @media (min-width: 376px) and (max-width: 480px) {
   .po-container {
