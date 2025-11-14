@@ -20,6 +20,7 @@ $errorMessage = $_GET['error'] ?? '';
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/catalogo.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
@@ -52,8 +53,8 @@ $errorMessage = $_GET['error'] ?? '';
                     </div>
                     
                     <div class="ym_options">
-                        <a href="catalogo-tudo.php" class="ym_link-option"><i class="fa-solid fa-cube"></i> todos</a>
-                        <a href="catalogo-produtos.php" class="ym_link-option"><i class="fa-solid fa-building-wheat"></i> produto</a>
+                        <a href="catalogo-tudo.php" class="ym_link-option"><i class="fa-solid fa-cube"></i> Todos</a>
+                        <a href="catalogo-produtos.php" class="ym_link-option"><i class="fa-solid fa-building-wheat"></i> Produto</a>
                     </div>
                 </div>
             </div>
@@ -120,3 +121,4 @@ $errorMessage = $_GET['error'] ?? '';
 
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-catalogo.js"></script>
+<script src="../../PUBLIC/JS/script-tema.js"></script>

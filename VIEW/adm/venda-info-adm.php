@@ -200,8 +200,8 @@ if(isset($_SESSION['alerta'])){
             <div class="vendedor-info">
                 <i class="fa-solid fa-user-tie"></i>
                 <div>
-                    <div style="font-size: 12px; color: black;">Vendedor</div>
-                    <div style="font-weight: 600; color: black;"><?= htmlspecialchars($nome_vendedor) ?></div>
+                    <div class="nomezinho1">Vendedor</div>
+                    <div class="nomezinho2"><?= htmlspecialchars($nome_vendedor) ?></div>
                 </div>
             </div>
         </div>
@@ -257,7 +257,7 @@ if(isset($_SESSION['alerta'])){
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div style="text-align: center; padding: 40px; color: black;">
-                        <i class="fa-solid fa-box-open" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <i class="fa-solid fa-box-open" style="font-size: 48px; margin-bottom: 15px; color: #9ca3af;"></i>
                         <p>Nenhum item encontrado para esta venda</p>
                     </div>
                 <?php endif; ?>
@@ -266,10 +266,10 @@ if(isset($_SESSION['alerta'])){
 
         <div class="P_summary-section">
             <div class="P_summary-card">
-                <h3 style="color: #3e704c;">Resumo da Venda</h3>
+                <h3>Resumo da Venda</h3>
                 
                 <?php if ($desconto > 0): ?>
-                <div class="P_coupon-section" style="background: #f0fdf4; border: 2px solid #86efac; pointer-events: none; border-radius: 10px;">
+                <div class="P_coupon-section">  
                     <label style="color: #166534; font-weight: 600;">
                         <i class="fa-solid fa-ticket" style="margin-left: 5px;"></i> Cupom Aplicado
                     </label>
@@ -305,7 +305,7 @@ if(isset($_SESSION['alerta'])){
                 <div style="margin-top: 20px; padding: 15px; background: #f9fafb; border-radius: 8px;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                         <span style="color: #6b7280;"><i class="fa-solid fa-hashtag"></i> ID do Pedido:</span>
-                        <span style="font-weight: 600;">#<?= htmlspecialchars($venda['id_pedido']) ?></span>
+                        <span style="color: #6b7280; font-weight: 600;">#<?= htmlspecialchars($venda['id_pedido']) ?></span>
                     </div>
                     <div style="display: flex; justify-content: space-between;">
                         <span style="color: #6b7280;"><i class="fa-solid fa-check-circle"></i> Status:</span>

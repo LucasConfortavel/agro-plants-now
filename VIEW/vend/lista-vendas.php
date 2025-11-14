@@ -86,7 +86,7 @@ $vendas_paginadas = array_slice($vendas, $offset, $limite);
                 </div>
 
                 <!-- Table -->
-                <div class="jv_card-content">
+                <div class="jv_card-content">  
                     <div class="jv_table-container">
                         <table class="jv_table">
                             <thead>
