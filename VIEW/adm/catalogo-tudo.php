@@ -93,7 +93,7 @@ $errorMessage = $_GET['error'] ?? '';
                     </div>
                 </div>
                 
-                <button class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')" aria-label="Adicionar produto">
+                <button class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-escolha-tipo.php', 'Escolha o tipo de cadastro')" aria-label="Adicionar produto ou serviço">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
