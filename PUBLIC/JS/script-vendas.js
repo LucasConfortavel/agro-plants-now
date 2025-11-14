@@ -87,12 +87,6 @@ function GerarTabela() {
               <button class="jv_dropdown-item" type="submit" name="visualizar" value="${venda['id']}">
                 <i class="fas fa-eye"></i> Visualizar
               </button>
-              <div class="jv_dropdown-separator"></div>
-              <button type="button" 
-                class="jv_dropdown-item jv_danger" 
-                onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${venda['id']}', 'Confirmação de Remoção')">
-                <i class="fas fa-trash"></i> Remover
-              </button>
             </form>
           </td>
         </tr>`;

@@ -100,6 +100,8 @@ document.addEventListener("keydown", (event) => {
 })
 
 // ==============================
+
+// ==============================
 // INICIALIZAÇÃO
 // ==============================
 document.addEventListener("DOMContentLoaded", () => {

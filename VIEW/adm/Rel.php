@@ -244,7 +244,20 @@ $total_vendas = count($vendas_filtradas);
     <link rel="stylesheet" href="../../PUBLIC/css/relatorio.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
+
+    <style>
+    .po-tab-btn.po-active:hover {
+      background: #52945bff;
+      color: white; 
+    }
+
+    .po-tab-btn:hover {
+      background: #555555;
+      color: white;
+    }
+    </style>
+
+</head>
 <body>
  
    
@@ -413,7 +426,7 @@ $total_vendas = count($vendas_filtradas);
                             <thead>
                                 <tr class="jv_table-header">
                                     <th class="jv_date">Data</th>
-                                    <th class="jv_banguela">Vendedor</th>
+                                    <th class="jv_banguea">Vendedor</th>
                                     <th class="jv_name_cli">Cliente</th>
                                     <th class="jv_valor_venda">Valor de Venda</th>
                                     <th class="jv_comissao"><p>Comissao</p></th>
