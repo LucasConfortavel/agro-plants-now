@@ -99,13 +99,23 @@ if(!empty($_GET)){
         $id = $_GET['visualizar'];
         header('Location: info-edit-adm.php?id=' . $id . '&usuario=cliente');
         exit;
-    } elseif (isset($_GET['remover'])){
-        $id = $_GET['remover'];
-        $cliente = $cliente_control->deletar($id);
-        if($cliente == 1){
-            $_SESSION['alerta'] = '<script> exibirAlerta("Cliente deletado com sucesso","sucesso"); </script>';
+    } elseif (isset($_GET['desativar'])){
+        $id = $_GET['desativar'];
+        $cliente = $cliente_control->desativar($id);
+        if($cliente === true){
+            $_SESSION['alerta'] = '<script> exibirAlerta("Cliente desativado com sucesso","sucesso"); </script>';
         } else {
-            $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível deletar o cliente","error"); </script>';
+            $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível desativar o cliente","error"); </script>';
+        }
+        header("Location: clientes-adm.php");
+        exit;
+    } elseif (isset($_GET['ativar'])){
+        $id = $_GET['ativar'];
+        $cliente = $cliente_control->ativar($id);
+        if($cliente === true){
+            $_SESSION['alerta'] = '<script> exibirAlerta("Cliente ativado com sucesso","sucesso"); </script>';
+        } else {
+            $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível ativar o cliente","error"); </script>';
         }
         header("Location: clientes-adm.php");
         exit;
@@ -204,6 +214,7 @@ if(isset($_SESSION['alerta'])){
                             <tr class="jv_table-header">
                                 <th class="jv_name">Nome</th>
                                 <th class="jv_date">Data</th>
+                                <th class="jv_status">Status</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
                                 <th class="jv_valor_gast"></th>
                                 <th class="jv_actions-col"></th>
@@ -267,6 +278,11 @@ if(isset($_SESSION['alerta'])){
                                             <p><?= htmlspecialchars($cliente['data_nasc']) ?></p>
                                         </td>
                                         <td>
+                                            <span class="jv_status-badge <?= strtolower($cliente['status']) ?>">
+                                                <?= $cliente['status'] ?>
+                                            </span>
+                                        </td>
+                                        <td>
                                             <?php if ($status !== 'SEM PEDIDOS'): ?>
                                                 <div class="jv_status-wrapper">
                                                     <div class="jv_progress-bar">
@@ -285,7 +301,6 @@ if(isset($_SESSION['alerta'])){
                                         </td>
                                         <td>
                                
-                                        </td>
                                         <td class="jv_table-action">
                                             <button class="jv_menu-btn" onclick="toggleDropdown(this)">
                                                 <i class="fas fa-ellipsis-h"></i>
@@ -295,9 +310,16 @@ if(isset($_SESSION['alerta'])){
                                                     <i class="fas fa-eye"></i> Visualizar
                                                 </button>
                                                 <div class="jv_dropdown-separator"></div>
-                                                <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($cliente['id'])?>">
-                                                    <i class="fas fa-trash"></i> Remover
-                                                </button>
+                                                
+                                                <?php if ($cliente['status'] == 'ATIVADO'): ?>
+                                                    <button type="submit" name="desativar" value="<?= htmlspecialchars($cliente['id'])?>" class="jv_dropdown-item jv_danger">
+                                                        <i class="fas fa-ban"></i> Desativar
+                                                    </button>
+                                                <?php else: ?>
+                                                    <button type="submit" name="ativar" value="<?= htmlspecialchars($cliente['id'])?>" class="jv_dropdown-item jv_acess">
+                                                        <i class="fas fa-power-off"></i> Ativar
+                                                    </button>
+                                                <?php endif; ?>
                                             </form>
                                         </td>
                                     </tr>
