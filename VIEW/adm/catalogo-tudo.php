@@ -175,7 +175,7 @@ $errorMessage = $_GET['error'] ?? '';
                                             <i class="fa-solid fa-trash-can ym_delete-icon"></i>
                                         </a>
                                     </div>
-                                    
+
                                     <div class="ym_card-content">
                                         <p class="ym_nomeProduto"><?php echo htmlspecialchars($servico['nome']); ?></p>
                                         <p class="ym_preco">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></p>

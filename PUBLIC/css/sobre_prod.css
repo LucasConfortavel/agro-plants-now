@@ -551,6 +551,10 @@ body {
     padding: 50px;
     min-width: 450px;
   }
+  .ym_edit-button{
+  width: 100%;
+  }
+
 }
 
 /* Tablet screens - 768px to 1023px */
@@ -580,6 +584,10 @@ body {
   .gs_spec-grid {
     grid-template-columns: 1fr;
   }
+  .ym_edit-button{
+  width: 100%;
+}
+
 }
 
 /* Small tablet screens - 768px */
@@ -612,6 +620,11 @@ body {
   .gs_specifications-area {
     padding: 25px;
   }
+  .ym_edit-button{
+  width: 100%;
+}
+
+
 }
 
 /* Mobile screens - 480px and below */
@@ -677,6 +690,11 @@ body {
   .gs_delivery-item {
     padding: 14px;
   }
+    .ym_edit-button{
+  width: 100%;
+}
+
+
 }
 
 /* Very small screens - below 400px */
@@ -713,4 +731,8 @@ body {
   .gs_spec-header h2 {
     font-size: 1rem;
   }
+    .ym_edit-button{
+  width: 100%;
+}
+
 }
