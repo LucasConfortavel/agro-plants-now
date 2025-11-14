@@ -73,6 +73,10 @@ body.dark-theme .ym_area-input-pesquisa {
   background: var(--background-gray);
 }
 
+body.dark-theme .ym_categorias {
+  background: var(--background-light);
+}
+
 body.dark-theme .jv_card,
 body.dark-theme .ym_popup-content,
 body.dark-theme .jv_card-header {
