@@ -73,7 +73,7 @@
                         <label class="eze-label-text">Descrição</label>
                         <span class="eze-required">*</span>
                     </div>
-                    <textarea type="text" id="descricaoProduto" class="ym_input-padrao ym_textarea" name="descricao" placeholder="Escreva algo sobre o produto" required maxlength="256"></textarea>
+                    <textarea type="text" id="descricaoProduto" class="ym_input-padrao" name="descricao" placeholder="Escreva algo sobre o produto" required maxlength="256"></textarea>
                     <span id="contadorDescricao" class="contador-texto2">0/256</span>
                 </div>
             </div>
