@@ -1,113 +1,106 @@
 function toggleDropdown(btn) {
     const dropdown = btn.nextElementSibling;
     const isVisible = dropdown.style.display === "block";
-  
+
     // Fecha todos os outros
     document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
-  
+
     // Abre apenas o clicado
     if (!isVisible) {
-      dropdown.style.display = "block";
+        dropdown.style.display = "block";
     }
-  }
-
+}
 
 formatarData = (dataStr) => {
-        const [ano, mes, dia] = dataStr.split('-');
-        return `${dia.padStart(2,'0')}/${mes.padStart(2,'0')}/${ano}`;
-    }
+    const [ano, mes, dia] = dataStr.split('-');
+    return `${dia.padStart(2,'0')}/${mes.padStart(2,'0')}/${ano}`;
+}
 
-function GerarTabela(){
-    tabela = document.getElementById("jv_customerTableBody");
-    html="";
-    
-    limite = 4;
-    
+function GerarTabela() {
+    const tabela = document.getElementById("jv_customerTableBody");
+    let html = "";
+
+    // Filtra apenas cupons válidos
+    const hoje = new Date();
+    const cuponsValidos = dados.filter(cupom => new Date(cupom['data_validade']) >= hoje);
+
+    // Paginação
+    const limite = 4;
     const url = new URLSearchParams(window.location.search);
-    if (url.has('pagina')) {
-        pagina = url.get('pagina');;
-    } else {
-        pagina = 1;
-    }
-    
-    total_pag = Math.ceil(dados.length/limite);
-    area_pags = document.getElementsByClassName('jv_page-navigation')[0];
-    
-    if(pagina != 1){
-        html+=` <a href="?pagina=${pagina-1}" class="jv_page-arrow"><i class="fas fa-arrow-left"></i></a>`;
+    const pagina = url.has('pagina') ? parseInt(url.get('pagina'), 10) : 1;
+
+    const total_pag = Math.ceil(cuponsValidos.length / limite);
+    const area_pags = document.getElementsByClassName('jv_page-navigation')[0];
+    let pagHtml = "";
+
+    if (pagina > 1) {
+        pagHtml += `<a href="?pagina=${pagina-1}" class="jv_page-arrow"><i class="fas fa-arrow-left"></i></a>`;
     }
 
-    for (let i = 1; i <= total_pag; i++) {    
-       
-        if(i == pagina){
-            html+=`<a href='?pagina=${i}' class='jv_page-number active'>${i}</a>`;            
-        }else{
-            html+=`<a href='?pagina=${i}' class='jv_page-number'>${i}</a>`;
-        }
+    for (let i = 1; i <= total_pag; i++) {
+        pagHtml += `<a href='?pagina=${i}' class='jv_page-number ${i === pagina ? 'active' : ''}'>${i}</a>`;
     }
 
-    if(pagina != total_pag){
-        html+=` <a href="?pagina=${parseInt(pagina, 10)+1}" class="jv_page-arrow"><i class="fas fa-arrow-right"></i></a>`;
+    if (pagina < total_pag) {
+        pagHtml += `<a href="?pagina=${pagina+1}" class="jv_page-arrow"><i class="fas fa-arrow-right"></i></a>`;
     }
-    
 
-    area_pags.innerHTML=html;
-    html="";
+    area_pags.innerHTML = pagHtml;
 
-    cupons = dados.slice(((pagina-1)*4), (pagina*limite));
+    // Mostra os cupons da página atual
+    const cuponsPagina = cuponsValidos.slice((pagina-1)*limite, pagina*limite);
 
-    cupons.forEach(cupom => {
-        html += `<tr><td>${cupom['codigo']}</td>`;
+    cuponsPagina.forEach(cupom => {
+        html += `<tr>`;
+        html += `<td>${cupom['codigo']}</td>`;
         html += `<td>${cupom['valor']}%</td>`;
         html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
         html += `<td>${formatarData(cupom['data_validade'])}</td>`;
-       
+        html += `</tr>`;
     });
+
     tabela.innerHTML = html;
 }
 
+function Pesquisar() {
+    const inputPesquisa = document.getElementById("jv_searchInput");
+    const pesquisa = inputPesquisa.value.toLowerCase();
+    const tabela = document.getElementById("jv_customerTableBody");
+    const paginacao = document.getElementsByClassName('jv_page-navigation')[0];
 
+    // Filtra cupons válidos e pesquisa
+    const hoje = new Date();
+    let cuponsFiltrados = dados.filter(cupom => new Date(cupom['data_validade']) >= hoje);
 
-function Pesquisar(){
-    inputPesquisa = document.getElementById("jv_searchInput");
-    pesquisa = inputPesquisa.value;
-    if(pesquisa == ""){
-        GerarTabela();
-        return none;
+    if (pesquisa !== "") {
+        cuponsFiltrados = cuponsFiltrados.filter(cupom => cupom['codigo'].toLowerCase().includes(pesquisa));
     }
-    info_tabela = document.getElementById("jv_customerTableBody");
-    info_tabela.innerHTML = '';
-    html="";
-    dados_filtrado=[];
 
-    dados.forEach(dado => {
-        if (dado["codigo"].toLowerCase().includes(pesquisa.toLowerCase())) {
-            dados_filtrado.push(dado);
-        }
+    // Paginação
+    const limite = 4;
+    const pagina = 1;
+    const total_pag = Math.ceil(cuponsFiltrados.length / limite);
+
+    let pagHtml = "";
+    for (let i = 1; i <= total_pag; i++) {
+        pagHtml += `<a href="#" onclick="paginaPesquisa(${i})" class='jv_page-number ${i === pagina ? 'active' : ''}'>${i}</a>`;
+    }
+    paginacao.innerHTML = pagHtml;
+
+    // Mostra os cupons da primeira página
+    const cuponsPagina = cuponsFiltrados.slice(0, limite);
+    let html = "";
+    cuponsPagina.forEach(cupom => {
+        html += `<tr>`;
+        html += `<td>${cupom['codigo']}</td>`;
+        html += `<td>${cupom['valor']}%</td>`;
+        html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
+        html += `<td>${formatarData(cupom['data_validade'])}</td>`;
+        html += `</tr>`;
     });
 
-    limite = 4;
-    pagina = 1;
+    tabela.innerHTML = html;
+}
 
-    area_pags = document.getElementsByClassName('jv_page-navigation')[0];
-    area_pags.innerHTML="";
-
-    cupons = dados_filtrado.slice(((pagina-1)*4), (pagina*limite));
-    
-    cupons.forEach(cupom => {
-        data_emissao = new Date(cupom['data_emissao']);
-        data_validade = new Date(cupom['data_validade']);
-        if (cupom["codigo"].toLowerCase().includes(pesquisa.toLowerCase())) {
-           html += `<tr><td>${cupom['codigo']}</td>`;
-           html += `<td>${cupom['valor']}%</td>`;
-           html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
-           html += `<td>${formatarData(cupom['data_validade'])}</td>`;
-        
-        }
-    });
-
-    info_tabela.innerHTML = html;
-    
-};
-
+// Inicializa tabela ao carregar
 GerarTabela();

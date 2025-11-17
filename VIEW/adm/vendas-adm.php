@@ -68,7 +68,9 @@ if(!empty($_GET)){
                         </div> -->
                     </div>
                     
-                    <p class="jv_subtitle" id="jv_customerCount"></p>
+                    <p class="jv_subtitle" id="jv_customerCount">
+                        <?= $total_vendas ?> <?= $total_vendas == 1 ? 'venda encontrada' : 'vendas encontradas' ?>
+                    </p>
                 </div>
                 <!-- Table -->
                 <div class="jv_card-content">

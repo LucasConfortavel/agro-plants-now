@@ -6,6 +6,181 @@
   box-sizing: border-box;
 }
 
+
+/* ======== MODO ESCURO PADRONIZADO — venda-info-adm.php ======== */
+/* ======== MODO ESCURO PADRONIZADO — venda-info-adm.php ======== */
+body.dark-theme {
+  background-color: #232222;
+  color: #e0e0e0;
+}
+
+/* ===== Containers principais ===== */
+body.dark-theme .P_summary-card,
+body.dark-theme .readonly-message,
+body.dark-theme .P_coupon-section,
+body.dark-theme .P_customer-card {
+  background-color: #2f2f2f;
+}
+
+/* ===== Header do cliente e vendedor ===== */
+body.dark-theme .P_customer-card,
+body.dark-theme .vendedor-info,
+body.dark-theme .P_cart-section {
+  background-color: #2f2f2f; 
+  border: 1px solid #444;
+}
+
+/* ===== Textos, labels e títulos ===== */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme label,
+body.dark-theme p,
+body.dark-theme .P_customer-label,
+body.dark-theme .P_customer-name,
+body.dark-theme .P_product-name,
+body.dark-theme span {
+  color: #e0e0e0;
+}
+
+body.dark-theme .P_summary-card h3 {
+  color: #e0e0e0;
+}
+
+body.dark-theme .P_detail-label{
+  color: #e0e0e0;
+}
+
+body.dark-theme .P_item-id,
+body.dark-theme .P_item-produto,
+body.dark-theme .P_item-preco,
+body.dark-theme .P_item-total {
+  color: #e0e0e0;
+}
+
+.P_summary-card h3 {
+  color: #3e704c;
+}
+
+/* ===== Cabeçalho da tabela ===== */
+body.dark-theme .P_table-header {
+  background-color: #3a3a3a;
+}
+
+body.dark-theme .P_header-id,
+body.dark-theme .P_header-produto,
+body.dark-theme .P_header-preco,
+body.dark-theme .P_header-total {
+  color: #e0e0e0;
+}
+
+body.dark-theme .P_header-quantidade{
+  color: #e0e0e0;
+}
+
+body.dark-theme .P_quantity-control{
+  background-color: #3e704c;
+}
+
+/* ===== Vendedor info ===== */
+body.dark-theme .vendedor-info {
+  background-color: #3a3a3a;
+  border: solid 2px #3e704c;
+}
+
+body.dark-theme .nomezinho1 {
+  color: #e0e0e0;
+}
+
+body.dark-theme .nomezinho2 {
+  color: #ffffff !important;
+}
+
+/* ===== Itens desabilitados ===== */
+body.dark-theme .P_cart-item.item-disabled {
+  background-color: #3a3a3a;
+  border-color: #555;
+  opacity: 0.9;
+}
+
+/* ===== Badge de data ===== */
+body.dark-theme .info-badge {
+  color: #fff;
+}
+
+/* ===== Mensagem somente leitura ===== */
+body.dark-theme .readonly-message {
+  background: #2f2f2f;
+  border-left: 4px solid #3e704c;
+}
+
+body.dark-theme .readonly-message i,
+body.dark-theme .readonly-message p {
+  color: #3e704c;
+}
+
+/* ===== Cupom aplicado ===== */
+body.dark-theme .P_coupon-section {
+  background: rgba(62, 112, 76, 0.1);
+  border: 1px solid #3e704c;
+}
+
+/* ===== Total e textos ===== */
+body.dark-theme .P_summary-card .P_total {
+  color: #3e704c;
+  font-weight: 600;
+}
+
+/* ===== Botão de voltar ===== */
+body.dark-theme .back-button a,
+body.dark-theme .ym_link-volta {
+  color: #e0e0e0;
+}
+
+
+/* ===== Divisores ===== */
+body.dark-theme .P_divider,
+body.dark-theme .P_divider-thin {
+  background-color: #444;
+}
+
+body.dark-theme .P_items-count {
+  background-color: #2f2f2f; 
+  border: 1px solid #444;
+}
+
+body.dark-theme .P_coupon-section {
+  background-color: #3a3a3a;
+  border-color: #555;
+  opacity: 0.9;
+}
+
+body.dark-theme .fa-solid fa-box-open{
+  color: #e0e0e0;
+}
+
+
+.P_coupon-section{
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  pointer-events: none;
+  border-radius: 10px
+}
+
+
+.nomezinho2{
+  font-weight: 600; 
+  color: black
+}
+
+.nomezinho1{
+ font-size: 12px; 
+ color: black
+}
+
+
+
+
 body {
   font-family: "Poppins", sans-serif;
 }
