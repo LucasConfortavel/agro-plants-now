@@ -61,34 +61,38 @@ function GerarTabela_comissao(){
 
     vendas = dados_vendas.slice(((pagina-1)*4), (pagina*limite));    
     comissoes = dados_comissoes.slice(((pagina-1)*4), (pagina*limite));    
-
-    vendas.forEach(venda => {
-      comissoes.forEach(comissao => {
-        if(comissao["id_venda"] == venda["id"]){
-          html += `<tr><td>${formatarData(venda['data_venda'])}</td>`
-          html +=`
-          <td>
-              <div class="jv_customer-info">
-                  <div class="jv_avatar">
-                      ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
-                  </div>
-                  <div class="jv_customer-details">
-                      <h4>${venda['nome_vendedor']}</h4>
-                      <p>${venda['email_vendedor']}</p>
-                  </div>
-              </div>
-          
-          </td>`;
-          html += `<td>${venda['nome_cliente']}</td>`;
-          html += `<td>R$ ${venda['total']}</td>`;
-          html += `<td>
-                      <span class="badge-comissao">
-                          ${comissao['percentual']}%
-                      </span>
-                  </td>`;
-          html += `<td>R$ ${comissao['valor']}</td>`;
-        }
-    })});
+    
+    if(dados_comissoes.length > 0){
+        vendas.forEach(venda => {
+        comissoes.forEach(comissao => {
+            if(comissao["id_venda"] == venda["id"]){
+            html += `<tr><td>${formatarData(venda['data_venda'])}</td>`
+            html +=`
+            <td>
+                <div class="jv_customer-info">
+                    <div class="jv_avatar">
+                        ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
+                    </div>
+                    <div class="jv_customer-details">
+                        <h4>${venda['nome_vendedor']}</h4>
+                        <p>${venda['email_vendedor']}</p>
+                    </div>
+                </div>
+            
+            </td>`;
+            html += `<td>${venda['nome_cliente']}</td>`;
+            html += `<td>R$ ${venda['total']}</td>`;
+            html += `<td>
+                        <span class="badge-comissao">
+                            ${comissao['percentual']}%
+                        </span>
+                    </td>`;
+            html += `<td>R$ ${comissao['valor']}</td>`;
+            }
+        })});
+    }else{
+        html += '<tr><td class="ym_td" colspan="6">Nenhum resultado encontrada</td></tr>';
+    }
     tabela.innerHTML = html;
 }
 
@@ -114,34 +118,38 @@ function Pesquisar_comissao(){
 
     area_pags = document.getElementsByClassName('jv_page-navigation')[1];
     area_pags.innerHTML="";
-    
-    vendas_filtrado.forEach(venda => {
-      dados_comissoes.forEach(comissao => {
-        if(comissao["id_venda"] == venda["id"]){
-          html += `<tr><td>${formatarData(venda['data_venda'])}</td>`
-          html +=`
-          <td>
-              <div class="jv_customer-info">
-                  <div class="jv_avatar">
-                      ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
-                  </div>
-                  <div class="jv_customer-details">
-                      <h4>${venda['nome_vendedor']}</h4>
-                      <p>${venda['email_vendedor']}</p>
-                  </div>
-              </div>
-          
-          </td>`;
-          html += `<td>${venda['nome_cliente']}</td>`;
-          html += `<td>R$ ${venda['total']}</td>`;
-          html += `<td>
-                      <span class="badge-comissao">
-                          ${comissao['percentual']}%
-                      </span>
-                  </td>`;
-          html += `<td>R$ ${comissao['valor']}</td>`;
-        }
-    })});
+
+    if(dados_comissoes.length > 0){
+        vendas_filtrado.forEach(venda => {
+        dados_comissoes.forEach(comissao => {
+            if(comissao["id_venda"] == venda["id"]){
+            html += `<tr><td>${formatarData(venda['data_venda'])}</td>`
+            html +=`
+            <td>
+                <div class="jv_customer-info">
+                    <div class="jv_avatar">
+                        ${venda['nome_vendedor'].substring(0, 2).toUpperCase()}
+                    </div>
+                    <div class="jv_customer-details">
+                        <h4>${venda['nome_vendedor']}</h4>
+                        <p>${venda['email_vendedor']}</p>
+                    </div>
+                </div>
+            
+            </td>`;
+            html += `<td>${venda['nome_cliente']}</td>`;
+            html += `<td>R$ ${venda['total']}</td>`;
+            html += `<td>
+                        <span class="badge-comissao">
+                            ${comissao['percentual']}%
+                        </span>
+                    </td>`;
+            html += `<td>R$ ${comissao['valor']}</td>`;
+            }
+        })});
+    }else{
+        html += '<tr><td class="ym_td" colspan="6">Nenhum resultado encontrada</td></tr>';
+    }
 
     info_tabela.innerHTML = html;
     

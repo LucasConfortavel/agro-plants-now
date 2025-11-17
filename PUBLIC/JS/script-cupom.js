@@ -56,13 +56,17 @@ function GerarTabela(){
 
     cupons = dados.slice(((pagina-1)*4), (pagina*limite));
 
-    cupons.forEach(cupom => {
-        html += `<tr><td>${cupom['codigo']}</td>`;
-        html += `<td>${cupom['valor']}%</td>`;
-        html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
-        html += `<td>${formatarData(cupom['data_validade'])}</td>`;
-       
-    });
+    if(cupons.length > 0){
+        cupons.forEach(cupom => {
+            html += `<tr><td>${cupom['codigo']}</td>`;
+            html += `<td>${cupom['valor']}%</td>`;
+            html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
+            html += `<td>${formatarData(cupom['data_validade'])}</td>`;
+        
+        });
+    }else{
+        html += '<tr><td class="ym_td" colspan="6">Nenhum cupom encontrada</td></tr>';
+    }
     tabela.innerHTML = html;
 }
 
@@ -94,17 +98,21 @@ function Pesquisar(){
 
     cupons = dados_filtrado.slice(((pagina-1)*4), (pagina*limite));
     
-    cupons.forEach(cupom => {
-        data_emissao = new Date(cupom['data_emissao']);
-        data_validade = new Date(cupom['data_validade']);
-        if (cupom["codigo"].toLowerCase().includes(pesquisa.toLowerCase())) {
-           html += `<tr><td>${cupom['codigo']}</td>`;
-           html += `<td>${cupom['valor']}%</td>`;
-           html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
-           html += `<td>${formatarData(cupom['data_validade'])}</td>`;
-        
-        }
-    });
+    if(cupons.length > 0){
+        cupons.forEach(cupom => {
+            data_emissao = new Date(cupom['data_emissao']);
+            data_validade = new Date(cupom['data_validade']);
+            if (cupom["codigo"].toLowerCase().includes(pesquisa.toLowerCase())) {
+            html += `<tr><td>${cupom['codigo']}</td>`;
+            html += `<td>${cupom['valor']}%</td>`;
+            html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
+            html += `<td>${formatarData(cupom['data_validade'])}</td>`;
+            
+            }
+        });
+    }else{
+        html += '<tr><td class="ym_td" colspan="6">Nenhum cupom encontrada</td></tr>';
+    }
 
     info_tabela.innerHTML = html;
     

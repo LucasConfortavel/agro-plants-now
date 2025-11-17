@@ -59,10 +59,41 @@ function GerarTabela() {
   const vendas = dados.slice((pagina - 1) * limite, pagina * limite);
 
   // === GERAR TABELA ===
-  vendas.forEach(venda => {
-    if (window.location.href.includes("vendas")) {
-      html += `
-        <tr>
+  if(vendas.length > 0){
+    vendas.forEach(venda => {
+      if (window.location.href.includes("vendas")) {
+        html += `
+          <tr>
+            <td>
+              <div class="jv_customer-info">
+                <div class="jv_customer-details">
+                  <h4>${venda['nome_vendedor']}</h4>
+                  <p>${venda['email_vendedor']}</p>
+                </div>
+              </div>
+            </td>
+            <td>${venda['nome_cliente']}</td>
+            <td>R$ ${venda['total']}</td>
+            <td class="jv_table-action">
+              <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                <i class="fas fa-ellipsis-h"></i>
+              </button>
+              <form class="jv_dropdown" method="GET" action="">
+                <button class="jv_dropdown-item" type="submit" name="visualizar" value="${venda['id']}">
+                  <i class="fas fa-eye"></i> Visualizar
+                </button>
+                <div class="jv_dropdown-separator"></div>
+                <button type="button" 
+                  class="jv_dropdown-item jv_danger" 
+                  onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${venda['id']}', 'Confirmação de Remoção')">
+                  <i class="fas fa-trash"></i> Remover
+                </button>
+              </form>
+            </td>
+          </tr>`;
+      } else if (window.location.href.includes("Rel")) {
+        html += `<tr><td>${formatarData(venda['data_venda'])}</td>`;
+        html += `
           <td>
             <div class="jv_customer-info">
               <div class="jv_customer-details">
@@ -73,39 +104,12 @@ function GerarTabela() {
           </td>
           <td>${venda['nome_cliente']}</td>
           <td>R$ ${venda['total']}</td>
-          <td class="jv_table-action">
-            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-              <i class="fas fa-ellipsis-h"></i>
-            </button>
-            <form class="jv_dropdown" method="GET" action="">
-              <button class="jv_dropdown-item" type="submit" name="visualizar" value="${venda['id']}">
-                <i class="fas fa-eye"></i> Visualizar
-              </button>
-              <div class="jv_dropdown-separator"></div>
-              <button type="button" 
-                class="jv_dropdown-item jv_danger" 
-                onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${venda['id']}', 'Confirmação de Remoção')">
-                <i class="fas fa-trash"></i> Remover
-              </button>
-            </form>
-          </td>
         </tr>`;
-    } else if (window.location.href.includes("Rel")) {
-      html += `<tr><td>${formatarData(venda['data_venda'])}</td>`;
-      html += `
-        <td>
-          <div class="jv_customer-info">
-            <div class="jv_customer-details">
-              <h4>${venda['nome_vendedor']}</h4>
-              <p>${venda['email_vendedor']}</p>
-            </div>
-          </div>
-        </td>
-        <td>${venda['nome_cliente']}</td>
-        <td>R$ ${venda['total']}</td>
-      </tr>`;
-    }
-  });
+      }
+    });
+  }else{
+    html += '<tr><td class="ym_td" colspan="6">Nenhuma venda encontrada</td></tr>';
+  }
 
   tabela.innerHTML = html;
 
@@ -134,10 +138,41 @@ function Pesquisar() {
 
   area_pags.innerHTML = "";
 
-  dados_filtrado.forEach(venda => {
-    if (window.location.href.includes("vendas")) {
-      html += `
-        <tr>
+  if(dados_filtrado.length > 0){
+    dados_filtrado.forEach(venda => {
+      if (window.location.href.includes("vendas")) {
+        html += `
+          <tr>
+            <td>
+              <div class="jv_customer-info">
+                <div class="jv_customer-details">
+                  <h4>${venda['nome_vendedor']}</h4>
+                  <p>${venda['email_vendedor']}</p>
+                </div>
+              </div>
+            </td>
+            <td>${venda['nome_cliente']}</td>
+            <td>R$ ${venda['total']}</td>
+            <td class="jv_table-action">
+              <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                <i class="fas fa-ellipsis-h"></i>
+              </button>
+              <form class="jv_dropdown" method="GET" action="">
+                <button class="jv_dropdown-item" type="submit" name="visualizar" value="${venda['id']}">
+                  <i class="fas fa-eye"></i> Visualizar
+                </button>
+                <div class="jv_dropdown-separator"></div>
+                <button type="button" 
+                  class="jv_dropdown-item jv_danger" 
+                  onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${venda['id']}', 'Confirmação de Remoção')">
+                  <i class="fas fa-trash"></i> Remover
+                </button>
+              </form>
+            </td>
+          </tr>`;
+      } else if (window.location.href.includes("Rel")) {
+        html += `<tr><td>${formatarData(venda['data_venda'])}</td>`;
+        html += `
           <td>
             <div class="jv_customer-info">
               <div class="jv_customer-details">
@@ -148,40 +183,12 @@ function Pesquisar() {
           </td>
           <td>${venda['nome_cliente']}</td>
           <td>R$ ${venda['total']}</td>
-          <td class="jv_table-action">
-            <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-              <i class="fas fa-ellipsis-h"></i>
-            </button>
-            <form class="jv_dropdown" method="GET" action="">
-              <button class="jv_dropdown-item" type="submit" name="visualizar" value="${venda['id']}">
-                <i class="fas fa-eye"></i> Visualizar
-              </button>
-              <div class="jv_dropdown-separator"></div>
-              <button type="button" 
-                class="jv_dropdown-item jv_danger" 
-                onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${venda['id']}', 'Confirmação de Remoção')">
-                <i class="fas fa-trash"></i> Remover
-              </button>
-            </form>
-          </td>
         </tr>`;
-    } else if (window.location.href.includes("Rel")) {
-      html += `<tr><td>${formatarData(venda['data_venda'])}</td>`;
-      html += `
-        <td>
-          <div class="jv_customer-info">
-            <div class="jv_customer-details">
-              <h4>${venda['nome_vendedor']}</h4>
-              <p>${venda['email_vendedor']}</p>
-            </div>
-          </div>
-        </td>
-        <td>${venda['nome_cliente']}</td>
-        <td>R$ ${venda['total']}</td>
-      </tr>`;
+      }
+    });
+  }else{
+        html += '<tr><td class="ym_td" colspan="6">Nenhuma venda encontrada</td></tr>';
     }
-  });
-
   info_tabela.innerHTML = html;
 
   // === CONTADOR SOMENTE TOTAL DE VENDAS FILTRADAS ===
