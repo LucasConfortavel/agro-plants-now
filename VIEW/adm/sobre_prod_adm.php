@@ -103,7 +103,7 @@ if(isset($_SESSION['alerta'])){
                         </div>
                         <div class="gs_info-content">
                             <p class="gs_label">Categoria</p>
-                            <h1 class="gs_product-title" title="<?php echo htmlspecialchars($produto['nome']); ?>">
+                            <h1 class="gs_product-title gs_value" title="<?php echo htmlspecialchars($produto['nome']); ?>">
                                 <?php echo htmlspecialchars($produto['nome']); ?>
                             </h1>
                         </div>
