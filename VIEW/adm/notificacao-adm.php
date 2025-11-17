@@ -1,55 +1,111 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
-require_once "../../CONTROLLER/ProdutoController.php";
+require_once "../../CONTROLLER/NotificacaoController.php";
 include "../../INCLUDE/vlibras.php";
 
 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : 'estoque';
 
 try {
-    $produtoController = new ProdutoController();
-    $produtos = $produtoController->index();
+    $notificacaoCtrl = new NotificacaoController();
+    
+    $todas_notificacoes = $notificacaoCtrl->listarNotificacoes(100);
+    
+    $notificacoes_estoque = [];
+    $notificacoes_contato = [];
 
-    $limite = 5;
-    $notificacoes = [];
-
-    if (!isset($produtos['error'])) {
-        foreach ($produtos as $produto) {
-            if ($produto['quantidade'] <= $limite) {
-                $notificacoes[] = [
-                    'titulo' => "Estoque baixo para o produto: {$produto['nome']}",
+    if (!isset($todas_notificacoes['error'])) {
+        foreach ($todas_notificacoes as $notificacao) {
+            if (strpos($notificacao['titulo'], 'Estoque Baixo') !== false) {
+                $notificacoes_estoque[] = [
+                    'titulo' => $notificacao['titulo'],
                     'setor' => "Produtos",
-                    'data' => date("d/m/Y")
+                    'data' => date("d/m/Y", strtotime($notificacao['horario_criacao'])),
+                    'id' => $notificacao['id'],
+                    'assunto' => $notificacao['assunto']
                 ];
+            } else if (strpos($notificacao['titulo'], 'Novo Contato') !== false) {
+                $dados = json_decode($notificacao['assunto'], true);
+                
+                if ($dados && isset($dados['tipo']) && $dados['tipo'] === 'contato') {
+                    $notificacoes_contato[] = [
+                        'titulo' => $notificacao['titulo'],
+                        'data' => date("d/m/Y H:i", strtotime($notificacao['horario_criacao'])),
+                        'mensagem' => $dados['mensagem'] ?? '',
+                        'nome' => $dados['nome'] ?? '',
+                        'email' => $dados['email'] ?? '',
+                        'id' => $notificacao['id']
+                    ];
+                } else {
+                    $assunto = $notificacao['assunto'];
+                    $linhas = explode("\n", $assunto);
+                    $nome = '';
+                    $email = '';
+                    $mensagem = '';
+                    $capturando_mensagem = false;
+                    
+                    foreach ($linhas as $linha) {
+                        $linha = trim($linha);
+                        
+                        if (strpos($linha, 'De:') !== false) {
+                            if (preg_match('/De:\s*([^(]+)\s*\(([^)]+)\)/', $linha, $matches)) {
+                                $nome = trim($matches[1]);
+                                $email = trim($matches[2]);
+                            }
+                        } else if (strpos($linha, 'Mensagem:') !== false) {
+                            $capturando_mensagem = true;
+                        } else if ($capturando_mensagem && !empty($linha)) {
+                            $mensagem .= $linha . "\n";
+                        }
+                    }
+                    
+                    $notificacoes_contato[] = [
+                        'titulo' => $notificacao['titulo'],
+                        'data' => date("d/m/Y H:i", strtotime($notificacao['horario_criacao'])),
+                        'mensagem' => trim($mensagem),
+                        'nome' => $nome,
+                        'email' => $email,
+                        'id' => $notificacao['id']
+                    ];
+                }
             }
         }
     }
 
-   
-    $mensagens = [
+    // Mensagens de exemplo para teste
+    $mensagens_exemplo = [
         [
-            'titulo' => "fazenda.esperanca@gmail.com",
-            'data' => date("d/m/Y"),
-            'mensagem' => "Bom dia! precisamos renovar nosso estoque de fertilizantes para a safra de soja. att",
-            'nome' => "Luiz Inácio"
+            'titulo' => "Orçamento para Sementes de Soja - Safra 2024",
+            'data' => "15/03/2024 14:30",
+            'mensagem' => "Prezados, gostaria de solicitar um orçamento para sementes de soja para a próxima safra. Necessitamos de aproximadamente 2.000 kg para plantio em 200 hectares. Por favor, enviem valores com detalhes sobre: variedades disponíveis, taxa de germinação, tratamento industrial incluído, condições de pagamento (possibilidade de parcelamento), prazo de entrega e descontos para compra acima de 1.500 kg. Também precisamos de informações sobre assistência técnica e garantias. Aguardo retorno para fecharmos o pedido ainda esta semana.",
+            'nome' => "Carlos Eduardo Silva",
+            'email' => "carlos.fazenda@agrobrasil.com.br",
+            'id' => 'exemplo1'
         ],
         [
-            'titulo' => "cooperativa.verde@hotmail.com", 
-            'data' => date("d/m/Y"),
-            'mensagem' => "Prezados, Nossa cooperativa esta com problemas de pragas nas lavouras de milho, precisamos urgentemente de defensivos agrícolas.",
-            'nome' => "Maria Santos"
+            'titulo' => "Problemas com Pragas - Urgente",
+            'data' => "18/03/2024 09:15", 
+            'mensagem' => "Bom dia, estamos enfrentando uma infestação severa de lagartas nas lavouras de milho. Já tentamos alguns defensivos sem sucesso. Precisamos urgentemente de recomendação técnica e produtos eficazes para controle. A área afetada é de aproximadamente 150 hectares com danos visíveis em 40% da plantação. Solicitamos: visita técnica emergencial, amostras para análise, orçamento para defensivos específicos e plano de aplicação. A situação é crítica e precisamos de resposta imediata para evitar perdas maiores na produção.",
+            'nome' => "Ana Paula Rodrigues",
+            'email' => "ana.rodrigues@cooperativaverde.com",
+            'id' => 'exemplo2'
         ],
         [
-        'titulo' => "agroforte@outlook.com",
-        'data' => date("d/m/Y"),
-        'mensagem' => "Olá equipe, tudo bem? Gostaria de solicitar um orçamento detalhado para sementes de algodão destinadas à próxima safra. Nossa necessidade é de aproximadamente 500 kg para o plantio em uma área de 50 hectares. Também gostaria de saber sobre os prazos de entrega, disponibilidade do produto, formas e condições de pagamento, além de possíveis descontos para compra em maior volume. Agradeço desde já pela atenção e aguardo o retorno para alinharmos o pedido.",
-        'nome' => "Carlos Eduardo"
-    ]
-];
+            'titulo' => "Renovação de Contrato - Fertilizantes Anuais",
+            'data' => "20/03/2024 16:45",
+            'mensagem' => "Caro fornecedor, venho por meio deste renovar nosso contrato anual de fertilizantes. Para 2024 precisamos de: 500 toneladas de NPK 08-28-16, 300 toneladas de ureia, 200 toneladas de superfosfato simples e 150 toneladas de cloreto de potássio. Solicitamos proposta comercial com: preços atualizados, cronograma de entregas trimestrais, condições de pagamento (60/90 dias), garantia de qualidade dos produtos e suporte técnico para aplicação. Também gostaríamos de discutir possíveis melhorias no mix de produtos baseado em análise de solo recente.",
+            'nome' => "Roberto Almeida Santos", 
+            'email' => "roberto.santos@agroforte.com.br",
+            'id' => 'exemplo3'
+        ]
+    ];
 
     
+    if ($filtro === 'mensagens') {
+        $dados = !empty($notificacoes_contato) ? $notificacoes_contato : $mensagens_exemplo;
+    } else {
+        $dados = $notificacoes_estoque;
+    }
 
- 
-    $dados = ($filtro === 'mensagens') ? $mensagens : $notificacoes;
     $total_itens = count($dados);
 
 } catch (Exception $e) {
@@ -57,8 +113,14 @@ try {
     $dados = [];
     $total_itens = 0;
 }
-?>
 
+if (isset($_GET['remover'])) {
+    $id_remover = $_GET['remover'];
+    $notificacaoCtrl->deletarNotificacao($id_remover);
+    header("Location: notificacao-adm.php?filtro=" . $filtro);
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -70,11 +132,11 @@ try {
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+   
     <style>
     .jv_filter-select {
         padding: 8px 12px;
-        border: 1px solid rgba(58, 98, 64, 0.5); 
+        border: 1px solid rgba(58, 98, 64, 0.5);
         border-radius: 4px;
         margin-left: 10px;
         background-color: white;
@@ -82,12 +144,12 @@ try {
         font-weight: 500;
         font-size: 14px;
     }
-    
+   
     .jv_filter-select:focus {
         outline: none;
         box-shadow: 0 0 0 2px rgba(58, 98, 64, 0.1);
     }
-    
+   
     .mensagem-completa {
         background: transparent;
         border: none;
@@ -96,20 +158,20 @@ try {
         width: 100%;
         cursor: pointer;
     }
-    
+   
     .conteudo-mensagem {
         background: transparent;
         padding: 0;
         border: none;
         margin-top: 8px;
-        max-height: 120px;
-        overflow-y: auto;
+        max-height: 60px;
+        overflow-y: hidden;
         line-height: 1.4;
         font-size: 14px;
         color: #666;
         word-wrap: break-word;
     }
-    
+   
     .jv_customer-details h4 {
         font-weight: 600;
         color: #333;
@@ -117,11 +179,11 @@ try {
         font-size: 15px;
         line-height: 1.3;
     }
-    
+   
     .jv_avatar.email-avatar {
         width: 40px;
         height: 40px;
-        border-radius: 50%; 
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -131,14 +193,14 @@ try {
         flex-shrink: 0;
         margin-top: 2px;
     }
-    
+   
     .jv_avatar:not(.email-avatar) {
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 16px;
     }
-  
+
     .jv_customer-info {
         display: flex;
         align-items: flex-start;
@@ -151,7 +213,7 @@ try {
         min-width: 0;
     }
 
-    
+   
     .jv_table tbody tr {
         height: 80px;
     }
@@ -168,7 +230,7 @@ try {
     .setor-col {
         vertical-align: middle;
         color: #666;
-        font-size: 15px; 
+        font-size: 15px;
         font-weight: 500;
     }
 
@@ -321,7 +383,7 @@ try {
     .setor-col {
         display: table-cell;
     }
-    
+   
     <?php if ($filtro === 'mensagens'): ?>
     .setor-col {
         display: none;
@@ -342,7 +404,7 @@ try {
                                 <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
                                     <i class="fas fa-search search-icon"></i>
                                 </button>
-                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome..." class="jv_search-input">
+                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar..." class="jv_search-input">
                             </div>
                         </form>
 
@@ -383,30 +445,36 @@ try {
                                 <?php foreach ($dados as $index => $item): ?>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $index ?>">
+                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $item['id'] ?>">
                                         </td>
                                         <td>
                                             <div class="jv_customer-info">
                                                 <div class="jv_avatar <?= $filtro === 'mensagens' ? 'email-avatar' : '' ?>">
-                                                    <?= $filtro === 'estoque' ? '⚠' : '📧' ?>
+                                                    <?= $filtro === 'estoque' ? '⚠️' : '📧' ?>
                                                 </div>
                                                 <div class="jv_customer-details">
                                                     <?php if ($filtro === 'mensagens'): ?>
                                                         <div class="mensagem-completa mensagem-clicavel" 
                                                              onclick="abrirPopupEmail(
-                                                                '<?= htmlspecialchars($item['titulo']) ?>', 
-                                                                '<?= $item['data'] ?>', 
-                                                                `<?= htmlspecialchars($item['mensagem']) ?>`,
-                                                                '<?= htmlspecialchars($item['nome']) ?>'
+                                                                '<?= htmlspecialchars(addslashes($item['email']), ENT_QUOTES) ?>', 
+                                                                '<?= htmlspecialchars(addslashes($item['data']), ENT_QUOTES) ?>', 
+                                                                `<?= htmlspecialchars(addslashes($item['mensagem']), ENT_QUOTES) ?>`,
+                                                                '<?= htmlspecialchars(addslashes($item['nome']), ENT_QUOTES) ?>'
                                                              )">
                                                             <h4><?= htmlspecialchars($item['titulo']) ?></h4>
                                                             <div class="conteudo-mensagem">
-                                                                <?= nl2br(htmlspecialchars($item['mensagem'])) ?>
+                                                                <?php
+                                                                $mensagem_abreviada = $item['mensagem'];
+                                                                if (strlen($mensagem_abreviada) > 100) {
+                                                                    $mensagem_abreviada = substr($mensagem_abreviada, 0, 100) . '...';
+                                                                }
+                                                                echo nl2br(htmlspecialchars($mensagem_abreviada));
+                                                                ?>
                                                             </div>
                                                         </div>
                                                     <?php else: ?>
                                                         <h4><?= htmlspecialchars($item['titulo']) ?></h4>
-                                                        <p>Produto com estoque baixo</p>
+                                                        <p><?= htmlspecialchars($item['assunto'] ?? 'Produto com estoque baixo') ?></p>
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
@@ -420,7 +488,7 @@ try {
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
                                             <div class="jv_dropdown">
-                                                <button class="jv_dropdown-item jv_danger">
+                                                <button class="jv_dropdown-item remover-btn" onclick="removerNotificacao(<?= is_numeric($item['id']) ? $item['id'] : "'{$item['id']}'" ?>)">
                                                     <i class="fas fa-trash"></i> Remover
                                                 </button>
                                             </div>
@@ -440,62 +508,108 @@ try {
                 </div>
             </div>
         </div>
-    </main>
 
-   
-    <div id="popupEmail" class="popup-email">
-        <div class="popup-email-content">
-            <div class="popup-email-header">
-                <h3>Detalhes do Email</h3>
-                <button class="popup-email-close" onclick="fecharPopupEmail()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="popup-email-body">
-                <div class="email-info-grid">
-                    <div class="info-item">
-                        <span class="info-label">De:</span>
-                        <span class="info-value" id="popupRemetente"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Nome:</span>
-                        <span class="info-value" id="popupNome"></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Data:</span>
-                        <span class="info-value" id="popupData"></span>
-                    </div>
+        <div id="popupEmail" class="popup-email">
+            <div class="popup-email-content">
+                <div class="popup-email-header">
+                    <h3>📧 Detalhes da Mensagem</h3>
+                    <button class="popup-email-close" onclick="fecharPopupEmail()">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-                
-                <div class="mensagem-container">
-                    <span class="mensagem-label">Mensagem:</span>
-                    <div class="mensagem-conteudo" id="popupMensagem"></div>
+                <div class="popup-email-body">
+                    <div class="email-info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Nome do Remetente</span>
+                            <span class="info-value" id="popupNome"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <span class="info-value" id="popupRemetente"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Data e Hora</span>
+                            <span class="info-value" id="popupData"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="mensagem-container">
+                        <span class="mensagem-label">Mensagem Recebida</span>
+                        <div class="mensagem-conteudo" id="popupMensagem"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="../../PUBLIC/JS/script-pop-up.js"></script>
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
     
     <script>
+        function removerNotificacao(id) {
+            if (confirm('Tem certeza que deseja remover esta notificação?')) {
+                // Se for um ID de exemplo, apenas recarrega a página
+                if (typeof id === 'string' && id.startsWith('exemplo')) {
+                    alert('Esta é uma mensagem de exemplo e não pode ser removida.');
+                    return;
+                }
+                window.location.href = '?remover=' + id + '&filtro=<?= $filtro ?>';
+            }
+        }
         
-        function abrirPopupEmail(titulo, data, mensagem, nome) {
-            document.getElementById('popupRemetente').textContent = titulo;
-            document.getElementById('popupNome').textContent = nome;
-            document.getElementById('popupData').textContent = data;
-            document.getElementById('popupMensagem').textContent = mensagem;
+        function abrirPopupEmail(email, data, mensagem, nome) {
+            const decodeHTML = (html) => {
+                const txt = document.createElement('textarea');
+                txt.innerHTML = html;
+                return txt.value;
+            };
+
+            document.getElementById('popupNome').textContent = decodeHTML(nome);
+            document.getElementById('popupRemetente').textContent = decodeHTML(email);
+            document.getElementById('popupData').textContent = decodeHTML(data);
+            document.getElementById('popupMensagem').textContent = decodeHTML(mensagem);
             document.getElementById('popupEmail').style.display = 'flex';
+            
+            document.body.style.overflow = 'hidden';
         }
 
         function fecharPopupEmail() {
             document.getElementById('popupEmail').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
-        
         document.getElementById('popupEmail').addEventListener('click', function(e) {
-            if (e.target === this) fecharPopupEmail();
+            if (e.target === this) {
+                fecharPopupEmail();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                fecharPopupEmail();
+            }
+        });
+
+        function toggleDropdown(button) {
+            const dropdown = button.nextElementSibling;
+            const allDropdowns = document.querySelectorAll('.jv_dropdown');
+            
+            allDropdowns.forEach(d => {
+                if (d !== dropdown) {
+                    d.style.display = 'none';
+                }
+            });
+            
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.jv_menu-btn') && !e.target.closest('.jv_dropdown')) {
+                document.querySelectorAll('.jv_dropdown').forEach(d => {
+                    d.style.display = 'none';
+                });
+            }
         });
     </script>
 </body>

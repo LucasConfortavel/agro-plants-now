@@ -1,7 +1,5 @@
 <?php
-include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/Menu_superior.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,14 +9,12 @@ include "../../INCLUDE/Menu_superior.php";
     <title>Contate-nos</title>
     <link rel="stylesheet" href="../../PUBLIC/css/contate_nos.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu_superior.css">
-
-    <style>
+        <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    </style>
+            </style>
 </head>
-<body>
-
-    <main class="contact-section">
+<body>  
+        <main class="contact-section">
         <div class="contact-info-container">
             <h2 class="contact-title">Fale Conosco</h2>
             <p class="contact-description">
@@ -32,7 +28,7 @@ include "../../INCLUDE/Menu_superior.php";
                     <div>
                         <p class="info-label">Ligue para nós</p>
                         <p class="info-value">+55 (67) 99999-9999</p>
-                    </div>
+                                            </div>
                 </div>
                 <div class="info-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
@@ -41,7 +37,7 @@ include "../../INCLUDE/Menu_superior.php";
                     <div>
                         <p class="info-label">Localização</p>
                         <p class="info-value">Rua Santo dos Santos, 999 Campo Grande - MS</p>
-                    </div>
+                                            </div>
                 </div>
             </div>
         </div>
@@ -55,24 +51,19 @@ include "../../INCLUDE/Menu_superior.php";
                 </div>
                 <div class="form-group">
                     <input type="email" name="email" placeholder="E-mail" class="form-input" required>
-                </div>
+                                    </div>
                 <div class="form-group">
                     <textarea name="message" placeholder="Sua Mensagem" rows="6" class="form-textarea" required></textarea>
-                </div>
+                                    </div>
                 <button type="submit" class="submit-button">Enviar Mensagem</button>
             </form>
-        </div>
+                    </div>
     </main>
-
 
     <footer>
         <?php include "../../INCLUDE/footer.php"; ?>
     </footer>
-
-    <script src="../../PUBLIC/JS/contate-nos.js"></script>
-
-
-    <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
+        <script src="../../PUBLIC/JS/contate-nos.js"></script>
+            <script src="../../PUBLIC/JS/script-menu-superior.js"></script>
     <!-- <script src="../PUBLIC/JS/script.js"></script> -->
-</body>
-</html>
+     </html>

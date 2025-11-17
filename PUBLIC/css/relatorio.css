@@ -235,7 +235,7 @@ h3{
   justify-content: space-between;
   align-items: center;
   border: 1px solid rgb(224, 224, 224);
-  background-color: white;
+  background-color: #45734b;
   border-radius: 5px;
   padding: 0px 3px;
   cursor: pointer;
@@ -292,16 +292,16 @@ h3{
 
 
 .ym_options{
-    display: none;
-    background-color: white;
-    flex-direction: column;
-    z-index: 1;
-    position: absolute;
-    border-radius: 5px;
-    padding: 5px;
-    margin-top: 10px;
-    border: 1px solid rgb(224, 224, 224);
-    width: auto;
+  display: none;
+  background-color: #45734b;
+  flex-direction: column;
+  z-index: 1;
+  position: absolute;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 10px;
+  border: 1px solid rgb(224, 224, 224);
+  width: auto;
     
 }
 
@@ -312,7 +312,7 @@ h3{
     align-items: center;
     display: flex;
     gap: 5px;
-    color: black;
+    color: white;
 }
 
 .ym_link-option:hover{
@@ -437,9 +437,6 @@ h3{
    margin-top: -1px;
 }
 
-.po-btn:hover {
-  background-color: #45984b;
-}
 
 .po-select {
   padding: 0.5rem;
@@ -1201,6 +1198,15 @@ h3 {
   margin: 0 auto;
   display: block;
   margin-top: 40px;
+}
+
+
+
+/* REMOVER HOVER DO BOTÃO EXPORTAR CSV */
+.po-btn:hover {
+    background-color: #45734b !important;
+    transform: none !important;
+    border-color: #d1d5db !important;
 }
 
 /* ========== RESPONSIVE: 480px ========== */

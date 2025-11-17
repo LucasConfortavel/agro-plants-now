@@ -86,7 +86,7 @@ $vendas_paginadas = array_slice($vendas, $offset, $limite);
                 </div>
 
                 <!-- Table -->
-                <div class="jv_card-content">
+                <div class="jv_card-content">  
                     <div class="jv_table-container">
                         <table class="jv_table">
                             <thead>
@@ -170,7 +170,7 @@ $vendas_paginadas = array_slice($vendas, $offset, $limite);
 
         <script>
             const dados = <?php echo json_encode($vendas); ?>;
-        </script>
+        </script>   
         <script src="../../PUBLIC/JS/script-vendas-vend.js"></script>
         <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>

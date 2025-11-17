@@ -55,9 +55,9 @@ body {
     animation: aparecer ease 0.4s;
 }
 
-.ym_btn-padrao:hover {
+/* .ym_btn-padrao:hover {
     background-color: rgb(90, 143, 93);
-}
+} */
 
 .ym_btn-remover {
     background-color: #f44336;
@@ -67,11 +67,11 @@ body {
     grid-column-end: 4;
 }
 
-.ym_btn-remover:hover {
+/* .ym_btn-remover:hover {
     background-color: #da190b;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
-}
+} */
 
 .ym_btn-salvar {
     background-color: #45734b;
@@ -83,11 +83,11 @@ body {
     grid-column-end: 4;
 }
 
-.ym_btn-salvar:hover {
+/* .ym_btn-salvar:hover {
     background-color: rgb(90, 143, 93);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
-}
+} */
 
 @keyframes aparecer {
     0% {

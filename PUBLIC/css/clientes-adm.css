@@ -26,6 +26,7 @@
   transform: translateY(-1px);
 }
 
+
 .ym_btn-criar-pedido:disabled {
   background-color: #d1d5db;
   cursor: not-allowed;
@@ -506,6 +507,40 @@
     }
 }
 
+.ym_btn-padrao,
+.ym_btn-remover {
+   background-color: #45734b !important; /*verde fixo */
+  color: white !important;
+  border: none !important;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.127);
+  cursor: pointer; 
+  transition: none !important;
+}
+
+.ym_btn-padrao:hover,
+.ym_btn-remover:hover {
+  background-color: #45734b !important; /* mantém a mesma cor  */
+  color: white !important;
+  border: none !important;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.127) !important;
+  transform: none !important;
+}
+*/
+
+
+.select-value {
+  width: 100%;
+  text-align: center;
+} 
+
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+} 
+
+
 
 .jv_dropdown-item {
     display: block;
@@ -523,9 +558,7 @@
     color: #dc2626;
 }
 
-.jv_dropdown-item.danger:hover {
-    background: #fef2f2;
-}
+
 
 .jv_dropdown-separator {
     height: 1px;

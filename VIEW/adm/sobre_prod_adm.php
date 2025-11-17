@@ -103,7 +103,9 @@ if(isset($_SESSION['alerta'])){
                         </div>
                         <div class="gs_info-content">
                             <p class="gs_label">Categoria</p>
-                            <p class="gs_value"><?php echo htmlspecialchars($categoria_nome); ?></p>
+                            <h1 class="gs_product-title" title="<?php echo htmlspecialchars($produto['nome']); ?>">
+                                <?php echo htmlspecialchars($produto['nome']); ?>
+                            </h1>
                         </div>
                     </div>
 
@@ -149,8 +151,8 @@ if(isset($_SESSION['alerta'])){
                         </svg>
                         <h2>Descrição do Produto</h2>
                     </div>
-                    <p class="gs_description-text">
-                        <?php echo nl2br(htmlspecialchars($produto['descricao'])); ?>
+                    <p class="gs_description-text" title="<?php echo htmlspecialchars($produto['descricao']); ?>">
+                    <?php echo nl2br(htmlspecialchars($produto['descricao'])); ?>
                     </p>
                 </div>
 
