@@ -157,15 +157,13 @@ class ProdutoModel {
         }
     }
 
-    public function atualizarEstoque($id, $quantidade) {
-        $query = "UPDATE " . $this->table_name . " SET quantidade = ? WHERE id = ?";
+    public function atualizarEstoq_Preco() {
+        $query = "UPDATE " . $this->table_name . " SET quantidade = ?, preco = ? WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         
-        $quantidade = htmlspecialchars(strip_tags($quantidade));
-        $id = htmlspecialchars(strip_tags($id));
-        
-        $stmt->bindParam(1, $quantidade);
-        $stmt->bindParam(2, $id);
+        $stmt->bindParam(1, $this->quantidade);
+        $stmt->bindParam(2, $this->preco);
+        $stmt->bindParam(3, $this->id);
         
         try {
             return $stmt->execute();

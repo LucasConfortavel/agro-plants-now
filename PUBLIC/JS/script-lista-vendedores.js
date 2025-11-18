@@ -63,62 +63,67 @@ function GerarTabela(){
 
     usuarios = dados.slice(((pagina-1)*4), (pagina*limite));
 
-    usuarios.forEach(usuario => {
-        // Definir foto de perfil
-        const fotoPath = usuario['foto'] && usuario['foto'] !== '' ? 
-            `../../PUBLIC/img/${usuario['foto']}` : 
-            '../../PUBLIC/img/default_user.jpg';
-        
-        const iniciais = usuario['nome'].substring(0, 2).toUpperCase();
+    if(usuarios.length > 0){
+        usuarios.forEach(usuario => {
+            // Definir foto de perfil
+            const fotoPath = usuario['foto'] && usuario['foto'] !== '' ? 
+                `../../PUBLIC/img/${usuario['foto']}` : 
+                '../../PUBLIC/img/default_user.jpg';
+            
+            const iniciais = usuario['nome'].substring(0, 2).toUpperCase();
 
-        // html += `<tr><td>
-        //             <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="${usuario['id']}">
-        //         </td>`;
-                
-        html += `<td>
-            <div class="jv_customer-info">
-                <div class="jv_avatar-container">
-                    ${usuario['foto'] && usuario['foto'] !== '' ? 
-                        `<img src="${fotoPath}" alt="${usuario['nome']}" class="jv_avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                         <div class="jv_avatar-fallback" style="display:none;">${iniciais}</div>` :
-                        `<div class="jv_avatar-fallback">${iniciais}</div>`
-                    }
+            // html += `<tr><td>
+            //             <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="${usuario['id']}">
+            //         </td>`;
+                    
+            html += `<td>
+                <div class="jv_customer-info">
+                    <div class="jv_avatar-container">
+                        ${usuario['foto'] && usuario['foto'] !== '' ? 
+                            `<img src="${fotoPath}" alt="${usuario['nome']}" class="jv_avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="jv_avatar-fallback" style="display:none;">${iniciais}</div>` :
+                            `<div class="jv_avatar-fallback">${iniciais}</div>`
+                        }
+                    </div>
+                    <div class="jv_customer-details">
+                        <h4>${abreviarNome(usuario['nome'])}</h4>
+                        <p>${usuario['email']}</p>
+                    </div>
                 </div>
-                <div class="jv_customer-details">
-                    <h4>${abreviarNome(usuario['nome'])}</h4>
-                    <p>${usuario['email']}</p>
-                </div>
-            </div>
-        </td>`;
-        html += `<td>${usuario['telefone']}</td>`;
-        html += `<td>${formatarData(usuario['data_nasc'])}</td>`;
-        html += `<td>${usuario['status']}</td>`;
-        html += `<td class="jv_table-action">
-                    <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </button>
-                    <form class="jv_dropdown" method="GET" action="">
-                        <button type="submit" name="visualizar" value="${usuario['id']}" class="jv_dropdown-item">
-                            <i class="fas fa-eye"></i> Visualizar
+            </td>`;
+            html += `<td>${usuario['telefone']}</td>`;
+            html += `<td>${formatarData(usuario['data_nasc'])}</td>`;
+            html += `<td>${usuario['status']}</td>`;
+            html += `<td class="jv_table-action">
+                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                            <i class="fas fa-ellipsis-h"></i>
                         </button>
-                        <div class="jv_dropdown-separator"></div>`;
-        
-        if(usuario['status'] == "ATIVADO"){
-            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_danger">
-                <i class="fa-solid fa-ban"></i> Desativar
-            </button>
-            </form>
-        </td>
-    </tr>`;
-        } else {
-            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
-                <i class="fa-solid fa-power-off"></i> Ativar
-            </button>
-            </form>
-        </td>
-    </tr>`;
-        }
-    });
+                        <form class="jv_dropdown" method="GET" action="">
+                            <button type="submit" name="visualizar" value="${usuario['id']}" class="jv_dropdown-item">
+                                <i class="fas fa-eye"></i> Visualizar
+                            </button>
+                            <div class="jv_dropdown-separator"></div>`;
+            
+            if(usuario['status'] == "ATIVADO"){
+                html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_danger">
+                    <i class="fa-solid fa-ban"></i> Desativar
+                </button>
+                </form>
+            </td>
+        </tr>`;
+            } else {
+                html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
+                    <i class="fa-solid fa-power-off"></i> Ativar
+                </button>
+                </form>
+            </td>
+        </tr>`;
+            }
+        });
+    }else{
+        html += '<tr><td class="ym_td" colspan="6">Nenhum vendedor encontrado</td></tr>';
+    }
+
     tabela.innerHTML = html;
 }
 
@@ -145,61 +150,61 @@ function Pesquisar(){
     area_pags = document.getElementsByClassName('jv_page-navigation')[0];
     area_pags.innerHTML="";
     
-    dados_filtrado.forEach(usuario => {
-        const fotoPath = usuario['foto'] && usuario['foto'] !== '' ? 
-            `../../PUBLIC/img/${usuario['foto']}` : 
-            '../../PUBLIC/img/default_user.jpg';
-        
-        const iniciais = usuario['nome'].substring(0, 2).toUpperCase();
-
-        html += `<tr><td>
-            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="${usuario['id']}">
-        </td>`;
-        
-        html += `<td>
-            <div class="jv_customer-info">
-                <div class="jv_avatar-container">
-                    ${usuario['foto'] && usuario['foto'] !== '' ? 
-                        `<img src="${fotoPath}" alt="${usuario['nome']}" class="jv_avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                         <div class="jv_avatar-fallback" style="display:none;">${iniciais}</div>` :
-                        `<div class="jv_avatar-fallback">${iniciais}</div>`
-                    }
+    if(dados_filtrado.length > 0){
+        dados_filtrado.forEach(usuario => {
+            const fotoPath = usuario['foto'] && usuario['foto'] !== '' ? 
+                `../../PUBLIC/img/${usuario['foto']}` : 
+                '../../PUBLIC/img/default_user.jpg';
+            
+            const iniciais = usuario['nome'].substring(0, 2).toUpperCase();
+            
+            html += `<tr><td>
+                <div class="jv_customer-info">
+                    <div class="jv_avatar-container">
+                        ${usuario['foto'] && usuario['foto'] !== '' ? 
+                            `<img src="${fotoPath}" alt="${usuario['nome']}" class="jv_avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                             <div class="jv_avatar-fallback" style="display:none;">${iniciais}</div>` :
+                            `<div class="jv_avatar-fallback">${iniciais}</div>`
+                        }
+                    </div>
+                    <div class="jv_customer-details">
+                        <h4>${abreviarNome(usuario['nome'])}</h4>
+                        <p>${usuario['email']}</p>
+                    </div>
                 </div>
-                <div class="jv_customer-details">
-                    <h4>${abreviarNome(usuario['nome'])}</h4>
-                    <p>${usuario['email']}</p>
-                </div>
-            </div>
-        </td>`;
-        html += `<td>${usuario['telefone']}</td>`;
-        html += `<td>${formatarData(usuario['data_nasc'])}</td>`;
-        html += `<td>${usuario['status']}</td>`;
-        html += `<td class="jv_table-action">
-                    <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </button>
-                    <form class="jv_dropdown" method="GET" action="">
-                        <button type="submit" name="visualizar" value="${usuario['id']}" class="jv_dropdown-item">
-                            <i class="fas fa-eye"></i> Visualizar
+            </td>`;
+            html += `<td>${usuario['telefone']}</td>`;
+            html += `<td>${formatarData(usuario['data_nasc'])}</td>`;
+            html += `<td>${usuario['status']}</td>`;
+            html += `<td class="jv_table-action">
+                        <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                            <i class="fas fa-ellipsis-h"></i>
                         </button>
-                        <div class="jv_dropdown-separator"></div>`;
-        
-        if(usuario['status'] == "ATIVADO"){
-            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_danger">
-                <i class="fa-solid fa-ban"></i> Desativar
-            </button>
-            </form>
-        </td>
-    </tr>`;
-        } else {
-            html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
-                <i class="fa-solid fa-power-off"></i> Ativar
-            </button>
-            </form>
-        </td>
-    </tr>`;
-        }
-    });
+                        <form class="jv_dropdown" method="GET" action="">
+                            <button type="submit" name="visualizar" value="${usuario['id']}" class="jv_dropdown-item">
+                                <i class="fas fa-eye"></i> Visualizar
+                            </button>
+                            <div class="jv_dropdown-separator"></div>`;
+            
+            if(usuario['status'] == "ATIVADO"){
+                html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_danger">
+                    <i class="fa-solid fa-ban"></i> Desativar
+                </button>
+                </form>
+            </td>
+        </tr>`;
+            } else {
+                html += `<button type="button" onclick="abrirPopup('../../VIEW/pop-up/pop-up_remover.php?id=${usuario['id']}')" class="jv_dropdown-item jv_acess">
+                    <i class="fa-solid fa-power-off"></i> Ativar
+                </button>
+                </form>
+            </td>
+        </tr>`;
+            }
+        });
+    }else{
+        html += '<tr><td class="ym_td" colspan="6">Nenhum vendedor encontrado</td></tr>';
+    }
 
     info_tabela.innerHTML = html;
 }

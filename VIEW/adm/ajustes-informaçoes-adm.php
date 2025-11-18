@@ -1,11 +1,13 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+include "../../CONTROLLER/UsuarioController.php";
 require_once "../../DB/Database.php"; 
 require_once "../../INCLUDE/verificarLogin.php"; 
 include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/alertas.php";
 
 $user_id = $_SESSION['id'] ?? null;
+$controler_user = new UsuarioController();
 
 $db = new Database();
 $conn = $db->getConexao();
@@ -29,20 +31,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_info'])) {
     if($atualizar == 1){
         $_SESSION['alerta'] = '<script> exibirAlerta("Informações atualizadas com sucesso","sucesso"); </script>';
     }else{
-        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível atualizadar as informações","sucesso"); </script>';
+        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível atualizadar as informações","error"); </script>';
     }
 
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_password'])) {
-    $stmt = $conn->prepare("SELECT senha FROM usuario WHERE id = ?");
-    $stmt->execute([$user_id]);
-    $senhaAtual = $stmt->fetchColumn();
-
-    if ($_POST['senha_atual'] === $senhaAtual && $_POST['nova_senha'] === $_POST['confirmar_senha']) {
-        $stmt = $conn->prepare("UPDATE usuario SET senha = ? WHERE id = ?");
-        $stmt->execute([$_POST['nova_senha'], $user_id]);
+    
+    if($controler_user->verificar_senha($_SESSION,$_POST['senha_atual'])){
+        if ($_POST['nova_senha'] === $_POST['confirmar_senha']) {
+            if($controler_user->alterar_senha()){
+                print_r($controler_user->alterar_senha());
+                $_SESSION['alerta'] = '<script> exibirAlerta("Senha atualizada com sucesso","sucesso"); </script>';
+            }else{
+                $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível atualizar a senha","error"); </script>';
+            }
+        }else{
+            $_SESSION['alerta'] = '<script> exibirAlerta("As senha não são iguais","error"); </script>';
+        }
+    }else{
+        $_SESSION['alerta'] = '<script> exibirAlerta("Senha incorreta","error"); </script>';
     }
+
+    header('Location: ' . $_SERVER['PHP_SELF']);
 }
 
 $stmt = $conn->prepare('
@@ -52,11 +63,6 @@ $stmt = $conn->prepare('
 ');
 $stmt->execute([$user_id]);
 $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if(isset($_SESSION['alerta'])){
-    echo($_SESSION['alerta']);
-    unset($_SESSION['alerta']);
-}
 ?>
 
 
