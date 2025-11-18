@@ -541,7 +541,11 @@
     margin-left: 134%;
 }
 
-
+.cupom-expirado {
+    background-color: #f8d7da; /* vermelho claro */
+    color: #721c24;
+    text-decoration: line-through;
+}
 /* ===================================== */
 /* Responsividade para telas >= 1400px  */
 /* ===================================== */
