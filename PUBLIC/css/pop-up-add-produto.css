@@ -78,6 +78,7 @@
 
 .ym_input-padrao {
     width: 100%;
+    max-height: 50vh;
     padding: 12px;
     border: 2px solid #45734B;
     border-radius: 6px;

@@ -67,15 +67,7 @@
     } 
     
     $usuarios = $controler_user->index("vendedor");
-
-    $total_vendedores = count($usuarios);
-
-
-    if(isset($_SESSION['alerta'])){
-        echo($_SESSION['alerta']);
-        unset($_SESSION['alerta']);
-    }
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
