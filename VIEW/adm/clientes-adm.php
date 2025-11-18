@@ -20,16 +20,20 @@ if ($status_filtro) {
 }
 
 if(isset($_GET['pesquisa'])){
+    if($_GET['pesquisa']==""){
+        header('Location: clientes-adm.php');
+    }
     $clientes = [];
     $clientes[] = $cliente_control->pesquisar();    
-    if(is_array($clientes)){
+    if(is_array($clientes) & $clientes[0] != 'Usuário não encontrado'){
         $total_clientes = count($clientes);
     }else{
         $total_clientes = 0;
     }
 }
-
-$total_clientes = count($clientes);
+else{
+    $total_clientes = count($clientes);
+}
 
 $limite = 4;
 $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
@@ -112,10 +116,6 @@ if(!empty($_GET)){
     }
 }
 
-if(isset($_SESSION['alerta'])){
-    echo($_SESSION['alerta']);
-    unset($_SESSION['alerta']);
-}
 ?>
 
 <!DOCTYPE html>
@@ -151,7 +151,14 @@ if(isset($_SESSION['alerta'])){
                             <button class="ym_area-icon-pesquisa" type="submit">
                                 <i class="fas fa-search search-icon"></i>
                             </button>
-                            <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
+                            <?php
+                            if(isset($_GET['pesquisa'])){
+                                echo'<input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input" value='. $_GET['pesquisa'] .'>';
+                            }else{
+                                echo'<input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">';
+                            }
+                            
+                            ?>
                         </form>
                     </div>
 

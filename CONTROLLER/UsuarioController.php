@@ -205,7 +205,7 @@ class UsuarioController {
 
     public function alterar_senha(){
         try {
-            $this->user->id = $_SESSION['user_id'];
+            $this->user->id = $_SESSION['id'];
             
             $this->user->senha = password_hash($_POST['nova_senha'],PASSWORD_DEFAULT);
 
@@ -221,7 +221,6 @@ class UsuarioController {
 
     public function verificar_senha($usuario,$senha){
         $email = $usuario['email'];
-        $senha = $senha;
 
         if($this->user->login($email, $senha)){
             return true;

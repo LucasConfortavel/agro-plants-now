@@ -40,5 +40,18 @@ class SobreProdutoController {
             ];
         }
     }
+
+    public function atualizarProduto(){
+        try {
+            $this->produtoModel->id = $_GET['id'];
+            $this->produtoModel->quantidade = $_POST['estoque'];
+            $this->produtoModel->preco = $_POST['preco'];
+            $atualizar = $this->produtoModel->atualizarEstoq_Preco(); 
+            return $atualizar;
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+    }
+
 }
 ?>

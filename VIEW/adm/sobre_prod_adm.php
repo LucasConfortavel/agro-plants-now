@@ -1,17 +1,33 @@
 <?php
-require_once '../../INCLUDE/verificarLogin.php';
 include "../../INCLUDE/Menu_adm.php";
+require_once '../../INCLUDE/verificarLogin.php';
 include "../../INCLUDE/vlibras.php";
+include "../../INCLUDE/alertas.php";
 require_once '../../CONTROLLER/SobreProdutoController.php';
 
 $sobreProdutoController = new SobreProdutoController();
 $dados = [];
+
+
+
+if (isset($_POST['salvar'])) {
+    $sobreProdutoController->atualizarProduto();
+    header("Location: " . $_SERVER['PHP_SELF'] . "?id=" . $_GET['id']);
+}
 
 if (isset($_GET['id'])) {
     $dados = $sobreProdutoController->carregarProduto($_GET['id']);
 } else {
     $dados = ['success' => false, 'error' => 'Nenhum produto selecionado.'];
 }
+
+
+if(isset($_SESSION['alerta'])){
+    echo($_SESSION['alerta']);
+    unset($_SESSION['alerta']);
+}
+
+
 ?>
 
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
@@ -60,7 +76,7 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
 
-            <div class="gs_product-info">
+            <form method="POST" class="gs_product-info">
                 <div class="gs_header-section">
                     <div class="gs_breadcrumb">
                         <span>Catálogo</span>
@@ -71,11 +87,9 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class="ym_area-titulo-edit-btn">
                         <h1 class="gs_product-title"><?php echo htmlspecialchars($produto['nome']); ?></h1>
-                        <div method="POST" class="ym_area-btns">
-                            <button class="ym_edit-button" onclick="editar()"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <form method="POST" class="ym_area-btn-save">
-                                <button id="ym_save-button" class="ym_edit-button" onclick="editar()"><i class="fa-solid fa-floppy-disk" type="submit"></i></button>
-                            </form>
+                        <div class="ym_area-btns">
+                            <button class="ym_edit-button" type="button" onclick="editar()"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button id="ym_save-button" class="ym_edit-button" type="submit" name="salvar" ><i class="fa-solid fa-floppy-disk"></i></button>
                         </div>
                     </div>
                 </div>
@@ -90,7 +104,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="gs_info-content">
                             <p class="gs_label">Categoria</p>
-                            <h1 class="gs_product-title" title="<?php echo htmlspecialchars($produto['nome']); ?>">
+                            <h1 class="gs_product-title gs_value" title="<?php echo htmlspecialchars($produto['nome']); ?>">
                                 <?php echo htmlspecialchars($produto['nome']); ?>
                             </h1>
                         </div>
@@ -152,7 +166,7 @@ if (isset($_GET['id'])) {
                         Voltar
                     </a>
                 </div>
-            </div>
+            </form>
         </section>
         <?php endif; ?>
     </main>
@@ -160,59 +174,3 @@ if (isset($_GET['id'])) {
     <script src="../../PUBLIC/JS/script-tema.js"></script>
 </body>
 </html>
-
-
-<script>
-
-    valores = []
-
-    function editar(){
-        button = document.getElementsByClassName("ym_edit-button")[0];
-        icon = button.children[0];
-        values = document.getElementsByClassName("gs_value");
-
-        if(icon.className.includes("fa-pen-to-square")){
-            icon.classList.remove("fa-pen-to-square")
-            icon.classList.add("fa-xmark")
-
-            document.getElementById("ym_save-button").style.display = "flex";
-            
-            for (index = 1; index < values.length; index++) {
-                valor = values[index];
-                valores.push(valor.textContent);
-                input = document.createElement("input");
-                
-                if(index == 1){
-                    string_formatada = valor.textContent.slice(3).replaceAll(",", "");
-                    input.value = string_formatada.replaceAll(".", "");
-                }else{
-                    input.value = valor.textContent;
-                }
-                input.type = 'number';
-                input.classList.add("gs_value", "ym_input-edit");
-    
-                valor.parentNode.replaceChild(input, valor);
-            }
-
-        }else{
-            icon.classList.remove("fa-xmark")
-            icon.classList.add("fa-pen-to-square")
-
-            document.getElementById("ym_save-button").style.display = "none";
-
-            for (index = 1; index < values.length; index++) {
-                valor = values[index];
-                p = document.createElement("p");
-                p.textContent = valores[index-1];
-                p.classList.add("gs_value");
-    
-                valor.parentNode.replaceChild(p, valor);
-            }
-
-
-        }
-
-        
-
-    }
-</script>
