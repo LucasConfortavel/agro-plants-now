@@ -93,7 +93,7 @@ $errorMessage = $_GET['error'] ?? '';
                     </div>
                 </div>
                 
-                <button class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')" aria-label="Adicionar produto">
+                <button class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-escolha-tipo.php', 'Escolha o tipo de cadastro')" aria-label="Adicionar produto ou serviço">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
@@ -175,7 +175,7 @@ $errorMessage = $_GET['error'] ?? '';
                                             <i class="fa-solid fa-trash-can ym_delete-icon"></i>
                                         </a>
                                     </div>
-                                    
+
                                     <div class="ym_card-content">
                                         <p class="ym_nomeProduto"><?php echo htmlspecialchars($servico['nome']); ?></p>
                                         <p class="ym_preco">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></p>

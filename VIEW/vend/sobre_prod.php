@@ -29,6 +29,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -143,5 +144,6 @@ if (isset($_GET['id'])) {
         <?php endif; ?>
     </main>
     <script src="../../PUBLIC/JS/script-sobre-prod.js"></script>
+    <script src="../../PUBLIC/JS/script-tema.js"></script>
 </body>
 </html>

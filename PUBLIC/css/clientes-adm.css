@@ -795,3 +795,21 @@
     pointer-events: none;
     height: 100px;
 }
+
+.jv_status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.jv_status-badge.ativado {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.jv_status-badge.desativado {
+    background-color: #f8d7da;
+    color: #721c24;
+}
