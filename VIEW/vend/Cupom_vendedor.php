@@ -75,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <th class="jv_desconto">Desconto</th>
                                 <th class="jv_cadastro">Data de Cadastro</th>
                                 <th class="jv_validade">Validade</th>
+                         
                             </tr>
                         </thead>
                         <tbody id="jv_customerTableBody">
@@ -167,6 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             tabela.innerHTML = html;
         }
     </script>
+    <script src="../../PUBLIC/JS/script-cupom.js"></script>
 </main>
 </body>
 </html>
