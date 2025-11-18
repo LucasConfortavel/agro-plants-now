@@ -68,6 +68,8 @@ function GerarTabela(){
         html += '<tr><td class="ym_td" colspan="6">Nenhum cupom encontrada</td></tr>';
     }
     tabela.innerHTML = html;
+    const contador = document.getElementById("jv_customerCount");
+    contador.textContent = ` ${dados.length} vendas encotradas`;
 }
 
 
@@ -115,7 +117,8 @@ function Pesquisar(){
     }
 
     info_tabela.innerHTML = html;
-    
+    const contador = document.getElementById("jv_customerCount");
+    contador.textContent = ` ${dados_filtrado.length} vendas encotradas`;
 };
 
 GerarTabela();

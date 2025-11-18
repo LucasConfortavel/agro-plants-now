@@ -28,17 +28,6 @@ if(!empty($_GET)){
         exit;
     }
 }
-
-// Paginação
-$limite = 4; // quantidade de registros por página
-$pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-if ($pagina_atual < 1) $pagina_atual = 1;
-
-$offset = ($pagina_atual - 1) * $limite;
-$total_paginas = ceil($total_vendas / $limite);
-
-// Fatiar o array para exibir apenas os registros da página atual
-$vendas_paginadas = array_slice($vendas, $offset, $limite);
 ?>
 
 <!DOCTYPE html>
@@ -91,52 +80,13 @@ $vendas_paginadas = array_slice($vendas, $offset, $limite);
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th><p class="jv_name">Venda</p></th>
-                                    <th class="jv_date">Data</th>
+                                    <th><p class="jv_name">Vendedor</p></th>
                                     <th class="jv_date">Cliente</th>
-                                    <th class="jv_valor_gast">Valor</th>
+                                    <th class="jv_date">Valor</th>
                                     <th class="jv_actions-col"></th>
                                 </tr>
                             </thead>
                             <tbody id="jv_customerTableBody">
-                                <?php if ($total_vendas > 0): ?>
-                                    <?php foreach ($vendas_paginadas as $venda):     
-                                        $cliente = $cliente_control->mostrar($venda["id_cliente"]);
-                                    ?>
-                                        <tr>
-                                            <td>
-                                                <div class="jv_customer-info">
-                                                    <div class="jv_avatar">
-                                                        <?= strtoupper(substr($cliente['nome'] ?? 'CL', 0, 2)) ?>
-                                                    </div>
-                                                    <div class="jv_customer-details">
-                                                        <h4><?= htmlspecialchars('Venda #' . $venda['id']) ?></h4>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td><?= htmlspecialchars($venda['data_venda'] ?? '-') ?></td>
-                                            <td><?= htmlspecialchars($cliente['nome'] ?? '-') ?></td>
-                                            <td><?= 'R$ ' . number_format($venda['total'], 2, ',', '.') ?></td>
-
-                                            <td class="jv_table-action">
-                                                <button class="jv_menu-btn" onclick="toggleDropdown(this)">
-                                                    <i class="fas fa-ellipsis-h"></i>
-                                                </button>
-                                                <form class="jv_dropdown" method="GET" action="">
-                                                    <button type="submit" name="visualizar" value="<?= htmlspecialchars($venda['id']) ?>" class="jv_dropdown-item">
-                                                        <i class="fas fa-eye"></i> Visualizar
-                                                    </button>
-                                                    <div class="jv_dropdown-separator"></div>
-                                                    <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($venda['id'])?>">
-                                                        <i class="fas fa-trash"></i> Remover
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <tr><td colspan="5" style="text-align: center; height: 49.7vh;">Nenhuma venda encontrada</td></tr>
-                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -144,35 +94,13 @@ $vendas_paginadas = array_slice($vendas, $offset, $limite);
             </div>
         </div>
 
-        <!-- Paginação -->
         <div class="jv_page-navigation">
-            <?php if($pagina_atual > 1): ?>
-                <a href="?pagina=<?= $pagina_atual - 1 ?>" class="jv_page-arrow">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-            <?php endif; ?>
-
-            <?php
-            $inicio = max(1, $pagina_atual - 2);
-            $fim = min($total_paginas, $pagina_atual + 2);
-            for ($i = $inicio; $i <= $fim; $i++): ?>
-                <a href="?pagina=<?= $i ?>" class="jv_page-number <?= $i == $pagina_atual ? 'active' : '' ?>">
-                    <?= $i ?>
-                </a>
-            <?php endfor; ?>
-
-            <?php if($pagina_atual < $total_paginas): ?>
-                <a href="?pagina=<?= $pagina_atual + 1 ?>" class="jv_page-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            <?php endif; ?>
         </div>
 
         <script>
             const dados = <?php echo json_encode($vendas); ?>;
         </script>   
-        <script src="../../PUBLIC/JS/script-vendas-vend.js"></script>
-        <script src="../../PUBLIC/JS/script.js"></script>
+        <script src="../../PUBLIC/JS/script-vendas.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
     </main>
