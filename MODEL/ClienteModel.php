@@ -124,6 +124,7 @@ class ClienteModel {
     }
 
     public function atualizar() {
+
         if(!empty($this->CPF)){        
             $query = "UPDATE " . $this->table_name . " 
                      SET nome=:nome, email=:email, telefone=:telefone, CPF=:CPF,data_nasc=:data_nasc WHERE id=:id";

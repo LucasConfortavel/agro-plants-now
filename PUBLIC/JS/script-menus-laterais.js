@@ -14,7 +14,7 @@ if(page.toLowerCase().includes("catalogo") || page.toLowerCase().includes("prod"
 
 };
 
-if(page.toLowerCase().includes("clientes")){
+if(page.toLowerCase().includes("clientes")  || window.location.search.toLowerCase().includes("cliente")){
     let area = document.getElementById("clientes")
     area.style.backgroundColor = "#3a3a3a"
     area.style.borderRadius = "8px"
@@ -42,7 +42,7 @@ if(page.toLowerCase().includes("ajustes")){
 
 };
 
-if(page.toLowerCase().includes("vendedores")){
+if(page.toLowerCase().includes("vendedores") || window.location.search.toLowerCase().includes("vendedor")){
     let area = document.getElementById("vendedores")
     area.style.backgroundColor = "#3a3a3a"
     area.style.borderRadius = "8px"

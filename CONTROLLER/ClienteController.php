@@ -158,10 +158,10 @@ class ClienteController {
     public function atualizar($id) {
         try {
             $this->cliente->id = $id;
-            // receber dados do formulario
             $this->cliente->nome = $_POST['nome'];
             $this->cliente->email = $_POST['email'];
             $this->cliente->telefone = $_POST['telefone'] ?? null;
+            
             if(isset($_POST['CPF'])){
                 $this->cliente->CPF = $_POST['CPF'];
             }
