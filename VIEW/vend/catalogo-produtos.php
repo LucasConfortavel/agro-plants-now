@@ -20,6 +20,7 @@ $errorMessage = $_GET['error'] ?? '';
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/catalogo.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
@@ -81,12 +82,16 @@ $errorMessage = $_GET['error'] ?? '';
                                             <span><?php echo htmlspecialchars($categoria['nome']); ?></span>
                                         </div>
                                     </div>
-                                    <p class="ym_nomeProduto"><?php echo htmlspecialchars($produto['nome']); ?></p>
-                                    <p class="ym_preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
-                                    <p class="ym_descricao"><?php echo htmlspecialchars($produto['descricao']); ?></p>
-                                    <a href="sobre_prod.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                    <div class="ym_card-content">
+                                        <p class="ym_nomeProduto"><?php echo htmlspecialchars($produto['nome']); ?></p>
+                                        <p class="ym_preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                                        <p class="ym_descricao"><?php echo htmlspecialchars($produto['descricao']); ?></p>
+                                        <a href="sobre_prod.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                    </div>
                                 </div>
-                            <?php endforeach; ?>
+                                
+
+                                    <?php endforeach; ?>
                         <?php else: ?>
                             <p class="ym-sem-registros">Nenhum produto nesta categoria.</p>
                         <?php endif; ?>
@@ -120,3 +125,4 @@ $errorMessage = $_GET['error'] ?? '';
 
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-catalogo.js"></script>
+<script src="../../PUBLIC/JS/script-tema.js"></script>

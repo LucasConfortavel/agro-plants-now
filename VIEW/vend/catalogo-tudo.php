@@ -92,10 +92,6 @@ $errorMessage = $_GET['error'] ?? '';
                         </a>
                     </div>
                 </div>
-                
-                <button class="ym_btn-add" onclick="abrirPopup('../../VIEW/pop-up/pop-up-add-produto.php','Cadastro de produto')" aria-label="Adicionar produto">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
             </div>
             
             <div class="ym_categoria-section">
@@ -127,7 +123,7 @@ $errorMessage = $_GET['error'] ?? '';
                                         <p class="ym_nomeProduto"><?php echo htmlspecialchars($produto['nome']); ?></p>
                                         <p class="ym_preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
                                         <p class="ym_descricao"><?php echo htmlspecialchars($produto['descricao']); ?></p>
-                                        <a href="sobre_prod_adm.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">
+                                        <a href="sobre_prod.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">
                                             Veja mais <i class="fa-solid fa-arrow-right"></i>
                                         </a>
                                     </div>
@@ -175,7 +171,7 @@ $errorMessage = $_GET['error'] ?? '';
                                             <i class="fa-solid fa-trash-can ym_delete-icon"></i>
                                         </a>
                                     </div>
-                                    
+
                                     <div class="ym_card-content">
                                         <p class="ym_nomeProduto"><?php echo htmlspecialchars($servico['nome']); ?></p>
                                         <p class="ym_preco">R$ <?php echo number_format($servico['preco'], 2, ',', '.'); ?></p>
