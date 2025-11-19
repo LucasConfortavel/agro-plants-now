@@ -433,7 +433,7 @@ body.dark-theme .ym-alert-error {
 }
 
 .gs_product-title {
-  font-size: 2rem;
+  font-size: 2rem !important;
   font-weight: 700;
   color: #1a1a1a;
   line-height: 1.2;
