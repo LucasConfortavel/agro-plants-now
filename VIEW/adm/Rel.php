@@ -321,7 +321,7 @@ $total_vendas = count($vendas_filtradas);
                         <div class="jv_card-content">
                             <div class="jv_table-container">
                                 <table class="jv_table">
-                                    <thead>
+                                    <thead class="vc_table-header">
                                         <tr class="jv_table-header">
                                             <th class="jv_date">Data</th>
                                             <th class="jv_name"><p>Vendedor</p></th>
