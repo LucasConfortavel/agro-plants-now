@@ -31,11 +31,12 @@ class ClienteController {
                 $_POST['CPF'] = $_POST['CPF/CNPJ'];
                 $_POST['CNPJ'] = null;
             }
-            else{
+            else{   
                 $_POST['CNPJ'] = null;
                 $_POST['CPF'] = null;
-
+                throw new Exception("Preencha o campo de CPF ou CNPJ");
             }
+            
             $this->cliente->nome = $_POST['nome'];
             $this->cliente->email = $_POST['email'];
             $this->cliente->telefone = $_POST['telefone'];

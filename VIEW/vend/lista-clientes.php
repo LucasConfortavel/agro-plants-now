@@ -30,6 +30,23 @@ $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_clientes / $limite);
 $clientes_paginados = array_slice($clientes, $offset, $limite);
 
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && !isset($_POST['finalizar_pedido']) && !isset($_POST['criar_pedido'])) {
+    $criar_cliente = $cliente_control->criarCliente();
+
+    if ($criar_cliente == 1) {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
+    } elseif ($criar_cliente != "") {
+        $_SESSION['alerta'] = '<script> exibirAlerta("' . $criar_cliente . '","error"); </script>';
+    } else {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}   
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
     $id_pedido = $_POST['finalizar_pedido'];
     

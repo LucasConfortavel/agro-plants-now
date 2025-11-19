@@ -57,7 +57,6 @@ class ClienteModel {
             }
         } catch (PDOException $e) {
             error_log("Erro ao criar usuário: " . $e->getMessage());
-            
             // verificar se e violação de email ou CPF unico
             if ($e->getCode() == 23000) {
                 if (strpos($e->getMessage(), 'email') !== false) {
