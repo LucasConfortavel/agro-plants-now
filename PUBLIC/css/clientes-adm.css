@@ -2,7 +2,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -153,14 +152,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.625rem 1rem;
+  /* padding: 0.625rem 1rem; */
   background: #45734b;
   border: 1px solid #45734b;
   border-radius: 0.5rem;
   min-height: 44px;
   transition: all 0.3s ease;
   color: white;
-  width: 100%;
+  min-width: 45px;
 }
 
 .select-trigger:hover {
@@ -717,8 +716,8 @@ body {
   border: 1px solid #e5e7eb;
   background: white;
   text-decoration: none;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
 }
 
 .jv_page-arrow:hover {
