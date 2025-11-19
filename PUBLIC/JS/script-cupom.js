@@ -60,6 +60,9 @@ function GerarTabela() {
     });
 
     tabela.innerHTML = html;
+
+    const contador = document.getElementById("jv_customerCount");
+    contador.textContent = `Total de Cupons: ${cuponsValidos.length}`;
 }
 
 function Pesquisar() {
@@ -100,6 +103,8 @@ function Pesquisar() {
     });
 
     tabela.innerHTML = html;
+    const contador = document.getElementById("jv_customerCount");
+    contador.textContent = `Total de Cupons: ${cuponsFiltrados.length}`;
 }
 
 // Inicializa tabela ao carregar
