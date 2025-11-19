@@ -67,9 +67,7 @@
     } 
     
     $usuarios = $controler_user->index("vendedor");
-
-    $total_vendedores = count($usuarios);
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -770,51 +770,82 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // --- EXPORTAR CSV DE VENDAS ---
     const botaoVendas = document.getElementById("exportarCsvBtn");
     if (botaoVendas) {
         botaoVendas.addEventListener("click", function() {
-            exportarTabelaCsv(".tab-content#sales-tab-content .jv_table", "relatorio_vendas.csv");
+            exportarVendasCsv(dados, "relatorio_vendas.csv");
         });
     }
 
-    // --- EXPORTAR CSV DE COMISSÕES ---
     const botaoComissoes = document.getElementById("exportarCsvComissoesBtn");
     if (botaoComissoes) {
         botaoComissoes.addEventListener("click", function() {
-            exportarTabelaCsv(".tab-content#commissions-tab-content .jv_table", "relatorio_comissoes.csv");
+            exportarComissoesCsv(dados_vendas, dados_comissoes, "relatorio_comissoes.csv");
         });
     }
 
-    // --- FUNÇÃO GENÉRICA ---
-    function exportarTabelaCsv(seletorTabela, nomeArquivo) {
-        const tabela = document.querySelector(seletorTabela);
-        if (!tabela) {
-            alert("Tabela não encontrada!");
-            return;
-        }
+    function exportarVendasCsv(dadosExportar, nomeArquivo) {
+        const cabecalho = ["Data", "Vendedor", "Email Vendedor", "Cliente", "Valor Gasto"];
+        let csv = [cabecalho];
 
-        let linhas = tabela.querySelectorAll("tr");
-        let csv = [];
-
-        linhas.forEach(linha => {
-            let colunas = linha.querySelectorAll("th, td");
-            let linhaCsv = [];
-
-            colunas.forEach(celula => {
-                let texto = celula.innerText.replace(/\n/g, " ").replace(/,/g, "");
-                linhaCsv.push('"' + texto.trim() + '"');
-            });
-
-            csv.push(linhaCsv.join(","));
+        dadosExportar.forEach(venda => {
+            const linha = [
+                formatarData(venda.data_venda),
+                venda.nome_vendedor,
+                venda.email_vendedor,
+                venda.nome_cliente,
+                "R$ " + parseFloat(venda.total).toFixed(2)
+            ];
+            csv.push(linha);
         });
 
-        let csvString = csv.join("\n");
+        let csvString = csv.map(row => 
+            row.map(cell => `"${cell}"`).join(",")
+        ).join("\n");
+        
         let blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
         let link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = nomeArquivo;
         link.click();
+    }
+
+    function exportarComissoesCsv(vendasExportar, comissoesExportar, nomeArquivo) {
+        const cabecalho = ["Data", "Vendedor", "Email Vendedor", "Cliente", "Valor de Venda", "Comissao (%)", "Valor da Comissao"];
+        let csv = [cabecalho];
+
+        vendasExportar.forEach(venda => {
+            comissoesExportar.forEach(comissao => {
+                if(comissao.id_venda == venda.id) {
+                    const linha = [
+                        formatarData(venda.data_venda),
+                        venda.nome_vendedor,
+                        venda.email_vendedor,
+                        venda.nome_cliente,
+                        "R$ " + parseFloat(venda.total).toFixed(2),
+                        comissao.percentual + "%",
+                        "R$ " + parseFloat(comissao.valor).toFixed(2)
+                    ];
+                    csv.push(linha);
+                }
+            });
+        });
+
+        let csvString = csv.map(row => 
+            row.map(cell => `"${cell}"`).join(",")
+        ).join("\n");
+        
+        let blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+        let link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = nomeArquivo;
+        link.click();
+    }
+
+    function formatarData(dataStr) {
+        const [ano, mes, diaHora] = dataStr.split('-');
+        const dia = diaHora.split(' ')[0];
+        return `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
     }
 });
 

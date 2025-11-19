@@ -125,6 +125,8 @@ function GerarTabela(){
     }
 
     tabela.innerHTML = html;
+    const contador = document.getElementById("jv_customerCount");
+    contador.textContent = ` ${dados.length} vendas encotradas`;
 }
 
 function Pesquisar(){
@@ -139,6 +141,8 @@ function Pesquisar(){
     info_tabela.innerHTML = '';
     html="";
     dados_filtrado=[];
+
+
 
     dados.forEach(dado => {
         if (dado["nome"].toLowerCase().includes(pesquisa.toLowerCase()) || 
@@ -207,6 +211,8 @@ function Pesquisar(){
     }
 
     info_tabela.innerHTML = html;
+    const contador = document.getElementById("jv_customerCount");
+    contador.textContent = ` ${dados_filtrado.length} vendas encotradas`;
 }
 
 GerarTabela();
