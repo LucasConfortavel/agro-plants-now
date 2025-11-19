@@ -221,7 +221,6 @@ if(!empty($_GET)){
                             <tr class="jv_table-header">
                                 <th class="jv_name">Nome</th>
                                 <th class="jv_date">Data</th>
-                                <th class="jv_status">Status</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
                                 <th class="jv_valor_gast"></th>
                                 <th class="jv_actions-col"></th>
@@ -285,11 +284,6 @@ if(!empty($_GET)){
                                             <p><?= htmlspecialchars($cliente['data_nasc']) ?></p>
                                         </td>
                                         <td>
-                                            <span class="jv_status-badge <?= strtolower($cliente['status']) ?>">
-                                                <?= $cliente['status'] ?>
-                                            </span>
-                                        </td>
-                                        <td>
                                             <?php if ($status !== 'SEM PEDIDOS'): ?>
                                                 <div class="jv_status-wrapper">
                                                     <div class="jv_progress-bar">
@@ -320,7 +314,7 @@ if(!empty($_GET)){
                                                 
                                                 <?php if ($cliente['status'] == 'ATIVADO'): ?>
                                                     <button type="submit" name="desativar" value="<?= htmlspecialchars($cliente['id'])?>" class="jv_dropdown-item jv_danger">
-                                                        <i class="fas fa-ban"></i> Desativar
+                                                        <i class="fas fa-trash"></i> Excluir
                                                     </button>
                                                 <?php else: ?>
                                                     <button type="submit" name="ativar" value="<?= htmlspecialchars($cliente['id'])?>" class="jv_dropdown-item jv_acess">
