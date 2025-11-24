@@ -166,12 +166,11 @@ h3{
 }
 
 .jv_table-header .jv_name p {
-    padding: 12px 16px;
     display: flex;
     font-weight: 600;
     color: #45734b;
     font-size: 1rem;
-   
+    text-align: left;
 }
 
 .jv_table-header .jv_comissao p{
@@ -367,23 +366,6 @@ h3{
   font-size: 0.875rem;
   color: #64748b;
   white-space: nowrap;
-}
-
-.po-tab-btn:hover {
-  background: #f1f5f9;
-  color: #45734b;
-}
-
-
-
-.po-tab-btn.po-active {
-  background: #45734b;
-  color: white;
-}
-
-.po-tab-btn .po-active:hover {
-  background: #f1f5f9;
-  color: #45734b;
 }
 
 
@@ -741,12 +723,11 @@ h3 {
 }
 
 .jv_table-header .jv_name p {
-    padding: 12px 16px;
     display: flex;
     font-weight: 600;
     color: #45734b;
     font-size: 1rem;
-
+    text-align: left;
 }
 
 .jv_table-header .jv_comissao p {

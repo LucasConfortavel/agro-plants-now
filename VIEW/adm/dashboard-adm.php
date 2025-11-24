@@ -103,7 +103,7 @@
                 <div class="jp_card-header">
                     <div class="jp_card-title">Total Vendido</div>
                 </div>
-                <div class="jp_card-value">R$<?= $total_vendido?></div>
+                <div class="jp_card-value"><?="R$" . number_format($total_vendido, 2, ',', '.');?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">

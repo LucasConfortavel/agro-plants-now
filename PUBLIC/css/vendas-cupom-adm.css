@@ -303,7 +303,7 @@
 
 .jv_table-header .jv_desconto{
     padding: 12px 16px;
-    text-align: left;
+    text-align: center;
     font-weight: 600;
     color: #45734b;
     font-size: 1rem;
@@ -311,7 +311,7 @@
 
 .jv_table-header .jv_cadastro {
     padding: 12px 16px;
-    text-align: left;
+    text-align: center;
     font-weight: 600;
     color: #45734b;
     font-size: 1rem;
@@ -319,7 +319,7 @@
 
 .jv_table-header .jv_validade {
     padding: 12px 16px;
-    text-align: left;
+    text-align: center;
     font-weight: 600;
     color: #45734b;
     font-size: 1rem;
@@ -357,9 +357,10 @@
 }
 
 .jv_table td {
-    padding: 16px;
+    padding: 19px;
     vertical-align: middle;
-    text-align: left;
+   
+
 }
 
 
@@ -368,7 +369,6 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    text-align: left;
 }
 
 .jv_avatar {
@@ -541,7 +541,11 @@
     margin-left: 134%;
 }
 
-
+.cupom-expirado {
+    background-color: #f8d7da; /* vermelho claro */
+    color: #721c24;
+    text-decoration: line-through;
+}
 /* ===================================== */
 /* Responsividade para telas >= 1400px  */
 /* ===================================== */
