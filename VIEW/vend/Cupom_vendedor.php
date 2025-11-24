@@ -51,6 +51,7 @@ $total_cupons = count($cupons);
                                 <th class="jv_desconto">Desconto</th>
                                 <th class="jv_cadastro">Data de Cadastro</th>
                                 <th class="jv_validade">Validade</th>
+                         
                             </tr>
                         </thead>
                         <tbody id="jv_customerTableBody">
