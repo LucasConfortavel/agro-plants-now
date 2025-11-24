@@ -57,7 +57,6 @@ class ClienteModel {
             }
         } catch (PDOException $e) {
             error_log("Erro ao criar usuário: " . $e->getMessage());
-            
             // verificar se e violação de email ou CPF unico
             if ($e->getCode() == 23000) {
                 if (strpos($e->getMessage(), 'email') !== false) {
@@ -114,16 +113,16 @@ class ClienteModel {
     }
 
     public function lerTodos() {
-        $query = "SELECT id, nome, email, telefone, CPF, CNPJ, data_nasc 
-                  FROM " . $this->table_name . " ORDER BY nome";
+        $query = "SELECT id, nome, email, telefone, CPF, CNPJ, data_nasc, status 
+                FROM " . $this->table_name . " ORDER BY nome";
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-
         return $stmt;
     }
 
     public function atualizar() {
+
         if(!empty($this->CPF)){        
             $query = "UPDATE " . $this->table_name . " 
                      SET nome=:nome, email=:email, telefone=:telefone, CPF=:CPF,data_nasc=:data_nasc WHERE id=:id";
@@ -206,8 +205,6 @@ class ClienteModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-}
     // public function login($email, $senha) {
     //     $query = "SELECT id, nome, email, senha, tipo FROM " . $this->table_name . " 
     //               WHERE email = ? LIMIT 0,1";
@@ -253,3 +250,39 @@ class ClienteModel {
         
     //     return $stmt->rowCount() > 0;
     // }
+    public function desativar($id) {
+        $query = "UPDATE " . $this->table_name . " SET status = 'DESATIVADO' WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $id);
+        
+        try {
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Erro ao desativar cliente: " . $e->getMessage());
+            throw new Exception("Erro ao desativar cliente: " . $e->getMessage());
+        }
+    }
+
+    public function ativar($id) {
+        $query = "UPDATE " . $this->table_name . " SET status = 'ATIVADO' WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $id);
+        
+        try {
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Erro ao ativar cliente: " . $e->getMessage());
+            throw new Exception("Erro ao ativar cliente: " . $e->getMessage());
+        }
+    }
+
+    public function lerTodosAtivos() {
+        $query = "SELECT id, nome, email, telefone, CPF, CNPJ, data_nasc, status 
+                FROM " . $this->table_name . " WHERE status = 'ATIVADO' ORDER BY nome";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
+
+}

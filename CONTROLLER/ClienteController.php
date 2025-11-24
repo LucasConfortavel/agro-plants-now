@@ -13,10 +13,9 @@ class ClienteController {
 
     public function index() {
         try {
-            $stmt = $this->cliente->lerTodos();
+            $stmt = $this->cliente->lerTodosAtivos();
             $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $clientes;
-
         } catch (Exception $e) {
             $error = $e->getMessage();
             include_once __DIR__ . '/../views/error.php';
@@ -32,11 +31,12 @@ class ClienteController {
                 $_POST['CPF'] = $_POST['CPF/CNPJ'];
                 $_POST['CNPJ'] = null;
             }
-            else{
+            else{   
                 $_POST['CNPJ'] = null;
                 $_POST['CPF'] = null;
-
+                throw new Exception("Preencha o campo de CPF ou CNPJ");
             }
+            
             $this->cliente->nome = $_POST['nome'];
             $this->cliente->email = $_POST['email'];
             $this->cliente->telefone = $_POST['telefone'];
@@ -95,7 +95,7 @@ class ClienteController {
      */
     public function indexComStatusPedidos() {
         try {
-            $stmt = $this->cliente->lerTodos();
+            $stmt = $this->cliente->lerTodos(); // Mostrar todos os clientes
             $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             // Para cada cliente, buscar o último pedido
@@ -104,7 +104,7 @@ class ClienteController {
                 $pedidos = $pedidoStmt->fetchAll(PDO::FETCH_ASSOC);
                 
                 if (!empty($pedidos)) {
-                    $ultimoPedido = $pedidos[0]; // Já vem ordenado por data DESC
+                    $ultimoPedido = $pedidos[0];
                     $cliente['ultimo_pedido'] = [
                         'id' => $ultimoPedido['id'],
                         'status' => $ultimoPedido['status'],
@@ -158,10 +158,10 @@ class ClienteController {
     public function atualizar($id) {
         try {
             $this->cliente->id = $id;
-            // receber dados do formulario
             $this->cliente->nome = $_POST['nome'];
             $this->cliente->email = $_POST['email'];
             $this->cliente->telefone = $_POST['telefone'] ?? null;
+            
             if(isset($_POST['CPF'])){
                 $this->cliente->CPF = $_POST['CPF'];
             }
@@ -253,6 +253,36 @@ class ClienteController {
         
         header('Content-Type: application/json');
         echo json_encode(['exists' => $exists]);
+    }
+
+        public function desativar($id) {
+        try {
+            $this->cliente->id = $id;
+            
+            if ($this->cliente->desativar($id)) {
+                return true;
+            } else {
+                throw new Exception("Erro ao desativar cliente");
+            }
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            return $error;
+        }
+    }
+
+    public function ativar($id) {
+        try {
+            $this->cliente->id = $id;
+            
+            if ($this->cliente->ativar($id)) {
+                return true;
+            } else {
+                throw new Exception("Erro ao ativar cliente");
+            }
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            return $error;
+        }
     }
 }
 ?>

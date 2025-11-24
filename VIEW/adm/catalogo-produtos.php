@@ -113,10 +113,12 @@ $errorMessage = $_GET['error'] ?? '';
                                             <i class="fa-solid fa-trash-can ym_delete-icon"></i>
                                         </a>
                                     </div>
-                                    <p class="ym_nomeProduto"><?php echo htmlspecialchars($produto['nome']); ?></p>
-                                    <p class="ym_preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
-                                    <p class="ym_descricao"><?php echo htmlspecialchars($produto['descricao']); ?></p>
-                                    <a href="sobre_prod_adm.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                    <div class="ym_card-content">
+                                        <p class="ym_nomeProduto"><?php echo htmlspecialchars($produto['nome']); ?></p>
+                                        <p class="ym_preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                                        <p class="ym_descricao"><?php echo htmlspecialchars($produto['descricao']); ?></p>
+                                        <a href="sobre_prod_adm.php?id=<?php echo $produto['id']; ?>" class="ym_linkProduto ym_btn-padrao">Veja mais</a>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>

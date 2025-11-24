@@ -111,7 +111,7 @@ class UsuarioController {
             }
 
             if ($this->user->atualizar()) {
-                header('Location: ' .  $_SERVER['REQUEST_URI']);
+                return True;
                 exit();
             } else {
                 throw new Exception("Erro ao atualizar usuário");
