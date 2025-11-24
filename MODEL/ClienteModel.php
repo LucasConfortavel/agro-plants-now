@@ -57,7 +57,6 @@ class ClienteModel {
             }
         } catch (PDOException $e) {
             error_log("Erro ao criar usuário: " . $e->getMessage());
-            
             // verificar se e violação de email ou CPF unico
             if ($e->getCode() == 23000) {
                 if (strpos($e->getMessage(), 'email') !== false) {
@@ -123,6 +122,7 @@ class ClienteModel {
     }
 
     public function atualizar() {
+
         if(!empty($this->CPF)){        
             $query = "UPDATE " . $this->table_name . " 
                      SET nome=:nome, email=:email, telefone=:telefone, CPF=:CPF,data_nasc=:data_nasc WHERE id=:id";

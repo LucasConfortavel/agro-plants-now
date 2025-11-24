@@ -10,6 +10,7 @@
     $controler_cliente = new ClienteController();
     $controler_usuario = new UsuarioController();
 
+
     if(isset($_GET['id'])){
         $id=$_GET["id"];
         $tipo_user = $_GET["usuario"];
@@ -158,6 +159,7 @@
                             <div class="jp_info-item">
                                 <label><?= $CPF_CNPJ?></label>
                                 <span><?= $usuario[$CPF_CNPJ]?></span>
+                                <input type="hidden"value="<?= $usuario[$CPF_CNPJ]?>" name="<?=$CPF_CNPJ?>">
                             </div>
                             <?php
                             if($tipo_user=="vendedor"){
@@ -172,8 +174,8 @@
                             ?>
 
                             <div class="jp_tabs-sc">
-                                <button class="ym_btn-salvar ym_btn-padrao">Salvar <i class="fa-solid fa-floppy-disk"></i> </button>
-                                <button class="ym_btn-remover" onclick="location.reload();">Cancelar <i class="fa-solid fa-ban"></i> </button>
+                                <button class="ym_btn-salvar ym_btn-padrao" type="submit">Salvar <i class="fa-solid fa-floppy-disk"></i> </button>
+                                <button class="ym_btn-remover" type="button" onclick="location.reload();">Cancelar <i class="fa-solid fa-ban"></i> </button>
                             </div>
 
                         </form>
