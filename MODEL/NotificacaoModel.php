@@ -64,5 +64,17 @@ class NotificacaoModel {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['total'] ?? 0;
     }
+
+    public function Pesquisar() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE titulo LIKE :titulo OR assunto LIKE :assunto ;";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":titulo", $this->titulo);
+        $stmt->bindParam(":assunto", $this->assunto);
+        $stmt->execute();
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+    }
+
 }
 ?>
