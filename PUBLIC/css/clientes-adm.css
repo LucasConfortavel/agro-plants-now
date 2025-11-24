@@ -26,7 +26,6 @@
   transform: translateY(-1px);
 }
 
-
 .ym_btn-criar-pedido:disabled {
   background-color: #d1d5db;
   cursor: not-allowed;
@@ -760,6 +759,13 @@
     transition: all 0.15s ease;
     font-size: 15px;
 }
+
+.select-trigger,
+.select-value,
+.select-option {
+    text-transform: none !important;
+}
+
 
 .select-option:hover {
     background-color: white;
