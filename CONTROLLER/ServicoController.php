@@ -126,13 +126,12 @@ class ServicoController {
     }
 
     private function formatarPreco($preco) {
-        $preco = str_replace(['R$', ' '], '', $preco);
-        
-        $preco = str_replace(',', '.', $preco);
-        
-        $preco = preg_replace('/[^0-9.]/', '', $preco);
-        
-        return floatval($preco);
-    }
+    $preco = str_replace(['R$', ' '], '', $preco);
+    $preco = str_replace('.', '', $preco);
+    $preco = str_replace(',', '.', $preco);
+    $preco = preg_replace('/[^0-9.]/', '', $preco);
+
+    return floatval($preco);
+}
 }
 ?>

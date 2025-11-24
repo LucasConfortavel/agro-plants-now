@@ -66,11 +66,33 @@ class NotificacaoController {
 
     public function contarNotificacoes() {
         try {
-            return $this->notificacao->contarNaoLidas();
+            
+            $notificacoes = $this->listarNotificacoes(1000); 
+            return is_array($notificacoes) ? count($notificacoes) : 0;
         } catch (Exception $e) {
             error_log("Erro ao contar notificações: " . $e->getMessage());
             return 0;
         }
     }
+
+    public function pesquisar() {
+        try {
+            $pesquisa = "%" . $_POST["pesquisa"] . "%";
+            $this->notificacao->titulo = $pesquisa;
+            $this->notificacao->assunto = $pesquisa;
+            $resultado = $this->notificacao->Pesquisar();
+            if ($this->notificacao->Pesquisar()) {
+                return $resultado;
+            } else {
+                throw new Exception("Nenhuma notificação encontrada");
+            }
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            return $error;
+        }
+    }
+
+
+
 }
 ?>

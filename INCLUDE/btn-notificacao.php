@@ -3,21 +3,73 @@ require_once "../../DB/Database.php";
 require_once "../../CONTROLLER/NotificacaoController.php";
 
 $notificacaoCtrl = new NotificacaoController();
-$notificacoes = $notificacaoCtrl->listarNotificacoes(5);
+$notificacoes = $notificacaoCtrl->listarNotificacoes(10);
 
-$alertas = [];
+$alertasContato = [];
+$alertasEstoque = [];
 
-if (!isset($notificacoes['error']) && is_array($notificacoes)) {
+if (!isset($notificacoes['error']) && is_array($notificacoes) && !empty($notificacoes)) {
     foreach ($notificacoes as $notificacao) {
-        $alertas[] = [
-            "mensagem" => "<b>" . htmlspecialchars($notificacao['titulo']) . "</b><br>" . nl2br(htmlspecialchars($notificacao['assunto'])),
-            "hora"     => date("H:i", strtotime($notificacao['horario_criacao']))
-        ];
+        
+        if (strpos($notificacao['titulo'], 'Contato') !== false) {
+            
+            $nomeCliente = str_replace('Novo Contato – ', '', $notificacao['titulo']);
+            
+            if (strlen($nomeCliente) > 20 || preg_match('/^[a-zA-Z]{10,}$/', $nomeCliente)) {
+                $nomeCliente = 'Cliente';
+            }
+            
+            $alertasContato[] = [
+                "mensagem" => "📩 <b>Novo Contato</b><br>
+                             <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>De: " . htmlspecialchars($nomeCliente) . "</small><br>
+                             <small style='color: #e0e0e0; font-weight: 800; font-size: 13px;'>Interessado em insumos agrícolas</small>",
+                "hora"     => date("H:i", strtotime($notificacao['horario_criacao']))
+            ];
+                                 
+        } elseif (strpos($notificacao['titulo'], 'Estoque') !== false) {
+            
+            $alertasEstoque[] = [
+                "mensagem" => "📦 <b>Alerta de Estoque</b><br>
+                             <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>" . htmlspecialchars($notificacao['titulo']) . "</small><br>
+                             <small style='color: #c53030; font-weight: 900; font-size: 13px;'>Necessária reposição</small>",
+                "hora"     => date("H:i", strtotime($notificacao['horario_criacao']))
+            ];
+        }
     }
 }
 
-$alertasVisiveis = array_slice($alertas, 0, 2);
-$totalNotificacoes = $notificacaoCtrl->contarNotificacoes();
+$totalNotificacoes = is_array($notificacoes) ? count($notificacoes) : 0;
+
+
+$alertasVisiveis = [];
+
+
+if (!empty($alertasEstoque)) {
+    $alertasVisiveis[] = $alertasEstoque[0];
+}
+
+
+if (!empty($alertasContato)) {
+    $alertasVisiveis[] = $alertasContato[0];
+}
+
+
+if (empty($alertasVisiveis)) {
+    $alertasVisiveis = [
+        [
+            "mensagem" => "📩 <b>Novo Contato</b><br>
+                          <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>De: Fazenda São João</small><br>
+                          <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>Consulta sobre fertilizantes</small>",
+            "hora"     => date("H:i")
+        ],
+        [
+            "mensagem" => "📦 <b>Alerta de Estoque</b><br>
+                          <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>Estoque Baixo - Soja</small><br>
+                          <small style='color: #c53030; font-weight: 900; font-size: 13px;'>Quantidade: 2 unidades</small>",
+            "hora"     => date("H:i", time() - 1800)
+        ]
+    ];
+}
 ?>
 
 <div class="ym_box-notificacao">
@@ -28,7 +80,7 @@ $totalNotificacoes = $notificacaoCtrl->contarNotificacoes();
             </div>
 
             <div class="ym_indicador-notificacoes">
-                <p class="ym_p"><?= $totalNotificacoes ?></p>
+                <p class="ym_p"><?= $totalNotificacoes ?: '0' ?></p>
             </div>
 
             <div class="ym_titulo-notficacoes">
@@ -39,20 +91,22 @@ $totalNotificacoes = $notificacaoCtrl->contarNotificacoes();
         <div class="ym_notificacoes">
             <?php if (!empty($alertasVisiveis)): ?>
                 <?php foreach ($alertasVisiveis as $alerta): ?>
-                    <div class="ym_notificacao-item">
-                        <p class="ym_p"><?= $alerta['mensagem'] ?></p>
-                        <p class="ym_p"><?= $alerta['hora'] ?></p>
+                    <div class="ym_notificacao-item" style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0;">
+                        <p class="ym_p" style="margin: 0 0 5px 0; font-size: 14px; line-height: 1.4;"><?= $alerta['mensagem'] ?></p>
+                        <p class="ym_p" style="margin: 0; color: #718096; font-size: 12px; font-weight: 500;"><?= $alerta['hora'] ?></p>
                     </div>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <div class="ym_notificacao-item">
-                    <p class="ym_p">Nenhuma notificação</p>
-                </div>
             <?php endif; ?>
 
-            <div class="vc_ver-mais">
-                <a class="vc_not-more" href="../../VIEW/adm/notificacao-adm.php">Ver Mais...</a>
-            </div>
+            
+            <?php if ($totalNotificacoes > 0): ?>
+                <div class="vc_ver-mais" style="padding: 10px 15px;">
+                    <a class="vc_not-more" href="../../VIEW/adm/notificacao-adm.php" 
+                       style="background: #28a745; color: white; text-decoration: none; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 4px; display: block; text-align: center; transition: background 0.3s;">
+                        Ver mais notificações
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
@@ -62,10 +116,6 @@ const notificacao = document.getElementsByClassName('ym_area-notificacao')[0];
 if (notificacao) {
     notificacao.addEventListener('click', () => {
         notificacao.classList.toggle('active');
-        const icon = notificacao.querySelector('.jp_notification-icon i');
-        if (icon) {
-            icon.classList.toggle('fa-xmark');
-        }
     });
 }
 </script>

@@ -5,6 +5,7 @@ include "../../INCLUDE/vlibras.php";
 require_once "../../INCLUDE/verificarLogin.php"; 
 include "../../INCLUDE/alertas.php";
 
+
 $cupom_control = new CupomController();
 $cupons = $cupom_control->index();
 $total_cupons = count($cupons);
@@ -46,6 +47,9 @@ if(isset($_SESSION['alerta'])){
 }
 
 ?>
+
+<?php $mostrar_acoes = true; ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -86,12 +90,7 @@ if(isset($_SESSION['alerta'])){
                     </form>
 
                     <div class="jv_actions">
-                        <!-- <div>
-                            <button class="ym_btn-remover" id="jv_removeSelected">
-                                <i class="fa-solid fa-trash-can"></i>
-                                Remover (<span id="jv_selectedCount">0</span>)
-                            </button>
-                        </div> -->
+                 
                         <div>
                             <button class="ym_btn-padrao" onclick="abrirPopup('../../VIEW/pop-up/pop-up-cadastroCupom.php','Cadastro de Cupom')">
                                 <i class="fas fa-plus"></i>
@@ -117,9 +116,21 @@ if(isset($_SESSION['alerta'])){
                                 <th class="jv_desconto">Desconto</th>
                                 <th class="jv_cadastro">Data de Cadastro</th>
                                 <th class="jv_validade">Validade</th>
+                                <th></th>
                                 </tr>
                         </thead>
                         <tbody id="jv_customerTableBody">
+
+                          <td class="jv_table-action">
+                                     <button class="jv_menu-btn" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                     </button>
+                                     <div class="jv_dropdown-separator"></div>
+                                     <button class="jv_dropdown-item jv_danger" type="submit" name="remover" value="<?= htmlspecialchars($cliente['id'])?>">
+                                          <i class="fas fa-trash"></i> Remover
+                                     </button>
+                                 </form>
+                             </td>
                         </tbody>
                     </table>
                 </div>
@@ -134,8 +145,11 @@ if(isset($_SESSION['alerta'])){
         <script>
             const dados = <?php echo json_encode($cupons); ?>;
         </script>
+       <script>
+         const MOSTRAR_ACOES = true;
+       </script>
+
         <script src="../../PUBLIC/JS/script-cupom.js"></script>
-        <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
 </main>

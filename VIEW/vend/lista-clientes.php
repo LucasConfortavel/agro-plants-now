@@ -22,13 +22,44 @@ if ($status_filtro) {
     $clientes = $cliente_control->indexComStatusPedidos();
 }
 
-$total_clientes = count($clientes);
+if(isset($_GET['pesquisa'])){
+    if($_GET['pesquisa']==""){
+        header("Location: lista-clientes.php");
+    }
+    $clientes = [];
+    $clientes[] = $cliente_control->pesquisar();    
+    if(is_array($clientes) & $clientes[0] != 'Usuário não encontrado'){
+        $total_clientes = count($clientes);
+    }else{
+        $total_clientes = 0;
+    }
+}
+else{
+    $total_clientes = count($clientes);
+}
 
 $limite = 4;
 $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 $offset = ($pagina_atual - 1) * $limite;
 $total_paginas = ceil($total_clientes / $limite);
 $clientes_paginados = array_slice($clientes, $offset, $limite);
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nome']) && !isset($_POST['finalizar_pedido']) && !isset($_POST['criar_pedido'])) {
+    $criar_cliente = $cliente_control->criarCliente();
+
+    if ($criar_cliente == 1) {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Cliente cadastrado com sucesso","sucesso"); </script>';
+    } elseif ($criar_cliente != "") {
+        $_SESSION['alerta'] = '<script> exibirAlerta("' . $criar_cliente . '","error"); </script>';
+    } else {
+        $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível cadastrar o cliente","error"); </script>';
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}   
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['finalizar_pedido'])) {
     $id_pedido = $_POST['finalizar_pedido'];
@@ -161,12 +192,18 @@ if(isset($_SESSION['alerta'])){
             <div class="jv_card-header">
                 <div class="jv_header-content">
                     <div class="jv_search-section">
-                        <div class="jv_search-container">
-                            <button class="ym_area-icon-pesquisa">
+                        <form class="jv_search-container" method="GET">
+                            <button class="ym_area-icon-pesquisa" type="submit">
                                 <i class="fas fa-search search-icon"></i>
                             </button>
-                            <input type="text" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">
-                        </div>
+                            <?php
+                            if(isset($_GET['pesquisa'])){
+                                echo'<input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input" value='. $_GET['pesquisa'] .'>';
+                            }else{
+                                echo'<input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar por nome ou email..." class="jv_search-input">';
+                            }
+                            ?>
+                        </form>
                     </div>
 
                     <div class="jv_actions">
