@@ -150,7 +150,6 @@ if(isset($_SESSION['alerta'])){
        </script>
 
         <script src="../../PUBLIC/JS/script-cupom.js"></script>
-        <script src="../../PUBLIC/JS/script.js"></script>
         <script src="../../PUBLIC/JS/script-pop-up.js"></script>
         <script src="../../PUBLIC/JS/script-tema.js"></script>
 </main>

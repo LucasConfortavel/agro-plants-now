@@ -74,5 +74,25 @@ class NotificacaoController {
             return 0;
         }
     }
+
+    public function pesquisar() {
+        try {
+            $pesquisa = "%" . $_POST["pesquisa"] . "%";
+            $this->notificacao->titulo = $pesquisa;
+            $this->notificacao->assunto = $pesquisa;
+            $resultado = $this->notificacao->Pesquisar();
+            if ($this->notificacao->Pesquisar()) {
+                return $resultado;
+            } else {
+                throw new Exception("Nenhuma notificação encontrada");
+            }
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            return $error;
+        }
+    }
+
+
+
 }
 ?>

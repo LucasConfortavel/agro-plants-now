@@ -29,15 +29,24 @@ if (!$id_carrinho) {
 // Conexão PDO para gerenciar pedidos de serviços
 $pdo = new PDO("mysql:host=192.168.22.9;dbname=143p2;charset=utf8", "turma143p2", "sucesso@143");
 
-// Criar novo pedido de serviço
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['novo_pedido'])) {
-    $id_vendedor = $_SESSION['id'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id_usuario'] ?? null;
+// Função para obter ID do vendedor logado
+function getIdVendedor() {
+    $id_vendedor = $_SESSION['id_vendedor'] ?? $_SESSION['id'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id_usuario'] ?? null;
     
     if (!$id_vendedor) {
-        $stmt_vendedor = $pdo->prepare("SELECT id_vendedor FROM servicos WHERE id_cliente = ? ORDER BY data_pedido DESC LIMIT 1");
-        $stmt_vendedor->execute([$id_cliente]);
-        $pedido_anterior = $stmt_vendedor->fetch(PDO::FETCH_ASSOC);
-        $id_vendedor = $pedido_anterior['id_vendedor'] ?? 1;
+        $_SESSION['alerta'] = '<script>exibirAlerta("Erro: Vendedor não identificado. Faça login novamente.","error");</script>';
+        return false;
+    }
+    
+    return $id_vendedor;
+}
+
+// Criar novo pedido de serviço
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['novo_pedido'])) {
+    $id_vendedor = getIdVendedor();
+    if (!$id_vendedor) {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+        exit;
     }
     
     // Calcular total do carrinho de serviços
@@ -91,13 +100,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['atualizar_status'])) 
         if ($stmt->execute([$novo_status, $id_pedido])) {
             
             if ($novo_status === 'FINALIZADO') {
-                $id_vendedor = $_SESSION['id'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id_usuario'] ?? null;
-                
+                $id_vendedor = getIdVendedor();
                 if (!$id_vendedor) {
-                    $stmt_vendedor = $pdo->prepare("SELECT id_vendedor FROM pedidos WHERE id = ?");
-                    $stmt_vendedor->execute([$id_pedido]);
-                    $pedido_info = $stmt_vendedor->fetch(PDO::FETCH_ASSOC);
-                    $id_vendedor = $pedido_info['id_vendedor'] ?? 1;
+                    header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+                    exit;
                 }
                 
                 // Calcular total
