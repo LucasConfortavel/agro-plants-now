@@ -75,5 +75,52 @@ function GerarTabela() {
     });
 
     tabela.innerHTML = html;
+
+    const contador = document.getElementById("jv_customerCount");
+    contador.textContent = `Total de Cupons: ${cuponsValidos.length}`;
 }
+
+function Pesquisar() {
+    const inputPesquisa = document.getElementById("jv_searchInput");
+    const pesquisa = inputPesquisa.value.toLowerCase();
+    const tabela = document.getElementById("jv_customerTableBody");
+    const paginacao = document.getElementsByClassName('jv_page-navigation')[0];
+
+    // Filtra cupons válidos e pesquisa
+    const hoje = new Date();
+    let cuponsFiltrados = dados.filter(cupom => new Date(cupom['data_validade']) >= hoje);
+
+    if (pesquisa !== "") {
+        cuponsFiltrados = cuponsFiltrados.filter(cupom => cupom['codigo'].toLowerCase().includes(pesquisa));
+    }
+
+    // Paginação
+    const limite = 4;
+    const pagina = 1;
+    const total_pag = Math.ceil(cuponsFiltrados.length / limite);
+
+    let pagHtml = "";
+    for (let i = 1; i <= total_pag; i++) {
+        pagHtml += `<a href="#" onclick="paginaPesquisa(${i})" class='jv_page-number ${i === pagina ? 'active' : ''}'>${i}</a>`;
+    }
+    paginacao.innerHTML = pagHtml;
+
+    // Mostra os cupons da primeira página
+    const cuponsPagina = cuponsFiltrados.slice(0, limite);
+    let html = "";
+    cuponsPagina.forEach(cupom => {
+        html += `<tr>`;
+        html += `<td>${cupom['codigo']}</td>`;
+        html += `<td>${cupom['valor']}%</td>`;
+        html += `<td>${formatarData(cupom['data_emissao'])}</td>`;
+        html += `<td>${formatarData(cupom['data_validade'])}</td>`;
+        html += `</tr>`;
+    });
+
+    tabela.innerHTML = html;
+    const contador = document.getElementById("jv_customerCount");
+    contador.textContent = `Total de Cupons: ${cuponsFiltrados.length}`;
+}
+
+// Inicializa tabela ao carregar
 GerarTabela();

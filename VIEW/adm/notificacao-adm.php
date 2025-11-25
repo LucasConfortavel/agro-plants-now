@@ -6,6 +6,7 @@ include "../../INCLUDE/vlibras.php";
 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : 'estoque';
 
 try {
+    
     $notificacaoCtrl = new NotificacaoController();
     
     $todas_notificacoes = $notificacaoCtrl->listarNotificacoes(100);
@@ -13,7 +14,11 @@ try {
     $notificacoes_estoque = [];
     $notificacoes_contato = [];
 
-    if (!isset($todas_notificacoes['error'])) {
+    if(isset($_POST['pesquisa'])){
+        $todas_notificacoes = $notificacaoCtrl->pesquisar();   
+    }
+
+    if (is_array($todas_notificacoes)){
         foreach ($todas_notificacoes as $notificacao) {
             if (strpos($notificacao['titulo'], 'Estoque Baixo') !== false) {
                 $notificacoes_estoque[] = [
@@ -71,37 +76,9 @@ try {
         }
     }
 
-    // Mensagens de exemplo para teste
-    $mensagens_exemplo = [
-        [
-            'titulo' => "Orçamento para Sementes de Soja - Safra 2024",
-            'data' => "15/03/2024 14:30",
-            'mensagem' => "Prezados, gostaria de solicitar um orçamento para sementes de soja para a próxima safra. Necessitamos de aproximadamente 2.000 kg para plantio em 200 hectares. Por favor, enviem valores com detalhes sobre: variedades disponíveis, taxa de germinação, tratamento industrial incluído, condições de pagamento (possibilidade de parcelamento), prazo de entrega e descontos para compra acima de 1.500 kg. Também precisamos de informações sobre assistência técnica e garantias. Aguardo retorno para fecharmos o pedido ainda esta semana.",
-            'nome' => "Carlos Eduardo Silva",
-            'email' => "carlos.fazenda@agrobrasil.com.br",
-            'id' => 'exemplo1'
-        ],
-        [
-            'titulo' => "Problemas com Pragas - Urgente",
-            'data' => "18/03/2024 09:15", 
-            'mensagem' => "Bom dia, estamos enfrentando uma infestação severa de lagartas nas lavouras de milho. Já tentamos alguns defensivos sem sucesso. Precisamos urgentemente de recomendação técnica e produtos eficazes para controle. A área afetada é de aproximadamente 150 hectares com danos visíveis em 40% da plantação. Solicitamos: visita técnica emergencial, amostras para análise, orçamento para defensivos específicos e plano de aplicação. A situação é crítica e precisamos de resposta imediata para evitar perdas maiores na produção.",
-            'nome' => "Ana Paula Rodrigues",
-            'email' => "ana.rodrigues@cooperativaverde.com",
-            'id' => 'exemplo2'
-        ],
-        [
-            'titulo' => "Renovação de Contrato - Fertilizantes Anuais",
-            'data' => "20/03/2024 16:45",
-            'mensagem' => "Caro fornecedor, venho por meio deste renovar nosso contrato anual de fertilizantes. Para 2024 precisamos de: 500 toneladas de NPK 08-28-16, 300 toneladas de ureia, 200 toneladas de superfosfato simples e 150 toneladas de cloreto de potássio. Solicitamos proposta comercial com: preços atualizados, cronograma de entregas trimestrais, condições de pagamento (60/90 dias), garantia de qualidade dos produtos e suporte técnico para aplicação. Também gostaríamos de discutir possíveis melhorias no mix de produtos baseado em análise de solo recente.",
-            'nome' => "Roberto Almeida Santos", 
-            'email' => "roberto.santos@agroforte.com.br",
-            'id' => 'exemplo3'
-        ]
-    ];
-
     
     if ($filtro === 'mensagens') {
-        $dados = !empty($notificacoes_contato) ? $notificacoes_contato : $mensagens_exemplo;
+        $dados =  $notificacoes_contato;
     } else {
         $dados = $notificacoes_estoque;
     }
@@ -401,10 +378,18 @@ if (isset($_GET['remover'])) {
                     <div class="jv_header-content">
                         <form method="POST" action="#" class="jv_search-section">
                             <div class="jv_search-container">
-                                <button type="submit" class="ym_area-icon-pesquisa" name="pesquisar">
+                                <button type="submit" class="ym_area-icon-pesquisa">
                                     <i class="fas fa-search search-icon"></i>
                                 </button>
-                                <input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar..." class="jv_search-input">
+                                <?php
+                                if(isset($_POST["pesquisa"])){
+                                    echo'<input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar..." class="jv_search-input" value = '. $_POST["pesquisa"] .'>';
+                                }else{
+                                    echo'<input type="text" name="pesquisa" id="jv_searchInput" placeholder="Pesquisar..." class="jv_search-input">';
+                                }
+                                
+                                ?>
+                                
                             </div>
                         </form>
 
@@ -429,9 +414,6 @@ if (isset($_GET['remover'])) {
                         <table class="jv_table">
                             <thead>
                                 <tr class="jv_table-header">
-                                    <th class="jv_checkbox-col">
-                                        <input type="checkbox" id="jv_selectAll" class="jv_checkbox">
-                                    </th>
                                     <th class="jv_date">Título</th>
                                     <?php if ($filtro === 'estoque'): ?>
                                         <th class="jv_total_comp setor-col">Setor</th>
@@ -445,12 +427,9 @@ if (isset($_GET['remover'])) {
                                 <?php foreach ($dados as $index => $item): ?>
                                     <tr>
                                         <td>
-                                            <input type="checkbox" class="jv_checkbox customer-checkbox" data-customer-id="<?= $item['id'] ?>">
-                                        </td>
-                                        <td>
                                             <div class="jv_customer-info">
                                                 <div class="jv_avatar <?= $filtro === 'mensagens' ? 'email-avatar' : '' ?>">
-                                                    <?= $filtro === 'estoque' ? '⚠️' : '📧' ?>
+                                                    <?= $filtro === 'estoque' ? '<i class="fa-solid fa-triangle-exclamation"></i> ' : '<i class="fa-solid fa-message"></i>' ?>
                                                 </div>
                                                 <div class="jv_customer-details">
                                                     <?php if ($filtro === 'mensagens'): ?>
@@ -512,7 +491,7 @@ if (isset($_GET['remover'])) {
         <div id="popupEmail" class="popup-email">
             <div class="popup-email-content">
                 <div class="popup-email-header">
-                    <h3>📧 Detalhes da Mensagem</h3>
+                    <h3><i class="fa-solid fa-message"></i> Detalhes da Mensagem</h3>
                     <button class="popup-email-close" onclick="fecharPopupEmail()">
                         <i class="fas fa-times"></i>
                     </button>

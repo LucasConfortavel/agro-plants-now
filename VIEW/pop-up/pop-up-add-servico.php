@@ -141,28 +141,29 @@
             }
         });
 
-        document.querySelector('input[name="preco"]').addEventListener('input', function(e) {
-            let valor = e.target.value.replace(/\D/g, '');
-            
-            if (valor.length === 0) {
-                e.target.value = '';
-                return;
-            }
-            
-            while (valor.length < 3) {
-                valor = '0' + valor;
-            }
-            
-            const inteiros = valor.slice(0, -2) || '0';
-            const centavos = valor.slice(-2);
-            let inteirosFormatados = inteiros.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            
-            e.target.value = `R$ ${inteirosFormatados},${centavos}`;
-        });
+    document.querySelector('input[name="preco"]').addEventListener('input', function(e) {
+        let valor = e.target.value.replace(/\D/g, '');
+        
+        if (valor.length === 0) {
+            e.target.value = '';
+            return;
+        }
+        
+        valor = parseInt(valor, 10).toString();
+        
+        const inteiros = valor.slice(0, -2) || '0';
+        const centavos = valor.slice(-2).padStart(2, '0');
+        
+        let inteirosFormatados = inteiros.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        
+        e.target.value = `R$ ${inteirosFormatados},${centavos}`;
+    });
 
         document.querySelector('input[name="preco"]').addEventListener('focus', function(e) {
-            let valor = e.target.value.replace(/\D/g, '');
-            e.target.value = valor;
+            let valor = e.target.value.replace(/[^\d,]/g, '');
+            if (valor.includes(',')) {
+                e.target.value = valor.replace(',', '.');
+            }
         });
 
         document.querySelector('input[name="preco"]').addEventListener('blur', function(e) {
@@ -173,12 +174,11 @@
                 return;
             }
             
-            while (valor.length < 3) {
-                valor = '0' + valor;
-            }
+            valor = parseInt(valor, 10).toString();
             
             const inteiros = valor.slice(0, -2) || '0';
-            const centavos = valor.slice(-2);
+            const centavos = valor.slice(-2).padStart(2, '0');
+            
             let inteirosFormatados = inteiros.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             
             e.target.value = `R$ ${inteirosFormatados},${centavos}`;
@@ -186,11 +186,19 @@
 
         document.querySelector('form').addEventListener('submit', function(e) {
             let priceInput = document.querySelector('input[name="preco"]');
+            
             if (priceInput.value) {
-                let rawValue = priceInput.value.replace('R$', '')
-                                            .replace(/\./g, '')
-                                            .replace(',', '.');
-                priceInput.value = parseFloat(rawValue).toFixed(2);
+                let formattedValue = priceInput.value.replace('R$ ', '')
+                                                .replace(/\./g, '')
+                                                .replace(',', '.');
+                
+                let hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'preco_decimal';
+                hiddenInput.value = formattedValue;
+                this.appendChild(hiddenInput);
+                
+                priceInput.value = priceInput.value.replace('R$ ', '');
             }
             
             const imageInput = document.getElementById('imageInputServico');

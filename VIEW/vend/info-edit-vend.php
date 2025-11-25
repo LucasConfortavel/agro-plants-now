@@ -47,6 +47,7 @@
         
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
             if($tipo_user=="cliente"){
                 $atualizar_cliente = $controler_cliente->atualizar($id);
                 if($atualizar_cliente == 1){
@@ -63,6 +64,7 @@
                     $_SESSION['alerta'] = '<script> exibirAlerta("Não foi possível atualizar o vendedor","error"); </script>';
                 }        
             }
+
 
             header("Refresh:0");
             exit;
@@ -158,6 +160,7 @@
                             <div class="jp_info-item">
                                 <label><?= $CPF_CNPJ?></label>
                                 <span><?= $usuario[$CPF_CNPJ]?></span>
+                                <input type="hidden"value="<?= $usuario[$CPF_CNPJ]?>" name="<?=$CPF_CNPJ?>">
                             </div>
                             <?php
                             if($tipo_user=="vendedor"){
