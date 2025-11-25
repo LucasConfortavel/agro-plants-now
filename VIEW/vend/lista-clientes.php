@@ -236,10 +236,10 @@ if(isset($_SESSION['alerta'])){
                             
                             <div class="select-options">
                                 <div class="select-option <?= $status_filtro === '' ? 'selected' : '' ?>" data-value="">Todos</div>
-                                <div class="select-option <?= $status_filtro === 'PAGO' ? 'selected' : '' ?>" data-value="Pago">Pago</div>
-                                <div class="select-option <?= $status_filtro === 'ENVIADO' ? 'selected' : '' ?>" data-value="Enviado">Enviado</div>
-                                <div class="select-option <?= $status_filtro === 'FINALIZADO' ? 'selected' : '' ?>" data-value="Finalizado">Finalizado</div>
-                                <div class="select-option <?= $status_filtro === 'PENDENTE' ? 'selected' : '' ?>" data-value="Pendente">Pendente</div>
+                                <div class="select-option <?= $status_filtro === 'PAGO' ? 'selected' : '' ?>" data-value="PAGO">Pago</div>
+                                <div class="select-option <?= $status_filtro === 'ENVIADO' ? 'selected' : '' ?>" data-value="ENVIADO">Enviado</div>
+                                <div class="select-option <?= $status_filtro === 'FINALIZADO' ? 'selected' : '' ?>" data-value="FINALIZADO">Finalizado</div>
+                                <div class="select-option <?= $status_filtro === 'PENDENTE' ? 'selected' : '' ?>" data-value="PENDENTE">Pendente</div>
                             </div>
                         </div>
 
@@ -250,6 +250,7 @@ if(isset($_SESSION['alerta'])){
                             <option value="FINALIZADO" <?= $status_filtro === 'FINALIZADO' ? 'selected' : '' ?>>Finalizado</option>
                             <option value="PENDENTE" <?= $status_filtro === 'PENDENTE' ? 'selected' : '' ?>>Pendente</option>
                         </select>
+
                     </div>
                 </div>
             </div>
