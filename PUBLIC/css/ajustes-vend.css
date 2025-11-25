@@ -1,0 +1,275 @@
+/* Import e Reset */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+/* Layout Principal */
+.jp_main-content {
+    flex: 1;
+    padding: 30px;
+}
+
+.jp_profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+}
+
+.jp_profile-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.jp_profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.jp_profile-text h2 {
+    font-size: 18px;
+    color: #333;
+}
+
+.jp_profile-text p {
+    font-size: 14px;
+    color: #666;
+}
+
+.jp_role {
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Conteúdo */
+.jp_content {
+    margin-top: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.jp_tabs {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.jp_tab {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+}
+
+.jp_tab.jp_active {
+    color: #0066ff;
+    border-bottom: 2px solid #0066ff;
+}
+
+.jp_info-section {
+    padding: 20px;
+}
+
+.jp_section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.jp_section-header h3 {
+    font-size: 16px;
+    color: #333;
+}
+
+.jp_info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.jp_info-item label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.jp_form-input {
+    width: 90%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.jp_form-input:focus {
+    outline: none;
+    border-color: #0066ff;
+    box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
+}
+
+.jp_form-input.disabled,
+.jp_form-input[readonly] {
+    background-color: #f5f5f5;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.jp_form-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.jp_btn-update {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+.ym_btn-padrao {
+    justify-content: center;
+}
+
+.jp_edit-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.jp_security-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.jp_password-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.jp_password-group {
+    width: 100%;
+}
+
+.ym_input-padrao {
+    width: 90%;
+}
+
+.btn-remove-preview{
+    width: 20px;
+
+}
+
+/* Responsividade */
+@media screen and (max-width: 1024px) {
+
+
+    .jp_main-content {
+        padding: 20px;
+    }
+
+    .jp_info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .jp_profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .jp_info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .jp_section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .jp_form-actions {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .jp_main-content {
+        padding: 15px;
+    }
+
+    .jp_profile-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .jp_role {
+        max-width: 90%;
+        text-align: center;
+    }
+
+@media screen and (max-width: 420px) {
+    .jp_info-grid{
+        gap: 16px;
+        font-size: 12px;
+    }
+
+    .jp_info-item label{
+        font-size: 12px;
+    }
+
+    h2{
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .jp_info-grid{
+        display: flex;
+    }
+}
+}
