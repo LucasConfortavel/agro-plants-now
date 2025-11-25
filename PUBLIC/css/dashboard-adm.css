@@ -107,8 +107,12 @@ body.dark-theme .ym_area-notificacao{
   max-width: 9%;
 }
 
+.jp_sidebar{
+  width: 230px;
+}
+
 .jp_sidebar-placeholder {
-  width: 240px;
+  width: 220px;
   background-color: #222;
   min-height: 100vh;
   display: none; 

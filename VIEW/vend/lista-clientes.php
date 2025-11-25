@@ -12,7 +12,7 @@ require_once "../../INCLUDE/verificarLogin.php";
 $cliente_control = new ClienteController();
 $carrinho_control = new CarrinhoController();
 $pedido_control = new PedidoController();
-$venda_control = new VendaController(); // Adicione esta linha
+$venda_control = new VendaController();
 
 $status_filtro = isset($_GET['status']) ? $_GET['status'] : '';
 
@@ -354,7 +354,7 @@ if(isset($_SESSION['alerta'])){
                                         </td>
                                             <td>
                                                 <div class="td">
-                                                    <a href="selecao_tipo_venda.php?id_cliente=<?= $cliente['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" 
+                                                    <a href="selecao_tipo_venda.php?id_cliente=<?= $cliente['id'] ?>&id_vendedor=<?= $_SESSION['id'] ?>&nome=<?= urlencode($cliente['nome'])?>" 
                                                     class="ym_btn-padrao2" title="Selecionar tipo de venda">
                                                         <i class="fas fa-shopping-cart"></i>
                                                     </a>

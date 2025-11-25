@@ -190,7 +190,7 @@ $nome_cliente = $_GET['nome'];
             </div>
 
             <div class="selecao-opcoes">
-                <a href="carrinho_vend.php?id_cliente=<?= $id_cliente ?>&nome=<?= urlencode($nome_cliente) ?>&tipo=produto" class="opcao-card produto">
+                <a href="carrinho_vend.php?id_cliente=<?= $id_cliente ?>&nome=<?= urlencode($nome_cliente) ?>&id_vendedor=<?= $_SESSION['id'] ?>&tipo=produto" class="opcao-card produto">
                     <div class="opcao-icon">
                         <i class="fa-solid fa-box"></i>
                     </div>
