@@ -125,12 +125,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['atualizar_status'])) 
             if ($novo_status === 'FINALIZADO') {
                 // Obter ID do vendedor
                 $id_vendedor = $_SESSION['id'] ?? $_SESSION['usuario_id'] ?? $_SESSION['id_usuario'] ?? null;
-                
+
                 if (!$id_vendedor) {
-                    $stmt_vendedor = $pdo->prepare("SELECT id_vendedor FROM pedidos WHERE id = ?");
-                    $stmt_vendedor->execute([$id_pedido]);
-                    $pedido_info = $stmt_vendedor->fetch(PDO::FETCH_ASSOC);
-                    $id_vendedor = $pedido_info['id_vendedor'] ?? 1;
+                    // Se não encontrou o id do vendedor na sessão, não podemos criar a venda
+                    $_SESSION['alerta'] = '<script>exibirAlerta("Erro: Vendedor não identificado. Faça login novamente.","error");</script>';
+                    header("Location: " . $_SERVER['PHP_SELF'] . "?id_cliente=$id_cliente&nome=" . urlencode($nome_cliente));
+                    exit;
                 }
                 
                 // Calcular total do carrinho (com desconto se houver)
