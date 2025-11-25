@@ -1,5 +1,6 @@
 <?php
 require_once "../../CONTROLLER/CarrinhoController.php";
+require_once '../../INCLUDE/verificarLogin.php';
 require_once "../../CONTROLLER/CatalogoController.php";
 require_once "../../CONTROLLER/ProdutoController.php";
 require_once "../../CONTROLLER/CupomController.php";

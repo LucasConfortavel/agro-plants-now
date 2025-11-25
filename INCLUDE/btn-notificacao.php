@@ -4,6 +4,26 @@ require_once "../../CONTROLLER/NotificacaoController.php";
 
 $notificacaoCtrl = new NotificacaoController();
 $notificacoes = $notificacaoCtrl->listarNotificacoes(10);
+$todas_notificacoes = $notificacaoCtrl->listarNotificacoes();
+
+$produtos = $produtoController->index();
+
+$not_produtos = [];
+
+
+foreach ($todas_notificacoes as $notificacao) {
+    $nome = str_replace("Estoque Baixo - ", "", $notificacao['titulo']);
+    array_push($not_produtos,$nome);
+}
+
+foreach ($produtos as $produto) {
+    if (!in_array($produto['nome'], $not_produtos)) {
+        if ($produto['quantidade'] <= 20) {
+            echo "criou" . "<br>";
+            $notificacaoCtrl->criarNotificacaoEstoque($produto['nome'], $produto['quantidade']);
+        }
+    }
+}
 
 $alertasContato = [];
 $alertasEstoque = [];

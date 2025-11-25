@@ -1,16 +1,16 @@
 <?php
     include "../../INCLUDE/verificarLogin.php";
     include "../../INCLUDE/Menu_adm.php";
-    include "../../INCLUDE/btn-notificacao.php";
     include "../../CONTROLLER/ProdutoController.php";
     include "../../INCLUDE/vlibras.php";
     include "../../CONTROLLER/VendaController.php";
     include "../../CONTROLLER/ClienteController.php";
     include "../../CONTROLLER/UsuarioController.php";
-
+    
     $produtoController = new ProdutoController();
     $produtos = $produtoController->index();
     
+    include "../../INCLUDE/btn-notificacao.php";
     $limite = 5;
     $alertas = [];
     

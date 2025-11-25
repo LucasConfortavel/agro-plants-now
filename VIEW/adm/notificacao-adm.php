@@ -9,7 +9,7 @@ try {
     
     $notificacaoCtrl = new NotificacaoController();
     
-    $todas_notificacoes = $notificacaoCtrl->listarNotificacoes(100);
+    $todas_notificacoes = $notificacaoCtrl->listarNotificacoes();
     
     $notificacoes_estoque = [];
     $notificacoes_contato = [];
