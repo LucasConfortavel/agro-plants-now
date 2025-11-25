@@ -13,25 +13,18 @@ if (!isset($notificacoes['error']) && is_array($notificacoes) && !empty($notific
         
         if (strpos($notificacao['titulo'], 'Contato') !== false) {
             
+            $nomeCliente = str_replace('Novo Contato – ', '', $notificacao['titulo']);
             
-            $nomeCliente = str_replace('Novo Contato - ', '', $notificacao['titulo']);
-            $nomeCliente = str_replace('Novo Contato – ', '', $nomeCliente);
-            
-            
-            if (strlen($nomeCliente) <= 20 && !preg_match('/^[a-zA-Z]{10,}$/', $nomeCliente)) {
-                // Nome válido
-                $alertasContato[] = [
-                    "mensagem" => "📩 <b>Você tem uma nova mensagem de:</b><br>
-                                 <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>" . htmlspecialchars($nomeCliente) . "</small>",
-                    "hora"     => date("H:i", strtotime($notificacao['horario_criacao']))
-                ];
-            } else {
-                // Nome inválido
-                $alertasContato[] = [
-                    "mensagem" => "📩 <b>Você tem uma nova mensagem</b>",
-                    "hora"     => date("H:i", strtotime($notificacao['horario_criacao']))
-                ];
+            if (strlen($nomeCliente) > 20 || preg_match('/^[a-zA-Z]{10,}$/', $nomeCliente)) {
+                $nomeCliente = 'Cliente';
             }
+            
+            $alertasContato[] = [
+                "mensagem" => "📩 <b>Novo Contato</b><br>
+                             <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>De: " . htmlspecialchars($nomeCliente) . "</small><br>
+                             <small style='color: #e0e0e0; font-weight: 800; font-size: 13px;'>Interessado em insumos agrícolas</small>",
+                "hora"     => date("H:i", strtotime($notificacao['horario_criacao']))
+            ];
                                  
         } elseif (strpos($notificacao['titulo'], 'Estoque') !== false) {
             
@@ -64,8 +57,9 @@ if (!empty($alertasContato)) {
 if (empty($alertasVisiveis)) {
     $alertasVisiveis = [
         [
-            "mensagem" => "📩 <b>Você tem uma nova mensagem de:</b><br>
-                          <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>João Silva</small>",
+            "mensagem" => "📩 <b>Novo Contato</b><br>
+                          <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>De: Fazenda São João</small><br>
+                          <small style='color: #e0e0e0; font-weight: 900; font-size: 13px;'>Consulta sobre fertilizantes</small>",
             "hora"     => date("H:i")
         ],
         [
@@ -81,14 +75,8 @@ if (empty($alertasVisiveis)) {
 <div class="ym_box-notificacao">
     <div class="ym_area-notificacao">
         <div class="ym_area-icons">
-            
             <div class="jp_notification-icon">
                 <i class="fas fa-bell ym_icon-sino"></i>
-            </div>
-
-            
-            <div class="jp_close-icon" style="display: none; cursor: pointer;">
-                <i class="fas fa-times"></i>
             </div>
 
             <div class="ym_indicador-notificacoes">
@@ -125,31 +113,9 @@ if (empty($alertasVisiveis)) {
 
 <script>
 const notificacao = document.getElementsByClassName('ym_area-notificacao')[0];
-const sinoIcon = document.querySelector('.jp_notification-icon');
-const closeIcon = document.querySelector('.jp_close-icon');
-
-if (notificacao && sinoIcon && closeIcon) {
-    
+if (notificacao) {
     notificacao.addEventListener('click', () => {
         notificacao.classList.toggle('active');
-        
-        if (notificacao.classList.contains('active')) {
-            
-            sinoIcon.style.display = 'none';
-            closeIcon.style.display = 'block';
-        } else {
-            
-            sinoIcon.style.display = 'block';
-            closeIcon.style.display = 'none';
-        }
-    });
-
-    
-    closeIcon.addEventListener('click', (e) => {
-        e.stopPropagation(); 
-        notificacao.classList.remove('active');
-        sinoIcon.style.display = 'block';
-        closeIcon.style.display = 'none';
     });
 }
 </script>
