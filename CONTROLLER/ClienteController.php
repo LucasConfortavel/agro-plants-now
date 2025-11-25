@@ -73,9 +73,17 @@ class ClienteController {
             $pesquisa = "%" . $_GET["pesquisa"] . "%";
             $this->cliente->nome = $pesquisa;
             $this->cliente->email = $pesquisa;
-            $resultado = $this->cliente->Pesquisar();
-            if ($this->cliente->Pesquisar()) {
-                return $resultado;
+            
+            $stmt = $this->cliente->lerTodosAtivos();
+            $todosClientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            $resultado = array_filter($todosClientes, function($cliente) use ($pesquisa) {
+                return stripos($cliente['nome'], trim($pesquisa, '%')) !== false || 
+                    stripos($cliente['email'], trim($pesquisa, '%')) !== false;
+            });
+            
+            if (!empty($resultado)) {
+                return array_values($resultado); // Reindexar o array
             } else {
                 throw new Exception("Usuário não encontrado");
             }
@@ -95,7 +103,7 @@ class ClienteController {
      */
     public function indexComStatusPedidos() {
         try {
-            $stmt = $this->cliente->lerTodos(); // Mostrar todos os clientes
+            $stmt = $this->cliente->lerTodosAtivos();
             $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             // Para cada cliente, buscar o último pedido
@@ -104,6 +112,9 @@ class ClienteController {
                 $pedidos = $pedidoStmt->fetchAll(PDO::FETCH_ASSOC);
                 
                 if (!empty($pedidos)) {
+                    usort($pedidos, function($a, $b) {
+                        return strtotime($b['data_pedido']) - strtotime($a['data_pedido']);
+                    });
                     $ultimoPedido = $pedidos[0];
                     $cliente['ultimo_pedido'] = [
                         'id' => $ultimoPedido['id'],
@@ -147,7 +158,7 @@ class ClienteController {
             
             return array_filter($clientes, function($cliente) use ($status) {
                 return $cliente['ultimo_pedido'] !== null && 
-                       $cliente['ultimo_pedido']['status'] === $status;
+                    $cliente['ultimo_pedido']['status'] === $status;
             });
         } catch (Exception $e) {
             error_log("Erro ao filtrar clientes: " . $e->getMessage());

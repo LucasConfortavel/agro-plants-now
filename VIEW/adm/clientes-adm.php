@@ -24,14 +24,20 @@ if(isset($_GET['pesquisa'])){
         header('Location: clientes-adm.php');
     }
     $clientes = [];
-    $clientes[] = $cliente_control->pesquisar();    
-    if(is_array($clientes) & $clientes[0] != 'Usuário não encontrado'){
+    $resultado = $cliente_control->pesquisar();    
+    if(is_array($resultado) && $resultado != 'Usuário não encontrado'){
+        $clientes = $resultado;
         $total_clientes = count($clientes);
     }else{
         $total_clientes = 0;
     }
 }
 else{
+    if ($status_filtro) {
+        $clientes = $cliente_control->filtrarPorStatusPedido($status_filtro);
+    } else {
+        $clientes = $cliente_control->indexComStatusPedidos();
+    }
     $total_clientes = count($clientes);
 }
 
