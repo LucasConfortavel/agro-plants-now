@@ -99,13 +99,20 @@ body{
 }
 
 
-table td, table th{
+table td{
     border-bottom: 1px solid rgb(209, 209, 209);
-    padding: 5px;
-    text-align: center;
+    padding: 12px 16px;
+    text-align: left;
     font-weight: 500;
     color: var(--color-icones-0);
-    
+}
+
+table th{
+    border-bottom: 1px solid rgb(209, 209, 209);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #45734b;
 }
 
 .ym_area-table{

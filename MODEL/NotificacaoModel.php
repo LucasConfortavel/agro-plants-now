@@ -35,10 +35,16 @@ class NotificacaoModel {
         return false;
     }
 
-    public function lerTodas($limit = 10) {
-        $query = "SELECT * FROM " . $this->table_name . " ORDER BY horario_criacao DESC LIMIT :limit";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+    public function lerTodas($limit = 0) {
+        if(!$limit == 0){
+            $query = "SELECT * FROM " . $this->table_name . " ORDER BY horario_criacao DESC LIMIT :limit";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+        }else{
+            $query = "SELECT * FROM " . $this->table_name . " ORDER BY horario_criacao DESC";
+            $stmt = $this->conn->prepare($query);
+        }
+
         $stmt->execute();
 
         return $stmt;

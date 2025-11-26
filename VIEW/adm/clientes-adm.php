@@ -282,14 +282,14 @@ if(!empty($_GET)){
                                             </div>
                                         </td>
                                         <td>
-                                            <p><?= htmlspecialchars($cliente['data_nasc']) ?></p>
+                                            <p class="vc-data_css"><?= htmlspecialchars($cliente['data_nasc']) ?></p>
                                         </td>
                                         <td>
                                             <span class="jv_status-badge <?= strtolower($cliente['status']) ?>">
                                                 <?= $cliente['status'] ?>
                                             </span>
                                         </td>
-                                        <td>
+                                        <td class="vc-status_css">
                                             <?php if ($status !== 'SEM PEDIDOS'): ?>
                                                 <div class="jv_status-wrapper">
                                                     <div class="jv_progress-bar">
