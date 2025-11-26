@@ -23,17 +23,27 @@ function adjustDropdownPosition(btn, dropdown) {
     const btnRect = btn.getBoundingClientRect();
     const dropdownRect = dropdown.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    
+    dropdown.style.top = '';
+    dropdown.style.bottom = '';
+    dropdown.style.left = '';
+    dropdown.style.right = '';
+    dropdown.style.marginTop = '';
+    dropdown.style.marginBottom = '';
     
     if (btnRect.bottom + dropdownRect.height > viewportHeight - 20) {
-        dropdown.style.top = 'auto';
         dropdown.style.bottom = '100%';
-        dropdown.style.marginTop = '0';
         dropdown.style.marginBottom = '5px';
     } else {
         dropdown.style.top = '100%';
-        dropdown.style.bottom = 'auto';
         dropdown.style.marginTop = '5px';
-        dropdown.style.marginBottom = '0';
+    }
+    
+    if (btnRect.right + dropdownRect.width > viewportWidth - 20) {
+        dropdown.style.right = '0';
+    } else {
+        dropdown.style.right = '0';
     }
 }
 
