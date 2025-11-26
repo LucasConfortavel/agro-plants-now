@@ -28,28 +28,37 @@ function GerarTabela() {
   const tabela = document.getElementById("jv_customerTableBody");
   let html = "";
 
-  const limite = 4;
+  const limite = 4; // Linhas por página
   const url = new URLSearchParams(window.location.search);
   const pagina = url.has('pagina') ? parseInt(url.get('pagina'), 10) : 1;
 
   const total_pag = Math.ceil(dados.length / limite);
   const area_pags = document.getElementsByClassName('jv_page-navigation')[0];
 
-  // === PAGINAÇÃO ===
-  if (pagina !== 1) {
-    html += ` <a href="?pagina=${pagina - 1}" class="jv_page-arrow"><i class="fas fa-arrow-left"></i></a>`;
+  // === PAGINAÇÃO COM LIMITE DE BOTÕES VISÍVEIS ===
+  const maxBtns = 3; // quantos números mostrar ao mesmo tempo
+  let start = Math.max(pagina - 1, 1);
+  let end = Math.min(start + maxBtns - 1, total_pag);
+
+  // Ajusta se estiver perto do final
+  if (end - start + 1 < maxBtns) {
+    start = Math.max(end - maxBtns + 1, 1);
   }
 
-  for (let i = 1; i <= total_pag; i++) {
+  if (pagina > 1) {
+    html += `<a href="?pagina=${pagina - 1}" class="jv_page-arrow"><i class="fas fa-arrow-left"></i></a>`;
+  }
+
+  for (let i = start; i <= end; i++) {
     if (i === pagina) {
-      html += `<a href='?pagina=${i}' class='jv_page-number active'>${i}</a>`;
+      html += `<a href="?pagina=${i}" class="jv_page-number active">${i}</a>`;
     } else {
-      html += `<a href='?pagina=${i}' class='jv_page-number'>${i}</a>`;
+      html += `<a href="?pagina=${i}" class="jv_page-number">${i}</a>`;
     }
   }
 
-  if (pagina !== total_pag && total_pag > 1) {
-    html += ` <a href="?pagina=${pagina + 1}" class="jv_page-arrow"><i class="fas fa-arrow-right"></i></a>`;
+  if (pagina < total_pag) {
+    html += `<a href="?pagina=${pagina + 1}" class="jv_page-arrow"><i class="fas fa-arrow-right"></i></a>`;
   }
 
   area_pags.innerHTML = html;
@@ -107,7 +116,6 @@ function GerarTabela() {
   const contador = document.getElementById("jv_customerCount");
   contador.textContent = `Total de vendas: ${dados.length}`;
 }
-
 function Pesquisar() {
   const inputPesquisa = document.getElementById("jv_searchInput");
   const pesquisa = inputPesquisa.value.trim();
