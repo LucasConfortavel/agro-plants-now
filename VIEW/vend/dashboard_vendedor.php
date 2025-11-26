@@ -117,7 +117,7 @@ $vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
                             <tr>
                                 <td>'.$cliente_control->mostrar($venda['id_cliente'])['nome'].'</td>
                                 <td>'.date('d/m/Y', strtotime($venda['data_venda'])).'</td>
-                                <td class="jp_sales-value">R$ '.$venda['total'].'</td>
+                                <td class="jp_sales-value">R$ '.number_format(($venda['total']/10),2,',','.').'</td>
                             </tr>';
                         }
                     
