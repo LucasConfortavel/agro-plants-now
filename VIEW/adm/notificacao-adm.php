@@ -1,5 +1,6 @@
 <?php
 include "../../INCLUDE/Menu_adm.php";
+require_once "../../INCLUDE/verificarLogin.php"; 
 require_once "../../CONTROLLER/NotificacaoController.php";
 include "../../INCLUDE/vlibras.php";
 
