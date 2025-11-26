@@ -82,7 +82,7 @@ $vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
                     <div class="jp_metric-title">Total Vendido</div>
                    
                 </div>
-                <div class="jp_metric-value">R$<?= $total_vendido?></div>
+                <div class="jp_metric-value"><?="R$" . number_format($total_vendido, 2, ',', '.');?></div>
             </div>
             <div class="jp_metric-box jp_metric-blue">
                 <div class="jp_metric-header">
