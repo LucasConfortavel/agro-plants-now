@@ -89,8 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['novo_pedido'])) {
 $stmt = $pdo->prepare("SELECT id, status FROM pedidos WHERE id_cliente = ? ORDER BY data_pedido DESC LIMIT 1");
 $stmt->execute([$id_cliente]);
 $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
-$status_pedido = $pedido['status'] ?? 'PENDENTE';
+if($pedido){
+    $status_pedido = $pedido['status'] ?? 'PENDENTE';
+}else{
+    $status_pedido = "nenhum";
+}
+
 $id_pedido = $pedido['id'] ?? null;
+
 
 // Atualizar status do pedido
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['atualizar_status'])) {
