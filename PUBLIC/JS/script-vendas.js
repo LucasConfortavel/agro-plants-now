@@ -24,6 +24,13 @@ const formatarData = (dataStr) => {
   return `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
 };
 
+function formatarDinheiro(valor) {
+  return Number(valor).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  });
+}
+
 function GerarTabela() {
   const tabela = document.getElementById("jv_customerTableBody");
   let html = "";
@@ -81,7 +88,7 @@ function GerarTabela() {
             </div>
           </td>
           <td>${venda['nome_cliente']}</td>
-          <td>R$ ${venda['total']}</td>
+          <td>${formatarDinheiro(venda['total'])}</td>
           <td class="jv_table-action">
             <button class="jv_menu-btn" onclick="toggleDropdown(this)">
               <i class="fas fa-ellipsis-h"></i>
@@ -105,7 +112,7 @@ function GerarTabela() {
           </div>
         </td>
         <td>${venda['nome_cliente']}</td>
-        <td>R$ ${venda['total']}</td>
+        <td>${formatarDinheiro(venda['total'])}</td>
       </tr>`;
     }
   });
@@ -149,7 +156,7 @@ function Pesquisar() {
             </div>
           </td>
           <td>${venda['nome_cliente']}</td>
-          <td>R$ ${venda['total']}</td>
+          <td>${formatarDinheiro(venda['total'])}</td>
           <td class="jv_table-action">
             <button class="jv_menu-btn" onclick="toggleDropdown(this)">
               <i class="fas fa-ellipsis-h"></i>
@@ -179,7 +186,8 @@ function Pesquisar() {
           </div>
         </td>
         <td>${venda['nome_cliente']}</td>
-        <td>R$ ${venda['total']}</td>
+        <td>${formatarDinheiro(venda['total'])}</td>
+
       </tr>`;
     }
   });

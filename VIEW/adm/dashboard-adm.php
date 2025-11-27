@@ -1,16 +1,16 @@
 <?php
     include "../../INCLUDE/verificarLogin.php";
     include "../../INCLUDE/Menu_adm.php";
-    include "../../INCLUDE/btn-notificacao.php";
     include "../../CONTROLLER/ProdutoController.php";
     include "../../INCLUDE/vlibras.php";
     include "../../CONTROLLER/VendaController.php";
     include "../../CONTROLLER/ClienteController.php";
     include "../../CONTROLLER/UsuarioController.php";
-
+    
     $produtoController = new ProdutoController();
     $produtos = $produtoController->index();
     
+    include "../../INCLUDE/btn-notificacao.php";
     $limite = 5;
     $alertas = [];
     
@@ -103,7 +103,7 @@
                 <div class="jp_card-header">
                     <div class="jp_card-title">Total Vendido</div>
                 </div>
-                <div class="jp_card-value">R$<?= $total_vendido?></div>
+                <div class="jp_card-value"><?="R$" . number_format($total_vendido, 2, ',', '.');?></div>
             </div>
             <div class="jp_card">
                 <div class="jp_card-header">

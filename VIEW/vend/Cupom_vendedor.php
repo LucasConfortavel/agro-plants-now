@@ -2,6 +2,7 @@
 include "../../INCLUDE/Menu_vend.php";
 include "../../CONTROLLER/CupomController.php";
 include "../../INCLUDE/vlibras.php";
+require_once "../../INCLUDE/verificarLogin.php"; 
 
 $cupom_control = new CupomController();
 $cupons = $cupom_control->index();

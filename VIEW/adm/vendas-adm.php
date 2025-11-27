@@ -4,6 +4,7 @@ include "../../CONTROLLER/VendaController.php";
 include "../../CONTROLLER/UsuarioController.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../INCLUDE/vlibras.php";
+require_once "../../INCLUDE/verificarLogin.php"; 
 
 
 $venda_control = new VendaController(); 

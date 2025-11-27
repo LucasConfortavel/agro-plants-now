@@ -166,13 +166,11 @@ h3{
 }
 
 .jv_table-header .jv_name p {
-    padding: 12px 16px;
     display: flex;
     font-weight: 600;
     color: #45734b;
     font-size: 1rem;
-    margin-left: 75px;
-   
+    text-align: left;
 }
 
 .jv_table-header .jv_comissao p{
@@ -725,12 +723,11 @@ h3 {
 }
 
 .jv_table-header .jv_name p {
-    padding: 12px 16px;
     display: flex;
     font-weight: 600;
     color: #45734b;
     font-size: 1rem;
-    margin-left: 75px;
+    text-align: left;
 }
 
 .jv_table-header .jv_comissao p {
