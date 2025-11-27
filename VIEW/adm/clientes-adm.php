@@ -24,14 +24,20 @@ if(isset($_GET['pesquisa'])){
         header('Location: clientes-adm.php');
     }
     $clientes = [];
-    $clientes[] = $cliente_control->pesquisar();    
-    if(is_array($clientes) & $clientes[0] != 'Usuário não encontrado'){
+    $resultado = $cliente_control->pesquisar();    
+    if(is_array($resultado) && $resultado != 'Usuário não encontrado'){
+        $clientes = $resultado;
         $total_clientes = count($clientes);
     }else{
         $total_clientes = 0;
     }
 }
 else{
+    if ($status_filtro) {
+        $clientes = $cliente_control->filtrarPorStatusPedido($status_filtro);
+    } else {
+        $clientes = $cliente_control->indexComStatusPedidos();
+    }
     $total_clientes = count($clientes);
 }
 
@@ -221,7 +227,6 @@ if(!empty($_GET)){
                             <tr class="jv_table-header">
                                 <th class="jv_name">Nome</th>
                                 <th class="jv_date">Data</th>
-                                <th class="jv_status">Status</th>
                                 <th class="jv_total_comp">Status do Pedido</th>
                                 <th class="jv_valor_gast"></th>
                                 <th class="jv_actions-col"></th>
@@ -285,11 +290,6 @@ if(!empty($_GET)){
                                             <p><?= htmlspecialchars($cliente['data_nasc']) ?></p>
                                         </td>
                                         <td>
-                                            <span class="jv_status-badge <?= strtolower($cliente['status']) ?>">
-                                                <?= $cliente['status'] ?>
-                                            </span>
-                                        </td>
-                                        <td>
                                             <?php if ($status !== 'SEM PEDIDOS'): ?>
                                                 <div class="jv_status-wrapper">
                                                     <div class="jv_progress-bar">
@@ -320,7 +320,7 @@ if(!empty($_GET)){
                                                 
                                                 <?php if ($cliente['status'] == 'ATIVADO'): ?>
                                                     <button type="submit" name="desativar" value="<?= htmlspecialchars($cliente['id'])?>" class="jv_dropdown-item jv_danger">
-                                                        <i class="fas fa-ban"></i> Desativar
+                                                        <i class="fas fa-trash"></i> Excluir
                                                     </button>
                                                 <?php else: ?>
                                                     <button type="submit" name="ativar" value="<?= htmlspecialchars($cliente['id'])?>" class="jv_dropdown-item jv_acess">
@@ -383,71 +383,6 @@ if(!empty($_GET)){
 
 
 </main>
-
-<script>
-    const customSelect = document.getElementById('customSelect');
-    const selectTrigger = customSelect.querySelector('.select-trigger');
-    const selectOptions = customSelect.querySelector('.select-options');
-    const selectValue = customSelect.querySelector('.select-value');
-    const options = customSelect.querySelectorAll('.select-option');
-    const nativeSelect = document.getElementById('nativeSelect');
-
-    selectTrigger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        selectTrigger.classList.toggle('active');
-        selectOptions.classList.toggle('active');
-    });
-
-    options.forEach(option => {
-        option.addEventListener('click', function() {
-            options.forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-            const value = this.getAttribute('data-value');
-            const text = this.textContent;
-            selectValue.textContent = text;
-            nativeSelect.value = value;
-            selectTrigger.classList.remove('active');
-            selectOptions.classList.remove('active');
-            
-            const url = new URL(window.location.href);
-            if (value && value !== "") {
-                url.searchParams.set('status', value);
-            } else {
-                url.searchParams.delete('status');
-            }
-            url.searchParams.delete('pagina');
-            window.location.href = url.toString();
-        });
-    });
-
-    document.addEventListener('click', function(e) {
-        if (!customSelect.contains(e.target)) {
-            selectTrigger.classList.remove('active');
-            selectOptions.classList.remove('active');
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            selectTrigger.classList.remove('active');
-            selectOptions.classList.remove('active');
-        }
-    });
-
-    // Native select change (mobile)
-    nativeSelect.addEventListener('change', function() {
-        const value = this.value;
-        const url = new URL(window.location.href);
-
-        if (value && value !== "") {
-            url.searchParams.set('status', value);
-        } else {
-            url.searchParams.delete('status');
-        }
-        url.searchParams.delete('pagina');
-        window.location.href = url.toString();
-    });
-</script>
 
 <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>

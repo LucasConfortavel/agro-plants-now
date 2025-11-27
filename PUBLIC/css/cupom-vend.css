@@ -299,31 +299,31 @@
 .jv_table-header .jv_codigo {
     padding: 12px 16px;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b;
     font-size: 1rem;
 }
 
 .jv_table-header .jv_desconto{
     padding: 12px 16px;
-    text-align: center;
+    text-align: left;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b; 
     font-size: 1rem;
 }
 
 .jv_table-header .jv_cadastro {
     padding: 12px 16px;
-    text-align: center;
+    text-align: left;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b; 
     font-size: 1rem;
 }
 
 .jv_table-header .jv_validade {
     padding: 12px 16px;
-    text-align: center;
+    text-align: left;
     font-weight: 600;
-    color: #000000; 
+    color: #45734b; 
     font-size: 1rem;
 }
 
@@ -331,7 +331,7 @@
     padding: 12px 16px;
     text-align: center;
     font-weight: 600;
-    color: #000000; 
+    color: #000000;
     font-size: 1rem;
 }
 

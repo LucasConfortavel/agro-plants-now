@@ -40,7 +40,7 @@ class NotificacaoController {
         }
     }
 
-    public function listarNotificacoes($limit = 10) {
+    public function listarNotificacoes($limit = 0) {
         try {
             $stmt = $this->notificacao->lerTodas($limit);
             $notificacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -67,7 +67,7 @@ class NotificacaoController {
     public function contarNotificacoes() {
         try {
             
-            $notificacoes = $this->listarNotificacoes(1000); 
+            $notificacoes = $this->listarNotificacoes(); 
             return is_array($notificacoes) ? count($notificacoes) : 0;
         } catch (Exception $e) {
             error_log("Erro ao contar notificações: " . $e->getMessage());

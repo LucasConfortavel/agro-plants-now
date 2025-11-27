@@ -90,7 +90,10 @@ class CupomModel {
         // return false;
     }
     public function lerTodos() {
-        $query = "SELECT id, codigo, data_emissao, data_validade, valor FROM " . $this->table_name .  " ORDER BY data_emissao desc";
+        $query = "SELECT id, codigo, data_emissao, data_validade, valor 
+                FROM " . $this->table_name .  
+                " WHERE ativo = 1 
+                ORDER BY data_emissao DESC";
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -140,17 +143,19 @@ class CupomModel {
     }
 
     public function deletar() {
-        $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+        $query = "UPDATE " . $this->table_name . " 
+                SET ativo = 0 
+                WHERE id = ?";
+        
         $stmt = $this->conn->prepare($query);
-
         $this->id = htmlspecialchars(strip_tags($this->id));
         $stmt->bindParam(1, $this->id);
 
         try {
             return $stmt->execute();
         } catch (PDOException $e) {
-            error_log("Erro ao deletar usuário: " . $e->getMessage());
-            throw new Exception("Erro ao deletar usuário: " . $e->getMessage());
+            error_log("Erro ao deletar cupom: " . $e->getMessage());
+            throw new Exception("Erro ao deletar cupom: " . $e->getMessage());
         }
     }
 }

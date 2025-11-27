@@ -285,4 +285,18 @@ class ClienteModel {
         return $stmt;
     }
 
+    public function pesquisarAtivos($pesquisa) {
+        $query = "SELECT id, nome, email, telefone, CPF, CNPJ, data_nasc, status 
+                FROM " . $this->table_name . " 
+                WHERE status = 'ATIVADO' 
+                AND (nome LIKE :nome OR email LIKE :email)
+                ORDER BY nome";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":nome", $pesquisa);
+        $stmt->bindParam(":email", $pesquisa);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
