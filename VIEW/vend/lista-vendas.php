@@ -4,6 +4,7 @@ include "../../CONTROLLER/VendaController.php";
 include "../../CONTROLLER/UsuarioController.php";
 include "../../CONTROLLER/ClienteController.php";
 include "../../INCLUDE/vlibras.php";
+require_once "../../INCLUDE/verificarLogin.php"; 
 
 session_start();
 $vendedor_logado = $_SESSION['id'] ?? null; // pega o id do vendedor logado
@@ -19,7 +20,7 @@ $total_vendas = count($vendas);
 if(!empty($_GET)){
     if (isset($_GET['visualizar'])){
         $id = $_GET['visualizar'];
-        header('Location: info_venda-vend.php?id=' . $id);
+        header('Location: venda-info-vend.php?id=' . $id);
         exit;
     } elseif (isset($_GET['remover'])){
         $id = $_GET['remover'];

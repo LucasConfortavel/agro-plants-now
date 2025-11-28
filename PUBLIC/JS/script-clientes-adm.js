@@ -1,24 +1,79 @@
-
 function toggleDropdown(btn) {
     const dropdown = btn.nextElementSibling;
     const isVisible = dropdown.style.display === "block";
-  
-    // Fecha todos os outros
-    document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
-  
-    // Abre apenas o clicado
-    if (!isVisible) {
-      dropdown.style.display = "block";
-    }
 
-  
-  // Fecha ao clicar fora
-  document.addEventListener("click", e => {
-    if (!e.target.closest(".jv_menu-btn") && !e.target.closest(".jv_dropdown")) {
-      document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
+    document.querySelectorAll(".jv_dropdown").forEach(d => {
+        if (d !== dropdown) {
+            d.style.display = "none";
+        }
+    });
+
+    if (!isVisible) {
+        dropdown.style.display = "block";
+        
+        setTimeout(() => {
+            adjustDropdownPosition(btn, dropdown);
+        }, 10);
+    } else {
+        dropdown.style.display = "none";
     }
-  });
-  const customSelect = document.getElementById('customSelect');
+}
+
+function adjustDropdownPosition(btn, dropdown) {
+    const btnRect = btn.getBoundingClientRect();
+    const dropdownRect = dropdown.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    
+    dropdown.style.top = '';
+    dropdown.style.bottom = '';
+    dropdown.style.left = '';
+    dropdown.style.right = '';
+    dropdown.style.marginTop = '';
+    dropdown.style.marginBottom = '';
+    
+    if (btnRect.bottom + dropdownRect.height > viewportHeight - 20) {
+        dropdown.style.bottom = '100%';
+        dropdown.style.marginBottom = '5px';
+    } else {
+        dropdown.style.top = '100%';
+        dropdown.style.marginTop = '5px';
+    }
+    
+    if (btnRect.right + dropdownRect.width > viewportWidth - 20) {
+        dropdown.style.right = '0';
+    } else {
+        dropdown.style.right = '0';
+    }
+}
+
+document.addEventListener("click", function(e) {
+    if (!e.target.closest(".jv_menu-btn") && !e.target.closest(".jv_dropdown")) {
+        document.querySelectorAll(".jv_dropdown").forEach(d => {
+            d.style.display = "none";
+        });
+    }
+});
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+        document.querySelectorAll(".jv_dropdown").forEach(d => {
+            d.style.display = "none";
+        });
+    }
+});
+
+window.addEventListener('resize', function() {
+    document.querySelectorAll('.jv_dropdown').forEach(dropdown => {
+        if (dropdown.style.display === 'block') {
+            const btn = dropdown.previousElementSibling;
+            adjustDropdownPosition(btn, dropdown);
+        }
+    });
+});
+
+const customSelect = document.getElementById('customSelect');
+if (customSelect) {
     const selectTrigger = customSelect.querySelector('.select-trigger');
     const selectOptions = customSelect.querySelector('.select-options');
     const selectValue = customSelect.querySelector('.select-value');
@@ -38,7 +93,7 @@ function toggleDropdown(btn) {
             const value = this.getAttribute('data-value');
             const text = this.textContent;
             selectValue.textContent = text;
-            nativeSelect.value = value;
+            if (nativeSelect) nativeSelect.value = value;
             selectTrigger.classList.remove('active');
             selectOptions.classList.remove('active');
             
@@ -66,17 +121,25 @@ function toggleDropdown(btn) {
             selectOptions.classList.remove('active');
         }
     });
-}
-    // Native select change (mobile)
-    nativeSelect.addEventListener('change', function() {
-        const value = this.value;
-        const url = new URL(window.location.href);
 
-        if (value && value !== "") {
-            url.searchParams.set('status', value);
-        } else {
-            url.searchParams.delete('status');
-        }
-        url.searchParams.delete('pagina');
-        window.location.href = url.toString();
-    }); 
+    if (nativeSelect) {
+        nativeSelect.addEventListener('change', function() {
+            const value = this.value;
+            const url = new URL(window.location.href);
+
+            if (value && value !== "") {
+                url.searchParams.set('status', value);
+            } else {
+                url.searchParams.delete('status');
+            }
+            url.searchParams.delete('pagina');
+            window.location.href = url.toString();
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.jv_dropdown').forEach(dropdown => {
+        dropdown.style.display = 'none';
+    });
+});

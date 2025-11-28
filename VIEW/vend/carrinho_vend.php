@@ -15,6 +15,7 @@ $produtoCtrl  = new ProdutoController();
 $cupom  = new CupomController();
 $vendaCtrl = new VendaController();
 
+
 if (!isset($_GET['id_cliente']) && !isset($_GET['nome'])) {
     die("Cliente não informado");
 }
@@ -111,7 +112,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['novo_pedido'])) {
 $stmt = $pdo->prepare("SELECT id, status FROM pedidos WHERE id_cliente = ? ORDER BY data_pedido DESC LIMIT 1");
 $stmt->execute([$id_cliente]);
 $pedido = $stmt->fetch(PDO::FETCH_ASSOC);
-$status_pedido = $pedido['status'] ?? 'PENDENTE';
+if($pedido){
+    $status_pedido = $pedido['status'] ?? 'PENDENTE';
+}else{
+    $status_pedido = "nenhum";
+}
+
 $id_pedido = $pedido['id'] ?? null;
 
 // Atualizar status do pedido E CRIAR VENDA QUANDO FINALIZADO
@@ -843,7 +849,7 @@ if(isset($_SESSION['alerta'])){
                             ?>
                         </form>
                         
-                        <?php if ($status_pedido === 'FINALIZADO'): ?>
+                        <?php if ($status_pedido == 'FINALIZADO' || $status_pedido == "nenhum"): ?>
                         <form method="POST" style="width: 100%;">
                             <button type="submit" name="novo_pedido" class="P_checkout-button btn-nova-venda">
                                 <i class="fa-solid fa-plus-circle"></i>
