@@ -6,7 +6,6 @@ include "../../CONTROLLER/ClienteController.php";
 include "../../INCLUDE/vlibras.php";
 require_once "../../INCLUDE/verificarLogin.php"; 
 
-session_start();
 $vendedor_logado = $_SESSION['id'] ?? null; // pega o id do vendedor logado
 
 $venda_control = new VendaController(); 
