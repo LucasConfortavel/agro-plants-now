@@ -130,7 +130,7 @@
             <table class="jp_sales-table">
                 <thead>
                     <tr class="vc_header-planilha">
-                        <th>Código</th>
+                        <th>Clientes</th>
                         <th>Vendedor</th>
                         <th>Tipo</th>
                         <th>Data</th>

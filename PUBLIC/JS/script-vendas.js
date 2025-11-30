@@ -121,7 +121,7 @@ function GerarTabela() {
 
   // === CONTADOR SOMENTE TOTAL DE VENDAS ===
   const contador = document.getElementById("jv_customerCount");
-  contador.textContent = `Total de vendas: ${dados.length}`;
+  contador.textContent = ` ${dados.length} Vendas encontradas`;
 }
 function Pesquisar() {
   const inputPesquisa = document.getElementById("jv_searchInput");
@@ -196,7 +196,7 @@ function Pesquisar() {
 
   // === CONTADOR SOMENTE TOTAL DE VENDAS FILTRADAS ===
   const contador = document.getElementById("jv_customerCount");
-  contador.textContent = ` ${dados_filtrado.length} vendas encotradas`
+  contador.textContent = ` ${dados_filtrado.length} vendas encontradas`
 }
 
 GerarTabela();
