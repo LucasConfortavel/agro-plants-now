@@ -126,7 +126,7 @@ function GerarTabela(){
 
     tabela.innerHTML = html;
     const contador = document.getElementById("jv_customerCount");
-    contador.textContent = ` ${dados.length} vendas encotradas`;
+    contador.textContent = ` ${dados.length} vendedores encotrados`;
 }
 
 function Pesquisar(){

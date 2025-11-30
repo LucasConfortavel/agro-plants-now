@@ -7,6 +7,7 @@ require_once "../../INCLUDE/alertas.php";
 require_once "../../INCLUDE/verificarLogin.php"; 
 include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/Menu_vend.php";
+require_once "../../INCLUDE/verificarLogin.php"; 
 
 $carrinhoCtrl = new CarrinhoController();
 $servicoCtrl  = new ServicoController();
@@ -259,6 +260,12 @@ if(isset($_SESSION['alerta'])){
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
+        
+        body.dark-theme .P_add-product-section{
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+        }
+
         .qrcode-modal {
             display: none;
             position: fixed;
@@ -542,18 +549,24 @@ if(isset($_SESSION['alerta'])){
                 <h3 style="color: #3e704c;">Resumo do Pedido</h3>
                 
                 <div class="P_coupon-section">
-                    <form method="post">
-                        <label for="cupom_id">Selecionar Cupom de Desconto</label>
-                        <select id="cupom_id" name="cupom_id" class="P_select-input">
-                            <option value="">Nenhum cupom</option>
+                    <form method="POST" style="margin-top: 20px;">
+                        <label for="cupom_id" style="font-weight: 600;">Cupom de Desconto</label>
+
+                        <select name="cupom_id" id="cupom_id" class="P_select-input" required>
+                            <option value="">Selecione um cupom</option>
                             <?php foreach ($cupons as $c): ?>
-                                <option value="<?= $c['id'] ?>" <?= (isset($cupom_selecionado) && $cupom_selecionado['id'] == $c['id']) ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($c['codigo']) ?> — <?= $c['valor'] ?>%
+                                <option value="<?= $c['id'] ?>" 
+                                    <?= isset($_SESSION['cupom_aplicado']) && $_SESSION['cupom_aplicado'] == $c['id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($c['nome']) ?> — <?= $c['valor'] ?>%
                                 </option>
                             <?php endforeach; ?>
                         </select>
-                        <button type="submit" class="P_apply-coupon-btn">Aplicar</button>
+
+                        <button type="submit" class="P_apply-coupon-btn" style="margin-top: 10px;">
+                            Aplicar
+                        </button>
                     </form>
+
                 </div>
 
                 <div class="P_divider"></div>

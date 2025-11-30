@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/pop-up-add-produto.css">
 </head>
 <body>
@@ -14,7 +13,7 @@
         </div>
 
         <form action="catalogo-tudo.php" method="post" enctype="multipart/form-data" class="ym_form-pop-up">
-            <div id="servico-content" class="eze-form-section active">
+            <div id="servico-content" class="eze-form-section" style="display:block;">
                 <div class="eze-form-row">
                     <div class="eze-form-group">
                         <div class="eze-form-label-group">
@@ -64,7 +63,7 @@
                 </div>
             </div>
 
-            <div id="imagem-content" class="eze-form-section">
+            <div id="imagem-content" class="eze-form-section" style="display:none;">
                 <input type="file" id="imageInputServico" name="foto" accept="image/*" style="display: none;">
                 
                 <div class="eze-image-placeholder ym_input-padrao" id="imagePreviewServico">
@@ -91,123 +90,62 @@
             </div>
         </form>
     </div>
-    
+    <script src="../../PUBLIC/JS/script-select.js"></script>
+    <script src="../../PUBLIC/JS/pop-up-add-prod-serv.js"></script>
     <script>
-        function switchTab(activeTabId, activeContentId) {
-            document.querySelectorAll('.eze-tab-button').forEach(btn => {
-                btn.classList.remove('eze-active');
+        function switchTab(tabId, contentId) {
+            document.querySelectorAll('.eze-tab-button').forEach(t => t.classList.remove('eze-active'));
+            document.querySelectorAll('.eze-form-section').forEach(c => c.style.display = 'none');
+
+            document.getElementById(tabId).classList.add('eze-active');
+            document.getElementById(contentId).style.display = 'block';
+        }
+        window.initializePopup = function() {
+        var servicoTab = document.getElementById('servico-tab');
+        if (servicoTab) {
+            servicoTab.addEventListener('click', function() {
+                switchTab('servico-tab', 'servico-content');
             });
-            
-            document.querySelectorAll('.eze-form-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            document.getElementById(activeTabId).classList.add('eze-active');
-            document.getElementById(activeContentId).classList.add('active');
         }
 
-        document.getElementById('servico-tab').addEventListener('click', () => {
-            switchTab('servico-tab', 'servico-content');
-        });
-
-        document.getElementById('imagem-tab').addEventListener('click', () => {
-            switchTab('imagem-tab', 'imagem-content');
-        });
-
-        const imageInputServico = document.getElementById('imageInputServico');
-        const imagePreviewServico = document.getElementById('imagePreviewServico');
-        const addImageBtnServico = document.querySelector('.eze-add-imagem');
-
-        imagePreviewServico.addEventListener('click', () => {
-            imageInputServico.click();
-        });
-
-        addImageBtnServico.addEventListener('click', () => {
-            imageInputServico.click();
-        });
-
-        imageInputServico.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreviewServico.innerHTML = `
-                        <img src="${e.target.result}" alt="Preview" style="max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 8px;">
-                        <span style="margin-top: 10px; display: block;">Clique para trocar a imagem</span>
-                    `;
-                    imagePreviewServico.style.cursor = 'pointer';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-    document.querySelector('input[name="preco"]').addEventListener('input', function(e) {
-        let valor = e.target.value.replace(/\D/g, '');
-        
-        if (valor.length === 0) {
-            e.target.value = '';
-            return;
+        var imagemTab = document.getElementById('imagem-tab');
+        if (imagemTab) {
+            imagemTab.addEventListener('click', function() {
+                switchTab('imagem-tab', 'imagem-content');
+            });
         }
-        
-        valor = parseInt(valor, 10).toString();
-        
-        const inteiros = valor.slice(0, -2) || '0';
-        const centavos = valor.slice(-2).padStart(2, '0');
-        
-        let inteirosFormatados = inteiros.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        
-        e.target.value = `R$ ${inteirosFormatados},${centavos}`;
-    });
 
-        document.querySelector('input[name="preco"]').addEventListener('focus', function(e) {
-            let valor = e.target.value.replace(/[^\d,]/g, '');
-            if (valor.includes(',')) {
-                e.target.value = valor.replace(',', '.');
-            }
-        });
+        var imageInputServico = document.getElementById('imageInputServico');
+        var imagePreviewServico = document.getElementById('imagePreviewServico');
+        var addImageBtnServico = document.querySelector('.eze-add-imagem');
 
-        document.querySelector('input[name="preco"]').addEventListener('blur', function(e) {
-            let valor = e.target.value.replace(/\D/g, '');
-            
-            if (valor.length === 0) {
-                e.target.value = '';
-                return;
-            }
-            
-            valor = parseInt(valor, 10).toString();
-            
-            const inteiros = valor.slice(0, -2) || '0';
-            const centavos = valor.slice(-2).padStart(2, '0');
-            
-            let inteirosFormatados = inteiros.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            
-            e.target.value = `R$ ${inteirosFormatados},${centavos}`;
-        });
+        if (imagePreviewServico && imageInputServico) {
+            imagePreviewServico.addEventListener('click', function() {
+                imageInputServico.click();
+            });
+        }
 
-        document.querySelector('form').addEventListener('submit', function(e) {
-            let priceInput = document.querySelector('input[name="preco"]');
-            
-            if (priceInput.value) {
-                let formattedValue = priceInput.value.replace('R$ ', '')
-                                                .replace(/\./g, '')
-                                                .replace(',', '.');
-                
-                let hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = 'preco_decimal';
-                hiddenInput.value = formattedValue;
-                this.appendChild(hiddenInput);
-                
-                priceInput.value = priceInput.value.replace('R$ ', '');
-            }
-            
-            const imageInput = document.getElementById('imageInputServico');
-            if (imageInput.files.length === 0) {
-                alert('Por favor, selecione uma imagem para o serviço.');
-                e.preventDefault();
-                return;
-            }
-        });
+        if (addImageBtnServico && imageInputServico) {
+            addImageBtnServico.addEventListener('click', function() {
+                imageInputServico.click();
+            });
+        }
+
+        if (imageInputServico && imagePreviewServico) {
+            imageInputServico.addEventListener('change', function(e) {
+                var file = e.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(evt) {
+                        imagePreviewServico.innerHTML =
+                            '<img src="' + evt.target.result + '" style="max-width:100%;max-height:200px;">' +
+                            '<span style="display:block;margin-top:10px;">Clique para trocar</span>';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+        };
     </script>
 </body>
 </html>

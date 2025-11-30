@@ -223,7 +223,8 @@ body.dark-theme .ym_select{
 }
 
 body.dark-theme .ym_produtoPesquisa,
-body.dark-theme .ym_btn-add{
+body.dark-theme .ym_btn-add,
+body.dark-theme .ym_select-catalogo {
   background-color: #232222;
   color: #fff;
   border: none;
@@ -327,3 +328,12 @@ body.dark-theme .jv_customer-details p {
     color: #94a3b8;
 }
 
+body.dark-theme .ym_input-padrao{
+    background-color: #5e5b5b;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+body.dark-theme .ym_select-catalogo{
+    color: #b0b0b0;
+}

@@ -408,7 +408,7 @@ body.dark-theme i {
   }
   
   .jp_sales-value {
-    color: #1a85ff;
+    color: var(--color-icones-0);
     font-weight: 500;
   }
   

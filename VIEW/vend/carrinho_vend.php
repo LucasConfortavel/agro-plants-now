@@ -8,6 +8,7 @@ require_once "../../CONTROLLER/VendaController.php";
 require_once "../../INCLUDE/alertas.php";
 include "../../INCLUDE/vlibras.php";
 include "../../INCLUDE/Menu_vend.php";
+require_once "../../INCLUDE/verificarLogin.php"; 
 
 $carrinhoCtrl = new CarrinhoController();
 $catalogoCtrl = new CatalogoController();

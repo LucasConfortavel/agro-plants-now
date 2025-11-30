@@ -1,145 +1,127 @@
+// ==============================
+// DROPDOWN DOS 3 PONTINHOS
+// ==============================
 function toggleDropdown(btn) {
     const dropdown = btn.nextElementSibling;
     const isVisible = dropdown.style.display === "block";
 
-    document.querySelectorAll(".jv_dropdown").forEach(d => {
-        if (d !== dropdown) {
-            d.style.display = "none";
-        }
-    });
+    document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
 
-    if (!isVisible) {
-        dropdown.style.display = "block";
-        
-        setTimeout(() => {
-            adjustDropdownPosition(btn, dropdown);
-        }, 10);
-    } else {
-        dropdown.style.display = "none";
-    }
+    dropdown.style.display = isVisible ? "none" : "block";
 }
 
-function adjustDropdownPosition(btn, dropdown) {
-    const btnRect = btn.getBoundingClientRect();
-    const dropdownRect = dropdown.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
-    
-    dropdown.style.top = '';
-    dropdown.style.bottom = '';
-    dropdown.style.left = '';
-    dropdown.style.right = '';
-    dropdown.style.marginTop = '';
-    dropdown.style.marginBottom = '';
-    
-    if (btnRect.bottom + dropdownRect.height > viewportHeight - 20) {
-        dropdown.style.bottom = '100%';
-        dropdown.style.marginBottom = '5px';
-    } else {
-        dropdown.style.top = '100%';
-        dropdown.style.marginTop = '5px';
-    }
-    
-    if (btnRect.right + dropdownRect.width > viewportWidth - 20) {
-        dropdown.style.right = '0';
-    } else {
-        dropdown.style.right = '0';
-    }
-}
-
-document.addEventListener("click", function(e) {
+document.addEventListener("click", (e) => {
     if (!e.target.closest(".jv_menu-btn") && !e.target.closest(".jv_dropdown")) {
-        document.querySelectorAll(".jv_dropdown").forEach(d => {
-            d.style.display = "none";
-        });
+        document.querySelectorAll(".jv_dropdown").forEach(d => d.style.display = "none");
     }
 });
 
-document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") {
-        document.querySelectorAll(".jv_dropdown").forEach(d => {
-            d.style.display = "none";
-        });
-    }
-});
 
-window.addEventListener('resize', function() {
-    document.querySelectorAll('.jv_dropdown').forEach(dropdown => {
-        if (dropdown.style.display === 'block') {
-            const btn = dropdown.previousElementSibling;
-            adjustDropdownPosition(btn, dropdown);
-        }
-    });
-});
+// ==============================
+// SELECT PERSONALIZADO (STATUS)
+// ==============================
+function inicializarCustomSelect() {
+    const customSelect = document.getElementById("customSelect");
+    const nativeSelect = document.getElementById("nativeSelect");
 
-const customSelect = document.getElementById('customSelect');
-if (customSelect) {
-    const selectTrigger = customSelect.querySelector('.select-trigger');
-    const selectOptions = customSelect.querySelector('.select-options');
-    const selectValue = customSelect.querySelector('.select-value');
-    const options = customSelect.querySelectorAll('.select-option');
-    const nativeSelect = document.getElementById('nativeSelect');
+    if (!customSelect || !nativeSelect) return;
 
-    selectTrigger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        selectTrigger.classList.toggle('active');
-        selectOptions.classList.toggle('active');
+    const trigger = customSelect.querySelector(".select-trigger");
+    const optionsBox = customSelect.querySelector(".select-options");
+    const valueSpan = customSelect.querySelector(".select-value");
+    const options = customSelect.querySelectorAll(".select-option");
+
+    // Abrir/fechar select (IMPEDIR FECHAR IMEDIATO)
+    trigger.addEventListener("click", (e) => {
+        e.stopPropagation(); // <-- ESSENCIAL
+        trigger.classList.toggle("active");
+        optionsBox.classList.toggle("active");
     });
 
-    options.forEach(option => {
-        option.addEventListener('click', function() {
-            options.forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-            const value = this.getAttribute('data-value');
-            const text = this.textContent;
-            selectValue.textContent = text;
-            if (nativeSelect) nativeSelect.value = value;
-            selectTrigger.classList.remove('active');
-            selectOptions.classList.remove('active');
-            
-            const url = new URL(window.location.href);
-            if (value && value !== "") {
-                url.searchParams.set('status', value);
-            } else {
-                url.searchParams.delete('status');
-            }
-            url.searchParams.delete('pagina');
-            window.location.href = url.toString();
+    // Selecionar opção
+    options.forEach(opt => {
+        opt.addEventListener("click", () => {
+            options.forEach(o => o.classList.remove("selected"));
+            opt.classList.add("selected");
+
+            const value = opt.dataset.value;
+            valueSpan.textContent = opt.textContent;
+
+            nativeSelect.value = value;
+
+            trigger.classList.remove("active");
+            optionsBox.classList.remove("active");
+
+            atualizarURL(value);
         });
     });
 
-    document.addEventListener('click', function(e) {
+    // Fechar ao clicar fora
+    document.addEventListener("click", (e) => {
         if (!customSelect.contains(e.target)) {
-            selectTrigger.classList.remove('active');
-            selectOptions.classList.remove('active');
+            trigger.classList.remove("active");
+            optionsBox.classList.remove("active");
         }
     });
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            selectTrigger.classList.remove('active');
-            selectOptions.classList.remove('active');
-        }
+    // Select nativo (mobile)
+    nativeSelect.addEventListener("change", function () {
+        atualizarURL(this.value);
     });
-
-    if (nativeSelect) {
-        nativeSelect.addEventListener('change', function() {
-            const value = this.value;
-            const url = new URL(window.location.href);
-
-            if (value && value !== "") {
-                url.searchParams.set('status', value);
-            } else {
-                url.searchParams.delete('status');
-            }
-            url.searchParams.delete('pagina');
-            window.location.href = url.toString();
-        });
-    }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.jv_dropdown').forEach(dropdown => {
-        dropdown.style.display = 'none';
+
+// ==============================
+// ATUALIZA A URL
+// ==============================
+function atualizarURL(value) {
+    const url = new URL(window.location.href);
+
+    if (value === "") url.searchParams.delete("status");
+    else url.searchParams.set("status", value);
+
+    url.searchParams.delete("pagina");
+
+    window.location.href = url.toString();
+}
+
+
+// ==============================
+// FILTRO DINÂMICO (nome/email)
+// ==============================
+function inicializarFiltroClientes() {
+    const input = document.getElementById("jv_searchInput");
+    const tabela = document.getElementById("jv_customerTableBody");
+
+    if (!input || !tabela) return;
+
+    input.addEventListener("input", function () {
+        const termo = this.value.toLowerCase().trim();
+        const linhas = tabela.querySelectorAll("tr");
+
+        let count = 0;
+
+        linhas.forEach(linha => {
+            const nome = linha.querySelector(".jv_customer-details h4")?.textContent.toLowerCase() || "";
+            const email = linha.querySelector(".jv_customer-details p")?.textContent.toLowerCase() || "";
+
+            const match = nome.includes(termo) || email.includes(termo);
+
+            linha.style.display = match ? "" : "none";
+
+            if (match) count++;
+        });
+
+        const contador = document.getElementById("jv_customerCount");
+        if (contador) contador.textContent = `${count} clientes encontrados`;
     });
+}
+
+
+// ==============================
+// INICIALIZA TUDO
+// ==============================
+document.addEventListener("DOMContentLoaded", () => {
+    inicializarCustomSelect();
+    inicializarFiltroClientes();
 });

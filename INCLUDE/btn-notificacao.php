@@ -101,13 +101,13 @@ if (empty($alertasVisiveis)) {
 <div class="ym_box-notificacao">
     <div class="ym_area-notificacao">
         <div class="ym_area-icons">
-            
+            <!-- ÍCONE DE SINO (sempre visível quando fechado) -->
             <div class="jp_notification-icon">
-                <i class="fas fa-bell ym_icon-sino"></i>
+                <i class="fas fa-bell"></i>
             </div>
-
             
-            <div class="jp_close-icon" style="display: none; cursor: pointer;">
+            <!-- ÍCONE DE X (só aparece quando aberto) -->
+            <div class="jp_close-icon" style="display: none;">
                 <i class="fas fa-times"></i>
             </div>
 
@@ -145,31 +145,31 @@ if (empty($alertasVisiveis)) {
 
 <script>
 const notificacao = document.getElementsByClassName('ym_area-notificacao')[0];
-const sinoIcon = document.querySelector('.jp_notification-icon');
-const closeIcon = document.querySelector('.jp_close-icon');
+const sino = document.querySelector('.jp_notification-icon');
+const closeBtn = document.querySelector('.jp_close-icon');
 
-if (notificacao && sinoIcon && closeIcon) {
-    
+if (notificacao && sino && closeBtn) {
+    // ABRIR/FECHAR POPUP
     notificacao.addEventListener('click', () => {
         notificacao.classList.toggle('active');
         
         if (notificacao.classList.contains('active')) {
-            
-            sinoIcon.style.display = 'none';
-            closeIcon.style.display = 'block';
+            // Popup aberto: mostra X, esconde sino
+            sino.style.display = 'none';
+            closeBtn.style.display = 'flex';
         } else {
-            
-            sinoIcon.style.display = 'block';
-            closeIcon.style.display = 'none';
+            // Popup fechado: mostra sino, esconde X
+            sino.style.display = 'flex';
+            closeBtn.style.display = 'none';
         }
     });
 
-    
-    closeIcon.addEventListener('click', (e) => {
-        e.stopPropagation(); 
+    // FECHAR AO CLICAR NO X
+    closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         notificacao.classList.remove('active');
-        sinoIcon.style.display = 'block';
-        closeIcon.style.display = 'none';
+        sino.style.display = 'flex';
+        closeBtn.style.display = 'none';
     });
 }
 </script>

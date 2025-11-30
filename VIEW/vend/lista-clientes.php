@@ -227,31 +227,8 @@ if(isset($_SESSION['alerta'])){
                         <?= $total_clientes ?> clientes encontrados
                     </p>
 
-                    <div class="select-wrapper">            
-                        <div class="custom-select" id="customSelect">
-                            <div class="select-trigger">
-                                <span class="select-value"><?= $status_filtro ?: 'Todos' ?></span>
-                                <div class="select-arrow"></div>
-                            </div>
-                            
-                            <div class="select-options">
-                                <div class="select-option <?= $status_filtro === '' ? 'selected' : '' ?>" data-value="">Todos</div>
-                                <div class="select-option <?= $status_filtro === 'PAGO' ? 'selected' : '' ?>" data-value="Pago">Pago</div>
-                                <div class="select-option <?= $status_filtro === 'ENVIADO' ? 'selected' : '' ?>" data-value="Enviado">Enviado</div>
-                                <div class="select-option <?= $status_filtro === 'FINALIZADO' ? 'selected' : '' ?>" data-value="Finalizado">Finalizado</div>
-                                <div class="select-option <?= $status_filtro === 'PENDENTE' ? 'selected' : '' ?>" data-value="Pendente">Pendente</div>
-                            </div>
-                        </div>
-
-                        <select name="status" class="native-select" id="nativeSelect">
-                            <option value="">Todos</option>
-                            <option value="PAGO" <?= $status_filtro === 'PAGO' ? 'selected' : '' ?>>Pago</option>
-                            <option value="ENVIADO" <?= $status_filtro === 'ENVIADO' ? 'selected' : '' ?>>Enviado</option>
-                            <option value="FINALIZADO" <?= $status_filtro === 'FINALIZADO' ? 'selected' : '' ?>>Finalizado</option>
-                            <option value="PENDENTE" <?= $status_filtro === 'PENDENTE' ? 'selected' : '' ?>>Pendente</option>
-                        </select>
-                    </div>
                 </div>
+
             </div>
 
             <div class="jv_card-content">

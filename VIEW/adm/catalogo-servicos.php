@@ -40,6 +40,16 @@ $errorMessage = $_GET['error'] ?? '';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
+    <style>
+        .ym_area-input-pesquisa{
+            margin-left: -1px;
+        }
+
+        .ym_area-input-pesquisa .ym_area-lupa{
+            width: 50px;
+            height: 100%;
+        }
+    </style>
 
     <div class="ym_popup-overlay">
         <div class="ym_popup-content">

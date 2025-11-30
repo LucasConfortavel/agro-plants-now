@@ -33,6 +33,14 @@ $errorMessage = $_GET['error'] ?? '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo</title>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
     <link rel="stylesheet" href="../../PUBLIC/css/catalogo.css">
@@ -77,8 +85,8 @@ $errorMessage = $_GET['error'] ?? '';
                     <input id="inputPesquisa" type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
                 </div>
                                 
-                <div class="ym_area-select">
-                    <div class="ym_select" onclick="mostrar_categorias()" role="button" tabindex="0">
+                <div class="ym_area-select-catalogo">
+                    <div class="ym_select-catalogo" onclick="mostrar_categorias()" role="button" tabindex="0">
                         <p class="ym_categoria-select">Todos</p>
                         <i class="fa-solid fa-chevron-down ym_seta-categoria"></i>
                     </div>

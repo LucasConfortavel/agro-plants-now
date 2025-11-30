@@ -23,6 +23,17 @@ $nome_cliente = $_GET['nome'];
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+
+        body.dark-theme .selecao-card{
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .cliente-info{
+            background: #3a3a3a;
+            color: #ffffffff;
+        }
+
         .selecao-container {
             min-height: calc(100vh - 80px);
             display: flex;
