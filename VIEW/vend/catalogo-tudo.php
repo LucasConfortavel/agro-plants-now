@@ -35,7 +35,7 @@ $errorMessage = $_GET['error'] ?? '';
     <title>Catálogo</title>
     <link rel="stylesheet" href="../../PUBLIC/css/style_menu.css">
     <link rel="stylesheet" href="../../PUBLIC/css/style.css">
-    <link rel="stylesheet" href="../../PUBLIC/css/catalogo.css">
+    <link rel="stylesheet" href="../../PUBLIC/css/catalogo-vendedor.css">
     <link rel="stylesheet" href="../../PUBLIC/css/global-tema.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>

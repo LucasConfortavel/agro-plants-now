@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro Plants Now - Footer Elegante</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="cdnjs.cloudflare.com" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
             margin: 0;
@@ -337,6 +338,7 @@
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="../../VIEW/paginas-iniciais/colaboradores.php" aria-label="WhatsApp"><i class="fa-solid fa-code"></i></a>
                     </div>
                 </div>
 
@@ -346,6 +348,7 @@
                         <li><a href="../../VIEW/paginas-iniciais/landing_page.php">Home</a></li>
                         <li><a href="../../VIEW/paginas-iniciais/sobre_nos.php">Sobre Nós</a></li>
                         <li><a href="../../VIEW/paginas-iniciais/contate_nos.php">Contate-nos</a></li>
+                        <li><a href="../../VIEW/paginas-iniciais/colaboradores.php">Colaboradores</a></li>
                     </ul>
                 </div>
 
