@@ -82,6 +82,10 @@
         height: 80px;
     }
 
+    .jv_table tbody td {
+        padding: 12px 8px;
+    }
+
     .jv_checkbox-col {
         vertical-align: middle;
     }
