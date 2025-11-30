@@ -146,9 +146,9 @@ if(isset($_SESSION['alerta'])){
             <button class="tab-btn" data-tab="photo">
                 <i class="fas fa-camera"></i> Foto do Perfil
             </button>
-            <button class="tab-btn" data-tab="preferences">
+            <!-- <button class="tab-btn" data-tab="preferences">
                 <i class="fas fa-palette"></i> Preferências
-            </button>
+            </button> -->
         </nav>
 
         <div class="tab-content active" id="personal">
@@ -273,11 +273,11 @@ if(isset($_SESSION['alerta'])){
 
         <div class="tab-content" id="preferences">
             <div class="content-card">
-                <div class="card-header">
+                <!-- <div class="card-header">
                     <h3><i class="fas fa-palette"></i> Preferências do Sistema</h3>
-                </div>
+                </div> -->
                 
-                <div class="preference-section">
+                <!-- <div class="preference-section">
                     <h4>Aparência</h4>
                     <div class="theme-selector">
                         <div class="theme-option activeactive" data-theme="light">
@@ -286,7 +286,7 @@ if(isset($_SESSION['alerta'])){
                                 <div class="preview-content"></div>
                             </div>
                             <label class="tema">Claro</label>
-                        </div>
+                        </div> -->
                         <!-- <div class="theme-option active" data-theme="dark">
                             <div class="theme-preview dark">
                                 <div class="preview-header"></div>
@@ -294,8 +294,8 @@ if(isset($_SESSION['alerta'])){
                             </div>
                             <label class="tema">Escuro</label>
                         </div> -->
-                    </div>
-                </div>
+                    <!-- </div>
+                </div> -->
             </div>
         </div>
     </main>

@@ -109,9 +109,9 @@ $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
             <button class="tab-btn" data-tab="security">
                 <i class="fas fa-shield-alt"></i> Segurança
             </button>
-            <button class="tab-btn" data-tab="preferences">
+            <!-- <button class="tab-btn" data-tab="preferences">
                 <i class="fas fa-palette"></i> Preferências
-            </button>
+            </button> -->
         </nav>
 
         <div class="tab-content active" id="personal">
@@ -213,13 +213,13 @@ $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 
-        <div class="tab-content" id="preferences">
+        <!-- <div class="tab-content" id="preferences">
             <div class="content-card">
                 <div class="card-header">
                     <h3><i class="fas fa-palette"></i> Preferências do Sistema</h3>
-                </div>
+                </div> -->
                 
-                <div class="preference-section">
+                <!-- <div class="preference-section">
                     <h4>Aparência</h4>
                     <div class="theme-selector">
                         <div class="theme-option active" data-theme="light">
@@ -228,18 +228,18 @@ $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <div class="preview-content"></div>
                             </div>
                             <label class="tema">Claro</label>
-                        </div>
+                        </div> -->
                         <!-- <div class="theme-option" data-theme="dark">
                             <div class="theme-preview dark">
                                 <div class="preview-header"></div>
                                 <div class="preview-content"></div>
                             </div>
                             <label class="tema">Escuro</label>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </main>
 
     <div id="toast-container"></div>
