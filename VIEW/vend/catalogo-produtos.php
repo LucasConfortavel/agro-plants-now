@@ -46,8 +46,8 @@ $errorMessage = $_GET['error'] ?? '';
                     <input id="inputPesquisa" type="text" placeholder="Pesquise por algo no catálogo" class="ym_produtoPesquisa">    
                 </div>  
                 
-                <div class="ym_area-select">
-                    <div class="ym_select" onclick="mostrar_categorias()">
+                <div class="ym_area-select-catalogo">
+                    <div class="ym_select-catalogo" onclick="mostrar_categorias()">
                         <p class="ym_categoria-select">Produto</p>
                         <p class="ym_seta-categoria">></p>
                     </div>
@@ -125,4 +125,4 @@ $errorMessage = $_GET['error'] ?? '';
 
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-catalogo.js"></script>
-<script src="../../PUBLIC/JS/script-tema.js"></script>
+<!-- <script src="../../PUBLIC/JS/script-tema.js"></script> -->

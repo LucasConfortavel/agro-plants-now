@@ -232,7 +232,7 @@ $nome_cliente = $_GET['nome'];
     </div>
 </main>
 
-<script src="../../PUBLIC/JS/script-tema.js"></script>
+<!-- <script src="../../PUBLIC/JS/script-tema.js"></script> -->
 
 </body>
 </html>

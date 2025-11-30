@@ -52,7 +52,7 @@ function inicializarPesquisa() {
 // MENU DE CATEGORIAS
 // ==============================
 function mostrar_categorias() {
-  const select = document.querySelector(".ym_select")
+  const select = document.querySelector(".ym_select-catalogo")
   const options = document.querySelector(".ym_options")
 
   if (!select || !options) return
@@ -70,7 +70,7 @@ function mostrar_categorias() {
 
 // Fechar menu ao clicar fora
 document.addEventListener("click", (event) => {
-  const select = document.querySelector(".ym_select")
+  const select = document.querySelector(".ym_select-catalogo")
   const options = document.querySelector(".ym_options")
 
   if (!select || !options) return
@@ -83,7 +83,7 @@ document.addEventListener("click", (event) => {
 
 // Suporte para teclado no select
 document.addEventListener("keydown", (event) => {
-  const select = document.querySelector(".ym_select")
+  const select = document.querySelector(".ym_select-catalogo")
   const options = document.querySelector(".ym_options")
 
   if (!select || !options) return

@@ -1,16 +1,16 @@
 * {
   padding: 0;
   margin: 0;
-  
+ 
 }
 
-.ym_sectionProdutos {
+/* .ym_sectionProdutos {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 32px 24px;
   min-height: 100vh;
-}
+} */
 
 .ym_titulo {
   font-size: clamp(28px, 4vw, 36px);
@@ -18,6 +18,11 @@
   margin-bottom: 24px;
   line-height: 1.2;
 }
+
+.ym_titulo-produtos{
+  margin-top: 5vh;
+}
+
 
 .ym-alert {
   display: flex;
@@ -223,11 +228,6 @@
   flex-shrink: 0;
   white-space: nowrap;
   width: auto;
-}
-
-.ym_select:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(69, 115, 75, 0.05);
 }
 
 .ym_categoria-select {
@@ -578,12 +578,6 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .jp_bottom-menu {
-    margin-top: 50px;
-    border-top: 1px solid #3a3a3a;
-    padding-top: 20px;
-    margin-bottom: 10%;
-  }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1399px) {
@@ -596,23 +590,8 @@
     gap: 20px;
   }
 
-  .jp_bottom-menu {
-    margin-top: 50px;
-    border-top: 1px solid #3a3a3a;
-    padding-top: 20px;
-    margin-bottom: 10%;
-  }
-
   .ym_categorias {
     gap: 14px;
-  }
-
-
-  .jp_bottom-menu {
-    margin-top: 50px;
-    border-top: 1px solid #3a3a3a;
-    padding-top: 20px;
-    margin-bottom: 10%;
   }
 
 }
@@ -689,13 +668,6 @@
 
   .ym_btn-add {
     flex: 0 0 52px;
-  }
-  
-  .jp_bottom-menu {
-    margin-top: 50px;
-    border-top: 1px solid #3a3a3a;
-    padding-top: 20px;
-    margin-bottom: 10%;
   }
 
   .ym_categoria-section {
@@ -786,12 +758,6 @@
     }
 }
 
-  .jp_bottom-menu {
-    margin-top: 50px;
-    border-top: 1px solid #3a3a3a;
-    padding-top: 20px;
-    margin-bottom: 10%;
-  }
 
 /* =============================== */
 /* MOBILE - até 640px */
@@ -897,12 +863,6 @@
     font-size: 14px;
   }
 
-  .jp_bottom-menu {
-    margin-top: 50px;
-    border-top: 1px solid #3a3a3a;
-    padding-top: 20px;
-    margin-bottom: 10%;
-  }
 }
 
 /* =============================== */
@@ -1024,12 +984,6 @@
     height: 18px;
   }
 
-  .jp_bottom-menu {
-    margin-top: 50px;
-    border-top: 1px solid #3a3a3a;
-    padding-top: 20px;
-    margin-bottom: 10%;
-  }
 }
 
 /* =============================== */

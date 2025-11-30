@@ -171,6 +171,6 @@ if(isset($_SESSION['alerta'])){
         <?php endif; ?>
     </main>
     <script src="../../PUBLIC/JS/script-sobre-prod.js"></script>
-    <script src="../../PUBLIC/JS/script-tema.js"></script>
+    <!-- <script src="../../PUBLIC/JS/script-tema.js"></script> -->
 </body>
 </html>

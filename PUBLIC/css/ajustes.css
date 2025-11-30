@@ -682,6 +682,10 @@ input:checked + .slider:before {
 }
 
 .preference-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   padding: 2rem;
   border-bottom: 1px solid #e2e8f0;
 }
@@ -691,6 +695,8 @@ input:checked + .slider:before {
 }
 
 .preference-section h4 {
+  text-align: left;
+  width: 100%;
   margin: 0 0 1.5rem 0;
   color: #1e293b;
   font-size: 1.125rem;
@@ -703,6 +709,7 @@ input:checked + .slider:before {
 }
 
 .theme-option {
+  width: 40vw;
   cursor: pointer;
   text-align: center;
   padding: 1rem;

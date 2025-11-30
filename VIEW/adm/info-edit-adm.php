@@ -187,7 +187,7 @@
 
     <script src="../../PUBLIC/JS/script.js"></script>
     <script src="../../PUBLIC/JS/script-info-edit.js"></script>
-    <script src="../../PUBLIC/JS/script-tema.js"></script>
+    <!-- <script src="../../PUBLIC/JS/script-tema.js"></script> -->
 
 </body>
 </html>

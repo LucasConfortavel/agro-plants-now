@@ -14,6 +14,7 @@ const ctx = document.getElementById('grafico_adm').getContext('2d');
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             display: true,

@@ -225,9 +225,19 @@ body.dark-theme .ym-alert-error {
 
 
 /* Main Container */
+.jp_main-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+}
+
 .gs_product-container {
   display: flex;
+  min-height: 70%;
+  min-width: 100%;
   align-items: stretch;
+  background-color: red;
   justify-content: center;
   background-color: white;
   border-radius: 16px;

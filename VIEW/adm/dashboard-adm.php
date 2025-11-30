@@ -208,7 +208,7 @@
 
                 </div>
             </div>
-            <canvas id="grafico_adm" width="700" height="250"></canvas>
+            <canvas id="grafico_adm"></canvas>
         </div>
     </main>
 
@@ -217,6 +217,6 @@
         window.data_grafico = <?php echo json_encode($data_grafico); ?>;
     </script>
     <script src="../../PUBLIC/JS/script-dashboard-adm-vcl.js"></script>
-    <script src="../../PUBLIC/JS/script-tema.js"></script>
+    <!-- <script src="../../PUBLIC/JS/script-tema.js"></script> -->
 </body>
 </html>

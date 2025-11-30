@@ -16,18 +16,22 @@
     transition: transform 0.3s ease;
 } */
 
-.ym_sectionProdutos {
+/* .ym_sectionProdutos {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   min-height: 100vh;
-}
+} */
 
 .ym_titulo {
   font-size: clamp(28px, 4vw, 36px);
   font-weight: 700;
   margin-bottom: 24px;
   line-height: 1.2;
+}
+
+.ym_titulo-produtos{
+  margin-top: 5vh;
 }
 
 .ym-alert {
@@ -70,11 +74,12 @@
 }
 
 .ym_categorias {
-  height: 120px;
+  height: auto;
+  padding: 16px;
   display: flex;
   align-items: center;
   gap: 16px;
-  width: 100%;
+  width: 96%;
   margin-bottom: 40px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -133,38 +138,40 @@
   color: var(--text-secondary);
 }
 
-.ym_area-select {
+/* ======== Select (Todos) ======== */
+
+.ym_area-select-catalogo{
   position: relative;
+  flex-shrink: 0;     
   height: 50px;
-  width: 200px;
-  border-radius: 10px;
+  min-height: 100%;
+  width: auto;
+  max-width: fit-content;
+  display: flex;
 }
 
-.ym_select {
-  display: flex;
-  width: 100%;
+.ym_select-catalogo{
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  /* padding: 14px 18px; */
-  background-color: var(--background-light);
-  border: 2px solid var(--border-color);
-  border-radius: 12px;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
   cursor: pointer;
-  gap: 12px;
-  height: 52px;
-  transition: var(--transition);
+  flex-shrink: 0;
+  white-space: nowrap;
+  width: auto;
 }
-
-.ym_select:hover {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(69, 115, 75, 0.05);
-}
-
 .ym_categoria-select {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text-primary);
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--text-primary);
 }
+
 
 .ym_seta-categoria {
   color: var(--text-secondary);
@@ -177,24 +184,26 @@
 }
 
 .ym_options {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  right: 0;
-  background-color: var(--background-light);
-  border: 2px solid var(--border-color);
-  border-radius: 12px;
-  display: none;
-  flex-direction: column;
-  z-index: 100;
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  animation: slideDown 0.2s ease;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    margin-top: 23px;
+    display: none;
+    flex-direction: column;
+    width: max-content;
+
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    padding: 6px 0;
+
+    z-index: 20;
 }
 
 .ym_options.show {
-  display: flex;
+    display: flex;
 }
+
 
 .ym_link-option {
   padding: 14px 18px;

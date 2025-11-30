@@ -860,7 +860,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <script src="../../PUBLIC/JS/script-tabs.js"></script>
 <script src="../../PUBLIC/JS/script-select.js"></script>
 <script src="../../PUBLIC/JS/script-relatorio.js"></script>
-<script src="../../PUBLIC/JS/script-tema.js"></script>
+<!-- <script src="../../PUBLIC/JS/script-tema.js"></script> -->
 
 
 

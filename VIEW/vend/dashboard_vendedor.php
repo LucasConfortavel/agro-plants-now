@@ -72,7 +72,7 @@ $vendas_paginadas = array_slice($vendas_usuario, $offset, $limite);
 
 
 <body>
-    <script src="../../PUBLIC/JS/script-tema.js"></script>
+    <!-- <script src="../../PUBLIC/JS/script-tema.js"></script> -->
     <main class="jp_main-content">
         <h1 class="ym_titulo">Dashboard</h1> 
 

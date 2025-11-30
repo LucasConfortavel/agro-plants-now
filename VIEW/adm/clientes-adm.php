@@ -380,7 +380,7 @@ if(!empty($_GET)){
 
 <script src="../../PUBLIC/JS/script-clientes-adm.js"></script>
 <script src="../../PUBLIC/JS/script-pop-up.js"></script>
-<script src="../../PUBLIC/JS/script-tema.js"></script>
+<!-- <script src="../../PUBLIC/JS/script-tema.js"></script> -->
 
 </main>
 </body>

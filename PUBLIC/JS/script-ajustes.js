@@ -82,40 +82,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const themeOptions = document.querySelectorAll(".theme-option");
-  const savedTheme = localStorage.getItem("theme") || "dark";
+  // const themeOptions = document.querySelectorAll(".theme-option");
+  // const savedTheme = localStorage.getItem("theme") || "dark";
 
-  applyTheme(savedTheme);
+  // applyTheme(savedTheme);
 
-  themeOptions.forEach((option) => {
-    if (option.dataset.theme === savedTheme) {
-      option.classList.add("active");
-    }
-    option.addEventListener("click", () => {
-      const selectedTheme = option.dataset.theme;
+  // themeOptions.forEach((option) => {
+  //   if (option.dataset.theme === savedTheme) {
+  //     option.classList.add("active");
+  //   }
+  //   option.addEventListener("click", () => {
+  //     const selectedTheme = option.dataset.theme;
 
-      body.classList.add("theme-transitioning");
-      setTimeout(() => {
-        applyTheme(selectedTheme);
-        body.classList.remove("theme-transitioning");
-      }, 50);
+  //     body.classList.add("theme-transitioning");
+  //     setTimeout(() => {
+  //       applyTheme(selectedTheme);
+  //       body.classList.remove("theme-transitioning");
+  //     }, 50);
 
-      themeOptions.forEach((opt) => opt.classList.remove("active"));
-      option.classList.add("active");
+  //     themeOptions.forEach((opt) => opt.classList.remove("active"));
+  //     option.classList.add("active");
 
-      localStorage.setItem("theme", selectedTheme);
-      showToast(`Tema ${getThemeName(selectedTheme)} aplicado com sucesso!`, "success");
-    });
-  });
+  //     localStorage.setItem("theme", selectedTheme);
+  //     showToast(`Tema ${getThemeName(selectedTheme)} aplicado com sucesso!`, "success");
+  //   });
+  // });
 
-  function applyTheme(theme) {
-    body.classList.remove("dark-theme", "light-theme");
-    body.classList.add(theme === "dark" ? "dark-theme" : "light-theme");
-  }
+  // function applyTheme(theme) {
+  //   body.classList.remove("dark-theme", "light-theme");
+  //   body.classList.add(theme === "dark" ? "dark-theme" : "light-theme");
+  // }
 
-  function getThemeName(theme) {
-    return theme === "dark" ? "Escuro" : "Claro";
-  }
+  // function getThemeName(theme) {
+  //   return theme === "dark" ? "Escuro" : "Claro";
+  // }
 
   const modal = document.getElementById("modal-overlay");
   const modalClose = document.querySelector(".modal-close");
