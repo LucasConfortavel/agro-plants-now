@@ -17,42 +17,42 @@ include "../../INCLUDE/vlibras.php";
         [
             'name' => 'Eduardo Riberio Lopez',
             'role' => 'Front-End Developer',
-            'image' => '../../PUBLIC/img/IMG-20251112-WA0019.jpeg',
+            'image' => '../../PUBLIC/img/user.jpg',
             'specialties' => ['JS', 'PHP', 'HTML', 'CSS'],
-            'github' => 'https://github.com/lucassilva',
-            'linkedin' => 'https://linkedin.com/in/lucassilva'
+            'github' => 'https://github.com/Eduardo31-del',
+            'linkedin' => 'https://linkedin.com/in/eduardoribeiro'
         ],
         [
             'name' => 'João Vitor da Silva Oliveira',
             'role' => 'Front-End Developer',
-            'image' => '../../PUBLIC/img/João_Vitor.jfif',
+            'image' => '../../PUBLIC/img/user.jpg',
             'specialties' => ['JS', 'PHP', 'HTML', 'CSS'],
-            'github' => 'https://github.com/anacosta',
-            'linkedin' => 'https://linkedin.com/in/anacosta'
+            'github' => 'https://github.com/guaxinim-1',
+            'linkedin' => 'https://linkedin.com/in/guaxinim-1'
         ],
         [
             'name' => 'Lucas Santos Pereira de Oliveira',
             'role' => 'Full Stack Developer',
-            'image' => '../../PUBLIC/img/user_6904fd215cd88.gif',
+            'image' => '../../PUBLIC/img/user.jpg',
             'specialties' => ['JS', 'PHP', 'HTML', 'CSS'],
-            'github' => 'https://github.com/pedrosantos',
-            'linkedin' => 'https://linkedin.com/in/pedrosantos'
+            'github' => 'https://github.com/LucasConfortavel',
+            'linkedin' => 'https://linkedin.com/in/Lucasconfortavel'
         ],
         [
             'name' => 'Luiz Fernado Vilalba Queiros Gonçalves',
             'role' => 'Back End Developer - Analista de Dados',
-            'image' => '../../PUBLIC/img/user_6904fd215cd88.gif',
+            'image' => '../../PUBLIC/img/user.jpg',
             'specialties' => ['JS', 'PHP', 'MySQL'],
-            'github' => 'https://github.com/marianaoliveira',
-            'linkedin' => 'https://linkedin.com/in/marianaoliveira'
+            'github' => 'https://github.com/Luf3r',
+            'linkedin' => 'https://linkedin.com/in/Luizfernando'
         ],
         [
             'name' => 'Paulo Otávio Câmara Rojas',
             'role' => 'Full Stack Developer - Analista de Dados',
             'image' => '../../PUBLIC/img/Paulo_Otavio.webp',
             'specialties' => ['JS', 'PHP', 'HTML', 'CSS', 'MySQL'],
-            'github' => 'https://github.com/rafaelferreira',
-            'linkedin' => 'https://linkedin.com/in/rafaelferreira'
+            'github' => 'https://github.com/Madarauos',
+            'linkedin' => 'https://linkedin.com/in/paulootavio'
         ],
         [
             'name' => 'Yuri yochifumi de Lara maeda',
@@ -67,8 +67,8 @@ include "../../INCLUDE/vlibras.php";
             'role' => 'Front-End Developer',
             'image' => '../../PUBLIC/img/gustavo.jpeg',
             'specialties' => ['JS', 'PHP', 'HTML', 'CSS', 'MySQL'],
-            'github' => 'https://github.com/carlosalmeida',
-            'linkedin' => 'https://linkedin.com/in/carlosalmeida'
+            'github' => 'https://github.com/Gustavo65157',
+            'linkedin' => 'https://linkedin.com/in/Gustavo65157'
         ],
         [
             'name' => 'Luã Carlos dos Santos Abreu',
@@ -89,10 +89,10 @@ include "../../INCLUDE/vlibras.php";
         [
             'name' => 'Vinícius Cruz Lopes',
             'role' => 'Full Stack Developer',
-            'image' => '../../PUBLIC/img/user_6904fd215cd88.gif',
+            'image' => '../../PUBLIC/img/user.jpg',
             'specialties' => ['JS', 'PHP', 'HTML', 'CSS', 'MySQL'],
-            'github' => 'https://github.com/fernandamartins',
-            'linkedin' => 'https://linkedin.com/in/fernandamartins'
+            'github' => 'https://github.com/ViniciusCZL',
+            'linkedin' => 'https://www.linkedin.com/in/vin%C3%ADcius-cruz-lopes-786021190/'
         ],
         [
             'name' => 'João Pedro Ramos Corrêa',
