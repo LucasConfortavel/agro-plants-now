@@ -57,10 +57,10 @@ include "../../INCLUDE/vlibras.php";
         [
             'name' => 'Yuri yochifumi de Lara maeda',
             'role' => 'Full Stack Developer',
-            'image' => '../../PUBLIC/img/user_6904fd215cd88.gif',
+            'image' => '../../PUBLIC/img/yuri_maeda.jpeg',
             'specialties' => ['JS', 'PHP', 'HTML', 'CSS', 'MySQL'],
-            'github' => 'https://github.com/julianarodrigues',
-            'linkedin' => 'https://linkedin.com/in/julianarodrigues'
+            'github' => 'https://github.com/yuh-maeda',
+            'linkedin' => 'https://www.linkedin.com/in/yuri-maeda-306551316/'
         ],
         [
             'name' => 'Gustavo Francisco Scarton dos Santos',
