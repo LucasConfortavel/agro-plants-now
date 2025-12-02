@@ -7,7 +7,7 @@
 </head>
 <body>
     
-    <div class="g-recaptcha" data-sitekey="6LcrLhssAAAAAPlHgh8GB7d8tCn7xR5yTTSXhPSL"></div>
+    <div class="g-recaptcha" data-sitekey="6LdtRxssAAAAAIwwZka8vUpdB6wUne6PvYZn79_7"></div>
 
   <script>
     document.getElementById('myForm').addEventListener('submit', function(e){
