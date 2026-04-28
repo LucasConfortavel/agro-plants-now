@@ -75,5 +75,4 @@
 
 ## 👤 Autor
 
-**Paulo Otávio Câmara Rojas**  
-[GitHub](https://github.com/PauloRojas18) • [LinkedIn](https://linkedin.com/in/paulo-rojas-b7b77a3a1/) • paulootaviogalala@gmail.com
+Projeto acadêmico desenvolvido no SENAC-MS.
